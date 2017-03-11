@@ -1,0 +1,76 @@
+\ifx\wholebook\relax \else
+
+\documentclass[UTF8]{article}
+
+\input{../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+% ================================================================
+%                 Digit lock
+% ================================================================
+
+\title{锁车趣题}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{锁车趣题}{Unplugged}
+
+\section{共享自行车}
+
+在我撰写这一章节的时候，共享自行车正在流行。一些公司在城市的大街小巷投放一些自行车。如果一个人要使用，他需要支付一定的押金，然后就可以打开车锁骑走，共享自行车公司按照使用时间收费。到达目的地后，从押金中扣除使用费就可以了。
+
+为了实现在任何时间、地点，都能够租、还车，自行车公司通过使用当时已经普及的智能手机，来实现自行车的租用、计时、收费。一个典型的场景大致如下：
+
+\begin{enumerate}
+\item 一个行人$p$在路边看到一辆上锁的共享自行车，这辆自行车上有一个唯一的编号$x$，他通过自己的手机联系自行车公司，告知他要使用这辆自行车；
+\item 自行车公司收到这一行人$p$的请求，向他收取使用自行车$x$的押金；
+\item 行人通过自己的智能手机向自行车公司支付押金；
+\item 自行车公司收到押金后，通过某种方式打开自行车$x$的车锁；
+\item 行人将自行车骑到某地点后，将自行车停好，并通过手机告知自行车公司他要还车；
+\item 自行车公司收到请求后，根据自行车x的使用时间，从押金中扣除费用，将押金退还行人$p$，同时通过某种方式将自行车$x$锁好。
+\end{enumerate}
+
+这一使用方式中有两个环节非常关键。
+
+%% \begin{figure}[htbp]
+%%   \centering
+%%   \includegraphics[scale=1]{img/divide-by-m.ps}
+%%   \caption{数组划分的过程。所有位于$0 \leq i < left$的元素满足$x[i] \leq m$，所有位于$left \leq i < right$的元素满足$x[i] > m$，剩余的元素尚未处理。} \label{fig:divide}
+%% \end{figure}
+
+
+% ================================================================
+%                 Short summary
+% ================================================================
+\section{小结}
+
+\ifx\wholebook\relax \else
+%% \begin{thebibliography}{99}
+
+%% \bibitem{fp-pearls}
+%% Richard Bird. ``Pearls of functional algorithm design''. Cambridge University Press; 1 edition (November 1, 2010). ISBN-10: 0521513383
+
+%% \bibitem{Bentley}
+%% Jon Bentley. ``Programming Pearls(2nd Edition)''. Addison-Wesley Professional; 2 edition (October 7, 1999). ISBN-13: 978-0201657883 （中文版：《编程珠玑》）
+
+%% \bibitem{okasaki-book}
+%% Chris Okasaki. ``Purely Functional Data Structures''. Cambridge university press, (July 1, 1999), ISBN-13: 978-0521663502
+
+%% \bibitem{CLRS}
+%% Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein. ``Introduction to Algorithms, Second Edition''. The MIT Press, 2001. ISBN: 0262032937. （中文版：《算法导论》）
+
+%% \end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
