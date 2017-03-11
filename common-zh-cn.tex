@@ -1,0 +1,167 @@
+%
+% loading packages
+%
+
+\RequirePackage{ifpdf}
+\RequirePackage{ifxetex}
+
+%
+%
+\ifpdf
+  \RequirePackage[pdftex,%
+       bookmarksnumbered,%
+              colorlinks,%
+          linkcolor=blue,%
+              hyperindex,%
+        plainpages=false,%
+       pdfstartview=FitH]{hyperref}
+\else\ifxetex
+  \RequirePackage[bookmarksnumbered,%
+               colorlinks,%
+           linkcolor=blue,%
+               hyperindex,%
+         plainpages=false,%
+        pdfstartview=FitH]{hyperref}
+\else
+  \RequirePackage[dvipdfm,%
+        bookmarksnumbered,%
+               colorlinks,%
+           linkcolor=blue,%
+               hyperindex,%
+         plainpages=false,%
+        pdfstartview=FitH]{hyperref}
+\fi\fi
+%\usepackage{hyperref}
+
+% other packages
+%--------------------------------------------------------------------------
+\usepackage{graphicx, color}
+\usepackage{subfig}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{matrix,positioning,shapes}
+
+\usepackage{amsmath, amsthm, amssymb} % for math
+\usepackage{exercise} % for exercise
+\usepackage{import} % for nested input
+
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{appendix}
+\usepackage{makeidx} % for index support
+\usepackage{titlesec}
+
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+%\usepackage{fontenc}
+\usepackage{textcomp}
+\usepackage{url}
+
+% detect and select Chinese font
+% ------------------------------
+% the following cmd can list all availabe Chinese fonts in host.
+% fc-list :lang=zh
+\def\myfont{STSong}  % Under Mac OS X
+\def\linuxfallback{WenQuanYi Micro Hei} % Under Linux
+\def\winfallback{SimSun} % Under Windows
+\suppressfontnotfounderror1 % Avoid setting exit code (error level) to break make process
+\count255=\interactionmode
+\batchmode
+\font\foo="\myfont"\space at 10pt
+\ifx\foo\nullfont
+  \font\foo = "\linuxfallback"\space at 10pt
+  \ifx\foo\nullfont
+    \font\foo = "\winfallback"\space at 10pt
+    \ifx\foo\nullfont
+      \errorstopmode
+      \errmessage{no suitable Chinese font found}
+    \else
+      \let\myfont=\winfallback % Windows
+    \fi
+  \else
+    \let\myfont=\linuxfallback % Linux
+  \fi
+\fi
+\interactionmode=\count255
+\setmainfont[Mapping=tex-text]{\myfont}
+\setmonofont[Scale=MatchLowercase]{Monaco}   % 英文等宽字体
+
+\XeTeXlinebreaklocale "zh"  % to solve the line breaking issue
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% ======================================================================
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%
+% mathematics
+%
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bmat}[1]{\left( \begin{array}{#1} }
+\newcommand{\emat}{\end{array} \right) }
+\newcommand{\VEC}[1]{\mbox{\boldmath $#1$}}
+
+% numbered equation array
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+% equation array not numbered
+\newcommand{\bean}{\begin{eqnarray*}}
+\newcommand{\eean}{\end{eqnarray*}}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+% 中文书籍设置
+% ====================================
+\renewcommand\contentsname{目\ 录}
+%\renewcommand\listfigurename{插图目录}
+%\renewcommand\listtablename{表格目录}
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+\renewcommand\proofname{证明}
+\renewcommand\ExerciseName{练习}
+%\renewcommand{\algorithmcfname}{算法}
+
+\ifx\wholebook\relax
+\renewcommand\bibname{参\ 考\ 文\ 献}                    %book类型
+%\newtheorem{Definition}[Theorem]{定义}
+\newtheorem{Theorem}{定理}[chapter]
+\newtheorem{example}{例题}[chapter]
+\else
+\renewcommand\refname{参\ 考\ 文\ 献}
+\fi
+
+%\setcounter{secnumdepth}{4}
+\titleformat{\chapter}
+  {\normalfont\bfseries\Large}
+  {第\arabic{chapter}章}
+  {12pt}{\Large}
+%% \titleformat{\subsection}
+%%   {\normalfont\bfseries\large}
+%%   {\CJKnumber{\arabic{subsection}}、}
+%%   {12pt}{\large}
+%% \titleformat{\subsubsection}
+%%   {\normalfont\bfseries\normalsize}
+%%   {\arabic{subsubsection}.}
+%%   {12pt}{\normalsize}
+
+%\renewcommand{\baselinestretch}{1.5}                        %文章行间距为1.5倍。
+
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+%\verbatimfont{\footnotesize}
