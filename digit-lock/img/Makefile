@@ -1,4 +1,4 @@
-IMG_OBJECTS = normal-lock
+IMG_OBJECTS = normal-lock normal-digits-order random-digits-order diagram
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
