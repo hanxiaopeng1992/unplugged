@@ -1,0 +1,84 @@
+\ifx\wholebook\relax \else
+
+\documentclass[UTF8]{article}
+
+\input{../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+% ================================================================
+%                 Digit lock
+% ================================================================
+
+\title{自然数}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{自然数}{计算机程序的代数结构}
+
+\section{数的诞生}
+数的概念是伴随着我们人类进化产生的。数的产生甚至可能在语言之前。有人认为，数直接催生了人类的语言和文字。我们的祖先在长期的狩猎——采集活动中，逐渐掌握了数的概念。
+最早可能是简单的数数，例如数清果实的数量。随着文明的发展，人们逐渐开始进行物品交易。随着交易物品数量增长，很快需要采用助记工具来处理更大的数。
+考古发现在今天的伊朗一代，人们在公元前4000年开始使用陶制的小球来辅助计数。比如用两个刻有十字的小球代表两只羊，同时还有代表十只羊，二十只羊的不同小球。
+为了防止忘记或者篡改数过的数目，人们还把这些小球放在陶罐中用泥土封存起来。图\ref{fig:clay-token}是乌鲁克（Uruk）时期的陶制计数罐和小球\cite{wiki-number}。
+交易过程中，人们可以通过这些工具掌握货物的数量\cite{trip-to-number-kindom}。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.5]{img/clay-envelope.eps}
+ \caption{卢浮宫陈列的乌鲁尔时期的计数陶罐和一组计数陶球。}
+ \label{fig:clay-token}
+\end{figure}
+
+随着交易的增加和数目的增大，这样的陶罐和小球就不够方便了。大约公元前3500年，美索不达米亚的苏美尔人开始在泥板上刻化符号来纪录交易。将泥板烤硬后就可以方便的保存纪录。人们在这一时期用坚硬的笔在泥板上刻出不同的符号，同时表示交易的物品和数量。
+
+更大进步发生在公元前3100年，从出土的泥板中，我们发现苏美尔人开始将数字从它代表的物品中抽象出来。人们不再使用一个符号同时表示物品和数量，而是用一个符号表示交易的数量，接下来用另一个符号表示交易的物品。这些泥板上的符号逐渐演变成了古巴比伦的楔形文字。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.8]{img/Babylonian_numerals.eps}
+ \caption{巴比伦楔形文字中的数字\cite{wiki-babylonian-num}。}
+ \label{fig:clay-token}
+\end{figure}
+
+
+数对具体事物的抽象
+
+\section{皮亚诺自然数公理}
+
+\section{自然数的代数结构}
+具体例子
+群，monoid和半群的概念
+
+\section{自然数程序}
+使用自然数的代数结构的程序的例子
+
+将一类程序的结构抽象为代数结构
+
+使用自然数的代数结构抽象更多的程序
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\bibitem{wiki-number}
+Wikipedia. ``古代计数系统的历史''. \url{https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems}
+
+\bibitem{trip-to-number-kindom}
+[美]卡尔文$\cdot$C$\cdot$克劳森. ``数学旅行家：漫游数王国''. 袁向东、袁钧译，上海教育出版社。ISBN:
+
+\bibitem{wiki-babylonian-num}
+Wikipedia. ``古巴比伦数字''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
