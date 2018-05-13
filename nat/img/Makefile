@@ -1,4 +1,4 @@
-IMG_OBJECTS = clay-envelope SAG Babylonian_numerals
+IMG_OBJECTS = clay-envelope SAG Babylonian_numerals abstract-num
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
