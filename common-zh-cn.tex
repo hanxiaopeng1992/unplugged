@@ -45,8 +45,17 @@
 \usepackage{exercise} % for exercise
 \usepackage{import} % for nested input
 
+%
+% for programming
+%
 \usepackage{verbatim}
 \usepackage{fancyvrb}
+\usepackage{listings}
+%\usepackage{algorithmic} %old version; we can use algorithmicx instead
+%\usepackage[plain]{algorithm} %remove rule (horizontal line on top/below the algorithm
+\usepackage{algorithm} %to remove rules change to \usepackage[plain]{algorithm}
+%\usepackage{algorithm2e}
+\usepackage[noend]{algpseudocode} %for pseudo code, include algorithmicsx automatically
 \usepackage{appendix}
 \usepackage{makeidx} % for index support
 \usepackage{titlesec}
@@ -93,6 +102,72 @@
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\lstdefinelanguage{Smalltalk}{
+  morekeywords={self,super,true,false,nil,thisContext}, % This is overkill
+  morestring=[d]',
+  morecomment=[s]{"}{"},
+  alsoletter={\#:},
+  escapechar={!},
+  literate=
+    {BANG}{!}1
+    {UNDERSCORE}{\_}1
+    {\\st}{Smalltalk}9 % convenience -- in case \st occurs in code
+    % {'}{{\textquotesingle}}1 % replaced by upquote=true in \lstset
+    {_}{{$\leftarrow$}}1
+    {>>>}{{\sep}}1
+    {^}{{$\uparrow$}}1
+    {~}{{$\sim$}}1
+    {-}{{\sf -\hspace{-0.13em}-}}1  % the goal is to make - the same width as +
+    %{+}{\raisebox{0.08ex}{+}}1		% and to raise + off the baseline to match -
+    {-->}{{\quad$\longrightarrow$\quad}}3
+	, % Don't forget the comma at the end!
+  tabsize=2
+}[keywords,comments,strings]
+
+% for literate Haskell code
+\lstdefinestyle{Haskell}{
+  flexiblecolumns=false,
+  basewidth={0.5em,0.45em},
+  morecomment=[l]--,
+  literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+           {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+           {\\\\}{{\char`\\\char`\\}}1
+           {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+           {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2
+           {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+           {>>}{{>>}}2 {>>=}{{>>=}}2
+           {|}{{$\mid$}}1
+}
+
+% "define" Scala
+\lstdefinelanguage{Scala}{
+  morekeywords={abstract,case,catch,class,def,%
+    do,else,extends,false,final,finally,%
+    for,if,implicit,import,match,mixin,%
+    new,null,object,override,package,%
+    private,protected,requires,return,sealed,%
+    super,this,throw,trait,true,try,%
+    type,val,var,while,with,yield},
+  otherkeywords={=>,<-,<\%,<:,>:,\#,@},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[n]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]"""
+}
+
+\lstloadlanguages{C, C++, Java, Lisp, Haskell, Python, Smalltalk, Scala}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  commentstyle=\rmfamily,
+  texcl=true,
+  showstringspaces = false,
+  upquote=true,
+  flexiblecolumns=false
+}
 
 % ======================================================================
 
