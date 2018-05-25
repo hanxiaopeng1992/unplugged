@@ -112,10 +112,16 @@
 
 我们也模仿一下这样的过程，看看如何根据皮亚诺公理，用计算机程序定义自然数。在一个没有0、1、2、……这些我们熟悉的数字的程序系统中，我们可以这样定义自然数：
 
-
 \lstset{language=Haskell}
 \begin{lstlisting}
 data Nat = Zero | Succ Nat
+\end{lstlisting}
+
+这一定义说：自然数Nat是某种数据，一个自然数或者为零，或者是另一自然数的后继。这里符号“｜”表示互斥的关系。它自然蕴含了零不是任何自然数后继这一公理。在这一定义下，我们可以进一步定义出自然数的加法。
+
+\begin{lstlisting}
+m + Zero = m
+m + (Succ n) = Succ (m + n)
 \end{lstlisting}
 
 \section{自然数的代数结构}
