@@ -124,6 +124,27 @@ m + Zero = m
 m + (Succ n) = Succ (m + n)
 \end{lstlisting}
 
+加法定义包含两部分。首先任何自然数和零相加等于它本身；并且某个自然数和另一个数的后继相加，等于这两个数相加的后继。写成数学符号为：
+
+\[
+\begin{array}{l}
+m + 0 = m \\
+m + n' = (m + n)'
+\end{array}
+\]
+
+我们来验证一下2+3。自然数2为Succ(Succ Zero)，而3为Succ(Succ(Succ Zero))。根据加法的定义2+3为：
+
+\begin{lstlisting}
+  Succ(Succ Zero) + Succ(Succ(Succ Zero))
+= Succ(Succ(Succ Zero) + Succ(Succ Zero))
+= Succ(Succ(Succ(Succ Zero) + Succ Zero))
+= Succ(Succ(Succ(Succ(Succ Zero) + Zero)))
+= Succ(Succ(Succ(Succ(Succ Zero))))
+\end{lstlisting}
+
+最终结果的确是零的五重后继，也就是5。
+
 \section{自然数的代数结构}
 具体例子
 群，monoid和半群的概念
