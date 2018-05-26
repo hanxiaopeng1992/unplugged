@@ -1,0 +1,166 @@
+\ifx\wholebook\relax \else
+
+\documentclass[UTF8]{article}
+
+\input{../../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+% ================================================================
+%                 Digit lock
+% ================================================================
+
+\title{自然数}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{自然数}{计算机程序的代数结构}
+
+\section{加法交换律的证明}
+
+为了证明加法的交换律$a + b = b + a$。我们首先证明三个结论。第一个是说对于任何自然数都有：
+
+\be
+0 + a = a
+\label{eq:left-zero}
+\ee
+
+也就是说，加法左侧的零可以消去。首先看起始情况，当$a=0$时，根据加法定义的第一条规则有：
+
+\[
+0 + 0 = 0
+\]
+
+其次是递推情况，设$0 + a = a$，我们要推出$0 + a' = a'$。
+
+\[
+\begin{array}{rlr}
+0 + a' & = (0 + a)' & \text{加法定义的规则二} \\
+       & = a' & \text{递推假设}
+\end{array}
+\]
+
+接下来我们定义0的后继为1，并证明第二个重要结论：
+
+\be
+a' = a + 1
+\label{eq:one-succ}
+\ee
+
+这是因为：
+
+\[
+\begin{array}{rlr}
+a' & = (a + 0)' & \text{加法定义的规则一} \\
+   & = a + 0' & \text{加法定义规则二} \\
+   & = a + 1
+\end{array}
+\]
+
+我们需要补充定义0的后继为1，然后就可以利用归纳公理进行证明。
+第二个要证明的结论是交换律的一个特例：
+
+\be
+$a + 1 = 1 + a$。
+\label{eq:one-commu}
+\ee
+
+首先看$a = 0$的起始情况。
+
+\[
+\begin{array}{rlr}
+0 + 1 & = 1 & \text{刚证明的加法左侧零可消去} \\
+      & = 1 + 0 & \text{加法定义的第一条规则}
+\end{array}
+\]
+
+然后是递推情况，设$a + 1 = 1 + a$成立，我们要推出$a' + 1 = 1 + a'$。
+
+\[
+\begin{array}{rlr}
+a' + 1 & = a' + 0' & \text{1是0的后继} \\
+       & = (a' + 0)' & \text{加法定义的第一条规则}
+\end{array}
+\]
+
+
+如果我们定义1是0的后继，则任何数$n$的后继可以写成:
+
+\be
+$n' = n + 1$
+\label{eq:one-succ}
+\ee
+
+这是因为：
+
+\[
+\begin{array}{rlr}
+n' & = (n + 0)' & \text{根据加法定义的第一条规则} \\
+   & = n + 0' & \text{根据加法定义的第二条规则} \\
+   & = n + 1 & \text {定义0的后继为1} \\
+\end{array}
+\]
+
+有了这两个结论，我们就可以着手证明加法交换律了。我们首先证明$b=0$时交换律成立。根据加法定义的第一条，我们有$a + 0 ＝ a$；同时根据刚才证明的结论一，又有$0 + a = a$。这就证明了$a + 0 = 0 + a$。
+然后我们证明递推情况。假设$a + b = b + a$成立，我们要推出$a + b' = b' + a$。
+
+\[
+\begin{array}{rlr}
+a + b' & = (a + b)' & \text{根据加法定义的第二条规则} \\
+       & = (b + a)' & \text{递推假设} \\
+       & = b + a' & \text{加法定义的第二条规则} \\
+       & = b + a + 1 & \text{根据刚证明的结论二，即(\ref{eq:one-succ})} \\
+       & = b + 1 + a & \text{} \\
+       & = (b + 1) + a & \text{加法结合律} \\
+       & = b' + a &
+\end{array}
+\]
+
+
+而$b + a$
+
+\begin{Exercise}
+\begin{enumerate}
+\item 证明对于任何自然数都有$0 + a = a$
+\item 定义0的后继为1，证明对于任何自然数都有$a \cdot 1 = a$
+\item 证明乘法结合律和交换律
+\item 证明乘法分配律
+\end{enumerate}
+\end{Exercise}
+
+\section{自然数的代数结构}
+具体例子
+群，monoid和半群的概念
+
+\section{自然数程序}
+使用自然数的代数结构的程序的例子
+
+将一类程序的结构抽象为代数结构
+
+使用自然数的代数结构抽象更多的程序
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\bibitem{wiki-number}
+Wikipedia. ``古代计数系统的历史''. \url{https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems}
+
+\bibitem{trip-to-number-kindom}
+[美]卡尔文$\cdot$C$\cdot$克劳森. ``数学旅行家：漫游数王国''. 袁向东、袁钧译，上海教育出版社。ISBN:
+
+\bibitem{wiki-babylonian-num}
+Wikipedia. ``古巴比伦数字''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
