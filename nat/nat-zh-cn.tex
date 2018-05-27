@@ -149,7 +149,7 @@ a + b' = (a + b)'
 n = foldn(0, succ, n)
 \ee
 
-它表示我们从零开始，不断叠加使用succ函数$n$次。这样100就表示为$foldn(0, succ, 100)$。$foldn$函数可以具体实现如下：
+它表示从零开始，不断叠加使用succ函数$n$次。$foldn$函数可以具体实现如下：
 
 \be
 \begin{array}{l}
@@ -157,6 +157,8 @@ foldn(z, f, 0) = z \\
 foldn(z, f, n') = f(foldn(z, f, n))
 \end{array}
 \ee
+
+$foldn$定义了在自然数上的一种操作，只要令$z$为$zero$，令$f$为$succ$就可以实现叠加后继若干次，从而获得某个特定的自然数。
 
 定义好加法之后，我们再来定义自然数的乘法：
 
