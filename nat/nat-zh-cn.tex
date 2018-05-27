@@ -156,6 +156,7 @@ n = foldn(0, succ, n)
 foldn(z, f, 0) = z \\
 foldn(z, f, n') = f(foldn(z, f, n))
 \end{array}
+\label{eq:foldn}
 \ee
 
 $foldn$定义了在自然数上的一种操作，只要令$z$为$zero$，令$f$为$succ$就可以实现叠加后继若干次，从而获得某个特定的自然数。
@@ -207,8 +208,46 @@ a \cdot b' = a \cdot b + a
 \end{Exercise}
 
 \section{自然数的代数结构}
-具体例子
-群，monoid和半群的概念
+有了加法和乘法，我们就可以定义更复杂的计算。第一个例子是从零开始的累加：$0 + 1 + 2 + ... $
+
+\be
+\begin{array}{l}
+sum(0) = 0 \\
+sum(n + 1) = (n + 1) + sum(n)
+\end{array}
+\ee
+
+第二个例子是阶乘$n!$。
+
+\be
+\begin{array}{l}
+fact(0) = 1 \\
+fact(n + 1) = (n + 1) \cdot fact(n)
+\end{array}
+\ee
+
+比较这两个例子，我们发现它们非常相似。尽管人工智能日新月异地发展，智慧生命和智能机器的一大区别就是能否“跳出系统”，到更高的层次进行抽象。这是我们人类心智中最强大、神秘、复杂、难以捉摸的一部分\cite{GEB}。
+
+我们发现累加和阶乘都有一个针对自然数零起始值，累加始自零，阶乘始自一。针对递归情况，它们都将某一操作应用到一个自然数和它的后继上。累加是$n' + sum(n)$，阶乘是$n' \cdot fact(n)$。如果我们把针对零的起始值抽象为$c$，把递归中的操作抽象为$h$，就可以用一个统一的形式概括累加和阶乘。
+
+\be
+\begin{array}{l}
+f(0) = c \\
+f(n + 1) = h(f(n))
+\end{array}
+\ee
+
+这是一个在自然数上的递归结构。它是\underline{原始递归}形式的一种（\cite{Bird97}，第5页）。更进一步，如果观察此前我们在(\ref{eq:foldn})定义的函数$foldn$，就会发现它们之间的关系：
+
+\be
+f = foldn(c, h)
+\ee
+
+细心的读者会观察到，我们最初定义的$foldn$带有三个参数，为什这里只有两个了呢？实际上我们可以写成$f(n) = foldn(c, h, n)$。当我们仅传递给三元函数$foldn$前两个参数，它实际上就成为了接受一个自然数为参数的一元函数了。我们可以这样看待它：$foldn(c, h)(n)$。
+
+我们称$foldn$为自然数上的$fold$操作。另$c$为$zero$，$h$为$succ$，我们就得到了自然数，
+
+%群，monoid和半群的概念
 
 \section{自然数程序}
 使用自然数的代数结构的程序的例子
@@ -228,6 +267,13 @@ Wikipedia. ``古代计数系统的历史''. \url{https://en.wikipedia.org/wiki/H
 
 \bibitem{wiki-babylonian-num}
 Wikipedia. ``古巴比伦数字''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
+
+\bibitem{GEB}
+[美]候世达 ``哥德尔、埃舍尔、巴赫——集异壁之大成''. 商务印书馆 1996. ISBN: 978-7-100-01323-9
+
+\bibitem{Bird97}
+Richard Bird, Oege de Moor. ``Algebra of Programming''. Univerisity of Oxford, Prentice Hall Europe. 1997. ISBN: 0-13-507245-X.
+
 \end{thebibliography}
 
 \expandafter\enddocument
