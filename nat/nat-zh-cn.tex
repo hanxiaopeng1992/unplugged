@@ -25,50 +25,61 @@
 \markboth{自然数}{计算机程序的代数结构}
 
 \section{数的诞生}
+
+\begin{wrapfigure}{R}{0.3\textwidth}
+%\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/clay-envelope.eps}
+ \caption{卢浮宫陈列的乌鲁尔时期的计数陶罐和一组计数陶球。}
+ \label{fig:clay-token}
+%\end{figure}
+\end{wrapfigure}
+
 数的概念是伴随着我们人类进化产生的。有人认为，数直接催生了人类的语言和文字。我们的祖先在长期的狩猎——采集活动中，逐渐掌握了数的概念。
 最早可能是简单的数数，例如数清果实的数量。随着文明的发展，人们逐渐开始进行物品交易。随着交易物品数量增长，很快需要采用助记工具来处理更大的数。
 考古发现在今天的伊朗一代，人们在公元前4000年开始使用陶制的小球来辅助计数。比如用两个刻有十字的小球代表两只羊，同时还有代表十只羊，二十只羊的不同小球。
 为了防止忘记或者篡改数过的数目，人们还把这些小球放在陶罐中用泥土封存起来。图\ref{fig:clay-token}是乌鲁克（Uruk）时期的陶制计数罐和小球\cite{wiki-number}。
 交易过程中，人们可以通过这些工具掌握货物的数量\cite{trip-to-number-kindom}。
 
-\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.5]{img/clay-envelope.eps}
- \caption{卢浮宫陈列的乌鲁尔时期的计数陶罐和一组计数陶球。}
- \label{fig:clay-token}
-\end{figure}
-
 随着交易的增加和数目的增大，这样的陶罐和小球就不够方便了。大约公元前3500年，美索不达米亚的苏美尔人开始在泥板上刻化符号来纪录交易。将泥板烤硬后就可以方便的保存纪录。人们在这一时期用坚硬的笔在泥板上刻出不同的符号，同时表示交易的物品和数量。比如用一个象形符号表示五头牛，而用另一个象形符号表示十只羊。
 
 更大进步发生在公元前3100年，从出土的泥板中，我们发现苏美尔人开始将数字从它代表的物品中抽象出来。人们不再使用一个符号同时表示物品和数量，而是用一个符号表示交易的数量，接下来用另一个符号表示交易的物品。例如先用一个符号表示五，然后跟上一个牛的象形符号表示五头牛；而表示五只羊的时候，人们用同样的符号表示五，然后再跟上一个羊的符号。这些泥板上的符号逐渐演变成了古巴比伦的楔形文字。
 
+%\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.8]{img/Babylonian_numerals.eps}
+ \includegraphics[scale=0.6]{img/Babylonian_numerals.eps}
  \caption{巴比伦楔形文字中的数字\cite{wiki-babylonian-num}。}
  \label{fig:babylonian-num}
 \end{figure}
+%\end{wrapfigure}
 
 抽象的数是智慧生命思维的产物。人们发现三个鸡蛋、三棵树、三个陶罐都可以用数字三来表示。这是一种强大的工具。从此，我们可以对抽象的数字进行操作，然后再把结果应用到各种具体事物上。例如我们可以把抽象的数字三加上一得到四，从而知道捡拾三个鸡蛋后再捡拾到一个鸡蛋会得到四个鸡蛋。同时我们也知道烧制三个陶罐后再烧制一个陶罐会得到四个陶罐。人们逐渐从解决单一问题发展到解决一类问题。
 
-\begin{figure}[htbp]
+\begin{wrapfigure}{R}{0.5\textwidth}
+%\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/abstract-num.eps}
  \caption{具体的三个事物和抽象的数字三。}
  \label{fig:abstract-num}
-\end{figure}
+%\end{figure}
+\end{wrapfigure}
 
 从数数开始，我们的老祖先逐渐发展出了操作抽象数字的方法，包括数字的加法、减法，更为强大的乘法，以及用于分配事物的除法。在丈量分割土地，计算谷物容量时，又逐渐将抽象的数和几何量联系起来。各个文明几乎分别独立的发现了数与形的内在规律。我们发现古埃及，古希腊，古中国都各自发现了毕达哥拉斯定理（勾股定理），古埃及人把它用于金字塔建造这样的伟大工程实践。从现代文明追根溯源，我们可以说自然数是数学和自然科学这条长河的源头。德国数学家克罗内克（Kronecker）说“上帝创造了自然数，其余都是人的工作。”\footnote{一说为整数，我们会在后继关于康托尔和无穷的章节再次提到克罗内克。}
 
 \section{皮亚诺自然数公理}
-古希腊的欧几里得在他的伟大著作《几何原本》中开创了公理化的方法。他用五条公理和五条公设作为基石，精心构建一条一条定理的证明。每一个结论都仅仅使用公理和此前已经证明的定理。最终构建出了叹为观止的几何大厦。然而对于自然数，长期以来人们却没有建立起它的公理化形式系统。也许人们一直认为自然数的结论是直观和显而易见的。直到1889年，意大利数学家皮亚诺\footnote{皮亚诺不仅是数学家和逻辑学家，还是语言学家。他是数理逻辑和集合理论的先驱。他直接影响了罗素和怀特海的著作《数学原理》以及此后法国布尔巴基学派的纲领。他还创立了国际语（又称为“无屈折拉丁语”的人工语言）。}才为自然数建立起了严格的公理化系统。这就是著名的皮亚诺公里（Peano Axioms）。也许是上帝的巧合，欧几里得几何公理有五条，皮亚诺公理也有五条：
 
+%\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/Peano.eps}
  \caption{朱塞佩$\cdot$皮亚诺（Giuseppe Peano）1858 - 1932。}
  \label{fig:abstract-num}
 \end{figure}
+%\end{wrapfigure}
+
+古希腊的欧几里得在他的伟大著作《几何原本》中开创了公理化的方法。他用五条公理和五条公设作为基石，精心构建一条一条定理的证明。每一个结论都仅仅使用公理和此前已经证明的定理。最终构建出了叹为观止的几何大厦。然而对于自然数，长期以来人们却没有建立起它的公理化形式系统。也许人们一直认为自然数的结论是直观和显而易见的。直到1889年，意大利数学家皮亚诺\footnote{皮亚诺不仅是数学家和逻辑学家，还是语言学家。他是数理逻辑和集合理论的先驱。他直接影响了罗素和怀特海的著作《数学原理》以及此后法国布尔巴基学派的纲领。他还创立了国际语（又称为“无屈折拉丁语”的人工语言）。}才为自然数建立起了严格的公理化系统。这就是著名的皮亚诺公里（Peano Axioms）。也许是上帝的巧合，欧几里得几何公理有五条，皮亚诺公理也有五条：
+
 
 \begin{enumerate}
 \item 0是自然数。用符号表示为$\exists 0 \in N$;
@@ -338,6 +349,15 @@ fact = 2nd \cdot foldn(c, h) \\
 在累加和阶乘的定义中，我们使用了符号“$\cdot$”点来连接两个函数$2nd$和$foldn(c, h)$。我们称之为函数组合，$f\cdot g$表示先将函数$g$应用到变量上，然后再将函数$f$应用到结果上。即$(f\cdot g)(x) = f(g(x))$。
 
 为了展示这一抽象工具的强大，我们再来看一个例子：斐波那契数列。
+
+\begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/Fibonacci.eps}
+ \caption{比萨的列奥纳多，又称斐波那契（Leonardo Pisano, Fibonacci），1175年-1250年}
+ \label{fig:abstract-num}
+%\end{figure}
+\end{wrapfigure}
 
 %群，monoid和半群的概念
 
