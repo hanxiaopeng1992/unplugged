@@ -188,7 +188,18 @@ a \cdot b' = a \cdot b + a
 \end{array}
 \ee
 
-TODO：使用几何的方式证明加法的结合律，交换律，乘法的交换律
+\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+\filldraw[pattern=north west lines] (0, 0) rectangle (2, 1)
+    (2, 0) rectangle (3, 1);
+\draw (3, 0) rectangle (4.5, 1);
+\draw (0, -1) rectangle (2, -2);
+\filldraw[pattern=north west lines] (2, -1) rectangle (3, -2)
+    (3, -1) rectangle (4.5, -2);
+\end{tikzpicture}
+\caption{加法结合律的几何证明。上下面积相等}
+\end{wrapfigure}
 
 与通常的观念不同，加法和乘法的交换律、结合律既不是公理，也不是公设。它们都是可以用皮亚诺公理和加法的定义严格证明的定理。我们来看看证明加法结合律的例子。加法结合律是说$(a + b) + c= a + (b + c)$。我们先证明当$c=0$时它是对的。根据加法定义的第一条规则：
 
@@ -211,6 +222,19 @@ TODO：使用几何的方式证明加法的结合律，交换律，乘法的交�
 \]
 
 这样我们就证明了加法的结合律。但是加法交换律的证明却并不简单，附录一给出了完整的证明。
+
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 0) rectangle (2, 1)
+    (2, 0) rectangle (3, 1);
+\draw (0, -1) rectangle (1, -2)
+    (1, -1) rectangle (3, -2);
+\end{tikzpicture}
+\caption{加法交换律的几何证明。将上方的图形倒过来看，或者在镜中看}
+\end{figure}
+%\end{wrapfigure}
 
 \begin{Exercise}
 \begin{enumerate}
@@ -361,7 +385,7 @@ fact = 2nd \cdot foldn(c, h) \\
 
 为了展示这一抽象工具的强大，我们再来看一个例子：斐波那契数列。这一数列是用中世纪数学家比萨的列奥纳多命名的。斐波那契来自拉丁文filius Bonacci意思是波那契之子。斐波那契的父亲当时是商人，在北非以及地中海一带经商，斐波那契逐渐向当地阿拉伯人学习了印度——阿拉伯的数字系统并通过他的著作《算盘书》（Liber Abaci）将其介绍到欧洲。中世纪的欧洲一直使用罗马数字系统，我们今天在一些钟表盘上仍然可以看到罗马数字。例如2014年的罗马数字表示为MMXIV，其中一个M代表1000，两个M代表2000，X代表10，IV表示5减1，也就是四。把这些加起来得到2014。斐波那契引入欧洲的是我们今天仍然使用的位值制十进制系统。它使用了印度数学发明的零，不同的数字在不同的位置上含义不同。这一先进的数字系统极大地方便了计算，广泛应用在记账、利息、汇率等方面。《算盘书》更是对欧洲的数学复兴产生了深远的影响。
 
-
+斐波那契数列来自《算盘书》中的一个问题：一般而言，兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔都不死，那么一年以后可以繁殖多少对兔子？第一个月小兔尚未具备繁殖能力。
 TODO：Fibonacci数列的介绍和定义
 
 \be
