@@ -314,7 +314,7 @@ f = foldn(c, h)
 zero, succ(zero), succ(succ(zero)), ... succ^n(zero), ...
 \]
 
-如果$c$不是$zero$，$h$不是$succ$，则$foldn(c, h)$就描述了和自然数\underline{同态}（homomorphism）的某种事物。我们来看几个例子：
+如果$c$不是$zero$，$h$不是$succ$，则$foldn(c, h)$就描述了和自然数同构的某种事物。我们来看几个例子：
 
 \[
 (+ m) = foldn(m, succ)
@@ -421,7 +421,7 @@ h (m, n) = (n, m + n)
 \end{array}
 \ee
 
-也许读者会好奇，真实的计算机程序能实现这样的定义么？这是不是太理想化了。下面方框是一段真实的Haskell程序代码\footnote{2010年后，Haskell中不再允许使用n+k形式的模式匹配，可以修改为：\texttt{foldn z f n = f (foldn z f (n - 1))}}，执行\texttt{fib 10}会输出斐波那契数55。
+也许读者会好奇，真实的计算机程序能实现这样的定义么？这是不是太理想化了？下面方框是一段的Haskell语言的程序代码\footnote{2010年后，Haskell中不再允许使用n+k形式的模式匹配，可以修改为：\texttt{foldn z f n = f (foldn z f (n - 1))}}，执行\texttt{fib 10}会输出斐波那契数55。
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -435,8 +435,19 @@ fib = fst . foldn (0, 1) h where
 \begin{Exercise}
 \begin{enumerate}
 \item 使用$foldn$定义$()^m$，计算给定自然数的$m$次幂。
+\item 使用$foldn$定义平方。
+\item 使用$foldn$定义奇数的平方和。它会产生怎样的序列？
 \end{enumerate}
 \end{Exercise}
+
+%\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.2]{img/PWW.eps}
+ \caption{《无需语言的证明》封面局部}
+ \label{fig:PWW}
+\end{figure}
+%\end{wrapfigure}
 
 \section{自然数的同构}
 
