@@ -451,7 +451,31 @@ fib = fst . foldn (0, 1) h where
 
 \section{自然数的同构}
 
-自然数不仅可以和自己的子集同构，例如奇偶数、平方数、斐波那契数，还可以和其他事物同构。其中一个例子是计算机程序中的数据结构。下面是列表的定义
+自然数不仅可以和自己的子集同构，例如奇偶数、平方数、斐波那契数，还可以和其他事物同构。其中一个例子是计算机程序中的数据结构。下面是列表的定义：
+
+\lstset{frame=none}
+\begin{lstlisting}
+data List A = nil | cons(A, List A)
+\end{lstlisting}
+
+用数据结构的观点来解释，一个类型为A的列表或者为空，记为nil；或者包含两部分：一个含有类型A数据的节点，和一个包含剩余部分的子列表。函数cons把一个类型为A的元素和另一个类型为A的列表“链接”起来\footnote{名称cons来自Lisp的命名传统。}。图\ref{fig:linked-list}描述了一个含有6个节点的列表。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=3]
+  \foreach \x in {-2, -1.7, ..., -0.4} {
+    \draw (\x cm, 1cm) +(-0.1, -0.1) rectangle ++(0.1, 0.1);
+    \draw[->] (\x cm, 1cm) +(0.05, 0) -- +(0.2, 0);
+  }
+  \draw (-0.2cm, 1cm) node {nil};
+\end{tikzpicture}
+\caption{Linked-list}
+\label{fig:linked-list}
+\end{figure}
+
+我们也可以用自然数的同构来解释列表。根据皮亚诺公理一，nil相当于零；根据皮亚诺公理二，对于任何列表，我们都可以用cons，在其左侧链接一个类型为A的新元素。因此cons相当于自然数中的succ。这里的变化有两点。其一是列表携带类型A的元素，因而\texttt{cons(1, cons(2, cons(3, nil)))}和\texttt{cons(2, cons(1, cons(3, nil)))}和\texttt{cons(1, cons(4, cons(9, nil)))}以及\texttt{cons('a', cons('b', cons('c', nil)))}都是不同的列表。其二是与直觉不同，新元素不是加入到列表的右侧末尾，而是加入到左侧的头部。增长的方向是向左，而非向右。
+
+用嵌套的cons表示较长的列表很不方便，我们将\texttt{cons(1, cons(2, cons(3, nil)))}简记为[1, 2, 3]，用符号:表示cons。因此这一列表也可以写为1:[2, 3]或者1:(2:(3:nil))。
 
 \section{形式与结构}
 
