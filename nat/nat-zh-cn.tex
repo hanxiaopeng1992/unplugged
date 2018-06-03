@@ -475,7 +475,16 @@ data List A = nil | cons(A, List A)
 
 我们也可以用自然数的同构来解释列表。根据皮亚诺公理一，nil相当于零；根据皮亚诺公理二，对于任何列表，我们都可以用cons，在其左侧链接一个类型为A的新元素。因此cons相当于自然数中的succ。这里的变化有两点。其一是列表携带类型A的元素，因而\texttt{cons(1, cons(2, cons(3, nil)))}和\texttt{cons(2, cons(1, cons(3, nil)))}和\texttt{cons(1, cons(4, cons(9, nil)))}以及\texttt{cons('a', cons('b', cons('c', nil)))}都是不同的列表。其二是与直觉不同，新元素不是加入到列表的右侧末尾，而是加入到左侧的头部。增长的方向是向左，而非向右。
 
-用嵌套的cons表示较长的列表很不方便，我们将\texttt{cons(1, cons(2, cons(3, nil)))}简记为[1, 2, 3]，用符号:表示cons。因此这一列表也可以写为1:[2, 3]或者1:(2:(3:nil))。
+用嵌套的cons表示较长的列表很不方便，我们将\texttt{cons(1, cons(2, cons(3, nil)))}简记为[1, 2, 3]，用符号:表示cons。因此这一列表也可以写为1:[2, 3]或者1:(2:(3:nil))。针对A为字母的特殊情况，我们用带双引号的字符串来表示，例如用“hello”来简记表示['h', 'e', 'l', 'l', 'o']。
+
+同构于自然数的加法，定义列表的连接运算如下：
+
+\be
+\begin{array}{l}
+nil \doubleplus y = y \\
+cons(a, x) \doubleplus y = cons(a, x \doubleplus y)
+\end{array}
+\ee
 
 \section{形式与结构}
 
