@@ -504,7 +504,16 @@ $cons(a, x) \doubleplus y = cons(a, x \doubleplus y)$ & $a + succ(b) = succ(a + 
 \caption{列表的连接和自然数的加法呈现镜像对称}
 \end{figure}
 
-这种同构提示我们，可以利用递推公理证明列表连接的结合律。
+这种同构提示我们，可以利用递推公理证明列表连接的结合律。为了证明$(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$，我们首先证明$x=nil$时的起始情况
+
+\[
+\begin{array}{lll}
+(nil \doubleplus y) \doubleplus z & = y \doubleplus z & \text{根据连接定义中规则一} \\
+ & = nil \doubleplus (y \doubleplus z) & \text{根据连接定义中规则一}
+\end{array}
+\]
+
+然后再证明递推情况。假设$(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$，我们要证明$((a:x) \doubleplus y) \doubleplus z = (a:x) \doubleplus (y \doubleplus z)$。
 
 \begin{Exercise}
 \begin{enumerate}
