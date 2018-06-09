@@ -1,4 +1,4 @@
-IMG_OBJECTS = clay-envelope SAG Babylonian_numerals abstract-num Peano Fibonacci Escher-AnD PWW the-school-of-athens
+IMG_OBJECTS = clay-envelope SAG Babylonian_numerals abstract-num Peano Fibonacci Escher-AnD PWW the-school-of-athens fibonacci_spiral
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
