@@ -37,21 +37,70 @@
 %--------------------------------------------------------------------------
 \usepackage{graphicx, color}
 \usepackage{subfig}
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{matrix,positioning,shapes}
+\usepackage{wrapfig}
+\usetikzlibrary{patterns}
 
 \usepackage{amsmath, amsthm, amssymb} % for math
 \usepackage{exercise} % for exercise
+\usepackage{import} % for nested input
 
+%
+% for programming
+%
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{listings}
+%\usepackage{algorithmic} %old version; we can use algorithmicx instead
+%\usepackage[plain]{algorithm} %remove rule (horizontal line on top/below the algorithm
+\usepackage{algorithm} %to remove rules change to \usepackage[plain]{algorithm}
+%\usepackage{algorithm2e}
+\usepackage[noend]{algpseudocode} %for pseudo code, include algorithmicsx automatically
 \usepackage{appendix}
 \usepackage{makeidx} % for index support
 \usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{xunicode}
+\usepackage{textcomp}
+\usepackage{url}
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
+% for literate Haskell code
+\lstdefinestyle{Haskell}{
+  flexiblecolumns=false,
+  basewidth={0.5em,0.45em},
+  morecomment=[l]--,
+  literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+           {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+           {\\\\}{{\char`\\\char`\\}}1
+           {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+           {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2
+           {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+           {>>}{{>>}}2 {>>=}{{>>=}}2
+           {|}{{$\mid$}}1
+}
+
+\lstloadlanguages{C, C++, Java, Lisp, Haskell, Python}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  commentstyle=\rmfamily,
+  texcl=true,
+  showstringspaces = false,
+  upquote=true,
+  flexiblecolumns=false
+}
+
+\newcommand\doubleplus{+\kern-1.3ex+\kern0.8ex}
 
 % ======================================================================
+
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -77,3 +126,10 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
