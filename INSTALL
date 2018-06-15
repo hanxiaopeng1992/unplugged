@@ -23,5 +23,12 @@ sudo apt-get install texlive-lang-cjk
 sudo apt-get install fonts-wqy-microhei
 sudo apt-get install imagemagick
 
+If the host system fonts are available, e.g. under VM. they
+could be imported as the following example:
+
+sudo mkdir /usr/share/fonts/host-system
+sudo cp /Host-System/Fonts/{FontName, fontname}* /usr/share/fonts/host-system/
+fc-cache
+
 --
 Liu Xinyu
