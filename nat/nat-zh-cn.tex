@@ -197,18 +197,20 @@ a \cdot b' = a \cdot b + a
 \end{array}
 \ee
 
+%\begin{figure}[htbp]
 \begin{wrapfigure}{R}{0.4\textwidth}
 \centering
 \begin{tikzpicture}[scale=0.8]
-\filldraw[pattern=north west lines] (0, 0) rectangle (2, 1)
+\filldraw[fill=gray, draw=black, pattern=north west lines] (0, 0) rectangle (2, 1)
     (2, 0) rectangle (3, 1);
 \draw (3, 0) rectangle (4.5, 1);
 \draw (0, -1) rectangle (2, -2);
-\filldraw[pattern=north west lines] (2, -1) rectangle (3, -2)
+\filldraw[fill=gray, draw=black, pattern=north west lines] (2, -1) rectangle (3, -2)
     (3, -1) rectangle (4.5, -2);
 \end{tikzpicture}
 \caption{加法结合律的几何证明。上下面积相等}
 \end{wrapfigure}
+%\end{figure}
 
 与通常的观念不同，加法和乘法的交换律、结合律既不是公理，也不是公设。它们都是可以用皮亚诺公理和加法的定义严格证明的定理。我们来看看证明加法结合律的例子。加法结合律是说$(a + b) + c= a + (b + c)$。我们先证明当$c=0$时它是对的。根据加法定义的第一条规则：
 
