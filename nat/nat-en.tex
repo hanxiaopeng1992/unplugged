@@ -68,23 +68,22 @@ The abstract number is the emerged from intelligent mind. People realized the ab
 Starting from the numbers, people developed add, substruction, then the more powerful method like multiplication and division. When measure the length, angles, areas, and volumes, we connected the number to the geometry. People from different acient places found the inner relationships and laws for the numbers and shapes. Acient Egypt, Greek, China found the Pythagoras theorem indeendantly, and applied it to the amazing works like to build the greate pyramid. Trace back from the modern civilization, we'll find the natural number is the source of math and science. Kronecker, a German mathematician said `God made the integers; all else is the work of man.'\footnote{Natual number is different from integer. We'll come back to the story of Kronecker in the chapter of infinity and Cantor.}
 
 
-\section{皮亚诺自然数公理}
+\section{Peano Axioms}
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/Peano.eps}
- \caption{朱塞佩$\cdot$皮亚诺（Giuseppe Peano）1858 - 1932。}
- \label{fig:abstract-num}
+ \caption{Giuseppe Peano (1858-1932)}
+ \label{fig:Peano}
 \end{figure}
 %\end{wrapfigure}
 
-古希腊的欧几里得在他的伟大著作《几何原本》中开创了公理化的方法。他用五条公理和五条公设作为基石，精心构建一条一条定理的证明。每一个结论都仅仅使用公理和此前已经证明的定理。最终构建出了叹为观止的几何大厦。然而对于自然数，长期以来人们却没有建立起它的公理化形式系统。也许人们一直认为自然数的结论是直观和显而易见的。直到1889年，意大利数学家皮亚诺\footnote{皮亚诺不仅是数学家和逻辑学家，还是语言学家。他是数理逻辑和集合理论的先驱。他直接影响了罗素和怀特海的著作《数学原理》以及此后法国布尔巴基学派的纲领。他还创立了国际语（又称为“无屈折拉丁语”的人工语言）。}才为自然数建立起了严格的公理化系统。这就是著名的皮亚诺公理（Peano Axioms）。也许是上帝的巧合，欧几里得几何公理有五条，皮亚诺公理也有五条：
-
+Euclid's Element is the first work introduced the axiomatic methods. From the five axioms and five postulates, Euclid developed the laws one by one elaborately. Every result is only based on the axioms and the laws proven before. With this approach, he built the great building of geometry. However, theres no axiomatic formal system for natural numbers for long time compare to the geometry. People have been considering the natural number is straightforward and the related facts are obvious. The axioms of natural number was setup by Italian mathematics Peano till 1889\footnote{Peano is mathematician, logician, and linguist. He is the poineer of mathematical logic and set theory. Peano influenced Russel and Whitehead for their work `Principia Mathematica', and the further programs of French Bourbaki school. Peano also invented an international auxiliary language called Latino sine flexione ("Latin without inflexion," later called Interlingua, and the precursor of the Interlingua of the IALA).}. Today, we called Peano Axioms. It may be arranged by God, similiar to Euclid's five geometry axioms, there are five Peano natural number axioms.
 
 \begin{enumerate}
-\item 0是自然数。用符号表示为$\exists 0 \in N$;
-\item 每个自然数都有它的下一个自然数，称为它的后继。用符号表示为$\forall n \in N, \exists n' = succ(n) \in N$;
+\item 0 is a natural number. It can be expressed as $\exists 0 \in N$;
+\item For every natural number, there is a successor, which is also a natural number. Expressed as $\forall n \in N, \exists n' = succ(n) \in N$;
 \end{enumerate}
 
 似乎仅仅有这两条公理，我们已经能够定义出无穷无尽的自然数了，从0开始，下一个是1，下一个是2，接下来是3，……，接下来是某个$n$，下一个是$n+1$，……以至无穷。但是好挑刺的数学家给出了一个反例：考虑只有两个元素$\{0, 1\}$组成的数字系统，定义1的后继为0，0的后继为1。这样也满足上面的两条公理，却不是我们想像中的自然数
@@ -203,11 +202,11 @@ a \cdot b' = a \cdot b + a
 \begin{wrapfigure}{R}{0.4\textwidth}
 \centering
 \begin{tikzpicture}[scale=0.8]
-\filldraw[pattern=north west lines] (0, 0) rectangle (2, 1)
+\filldraw[fill=gray, draw=black, pattern=north west lines] (0, 0) rectangle (2, 1)
     (2, 0) rectangle (3, 1);
 \draw (3, 0) rectangle (4.5, 1);
 \draw (0, -1) rectangle (2, -2);
-\filldraw[pattern=north west lines] (2, -1) rectangle (3, -2)
+\filldraw[fill=gray, draw=black, pattern=north west lines] (2, -1) rectangle (3, -2)
     (3, -1) rectangle (4.5, -2);
 \end{tikzpicture}
 \caption{加法结合律的几何证明。上下面积相等}
