@@ -119,9 +119,10 @@ Why does the fifth axiom exclude the above counter example? For $\{$0, 0.5, 1, 1
 This the complete statement of the five Peano axioms. They can build the first-order arithmetic, also known as Peano arithmetic\footnote{Some people use 1, but not 0 as the first natural number. The order is different from the orignial works published by Peano, where the fifth axiom of induction was list as the third one.}.
 
 \section{Natual numbers and programming}
-现代的计算机系统和在其上构建的程序已经非常的复杂和宏伟了。人们并非是先建立了计算机程序的公理系统，然后逐渐演绎出这些成果的。而是先取得了应用的巨大成功，然后才逐渐将计算机科学的基石数学化、形式化、严谨化的。这种有趣的现象在人类历史上已经不是第一次了。牛顿和莱布尼茨在17世纪发展了微积分，然后在几代数学家的手里应用到了各种领域，包括流体力学，天文学等等。但是直到19世纪才由柯西将微积分的理论严格化。
 
-我们也模仿一下这样的过程，看看如何根据皮亚诺公理，用计算机程序定义自然数。在一个没有0、1、2、……这些我们熟悉的数字的程序系统中，我们可以这样定义自然数\footnote{本书使用一种理想的计算机语言，并在每一章节的最后给出真实计算机语言的参考代码。}：
+People make amazing achievement with the modern computer systems and the programs. We didn't establish the axioms of computer programming before developing these results. After the great success of computer application, then the foundation of computer science is gradually developed to be strict, formal, and mathematized. The similiar thing happens several times in our history. Calculus was developed by Newton and Leibniz indenpendantly in the 17th centry, then applied to a wide range of areas, including fluid dynamics, astronomy and so on. However, it was not formalized until Cauchy developed it's foundation in the 19th centry.
+
+We'll emulate it. From the Peano axioms, define the natural numbers with computer programs. In a computer system without familiar numbers like 0, 1, 2, ..., we can define the natural numbers as below\footnote{We use a virtual, ideal programming language in this book. Some real programs are given at the end of each chapter for reference.}:
 
 \lstset{language=Haskell}
 \begin{lstlisting}
