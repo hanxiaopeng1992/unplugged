@@ -109,16 +109,16 @@ It is not enough to only have these four axioms however. We can still find such 
   \item If some subset of natural numbers contains 0, and every element in it has successor, then this subset is same as the whole natural numbers. It can be expressed as $\forall S \subset N: (0 \in S \land \forall n \in S \Rightarrow n' \in S) \Rightarrow S = N$.
 \end{enumerate}
 
-为什么公理5可以排除掉上述的反例呢？我们考虑集合$\{0, 0.5, 1, 1.5, 2, 2.5, ...\}$的一个子集$\{0, 1, 2, ...\}$。它包含0，并且每个元素都有后继元素，但是它不等于原集合。因为1.5、2.5……都不在这个子集中。所以它不满足第五条公理。公理五还有另外一个响亮的名字——归纳公理（Axiom of induction），它可以这样等价地描述：
+Why does the fifth axiom exclude the above counter example? For $\{$0, 0.5, 1, 1.5, 2, 2.5, ...$\}$, consider the subset of $\{0, 1, 2, ...\}$. 0 is in it, and every element has successor. But it is not identity to the original set. As 1.5, 2.5, ... are not in this subset, it does not satisfy the fifth axiom. This last axiom as also known as `Axiom of induction'. It can be equally stated as the following.
 
 \begin{enumerate}
   \setcounter{enumi}{4}
-  \item 任意关于自然数的命题，如果证明了它对自然数0是对的，又假定它对自然数$n$为真时，可以证明它对$n'$也真，那么命题对所有自然数都真。（这条公理保证了数学归纳法的正确性）
+  \item For any proposition of natural numbers, if it holds for 0, and when assume it holds for some number $n$, we can prove it also holds for $n'$, then the propostion holds for all natural numbers. (This axiom ensure the correctness of mathematical induction.)
 \end{enumerate}
 
-以上就是完整的五条皮亚诺公理，用它们可以构建出一阶算术系统，也称为皮亚诺算术系统\footnote{也有人从1开始，而不是0开始计算自然数。在皮亚诺当年的著作中，五条公理的顺序与此不同，其中第五条归纳公理被写在第三的位置上。}。
+This the complete statement of the five Peano axioms. They can build the first-order arithmetic, also known as Peano arithmetic\footnote{Some people use 1, but not 0 as the first natural number. The order is different from the orignial works published by Peano, where the fifth axiom of induction was list as the third one.}.
 
-\section{自然数和计算机程序}
+\section{Natual numbers and programming}
 现代的计算机系统和在其上构建的程序已经非常的复杂和宏伟了。人们并非是先建立了计算机程序的公理系统，然后逐渐演绎出这些成果的。而是先取得了应用的巨大成功，然后才逐渐将计算机科学的基石数学化、形式化、严谨化的。这种有趣的现象在人类历史上已经不是第一次了。牛顿和莱布尼茨在17世纪发展了微积分，然后在几代数学家的手里应用到了各种领域，包括流体力学，天文学等等。但是直到19世纪才由柯西将微积分的理论严格化。
 
 我们也模仿一下这样的过程，看看如何根据皮亚诺公理，用计算机程序定义自然数。在一个没有0、1、2、……这些我们熟悉的数字的程序系统中，我们可以这样定义自然数\footnote{本书使用一种理想的计算机语言，并在每一章节的最后给出真实计算机语言的参考代码。}：
