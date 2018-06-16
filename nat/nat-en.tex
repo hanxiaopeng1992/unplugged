@@ -83,30 +83,30 @@ Euclid's Element is the first work introduced the axiomatic methods. From the fi
 
 \begin{enumerate}
 \item 0 is a natural number. It can be expressed as $\exists 0 \in N$;
-\item For every natural number, there is a successor, which is also a natural number. Expressed as $\forall n \in N, \exists n' = succ(n) \in N$;
+\item For every natural number, there is a successor natural number. Expressed as $\forall n \in N, \exists n' = succ(n) \in N$;
 \end{enumerate}
 
-似乎仅仅有这两条公理，我们已经能够定义出无穷无尽的自然数了，从0开始，下一个是1，下一个是2，接下来是3，……，接下来是某个$n$，下一个是$n+1$，……以至无穷。但是好挑刺的数学家给出了一个反例：考虑只有两个元素$\{0, 1\}$组成的数字系统，定义1的后继为0，0的后继为1。这样也满足上面的两条公理，却不是我们想像中的自然数
+It seems that we can define the infinite natural numbers only with these two axioms. From 0, the next is 1, then the next is 2, then 3, ..., then the next is $n$, then $n+1$, ..., till infinity. However, there is a counter example. Consider the number system consists of only two numbers $\{0, 1\}$. Where the successor of 1 is defined as 0, while the successor of 0 is defined as 1. It satisfies the above two axioms well although this isn't the natural number as we expected.
 
-为此我们还需要第三条皮亚诺公理来排除这种情况。
+In order to avoid this situation, we need the third Peano axiom.
 
 \begin{enumerate}
   \setcounter{enumi}{2}
-  \item 0不是任何自然数的后继。用符号表示为$\forall n \in N: n' \neq 0$;
+  \item 0 isn't the successor of any natural number. Expressed as $\forall n \in N: n' \neq 0$;
 \end{enumerate}
 
-仅仅有这三条公理就够了么？我们还可以给出一个反例：考虑有限元素$\{0, 1, 2\}$组成的数字系统，定义0的后继是1，1的后继是2，2的后继还是2。这样也能满足上述三条公理。为此我们还需要第四条皮亚诺公理。
+Are these three axioms enough? We can still find another counter example. Consider a finite number system with elements $\{0, 1, 2\}$. Define the successor of 0 is 1, the successor of 1 is 2, and the successor of 2 is 2 again. It can satisfy all the three axiom so far. We therefore need the fourth Peano axiom.
 
 \begin{enumerate}
   \setcounter{enumi}{3}
-  \item 不同的自然数有不同的后继数。或者说，如果两个自然数的后继数相同，那么这两个自然数相等。用符号表示为$\forall n, m \in N: n' = m' \Rightarrow n = m$;
+  \item Different natural numbers have different successors. In other words, if two natural numbers have the same successor, then they are same. It can be formally expressed as $\forall n, m \in N: n' = m' \Rightarrow n = m$;
 \end{enumerate}
 
-但是，仅仅用这四条公理仍然不够，因为可以存在这样的反例：考虑集合$\{0, 0.5, 1, 1.5, 2, 2.5, ...\}$，定义0的后继是1、1的后继是2……，0.5的后继是1.5、1.5的后继是2.5……但0.5不是任何元素的后继。为了排除这样的含有“不可达”元素的反例，还需要最后一条皮亚诺公理。
+It is not enough to only have these four axioms however. We can still find such example set of $\{0, 0.5, 1, 1.5, 2, 2.5, ...\}$. Define 1 is the successor of 0, 2 is the successor of 1, ...; 1.5 is the successor of 0.5, 2.5 is the successor of 1.5, ...; But 0.5 is not the successor of any other numbers. In order to exclude such `unreachable' elements, we need the last Peano axiom.
 
 \begin{enumerate}
   \setcounter{enumi}{4}
-  \item 如果自然数的某个子集包含0，并且其中每个元素都有后继元素。那么这个子集就是全体自然数。用符号表示为$\forall S \subset N: (0 \in S \land \forall n \in S \Rightarrow n' \in S) \Rightarrow S = N$.
+  \item If some subset of natural numbers contains 0, and every element in it has successor, then this subset is same as the whole natural numbers. It can be expressed as $\forall S \subset N: (0 \in S \land \forall n \in S \Rightarrow n' \in S) \Rightarrow S = N$.
 \end{enumerate}
 
 为什么公理5可以排除掉上述的反例呢？我们考虑集合$\{0, 0.5, 1, 1.5, 2, 2.5, ...\}$的一个子集$\{0, 1, 2, ...\}$。它包含0，并且每个元素都有后继元素，但是它不等于原集合。因为1.5、2.5……都不在这个子集中。所以它不满足第五条公理。公理五还有另外一个响亮的名字——归纳公理（Axiom of induction），它可以这样等价地描述：
