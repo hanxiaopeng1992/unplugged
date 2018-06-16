@@ -133,14 +133,14 @@ data Nat = zero | succ Nat
 %% N \triangleq zero | succ(N)
 %% \]
 
-这一定义说：一个自然数或者为零，或者是另一自然数的后继。这里符号“｜”表示互斥的关系。它自然蕴含了零不是任何自然数后继这一公理。在这一定义下，我们可以进一步定义出自然数的加法。
+A natural number is either zero, or the successor of another natural number. Symbol `|' is mutual exclusive, it implicates the axiom that zero is not the successor of any natural number. We can further define the addition for natural numbers with this definition.
 
 \begin{lstlisting}
 a + zero = a
 a + (succ b) = succ (a + b)
 \end{lstlisting}
 
-加法定义包含两部分。首先任何自然数和零相加等于它本身；并且某个自然数和另一个数的后继相加，等于这两个数相加的后继。写成数学符号为：
+There are two rules for addition. First, any natural number adds zero gives that number itself; second, a natural number adds to a successor of some natual number equals to the successor of the sum of these two numbers. In mathematic expression:
 
 \be
 \begin{array}{l}
@@ -149,7 +149,7 @@ a + b' = (a + b)'
 \end{array}
 \ee
 
-我们来验证一下2+3。自然数2为succ(succ zero)，而3为succ(succ(succ zero))。根据加法的定义2+3为：
+Let's use 2+3 as the example. natural number 2 is succ(succ zero), and 3 is succ(succ(succ zero)). According to the definition of addition:
 
 \begin{lstlisting}
   succ(succ zero) + succ(succ(succ zero))
@@ -159,13 +159,13 @@ a + b' = (a + b)'
 = succ(succ(succ(succ(succ zero))))
 \end{lstlisting}
 
-最终结果的确是零的五重后继，也就是5。从零开始一次一次地重复使用后继函数的记法很麻烦。如果要表示100，这种记法要写很多行并且容易出错。为此，我们用下面的简单记法表示自然数$n$：
+The result is the 5th successor of zero. It's not practical to apply succeed function again and again when express big numbers like 100. Let's introduce a simplified notation for natural number $n$.
 
 \be
 n = foldn(zero, succ, n)
 \ee
 
-它表示从零开始，不断叠加使用succ函数$n$次。$foldn$函数可以具体实现如下：
+It applies $succ$ function on zero $n$ times. Function $foldn$ can be realized as the following.
 
 \be
 \begin{array}{l}
@@ -175,7 +175,7 @@ foldn(z, f, n') = f(foldn(z, f, n))
 \label{eq:foldn}
 \ee
 
-$foldn$定义了在自然数上的一种操作，只要令$z$为$zero$，令$f$为$succ$就可以实现叠加后继若干次，从而获得某个特定的自然数。我们可以用前几个自然数验证一下：
+Function $foldn$ defines some operation on natural number. When let $z$ is $zero$, and $f$ is the $succ$ function, then it can apply the succeed operation multiple times to get a specific natural number. We can verify it with the first several natural numbers.
 
 \begin{lstlisting}
 foldn(zero, succ, 0) = zero
@@ -184,14 +184,14 @@ foldn(zero, succ, 2) = succ(foldn(zero, succ, 1)) = succ(succ zero)
 ...
 \end{lstlisting}
 
-定义好加法之后，我们再来定义自然数的乘法：
+Multiplication for natural number can be defined on top of addition.
 
 \begin{lstlisting}
 a . zero = zero
 a . (succ b) = a . b + a
 \end{lstlisting}
 
-这里我们使用了刚才定义好的加法。这一定义写成数学符号为：
+It reuses the addition defined above. The mutliplication can be expressed in mathematic symbols as below.
 
 \be
 \begin{array}{l}
@@ -210,10 +210,10 @@ a \cdot b' = a \cdot b + a
 \filldraw[fill=gray, draw=black, pattern=north west lines] (2, -1) rectangle (3, -2)
     (3, -1) rectangle (4.5, -2);
 \end{tikzpicture}
-\caption{加法结合律的几何证明。上下面积相等}
+\caption{Association of addition. The above and bottom areas are same.}
 \end{wrapfigure}
 
-与通常的观念不同，加法和乘法的交换律、结合律既不是公理，也不是公设。它们都是可以用皮亚诺公理和加法的定义严格证明的定理。我们来看看证明加法结合律的例子。加法结合律是说$(a + b) + c= a + (b + c)$。我们先证明当$c=0$时它是对的。根据加法定义的第一条规则：
+It turns out that the associative and commutative laws for addition and multiplication are neigher axioms nor postulations. They all can be proven by Peano axioms and the defintions. Let's prove the associative law for addition as an example. This law states that $(a + b) + c= a + (b + c)$. We firstly prove it holds when $c=0$. According to the first rule in the add definition:
 
 \[
 \begin{array}{rl}
@@ -222,14 +222,14 @@ a \cdot b' = a \cdot b + a
 \end{array}
 \]
 
-然后是递推步骤，假设$(a + b) + c = a + (b + c)$成立，我们要推出$(a + b) + c' = a + (b + c')$。
+Then for induction, assume $(a + b) + c = a + (b + c)$ hold, we want to deduce $(a + b) + c' = a + (b + c')$.
 
 \[
 \begin{array}{rlr}
-(a + b) + c' & = (a + b + c)' & \text{加法定义的第二条规则} \\
-             & = (a + (b + c))' & \text{递推假设} \\
-             & = a + (b + c)' & \text{加法定义的第二条规则} \\
-             & = a + (b + c') & \text{加法定义的第二条规则}
+(a + b) + c' & = (a + b + c)' & \text{2nd equation defining +, (backwards)} \\
+             & = (a + (b + c))' & \text{induction assumption} \\
+             & = a + (b + c)' & \text{2nd equation defining +} \\
+             & = a + (b + c') & \text{2nd equation defining +, (backwards)}
 \end{array}
 \]
 
