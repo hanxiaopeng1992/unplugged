@@ -210,7 +210,7 @@ a \cdot b' = a \cdot b + a
 \filldraw[fill=gray, draw=black, pattern=north west lines] (2, -1) rectangle (3, -2)
     (3, -1) rectangle (4.5, -2);
 \end{tikzpicture}
-\caption{Association of addition. The above and bottom areas are same.}
+\caption{Association of addition in geometry. The above and bottom areas are same.}
 \end{wrapfigure}
 
 It turns out that the associative and commutative laws for addition and multiplication are neigher axioms nor postulations. They all can be proven by Peano axioms and the defintions. Let's prove the associative law for addition as an example. This law states that $(a + b) + c= a + (b + c)$. We firstly prove it holds when $c=0$. According to the first rule in the add definition:
@@ -233,7 +233,7 @@ Then for induction, assume $(a + b) + c = a + (b + c)$ hold, we want to deduce $
 \end{array}
 \]
 
-这样我们就证明了加法的结合律。但是加法交换律的证明却并不简单，附录一给出了完整的证明。
+This complete the proof of associative law for addition. However, it is a bit complex to prove the commutative law. We give it in Appendix I.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -244,20 +244,21 @@ Then for induction, assume $(a + b) + c = a + (b + c)$ hold, we want to deduce $
 \draw (0, -1) rectangle (1, -2)
     (1, -1) rectangle (3, -2);
 \end{tikzpicture}
-\caption{加法交换律的几何证明。将上方的图形倒过来看，或者在镜中看。}
+\caption{Commutative law of addition in geometry. Turn upside down or mirrow the upper figure.}
 \end{figure}
 %\end{wrapfigure}
 
 \begin{Exercise}
 \begin{enumerate}
-\item 定义0的后继为1，证明对于任何自然数都有$a \cdot 1 = a$
-\item 证明乘法结合律和交换律
-\item 证明乘法分配律
+\item Define 1 as the successor of 0, prove $a \cdot 1 = a$ hold for all natural numbers;
+\item Prove the associative and commutative laws for multiplication;
+\item Prove the distributive law for multiplication.
 \end{enumerate}
 \end{Exercise}
 
-\section{自然数的结构}
-有了加法和乘法，我们就可以定义更复杂的计算。第一个例子是从零开始的累加：$0 + 1 + 2 + ... $
+\section{Structure of natural numbers}
+
+We can define more complex operations on top of addition and multiplication. One example is summation: $0 + 1 + 2 + ... $
 
 \be
 \begin{array}{l}
@@ -266,7 +267,7 @@ sum(n + 1) = (n + 1) + sum(n)
 \end{array}
 \ee
 
-第二个例子是阶乘$n!$。
+Another example is the fraction $n!$
 
 \be
 \begin{array}{l}
@@ -275,9 +276,9 @@ fact(n + 1) = (n + 1) \cdot fact(n)
 \end{array}
 \ee
 
-比较这两个例子，我们发现它们非常相似。尽管人工智能日新月异地发展，智慧生命和智能机器的一大区别就是能否“跳出系统”，到更高的层次进行抽象。这是我们人类心智中最强大、神秘、复杂、难以捉摸的一部分\cite{GEB}。
+They are similiar to each other. Although artificial intelligence achieves incredible result today, the machine can't jump out of the system as intelligent life, to abstract in a higher level. This is one of the most complex, powerful, mysterious part in human mind\cite{GEB}.
 
-我们发现累加和阶乘都有一个针对自然数零起始值，累加始自零，阶乘始自一。针对递归情况，它们都将某一操作应用到一个自然数和它的后继上。累加是$n' + sum(n)$，阶乘是$n' \cdot fact(n)$。如果我们把针对零的起始值抽象为$c$，把递归中的操作抽象为$h$，就可以用一个统一的形式概括累加和阶乘。
+Corresponding to zero in natural number, both summation and fraction have a start value. Summation starts from zero, fraction starts from one. For recurssion, they both apply some operation on a number and its successor. For summation, it's $n' + sum(n)$, for fraction, it's $n' \cdot fact(n)$. If we abstract the start value as $c$, the recursive operation as $h$, then we can use a same form for both summation and fraction.
 
 \be
 \begin{array}{l}
