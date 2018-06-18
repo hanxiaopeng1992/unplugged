@@ -586,7 +586,7 @@ length = sum \cdot foldr(0, one)
 其中函数$one$被称为“常数函数”，不管传入什么内容，它总返回常数1。这样我们就可以用$|x| = length(x)$来计算列表的长度。我们还可以用$foldr$定义连接操作$\doubleplus$：
 
 \be
-\doubleplus y = foldr(y, cons)
+(\doubleplus y) = foldr(y, cons)
 \ee
 
 这相当于自然数的$(+m)$运算，类似自然数的乘法运算，我们可以定义列表的“乘法”，将一个列表的列表全部连接起来。

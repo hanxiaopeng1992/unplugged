@@ -287,7 +287,8 @@ f(n + 1) = h(f(n))
 \end{array}
 \ee
 
-这是一个在自然数上的递归结构。我们观察一下它在前几个自然数上的表现。
+This scheme is called definition by {\em structural} recursion over the natural numbers. Below examples show how it behaves over the first
+ several numbers.
 
 \begin{tabular}{l|l}
 $n$ & $f(n)$ \\
@@ -300,41 +301,41 @@ $n$ & $f(n)$ \\
 $n$ & $f(n) = h^n(c)$
 \end{tabular}
 
-其中，$h^n(c)$表示我们叠加在$c$上重复进行$n$次$h$操作。它是\underline{原始递归}形式的一种（\cite{Bird97}，第5页）。更进一步，如果观察此前我们在(\ref{eq:foldn})定义的函数$foldn$，就会发现它们之间的关系：
+Where $h^n(c)$ means applying operation $h$ over $c$ for $n$ times. It's an instance of a more general {\em primitive} recursion(\cite{Bird97}, p5). Further, we can find the relation to the $foldn$ defined in (\ref{eq:foldn}).
 
 \be
 f = foldn(c, h)
 \ee
 
-细心的读者会观察到，我们最初定义的$foldn$带有三个参数，为什么这里只有两个了呢？实际上我们可以写成$f(n) = foldn(c, h, n)$。当我们仅传递给三元函数$foldn$前两个参数，它实际上就成为了接受一个自然数为参数的一元函数了。我们可以这样看待它：$foldn(c, h)(n)$。
+Why there are three variables in the original $foldn$ definition, while there are only two here? We can actually write it as $f(n) = foldn(c, h, n)$. When we bind the first two variables to $foldn$, it turns to be a new function accepts one argument. We can consider it as $foldn(c, h)(n)$.
 
-我们称$foldn$为自然数上的叠加（$fold$）操作。令$c$为$zero$，$h$为$succ$，我们就得到了自然数。如同上面的表格，我们可以得到一个序列：
+We call $foldn$ is the {\em fold} operation on natural numbers. When $c$ is $zero$ and $h$ is $succ$, we get a sequence of natural numbers:
 
 \[
 zero, succ(zero), succ(succ(zero)), ... succ^n(zero), ...
 \]
 
-如果$c$不是$zero$，$h$不是$succ$，则$foldn(c, h)$就描述了和自然数同构\footnote{同构（isomorphism）的严格定义将在后继章节给出。本章提到的同构和数学上的意义并不相同。这里特指结构上的一种对应。}的某种事物。我们来看几个例子：
+When $c$ and $h$ are other things than $zero$ or $succ$, then $foldn(c, h)$ describe some isomorphism\footnote{The formal definition of isomorphism will be given in later chapters. Different from the methematic definition, here it means a similarity in terms of pattern.} to natural numbers. Here are some examples.
 
 \[
 (+ m) = foldn(m, succ)
 \]
 
-这个例子描述了将自然数$n$增加$m$的操作，将它依次作用到自然数上可以产生和自然数同构的序列$m, m + 1, m + 2, ..., n + m, ...$
+This is the operation to increase a number by $m$. Whey applying to the natural numbers, it generates an isomorphic sequence of $m, m + 1, m + 2, ..., n + m, ...$
 
 \[
 (\cdot m) = foldn(0, (+ m))
 \]
 
-这个例子描述了将自然数$n$乘以$m$的操作，将它依次作用到自然数上可以产生和自然数同构的序列$0, m, 2m, 3m, ..., nm, ...$
+This is the operation to multiply a number by $m$. Whey applying to the natural numbers, it generates an isomorphic sequence of $0, m, 2m, 3m, ..., nm, ...$
 
 \[
 m^{()} = foldn(1, (\cdot m))
 \]
 
-这个例子描述了对自然数$n$取$m$次幂的操作，将它依次作用到自然数上可以产生和自然数同构的序列$1, m, m^2, m^3, ..., m^n, ...$
+This is the operation to take the power for a number $m$. Whey applying to natural numbers, it generates an isomorphic sequence of $1, m, m^2, m^3, ..., m^n, ...$
 
-那么，我们思考出的这个抽象工具$foldn$能否描述累加和阶乘呢？我们观察下面的这个表格：
+Can we use the abstract tool $foldn$ to define summation and fraction? Observe the below table.
 
 \begin{tabular}{r|l|l|l|l|l|l}
 $n$ & 0 & 1 & 2 & 3 & ... & $n'$ \\
@@ -344,7 +345,7 @@ $sum(n)$ & 0 & 1 + 0 = 1 & 2 + 1 = 3 & 3 + 3 = 6 & ... & $n' + sum(n)$ \\
 $n!$ & 1 & 1 $\times$ 1 = 1 & 2 $\times$ 1 = 2 & 3 $\times$ 2 = 6 & ... & $n' \cdot (n!)$
 \end{tabular}
 
-这里的关键问题是$h$必须是个二元操作，它能够对$n'$和$f(n)$进行运算。为此，我们将$c$也定义为一个二元数$(a, b)$\footnote{在计算机程序中，也称为二元组（tuple），或者对（pair）。}。然后针对二元数$(a, b)$定义某种类似“succ”的操作。最终为了获取结果，我们还需要要定义从二元数中抽取$a$和$b$的函数：
+We know that $h$ need to be a binary operation as it manipulates $n'$ and $f(n)$. To solve it, we define $c$ as a pair $(a, b)$\footnote{Also known as {\em tuple} in computer programs}. Then define some kind of `succ' operation on the pair. We also need functions to extract $a$ and $b$ from the pair.
 
 \be
 \begin{array}{l}
@@ -353,17 +354,17 @@ $n!$ & 1 & 1 $\times$ 1 = 1 & 2 $\times$ 1 = 2 & 3 $\times$ 2 = 6 & ... & $n' \c
 \end{array}
 \ee
 
-这样我们就可以定义累加和阶乘了。首先是累加的定义：
+With these setup, we can define summation:
 
 \[
-\begin{array}{lr}
-c = (0, 0) & \text{二元数的起始值} \\
-h (m, n) = (m', m' + n) & \text{第一个数取后继，第二个数加第一个数的后继} \\
+\begin{array}{ll}
+c = (0, 0) & \text{Starting pair} \\
+h (m, n) = (m', m' + n) & \text{Succeed the 1st; Add the 2nd and the successor} \\
 sum = 2nd \cdot foldn(c, h) \\
 \end{array}
 \]
 
-我们看看，从起始值$(0, 0)$开始，会怎样一步一步递推出累加的结果。
+Starting from $(0, 0)$, below table gives the steps for summation.
 
 \begin{tabular}{r|l|l}
 $(a, b)$ & $(a', b') = h (a, b)$ & $b'$\\
@@ -375,28 +376,29 @@ $(a, b)$ & $(a', b') = h (a, b)$ & $b'$\\
 $(m, sum(m))$ & $(m + 1, m + 1 + sum(m))$ & $sum(m + 1)$
 \end{tabular}
 
-类似地，我们用$foldn$定义出阶乘。
+Similiarily, we can define fraction with $foldn$.
 
 \[
 \begin{array}{lr}
-c = (0, 1) & \text{阶乘的起始值} \\
-h (m, n) = (m', m'n) & \text{阶乘的递推} \\
+c = (0, 1) & \text{Starting pair for fraction} \\
+h (m, n) = (m', m'n) & \text{Iteration for fraction} \\
 fact = 2nd \cdot foldn(c, h) \\
 \end{array}
 \]
 
-在累加和阶乘的定义中，我们使用了符号“$\cdot$”点来连接两个函数$2nd$和$foldn(c, h)$。我们称之为函数组合，$f\cdot g$表示先将函数$g$应用到变量上，然后再将函数$f$应用到结果上。即$(f\cdot g)(x) = f(g(x))$。
+Here we use the symbol `$\cdot$' to `connect' the $2nd$ function and the $foldn(c, h)$ function. We call it {\em function composition}. $f\cdot g$ means first apply $g$ to the variable, then apply $f$ on top of the result. That is $(f\cdot g)(x) = f(g(x))$.
 
 \begin{wrapfigure}{R}{0.4\textwidth}
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/Fibonacci.eps}
- \caption{比萨的列奥纳多，又称斐波那契（Leonardo Pisano, Fibonacci），1175年-1250年}
+ \caption{Leonardo Pisano, Fibonacci (1175-1250)}
  \label{fig:abstract-num}
 %\end{figure}
 \end{wrapfigure}
 
-为了展示这一抽象工具的强大，我们再来看一个例子：斐波那契数列。这一数列是用中世纪数学家比萨的列奥纳多命名的。斐波那契来自拉丁文filius Bonacci意思是波那契之子。斐波那契的父亲当时是商人，在北非以及地中海一带经商，斐波那契逐渐向当地阿拉伯人学习了印度——阿拉伯的数字系统并通过他的著作《算盘书》（Liber Abaci）将其介绍到欧洲。中世纪的欧洲一直使用罗马数字系统，我们今天在一些钟表盘上仍然可以看到罗马数字。例如2018年的罗马数字表示为MMXVIII，其中一个M代表1000，两个M代表2000，X代表10，V表示5，三个I表示3。把这些加起来得到2018。斐波那契引入欧洲的是我们今天仍然使用的位值制十进制系统。它使用了印度数学发明的零，不同的数字在不同的位置上含义不同。这一先进的数字系统极大地方便了计算，广泛应用在记账、利息、汇率等方面。《算盘书》更是对欧洲的数学复兴产生了深远的影响。
+Let's see another example powered by this abstract tool, Fibonacci sequence. It's named after the midieval mathematician Leonardo Pisano. Fibonacci originates from `filius Bonacci' in Lattin. It means the son of (the) Bonacci. Fibonacci's father was a wealthy Italian merchant
+ often did trading around North Africa and the Mediterranean coast. Fibonacci travelled with him as a young boy. It was in Bugia (now Béjaïa, Algeria) that he learned about the Hindu–Arabic numeral system. Fibonacci realized the many advantage of this numeral system. He introduced it to Europe through his book, the Liber Abaci (Book of Abacus or Book of Calculation, 1202). European people was using Roman numeral system before that. Roman numbers stil can be seen in clock plat today. The Roman number for year 2018 is MMXVIII. Where an M for 1000, so two Ms mean 2000; X represents for 10, V for 5, the three I means 3. Sum them up, we get 2018. The Hindu-Arabic numeral system introduced by Fibonacci is a positional decimal numeral system we are using today. It uses the zero invented by Indian mathematicians. Numbers at different position means differnet value. This advanced numeral system were widely used in business, for example converting different currencies, and calculating profit and interest, which were important to the growing banking industry. It influenced the mathematics in Europe greatly.
 
 斐波那契数列来自《算盘书》中的一个问题：兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔都不死，那么一年以后可以繁殖多少对兔子？开始时有一对兔子。第一个月小兔尚未具备繁殖能力，所以仍然只有一对兔子。第二个月它们生下一对小兔，共有两对。第三个月大兔子又生下一对小兔，而上月生的小兔还在成长，总共有2+1=3对。第四个月有两对大兔子产下两对小兔，加上原有的三对兔子，总共有3+2=5对。按照这样，我们可以得到一个序列
 
