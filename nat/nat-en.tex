@@ -434,7 +434,7 @@ h (m, n) = (n, m + n)
 \end{array}
 \ee
 
-也许读者会好奇，真实的计算机程序能实现这样的定义么？这是不是太理想化了？下面方框是一段的Haskell语言的程序代码\footnote{2010年后，Haskell中不再允许使用n+k形式的模式匹配，可以修改为：\newline\texttt{foldn z f n = f (foldn z f (n - 1))}}，执行\texttt{fib 10}会输出斐波那契数55\footnote{一行代码输出前100个斐波那契数的例子：\newline\texttt{take 100 \$ map fst \$ iterate ($\lambda$(m, n)->(n, m + n)) (0, 1)}}。
+Can this definition be realized in the computer programs in real world? Is it too idealistic? Below is a real piece of Haskell program implements Fibinacci numbers\footnote{After 2010, the n+k pattern mathcing is not supported any more in Haskell. We can modify it as: \newline\texttt{foldn z f n = f (foldn z f (n-1))}}. Run command \texttt{fib 10} can output the 10th Fibonacci number, 55\footnote{One line code to produce the first 100 Fibonacci numbers: \newline\texttt{take 100 \$ map fst \$ iterate ($\lambda$(m, n)->(n, m + n)) (0, 1)}}.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -447,10 +447,10 @@ fib = fst . foldn (0, 1) h where
 
 \begin{Exercise}
 \begin{enumerate}
-\item 使用$foldn$定义$()^m$，计算给定自然数的$m$次幂。
-\item 使用$foldn$定义平方。
-\item 使用$foldn$定义奇数的平方和。它会产生怎样的序列？
-\item 地面上有一排洞，一只狐狸藏在某个洞中。每天狐狸会移动到相邻的洞里。如果每天只能检查一个洞，请给出一个捉到狐狸的策略，并证明这个策略有效\cite{Gusen2014}。
+\item Define $()^m$ with $foldn$, which gives the $m$-power of a natural number;
+\item Define square for natural number with $foldn$;
+\item Define sum of squares for odd numbers, what sequence does it give?
+\item There is a line of holes in the forest. A fox hides in one hole. It moves to the next hole (before or after) every day. If we can check only one hole a day, is there a way to catch the fox? Prove this method works\cite{Gusen2014}.
 \end{enumerate}
 \end{Exercise}
 
@@ -458,12 +458,12 @@ fib = fst . foldn (0, 1) h where
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/PWW.eps}
- \caption{《无需语言的证明》封面局部}
+ \caption{Part of the cover of PWW (Proof Without Words)}
  \label{fig:PWW}
 \end{figure}
 %\end{wrapfigure}
 
-\section{自然数的同构}
+\section{Isomorphism of natural numbers}
 
 自然数不仅可以和自己的子集同构，例如奇偶数、平方数、斐波那契数，还可以和其他事物同构。其中一个例子是计算机程序中的数据结构。下面是列表的定义：
 
