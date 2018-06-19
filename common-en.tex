@@ -59,9 +59,68 @@
 \usepackage{makeidx} % for index support
 \usepackage{titlesec}
 \usepackage{epigraph}
+
+\usepackage{fontspec}
 \usepackage{xunicode}
+%\usepackage{fontenc}
 \usepackage{textcomp}
 \usepackage{url}
+
+% detect and select Chinese font
+% ------------------------------
+% fc-list :lang=zh    % list all Chinese fonts
+% fc-list :mono       % list all mono fonts
+% fc-cache            % refresh cache to load new installed fonts
+\def\macmainfont{STSong}  % Under Mac OS X
+\def\macmonofont{Monaco}
+\def\winmainfont{SimSun} % Under Windows
+\def\winmonofont{Consolas}
+\def\linuxmainfont{WenQuanYi Micro Hei} % Under Linux
+\def\linuxmainfont{Courier}
+
+\suppressfontnotfounderror1 % Avoid setting exit code (error level) to break make process
+\count255=\interactionmode
+\batchmode
+
+% main font
+\let\mainft=\macmainfont
+\font\thefont="\mainft"\space at 10pt
+\ifx\thefont\nullfont
+  \let\mainft=\winmainfont
+  \font\thefont="\mainft"\space at 10pt
+  \ifx\the\nullfont
+    \let\mainft=\linuxmainfont
+    \font\thefont="\mainft"\space at 10pt
+    \ifx\the\nullfont
+      \errorstopmode
+      \errmessage{no suitable Chinese main font found}
+    \fi
+  \fi
+\fi
+
+% mono font
+\let\monoft=\macmonofont
+\font\thefont="\monoft"\space at 10pt
+\ifx\thefont\nullfont
+  \let\monoft=\winmonofont
+  \font\thefont="\monoft"\space at 10pt
+  \ifx\the\nullfont
+    \let\monoft=\linuxmonofont
+    \font\thefont="\monoft"\space at 10pt
+    \ifx\the\nullfont
+      \errorstopmode
+      \errmessage{no suitable mono font found}
+    \fi
+  \fi
+\fi
+
+\interactionmode=\count255
+
+%\setmainfont[Mapping=tex-text]{\mainft}
+\setmonofont[Scale=MatchLowercase]{\monoft}
+
+%% \XeTeXlinebreaklocale "zh"  % to solve the line breaking issue
+%% \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
