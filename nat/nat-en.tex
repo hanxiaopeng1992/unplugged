@@ -610,7 +610,7 @@ filter(p) = foldr(nil, (p \cdot 1st \mapsto cons, 2nd))
 
 Let's use the example to understand how this definition works. We want to select all even numbers from a list $filter(even, [1, 4, 9, 16, 25])$. Like expansion process in $sum$, the filtering expands to $h(1, h(4, h(9, ...)))$ till the right end $cons(25, nil)$. According to the definition of $foldr$, the result is $c$ when the list is $nil$. So the next step is to compute $h(25, nil)$, where $h$ is the conditional expression. When apply $even \cdot 1st$ to the pair $(25, nil)$, function $1st$ picks 25, as it's odd, the predication $even$ does not hold. Based on the conditional expression, $2nd$ is evaluated and gives the result $nil$. Then we enter the upper level to compute $(16, nil)$. Function $1st$ extracts the number 16, as 16 is even, the predicate $even$ holds, so the conditional expression sends to $cons(16, nil)$, which produces the list $[16]$. Then we enter one more upper level to compute$h(9, [16]$, the conditional expression sends to $2nd$, which again produces $[16]$. The computation enters to $h(4, [16])$ next. The conditional expression sends to $cons(4, [16])$, which produces the list $[4, 16]$. The computation finally reach to the top level $h(1, [4, 16])$. The conditional expression sends to $2nd$, which produces the final result $[4, 16]$.
 
-逐一映射的概念是将列表中的每个元素通过$f$映射成另一个值，从而组成一个新的列表。即$map(f, \{x_1, x_2, ..., x_n\} = \{f(x_1), f(x_2), ..., f(x_n)\}$。它可以用$foldr$定义如下：
+The concept of mapping is to transform every element in one list to another value through a function $f$, and form a new list. That is $map(f, \{x_1, x_2, ..., x_n\} = \{f(x_1), f(x_2), ..., f(x_n)\}$. It can be defined with $foldr$ as below.
 
 \be
 \begin{array}{l}
@@ -619,24 +619,24 @@ h(x, c) = cons(f(x), c)
 \end{array}
 \ee
 
-这种把函数映射到一对值中的第一个之上的操作称为$first$，即$first(f, (x, y)) = (f(x), y)$，我们在此后讲解范畴的时候还会再仔细讨论它。使用$first$，逐一映射可以定义为$map(f) = foldr(nil, cons \cdot first(f))$。
+We call the operation that applies a function to the first value in a pair as `$first$', that is $first(f, (x, y)) = (f(x), y)$. We'll come back to it in the chapter of category theory. With $first$, map can be defined as $map(f) = foldr(nil, cons \cdot first(f))$.
 
 \begin{Exercise}
 \begin{enumerate}
-\item 表达式$foldr(nil, cons)$定义了什么？
-\item 读入一串数字（数字字符串），用$foldr$将其转换成十进制数。如果是16进制怎么处理？如果含有小数点怎么处理？
-\item 约翰$\cdot$本特利在《编程珠玑》中给出了一个求最大序列和的问题。给定整数序列$\{x_1, x_2, ..., x_n\}$，求哪段子序列$i, j$，使得和$x_i + x_{i+1} + ... + x_j$最大。请用$foldr$解决这道题。
-\item 最长无重复字符子串问题。认给一个字符串，求出其中不包含重复字符的最长子串。例如``abcabcbb''的最长无重复字符子串为｀｀abc‘’。请使用$foldr$求解。
+\item What does the expression $foldr(nil, cons)$ define?
+\item Read in a sequence of digits (string of digit number), convert it to decimal. How to handle hexadecimal digit and number? How to handle the decimal fraction?
+\item Jon Bentley gave the maximum sum of sub-vector puzzle in `Programming Pearls'. Given a integer list $\{x_1, x_2, ..., x_n\}$, find the sub-section $i, j$, that maximize the sum of $x_i + x_{i+1} + ... + x_j$. Solve it with $foldr$.
+\item The longest sub-string without repeated characters. Give a string, find the longest sub-string that there's no repeated characters i it. For example, the answer for string ``abcabcbb'' is ``abc''. Solve it with $foldr$.
 \end{enumerate}
 \end{Exercise}
 
-\section{形式与结构}
+\section{Pattern and structure}
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=1.0]{img/the-school-of-athens.eps}
- \caption{拉斐尔《雅典学院》局部}
+ \caption{Raphael, School of Athens (part)}
  \label{fig:the-school-of-athens}
 \end{figure}
 %\end{wrapfigure}
