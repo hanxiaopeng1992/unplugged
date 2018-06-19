@@ -400,9 +400,9 @@ Here we use the symbol `$\cdot$' to `connect' the $2nd$ function and the $foldn(
 Let's see another example powered by this abstract tool, Fibonacci sequence. It's named after the midieval mathematician Leonardo Pisano. Fibonacci originates from `filius Bonacci' in Lattin. It means the son of (the) Bonacci. Fibonacci's father was a wealthy Italian merchant
  often did trading around North Africa and the Mediterranean coast. Fibonacci travelled with him as a young boy. It was in Bugia (now Béjaïa, Algeria) that he learned about the Hindu–Arabic numeral system. Fibonacci realized the many advantage of this numeral system. He introduced it to Europe through his book, the Liber Abaci (Book of Abacus or Book of Calculation, 1202). European people was using Roman numeral system before that. Roman numbers stil can be seen in clock plat today. The Roman number for year 2018 is MMXVIII. Where an M for 1000, so two Ms mean 2000; X represents for 10, V for 5, the three I means 3. Sum them up, we get 2018. The Hindu-Arabic numeral system introduced by Fibonacci is a positional decimal numeral system we are using today. It uses the zero invented by Indian mathematicians. Numbers at different position means differnet value. This advanced numeral system were widely used in business, for example converting different currencies, and calculating profit and interest, which were important to the growing banking industry. It influenced the mathematics in Europe greatly.
 
-Fibonacci numbers was a problem described in the Libe Abaci, although it can be traced back to 200BC in India. assuming that: a newly born pair of rabbits, one male, one female, are put in a field; rabbits are able to mate at the age of one month so that at the end of its second month a female can produce another pair of rabbits; rabbits never die and a mating pair always produces one new pair (one male, one female) every month from the second month on. The puzzle that Fibonacci posed was: how many pairs will there be in one year?
+Fibonacci numbers is well known a problem described in the Libe Abaci, although it can be traced back to 200BC in India. Assuming a newly born pair of rabbits, one male, one female, are put in a field; rabbits are able to mate at the age of one month so that at the end of its second month a female can produce another pair of rabbits; rabbits never die and a mating pair always produces one new pair (one male, one female) every month from the second month on. Then how many pairs will there be in one year?
 
-斐波那契数列来自《算盘书》中的一个问题：兔子在出生两个月后，就有繁殖能力，一对兔子每个月能生出一对小兔子来。如果所有兔都不死，那么一年以后可以繁殖多少对兔子？开始时有一对兔子。第一个月小兔尚未具备繁殖能力，所以仍然只有一对兔子。第二个月它们生下一对小兔，共有两对。第三个月大兔子又生下一对小兔，而上月生的小兔还在成长，总共有2+1=3对。第四个月有两对大兔子产下两对小兔，加上原有的三对兔子，总共有3+2=5对。按照这样，我们可以得到一个序列
+When start, there is a pair in the first month. In the second month, there is a new born pair. In total there are two pairs. In the third month, the matured pair produces another pair, while the new born in the previous month are still small. In total, there are 2 + 1 = 3 pairs. In the fourth month, the two pairs of matured rabbits produce another two pairs of baby rabbits. Plus the three pairs in the third month, there are total 3 + 2 = 5 pairs. Repeating it gives a sequence of numbers.
 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 
@@ -410,12 +410,12 @@ Fibonacci numbers was a problem described in the Libe Abaci, although it can be 
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/fibonacci_spiral.eps}
- \caption{这些正方形的边长组成了斐波那契序列。}
+ \caption{The length of the rectangles give a Fibonacci sequence.}
  \label{fig:fibonacci_spiral}
 %\end{figure}
 \end{wrapfigure}
 
-这个数列很有规律，从第三项后，任何一项都等于前两项的和。我们可以这样思考它的原理，如果前一个月有$m$对兔子，这个月有$n$对兔子，那么增加的一定都是新产下的小兔，共有$n-m$对，而剩下的都是成年兔子，共$m$对。到下个月时，这$n-m$对小兔刚刚成熟，而$m$对成兔又产下了$m$对小兔。所以下个月的兔子总数等于小兔加上成兔为：$(n - m) + m + m = n + m$对。根据这一推理，我们可以给出斐波那契数列的递归定义：
+It's easy to find the pattern of this sequence. From the third number, every number is the sum of the previous two numbers. We can understand the reason behind it like this. Let there be $m$ pairs of rabbits in the previous month, and $n$ pairs in this month. As the new additional $n - m$ pairs are all new born, the rest $m$ pairs are mature. In the next month, the $n - m$ pairs grow mature; while the $m$ pairs of big rabbits produce another $m$ pairs of baby rabbits. The total pairs in the next month is the sum of big and baby rabbits, which is $(n - m) + m + m = n + m$. With this deduction, we can give the recursive definition of Fibonacci numbers.
 
 \be
 \begin{array}{l}
@@ -425,7 +425,7 @@ F_{n+2} = F_n + F_{n+1}
 \end{array}
 \ee
 
-习惯上通常将斐波那契数列的起始值定义为0和1\footnote{如果起始值是1和3，我们就得到了卢卡斯数列1, 3, 4, 7, 11, 18, ...}。注意到斐波那契数列的起始值是一对自然数，并且递推关系也是一对值。我们可以利用抽象工具$foldn$给出下面的定义\footnote{在介绍康托尔的无穷概念时，我们会给出另一个斐波那契数列的定义。}：
+The starting numbers are defined as 0 and 1 by convention\footnote{If start from 1 and 3, it produces the Lucas sequence 1, 3, 4, 7, 11, 18, ...}. As Fibonacci numbers start from a {\em pair} of natural numbers, and the recursive relation also uses a pair of elements, we can use our abstract tool $foldn$ to define Fibonacci sequence\footnote{We'll give another different definition of Fibonacci numbers in the chapter about Cantor and infinity.}.
 
 \be
 \begin{array}{l}
