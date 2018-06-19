@@ -82,15 +82,15 @@
 \count255=\interactionmode
 \batchmode
 
-% main font
-\let\mainft=\macmainfont
-\font\thefont="\mainft"\space at 10pt
+% zh-cn main font
+\let\cnmainft=\macmainfont
+\font\thefont="\cnmainft"\space at 10pt
 \ifx\thefont\nullfont
-  \let\mainft=\winmainfont
-  \font\thefont="\mainft"\space at 10pt
+  \let\cnmainft=\winmainfont
+  \font\thefont="\cnmainft"\space at 10pt
   \ifx\the\nullfont
-    \let\mainft=\linuxmainfont
-    \font\thefont="\mainft"\space at 10pt
+    \let\cnmainft=\linuxmainfont
+    \font\thefont="\cnmainft"\space at 10pt
     \ifx\the\nullfont
       \errorstopmode
       \errmessage{no suitable Chinese main font found}
@@ -116,7 +116,7 @@
 
 \interactionmode=\count255
 
-\setmainfont[Mapping=tex-text]{\mainft}
+\setmainfont[Mapping=tex-text]{\cnmainft}
 \setmonofont[Scale=MatchLowercase]{\monoft}   % 英文等宽字体
 
 \XeTeXlinebreaklocale "zh"  % to solve the line breaking issue
