@@ -516,7 +516,7 @@ $cons(a, x) \doubleplus y = cons(a, x \doubleplus y)$ & $a + succ(b) = succ(a + 
 \[
 \begin{array}{lll}
 (nil \doubleplus y) \doubleplus z & = y \doubleplus z & \text{列表连接定义的规则一} \\
- & = nil \doubleplus (y \doubleplus z) & \text{列表连接定义的规则一}
+ & = nil \doubleplus (y \doubleplus z) & \text{列表连接定义的规则一，反向}
 \end{array}
 \]
 
@@ -527,7 +527,7 @@ $cons(a, x) \doubleplus y = cons(a, x \doubleplus y)$ & $a + succ(b) = succ(a + 
 ((a:x) \doubleplus y) \doubleplus z & = (a:(x \doubleplus y)) \doubleplus z & \text{列表连接定义的规则二} \\
  & = a:((x \doubleplus y) \doubleplus z) & \text{列表连接定义的规则二} \\
  & = a:(x \doubleplus (y \doubleplus z)) & \text{递推假设} \\
- & = (a:x) \doubleplus (y \doubleplus z) & \text{列表连接定义的规则二}
+ & = (a:x) \doubleplus (y \doubleplus z) & \text{列表连接定义的规则二，反向}
 \end{array}
 \]
 

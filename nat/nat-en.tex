@@ -465,14 +465,14 @@ fib = fst . foldn (0, 1) h where
 
 \section{Isomorphism of natural numbers}
 
-自然数不仅可以和自己的子集同构，例如奇偶数、平方数、斐波那契数，还可以和其他事物同构。其中一个例子是计算机程序中的数据结构。下面是列表的定义：
+We've seen the examples that natural numbers can be isomorphic to its subsets, like odd and even numbers, squares, and Fibonacci numbers. Natural numbers can also be isomorphic to other things. One interesting example is the list in the computer programs. Here is the definition of the list.
 
 \lstset{frame=none}
 \begin{lstlisting}
 data List A = nil | cons(A, List A)
 \end{lstlisting}
 
-用数据结构的观点来解释，一个类型为A的列表或者为空，记为nil；或者包含两部分：一个含有类型A数据的节点，和一个包含剩余部分的子列表。函数cons把一个类型为A的元素和另一个类型为A的列表“链接”起来\footnote{名称cons来自Lisp的命名传统。}。图\ref{fig:linked-list}描述了一个含有6个节点的列表。
+As a data structure, a list of type A is either empty, represented as nil; or contains two parts: one node with data of type A, and the rest sub-list. Function \texttt{cons} links an element of type A to another list of type A\footnote{The name \texttt{cons} comes from the Lisp naming convention.}. Figure\ref{fig:linked-list} shows a list of 6 nodes.
 
 \begin{figure}[htbp]
 \centering
@@ -487,18 +487,19 @@ data List A = nil | cons(A, List A)
 \label{fig:linked-list}
 \end{figure}
 
-由于这种特点，列表也被称为“链表”。传统的计算机程序中，链表通常定义为一个结构\footnote{很多情况下，列表中保存的数据类型是相同的。但也有异构类型的列表，例如Lisp中的列表。}，例如：
+Because every node link to the next one or nil, list is also called as `linked-list'. In the tradition of computer programs, linked-list is often defined as a record data structure\footnote{In most cases, the data stored in list have the same type. However, there is also heterogenous list, like the list in Lisp for example.}, for example:
+
 \begin{verbatim}
 Node of A:
     key: A
     next: Node of A
 \end{verbatim}
 
-我们也可以用自然数的同构来解释列表。根据皮亚诺公理一，nil相当于零；根据皮亚诺公理二，对于任何列表，我们都可以用cons，在其左侧链接一个类型为A的新元素。因此cons相当于自然数中的succ。这里的变化有两点。其一是列表携带类型A的元素，因而\texttt{cons(1, cons(2, cons(3, nil)))}和\texttt{cons(2, cons(1, cons(3, nil)))}和\texttt{cons(1, cons(4, cons(9, nil)))}以及\texttt{cons('a', cons('b', cons('c', nil)))}都是不同的列表。其二是与直觉不同，新元素不是加入到列表的右侧末尾，而是加入到左侧的头部。增长的方向是向左，而非向右。
+We can also understand the list as isomorphism of natural numbers. According to the first Peano axiom, nil is corresponding to zero; Based on the second Peano axiom, for any list, we can apply \texttt{cons}, to link a new element of type A to the left. We can treat \texttt{cons} corresponding to \texttt{succ} to the natural numbers. There are two different things. First, list is augmented with elements of type A. List \texttt{cons(1, cons(2, cons(3, nil)))} and \texttt{cons(2, cons(1, cons(3, nil)))}; List \texttt{cons(1, cons(4, cons(9, nil)))} and \texttt{cons('a', cons('b', cons('c', nil)))} are all different lists. Second, new element is not added to the right at tail, but is added to the left at head. Different from the intuition, the list grow to the left but not to the right.
 
-用嵌套的cons表示较长的列表很不方便，我们将\texttt{cons(1, cons(2, cons(3, nil)))}简记为[1, 2, 3]，用符号“:”表示cons。因此这一列表也可以写为1:[2, 3]或者1:(2:(3:nil))。针对A为字母的特殊情况，我们用带双引号的字符串来表示，例如用“hello”来简记表示['h', 'e', 'l', 'l', 'o']。
+It's not convenient to represent long list with nested \texttt{cons}. We simplify \texttt{cons(1, cons(2, cons(3, nil)))} to [1, 2, 3], and use symbol `:' for \texttt{cons}. This list can also be written as 1:[2, 3] or 1:(2:(3:nil)). When type A is character, we use string in quote to represent this special type of list. For example, ``hello'' is the simplified form for ['h', 'e', 'l', 'l', 'o'].
 
-同构于自然数的加法，定义列表的连接运算如下：
+Similiar to the adding defined for natural numbers, we can define the concatenation for lists as the following.
 
 \be
 \begin{array}{l}
@@ -507,39 +508,39 @@ cons(a, x) \doubleplus y = cons(a, x \doubleplus y)
 \end{array}
 \ee
 
-列表的连接运算包含两条规则。首先空列表和任何列表连接的结果仍然等于该列表本身；并且某个列表的“后继”和另一个列表相连接，等于这两个列表连接结果的后继。和自然数的加法对比，它们呈现出有趣的镜像对称形式。
+There are two rules for list concatenation. First, empty list concatenates any list produces the same list; second, when concatenate the `successor' of a list to another list, it equals to first concatenate the two lists, then take the successor. Compare to the add for natural numbers, the definition of list concatenation is mirror symmetry.
 
 \begin{figure}[htbp]
 \begin{tabular}{r|l}
 $nil \doubleplus y = y$ & $a + 0 = a$ \\
 $cons(a, x) \doubleplus y = cons(a, x \doubleplus y)$ & $a + succ(b) = succ(a + b)$
 \end{tabular}
-\caption{列表的连接和自然数的加法呈现镜像对称}
+\caption{The list concatenation and natural number adding are mirror symmetry.}
 \end{figure}
 
-这种同构提示我们，可以利用递推公理证明列表连接的结合律。为了证明$(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$，我们首先证明$x=nil$时的起始情况
+It give us hint from the symmetry, that we can prove the associative law for list concatenation with the induction axiom. To prove $(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$, we first prove it holds when $x = nil$.
 
 \[
 \begin{array}{lll}
-(nil \doubleplus y) \doubleplus z & = y \doubleplus z & \text{列表连接定义的规则一} \\
- & = nil \doubleplus (y \doubleplus z) & \text{列表连接定义的规则一}
+(nil \doubleplus y) \doubleplus z & = y \doubleplus z & \text{1st equation of $\doubleplus$} \\
+ & = nil \doubleplus (y \doubleplus z) & \text{1st equation of $\doubleplus$ (backwards)}
 \end{array}
 \]
 
-然后再证明递推情况。假设$(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$，我们要证明$((a:x) \doubleplus y) \doubleplus z = (a:x) \doubleplus (y \doubleplus z)$。
+For the induction case, assume $(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$ holds. We want to prove that $((a:x) \doubleplus y) \doubleplus z = (a:x) \doubleplus (y \doubleplus z)$.
 
 \[
 \begin{array}{rll}
-((a:x) \doubleplus y) \doubleplus z & = (a:(x \doubleplus y)) \doubleplus z & \text{列表连接定义的规则二} \\
- & = a:((x \doubleplus y) \doubleplus z) & \text{列表连接定义的规则二} \\
- & = a:(x \doubleplus (y \doubleplus z)) & \text{递推假设} \\
- & = (a:x) \doubleplus (y \doubleplus z) & \text{列表连接定义的规则二}
+((a:x) \doubleplus y) \doubleplus z & = (a:(x \doubleplus y)) \doubleplus z & \text{2nd equation of $\doubleplus$} \\
+ & = a:((x \doubleplus y) \doubleplus z) & \text{2nd equation of $\doubleplus$} \\
+ & = a:(x \doubleplus (y \doubleplus z)) & \text{induction assumption} \\
+ & = (a:x) \doubleplus (y \doubleplus z) & \text{2nd equation of $\doubleplus$ (backwards)}
 \end{array}
 \]
 
-这样我们就证明了列表连接操作的结合律。但是和自然数不同，列表不满足交换律\footnote{这也是我们避免使用加号“+”来表示列表连接的原因。但是很多编程语言使用了加号，这造成了一些潜在的问题。}。例如$[2, 3 ,5] \doubleplus [7, 11] = [2, 3, 5, 7, 11]$，但交换后的结果却是$[7, 11] \doubleplus [2, 3, 5] = [7, 11, 2, 3, 5]$。
+With this, we proved the list concatenation is associative. Different from the natual numbers however, list concatenation is not communitive\footnote{This is the reason why we avoid using symbol + for concatenation. But many programming languages use the + sign. It causes potential issues in practice.}. For example $[2, 3 ,5] \doubleplus [7, 11] = [2, 3, 5, 7, 11]$, but when change the order, the result is $[7, 11] \doubleplus [2, 3, 5] = [7, 11, 2, 3, 5]$.
 
-考虑和自然数同构，我们也可以定义列表的抽象叠加操作。为此，我们仿照自然数定义一个抽象的起始值$c$，和一个抽象的二元运算$h$。这样就可以定义列表的递归形式：
+Consider the similiarity to the natural numbers, we can also define the abstract folding operation for lists. Corresponding to the abstract start value $c$ and the abstract binary operation $h$, we define the recursive scheme as below.
 
 \be
 \begin{array}{l}
@@ -548,7 +549,7 @@ f(cons(a,x)) = h(a, f(x))
 \end{array}
 \ee
 
-进一步，令$f = foldr(c, h)$，就可以抽象出列表的叠加操作。我们将其命名为$foldr$以表明这种叠加操作是从右侧开始，自右向左进行的。
+As the next step, let $f = foldr(c, h)$, then we can abstract the list folding. We name it as $foldr$ to callout the folding starts from right to the left.
 
 \be
 \begin{array}{l}
@@ -557,7 +558,7 @@ foldr(c, h, cons(a,x)) = h(a, foldr(c, h, x))
 \end{array}
 \ee
 
-使用$foldr$，我们可以定义各种列表上的操作。例如我们可以把一个列表中的各个元素累加或累乘起来：
+We can define varies of list manipulations with $foldr$. The followings are to sum or multiply all the elements in list.
 
 \be
 \begin{array}{l}
@@ -566,7 +567,7 @@ product = foldr(1, \times)
 \end{array}
 \ee
 
-我们可以通过一些例子了解$sum$的行为。首先是空列表：$sum([]) = foldr(0, +, nil) = 0$；然后是若干个元素的列表：
+We can understand how $sum$ behave with examples. First is about empty list, $sum([]) = foldr(0, +, nil) = 0$. Then the list with some elements:
 
 \[
 \begin{array}{rl}
@@ -580,7 +581,7 @@ sum([1, 3, 5, 7]) & = foldr(0, +, 1:[3, 5, 7]) \\
 \end{array}
 \]
 
-在$sum$的基础上，我们可以计算列表的长度。这本质上是把一个列表映射成自然数。
+We can measure the length of the list with $sum$. It essentially map a list to a natural number.
 
 \be
 \begin{array}{l}
@@ -589,19 +590,19 @@ length = sum \cdot foldr(0, one)
 \end{array}
 \ee
 
-其中函数$one$被称为“常数函数”，不管传入什么内容，它总返回常数1。这样我们就可以用$|x| = length(x)$来计算列表的长度。我们还可以用$foldr$定义连接操作$\doubleplus$：
+Where function $one$ is called as {\em constant} function. It always returns 1 for whatever variables. We can use $|x| = length(x)$ to represent the length of a given list. The next example shows we can use $foldr$ to define list concatenation.
 
 \be
-\doubleplus y = foldr(y, cons)
+(\doubleplus y) = foldr(y, cons)
 \ee
 
-这相当于自然数的$(+m)$运算，类似自然数的乘法运算，我们可以定义列表的“乘法”，将一个列表的列表全部连接起来。
+It is corresponding to the $(+m)$ operation for natural number. Further, similiar to the multiplication of natural numbers, we can define the `multiplication' for lists, concatenate all sub-lists in a list.
 
 \be
 concat = foldr(nil, \doubleplus)
 \ee
 
-例如：$concat([[1, 1], [2, 3, 5], [8]])$的结果是$[1, 1, 2, 3, 5, 8]$。我们接下来再用$foldr$定义两个列表的重要操作：选择和逐一映射\footnote{和一一映射不同，这里的映射是单向的，例如从一个词语到它的字符长度的映射，其逆映射并不存在。}。选择也称为过滤，是根据某个条件选择列表中的元素组成一个新的列表。为此，我们需要引入条件表达式的概念\footnote{也称麦卡锡条件形式，是计算机科学家Lisp发明人约翰$\cdot$麦卡锡于1960年引入的。}。它通常写为$(p \mapsto f, g)$，也就是给定变量$x$，若条件$p(x)$成立，则结果为$f(x)$，否则为$g(x)$，我们也会用if $p(x)$ then $f(x)$ else $g(x)$来描述条件表达式。
+When apply $concat([[1, 1], [2, 3, 5], [8]])$, the result is $[1, 1, 2, 3, 5, 8]$. At the end of this section, we'll define two important list operations with $foldr$, filtering and mapping\footnote{Different from one to one mapping, the map defined here is one direction only. For example, the map from a string to its length is one direction. The reverse map does not exist.}. Filter is to compose a new list from elements that satisfy a given predication. In order to realize filtering, we need introduce the conditional expression\footnote{Also known as McCarthy conditional form, or McCarthy formalism. It was introduced by the computer scientist, the inventor of Lisp John McCarthy in 1960.}. It's written as $(p \mapsto f, g)$. When give variable $x$, if the predication $p(x)$ holds, then the result is $f(x)$, else it's $g(x)$. We also use if $p(x)$ then $f(x)$ else $g(x)$ for conditional expression.
 
 \be
 filter(p) = foldr(nil, (p \cdot 1st \mapsto cons, 2nd))
