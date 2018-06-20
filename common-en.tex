@@ -5,8 +5,6 @@
 \RequirePackage{ifpdf}
 \RequirePackage{ifxetex}
 
-%
-%
 \ifpdf
   \RequirePackage[pdftex,%
        bookmarksnumbered,%
@@ -52,7 +50,6 @@
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{listings}
-%\usepackage[plain]{algorithm} %remove rule (horizontal line on top/below the algorithm
 \usepackage{algorithm} %to remove rules change to \usepackage[plain]{algorithm}
 \usepackage[noend]{algpseudocode} %for pseudo code, include algorithmicsx automatically
 \usepackage{appendix}
@@ -62,7 +59,6 @@
 
 \usepackage{fontspec}
 \usepackage{xunicode}
-%\usepackage{fontenc}
 \usepackage{textcomp}
 \usepackage{url}
 
@@ -115,12 +111,6 @@
 \fi
 
 \interactionmode=\count255
-
-%\setmainfont[Mapping=tex-text]{\cnmainft}
-%\setmonofont[Scale=MatchLowercase]{\monoft}
-
-%% \XeTeXlinebreaklocale "zh"  % to solve the line breaking issue
-%% \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 
 \titleformat{\paragraph}
 {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}

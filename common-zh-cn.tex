@@ -5,8 +5,6 @@
 \RequirePackage{ifpdf}
 \RequirePackage{ifxetex}
 
-%
-%
 \ifpdf
   \RequirePackage[pdftex,%
        bookmarksnumbered,%
@@ -52,7 +50,6 @@
 \usepackage{verbatim}
 \usepackage{fancyvrb}
 \usepackage{listings}
-%\usepackage[plain]{algorithm} %remove rule (horizontal line on top/below the algorithm
 \usepackage{algorithm} %to remove rules change to \usepackage[plain]{algorithm}
 \usepackage[noend]{algpseudocode} %for pseudo code, include algorithmicsx automatically
 \usepackage{appendix}
@@ -62,7 +59,6 @@
 
 \usepackage{fontspec}
 \usepackage{xunicode}
-%\usepackage{fontenc}
 \usepackage{textcomp}
 \usepackage{url}
 
@@ -127,28 +123,6 @@
 \titlespacing*{\paragraph}
 {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
-\lstdefinelanguage{Smalltalk}{
-  morekeywords={self,super,true,false,nil,thisContext}, % This is overkill
-  morestring=[d]',
-  morecomment=[s]{"}{"},
-  alsoletter={\#:},
-  escapechar={!},
-  literate=
-    {BANG}{!}1
-    {UNDERSCORE}{\_}1
-    {\\st}{Smalltalk}9 % convenience -- in case \st occurs in code
-    % {'}{{\textquotesingle}}1 % replaced by upquote=true in \lstset
-    {_}{{$\leftarrow$}}1
-    {>>>}{{\sep}}1
-    {^}{{$\uparrow$}}1
-    {~}{{$\sim$}}1
-    {-}{{\sf -\hspace{-0.13em}-}}1  % the goal is to make - the same width as +
-    %{+}{\raisebox{0.08ex}{+}}1		% and to raise + off the baseline to match -
-    {-->}{{\quad$\longrightarrow$\quad}}3
-	, % Don't forget the comma at the end!
-  tabsize=2
-}[keywords,comments,strings]
-
 % for literate Haskell code
 \lstdefinestyle{Haskell}{
   flexiblecolumns=false,
@@ -182,7 +156,7 @@
   morestring=[b]"""
 }
 
-\lstloadlanguages{C, C++, Java, Lisp, Haskell, Python, Smalltalk, Scala}
+\lstloadlanguages{C, C++, Java, Lisp, Haskell, Python, Scala}
 
 \lstset{
   basicstyle=\small\ttfamily,
