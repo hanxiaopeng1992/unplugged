@@ -13,11 +13,11 @@ Contents
 We just started writing this book, the following contents are planned as the outline.
 
 - Chapter 1, Natural numbers. Peano Axiom, list and folding;
-- Chapter 2, Recurrsion. Euclid GCM (Greatest Common Measurement) algorithm, Lambda calculus, Y-combinator and recursion.
-- Chapter 3, Group, Ring, and Field. Algebraic structure of data
-- Chapter 4, Category theory. Category, functor, and arrows. Type system
-- Chapter 5, Deforest. Build-folding law, optimazation, and algorithm deduction.
-- Chapter 6, Infinity. Set theory, Infinity and stream.
+- Chapter 2, Recurrsion. Euclid GCM (Greatest Common Measurement) algorithm, Lambda calculus, Y-combinator and recursion;
+- Chapter 3, Group, Ring, and Field. Algebraic structure of data;
+- Chapter 4, Category theory. Category, functor, and arrows. Type system;
+- Chapter 5, Deforest. Build-folding law, optimazation, and algorithm deduction;
+- Chapter 6, Infinity. Set theory, Infinity and stream;
 - Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem.
 
 Install
