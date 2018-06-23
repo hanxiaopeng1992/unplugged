@@ -406,14 +406,14 @@ When start, there is a pair in the first month. In the second month, there is a 
 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 
-\begin{wrapfigure}{L}{0.3\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.3\textwidth}
+\begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.2]{img/fibonacci_spiral.eps}
+ \includegraphics[scale=0.5]{img/fibonacci_spiral.eps}
  \caption{The length of the rectangles give a Fibonacci sequence.}
  \label{fig:fibonacci_spiral}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 It's easy to find the pattern of this sequence. From the third number, every number is the sum of the previous two. We can understand the reason behind it like this. Let there be $m$ pairs of rabbits in the previous month, and $n$ pairs in this month. As the new additional $n - m$ pairs are all new born, the rest $m$ pairs are mature. In the next month, the $n - m$ pairs grow mature; while the $m$ pairs of big rabbits produce another $m$ pairs of baby rabbits. The total pairs in the next month is the sum of big and baby rabbits, which is $(n - m) + m + m = n + m$. With this deduction, we can give the recursive definition of Fibonacci numbers.
 

@@ -400,14 +400,14 @@ fact = 2nd \cdot foldn(c, h) \\
 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 
-\begin{wrapfigure}{L}{0.3\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.3\textwidth}
+\begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.2]{img/fibonacci_spiral.eps}
+ \includegraphics[scale=0.5]{img/fibonacci_spiral.eps}
  \caption{这些正方形的边长组成了斐波那契序列。}
  \label{fig:fibonacci_spiral}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 这个数列很有规律，从第三项后，任何一项都等于前两项的和。我们可以这样思考它的原理，如果前一个月有$m$对兔子，这个月有$n$对兔子，那么增加的一定都是新产下的小兔，共有$n-m$对，而剩下的都是成年兔子，共$m$对。到下个月时，这$n-m$对小兔刚刚成熟，而$m$对成兔又产下了$m$对小兔。所以下个月的兔子总数等于小兔加上成兔为：$(n - m) + m + m = n + m$对。根据这一推理，我们可以给出斐波那契数列的递归定义：
 
