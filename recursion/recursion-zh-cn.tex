@@ -59,29 +59,141 @@ foldn(z, f, n') = f(foldn(z, f, n))
 
 经历了漫长的在外游历后，这位年近半百的智者返回了故乡并开始讲学。公元前520年左右，为了摆脱当地的暴政，毕达哥拉斯移居到了意大利南部的克罗顿（Croton）发展，在那里他赢得了人们的信任与景仰。毕达哥拉斯的弟子中还有女性，他们把主要的精力都用来研究天文、几何、数论及音乐这四门学科。它们被称为四术（quadrivium），影响了欧洲教育两千多年\cite{StepanovRose15}。四术体现了毕达哥拉斯“万物皆数”的哲学思想。星体的运动与几何对应，而几何又以数为基础，数字还可以衍生出音乐。毕达哥拉斯是首个发现纯八度音（octave）在频率上有数学规律的人。他的弟子说他可以“听见天界的乐音”\footnote{关于毕达哥拉斯的逝世的说法不一。他领导的学派具有很高的声誉和政治影响，引起了敌对派的忌恨。后来受到民主运动的冲击，学派在克罗顿的活动场所遭到破坏。有人认为毕达哥拉斯被暴徒杀害，也有人说他逃到梅塔蓬图姆（Metapontum）并度过余生。}。
 
-毕达哥拉斯学派深入研究了数与数、数与自然之间的关系。这开启了数学的重要分支——数论。他们对正整数进行了分类，定义了奇数偶数、素数和数等。他们发现某些数的所有真因子\footnote{小于数本身的因子}之和恰好等于这个数本身，毕达哥拉斯称这样的数为完全数，并成功地找到两个\footnote{一说为完美数。经过欧几里得与欧拉的进一步工作，揭示了偶完全数的特征以及完全数和梅森素数的关系。到2018年，人们借助计算机共发现了50个梅森素数和完全数。}。最小的完全数是6，因为6 = 1 + 2 + 3，下一个是28（等于1 + 2 + 4 + 7 + 14）。毕达哥拉斯学派还发现了一大类“形数”。
+毕达哥拉斯学派深入研究了数与数、数与自然之间的关系。这开启了数学的重要分支——数论。他们对正整数进行了分类，定义了奇数偶数、素数和数等。他们发现某些数的所有真因子\footnote{小于数本身的因子}之和恰好等于这个数本身，毕达哥拉斯学派称这样的数为完全数，并成功地找到两个\footnote{一说为完美数。经过欧几里得与欧拉的进一步工作，揭示了偶完全数的特征以及完全数和梅森素数的关系。到2018年，人们借助计算机共发现了50个梅森素数和完全数。}。最小的完全数是6，因为6 = 1 + 2 + 3，下一个是28（等于1 + 2 + 4 + 7 + 14）。毕达哥拉斯学派还发现了一大类“形数”\footnote{毕达哥拉斯学派的门徒通过在地上摆小石子来研究数字，英文的计算calculus一词就是从希腊文“石子”衍生出的\cite{HanXueTao16}。当他们把石子按照某种几何方式排列成图形时，就得到了形数。}。
 
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+\filldraw (0, 0) circle (0.2);
+\draw (0, -1) node{1};
+\filldraw (2, 0) circle (0.2)
+          (3, 0) circle (0.2)   (3, 1) circle (0.2);
+\draw (2.5, -1) node{3};
+\filldraw (5, 0) circle (0.2)
+          (6, 0) circle (0.2)   (6, 1) circle (0.2)
+          (7, 0) circle (0.2)   (7, 1) circle (0.2)   (7, 2) circle (0.2);
+\draw (6, -1) node{6};
+\filldraw (9, 0) circle (0.2)
+          (10, 0) circle (0.2)    (10, 1) circle (0.2)
+          (11, 0) circle (0.2)    (11, 1) circle (0.2)    (11, 2) circle (0.2)
+          (12, 0) circle (0.2)    (12, 1) circle (0.2)    (12, 2) circle (0.2)    (12, 3) circle (0.2);
+\draw (10.5, -1) node{10};
+\end{tikzpicture}
+\caption{三角形数（triangular number）}
+\label{fig:triangular-num}
+%\end{wrapfigure}
+\end{figure}
+
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+\draw (0, 1) circle (0.2);
+\filldraw (0, 0) circle (0.2);
+\draw (0, -1) node{2};
+
+\draw (2, 1) circle (0.2)   (2, 2) circle (0.2)
+      (3, 2) circle (0.2);
+\filldraw (2, 0) circle (0.2)
+          (3, 0) circle (0.2)   (3, 1) circle (0.2);
+\draw (2.5, -1) node{6};
+
+\draw (5, 1) circle (0.2)   (5, 2) circle (0.2)   (5, 3) circle (0.2)
+      (6, 2) circle (0.2)   (6, 3) circle (0.2)
+      (7, 3) circle (0.2);
+\filldraw (5, 0) circle (0.2)
+          (6, 0) circle (0.2)   (6, 1) circle (0.2)
+          (7, 0) circle (0.2)   (7, 1) circle (0.2)   (7, 2) circle (0.2);
+\draw (6, -1) node{12};
+
+\draw (9, 1) circle (0.2)   (9, 2) circle (0.2)   (9, 3) circle (0.2)   (9, 4) circle (0.2)
+      (10, 2) circle (0.2)   (10, 3) circle (0.2)   (10, 4) circle (0.2)
+      (11, 3) circle (0.2)   (11, 4) circle (0.2)
+      (12, 4) circle (0.2);
+\filldraw (9, 0) circle (0.2)
+          (10, 0) circle (0.2)    (10, 1) circle (0.2)
+          (11, 0) circle (0.2)    (11, 1) circle (0.2)    (11, 2) circle (0.2)
+          (12, 0) circle (0.2)    (12, 1) circle (0.2)    (12, 2) circle (0.2)    (12, 3) circle (0.2);
+\draw (10.5, -1) node{20};
+\end{tikzpicture}
+\caption{长方形数（oblong number）}
+\label{fig:oblong-num}
+%\end{wrapfigure}
+\end{figure}
+
+图\ref{fig:triangular-num}和图\ref{fig:oblong-num}分别是三角形数和长方形数。很容易看出，每个长方形数都是对应三角形数的二倍，而三角形数又是前$n$个正数之和，因此就得到了正整数累加的求和公式：
+
+\[
+1 + 2 + 3 + ... + n = \frac{1}{2}n(n+1)
+\]
+
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+\filldraw (0, 0) circle (0.2);
+\draw (0, -1) node{1};
+
+\draw (2, 1) circle (0.2)
+      (3, 0) circle (0.2)   (3, 1) circle (0.2);
+\draw (2.5, -1) node{3};
+
+\filldraw (5, 2) circle (0.2)   (6, 2) circle (0.2)   (7, 2) circle (0.2)
+          (7, 0) circle (0.2)   (7, 1) circle (0.2);
+\draw (6, -1) node{5};
+
+\draw (9, 3) circle (0.2)   (10, 3) circle (0.2)   (11, 3) circle (0.2)   (12, 3) circle (0.2)
+      (12, 0) circle (0.2)    (12, 1) circle (0.2)    (12, 2) circle (0.2);
+\draw (10.5, -1) node{7};
+\end{tikzpicture}
+\caption{折尺形数（gnomon number）}
+\label{fig:gnomon-num}
+%\end{wrapfigure}
+\end{figure}
+
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+\filldraw (0, 0) circle (0.2);
+\draw (0, -1) node{1};
+
+\filldraw (2, 0) circle (0.2);
+\draw (2, 1) circle (0.2)
+      (3, 0) circle (0.2)   (3, 1) circle (0.2);
+\draw (2.5, -1) node{4};
+
+\filldraw (5, 0) circle (0.2);
+\draw (5, 1) circle (0.2)
+      (6, 0) circle (0.2)   (6, 1) circle (0.2);
+\filldraw (5, 2) circle (0.2)   (6, 2) circle (0.2)   (7, 2) circle (0.2)
+          (7, 0) circle (0.2)   (7, 1) circle (0.2);
+\draw (6, -1) node{9};
+
+\filldraw (9, 0) circle (0.2);
+\draw (9, 1) circle (0.2)
+      (10, 0) circle (0.2)   (10, 1) circle (0.2);
+\filldraw (9, 2) circle (0.2)   (10, 2) circle (0.2)   (11, 2) circle (0.2)
+          (11, 0) circle (0.2)   (11, 1) circle (0.2);
+\draw (9, 3) circle (0.2)   (10, 3) circle (0.2)   (11, 3) circle (0.2)   (12, 3) circle (0.2)
+      (12, 0) circle (0.2)    (12, 1) circle (0.2)    (12, 2) circle (0.2);
+\draw (10.5, -1) node{16};
+\end{tikzpicture}
+\caption{正方形数（square number）与折尺形数的关系}
+\label{fig:square-num}
+%\end{wrapfigure}
+\end{figure}
+
+毕达哥拉斯学派还观察到，所有的奇数可以标示成折尺形(数学上称为“磬折形”)，如图\ref{fig:gnomon-num}，而前$n$个折尺形可以拼成一个正方形，如图\ref{fig:square-num}。这样他们就发现了前$n$个正奇数的求和公式：
+
+\[
+1 + 3 + 5 + ... + (2n - 1) = n^2
+\]
+
+这正是我们在第一章提出的那个练习题的答案。
 
 毕达哥拉斯的介绍，万物皆数的哲学思想（三角形数，音乐）。公度的概念，无理数的发现和递归的关系。
-
-
-%\begin{wrapfigure}{R}{0.5\textwidth}
-%% \begin{figure}[htbp]
-%%  \centering
-%%  \includegraphics[scale=0.6]{img/Babylonian_numerals.eps}
-%%  \caption{巴比伦楔形文字中的数字\cite{wiki-babylonian-num}。}
-%%  \label{fig:babylonian-num}
-%% \end{figure}
-%\end{wrapfigure}
-
-%\begin{wrapfigure}{R}{0.5\textwidth}
-%% \begin{figure}[htbp]
-%%  \centering
-%%  \includegraphics[scale=0.2]{img/abstract-num.eps}
-%%  \caption{具体的三个事物和抽象的数字三}
-%%  \label{fig:abstract-num}
-%% \end{figure}
-%\end{wrapfigure}
 
 \section{欧几里得算法}
 
