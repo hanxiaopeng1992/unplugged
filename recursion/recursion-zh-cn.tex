@@ -206,7 +206,7 @@ foldn(z, f, n') = f(foldn(z, f, n))
 
 \section{欧几里得算法}
 
-由于公度可能有多个，为此需要引入最大公度（greatest common measure）的概念。如果线段V是线段A和线段B的公度，并且比其它公度都大，则称V是A和B的最大公度。已知两条线段，怎样才能求得最大公度呢？这就引出了历史上著名的递归算法——欧几里得算法。它用古希腊伟大的数学家欧几里得的名字命名\footnote{印度和中国分别独立发现了欧几里得算法。五世纪末，印度数学家阿耶波多（Aryabhata）用这一算法解不定方程（丢番图方程）。在《孙子算经》中，欧几里得算法可以作为中国剩余定理的特例。在1247年，南宋数学家秦九韶在《数书九章》中详细给出了欧几里得算法。}。在欧几里得的名著《几何原本》第十卷命题三中\cite{Elements}，详细阐述了这一算法\footnote{在《几何原本》卷七的命题一中，有针对整数的欧几里得算法。但针对线段的情形实际上覆盖了整数。}。
+由于公度可能有多个，为此需要引入最大公度（greatest common measure）的概念。如果线段V是线段A和线段B的公度，并且比其它公度都大，则称V是A和B的最大公度。已知两条线段，怎样才能求得最大公度呢？这就引出了历史上著名的递归算法——欧几里得算法（又称辗转相除法）。它用古希腊伟大的数学家欧几里得的名字命名\footnote{印度和中国分别独立发现了欧几里得算法。五世纪末，印度数学家阿耶波多（Aryabhata）用这一算法解不定方程（丢番图方程）。在《孙子算经》中，欧几里得算法可以作为中国剩余定理的特例。在1247年，南宋数学家秦九韶在《数书九章》中详细给出了欧几里得算法。}。在欧几里得的名著《几何原本》第十卷命题三中\cite{Elements}，详细阐述了这一算法\footnote{在《几何原本》卷七的命题一中，有针对整数的欧几里得算法。但针对线段的情形实际上覆盖了整数。}。
 
 \subsection{欧几里得和《几何原本》}
 
@@ -247,7 +247,33 @@ gcm(a, b) = \left \{
 
 设两条线段$a$、$b$可公度，如果它们相等，则最大公度就是其中的任一条线段，此时算法返回$a$作为结果。如果线段$a$比$b$长，就用圆规不断从$a$中截去$b$（通过递归），然后求截短的线段$a'$和$b$的最大公度；否则如果线段$b$比$a$长，就反过来不断从$b$中截去$a$，然后求$a$和截短的线段$b'$的最大公度。
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.2]
 
+\filldraw (0, 0) circle (0.5)   (30, 0) circle (0.5)   (42, 0) circle (0.5);
+\draw (-5, 0) node{$a$} (0, 0) -- (42, 0);
+\filldraw (0, -5) circle (0.5)   (30, -5) circle (0.5);
+\draw (-5, -5) node{$b$} (0, -5) -- (30, -5);
+
+\filldraw (0,  -15) circle (0.5)   (12, -15) circle (0.5);
+\draw (-5, -15) node{$a'=a-b$} (0, -15) -- (12, -15);
+\filldraw (0, -20) circle (0.5)   (12, -20) circle (0.5)   (24, -20) circle (0.5)   (30, -20) circle (0.5);
+\draw (-5, -20) node{$b$} (0, -20) -- (30, -20);
+
+\filldraw (0,  -30) circle (0.5)   (6, -30) circle (0.5)   (12, -30) circle (0.5);
+\draw (-5, -30) node{$a'$} (0, -30) -- (12, -30);
+\filldraw (0, -35) circle (0.5)   (6, -35) circle (0.5);
+\draw (-5, -35) node{$b'=b-2a'$} (0, -35) -- (6, -35);
+
+\filldraw (0,  -45) circle (0.5)   (6, -45) circle (0.5);
+\draw (-5, -45) node{$a''=a'-b'$} (0, -45) -- (6, -45);
+\filldraw (0, -50) circle (0.5)   (6, -50) circle (0.5);
+\draw (-5, -50) node{$b'$} (0, -50) -- (6, -50);
+
+\end{tikzpicture}
+\caption{欧几里得算法的线段示意}
+\end{figure}
 
 欧几里得最大公约数(公度）算法的概念。几何量和数的分离。最大公约数算法的意义，递归原理问题的提出
 
@@ -260,33 +286,6 @@ gcm(a, b) = \left \{
 
 lambda的由来，三大变换：Alpha, Beta, Eta变换，变换与归约。
 
-%\begin{figure}[htbp]
-\begin{wrapfigure}{R}{0.4\textwidth}
-\centering
-\begin{tikzpicture}[scale=0.8]
-\filldraw[fill=gray, draw=black, pattern=north west lines] (0, 0) rectangle (2, 1)
-    (2, 0) rectangle (3, 1);
-\draw (3, 0) rectangle (4.5, 1);
-\draw (0, -1) rectangle (2, -2);
-\filldraw[fill=gray, draw=black, pattern=north west lines] (2, -1) rectangle (3, -2)
-    (3, -1) rectangle (4.5, -2);
-\end{tikzpicture}
-\caption{加法结合律的几何证明。上下面积相等}
-\end{wrapfigure}
-%\end{figure}
-
-%\begin{wrapfigure}{R}{0.4\textwidth}
-\begin{figure}[htbp]
-\centering
-\begin{tikzpicture}[scale=0.8]
-\draw (0, 0) rectangle (2, 1)
-    (2, 0) rectangle (3, 1);
-\draw (0, -1) rectangle (1, -2)
-    (1, -1) rectangle (3, -2);
-\end{tikzpicture}
-\caption{加法交换律的几何证明。将上方的图形倒过来看，或者在镜中看。}
-\end{figure}
-%\end{wrapfigure}
 
 \begin{Exercise}
 \begin{enumerate}
