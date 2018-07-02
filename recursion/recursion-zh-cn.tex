@@ -325,9 +325,10 @@ r_1 &=& r_2 q_3 + r_3 \\
 
 综合第一、第二步的结果，即$r_{n-1} \leq g$且$g \leq r_{n-1}$，我们得出最大公度$g = r_{n-1}$，也就是说欧几里得算法能够正确地给出最大公度。进一步，我们知道$g$是每一对量的最大公度，即：
 
-\[
-g = gcm(a, b) = gcm(b, r_1) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
-\]
+\be
+g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
+\label{eq:recursive-gcm}
+\ee
 
 \subsection{扩展欧几里得算法}
 
@@ -366,7 +367,43 @@ g & = as + bt & \text{由定义} \\
 
 这说明$c$可以度量$g$，也就是说$c \leq g$。这就证明了$g$是最大公度。综上我们就证明了贝祖等式，即存在整数使得$ax + by = g$，并且进一步得知最大公度是所有正的线性组合中最小的。
 
-使用
+使用贝祖等式，我们可以推导出扩展欧几里得算法。
+
+\[
+\begin{array}{rlr}
+ax + by & = gcm(a, b) & \text{贝祖等式} \\
+        & = gcm(b, r_0) & \text{欧几里得算法，式(\ref{eq:recursive-gcm})} \\
+        & = bx' + r_0 y' & \text{对$b$和$r_0$使用贝祖等式} \\
+        & = bx' + (a - bq_0)y' & \text{利用$a = b q_0 + r_0$} \\
+        & = ay' + b(x' - y'q_0) & \text{整理为$a$和$b$的线性组合} \\
+        & = ay' + b(x' - y' \lfloor a / b \rfloor) & \text{将$q_0$表示为$a$与$b$的商}
+\end{array}
+\]
+
+这样就得出了每次递归时的关系：
+
+\[
+\left \{
+  \begin{array}{l}
+  x = y' \\
+  y = x' - y' \lfloor a / b \rfloor
+  \end{array}
+\right.
+\]
+
+递归的边界条件出现在$b = 0$的时候，此时$gcm(a, 0) = 1a + 0b$。把边界条件和递归关系归纳起来就得到了扩展欧几里得算法。
+
+\be
+gcm_{ex}(a, b) = \left \{
+  \begin{array}
+  {r@{\quad:\quad}l}
+  b = 0 & (a, 1, 0) \\
+  \text{否则} & (g, y', x' - y' \lfloor a / b \rfloor) \\
+              &\text{其中}(g, x', y') = gcm_{ex}(b, a \bmod b) \\
+  \end{array}
+\right.
+\label{eq:gcm-ext}
+\ee
 
 扩展欧几里得算法(CLRS P860，此处使用构造性证明，以后再提供给予抽象代数的存在性证明。)、倒水趣题。
 
