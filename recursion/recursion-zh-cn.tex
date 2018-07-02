@@ -214,8 +214,9 @@ foldn(z, f, n') = f(foldn(z, f, n))
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Euclid.eps}
+ \captionsetup{labelformat=empty}
  \caption{欧几里得，约公元前300年前后}
- \label{fig:Peano}
+ \label{fig:Euclid}
 %\end{figure}
 \end{wrapfigure}
 
@@ -332,7 +333,17 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 
 \subsection{扩展欧几里得算法}
 
-所谓扩展欧几里得算法，就是除了求得两个量$a$、$b$的最大公度$g$外，同时找到满足贝祖等式$ax + by = g$的两个整数$x$和$y$。为什么贝祖等式（Bézout's identity）\footnote{贝祖等式，或称贝祖定理，最早是由法国数学家梅齐里亚克（Claude Gaspard Bachet de Méziriac，1581–1638）发现并证明了其对整数成立，法国数学家贝祖（Étienne Bézout，1730–1783）证明这一等式对多项式成立。贝祖等式可以推广到任意的整环和主理想环（PID，Principle Ideal Domain）上。}一定成立呢？我们下面给出贝祖等式的一种证明。由$a$、$b$可以构造一个集合，包含它们所有正的线性组合：
+\begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.5]{img/Bezout.eps}
+ \captionsetup{labelformat=empty}
+ \caption{贝祖（Étienne Bézout）1730 - 1783}
+ \label{fig:Bezout}
+%\end{figure}
+\end{wrapfigure}
+
+所谓扩展欧几里得算法，就是除了求得两个量$a$、$b$的最大公度$g$外，同时找到满足贝祖等式$ax + by = g$的两个整数$x$和$y$。为什么贝祖等式（Bézout's identity）\footnote{贝祖等式，或称贝祖定理，最早是由法国数学家梅齐里亚克（Claude Gaspard Bachet de Méziriac，1581–1638）发现并证明了其对整数成立，法国数学家贝祖证明这一等式对多项式成立。贝祖等式可以推广到任意的整环和主理想环（PID，Principle Ideal Domain）上。}一定成立呢？我们下面给出贝祖等式的一种证明。由$a$、$b$可以构造一个集合，包含它们所有正的线性组合：
 
 \[
 S = \{ ax + by | x, y \in \mathbb{Z} \text{且} ax + by > 0\}
@@ -366,6 +377,16 @@ g & = as + bt & \text{由定义} \\
 \]
 
 这说明$c$可以度量$g$，也就是说$c \leq g$。这就证明了$g$是最大公度。综上我们就证明了贝祖等式，即存在整数使得$ax + by = g$，并且进一步得知最大公度是所有正的线性组合中最小的。
+
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.8]{img/Meziriac.eps}
+ \captionsetup{labelformat=empty}
+ \caption{梅齐里亚克（Claude Gaspard Bachet de Méziriac）1581–1638，最早发现并证明了整数上的贝祖等式。}
+ \label{fig:Meziriac}
+\end{figure}
+%\end{wrapfigure}
 
 使用贝祖等式，我们可以推导出扩展欧几里得算法。
 

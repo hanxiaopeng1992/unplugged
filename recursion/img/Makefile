@@ -1,11 +1,11 @@
-IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid
+IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid Bezout Meziriac
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
 #suffix replacement, replace .dot with .png
 PNG_OBJECTS = $(DOT_SOURCES:.dot=.png)
 
-.SUFFIXES: .eps .jpg .png .dot .ps
+.SUFFIXES: .eps .jpg .jpeg .png .dot .ps
 
 .PHONY: all
 
@@ -24,6 +24,9 @@ $(IMG_OBJECTS): % : %.eps
 	convert $< $@
 
 %.eps : %.jpg
+	convert $< $@
+
+%.eps : %.jpeg
 	convert $< $@
 
 dot: $(DOT_OBJECTS)
