@@ -16,21 +16,42 @@
 
 module Euclid where
 
+import Data.List
+import Data.Function (on)
+import Test.QuickCheck
+
+-- Extended Euclidean Algorithm
 gcmex a 0 = (a, 1, 0)
 gcmex a b = (g, y', x' - y' * (a `div` b)) where
-                (g, x', y') = gcmex b (a `mod` b)
+  (g, x', y') = gcmex b (a `mod` b)
 
-solve a b g | g `mod` d /= 0 = [] -- no solution
-            | otherwise = solve' (x * g `div` d)
+-- 2 water jars puzzle
+steps a b d | d `mod` g /= 0 = [] -- no solution
+            | otherwise = pour x y [(0, 0)]
     where
-      (d, x, y) = gcmex a b
-      solve' x | x < 0 = solve' (x + b)
-               | otherwise = pour x [(0, 0)]
-      pour 0 ps = reverse ((0, g):ps)
-      pour x ps@((a', b'):_) | a' == 0 = pour (x - 1) ((a, b'):ps) -- fill a
-                             | b' == b = pour x ((a', 0):ps) -- empty b
-                             | otherwise = pour x ((max 0 (a' + b' - b), min (a' + b') b):ps)
+      (g, x0, y0) = gcmex a b
+      (x1, y1) = (x0 * d `div` g, y0 * d `div` g)
+      (u, v) = (b `div` g, a `div` g)
+      x = x1 - k * u
+      y = y1 + k * v
+      k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
+      m = max (abs x1 `div` u) (abs y1 `div` v)
+      pour 0 0 ps = reverse ps
+      pour x y ps@((a', b'):_)
+        | x > 0 && a'== 0  = pour (x - 1) y ((a, b'):ps) -- fill a
+        | x > 0 && b == b' = pour x (y + 1) ((a', 0):ps) -- empty b
+        | x > 0 = pour x y ((max (a' + b' - b) 0,
+                             min (a' + b') b):ps) -- a to b
+        | y > 0 && b'== 0  = pour x (y - 1) ((a', b):ps) -- fill b
+        | y > 0 && a'== a  = pour (x + 1) y ((0, b'):ps) -- empty a
+        | y > 0 = pour x y ((min (a' + b') a,
+                             max (a' + b' - a) 0):ps) -- b to a
 
 -- Some test data:
 -- a = 3, b = 5, g = 4
 -- a = 4, b = 9, g = 6
+
+prop_gcm :: Int -> Int -> Bool
+prop_gcm a b = (g == gcd a' b') && (a' * x + b' * y == g) where
+  (g, x, y) = gcmex a' b'
+  (a', b') = (abs a, abs b)
