@@ -36,7 +36,7 @@ steps a b d | d `mod` g /= 0 = [] -- no solution
       y = y1 + k * v
       k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
       m = max (abs x1 `div` u) (abs y1 `div` v)
-      pour 0 0 ps = reverse ps
+      pour 0 0 ps = reverse ((if a < b then (0, d) else (d, 0)) :ps)
       pour x y ps@((a', b'):_)
         | x > 0 && a'== 0  = pour (x - 1) y ((a, b'):ps) -- fill a
         | x > 0 && b == b' = pour x (y + 1) ((a', 0):ps) -- empty b

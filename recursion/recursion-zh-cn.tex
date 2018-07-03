@@ -463,7 +463,7 @@ a & 3b - 2a & 将$B$倒入$A$ \\
 \end{table}
 
 无论进行何种操作，每个瓶子中的水的容量总可以表示为$ax + by$的形式，其中$x$、$y$是整数。也就是说，我们能获得的水的体积总是$a$与$b$的线性组合。根据贝祖等式的证明，我们知道线性组合的最小正值恰好是$a$和$b$的最大公度$g$。
-因此给定两个瓶子的容量，我们立即能够判断是否可以得到体积为$d$的水——只要$d$能够被$g$度量\footnote{如果容积为整数，当且仅当$d$能够被最大公约数$g$整除。}。
+因此给定两个瓶子的容量，我们立即能够判断是否可以得到体积为$d$的水——只要$d$能够被$g$度量\footnote{如果容积为整数，当且仅当$d$能够被最大公约数$g$整除。}。当然还要求$d$不能超过两个瓶子中较大瓶子的容积。
 
 例如，使用容量为4升和6升的瓶子，我们永远无法得到5升的水。这是因为4与6的最大公约数是2，但5不能被2整除。（换个思路想这个问题：用两个容积为偶数升的瓶子，永远无法从河里打到奇数升的水。）如果$a$和$b$是互素的整数，即$gcd(a, b) = 1$，则可以得到任意自然数$d$升的水。
 
@@ -489,15 +489,7 @@ $A$ & $B$ & 操作 \\
 \caption{取得4升水需要进行的操作} \label{tab:designed-jugs-ops}
 \end{table}
 
-在这一系列操作中，倒满$B$共3次，倒空$A$共1次。这一过程可以描述如下。
-
-重复$y$次：
-\begin{enumerate}
-\item 倒满$B$；
-\item 将$B$倒入$A$，若$A$变满，则将其倒空。
-\end{enumerate}
-
-因此剩下的唯一问题是寻找整数$x$和$y$。使得$ax + by = d$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$d$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
+在这一系列操作中，倒满$B$共3次，倒空$A$共1次。因此剩下的问题是如何寻找整数$x$和$y$。使得$ax + by = d$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$d$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
 
 \[
 \begin{cases}
@@ -515,7 +507,40 @@ $A$ & $B$ & 操作 \\
 \end{cases}
 \ee
 
-这里$k$为整数。这样我们就找到了倒水问题的所有解。
+这里$k$为整数。这样我们就找到了倒水问题的所有解。下面的是解决这一趣题的完整Haskell例子程序。
+
+\lstset{frame=single}
+\begin{lstlisting}
+import Data.List
+import Data.Function (on)
+
+gcmex a 0 = (a, 1, 0)
+gcmex a b = (g, y', x' - y' * (a `div` b)) where
+  (g, x', y') = gcmex b (a `mod` b)
+
+steps a b d | d `mod` g /= 0 = [] -- no solution
+            | otherwise = pour x y [(0, 0)]
+    where
+      (g, x0, y0) = gcmex a b
+      (x1, y1) = (x0 * d `div` g, y0 * d `div` g)
+      (u, v) = (b `div` g, a `div` g)
+      x = x1 - k * u
+      y = y1 + k * v
+      k = minimumBy (compare `on` (\i -> abs (x1 - i * u) +
+                                         abs (y1 + i * v))) [-m..m]
+      m = max (abs x1 `div` u) (abs y1 `div` v)
+      pour 0 0 ps = reverse ((if a < b then (0, d) else (d, 0)) :ps)
+      pour x y ps@((a', b'):_)
+        | x > 0 && a'== 0  = pour (x - 1) y ((a, b'):ps) -- fill a
+        | x > 0 && b == b' = pour x (y + 1) ((a', 0):ps) -- empty b
+        | x > 0 = pour x y ((max (a' + b' - b) 0,
+                             min (a' + b') b):ps) -- a to b
+        | y > 0 && b'== 0  = pour x (y - 1) ((a', b):ps) -- fill b
+        | y > 0 && a'== a  = pour (x + 1) y ((0, b'):ps) -- empty a
+        | y > 0 = pour x y ((min (a' + b') a,
+                             max (a' + b' - a) 0):ps) -- b to a
+\end{lstlisting}
+
 
 \subsection{欧几里得算法的意义}
 
