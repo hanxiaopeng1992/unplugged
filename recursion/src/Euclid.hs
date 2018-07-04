@@ -26,25 +26,29 @@ gcmex a 0 = (a, 1, 0)
 gcmex a b = (g, y', x' - y' * (a `div` b)) where
   (g, x', y') = gcmex b (a `mod` b)
 
--- 2 jars puzzle
-solve a b d | d `mod` g /= 0 = (0, 0, 0) -- no solution
-            | otherwise = (x, y, k)
-    where
-      (g, x0, y0) = gcmex a b
-      (x1, y1) = (x0 * d `div` g, y0 * d `div` g)
-      (u, v) = (b `div` g, a `div` g)
-      x = x1 - k * u
-      y = y1 + k * v
-      k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
-      m = max (abs x1 `div` u) (abs y1 `div` v)
+-- solve the linear Diophantine equation ax + by = c
+solve a b c | c `mod` g /= 0 = (0, 0, 0, 0) -- no solution
+            | otherwise = (x1, u, y1, v)
+  where
+    (g, x0, y0) = gcmex a b
+    (x1, y1) = (x0 * c `div` g, y0 * c `div` g)
+    (u, v) = (b `div` g, a `div` g)
+
+-- 2 jars puzzle, optimal by minimize |x| + |y|
+jars a b c = (x, y) where
+  (x1, u, y1, v) = solve a b c
+  x = x1 - k * u
+  y = y1 + k * v
+  k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
+  m = max (abs x1 `div` u) (abs y1 `div` v)
 
 -- populate the steps
-water a b d = if x > 0 then pour a x b y
+water a b c = if x > 0 then pour a x b y
               else map swap $ pour b y a x
   where
-    (x, y, _) = solve a b d
+    (x, y) = jars a b c
 
--- pour from a to b, fill a x times, and empty b y times.
+-- pour from a to b, fill a for x times, and empty b for y times.
 pour a x b y = steps x y [(0, 0)]
   where
     steps 0 0 ps = reverse ps
@@ -54,11 +58,11 @@ pour a x b y = steps x y [(0, 0)]
       | otherwise = steps x y ((max (a' + b' - b) 0,
                                 min (a' + b') b):ps) -- a to b
 
--- Some test data:
--- a = 3, b = 5, g = 4
--- a = 4, b = 9, g = 6
-
 prop_gcm :: Int -> Int -> Bool
 prop_gcm a b = (g == gcd a' b') && (a' * x + b' * y == g) where
   (g, x, y) = gcmex a' b'
   (a', b') = (abs a, abs b)
+
+-- Some test data:
+-- a = 3, b = 5, g = 4
+-- a = 4, b = 9, g = 6
