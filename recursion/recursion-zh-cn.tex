@@ -463,13 +463,13 @@ a & 3b - 2a & 将$B$倒入$A$ \\
 \end{table}
 
 无论进行何种操作，每个瓶子中的水的容量总可以表示为$ax + by$的形式，其中$x$、$y$是整数。也就是说，我们能获得的水的体积总是$a$与$b$的线性组合。根据贝祖等式的证明，我们知道线性组合的最小正值恰好是$a$和$b$的最大公度$g$。
-因此给定两个瓶子的容量，我们立即能够判断是否可以得到体积为$d$的水——只要$d$能够被$g$度量\footnote{如果容积为整数，当且仅当$d$能够被最大公约数$g$整除。}。当然还要求$d$不能超过两个瓶子中较大瓶子的容积。
+因此给定两个瓶子的容量，我们立即能够判断是否可以得到体积为$c$的水——只要$c$能够被$g$度量\footnote{如果容积为整数，当且仅当$c$能够被最大公约数$g$整除。}。当然还要求$c$不能超过两个瓶子中较大瓶子的容积。
 
-例如，使用容量为4升和6升的瓶子，我们永远无法得到5升的水。这是因为4与6的最大公约数是2，但5不能被2整除。（换个思路想这个问题：用两个容积为偶数升的瓶子，永远无法从河里打到奇数升的水。）如果$a$和$b$是互素的整数，即$gcd(a, b) = 1$，则可以得到任意自然数$d$升的水。
+例如，使用容量为4升和6升的瓶子，我们永远无法得到5升的水。这是因为4与6的最大公约数是2，但5不能被2整除。（换个思路想这个问题：用两个容积为偶数升的瓶子，永远无法从河里打到奇数升的水。）如果$a$和$b$是互素的整数，即$gcd(a, b) = 1$，则可以得到任意自然数$c$升的水。
 
-虽然通过检查$g$是否能度量$d$可以判断是否有解，但是我们并不知道具体的倒水步骤。如果我们可以找到整数$x$和$y$，使得$d = ax + by$。就可以得到一组操作来解决此题。具体思路是这样的：若$x > 0$、$y < 0$，我们需要倒满瓶子$A$共$x$次，倒空瓶子$B$共$y$次；反之若$x < 0$、$y > 0$，则需要倒空瓶子$A$共$x$次，倒空瓶子$B$共$y$次。
+虽然通过检查$g$是否能度量$c$可以判断是否有解，但是我们并不知道具体的倒水步骤。如果我们可以找到整数$x$和$y$，使得$ax + by = c$。就可以得到一组操作来解决此题。具体思路是这样的：若$x > 0$、$y < 0$，我们需要倒满瓶子$A$共$x$次，倒空瓶子$B$共$y$次；反之若$x < 0$、$y > 0$，则需要倒空瓶子$A$共$x$次，倒空瓶子$B$共$y$次。
 
-例如，若大瓶容积$a=5$、小瓶容积$b=3$，要取得$d=4$升水，因为$4 = 3 \times 3 - 5$，即$x = -1$、$y = 3$我们可以设计下面的一系列操作：
+例如，若大瓶容积$a=5$、小瓶容积$b=3$，要取得$c=4$升水，因为$4 = 3 \times 3 - 5$，即$x = -1$、$y = 3$我们可以设计下面的一系列操作：
 
 \begin{table}[htbp]
 \centering
@@ -489,12 +489,12 @@ $A$ & $B$ & 操作 \\
 \caption{取得4升水需要进行的操作} \label{tab:designed-jugs-ops}
 \end{table}
 
-在这一系列操作中，倒满$B$共3次，倒空$A$共1次。因此剩下的问题是如何寻找整数$x$和$y$。使得$ax + by = d$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$d$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
+在这一系列操作中，倒满$B$共3次，倒空$A$共1次。因此剩下的问题是如何寻找整数$x$和$y$。使得$ax + by = c$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$c$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
 
 \[
 \begin{cases}
-  x_1 = x_0 \dfrac{d}{g} \\[2ex]
-  y_1 = y_0 \dfrac{d}{g}
+  x_1 = x_0 \dfrac{c}{g} \\[2ex]
+  y_1 = y_0 \dfrac{c}{g}
 \end{cases}
 \]
 
@@ -507,41 +507,63 @@ $A$ & $B$ & 操作 \\
 \end{cases}
 \ee
 
-这里$k$为整数。这样我们就找到了倒水问题的所有解。进一步，我们可以找到一个特定的$k$，使得$|x| + |y|$的值最小，从而得到最快的倒水步骤。
-下面的是解决这一趣题的完整Haskell例子程序。
+这里$k$为整数。这样我们就找到了倒水问题的所有解。进一步，我们可以找到一个特定的$k$，使得$|x| + |y|$的值最小，从而得到最快的倒水步骤。以上面
+下面的是解决这一趣题的Haskell例子程序。
 
 \lstset{frame=single}
 \begin{lstlisting}
 import Data.List
+import Data.Tuple (swap)
 import Data.Function (on)
 
+-- 中文Extended Euclidean Algorithm
 gcmex a 0 = (a, 1, 0)
 gcmex a b = (g, y', x' - y' * (a `div` b)) where
   (g, x', y') = gcmex b (a `mod` b)
 
-steps a b d | d `mod` g /= 0 = [] -- no solution
-            | otherwise = pour x y [(0, 0)]
-    where
-      (g, x0, y0) = gcmex a b
-      (x1, y1) = (x0 * d `div` g, y0 * d `div` g)
-      (u, v) = (b `div` g, a `div` g)
-      x = x1 - k * u
-      y = y1 + k * v
-      k = minimumBy (compare `on` (\i -> abs (x1 - i * u) +
-                                         abs (y1 + i * v))) [-m..m]
-      m = max (abs x1 `div` u) (abs y1 `div` v)
-      pour 0 0 ps = reverse ((if a < b then (0, d) else (d, 0)) :ps)
-      pour x y ps@((a', b'):_)
-        | x > 0 && a'== 0  = pour (x - 1) y ((a, b'):ps) -- fill a
-        | x > 0 && b == b' = pour x (y + 1) ((a', 0):ps) -- empty b
-        | x > 0 = pour x y ((max (a' + b' - b) 0,
-                             min (a' + b') b):ps) -- a to b
-        | y > 0 && b'== 0  = pour x (y - 1) ((a', b):ps) -- fill b
-        | y > 0 && a'== a  = pour (x + 1) y ((0, b'):ps) -- empty a
-        | y > 0 = pour x y ((min (a' + b') a,
-                             max (a' + b' - a) 0):ps) -- b to a
+-- Solve the linear Diophantine equation ax + by = c
+solve a b c | c `mod` g /= 0 = (0, 0, 0, 0) -- no solution
+            | otherwise = (x1, u, y1, v)
+  where
+    (g, x0, y0) = gcmex a b
+    (x1, y1) = (x0 * c `div` g, y0 * c `div` g)
+    (u, v) = (b `div` g, a `div` g)
+
+-- Optimal by minimize |x| + |y|
+jars a b c = (x, y) where
+  (x1, u, y1, v) = solve a b c
+  x = x1 - k * u
+  y = y1 + k * v
+  k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
+  m = max (abs x1 `div` u) (abs y1 `div` v)
+
 \end{lstlisting}
 
+求得两个瓶子倒水的次数后，就可以生成一系列倒水的步骤，将这些步骤像表(\ref{tab:designed-jugs-ops})一样输出。
+
+\begin{lstlisting}
+-- Populate the steps
+water a b c = if x > 0 then pour a x b y
+              else map swap $ pour b y a x
+  where
+    (x, y) = jars a b c
+
+-- Pour from a to b, fill a for x times, and empty b for y times.
+pour a x b y = steps x y [(0, 0)]
+  where
+    steps 0 0 ps = reverse ps
+    steps x y ps@((a', b'):_)
+      | a' == 0 = steps (x - 1) y ((a, b'):ps)  -- fill a
+      | b' == b = steps x (y + 1) ((a', 0):ps)  -- empty b
+      | otherwise = steps x y ((max (a' + b' - b) 0,
+                                min (a' + b') b):ps) -- a to b
+\end{lstlisting}
+
+运行这一程序，输入\texttt{water 9 4 6}就可以得到最佳的倒水步骤:
+
+\begin{verbatim}
+[(0,0),(9,0),(5,4),(5,0),(1,4),(1,0),(0,1),(9,1),(6,4),(6,0)]
+\end{verbatim}
 
 \subsection{欧几里得算法的意义}
 
