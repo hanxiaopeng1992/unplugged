@@ -17,6 +17,7 @@
 module Euclid where
 
 import Data.List
+import Data.Tuple (swap)
 import Data.Function (on)
 import Test.QuickCheck
 
@@ -25,9 +26,9 @@ gcmex a 0 = (a, 1, 0)
 gcmex a b = (g, y', x' - y' * (a `div` b)) where
   (g, x', y') = gcmex b (a `mod` b)
 
--- 2 water jars puzzle
-steps a b d | d `mod` g /= 0 = [] -- no solution
-            | otherwise = pour x y [(0, 0)]
+-- 2 jars puzzle
+solve a b d | d `mod` g /= 0 = (0, 0, 0) -- no solution
+            | otherwise = (x, y, k)
     where
       (g, x0, y0) = gcmex a b
       (x1, y1) = (x0 * d `div` g, y0 * d `div` g)
@@ -36,16 +37,22 @@ steps a b d | d `mod` g /= 0 = [] -- no solution
       y = y1 + k * v
       k = minimumBy (compare `on` (\i -> abs (x1 - i * u) + abs (y1 + i * v))) [-m..m]
       m = max (abs x1 `div` u) (abs y1 `div` v)
-      pour 0 0 ps = reverse ((if a < b then (0, d) else (d, 0)) :ps)
-      pour x y ps@((a', b'):_)
-        | x > 0 && a'== 0  = pour (x - 1) y ((a, b'):ps) -- fill a
-        | x > 0 && b == b' = pour x (y + 1) ((a', 0):ps) -- empty b
-        | x > 0 = pour x y ((max (a' + b' - b) 0,
-                             min (a' + b') b):ps) -- a to b
-        | y > 0 && b'== 0  = pour x (y - 1) ((a', b):ps) -- fill b
-        | y > 0 && a'== a  = pour (x + 1) y ((0, b'):ps) -- empty a
-        | y > 0 = pour x y ((min (a' + b') a,
-                             max (a' + b' - a) 0):ps) -- b to a
+
+-- populate the steps
+water a b d = if x > 0 then pour a x b y
+              else map swap $ pour b y a x
+  where
+    (x, y, _) = solve a b d
+
+-- pour from a to b, fill a x times, and empty b y times.
+pour a x b y = steps x y [(0, 0)]
+  where
+    steps 0 0 ps = reverse ps
+    steps x y ps@((a', b'):_)
+      | a' == 0 = steps (x - 1) y ((a, b'):ps)  -- fill a
+      | b' == b = steps x (y + 1) ((a', 0):ps)  -- empty b
+      | otherwise = steps x y ((max (a' + b' - b) 0,
+                                min (a' + b') b):ps) -- a to b
 
 -- Some test data:
 -- a = 3, b = 5, g = 4
