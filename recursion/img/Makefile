@@ -1,4 +1,4 @@
-IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid Bezout Meziriac
+IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid Bezout Meziriac Hippasus
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
