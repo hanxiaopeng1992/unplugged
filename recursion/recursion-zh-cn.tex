@@ -646,6 +646,7 @@ jars a b c = (x, y) where
 
 “$\mapsto$”符号是在1930年前后，由尼古拉$\cdot$布尔巴基（Nicolas Bourbaki）\footnote{“布尔巴基”是一群法国数学家共同使用的笔名。布尔巴基的目的是在集合论的基础上，用最具严格性，最一般的方式来重写整个现代高等数学。布尔巴基学派产生了包括安德烈·韦伊，亨利·嘉当，舒瓦兹，塞尔，格罗滕迪克等一大批著名数学家。}引入的。二十世纪初，罗素和怀特海在《数学原理》中使用了$\hat{x}(x \times x)$的表示法，1930年代时，丘奇想使用类似的表示法，但是他的出版商不知道如何在$x$上面印出这个“帽子”符号，于是就改成在$x$的前面加上一个与之相似的大写希腊字母$\Lambda$，它后来又变成了小写字母$\lambda$。于是最终表达式就成了今天我们看到的$\lambda x . x \times x$\cite{Dowek2011}。虽然$x \mapsto x \times x$的表示法已经广为接受，人们还是会在逻辑学和计算机科学中使用丘奇的表示法，而这种语言的名字“$\lambda$演算”也正源自与此。
 
+\subsection{表达式化简}
 我们先从一些简单的例子开始了解如何用$\lambda$演算形式化算法与计算过程的。首先是加减乘除四则运算，我们把它们也看成某种函数。比如加法1+2，可以看作用一个名为“+”的函数，作用到1和2两个变量上。按照把函数名写在前面的习惯，这一表达式可以写成$(+\ 1\ 2)$。针对表达式的求值，就可以看作是一系列的化简过程，例如：
 
 \[
@@ -665,12 +666,92 @@ jars a b c = (x, y) where
 
 \[
 \begin{array}{llcl}
-\text{if}\ true\! & \text{then}\ e_t\ \text{else}\ e_f & \mapsto & e_t \\
-\text{if}\ false\! & \text{then}\ e_t\ \text{else}\ e_f & \mapsto & e_f
+\textbf{if}\ true\! & \textbf{then}\ e_t\ \textbf{else}\ e_f & \mapsto & e_t \\
+\textbf{if}\ false\! & \textbf{then}\ e_t\ \textbf{else}\ e_f & \mapsto & e_f
 \end{array}
 \]
 
-lambda的由来，三大变换：Alpha, Beta, Eta变换，变换与归约。
+其中$e_t$和$e_f$都是表达式。第一章中通过$cons$定义的复合数据结构，也可以通过函数来抽取其中的各个部分：
+
+\[
+\begin{array}{l}
+head\ (cons\ a\ b) \mapsto a \\
+tail\ (cons\ a\ b) \mapsto b
+\end{array}
+\]
+
+\subsection{$\lambda$抽象}
+
+我们前面简单介绍了$lambda$符号的由来，所谓$\lambda$抽象，实际上是一种构建函数的方法。我们通过一个例子来了解$\lambda$抽象的各个组成部分。
+
+\[
+(\lambda x . +\ x\ 1)
+\]
+
+一个$\lambda$抽象包含四个组成部分，首先是$\lambda$符号，表示“接下来要定义一个函数”。紧随其后的是变量，在本例中就是$x$，被称为形参（formal parameter）。形参之后是一个点，剩余部分是函数体，它向右延申到最长，在本例中是$+\ x\ 1$。有时为了避免对函数体的右边界产生歧义，可以增加括号，对于本例，可以写成：$(+\ x\ 1)$。为了记忆方便，我们可以将$\lambda$抽象的四个部分按照如下方法对应到自然语言上。
+
+\begin{tabular}{cccc}
+($\lambda$ & $x$ & . & +\  $x$\ 1) \\
+$\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
+函数的 & 自变量是$x$ & 它 & 将$x$和1相加 \\
+\end{tabular}
+
+为了方便，在后继的推导中我们也会等价地使用$x \mapsto x + 1$形式的$\lambda$抽象记法。这里有一点需要澄清，$\lambda$抽象并不等同于$\lambda$表达式。$\lambda$抽象只是$\lambda$表达式的一种情况，$\lambda$表达式还包括其它三种情况：
+
+\begin{tabular}{rcll}
+<表达式> & = & <常量> & 内置的常量，数字、布尔值等 \\
+        & | & <变量> & 变量名 \\
+        & | & <表达式> <表达式> & 应用 \\
+        & | & $\lambda$ <变量> . <表达式> & $\lambda$抽象
+\end{tabular}
+
+\subsection{绑定变量和自由变量}
+
+考虑下面的$\lambda$表达式，如果对它化简，我们需要知道“全局”变量$y$的值。与之相对，我们不需要事先知道变量$x$的值，因为它以形参出现在函数中。
+
+\[
+(\lambda x . +\ x\ y)\ 2
+\]
+
+比较$x$和$y$的不同之处，我们称$x$是被$\lambda x$“绑定”的。当将这一$\lambda$抽象应用到参数2时，我们会用2替换掉所有的$x$。相反，$y$没有被$\lambda$绑定，我们称变量$y$是自由的。总之，表达式的值是由未被绑定的自由变量的值决定的。一个变量要么是被绑定的，要么是自由的。下面是一个稍复杂点的例子：
+
+\[
+\lambda x . +\ ((\lambda y . +\ y\ z)\ 3)\ x
+\]
+
+我们可以把它写成箭头记法，这样可以看得更清楚：
+
+\[
+x \mapsto ((y \mapsto y + z)\ 3) + x
+\]
+
+这样就可以看出，$x$与$y$是被绑定的，而$z$是自由变量。在更加复杂的表达式中，同一变量的名字，有时是被绑定的，有时又以自由变量的形式出现，例如：
+
+\[
++\ x\ ((\lambda x . +\ x\ 1) 2)
+\]
+
+写成箭头形式为：
+
+\[
+x + ((x \mapsto x + 1) 2)
+\]
+
+我们看到，第一次出现的$x$是个自由变量，而后面出现的$x$是被绑定的。在复杂的表达式中，这种同一名字代表不同的变量的情况给会表达式化简带来麻烦。为了解决名称冲突的问题，我们引入第一条$lambda$变换法则——$\alpha$-变换。其中$\alpha$是希腊字母阿尔法。这一法则说，我们可以讲$lambda$表达式中的一个变量，重新命名为另一个变量。例如：
+
+\[
+\lambda x . +\ x\ 1 \quad \overset{\alpha}{\longleftrightarrow} \quad \lambda y . +\ y\ 1
+\]
+
+%for short arrow, can be replaced with \xleftrightarrow{\alpha}
+
+写成箭头形式为：
+
+\[
+x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 1
+\]
+
+三大变换：Alpha, Beta, Eta变换，变换与归约。
 
 
 \begin{Exercise}
