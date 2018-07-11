@@ -810,6 +810,27 @@ x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 
 \end{array}
 \]
 
+最后一个我们要介绍的变换是$\eta$-变换。它的定义如下：
+
+\[
+(\lambda x . F\ x) \quad \overset{\eta}{\longleftrightarrow} \quad F
+\]
+
+写成箭头形式为：
+
+\[
+x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
+\]
+
+其中$F$是函数，且$x$不是$F$中的自由变量。我们来看一个例子：
+
+\[
+(\lambda x . +\ 1\ x) \quad \overset{\eta}{\longleftrightarrow} \quad (+\ 1)
+\]
+
+在这个例子中，$\eta$-变换两边的行为表现得完全一样。如果应用到一个参数上，效果都是把这个参数增加1。$\eta$-变换之所以要求$x$不能是$F$的自由变量是为了避免错误地将$(\lambda x. +\ x\ x)$变换为$(+\ x)$。我们可以看到，$x$是$(+\ x)$中的自由变量。同样，限定$F$必须为函数是为了避免错误地将1变换为$(\lambda x . 1\ x)$。在上面的定义中，称从左向右的变换为$\eta$-规约。
+
+
 三大变换：Alpha, Beta, Eta变换，变换与归约。
 
 
