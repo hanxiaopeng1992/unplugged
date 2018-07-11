@@ -830,9 +830,30 @@ x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
 
 在这个例子中，$\eta$-变换两边的行为表现得完全一样。如果应用到一个参数上，效果都是把这个参数增加1。$\eta$-变换之所以要求$x$不能是$F$的自由变量是为了避免错误地将$(\lambda x. +\ x\ x)$变换为$(+\ x)$。我们可以看到，$x$是$(+\ x)$中的自由变量。同样，限定$F$必须为函数是为了避免错误地将1变换为$(\lambda x . 1\ x)$。在上面的定义中，称从左向右的变换为$\eta$-规约。
 
+至此，我们介绍了$\lambda$表达式变换的三大规则，我们小结一下。
 
-三大变换：Alpha, Beta, Eta变换，变换与归约。
+\begin{enumerate}
+\item $\alpha$-变换用于改变形参的名字；
+\item $\beta$-规约用于实现函数应用；
+\item $\eta$-规约用于去除多余的$\lambda$抽象。
+\end{enumerate}
 
+此外，我们称内置函数的化简，如加减乘除四则运算、逻辑上的与或非等为$\delta$-变换。在某些文献上，还会看到另外一种$\lambda$表达式变换的简记形式，我们这里简单介绍一下。对表达式$(\lambda x. E)\ M$，进行$\beta$-规约时，我们用$M$替换$E$中的$x$，将此结果记为$E[M/x]$。为了方便记忆，可以把它想象成用表达式$E$“乘以”$M/x$，这样原表达式中的$x$就通过$x[M/x] = M$“消去”了。这样三大变换就可以简写成下面的形式：
+
+\begin{tabular}{|l|rcl|rcl|}
+\hline
+变换 & \multicolumn{3}{|c|}{$\lambda$形式} & \multicolumn{3}{|c|}{箭头形式} \\
+\hline
+$\alpha$ & $(\lambda x . E)$ & $\overset{\alpha}{\longleftrightarrow}$ & $\lambda y . E[y/x]$
+         & $x \mapsto E$ & $\overset{\alpha}{\longleftrightarrow}$ & $y \mapsto E[y/x]$ \\
+\hline
+$\beta$  & $(\lambda x . E)\ M$ & $\overset{\beta}{\longleftrightarrow}$ & $E[M/x]$
+         & $(x \mapsto E)\ M$ & $\overset{\beta}{\longleftrightarrow}$ & $E[M/x]$ \\
+\hline
+$\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
+         & $x \mapsto E\ x$ & $\overset{\eta}{\longleftrightarrow}$ & $E$ \\
+\hline
+\end{tabular}
 
 \begin{Exercise}
 \begin{enumerate}
