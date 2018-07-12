@@ -515,7 +515,7 @@ import Data.List
 import Data.Tuple (swap)
 import Data.Function (on)
 
--- 中文Extended Euclidean Algorithm
+-- Extended Euclidean Algorithm
 gcmex a 0 = (a, 1, 0)
 gcmex a b = (g, y', x' - y' * (a `div` b)) where
   (g, x', y') = gcmex b (a `mod` b)
@@ -884,13 +884,13 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 若$E_1 \leftrightarrow E_2$，则存在$E$，使得$E_1 \to E$且$E_2 \to E$。
 \end{theorem}
 
-也就是说，如果化简过程是可终止的，则化简结果是一致的。不同的化简方法会化简到同一结果，如图\ref{fig:Church-Rosser-confluence}所示。在此基础上，丘奇和罗瑟又证明了第二定理。为此我们先要给出“范式”（Normal form）的概念，所谓范式，又称$\beta$范式，是指不能再进行$\beta$-规约的形式。简单来讲，就是表达式中能够应用的函数都已经应用了。更严格的范式是$beta-eta$范式，在这样的范式中，既不能进行$\beta$-规约，也不能进行$\eta$-规约。例如$(x \mapsto x + 1) y$不是范式，因为它可以进行$\beta$-规约变成$y + 1$。下面是范式的递归定义。
+也就是说，如果化简过程是可终止的，则化简结果是一致的。不同的化简方法会化简到同一结果，如图\ref{fig:Church-Rosser-confluence}所示。在此基础上，丘奇和罗瑟又证明了第二定理。为此我们先要给出“范式”（Normal form）的概念，所谓范式，又称$\beta$范式，是指不能再进行$\beta$-规约的形式。简单来讲，就是表达式中能够应用的函数都已经应用了。更严格的范式是$\beta-\eta$范式，在这样的范式中，既不能进行$\beta$-规约，也不能进行$\eta$-规约。例如$(x \mapsto x + 1)\ y$不是范式，因为它可以进行$\beta$-规约变成$y + 1$。下面是范式的递归定义。
 
 \[
 \begin{array}{rcll}
 normal((\lambda x . y)\ z) & = & \textbf{false} & \text{可进一步$\beta$-规约} \\
 normal(\lambda x . (f\ x)) & = & \textbf{false} & \text{可进一步$\eta$-规约} \\
-normal(x\ y) & = & normal(x) \land normal(y) & \text{对于应用，要求函数和参数都是范式} \\
+normal(x\ y) & = & normal(x) \land normal(y) & \text{应用：函数和参数都是范式} \\
 normal(x) & = & \textbf{true} & \text{其他情况}
 \end{array}
 \]
