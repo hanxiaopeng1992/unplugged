@@ -855,6 +855,19 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 \hline
 \end{tabular}
 
+由于这些的转换规则都是双向的，在对一个$\lambda$表达式进行变换时，即可以从左向右进行规约，也可以反过来从右向左进行抽象。这样自然会产生两个问题。第一个问题是，化简过程最终会停止么？第二个问题是，不同的化简方式得到的结果是一致的么？对于第一个问题，答案是不确定的，化简过程不能保证一定会中止\footnote{注意答案并不是“否定”，而是不确定。这本质上和图灵停机问题是一致的。即不存在一个可判定过程，确定任意化简是否中止。我们在最后一章会详细讨论这个问题。}。下面就是一个“死循环”的例子：$(D\ D)$，其中$D$定义为$\lambda x. x\ x$，写成箭头形式为$x \mapsto x\ x$。如果我们试图化简，就会得到这样的结果：
+
+\[
+\begin{array}{rcll}
+(D\ D) & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{代入$D$的定义} \\
+       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (y \mapsto y\ y) & \text{对第二个$\lambda$抽象用$\alpha$-变换} \\
+       & \xrightarrow{\beta} & (y \mapsto y\ y)\ (y \mapsto y\ y) & \text{用第二个表达式替换$x$} \\
+       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{再用$x$替换回$y$} \\
+       & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{重复使用上述步骤} \\
+       & ... &
+\end{array}
+\]
+
 \begin{Exercise}
 \begin{enumerate}
 \item 一些lambda演算的练习
