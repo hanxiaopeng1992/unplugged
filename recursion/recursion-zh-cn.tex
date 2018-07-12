@@ -228,8 +228,8 @@ foldn(z, f, n') = f(foldn(z, f, n))
 
 \subsection{欧几里得算法}
 
-\begin{proposition}
-《几何原本》，卷十，命题三：已知两个可公度的量，求它们的最大公度量。
+\begin{proposition}[《几何原本》，卷十，命题三]
+已知两个可公度的量，求它们的最大公度量。
 \end{proposition}
 
 欧几里得给出的方法，只需要使用递归和减法。因此，本质上求最大公度可以用尺规作图的方式给出。这一算法可以形式化如下\footnote{名称gcm是最大公度greatest common measure的简称。当$a$、$b$是整数时，通常用gcd（greatest common divisor）作为名称。本书按此约定使用这两个名称。}。
@@ -602,8 +602,8 @@ jars a b c = (x, y) where
 
 这样毕达哥拉斯万物皆数的理论就发现了一个漏洞：存在线段的长度无法用整数比进行度量。据说希帕索思因为这个发现，而遭到谋杀，毕达哥拉斯学派担心这个秘密被泄露出去，而把希帕索思沉入大海。然而历史的车轮不会倒退，古希腊的哲学家和数学家们正视了这个问题，经过欧多克索斯、亚里士多德和欧几里得等人的工作，终于严格定义了不可公度和无理量，并通过几何将它们纳入了古希腊的数学体系。
 
-\begin{proposition}
-《几何原本》，卷十，命题二：如果从两个不等量的大量中连续减去小量，直到余量小于小量，再从小量中连续减去余量直到小于余量，这样一直作下去，当所余的量总不能量尽它前面的量时，则称两个量不可公度。
+\begin{proposition}[《几何原本》，卷十，命题二]
+如果从两个不等量的大量中连续减去小量，直到余量小于小量，再从小量中连续减去余量直到小于余量，这样一直作下去，当所余的量总不能量尽它前面的量时，则称两个量不可公度。
 \end{proposition}
 
 这里出现有一个有趣的现象，不可公度是用欧几里得算法能否停止来定义的。由于欧几里得算法是递归的，也就是说递归能否中止成了判断条件。这再次将我们的注意力引入到递归的本质上。递归究竟是什么？它怎样用形式化的方法表示？
@@ -638,7 +638,7 @@ jars a b c = (x, y) where
  \includegraphics[scale=0.6]{img/Church.eps}
  \captionsetup{labelformat=empty}
  \caption{阿隆佐$\cdot$丘奇（Alonzo Church, 1903 - 1995）}
- \label{fig:Turing}
+ \label{fig:Church}
 %\end{figure}
 \end{wrapfigure}
 
@@ -867,6 +867,35 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
        & ... &
 \end{array}
 \]
+
+\begin{wrapfigure}{R}{0.3\textwidth}
+%\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.3]{img/Church-Rosser.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{丘奇-罗瑟定理的示意}
+ \label{fig:Church-Rosser-confluence}
+%\end{figure}
+\end{wrapfigure}
+
+更耐人寻味的是这个例子：$(\lambda x . 1)\ (D\ D)$，如果先化简$(\lambda x . 1)$，那么化简过程会中止，答案为1。反之如果先化简$(D\ D)$，则根据上面的结论，这一过程就会陷入“死循环”而无法中止。丘奇和他的学生罗瑟\footnote{罗瑟（John Barkley Rosser Sr. 1907 - 1989）是美国数学家、逻辑学家。除了丘奇-罗瑟定理外，罗瑟还和克莱尼一起还提出了克莱尼-罗瑟悖论，在数论领域，他提出了罗瑟筛法，并证明了罗瑟定理，该定理指出，第$n$个素数$p_n > n \ln n$。罗瑟在1936年还给出了一种更强的哥德尔第一不完全定理的形式，他把不可判定命题改进为：“对本命题的任何证明，都存在一个对否命题的更短证明。”}在1936年证明了一对定理，完整地回答了第二个问题。
+
+\begin{theorem}[丘奇-罗瑟罗瑟定理一]
+若$E_1 \leftrightarrow E_2$，则存在$E$，使得$E_1 \to E$且$E_2 \to E$。
+\end{theorem}
+
+也就是说，如果化简过程是可终止的，则化简结果是一致的。不同的化简方法会化简到同一结果，如图\ref{fig:Church-Rosser-confluence}所示。在此基础上，丘奇和罗瑟又证明了第二定理。为此我们先要给出“范式”（Normal form）的概念，所谓范式，又称$\beta$范式，是指不能再进行$\beta$-规约的形式。简单来讲，就是表达式中能够应用的函数都已经应用了。更严格的范式是$beta-eta$范式，在这样的范式中，既不能进行$\beta$-规约，也不能进行$\eta$-规约。例如$(x \mapsto x + 1) y$不是范式，因为它可以进行$\beta$-规约变成$y + 1$。下面是范式的递归定义。
+
+\[
+\begin{array}{rcll}
+normal((\lambda x . y)\ z) & = & \textbf{false} & \text{可进一步$\beta$-规约} \\
+normal(\lambda x . (f\ x)) & = & \textbf{false} & \text{可进一步$\eta$-规约} \\
+normal(x\ y) & = & normal(x) \land normal(y) & \text{对于应用，要求函数和参数都是范式} \\
+normal(x) & = & \textbf{true} & \text{其他情况}
+\end{array}
+\]
+
+
 
 \begin{Exercise}
 \begin{enumerate}
