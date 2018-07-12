@@ -838,7 +838,7 @@ x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
 \item $\eta$-规约用于去除多余的$\lambda$抽象。
 \end{enumerate}
 
-此外，我们称内置函数的化简，如加减乘除四则运算、逻辑上的与或非等为$\delta$-变换。在某些文献上，还会看到另外一种$\lambda$表达式变换的简记形式，我们这里简单介绍一下。对表达式$(\lambda x. E)\ M$，进行$\beta$-规约时，我们用$M$替换$E$中的$x$，将此结果记为$E[M/x]$。为了方便记忆，可以把它想象成用表达式$E$“乘以”$M/x$，这样原表达式中的$x$就通过$x[M/x] = M$“消去”了。这样三大变换就可以简写成下面的形式：
+此外，我们称内置函数的化简，如加减乘除四则运算、逻辑上的与或非等为$\delta$-变换。在某些文献上，还会看到另外一种$\lambda$表达式变换的简记形式，我们这里简单介绍一下。对表达式$(\lambda x. E)\ M$，进行$\beta$-规约时，我们用$M$替换$E$中的$x$，将此结果记为$E[M/x]$。这样三大变换就可以简写成下面的形式：
 
 \begin{tabular}{|l|rcl|rcl|}
 \hline
@@ -908,6 +908,39 @@ normal(x) & = & \textbf{true} & \text{其他情况}
 \end{Exercise}
 
 \section{递归的定义}
+
+利用上一节中介绍的$\lambda$抽象，我们已经可以定义一些简单函数，但是如何定义递归函数呢？比如阶乘，它可以递归地定义为：
+
+\[
+fact = n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times fact (n - 1)
+\]
+
+但这并不是一个合法的$\lambda$表达式，问题是由于$\lambda$抽象只定义了匿名函数，而我们并未定义如何给函数命名。再次观察递归的阶乘定义，它形如:
+
+\[
+fact = n \mapsto (... fact ...)
+\]
+
+我们反向使用$\beta$-规约（即$\beta$-抽象），将其变换为：
+
+\[
+fact = (f \mapsto (n \mapsto (... f ...))) fact
+\]
+
+进一步可以抽象为
+
+\be
+fact = H\ fact
+\label{eq:H-fact}
+\ee
+
+其中
+
+\[
+H = f \mapsto (n \mapsto (... f ...))
+\]
+
+注意到，经过这样的变换，我们得到的$H$不再是递归的，它是一个普通的$\lambda$表达式。观察式(\ref{eq:H-fact})，它表示了递归。在形式上它是一个数学方程。让我们联想起“微分方程”的概念。例如解微分方程$y' = sin(x)$得到$y = a - cos(x)$。如果我们能将方程$F = H\ F$解出就能完整地定义阶乘了。进一步观察，我们发现这个方程的含义是，将$H$应用到$F$上，得到的结果仍然是$F$。这一概念在数学上叫做“不动点”。我们称$F$是$H$的不动点。在举一个不动点的例子。$\lambda$表达式$x \mapsto x \times x$的不动点是0和1，这是因为$(x \mapsto x \times x)\ 0 = 0$且$(x \mapsto x \times x)\ 1 = 1$。
 
 Y组合子和递归的定义
 
