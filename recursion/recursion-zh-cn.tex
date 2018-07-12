@@ -924,7 +924,7 @@ fact = n \mapsto (... fact ...)
 我们反向使用$\beta$-规约（即$\beta$-抽象），将其变换为：
 
 \[
-fact = (f \mapsto (n \mapsto (... f ...))) fact
+fact = (f \mapsto (n \mapsto (... f ...)))\ fact
 \]
 
 进一步可以抽象为
@@ -940,9 +940,68 @@ fact = H\ fact
 H = f \mapsto (n \mapsto (... f ...))
 \]
 
-注意到，经过这样的变换，我们得到的$H$不再是递归的，它是一个普通的$\lambda$表达式。观察式(\ref{eq:H-fact})，它表示了递归。在形式上它是一个数学方程。让我们联想起“微分方程”的概念。例如解微分方程$y' = sin(x)$得到$y = a - cos(x)$。如果我们能将方程$F = H\ F$解出就能完整地定义阶乘了。进一步观察，我们发现这个方程的含义是，将$H$应用到$F$上，得到的结果仍然是$F$。这一概念在数学上叫做“不动点”。我们称$F$是$H$的不动点。在举一个不动点的例子。$\lambda$表达式$x \mapsto x \times x$的不动点是0和1，这是因为$(x \mapsto x \times x)\ 0 = 0$且$(x \mapsto x \times x)\ 1 = 1$。
+注意到，经过这样的变换，我们得到的$H$不再是递归的，它是一个普通的$\lambda$表达式。观察式(\ref{eq:H-fact})，它表示了递归。在形式上它是一个数学方程。让我们联想起“微分方程”的概念。例如解微分方程$y' = sin(x)$得到$y = a - cos(x)$。如果我们能将方程$F = H\ F$解出，就能完整地定义阶乘了。进一步观察，我们发现这个方程的含义是，将$H$应用到$F$上，得到的结果仍然是$F$。这一概念在数学上叫做“不动点”。我们称$F$是$H$的不动点。再举一个不动点的例子：$\lambda$表达式$x \mapsto x \times x$的不动点是0和1，这是因为$(x \mapsto x \times x)\ 0 = 0$且$(x \mapsto x \times x)\ 1 = 1$。
 
-Y组合子和递归的定义
+\subsection{Y组合子}
+
+我们希望找到$H$的不动点，显然$H$的不动点只依赖于$H$本身。为此，我们引入一个函数$Y$，它接受一个函数，然后返回这个函数的不动点。$Y$的行为表现如下：
+
+\be
+Y\ H = H\ (Y\ H)
+\label{eq:Y-H}
+\ee
+
+为此$Y$被称为“不动点组合子”（fixpoint combinator）。使用$Y$，我们就得到了方程(\ref{eq:H-fact})的解：
+
+\be
+fact = Y\ H
+\label{eq:fact-in-Y}
+\ee
+
+这样得到的$fact$是一个无递归的定义。我们可以这样验证这个解：
+
+\[
+\begin{array}{rcll}
+fact & = & Y\ H & \text{式(\ref{eq:fact-in-Y})} \\
+     & = & H\ (Y\ H) & \text{式(\ref{eq:Y-H})} \\
+     & = & H\ fact & \text{式(\ref{eq:fact-in-Y})反向}
+\end{array}
+\]
+
+$Y$的强大之处在于它可以表达所有的递归函数。但是现在的$Y$仍然是个黑盒子，我们需要用$\lambda$抽象来真正实现它。下面就是$Y$的实现：
+
+\be
+Y = \lambda h . (\lambda x . h\ (x\ x))\ (\lambda x . h\ (x\ x))
+\ee
+
+写成箭头形式为：
+
+\[
+Y = h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x))
+\]
+
+我们打开了潘多拉的魔盒，现在来验证一下这个$Y$的$\lambda$抽象是否表现得符合我们的预期：$Y\ H = H\ (Y\ H)$。
+
+\begin{proof}
+\[
+\begin{array}{rcll}
+Y\ H & = & (h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x)))\ H & \text{$Y$的定义} \\
+     & \xleftrightarrow{\beta} & (x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x)) & \text{$\beta$-规约，用$H$代换$h$} \\
+     & \xleftrightarrow{\alpha} & (y \mapsto H\ (y\ y))\ (x \mapsto H\ (x\ x)) & \text{对前半部分用$\alpha$-变换} \\
+     & \xleftrightarrow{\beta} & H\ ((x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x))) & \text{$\beta$-规约，$y$被后半部代换} \\
+     & \xleftrightarrow{\beta} & H\ (h \mapsto (x \mapsto h\ (x\ x))\ (x \mapsto h\ (x\ x)) H) & \text{$\beta$-抽象，$H$抽出为参数} \\
+     & = & H\ (Y\ H) & \text{代入$Y$的定义}
+\end{array}
+\]
+\end{proof}
+
+最终，使用$Y$，我们可以如下实现阶乘的定义：
+
+\[
+Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times f\ (n - 1)))
+\]
+
+用$\lambda$-抽象来定义$Y$的数学意义远大于其实现的意义。在真实的环境中，通常$Y$被内置实现为函数，可以直接将$Y\ H$转化为$H\ (Y\ H)$。
 
 \section{$\lambda$的意义}
 
