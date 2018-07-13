@@ -1067,25 +1067,23 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 
 \section{更多的递归结构}
 
-至此，我们已经将递归函数和递归数据结构建立在完整的数学基础上。利用这些工具，我们可以继续定义一些较复杂的数据结构。例如下面的二叉树\footnote{在计算机程序中，通常使用空（nil）作为数据结构的递归出口。常见的二叉树的定义为：\\
-\texttt{data Tree A = nil | node (Tree A, A, Tree A)} \\
-但是从类型系统的角度考虑，如果将函数$f: A \to B$应用到这种二叉树上，需要强制$nil \in A$且$f(nil) \in B$。这本质上要求$A$和$B$必须是满足半环（semi-ring）的代数类型。为了避免过于强的类型约束，我们在这里排除了空树。}。
+至此，我们已经将递归函数和递归数据结构建立在完整的数学基础上。利用这些工具，我们可以继续定义一些较复杂的数据结构。例如下面的二叉树。
 
 \lstset{frame=none}
 \begin{lstlisting}
-data Tree A = leaf A | node (Tree A, A, Tree A)
+data Tree A = nil | node (Tree A, A, Tree A)
 \end{lstlisting}
 
-二叉树的元素类型为A。这个递归定义说，一棵元素类型为A的二叉树或者为包含一个元素的叶子，或者是一个分支节点。节点包含三部分：两棵元素类型为A的子树和一个类型为A的元素。习惯上我们称这两棵子树为左子树和右子树。类型A可以为自然数，例如$node(leaf 5, 0, node(leaf 2, 1, leaf 3))$。下面我们为二叉树定义抽象的叠加操作$foldt$。
+二叉树的元素类型为A。这个递归定义说，一棵元素类型为A的二叉树或者为空，或者是一个分支节点。节点包含三部分：两棵元素类型为A的子树和一个类型为A的元素。习惯上我们称这两棵子树为左子树和右子树。类型A可以为自然数，例如$node(nil, 0, node(nil, 1, nil))$。下面我们为二叉树定义抽象的叠加操作$foldt$。
 
 \be
 \begin{array}{l}
-foldt(f, g, leaf(x)) = f(x) \\
-foldt(f, g, node(l, x, r)) = g(foldt(f, g, l), f(x), foldt(f, g, r))
+foldt(f, g, c, nil) = c \\
+foldt(f, g, c, node(l, x, r)) = g(foldt(f, g, c, l), f(x), foldt(f, g, c, r))
 \end{array}
 \ee
 
-如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。克里化的函数$foldt(f, g)$的类型为$foldt(f, g) : Tree\ A \to B$，而函数$g$的类型为$g : (B \times B \times B) \to B$，写成克里化的形式为$g : B \to B \to B \to B$。使用抽象的叠加函数$foldt$我们可以定义针对二叉树的抽象逐一映射$map$：
+如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。克里化的函数$foldt(f, g, c)$的类型为$foldt(f, g, c) : Tree\ A \to B$，其中$c \in B$，而函数$g$的类型为$g : (B \times B \times B) \to B$，写成克里化的形式为$g : B \to B \to B \to B$。使用抽象的叠加函数$foldt$我们可以定义针对二叉树的抽象逐一映射$map$：
 
 \be
 mapt(f) = foldt(leaf \cdot f, node)
