@@ -1095,10 +1095,35 @@ mapt(f) = foldt(f, node, nil)
 sizet = foldt(one, sum, 0)
 \ee
 
-其中$one x = 1$，是一个常数函数，它对任何变量都返回1。$sum$是此前定义的累加函数。
+其中$one(x) = 1$，是一个常数函数，它对任何变量都返回1。$sum$是一个三元的累加函数：$sum(a, b, c) = a + b + c$。
+
+在此基础上，复合使用第一章定义的列表，我们还可以从二叉树扩展到多叉树，下面是一个多叉树的定义：
+
+\begin{lstlisting}
+data MTree A = nil | node (A, List (MTree A))
+\end{lstlisting}
+
+一棵元素类型为A的多叉树或者为空，或者为一个复合节点。复合节点包括一个类型为A的元素，和若干子树。所有子树用一个多叉树的列表来表示。定义多叉树的抽象叠加操作需要相互递归调用列表的叠加操作。
+
+\be
+foldm(f, g, c, nil) = c \\
+foldm(f, g, c, node(x, ts)) = foldr(g(f(x), c), h, ts) \\
+h(t, z) = foldm(f, g, z, t)
+\ee
 
 \begin{Exercise}
-\Question{不抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
+\Question{不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
+\Question{定义一个函数$depth$，计算一棵二叉树的最大深度；}
+\Question{有人认为，二叉树的抽象叠加操作$foldt$应该这样定义：
+\[
+\begin{array}{l}
+foldt(f, g, c, nil) = c \\
+foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
+\end{array}
+\]
+也就是说，$g : (B \times B) \to B$是一个类似于加法这样的二元函数。能否利用这个$foldt$定义逐一映射$mapt$？}
+\Question{排序二叉树（又称二叉搜索树）是一种特殊的二叉树，如果二叉树的元素类型A是可比较的，并且对任何非空节点$node(l, k, r)$都满足：左子树$l$中的任何元素都小于$k$，右子树$k$中的任何元素都大于$k$。定义二叉树的插入函数$insert(x, t) : (A \times Tree A) \to Tree A$}
+\Question{为多叉树定义逐一映射。能否利用多叉树的叠加操作来定义？如果不能，应当怎样修改叠加操作？}
 \end{Exercise}
 
 \section{递归的结构与形式}
