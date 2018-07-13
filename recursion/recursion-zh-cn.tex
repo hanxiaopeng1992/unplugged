@@ -1083,10 +1083,10 @@ foldt(f, g, c, node(l, x, r)) = g(foldt(f, g, c, l), f(x), foldt(f, g, c, r))
 \end{array}
 \ee
 
-如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。克里化的函数$foldt(f, g, c)$的类型为$foldt(f, g, c) : Tree\ A \to B$，其中$c \in B$，而函数$g$的类型为$g : (B \times B \times B) \to B$，写成克里化的形式为$g : B \to B \to B \to B$。使用抽象的叠加函数$foldt$我们可以定义针对二叉树的抽象逐一映射$map$：
+如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。克里化的函数$foldt(f, g, c)$的类型为$foldt(f, g, c) : Tree\ A \to B$，其中$c$的类型为$B$，而函数$g$的类型为$g : (B \times B \times B) \to B$，写成克里化的形式为$g : B \to B \to B \to B$。使用抽象的叠加函数$foldt$我们可以定义针对二叉树的抽象逐一映射$map$：
 
 \be
-mapt(f) = foldt(leaf \cdot f, node)
+mapt(f) = foldt(f, node, nil)
 \ee
 
 \section{递归的结构与形式}
