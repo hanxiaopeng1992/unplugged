@@ -1089,6 +1089,18 @@ foldt(f, g, c, node(l, x, r)) = g(foldt(f, g, c, l), f(x), foldt(f, g, c, r))
 mapt(f) = foldt(f, node, nil)
 \ee
 
+通过叠加操作，还可以定义函数来统计一棵二叉树中的元素个数：
+
+\be
+sizet = foldt(one, sum, 0)
+\ee
+
+其中$one x = 1$，是一个常数函数，它对任何变量都返回1。$sum$是此前定义的累加函数。
+
+\begin{Exercise}
+\Question{不抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
+\end{Exercise}
+
 \section{递归的结构与形式}
 
 递归的形式之美——分形与艺术
