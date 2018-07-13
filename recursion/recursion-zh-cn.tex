@@ -901,12 +901,6 @@ normal(x) & = & \textbf{true} & \text{其他情况}
 
 注意，这一定理要求化简过程也必须是可终止的。所谓正规顺序（normal order）就是从左向右，从外向内的化简顺序。
 
-\begin{Exercise}
-\begin{enumerate}
-\item 一些lambda演算的练习
-\end{enumerate}
-\end{Exercise}
-
 \section{递归的定义}
 
 利用上一节中介绍的$\lambda$抽象，我们已经可以定义一些简单函数，但是如何定义递归函数呢？比如阶乘，它可以递归地定义为：
@@ -1045,6 +1039,33 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 这说明，理论上复合数据结构不必一定要内置实现，而可以用$\lambda$定义。
 
 二叉树、多叉树的递归结构与FOLD
+
+\begin{Exercise}
+\Question{使用$\lambda$变换规则验证$tail\ (cons\ p\ q) = q$。}
+\Question{可以仅仅使用$\lambda$演算来定义自然数。下面是丘奇数的定义：
+\[
+\begin{array}{r@{\quad:\quad}l}
+0 & \lambda f . \lambda x . x \\
+1 & \lambda f . \lambda x . f\ x \\
+2 & \lambda f . \lambda x . f\ (f\ x) \\
+3 & \lambda f . \lambda x . f\ (f\ (f\ x)) \\
+\end{array}
+\]
+请利用第一章介绍的内容，定义丘奇数的加法和乘法。
+}
+\Question{一下是丘奇布尔值的定义，以及一种逻辑运算的实现：
+\[
+\begin{array}{r@{\quad:\quad}l}
+\textbf{true} & \lambda x . \lambda y . x \\
+\textbf{false} & \lambda x . \lambda y . y \\
+\textbf{and} & \lambda p . \lambda q . p\ q\ p \\
+\textbf{or} & \lambda p . \lambda q . p\ p\ q \\
+\textbf{not} & \lambda p . p\ \textbf{false}\ \textbf{true}
+\end{array}
+\]
+其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
+}
+\end{Exercise}
 
 \section{递归的结构与形式}
 
