@@ -1036,9 +1036,7 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 \end{array}
 \]
 
-这说明，理论上复合数据结构不必一定要内置实现，而可以用$\lambda$定义。
-
-二叉树、多叉树的递归结构与FOLD
+这说明，理论上复合数据结构不必一定要内置实现，而可以用$\lambda$定义。本章练习中还展示了如何用$\lambda$演算基于皮亚诺公理系统定义自然数，布尔值及逻辑运算。
 
 \begin{Exercise}
 \Question{使用$\lambda$变换规则验证$tail\ (cons\ p\ q) = q$。}
@@ -1066,6 +1064,28 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
 }
 \end{Exercise}
+
+\section{更多的递归结构}
+
+至此，我们已经将递归函数和递归数据结构建立在完整的数学基础上。利用这些工具，我们可以继续定义一些较复杂的数据结构。例如下面的二叉树。
+
+\lstset{frame=none}
+\begin{lstlisting}
+data Tree A = nil | node (Tree A, A, Tree A)
+\end{lstlisting}
+
+二叉树的元素类型为A。这个递归定义说，一棵元素类型为A的二叉树或者为空（nil），或者是一个节点（node）。节点包含三部分：两棵元素类型为A的子树和一个类型为A的元素。习惯上我们称这两棵子树为左子树和右子树。类型A可以为自然数，例如node(nil, 0, node(nil, 1, nil))。下面我们为二叉树定义抽象的叠加操作$foldt$。
+
+\be
+\begin{array}{l}
+foldt\ (f, g) nil = nil \\
+foldt\ (f, g) (node(l, x, r)) = g(foldt (f, g) l, f\ x, foldt (f, g) r)
+\end{array}
+\ee
+
+如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。
+
+二叉树、多叉树的递归结构与FOLD
 
 \section{递归的结构与形式}
 
