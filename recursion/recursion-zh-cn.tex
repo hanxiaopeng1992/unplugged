@@ -1142,7 +1142,7 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \end{figure}
 %\end{wrapfigure}
 
-例如我们可以看到瓷砖中的多边形图案中递归地含有更小的多边形嵌套。通过不同颜色的瓷砖，这种递归形式展现出几何形式的美。这些图案还在更大的范围组成条纹形式，而各个条纹内部都是不同的递归图形。图\ref{fig:flower}左边展示的是文艺复兴时期艺术大师达$\cdot$芬奇手稿中的递归图样。在圆周上使用相同的半径，依次用圆规可作出六个相互交织的圆，从而构成一个六瓣的花样图案。而在更大的范围上，又递归地构成了同样形式的图案。左侧是中国民间手工编织的蝈蝈笼子，他们展示了类似的递归图样。笼子的网眼是六边形的，而笼子的整体形状从轴向看去也是六边形的。这些都是有限递归的例子。图\ref{fig:Drawing-Hands}是荷兰艺术大师艾舍尔在1948年创作的《画手》，两只手递归地在描绘着对方。
+例如我们可以看到瓷砖中的多边形图案中递归地含有更小的多边形嵌套。通过不同颜色的瓷砖，这种递归形式展现出几何形式的美。这些图案还在更大的范围组成条纹形式，而各个条纹内部都是不同的递归图形。图\ref{fig:flower}左边展示的是文艺复兴时期艺术大师达$\cdot$芬奇手稿中的递归图样。在圆周上使用相同的半径，依次用圆规可作出六个相互交织的圆，从而构成一个六瓣的花样图案。而在更大的范围上，又递归地构成了同样形式的图案。左侧是中国民间手工编织的蝈蝈笼子，他们展示了类似的递归图样。笼子的网眼是六边形的，而笼子的整体形状从轴向看去也是六边形的。
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
@@ -1155,21 +1155,33 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \end{figure}
 %\end{wrapfigure}
 
-《画手》是无穷递归的典型例子。
+递归不仅出现在美术作品中，还出现在更加抽象的艺术形式中，例如音乐。复调音乐中的卡农（Canon）和赋格（Fugue）都是这方面的代表。卡农的所有声部虽然都模仿一个声部，但不同高度的声部依一定间隔进入，造成一种此起彼伏，连绵不断的效果。每一个声部都地归地展示主题但却含有各种变化，比如音调的升高或降低、逆行重叠、速度变快（减值）或变慢（增值）、旋律倒影等等。
+
+\begin{wrapfigure}{L}{0.45\textwidth}
+%\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.6]{img/Drawing-Hands-1948.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{艾舍尔的作品《画手》，1948年}
+ \label{fig:Drawing-Hands}
+%\end{figure}
+\end{wrapfigure}
+
+赋格通常建立在一个主题上，以不同的声部、不同的调子、偶尔也用不同的速度或上下颠倒或从后往前地进行演奏。然而，赋格的概念远不如卡农那么严格，因而允许有更多的情感或艺术的表现。赋格的识别标志的是它的开始方式：单独的一个声部唱出它的主题，唱完后，第二个声部或移高五度或降低四度进入。与此同时，第一个声部继续唱“对应主题”，也叫第二主题，用来在节奏、和声、及旋律方面与主题形成对比。每个声部依次唱出主题，常常是另一个声部伴唱对应主题，其它的声部所起的作用随作曲家的想象而定。当所有的声部都“到齐”了，就不再有什么规则了。当然，还是有一些标准的手法，但它没有严格到只能够按照某个公式去创作赋格。 《音乐的奉献》 中的两首赋格曲就是杰出例子，它们绝不可能“照公式创造出来”。这两首曲子都具有远比赋格的性质更为深刻的东西\cite{GEB}。
+
+这些都是有限递归的例子。图\ref{fig:Drawing-Hands}是荷兰艺术大师艾舍尔在1948年创作的《画手》，两只手递归地在描绘着对方。《画手》是无穷递归的典型例子。画中上方的手正在用一支笔描绘着下方的手，而下方的手也在地归地描绘着上方的手。这组相会递归的嵌套一层一层，无穷无尽。
+
+无穷递归的一个数学与艺术的完美结合的例子是“分形”（fractal）。例如著名的分形图案“科克雪花”曲线可以通过这样的无穷递归规则来产生，对图形中的每个线段，均分为三段，以第二段为底向上方作出一个等腰三角形，然后再把这个底擦掉。
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=1]{img/Drawing-Hands-1948.eps}
+ \includegraphics[scale=1]{img/Koch-snow.eps}
  %\captionsetup{labelformat=empty}
- \caption{艾舍尔的作品《画手》，1948年}
- \label{fig:Drawing-Hands}
+ \caption{科克雪花曲线的递归生成规则}
+ \label{fig:Koch-snow}
 \end{figure}
 %\end{wrapfigure}
-
-递归的形式之美——分形与艺术
-
-递归的结构之美——文艺和音乐作品
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
@@ -1200,6 +1212,9 @@ Wikipedia ``艾伦$\cdot$图灵'' \url{https://en.wikipedia.org/wiki/Alan_Turing
 
 \bibitem{SPJ1987}
 Simon L. Peyton Jones. ``The implementation of functional programming language''. Prentice Hall. 1987, ISBN: 013453333X
+
+\bibitem{GEB}
+[美]候世达 ``哥德尔、埃舍尔、巴赫——集异壁之大成''. 商务印书馆 1996. ISBN: 978-7-100-01323-9
 
 \end{thebibliography}
 
