@@ -20,7 +20,7 @@
 
 \markboth{递归}{编程的数学原理}
 
-\epigraph{\textbf{造物神}是\textbf{造}物主\textbf{物}色的\textbf{神}怪}{——[美]侯世达《哥德尔、埃舍尔、巴赫——集异壁之大成》}
+\epigraph{\textbf{造物神}是代表\textbf{造}物神-\textbf{物}色的-\textbf{神}怪}{——[美]侯世达《哥德尔、埃舍尔、巴赫——集异壁之大成》}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
 %\begin{figure}[htbp]
@@ -1106,9 +1106,11 @@ data MTree A = nil | node (A, List (MTree A))
 一棵元素类型为A的多叉树或者为空，或者为一个复合节点。复合节点包括一个类型为A的元素，和若干子树。所有子树用一个多叉树的列表来表示。定义多叉树的抽象叠加操作需要相互递归调用列表的叠加操作。
 
 \be
+\begin{array}{l}
 foldm(f, g, c, nil) = c \\
 foldm(f, g, c, node(x, ts)) = foldr(g(f(x), c), h, ts) \\
 h(t, z) = foldm(f, g, z, t)
+\end{array}
 \ee
 
 \begin{Exercise}
@@ -1126,7 +1128,20 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \Question{为多叉树定义逐一映射。能否利用多叉树的叠加操作来定义？如果不能，应当怎样修改叠加操作？}
 \end{Exercise}
 
-\section{递归的结构与形式}
+\section{递归的形式与结构}
+
+递归不仅存在古老的欧几里得算法，现代的计算机系统，它迷人的形式和结构还出现在各种人类文明的艺术中。图\ref{fig:Ceramic-Tile-Tessellations-Marrakech}中的平面镶嵌中，可以看到多重不同的递归形式。
+
+%\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=1]{img/Marrakech.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{马拉喀什（摩洛哥城市）的瓷砖方格花纹}
+ \label{fig:Ceramic-Tile-Tessellations-Marrakech}
+\end{figure}
+%\end{wrapfigure}
+
 
 递归的形式之美——分形与艺术
 
