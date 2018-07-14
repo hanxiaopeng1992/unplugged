@@ -1142,16 +1142,20 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \end{figure}
 %\end{wrapfigure}
 
+例如我们可以看到瓷砖中的多边形图案中递归地含有更小的多边形嵌套。通过不同颜色的瓷砖，这种递归形式展现出几何形式的美。这些图案还在更大的范围组成条纹形式，而各个条纹内部都是不同的递归图形。图\ref{fig:flower}左边展示的是文艺复兴时期艺术大师达$\cdot$芬奇手稿中的递归图样。在圆周上使用相同的半径，依次用圆规可作出六个相互交织的圆，从而构成一个六瓣的花样图案。而在更大的范围上，又递归地构成了同样形式的图案。左侧是中国民间手工编织的蝈蝈笼子，他们展示了类似的递归图样。笼子的网眼是六边形的，而笼子的整体形状从轴向看去也是六边形的。这些都是有限递归的例子。图\ref{fig:Drawing-Hands}是荷兰艺术大师艾舍尔在1948年创作的《画手》，两只手递归地在描绘着对方。
+
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
  \centering
  \subfloat[达芬奇绘制的递归图案手稿]{\includegraphics[scale=0.25]{img/ldv_flower.eps}} \hspace{.01\textwidth}
   \subfloat[手工编织的蝈蝈笼子]{\includegraphics[scale=0.4]{img/cage.eps}}
  %\captionsetup{labelformat=empty}
- %\caption{}
+ \caption{艺术和生活物品中的递归形式}
  \label{fig:flower}
 \end{figure}
 %\end{wrapfigure}
+
+《画手》是无穷递归的典型例子。
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
@@ -1159,7 +1163,7 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
  \includegraphics[scale=1]{img/Drawing-Hands-1948.eps}
  %\captionsetup{labelformat=empty}
  \caption{艾舍尔的作品《画手》，1948年}
- \label{fig:Ceramic-Tile-Tessellations-Marrakech}
+ \label{fig:Drawing-Hands}
 \end{figure}
 %\end{wrapfigure}
 
