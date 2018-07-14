@@ -1,8 +1,8 @@
 Algebra in Computer Programming
 
-2018/05
+2018/07
 
-This book introduces the mathematic structure behind the computer programming.
+This book introduces the mathematic behind the computer programming.
 
 The sample chapter for preview:
  * Chinese: https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf
@@ -13,7 +13,10 @@ Contents
 We just started writing this book, the following contents are planned as the outline.
 
 - Chapter 1, Natural numbers. Peano Axiom, list and folding;
-- Chapter 2, Recurrsion. Euclid GCM (Greatest Common Measurement) algorithm, Lambda calculus, Y-combinator and recursion;
+  * CN: https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf
+  * EN: https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf
+- Chapter 2, Recurrsion. Euclid GCM (Greatest Common Measurement) algorithm, Lambda calculus, Y-combinator;
+  * CN: https://github.com/liuxinyu95/unplugged/releases/download/v0.61801/recursion-zh-cn.pdf
 - Chapter 3, Group, Ring, and Field. Algebraic structure of data;
 - Chapter 4, Category theory. Category, functor, and arrows. Type system;
 - Chapter 5, Deforest. Build-folding law, optimazation, and algorithm deduction;
