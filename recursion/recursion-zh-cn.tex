@@ -1171,17 +1171,29 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 
 这些都是有限递归的例子。图\ref{fig:Drawing-Hands}是荷兰艺术大师艾舍尔在1948年创作的《画手》，两只手递归地在描绘着对方。《画手》是无穷递归的典型例子。画中上方的手正在用一支笔描绘着下方的手，而下方的手也在地归地描绘着上方的手。这组相会递归的嵌套一层一层，无穷无尽。
 
-无穷递归的一个数学与艺术的完美结合的例子是“分形”（fractal）。例如著名的分形图案“科克雪花”曲线可以通过这样的无穷递归规则来产生，对图形中的每个线段，均分为三段，以第二段为底向上方作出一个等腰三角形，然后再把这个底擦掉。
+无穷递归的一个数学与艺术的完美结合的例子是“分形”（fractal）。例如著名的分形图案“科克雪花”（Kock snowflake）曲线可以通过这样的无穷递归规则来产生，对图形中的每个线段，均分为三段，以第二段为底向上方作出一个等腰三角形，然后再把这个底擦掉。图\ref{fig:fractal}中展示了三重递归后从一个正三角形得到的科克雪花。另一个著名的递归分形图案是谢尔平斯基三角形（Sierpinski），它的生成规则是对图形中的每个三角形，分别取三边的中点，然后连成一个内部的小三角形。下图展示了递归四次后的谢尔平斯基三角形。
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=1]{img/Koch-snow.eps}
+ \subfloat[科克雪花的递归生成规则]{\includegraphics[scale=0.25]{img/KochFlake.eps}}
+ \subfloat[谢尔平斯基三角形]{\includegraphics[scale=0.1]{img/Sierpinski-triangle.eps}}
  %\captionsetup{labelformat=empty}
- \caption{科克雪花曲线的递归生成规则}
- \label{fig:Koch-snow}
+ \caption{递归产生的分形图案}
+ \label{fig:fractal}
 \end{figure}
 %\end{wrapfigure}
+
+最后让我们以两张分形图案来结束本章，其中一张是人类思维产生的分形——茱莉亚集（Julia）；另一张是自然界产生分形。
+
+\begin{figure}[htbp]
+ \centering
+ \subfloat[茱莉亚集分形]{\includegraphics[scale=0.2]{img/Julia_set.eps}}
+ \subfloat[西兰花中的分形]{\includegraphics[scale=0.2]{img/Broccoli.eps}}
+ %\captionsetup{labelformat=empty}
+ \caption{人类思维和自然界产生的分形}
+ \label{fig:more-fractal}
+\end{figure}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
