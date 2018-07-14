@@ -1,5 +1,6 @@
 IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid Bezout Meziriac \
-Hippasus pentagram irrational Turing Church Church-Rosser Marrakech
+Hippasus pentagram irrational Turing Church Church-Rosser Marrakech \
+ldv_flower cage
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
