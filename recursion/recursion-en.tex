@@ -1,38 +1,35 @@
 \ifx\wholebook\relax \else
 
-\documentclass[UTF8]{article}
+\documentclass{article}
 
-\input{../common-zh-cn.tex}
+\input{../common-en.tex}
 
 \setcounter{page}{1}
 
 \begin{document}
 
-\title{递归}
+\title{Recursion}
 
-\author{刘新宇
-\thanks{{\bfseries 刘新宇} \newline
-  Email: liuxinyu95@gmail.com \newline}
-  }
+\author{Liu Xinyu
+\thanks{{\bfseries Liu Xinyu} \\
+  Email: liuxinyu95@gmail.com}}
 
 \maketitle
 \fi
 
-\markboth{递归}{编程的数学原理}
+\markboth{Recursion}{Mathematics in Computer Programming}
 
-\epigraph{\textbf{造物神}代表\textbf{造}物神-\textbf{物}色的-\textbf{神}怪}{——[美]侯世达《哥德尔、埃舍尔、巴赫——集异壁之大成》}
+\epigraph{GNU means \textbf{G}NU is \textbf{N}ot \textbf{Unix}}{--Richard Stallman}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
-%\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/Pythagoras.eps}
  \captionsetup{labelformat=empty}
- \caption{毕达哥拉斯（约前570——前490）}
+ \caption{Pythagoras (about 570BC - 490BC)}
  \label{fig:Pythagoras}
-%\end{figure}
 \end{wrapfigure}
 
-人们通过深入了解数进而了解自然。在上一章中，我们介绍了自然数的皮亚诺公理。并且展示了一些和自然数有着相同结构的事物，例如“列表”这种基本数据结构。自然数成为了我们进一步前进的基石。但是我们的大厦还不稳固。第一章中，我们不加证明地使用了递归的概念。例如阶乘的定义：
+People learn the nature with the help of numbers. We introduced the Peano axioms and the isomorphisms of natural numbers, like the list data structure in programming in previous chapter. Although we have the natural numbers, our building still need some critical corner stones. We use recursive definition without proof of the correctness, like the fraction for example.
 
 \[
 \begin{array}{l}
@@ -41,7 +38,7 @@ fact(n + 1) = (n + 1) fact(n)
 \end{array}
 \]
 
-递归的原理是什么？为什么它是正确的？递归可以在更低的层次被表示么？这些都是我们要在这一章解决的问题。
+Why does recursion work? what's the theory of recursion? Could the recursion be expressed in some formal way? We'll explore these questions in this chapter.
 
 \section{万物皆数}
 
