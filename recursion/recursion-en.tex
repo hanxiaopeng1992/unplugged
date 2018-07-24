@@ -178,20 +178,20 @@ The Pythagoreans also observed that the odd number could be represented in gnomo
 %\end{wrapfigure}
 \end{figure}
 
-这正是第一章提出的那个习题的答案。就这样，毕达哥拉斯学派发现，很多事物和现象都可以从数的方面进行说明和解释。例如，具有同样张力的两根弦，当它们的长度为简单的整数比时，奏出的乐声就和谐悦耳。由此毕达哥拉斯发展出了最初的音乐理论。音乐与数似乎毫无关系，但它们之间的这种意外联系给毕达哥拉斯很大影响。他从中得到启发并大胆推测：所有的事物都可以用整数或整数的比来解释。毕达哥拉斯学派开始热衷与用数去解释更多的现象，他们相信宇宙的本质就在于“数的和谐”，并且提出“万物皆数”的论断。由此出发，毕达哥拉斯学派试图发展一套以数字为基础的理论，使得几何学可以建立在该理论之上。这种想法实际上就相当于要创建一套基于正整数的统一数学理论。
+This is the answer to the exercise problem in chapter 1. With these facts, the Pythagreans found there were many things can be explained with numbers. Given two strings under the same tension, it's said Pythagras found the tune is harmonic if the ratio of their lengths is integer. He developed the earlist music theory based on this. It seemed that music and mathematics are totally different things, while finally Pythagoras concluded that music was mathematics. Such unexpected relationship impacted Pythagoras greatly. He guess that all things can be explained with integers or the ratio of integers. The Pythagoreans started to finding more and more things connected to nunbers, they believed the meaning of the whole universe is the harmonic of numbers, and developed the numerology phylosophy. This led to the attempt to build the geometry also on top of the numbers, so the overall mathematics is based on integers.
 
-毕达哥拉斯学派最著名的发现当属勾股定理的证明。至今这一定理在西方仍被称为“毕达哥拉斯定理”。然而，我们将看到勾股定理是一把双刃剑，他的结果最终形成了一个递归的怪圈，使得“万物皆数”的理念出现了漏洞。为此，我们先要引出可公度概念和欧几里得算法。为了将几何纳入“万物皆数”的理论，毕达哥拉斯学派提出了一个概念来定义一条线段可以用另一条线段来度量。这个定义说，如果一条线段A可以通过有限个另一条线段V来表示时，称线段V可用作线段A的量度（measure）。这本质上是说，我们可以通过整数次拼接产生另一条线段。尽管度量两条不同的线段时，可以使用各自的量度，但是如果想用同一量度测量不同的线段，它必须是二者的公度（common measure）。即当且仅当线段V可以同时成为线段A和线段B的量度时，它才能成为二者的公度。毕达哥拉斯学派认为，任何情况下都可以找到公度，这样几何就可以建立在整数之上了。
+The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we'll see later, this theorem is a double-edged sward, it leads to a recursive circle, and reveals the loophole of the numerology. In order to understand this, we need introduce the concept of commensurable and the Euclidean algorithm. To build the geometry on top of the numbers, The Pythagorean defined how to measure a line segment with another, if line segment A can be represented by duplicating line segment V finite times, we say V can measure A. It means the length of one line segment is the integer times of the other. Altough we can use varies of measurements, when use the same line segment to measure different lines, it has to be the common measure. That is to say if and only if line segment V can measure both line segment A and B, it is the common measure of them. The Pythagoreans believed for any two line segments, there must be a common measure. If this was true, then the whole geometry can be built on integers.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/Pythagoras-proof.eps}
- \caption{勾股定理的一种几何证明，两幅图中白色面积相等（来自《周髀算经》，约公元前200年）}
+ \caption{One of the methods to prove the Pythagoras theorem. The areas in white are same.）}
  \label{fig:Pythagoras-proof}
 \end{figure}
 %\end{wrapfigure}
 
-\section{欧几里得算法}
+\section{The Euclidean algorithm}
 
 由于公度可能有多个，为此需要引入最大公度（greatest common measure）的概念。如果线段V是线段A和线段B的公度，并且比其它公度都大，则称V是A和B的最大公度。已知两条线段，怎样才能求得最大公度呢？这就引出了历史上著名的递归算法——欧几里得算法（又称辗转相除法）。它用古希腊伟大的数学家欧几里得的名字命名\footnote{印度和中国分别独立发现了欧几里得算法。五世纪末，印度数学家阿耶波多（Aryabhata）用这一算法解不定方程（丢番图方程）。在《孙子算经》中，欧几里得算法可以作为中国剩余定理的特例。在1247年，南宋数学家秦九韶在《数书九章》中详细给出了欧几里得算法。}。在欧几里得的名著《几何原本》第十卷命题三中\cite{Elements}，详细阐述了这一算法\footnote{在《几何原本》卷七的命题一中，有针对整数的欧几里得算法。但针对线段的情形实际上覆盖了整数。}。
 
