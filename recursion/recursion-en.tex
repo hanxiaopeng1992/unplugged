@@ -193,16 +193,16 @@ The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we
 
 \section{The Euclidean algorithm}
 
-由于公度可能有多个，为此需要引入最大公度（greatest common measure）的概念。如果线段V是线段A和线段B的公度，并且比其它公度都大，则称V是A和B的最大公度。已知两条线段，怎样才能求得最大公度呢？这就引出了历史上著名的递归算法——欧几里得算法（又称辗转相除法）。它用古希腊伟大的数学家欧几里得的名字命名\footnote{印度和中国分别独立发现了欧几里得算法。五世纪末，印度数学家阿耶波多（Aryabhata）用这一算法解不定方程（丢番图方程）。在《孙子算经》中，欧几里得算法可以作为中国剩余定理的特例。在1247年，南宋数学家秦九韶在《数书九章》中详细给出了欧几里得算法。}。在欧几里得的名著《几何原本》第十卷命题三中\cite{Elements}，详细阐述了这一算法\footnote{在《几何原本》卷七的命题一中，有针对整数的欧几里得算法。但针对线段的情形实际上覆盖了整数。}。
+As there can be mutliple common measures, we define the biggest one as the greatest common measure. Formally speaking, if line segment V is the common measure of A and B, and V is greater than any other common measure, we say V is the greatest common measure of A and B. Given two line segments, how to find the greatest common measure? There is a famous acient recursive method, called the Euclidean algorithm to solve this problem. It named after the great ancient Greece methematician Euclid\footnote{The Euclidean algorithm was also developed independently in ancient India and China. The Indian methematician Aryabhata used this method to solve the Diophantine equation around the end of the 5th centry. The Euclidean algorithm was treated as a special case of the Chinese remainder theorem in {\em Sunzi Suanjing}. In 1247, Qin Jiushao gave the detailed algorithm in his Mathematical Treatise in Nine Sections (Shushu Jiuzhang).}. This algorithm is defined as proposition 3, in book X\footnote{The same algorithm for integers is also defined as propostion 1, book VII. However, the algorithm for line segements covers the integer case.} of Euclid's Elements\cite{Elements}.
 
-\subsection{欧几里得和《几何原本》}
+\subsection{The Euclid's Elements}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Euclid.eps}
  \captionsetup{labelformat=empty}
- \caption{欧几里得，约公元前300年前后}
+ \caption{Euclid, About 300BC}
  \label{fig:Euclid}
 %\end{figure}
 \end{wrapfigure}
