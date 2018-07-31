@@ -211,15 +211,13 @@ Euclid of Alexandria is the most prominent ancient Greek mathematican, often ref
 
 From ancient times to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school as one of the basic way to train logic reasoning\cite{HanXueTao16}.
 
-\subsection{The Euclidean algorithm}
+\subsection{Euclidean algorithm}
 
 \begin{proposition}[Elements, Book X, Proposition 3]
 Given two commensurable quantities, find the greatest common measure.
 \end{proposition}
 
 The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term 'gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use gcd as the abbreviation for the greatest common divisor.}.
-
-欧几里得给出的方法，只需要使用递归和减法。因此本质上可以用尺规作图的方式求出最大公度。这一算法可以形式化如下\footnote{名称gcm是最大公度（greatest common measure）的简称。当$a$、$b$是整数时，通常用gcd（greatest common divisor）作为名称。本书按此约定使用这两个名称。}。
 
 \be
 gcm(a, b) = \left \{
@@ -232,6 +230,8 @@ gcm(a, b) = \left \{
 \right.
 \label{eq:gcm-minus}
 \ee
+
+Suppose line segement $a$ and $b$ are comensurable. If they are equal, then either one is the greatest common measure, we can return $a$ as the result. If $a$ is longer than $b$, we can use compass to intercept $b$ from $a$ repeatedly (through recursion), then find the greatest common measure for the intercepted line segment $a'$ and $b$; otherwise if $b$ is longer than $a$
 
 设两条线段$a$、$b$可公度，如果它们相等，则最大公度就是其中的任一条线段，此时算法返回$a$作为结果。如果线段$a$比$b$长，就用圆规不断从$a$中截去$b$（通过递归），然后求截短的线段$a'$和$b$的最大公度；否则如果线段$b$比$a$长，就反过来不断从$b$中截去$a$，然后求$a$和截短的线段$b'$的最大公度。图\ref{fig:line-seg-gcm}描述了这一算法作用于两条线段的计算步骤。我们也可将这一算法应用于整数42和30并与处理线段的过程进行对比，如下表：
 
