@@ -231,9 +231,7 @@ gcm(a, b) = \left \{
 \label{eq:gcm-minus}
 \ee
 
-Suppose line segement $a$ and $b$ are comensurable. If they are equal, then either one is the greatest common measure, we can return $a$ as the result. If $a$ is longer than $b$, we can use compass to intercept $b$ from $a$ repeatedly (through recursion), then find the greatest common measure for the intercepted line segment $a'$ and $b$; otherwise if $b$ is longer than $a$
-
-设两条线段$a$、$b$可公度，如果它们相等，则最大公度就是其中的任一条线段，此时算法返回$a$作为结果。如果线段$a$比$b$长，就用圆规不断从$a$中截去$b$（通过递归），然后求截短的线段$a'$和$b$的最大公度；否则如果线段$b$比$a$长，就反过来不断从$b$中截去$a$，然后求$a$和截短的线段$b'$的最大公度。图\ref{fig:line-seg-gcm}描述了这一算法作用于两条线段的计算步骤。我们也可将这一算法应用于整数42和30并与处理线段的过程进行对比，如下表：
+Suppose line segement $a$ and $b$ are comensurable. If they are equal, then either one is the greatest common measure, we can return $a$ as the result. If $a$ is longer than $b$, we can use compass to intercept $b$ from $a$ repeatedly (through recursion), then find the greatest common measure for the intercepted line segment $a'$ and $b$; otherwise if $b$ is longer than $a$, we intercept $a$ from $b$ repeatedly, and find the greatest common measure for the line segment $a$ and $b'$. Figure \ref{fig:line-seg-gcm} illustrated the steps when processing two line segments. We can also use this algorithm to process two integers 42 and 30. The detailed steps is as the following table.
 
 \begin{figure}[htbp]
 \centering
@@ -260,7 +258,7 @@ Suppose line segement $a$ and $b$ are comensurable. If they are equal, then eith
 \draw (-8, -50) node{$b'$} (0, -50) -- (6, -50);
 
 \end{tikzpicture}
-\caption{欧几里得算法的线段示意}
+\caption{Euclidean algorithm example steps.}
 \label{fig:line-seg-gcm}
 \end{figure}
 
