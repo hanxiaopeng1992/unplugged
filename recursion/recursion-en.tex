@@ -209,15 +209,15 @@ As there can be mutliple common measures, we define the biggest one as the great
 
 Euclid of Alexandria is the most prominent ancient Greek mathematican, often referred to as ``father of geometry''. His {\em Elements} is one of the most influential works in the history of mathematics. However, little is known of Euclid's life except that he taught at Alexandria in Egypt. The year and place of both his birth and death are unknown. Proclus, the last major Greek philosopher who lived around 450AD introduced Euclid briefly in his {\em Commentary on the Elements}. He mentioned a interesting story about Euclid. When Ptolemy I of Alexandria (ruler of Egypt 323BC - 283BC) grew frustrated at the degree of effort required to master geometry via Eculid's {\em Elements}, he asked if there was a shorter path, Euclid replied there is no royal road to geometry. This becomes the learning maxim of eternal. Another story told by Stobaeus said someone who had begun to learn geometry with Euclid, when he had learnt the first theorem, asked Euclid "What shall I get by learning these things?" Euclid said "Give him threepence since he must make gain out of what he learns". Euclid disagree with the narrow practical view of learning\cite{Elements}.
 
-欧几里得的《几何原本》是一部划时代的著作。其伟大的历史意义在于它是用公理建立起演绎体系的最早典范。过去所积累下来的数学知识是零碎的、片断的，可以比作木石砖瓦。只有借助于逻辑方法，把这些知识组织起来，加以分类比较，解释彼此间的内在联系，整理在一个严密的系统之中，才能建成巍峨的大厦。《几何原本》完成了这一艰巨的任务，它对整个数学的发展产生了深远的影响。
+From ancient times to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school as one of the basic way to train logic reasoning\cite{HanXueTao16}.
 
-两千多年来，这部著作在几何教学中一直占据统治地位，在二十世纪初依然用于数学课的基本教材。包括我国在内的许多国家仍将其作为中学的必修科目（现在中学的几何课本是按照法国数学家拉格朗日《几何原本》改写本思路编写的），并作为训练逻辑推理的最有力教育手段\cite{HanXueTao16}。
+\subsection{The Euclidean algorithm}
 
-\subsection{欧几里得算法}
-
-\begin{proposition}[《几何原本》，卷十，命题三]
-已知两个可公度的量，求它们的最大公度量。
+\begin{proposition}[Elements, Book X, Proposition 3]
+Given two commensurable quantities, find the greatest common measure.
 \end{proposition}
+
+The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term 'gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use gcd as the abbreviation for the greatest common divisor.}.
 
 欧几里得给出的方法，只需要使用递归和减法。因此本质上可以用尺规作图的方式求出最大公度。这一算法可以形式化如下\footnote{名称gcm是最大公度（greatest common measure）的简称。当$a$、$b$是整数时，通常用gcd（greatest common divisor）作为名称。本书按此约定使用这两个名称。}。
 
