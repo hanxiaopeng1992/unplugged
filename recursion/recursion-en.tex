@@ -285,13 +285,13 @@ gcm(a, b) = \left \{
   \begin{array}
   {r@{\quad:\quad}l}
   b = 0 & a\\
-  \text{否则} & gcm(b, a \bmod b) \\
+  \text{otherwise} & gcm(b, a \bmod b) \\
   \end{array}
 \right.
 \label{eq:gcm}
 \ee
 
-为什么这个算法可以求出最大公度呢？我们需要分两步来证明它的正确性。第一步我们要证明这一算法可以求出公度。设$b \leq a$，令整数$q_0$为商，$r_0$为余数，即$a = b q_0 + r_0$，如果$r_0$为零，算法就找到了公度，为此我们考虑$r_0$不为零的情况。此时可以进一步列出$b = r_0 q_1 + r_1$，类似地，只要余数不为零，我们可以一直列出这样的式子。
+Why does this algorithm give the greatest common measure? We need prove it with two steps. At step one, we prove this algorithm gives the common measure. Suppose $b \leq a$, let the integer $q_0$ be the quotient, $r_0$ be the remainder. We have $a = b q_0 + r_0$. As we get the common measure if $r_0$ is zero, let's focus on the case that $r_0$ is not zero. We can next express $b$ as $b = r_0 q_1 + r_1$, and list the similar equations unless the remainder is zero.
 
 \[
 \begin{array}{rcl}
@@ -303,9 +303,11 @@ r_1 &=& r_2 q_3 + r_3 \\
 \end{array}
 \]
 
-但只要$a$、$b$是可公度的，这些式子不会无限列下去。理由是每次都用圆规截取整数次，即商是整数。同时每次都保证余数小于除数。即$b > r_0 > r_1 > r_2 > ... > 0$，但是余数不可能小于零。由于起始值是有限的，故最终一定在有限步内得到$r_{n-2} = r_{n-1} q_n$。
+As long as $a$ and $b$ are commensurable, this list is not infinite. This is because every time, we use compass to intercept integral times, the quotients are integers. And the remainders are less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial quantity is finite, we must reach to $r_{n-2} = r_{n-1} q_n$ within finite steps.
 
-接下来我们证明最后一步得到的$r_{n-1}$可以同时度量$a$和$b$。根据度量的定义，显然$r_{n-1}$可以度量$r_{n-2}$。然后考虑倒数第二式$r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$，由于$r_{n-1}$可以度量$r_{n-2}$，所以$r_{n-1}$也可以度量$r_{n-2} q_{n-1}$，自然它也可以度量$r_{n-2} q_{n-1} + r_{n-1}$，这个量恰好等于$r_{n-3}$。用同样的方法，我们可以向上逐一证明$r_{n-1}$可以度量每个式子左边，一直到$b$、$a$。这样我们就证明了欧几里得算法得到的答案$r_{n-1}$是$a$、$b$的公度。若最大公度为$g$，一定有$r_{n-1} \leq g$。
+Next is to prove $r_{n-1}$ can measure both $a$ and $b$. Obviously $r_{n-1}$ measures $r_{n-2}$ by definition. Consider the last second equation $r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$, since $r_{n-1}$ measures $r_{n-2}$, $r_{n-1}$ also measures $r_{n-2} q_{n-1}$. So it measures $r_{n-2} q_{n-1} + r_{n-1}$, which equals to $r_{n-3}$. Similiarily, we can prove $r_{n-1}$ measures the left hand of every equations step by step up, till $b$ and $a$. This proves the answer found by Euclidean algorithm, $r_{n-1}$ is the common measure of $a$ and $b$. Suppose the greatest common measure is $g$, we have $r_{n-1} \leq g$.
+
+The next step is to prove, for any common measure $c$ for $a$ and $b$, it measures $r_{n-1}$.
 
 第二步我们要证明，任何$a$、$b$的公度$c$，一定也可以度量$r_{n-1}$。由于$c$是公度，因此$a$和$b$可以用它来表示，不妨记$a = mc$、$b = nc$，其中$m$、$n$都是整数。这样第一式$a = b q_0 + r_0$就可以写成$mc = ncq_0 + r_0$，我们得知$r_0 = (m - nq_0)c$，因此$c$也可以度量$r_0$。类似地，我们可以依次证明$c$可以度量$r_1$、$r_2$、……、$r_{n-1}$。这样我们就证明了任何公度都可以度量$r_{n-1}$，因此最大公度$g$也可以度量$r_{n-1}$，即$g \leq r_{n-1}$。
 
