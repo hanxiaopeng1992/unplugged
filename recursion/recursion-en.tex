@@ -209,7 +209,7 @@ As there can be mutliple common measures, we define the biggest one as the great
 
 Euclid of Alexandria is the most prominent ancient Greek mathematican, often referred to as ``father of geometry''. His {\em Elements} is one of the most influential works in the history of mathematics. However, little is known of Euclid's life except that he taught at Alexandria in Egypt. The year and place of both his birth and death are unknown. Proclus, the last major Greek philosopher who lived around 450AD introduced Euclid briefly in his {\em Commentary on the Elements}. He mentioned a interesting story about Euclid. When Ptolemy I of Alexandria (ruler of Egypt 323BC - 283BC) grew frustrated at the degree of effort required to master geometry via Eculid's {\em Elements}, he asked if there was a shorter path, Euclid replied there is no royal road to geometry. This becomes the learning maxim of eternal. Another story told by Stobaeus said someone who had begun to learn geometry with Euclid, when he had learnt the first theorem, asked Euclid "What shall I get by learning these things?" Euclid said "Give him threepence since he must make gain out of what he learns". Euclid disagree with the narrow practical view of learning\cite{Elements}.
 
-From ancient times to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school as one of the basic way to train logic reasoning\cite{HanXueTao16}.
+From ancient times to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school\footnote{The most popular version is edited by the French mathematician Lagrange (1736 - 1813).} as one of the basic way to train logic reasoning\cite{HanXueTao16}.
 
 \subsection{Euclidean algorithm}
 
@@ -307,25 +307,23 @@ As long as $a$ and $b$ are commensurable, this list is not infinite. This is bec
 
 Next is to prove $r_{n-1}$ can measure both $a$ and $b$. Obviously $r_{n-1}$ measures $r_{n-2}$ by definition. Consider the last second equation $r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$, since $r_{n-1}$ measures $r_{n-2}$, $r_{n-1}$ also measures $r_{n-2} q_{n-1}$. So it measures $r_{n-2} q_{n-1} + r_{n-1}$, which equals to $r_{n-3}$. Similiarily, we can prove $r_{n-1}$ measures the left hand of every equations step by step up, till $b$ and $a$. This proves the answer found by Euclidean algorithm, $r_{n-1}$ is the common measure of $a$ and $b$. Suppose the greatest common measure is $g$, we have $r_{n-1} \leq g$.
 
-The next step is to prove, for any common measure $c$ for $a$ and $b$, it measures $r_{n-1}$.
+The next step is to prove, for any common measure $c$ for $a$ and $b$, it measures $r_{n-1}$. As $c$ is the common measure, both $a$ and $b$ can be expressed with it, let $a = mc$, $b = nc$, where $m$ and $n$ are some integers. Then the first equation $a = b q_0 + r_0$ can be denoted as $mc = ncq_0 + r_0$, as we know $r_0 = (m - nq_0)c$, it means $c$ measures $r_0$. Similarily, we can prove $c$ measures $r_1$, $r_2$, ..., $r_{n-1}$ one by one. Thus we proved any common measure also measures $r_{n-1}$, so the greatest one $g$ also measures $r_{n-1}$. It means $g \leq r_{n-1}$.
 
-第二步我们要证明，任何$a$、$b$的公度$c$，一定也可以度量$r_{n-1}$。由于$c$是公度，因此$a$和$b$可以用它来表示，不妨记$a = mc$、$b = nc$，其中$m$、$n$都是整数。这样第一式$a = b q_0 + r_0$就可以写成$mc = ncq_0 + r_0$，我们得知$r_0 = (m - nq_0)c$，因此$c$也可以度量$r_0$。类似地，我们可以依次证明$c$可以度量$r_1$、$r_2$、……、$r_{n-1}$。这样我们就证明了任何公度都可以度量$r_{n-1}$，因此最大公度$g$也可以度量$r_{n-1}$，即$g \leq r_{n-1}$。
-
-综合第一、二步的结果，即$r_{n-1} \leq g$且$g \leq r_{n-1}$，我们得出最大公度$g = r_{n-1}$，也就是说欧几里得算法能够正确地给出最大公度。进一步，我们知道$g$是每一对量的最大公度，即：
+Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduced the greatest common measure $g = r_{n-1}$. It does not only proved the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of quantities:
 
 \be
 g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 \label{eq:recursive-gcm}
 \ee
 
-\subsection{扩展欧几里得算法}
+\subsection{Extended Euclidean algorithm}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.5]{img/Bezout.eps}
  \captionsetup{labelformat=empty}
- \caption{贝祖（Étienne Bézout, 1730 - 1783）}
+ \caption{Étienne Bézout, 1730 - 1783}
  \label{fig:Bezout}
 %\end{figure}
 \end{wrapfigure}
