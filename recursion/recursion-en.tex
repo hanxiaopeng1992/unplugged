@@ -328,26 +328,26 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 %\end{figure}
 \end{wrapfigure}
 
-所谓扩展欧几里得算法，就是除了求得两个量$a$、$b$的最大公度$g$外，同时找到满足贝祖等式$ax + by = g$的两个整数$x$和$y$。为什么贝祖等式（Bézout's identity）\footnote{贝祖等式，或称贝祖定理，最早是由法国数学家梅齐里亚克（Claude Gaspard Bachet de Méziriac，1581–1638）发现并证明了其对整数成立，法国数学家贝祖证明这一等式对多项式成立。贝祖等式可以推广到任意的整环和主理想环（PID，Principle Ideal Domain）上。}一定成立呢？我们下面给出贝祖等式的一种证明。由$a$、$b$可以构造一个集合，包含它们所有正的线性组合：
+The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given quantity $a$ and $b$, in addition to compute the greatest common measure $g$, it also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
 
 \[
-S = \{ ax + by | x, y \in \mathbb{Z} \text{且} ax + by > 0\}
+S = \{ ax + by | x, y \in \mathbb{Z}\ \text{and} \ ax + by > 0\}
 \]
 
-对于线段来说，$S$一定不为空，因为它至少包含$a$（此时$x = 1, y = 0$）和$b$（此时$x = 0, y = 1$）。因为$S$的所有元素都为正，所以它一定存在一个最小的元素，我们将其记为$g = as + bt$。我们接下来要证明$g$就是$a$和$b$的最大公度。为此我们将$a$表示成$g$的商与余数的形式。
+For line segments, $S$ must not be empty, as it at least contains $a$ (where $x = 1, y = 0$) and $b$ (where $x = 0, y = 1$). Since all the elements in $S$ are positive, there must exist the smallest one. We denote the smallest element as $g = as + bt$. We'll next show that $g$ is the greatest common measure of $a$ and $b$. Let's express $a$ as the quotient and remainder of $g$.
 
 \be
 a = qg + r
 \label{eq:Euclidean-division}
 \ee
 
-其中余数$0 \leq r < g$。余数要么为0，要么在集合$S$中。这是因为
+Where the remainder $0 \leq r < g$. It is either zero or belongs to set $S$, this is because the following.
 
 \[
 \begin{array}{rll}
-r & = a - qg & \text{由式(\ref{eq:Euclidean-division})} \\
-  & = a - q(as + bt) & g\text{的定义} \\
-  & = a(1 - qs) - bqt & \text{合并整理}
+r & = a - qg & \text{From (\ref{eq:Euclidean-division})} \\
+  & = a - q(as + bt) & \text{Definition of}\ g \\
+  & = a(1 - qs) - bqt & \text{Change to combination of}\ a\ \text{and}\ b
 \end{array}
 \]
 
