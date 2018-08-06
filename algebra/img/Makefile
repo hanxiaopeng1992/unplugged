@@ -1,5 +1,5 @@
 IMG_OBJECTS = Escher-Liberation-1955 galois
-DOT_OBJECTS =
+DOT_OBJECTS = bst-example
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
 #suffix replacement, replace .dot with .png

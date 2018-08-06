@@ -25,11 +25,12 @@
 \numberwithin{Exercise}{chapter}
 \fi
 
-\epigraph{你只要能把自己提出的那些“点、线、面”，都说的跟“桌子、椅子、啤酒杯子”一样自然而连贯就行}{——大卫$\cdot$希尔伯特}
+\epigraph{你只要能把自己提出的那些“点、线、面”都说的跟“桌子、椅子、啤酒杯子”一样自然连贯就行。}{——大卫$\cdot$希尔伯特}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
- \includegraphics[scale=0.4]{img/Escher-Liberation-1955.eps}
+ \includegraphics[scale=0.35]{img/Escher-Liberation-1955.eps}
+ \captionsetup{labelformat=empty}
  \caption{艾舍尔《解放》}
  \label{fig:clay-token}
 \end{wrapfigure}
@@ -40,23 +41,51 @@
 
 累加$0 + 1 + 2 + ... $的定义：
 
-\be
+\[
 \begin{array}{l}
 sum(0) = 0 \\
 sum(n + 1) = (n + 1) + sum(n)
 \end{array}
-\ee
+\]
 
 阶乘$n!$的定义：
 
-\be
+\[
 \begin{array}{l}
 fact(0) = 1 \\
 fact(n + 1) = (n + 1) \cdot fact(n)
 \end{array}
-\ee
+\]
 
-在计算机程序中，人们可以定义一种叫做“二叉搜索树”的数据结构。在第二章中，我们曾经介绍过二叉树的定义。二叉搜索树是一种特殊的二叉树，它要求树中元素的类型A是可以比较的\footnote{这里比较的含义是抽象的，例如可以比大小，也可以是比较单词在字典中的先后顺序}，并且对于任意分支节点，节点左侧子树中的所有元素都在此节点中元素之前；而右子树中的所有元素都在此元素之后。对这样
+我们观察它们相似的结构，将累加中的零和阶乘中的一抽象成单位元，将累加中的加法和阶乘中的乘法抽象成某种二元运算，这样就在更高的层次抽象出了自然数的叠加$foldn$。进而可以用这一抽象的叠加操作解决诸如斐波那契数列这样的一大类和自然数同构的问题。
+
+再举一个例子。我们在第一章中，还定义了列表上的抽象叠加操作$foldr$。可以利用这个抽象工具把一列数累加起来：$sum = foldr(0, +)$，也可以把一列数乘到一起：$product = foldr(1, \times)$。在计算机程序中，人们可以定义一种叫做“二叉搜索树”的数据结构。第二章中，我们曾经介绍过二叉树的定义。二叉搜索树是一种特殊的二叉树，它要求树中元素的类型A是可以比较的\footnote{这里比较的含义是抽象的，例如可以比大小，也可以是比较单词在字典中的先后顺序}，并且对于任意分支节点，节点左侧子树中的所有元素都在此节点的元素之前，而右子树中的所有元素都在此元素之后。对排序二叉树，我们可以定义一个插入操作：
+
+\[
+\begin{array}{rcl}
+  insert(nil, x) & = & node(nil, x, nil) \\
+  insert(node(l, y, r), x) & = & \left.
+  \begin{cases}
+  x < y\ : & node(insert(l, x), y, r) \\
+  x > y\ : & node(l, y, insert(r, x))
+  \end{cases} \right.
+\end{array}
+\label{eq:BST-insert}
+\]
+
+根据这一定义，将一个元素$x$插入到二叉搜索树时，如果树为空，则结果为一个$node(nil, x, nil)$；否则，需要进一步比较$x$和分支节点中的元素$y$，如果$x$在前（用小于号代表），则递归地插入到左子树，否则地归地插入到右子树。联想累加、阶乘，插入操作和它们有什么相似之处呢？插入也是一个二元操作，而nil相当于单位元。这样我们就可以用抽象的叠加操作，将一列数字变成一棵搜索树：
+
+\[
+build = foldr(nil, insert)
+\]
+
+图\ref{fig:bst-example}展示了计算$build [4, 3, 1, 8, 2, 16, 10, 7, 14, 9]$产生的一棵二叉搜索树。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.5]{img/bst-example.ps}
+  \caption{通过叠加产生的二叉搜索树} \label{fig:bst-example}
+\end{figure}
 
 \section{群}
 
