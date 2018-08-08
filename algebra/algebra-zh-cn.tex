@@ -90,13 +90,13 @@ groupBy _  []      = []
 groupBy eq (x:xs)  = (x:ys) : groupBy eq zs
     where (ys, zs) = span (eq x) xs
 
-span _ []            =  ([], [])
+span _ []        = ([], [])
 span p xs@(x:xs')
-         | p x          =  let (ys, zs) = span p xs' in (x:ys, zs)
-         | otherwise    =  ([],xs)
+     | p x       = let (ys, zs) = span p xs' in (x:ys, zs)
+     | otherwise = ([], xs)
 \end{lstlisting}
 
-这样\texttt{span}就会判断从第二个开始的每个元素是否大于15，由于15恰好是整个列表中最大的，所以全部被归为了一组。实际上\texttt{groupBy}接受的分组条件是一个“抽象的相等”，它必须满足三个性质：自反性、对称性、和传递性：
+这样\texttt{span}就会连续判断15是否大于等于下一个元素，由于15恰好是整个列表中最大的，所以全部被归为了一组。实际上\texttt{groupBy}接受的分组条件是一个“抽象的相等”，它必须满足三个性质：自反性、对称性、和传递性：
 
 \begin{itemize}
 \item 自反性。$x = x$，即任何元素和它自己相等；
@@ -105,6 +105,8 @@ span p xs@(x:xs')
 \end{itemize}
 
 当对列表“Mississippi”使用等号作为条件分组时，三个条件都被满足，产生了正确的结果。但当将大于等于号（$\geq$）作为“相等”条件传入时，就违反了自反性和对称性。这就是得到错误结果的原因。
+
+本章我们介绍一些抽象的代数结构，他们不仅仅是对数的抽象，而且是对抽象事物本身实体和关系的抽象。是很多伟大的思想和心智的结晶。
 
 \section{群}
 
