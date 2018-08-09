@@ -1,4 +1,4 @@
-IMG_OBJECTS = Escher-Liberation-1955 galois
+IMG_OBJECTS = Escher-Liberation-1955 Gaus Cardano galois
 DOT_OBJECTS = bst-example
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
