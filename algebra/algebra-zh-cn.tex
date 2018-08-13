@@ -179,6 +179,17 @@ span p xs@(x:xs')
 \item 整数加法群：群元素是全体整数，二元运算是加法。简称为整数加群;
 \item 所有整数除以5的余数构成的集合，也就是$\{0, 1, 2, 3, 4\}$。二元运算是相加后再除以5取余数。例如$3 + 4 = 7 \bmod 5 = 2$。这样构成的群称为整数模5加法群，记为$Z_5$。通过取余数对整数进行分类叫做模$n$剩余类；
 \item 转动魔方所形成的群：群元素是各种魔方转动的方式\footnote{魔方的旋转方式共有18种。可以沿着正面、反面、顶面、底面、左面、右面旋转，分别用字母$F$、$B$、$T$、$D$、$L$、$R$代表，每面可以旋转90度、180度、-90度。例如左面旋转90度、180度、-90度分别可以记为：$L$、$L^2$、$L'$\cite{Wiki-Rubik-Cube-group}}，二元运算是先进行某种转动后再进行另一种转动。这种运算常被称作转动的合成；
+
+\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.4\textwidth}
+ \centering
+ \includegraphics[scale=0.8]{img/Rubik_cube_notation.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{魔方六个面共有18种转动方式，转动方式在合成下构成一个群。}
+ \label{fig:Rubik-cube-notation}
+%\end{wrapfigure}
+\end{figure}
+
 \item 平面绕某点的所有旋转构成一个群。群元素是所有的旋转角度，二元运算是先旋转某一角度，然后再旋转另一角度。
 \end{enumerate}
 
