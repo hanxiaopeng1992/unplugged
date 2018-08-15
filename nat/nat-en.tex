@@ -649,6 +649,20 @@ We call the operation that applies a function to the first value in a pair as `$
 We illustrated several conclusions with geometry figures in this chapter, like the associative law, the commutative law, and the Fibonacci spiral. We want to express the beauty of isomorphism. Aristotle said
 ``The chief forms of beauty are order and symmetry and definiteness, which the mathematical sciences demonstrate in a special degree.'' ({\em Metaphysic}) Like geometry, with Peano's work, natural numbers can also be built on top of the axioms. We use the similarity of natural numbers and lists to demonstrate the beauty of symmetry. When the Italian Renaissance artist Raphael created the world famous fresco {\em School of Athens}, he used the same approach of isomorphism by inventing a system of iconography. Many ancient Greece philosophers were illustrated with the figures in Raphael's time of Renaissance. The center figures are Plato and his student Aristotle. Of which Plato is depicted in the image of Leonardo da Vinci; Aristotle is in the image of Giuliano da Sangallo. They were all great artists in Renaissance. The elder Plato is walking alongside Aristotle with his right hand figure point up, while Aristotle is stretching his hand forward. It is popularly thought that their gestures indicate central aspects of their philosophies, for Plato, his Theory of Forms, and for Aristotle, his empiricist views, with an emphasis on concrete particulars. Plato argues a sense of timelessness while Aristotle looks into the physicality of life and the present realm. Below the steps in the middle, the great philosopher Heraclitus leans the box and meditates. He is famous for the thoughts about simple dialectics and materialism. The image of Heraclitus is another great artist Michelangelo in Renaissance. The front left is centered on the great mathematician Pythagoras. He is writing something. On the right side of Pythagoras is a blond young man in a white cloak, considered to be Francisco Maria della Rovere. He was Ulbino's future Grand Duke. The center of the bottom right is the great mathematician Euclid with a compass in hand (or Archimedes in other opinion), he is surrounded by Ptolemy, the great astronomer with the celestial sphere in hand. The opposite is the painter Raphael's fellow villager, the architect Bramante. The one who wore a white hat on the right is the painter Sodom, the young man next to him with half head and a hat on his head, is the painter, Raphael himself. This reminds us the great musician Bach, who wrote his name B-A-C-H in his work `The Art of Fugue' (Die Kunst der Fuge in German). School of Athens reflects the ancient Greece art and philosophy with the figures in the time of Renaissance. It is the multiple levels of isomorphism of form and content, structure and thoughts. It is seen as ``Raphael's masterpiece and the perfect embodiment of the classical spirit of the Renaissance''.
 
+\begin{Exercise}
+\Question{观察斐波那契的叠加定义，它的后继计算$(m', n') = (n, m + n)$相当于一个矩阵乘法：
+\[
+\begin{pmatrix} m' \\ n' \end{pmatrix} =
+\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}
+\begin{pmatrix} m \\ n \end{pmatrix}
+\]
+起始值是$(0, 1)^T$。这样斐波那契数列就在矩阵乘方下和自然数同构：
+\[
+\begin{pmatrix}F_n \\ F_{n+1} \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^n\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\]
+设计一个程序，快速计算2阶方阵的幂。求得斐波那契数列的第$n$个元素。}
+\end{Exercise}
+
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
 
