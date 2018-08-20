@@ -414,7 +414,7 @@ a^{j-i} & = & e & a\text{的阶为} j - i
 所以$a$的阶为$j-i$是有限的。
 \end{proof}
 
-在第一章，我们比价随意地适用了“同构”一词来形容具有相同内在结构的事物。现在我们可以给出同态和同构的概念了。假设存在从某个集合$A$到另一个集合$B$的映射$f$。$a$和$b$是$A$中的两个元，$f(a)$和$f(b)$是它们在$B$中的像。我们考虑$A$上的二元封闭运算产生的元$a \cdot b$，在映射下在$B$中的像$f(a \cdot b)$。如果对$B$上的二元封闭运算总有
+在第一章，我们比较随意地使用了“同构”一词来形容具有相同内在结构的事物。现在我们可以给出同态和同构的概念了。假设存在从某个集合$A$到另一个集合$B$的映射$f$。$a$和$b$是$A$中的两个元，$f(a)$和$f(b)$是它们在$B$中的像。我们考虑$A$上的二元封闭运算产生的元$a \cdot b$，在映射下在$B$中的像$f(a \cdot b)$。如果对$B$上的二元封闭运算总有
 
 \[
 f(a) \cdot f(b) = f(a \cdot b)
@@ -429,6 +429,35 @@ f(a) \cdot f(b) = f(a \cdot b)
 \end{enumerate}
 
 如果$f$不仅是满射，还是单射（injection）。那么它就是一一映射。这种情况下，我们称$f$是从$A$到$B$的同构映射，简称{\em 同构}（isomorphism）。记为$A \cong B$。同构是一种非常强大的关系，不仅两个群可以同构，半群、幺半群以及其他代数结构也可以同构。如果$A$和$B$同构，那么抽象地来看，它们没有什么区别，只有命名上的不同。如果$A$上有一个代数性质，那么在$B$上也有一个完全类似的性质\cite{ZhangHeRui1978}。另外，$A$与$A$之间的同构映射称为$A$的{\em 自同构}（automorphism）。例如整数加群在取相反数下成为自同构。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\path (0, 0) node[below] {猫}
+      (0, 2) node[above] {羊}
+      (-2, 2) node[above] {狗}
+      (-2, 0) node[below] {牛};
+\filldraw (0, 0) circle (4pt) node (cat) {} --
+   (0, 2) circle (4pt) node (sheep) {} --
+   (-2, 2) circle (4pt) node (dog) {} --
+   (-2, 0) circle (4pt) node (cow) {};
+\draw (dog) -- (cat) -- (cow);
+
+\filldraw[fill=gray, draw=black, pattern=north west lines]
+    (3, 0) circle (4pt) node (collar) {} --
+    (5.6, 0) circle (4pt) node (bell) {} --
+    (4.3, 2.3) circle (4pt) node (milk) {} -- (collar) --
+    (4.3, 1) circle (4pt) node (wool) {} -- (bell);
+\path (3, 0) node[below] {项圈}
+      (5.6, 0) node[below] {铃铛}
+      (4.3, 2.3) node[above] {奶}
+      (4.3, 1) node[below] {毛};
+
+\draw[->] (dog) -- (collar);
+\end{tikzpicture}
+\caption{同构}
+\label{fig:isomorphism}
+\end{figure}
 
 面对群这种抽象的代数结构时，具体的例子可以帮助我们理解。我们会不自觉地选出一个自己熟悉的代表，例如整数加群，然后看看各种概念，性质在其上是怎样的。但有时这容易形成一种错觉。感觉群的元素大多是一些实体，例如各种数；并且二元运算大多像普通加法、乘法那样可以交换。我们接下来介绍的“变换群”是一个例外，一方面，它不是阿贝尔群，运算不可交换；另一方面群元素不是数，而是变换。
 
