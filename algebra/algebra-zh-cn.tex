@@ -462,7 +462,7 @@ ab = 6 & f(ab) = f(a)f(b) = 36
 \item $a$和$b$一奇一偶，$odd(a)$和$odd(b)$一真一假。它们的和为奇数，$odd(a+b)$为真。满足$odd(a) \lor odd(b) = odd(a+b)$；
 \end{enumerate}
 
-如果$f$不仅是满射，还是单射（injection）。那么它就是一一映射。这种情况下，我们称$f$是从$A$到$B$的同构映射，简称{\em 同构}（isomorphism）。记为$A \cong B$。同构是一种非常强大的关系，不仅两个群可以同构，半群、幺半群以及其他代数结构也可以同构。如果$A$和$B$同构，那么抽象地来看，它们没有什么区别，只有命名上的不同。如果$A$上有一个代数性质，那么在$B$上也有一个完全类似的性质\cite{ZhangHeRui1978}。另外，$A$与$A$之间的同构映射称为$A$的{\em 自同构}（automorphism）。例如整数加群在取相反数下成为自同构。
+如果$f$不仅是满射，还是单射（injection）。那么它就是一一映射。这种情况下，我们称$f$是从$A$到$B$的同构映射，简称{\em 同构}（isomorphism）。记为$A \cong B$。同构是一种非常强大的关系，不仅两个群可以同构，半群、幺半群以及其他代数结构也可以同构，如图\ref{fig:isomorphism}所示。如果$A$和$B$同构，那么抽象地来看，它们没有什么区别，只有命名上的不同。如果$A$上有一个代数性质，那么在$B$上也有一个完全类似的性质\cite{ZhangHeRui1978}。另外，$A$与$A$之间的同构映射称为$A$的{\em 自同构}（automorphism）。例如整数加群在取相反数下成为自同构。
 
 \begin{figure}[htbp]
 \centering
@@ -498,7 +498,7 @@ f(狗) = 项圈 & f(猫) = 铃铛 \\
 f(羊) = 毛 & f(牛) = 奶
 \end{array}
 \]
-\caption{图的同构}
+\caption{图的同构（graph isomorphsim）具有不同的定义。它反映了看似不同的两个图，具有相同的结构。}
 \label{fig:graph-isomorphism}
 \end{figure}
 
@@ -575,6 +575,35 @@ S = \{\tau, \lambda, \mu, ...\}
 \tau_2\tau_1: & (0, 0) \to (1, 0)
 \end{array}
 \]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1]
+\draw[->] (-0.5, 0) -- (2, 0) node[right] (x axis) {$x$}
+          (0, -1.5) -- (0, 1.5) node[above] (y axis) {$y$};
+\path (0, -1) node[left] {$a$}
+      (1, -1) node[right] {$b$}
+      (1, 1) node[above] {$c$};
+\filldraw (0, -1) circle(1pt) node (a) {}
+          (1, -1) circle(1pt) node (b) {}
+          (1, 1) circle(1pt) node (c) {};
+\draw[dashed, ->] (a) -- (b) .. controls (1.4, 0) .. (c);
+\draw (0, 0) -- (1.2, -1.2)
+      (0, 0) -- (1.2, 1.2)
+      (1, 0) arc (0:45:1)
+      (1, 0) arc (0:-45:1);
+
+\draw[->] (3.5, 0) -- (6.5, 0) node[right] (x axisr) {$x$}
+          (4, -1.5) -- (4, 1.5) node[above] (y axisr) {$y$};
+\filldraw (4, -1) circle (1pt) node[left] (a1) {$a$}
+      (5, 0) circle (1pt) node[above] (b1) {$b'$}
+      (6, 0) circle (1pt) node[above] (c1) {$c'$};
+\draw[dashed, ->] (a1) .. controls (4.7, -0.7) .. (b1) -- (c1);
+\draw (5, 0) arc (0:-90:0.8);
+\end{tikzpicture}
+\caption{变换顺序不同，结果也不同的例子}
+\label{fig:transform-not-abelian}
+\end{figure}
 
 因此这一变换群不是阿贝尔群。变换群应用极广，十分重要，我们有一个很强的结论：
 
