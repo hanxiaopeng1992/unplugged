@@ -453,9 +453,18 @@ f(a) \cdot f(b) = f(a \cdot b)
       (4.3, 2.3) node[above] {奶}
       (4.3, 1) node[below] {毛};
 
-\draw[->] (dog) -- (collar);
+\draw[dashed, ->] (dog) .. controls (-2.5, 1.5) .. (collar)
+    (sheep) to[bend left] (wool)
+    (cat) to[bend right] (bell)
+    (cow) .. controls (-3, 3) ..(milk);
 \end{tikzpicture}
-\caption{同构}
+\[
+\begin{array}{rl}
+f(狗) = 项圈 & f(猫) = 铃铛 \\
+f(羊) = 毛 & f(牛) = 奶
+\end{array}
+\]
+\caption{图的同构}
 \label{fig:isomorphism}
 \end{figure}
 
