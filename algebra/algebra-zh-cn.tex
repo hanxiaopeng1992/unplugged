@@ -420,6 +420,40 @@ a^{j-i} & = & e & a\text{的阶为} j - i
 f(a) \cdot f(b) = f(a \cdot b)
 \]
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 0) circle[x radius=1cm, y radius=3cm]
+      (5, 0) circle[x radius=1cm, y radius=3cm];
+\path (0, 3) node[above] {$A$：自然数乘法半群}
+      (5, 3) node[above] {$B$：平方数乘法半群};
+\path (0, 0) node (b) {}
+      (5, 0) node (fb) {}
+      (0, 1.5) node (a) {}
+      (5, 1.5) node (fa) {}
+      (0, -1.5) node (c) {}
+      (5, -1.5) node (fc) {};
+\filldraw (0, 0) circle (1pt) node[above] {$b$}
+      (5, 0) circle (1pt) node[above] {$f(b)$}
+      (0, 1.5) circle (1pt) node[above] {$a$}
+      (5, 1.5) circle (1pt) node[above] {$f(a)$}
+      (0, -1.5) circle (1pt) node[above] {$ab$}
+      (5, -1.5) circle (1pt) node[above] {$f(ab)$};
+\draw[dashed, ->] (b) to node [above] {$f: x \to x^2$} (fb)
+      (a) to [bend left] (fa)
+      (c) to [bend right] (fc);
+\end{tikzpicture}
+\[
+\begin{array}{rl}
+a = 2 & f(a) = 4 \\
+b = 3 & f(b) = 9 \\
+ab = 6 & f(ab) = f(a)f(b) = 36
+\end{array}
+\]
+\caption{同构}
+\label{fig:isomorphism}
+\end{figure}
+
 我们就说$f$是从$A$到$B$的{\em 同态映射}（homomorphism）。如果$f$是满射（surjection，即$B$中所有元素都在$A$中有原像），则称为同态满射。举一个例子，考虑一个奇偶判定函数$odd: Z \to Bool$，它接受一个整数，如果是奇数就返回真值True，否额返回假False。整数在加法下构成一个群。而布尔集合$\{True, False\}$在逻辑或运算下也构成一个群。我们可以很容易验证：
 
 \begin{enumerate}
@@ -465,7 +499,7 @@ f(羊) = 毛 & f(牛) = 奶
 \end{array}
 \]
 \caption{图的同构}
-\label{fig:isomorphism}
+\label{fig:graph-isomorphism}
 \end{figure}
 
 面对群这种抽象的代数结构时，具体的例子可以帮助我们理解。我们会不自觉地选出一个自己熟悉的代表，例如整数加群，然后看看各种概念，性质在其上是怎样的。但有时这容易形成一种错觉。感觉群的元素大多是一些实体，例如各种数；并且二元运算大多像普通加法、乘法那样可以交换。我们接下来介绍的“变换群”是一个例外，一方面，它不是阿贝尔群，运算不可交换；另一方面群元素不是数，而是变换。
