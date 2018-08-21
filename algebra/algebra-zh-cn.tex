@@ -579,26 +579,28 @@ S = \{\tau, \lambda, \mu, ...\}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1]
-\draw[->] (-0.5, 0) -- (2, 0) node[right] (x axis) {$x$}
-          (0, -1.5) -- (0, 1.5) node[above] (y axis) {$y$};
+\draw[->] (-0.5, 0) -- (2, 0) node[right] (x axis) {$x$};
+\draw[->] (0, -1.5) -- (0, 1.5) node[above] (y axis) {$y$};
 \path (0, -1) node[left] {$a$}
       (1, -1) node[right] {$b$}
       (1, 1) node[above] {$c$};
 \filldraw (0, -1) circle(1pt) node (a) {}
           (1, -1) circle(1pt) node (b) {}
           (1, 1) circle(1pt) node (c) {};
-\draw[dashed, ->] (a) -- (b) .. controls (1.4, 0) .. (c);
+\draw[dashed, ->] (a) -- (b);
+\draw[dashed, ->] (b) .. controls (1.4, 0) .. (c);
 \draw (0, 0) -- (1.2, -1.2)
       (0, 0) -- (1.2, 1.2)
       (1, 0) arc (0:45:1)
       (1, 0) arc (0:-45:1);
 
-\draw[->] (3.5, 0) -- (6.5, 0) node[right] (x axisr) {$x$}
-          (4, -1.5) -- (4, 1.5) node[above] (y axisr) {$y$};
+\draw[->] (3.5, 0) -- (6.5, 0) node[right] (x axisr) {$x$};
+\draw[->] (4, -1.5) -- (4, 1.5) node[above] (y axisr) {$y$};
 \filldraw (4, -1) circle (1pt) node[left] (a1) {$a$}
       (5, 0) circle (1pt) node[above] (b1) {$b'$}
       (6, 0) circle (1pt) node[above] (c1) {$c'$};
-\draw[dashed, ->] (a1) .. controls (4.7, -0.7) .. (b1) -- (c1);
+\draw[dashed, ->] (a1) .. controls (4.7, -0.7) .. (b1);
+\draw[dashed, ->] (b1) -- (c1);
 \draw (5, 0) arc (0:-90:0.8);
 \end{tikzpicture}
 \caption{变换顺序不同，结果也不同的例子}
