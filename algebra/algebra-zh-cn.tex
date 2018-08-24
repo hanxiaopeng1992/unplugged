@@ -740,10 +740,41 @@ i_{j_2} \to i_{j_1}, i_{j_3} \to i_{j_2}, ..., i_{j_1} \to i_{j_k}
 \begin{Exercise}
 \Question{列出$S_4$的全体元素。}
 \Question{将$S_3$的所有元写成不相连的循环置换的乘积。}
-\Question{编程实现将$k$-循环的乘积转换回置换。}
+\Question{编程将$k$-循环的乘积转换回置换。}
 \end{Exercise}
 
 \subsection{子群}
+我们接下来介绍子群的概念。它可以帮助我们通过一个群的子集来推测整个群的性质。
+
+\begin{definition}
+一个群$G$的一个子集$H$叫做$G$的一个子群，如果$H$对于$G$的乘法也构成一个群。
+\end{definition}
+
+对于任何群$G$，至少有两个子群，一个是$G$本身，另外是只包含一个单位元的集合$\{e\}$。这两个子群称为平凡子群。对于整数加群来说，偶数加群构成一个子群，而奇数和加法不构成子群（为什么？）。我们再举一个例子，考虑上一节介绍的置换群$S_3$的子集$H = \{(1), (1 2)\}$，$H$在置换复合乘法下构成一个子群。我们下面来验证一下：
+
+\begin{enumerate}
+\item 乘法的封闭性。$(1)(1) = (1)$、$(1)(1 2) = (1 2)$、$(1 2)(1) = (1 2)$、$(1 2) (1 2) = (1)$；其中最后一个乘法表示头两个元素对调后再对调会相当于恒等置换。
+\item 结合律对$S_3$的所有元素都成立，故对$H$的元素也成立；
+\item 单位元$(1) \in H$；
+\item 每个元素的逆元都存在：$(1)(1) = (1)$、$(1 2) (1 2) = (1)$。
+\end{enumerate}
+
+这样依次验证群的所有性质比较麻烦，我们有一个方便的工具：
+
+\begin{theorem}
+一个群$G$的非空子集$H$构成子群的充分必要条件是：
+\begin{enumerate}
+\item 若任意$a, b \in H$，则$ab \in H$；
+\item 任意元素$a \in H$，有$a^{-1} \in H$；
+\end{enumerate}
+\label{theorem:subgroup}
+\end{theorem}
+
+我们把这一定理的证明留作练习。
+
+\begin{Exercise}
+\Question{证明子群的判定定理\ref{theorem:subgroup}。}
+\end{Exercise}
 
 \subsection{拉格朗日定理}
 
