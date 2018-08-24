@@ -770,7 +770,25 @@ i_{j_2} \to i_{j_1}, i_{j_3} \to i_{j_2}, ..., i_{j_1} \to i_{j_k}
 \label{theorem:subgroup}
 \end{theorem}
 
-我们把这一定理的证明留作练习。
+我们把这一定理的证明留作练习。这个定理可以直接得到一个推论，如果$H$是$G$的子群，那么$H$的单位元就是$G$的单位元，$H$中任意元素$a$的逆元就是它在$G$中的逆元。上述定理中的两个条件也可以用一个合并的条件来代替：
+
+\begin{theorem}
+一个群$G$的非空子集$H$构成子群的充分必要条件是。若任意$a, b \in H$，则$ab^{-1} \in H$。
+\end{theorem}
+
+\begin{proof}
+首先证明充分性，设$a, b \in H$，由上一定理的条件2，有$b^{-1} \in H$。再由条件1，有$ab^{-1} \in H$；
+
+现在反过来证明必要性。设$a \in H$，所以$aa^{-1} = e \in H$，于是$ea^{-1} = a^{-1} \in H$；
+
+若$a, b \in H$，由刚刚证明的结果，$b^{-1} \in H$。所以$a(b^{-1})^{-1} = ab \in H$。
+\end{proof}
+
+加入子集$H$是有限集，那么$H$构成子群的条件要更简单：
+
+\begin{theorem}
+一个群$G$的非空有限子集$H$构成子群的充分必要条件是。若任意$a, b \in H$，则$ab \in H$。
+\end{theorem}
 
 \begin{Exercise}
 \Question{证明子群的判定定理\ref{theorem:subgroup}。}
