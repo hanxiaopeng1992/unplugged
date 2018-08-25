@@ -803,19 +803,44 @@ a \equiv b \mod n, \text{当且仅当} n | (a - b)
 a \equiv b \mod n, \text{当且仅当} (a - b) \in K
 \]
 
-这样，我们就利用子群$K$实现了$Z$的剩余类划分。我们现在将这一情形推广到利用子群$H$对一个群$G$进行分类。为此，我们需要先用子群定义元素的一种等价关系$~$：
+这样，我们就利用子群$K$实现了$Z$的剩余类划分。我们现在将这一情形推广到利用子群$H$对一个群$G$进行分类。为此，我们需要先用子群定义元素的一种等价关系$\sim$：
 
 \[
-a ~ b, \text{当且仅当} ab^{-1} \in H
+a \sim b, \text{当且仅当} ab^{-1} \in H
 \]
 
-给了$a$和$b$，我们可以唯一确定$ab^{-1}$是不是属于$H$。为什么说$~$是一种等价关系呢？因为它满足等价关系的全部三条性质：
+给了$a$和$b$，我们可以唯一确定$ab^{-1}$是不是属于$H$。为什么说$\sim$是一种等价关系呢？因为它满足等价关系的全部三条性质：
 
 \begin{enumerate}
-\item 因为$aa^{-1} = e \in H$，所以$a ~ a$。也就是自反性成立；
-\item 如果$ab^{-1} \in H$，则它的逆$(ab^{-1})^{-1}= ba^{-1} \in H$，所以$a ~ b \Rightarrow b ~ a$。也就是对称性成立；
-\item 若$ab^{-1} \in H, bc^{-1} \in H$，我们有$(ab^{-1})(bc^{-1}) = ac^{-1} \in H$，所以$a ~ b, b ~ c \Rightarrow a ~ c$。也就是传递性成立。
+\item 因为$aa^{-1} = e \in H$，所以$a \sim a$。也就是自反性成立；
+\item 如果$ab^{-1} \in H$，则它的逆$(ab^{-1})^{-1}= ba^{-1} \in H$，所以$a \sim b \Rightarrow b \sim a$。也就是对称性成立；
+\item 若$ab^{-1} \in H, bc^{-1} \in H$，我们有$(ab^{-1})(bc^{-1}) = ac^{-1} \in H$，所以$a \sim b, b \sim c \Rightarrow a \sim c$。也就是传递性成立。
 \end{enumerate}
+
+\begin{definition}
+由这一等价关系$\sim$所决定的类叫做子群$H$的右陪集，包含元素$a$的右陪集用符号$Ha$来表示。
+\end{definition}
+
+具体来说，用$a$从右边去乘$H$的每个元素，就得到了包含$a$的类。所以$Ha$正好包含所有可以写成$ha$，其中$h \in H$形式的$G$中的元素，即：
+
+\[
+Ha = \{ha | h \in H\}
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 3) circle[x radius=2.5cm, y radius=1cm] node[align=center] (H) {$H$ \\ $\{0, \pm 3, \pm 6, ...\}$}
+      (-5.5, 0) circle[x radius=2.5cm, y radius=1cm] node[align=center] (H0) {$H0$ \\ $\{0, \pm 3, \pm 6, ...\}$}
+      (0, 0) circle[x radius=2.5cm, y radius=1cm] node[align=center] (H1) {$H1$ \\ $\{..., -5, -2, 1, 4, 7, ...\}$}
+      (5.5, 0) circle[x radius=2.5cm, y radius=1cm] node[align=center] (H2) {$H2$ \\ $\{..., -4, -1, 2, 5, 8, ...\}$};
+\draw[->] (H) edge (H0)
+          (H) edge (H1)
+          (H) edge (H2);
+\end{tikzpicture}
+\caption{右陪集}
+\label{fig:right-cosets}
+\end{figure}
 
 \begin{Exercise}
 \Question{证明子群的判定定理\ref{theorem:subgroup}。}
