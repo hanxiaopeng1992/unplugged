@@ -822,6 +822,46 @@ G = (a)
 \end{itemize}
 \end{theorem}
 
+\begin{proof}
+如果$a$的阶无限，我们有$a^h = a^k$当且仅当$h = k$。否则，如果$h \neq k$，不妨令$h > k$，我们有$a^{h - k} = e$，这与$a$的阶无限矛盾。所以我们可以构造一一映射：
+
+\[
+f: a^k \to k
+\]
+从而建立循环群$G=(a)$到整数加群$Z$之间的同构。即：$a^ha^k \to h + k$。
+
+如果$a$的阶是整数$n$，即$a^n = e$。这时$a^h = a^k$当且仅当$h \equiv k \mod n$的时候。我们可以构造一一映射：
+
+\[
+f: a^k \to [k]
+\]
+
+从而建立循环群$G = (a)$到整数模$n$剩余类加群间的同构。即：
+
+\[
+a^ha^k = a^{h + k} \to [h + k] = [h] + [k]
+\]
+\end{proof}
+
+所以，抽象地来看，生成元的阶是无限大的循环群只有一个，生成元的阶是某个正整数的群也只有一个。至于这些循环群的构造，我们也知道得很清楚：
+
+\begin{itemize}
+\item $a$的阶无限大
+  \begin{itemize}
+  \item $G$的元素是：..., $a^{-2}, a^{-1}, a^0, a^1, a^2$, ...
+  \item $G$的乘法是：$a^ha^k = a^{h + k}$
+  \end{itemize}
+\item $a$的阶是$n$
+  \begin{itemize}
+  \item $G$的元素是：$a^0, a^1, a^2, ..., a^{n-1}$
+  \item $G$的乘法是：$a^ha^k = a^{(h + k) \bmod n}$
+  \end{itemize}
+\end{itemize}
+
+\begin{Exercise}
+\Question{证明循环群一定是阿贝尔群。}
+\end{Exercise}
+
 \subsection{子群}
 我们接下来介绍子群的概念。它可以帮助我们通过一个群的子集来推测整个群的性质。
 
