@@ -1,5 +1,6 @@
 IMG_OBJECTS = Escher-Liberation-1955 Gaus Cardano galois \
-Rubik_cube_notation Rubik-cube-F lagrange
+Rubik_cube_notation Rubik-cube-F lagrange Fermat \
+bracelet-rotate bracelet-identical
 DOT_OBJECTS = bst-example
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 

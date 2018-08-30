@@ -1113,7 +1113,7 @@ a \sim' b \text{当且仅当} b^{-1}a \in H
 a^{|G|} = a^{nk} = (a^n)^k = e^k = e
 \]
 
-群论中的拉格朗日定理可以用来证明数论中著名的费马小定理和欧拉定理。费马小定理是法国数学家费马于1636年发现的。他在1640年10月18日写给友人\footnote{费马的朋友法国数学家贝西（Bernard Frénicle de Bessy）}的信中首次提出了这个定理。1736年，欧拉给出了费马小定理的一个证明。但从莱布尼茨未发表的手稿中发现他在1683年以前已经得到几乎是相同的证明。
+群论中的拉格朗日定理可以用来证明数论中著名的费马小定理和欧拉定理。费马小定理是法国数学家费马于1636年发现的。他在1640年10月18日写给友人\footnote{费马的朋友法国数学家贝西（Bernard Frénicle de Bessy）}的信中首次提出了这个定理。1736年，欧拉给出了费马小定理的一个证明。但从莱布尼茨未发表的手稿中发现他在1683年以前已经得到几乎相同的证明。
 
 \begin{theorem}
 \textbf{费马小定理}：若$p$是素数，对任何满足$0 < a < p$的整数$a$都有，$a^{p-1}-1$能被$p$整除。
@@ -1131,7 +1131,36 @@ a^{p-1} \equiv 1 \mod p
 故$p$整除$a^{p-1} - 1$。
 \end{proof}
 
+和这一证明对比，初等数论方法的证明要复杂得多（\cite{StepanovRose15}第5.2到5.4）。我们再介绍另一种有趣的“项链”证法\cite{Wiki-FLT-proof}，供读着参考。
 
+\begin{proof}
+考虑有$a$颗不同颜色的珍珠，我们要串一条长为$p$的珍珠串。其中$p$为素数。显然一共有$a^p$种不同的串，这是因为串中每个位置都可以在$a$颗珍珠中选择，共选$p$次。
+
+例如有两种颜色$A$、$B$的珍珠，要串长度为5的串。即$a = 2, p = 5$，一共有$2^5 = 32$种不同的串：
+
+\begin{verbatim}
+  AAAAA, AAAAB, AAABA, ..., BBBBA, BBBBB.
+\end{verbatim}
+
+我们要证明，在这$a^p$串珍珠中，如果去掉$a$个颜色完全相同的串（在上述例子中是串\texttt{AAAAA}和\texttt{BBBBB}），剩下的$a^p - a$串珍珠可以分成若干组，每个组恰好有$p$串珍珠。也就是说$p$整除$a^p - a$。
+
+如果把每串珍珠首尾连接起来做成项链。原来有些不同的串会变成相同的项链。如果一个串可以通过旋转变换成另一个，这两个串必然做成相同的项链。我们称它们为朋友串。例如下面的5个朋友串可做成相同的项链：
+
+\begin{verbatim}
+  AAAAB, AAABA, AABAA, ABAAA, BAAAA.
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \subfloat[项链1]{\includegraphics[scale=0.5]{img/bracelet-rotate.ps}} \\
+  \subfloat[项链2]{\includegraphics[scale=0.5]{img/bracelet-identical.ps}}
+  \caption{项链}
+  \label{fig:bracelet}
+\end{figure}
+
+\end{proof}
+
+项链证明法可能是已知证法中最容易的，它不需要太多的数学知识。核心思想是利用两种不同的方式数数的结果必然是一样的。
 
 整理一下，群、半群、幺半群的关系图。是否放在1.3群的性质前？？
 
@@ -1187,6 +1216,9 @@ Wikipedia ``魔方群''. \url{https://en.wikipedia.org/wiki/Rubik's_Cube_group}
 
 \bibitem{Wiki-Lagrange}
 Wikipedia ``约瑟夫$\cdot$拉格朗日''. \url{https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange}
+
+\bibitem{Wiki-FLT-proof}
+Wikipedia ``费马小定理的证明''. \url{https://en.wikipedia.org/wiki/Proofs_of_Fermat's_little_theorem}
 
 \end{thebibliography}
 
