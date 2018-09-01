@@ -1235,7 +1235,7 @@ a^{p-1} \equiv 1 \mod p
 考虑整数模$n$的非零余数。我们把模$n$乘法之下可以互逆的所有余数挑选出来。它们构成一个模$n$乘法群。按照欧拉$upphi$函数的定义，$\upphi(n)$的值，是所有小于$n$且与$n$互素的正整数的个数。而这些正整数，恰好对应这个乘法群中的元素。所以这个群的阶就是$\upphi(n)$。根据拉格朗日定理的推论\ref{corollary:Lagrange-elem-order}，有：
 
 \[
-a^{\Phi(n)} = e
+a^{\upphi(n)} = e
 \]
 
 故而$a^{\upphi(n)} \equiv 1 mod n$，所以$n$一定整除$a^{\upphi(n)} - 1$。
