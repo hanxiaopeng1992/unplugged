@@ -1335,6 +1335,36 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \]
 
 并且，由于$i \neq j$，有$a \cdot i \not\equiv a \cdot j$，所以这些反例都是彼此不同的。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 0) circle[x radius=1cm, y radius=3cm]
+      (5, 0) circle[x radius=1cm, y radius=3cm];
+\path (0, 3) node[above] {通过费马测试的数}
+      (5, 3) node[above] {未通过费马测试};
+\path (0, 0) node (b) {}
+      (5, 0) node (fb) {}
+      (0, 1.5) node (a) {}
+      (5, 1.5) node (fa) {}
+      (0, -1.5) node (c) {}
+      (5, -1.5) node (fc) {};
+\filldraw (0, 0) circle (1pt) node[above] {}
+      (5, 0) circle (1pt) node[above] {}
+      (0, 1.5) circle (1pt) node[above] {$b$}
+      (5, 1.5) circle (1pt) node[above] {$ab$}
+      (5, 1) circle (1pt) node[right] {$c$}
+      (0, -1.5) circle (1pt) node[above] {}
+      (5, -1.5) circle (1pt) node[above] {};
+\draw[dashed, ->] (b) to node [above] {$f: b \to ab$} (fb)
+      (a) to [bend left] (fa)
+      (c) to [bend right] (fc);
+\end{tikzpicture} \\
+集合$\{1, 2, ..., n-1\}$
+\caption{从通过费马测试的集合向未通过的集合做映射}
+\label{fig:Fermat-test}
+\end{figure}
+
 \end{proof}
 
 
