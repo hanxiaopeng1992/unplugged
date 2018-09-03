@@ -1404,7 +1404,33 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 
 实际的RSA算法采用“米勒——拉宾”进行素数测试。它也是一种概率算法\footnote{米勒——拉宾素数检验存在一个确定性算法的版本，但是其正确性依赖于黎曼假设（黎曼猜想）\cite{Wiki-Miller-Rabin}。}。根据上述定理，如果选择超过100个证人，错误率会低于$\frac{1}{2^{100}}$。高德纳说：“该测试的错误率要比计算机因为宇宙辐射而丢失某个二进制位的概率还要低。”读着可以参考本书的附录，了解RSA算法的详细原理和实现。
 
-整理一下，群、半群、幺半群的关系图。是否放在1.3群的性质前？？
+到目前为止，我们介绍过的群、半群、幺半群的关系总结如下。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (4, 2) node (abeliangroup) {阿贝尔群}
+      (2, 1) node (group) {群}
+      (0, 0) node (monoid) {幺半群}
+      (-2, -1) node (semigroup) {半群};
+\draw (-4, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (assoc) {结合性}
+      (0, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (binop) {二元运算}
+      (2, -1) circle[x radius = 1.5cm, y radius = 0.5cm] node (unit) {单位元}
+      (4, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (invert) {可逆性}
+      (6, 1) circle[x radius = 1.5cm, y radius = 0.5cm] node (community) {交换性};
+\draw (abeliangroup) to (community)
+      (abeliangroup) to (group)
+      (group) to (invert)
+      (group) to (monoid)
+      (monoid) to (unit)
+      (monoid) to (semigroup)
+      (semigroup) to (binop)
+      (semigroup) to (assoc);
+\end{tikzpicture}
+\caption{群、半群、幺半群}
+\label{fig:groups}
+\end{figure}
+
 
 \begin{Exercise}
 \Question{今天是星期日，$2^{100}$天以后是星期几?}
@@ -1413,6 +1439,7 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \Question{利用埃拉托斯特尼筛法的思想，编程产生2到100内正整数的欧拉$\upphi$函数表。}
 \Question{编程实现模乘的幂运算，并实现费马素数检测。}
 \end{Exercise}
+
 \section{环}
 
 \section{域}
