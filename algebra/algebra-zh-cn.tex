@@ -1440,7 +1440,7 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \Question{编程实现模乘的幂运算，并实现费马素数检测。}
 \end{Exercise}
 
-\section{环}
+\section{环与域}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
 %\begin{figure}[htbp]
@@ -1460,7 +1460,25 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 
 诺特善于通过透彻的洞察建立优雅的抽象概念，再将之漂亮地形式化。被帕维尔·亚历山德罗夫、阿尔伯特·爱因斯坦、让·迪厄多内、赫尔曼·外尔和诺伯特·维纳形容为数学史上最重要的女性。她彻底改变了环、域和代数的理论。在物理学方面，诺特定理解释了对称性和守恒定律之间的根本联系，她还被称为“现代数学之母”，她允许学者们无条件地使用她的工作成果，也因此被人们尊称为“当代数学文章的合著者”\cite{Wiki-Noether}。
 
-\subsection{环的定义}
+我们接下来看一看环(ring）的定义。
+
+\begin{definition}
+一个集合$R$叫做一个环，如果满足以下条件：
+\begin{enumerate}
+\item $R$是一个加群，也就是说$R$对于其上定义的某种加法构成一个阿贝尔群；
+\item $R$上还定义了乘法，并且对于这个乘法是封闭的；
+\item 乘法满足结合律，任意$a, b, c$，有：$(ab)c = a(bc)$；
+\item 满足分配律，任意$a, b, c$都有：
+\[
+\begin{array}{l}
+a(b + c) = ab + ac \\
+(b + c)a = ba + ca
+\end{array}
+\]
+\end{enumerate}
+\end{definition}
+
+显然，全体整数对于普通加法和乘法构成一个环。
 
 \subsection{半环}
 
