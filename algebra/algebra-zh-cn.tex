@@ -1567,6 +1567,45 @@ a^{-1}ab = b = 0
 
 这样必然有$b$等于零，所以除环不含有零因子。第二个性质是，一个除环中的所有非零元，对于乘法构成一个群$R*$，我们称$R*$叫做除环$R$的乘群。这样一个除环是由两个群：加群与乘群组合而成的；分配率好像是一座桥梁，使得两个群发生联系。到目前为止，我们介绍过的环、半环、整环、除环和域的关系总结如下。
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 1) node (semiring) {半环}
+      (0, 0) node (ring) {环}
+      (-4, -1) node (commu-ring) {交换环}
+      (0, -1) node (unit) {有单位元}
+      (3, -1) node (zero-factor) {无零因子}
+      (-3, -3) node (integral-domain) {整环}
+      (3, -3) node (division-ring) {除环}
+      (0, -4) node (field) {域};
+\draw (0, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (add-monoid) {加法幺半群}
+      (4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-monoid) {乘法幺半群}
+      (-4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (distribution-law) {分配律}
+      (4, 0.5) circle[x radius = 1.5cm, y radius = 0.5cm] node (negate) {加法可求反}
+      (-5, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-commu) {乘法可交换}
+      (0, -3) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-invert) {乘法可求逆};
+\draw (distribution-law) to (semiring)
+      (add-monoid) to (semiring)
+      (mul-monoid) to (semiring)
+      (semiring) to (ring)
+      (negate) to (ring)
+      (mul-commu) to (commu-ring)
+      (ring) to (commu-ring)
+      (ring) to (unit)
+      (ring) to (zero-factor)
+      (commu-ring) to (integral-domain)
+      (unit) to (integral-domain)
+      (zero-factor) to (integral-domain)
+      (unit) to (division-ring)
+      (zero-factor) to (division-ring)
+      (integral-domain) to (field)
+      (division-ring) to (field)
+      (mul-invert) to (division-ring);
+\end{tikzpicture}
+\caption{半环、环、整环和域}
+\label{fig:ring}
+\end{figure}
+
 \subsection{多项式环}
 
 \subsection{理想}
