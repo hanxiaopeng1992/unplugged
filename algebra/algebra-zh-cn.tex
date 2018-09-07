@@ -1646,13 +1646,14 @@ x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\
 如果域$E$包含域$F$，我们称$E$是$F$的\textbf{扩域}，记作$F \subseteq E$或者$E/F$。
 \end{definition}
 
-例如实数域就是有理数域的扩域，$Q[\sqrt{2}]$是有理数域$Q$的扩域。一般来说，如果$F$是一个域，$\alpha \in F$，但是$\sqrt{\alpha} \not\in F$，则$F_1 = F[\sqrt{\alpha}]$仍是一个域。这样，我们就可以重复使用这个方法不断扩张。若$\beta \in \F_1$, 但$\sqrt{\beta} \not\in F_1$，则：
+例如实数域就是有理数域的扩域，$Q[\sqrt{2}]$是有理数域$Q$的扩域。一般来说，如果$F$是一个域，$\alpha \in F$，但是$\sqrt{\alpha} \not\in F$，则$F_1 = F[\sqrt{\alpha}]$仍是一个域。这样，我们就可以重复使用这个方法不断扩张。若$\beta \in F_1$, 但$\sqrt{\beta} \not\in F_1$，则：
 
 \[
 \begin{array}{rl}
 F_2 & = F_1[\sqrt{\beta}] \\
     & = F[\sqrt{\alpha}][\sqrt{\beta}] \\
     & = F[\sqrt{\alpha}, \sqrt{\beta}]
+\end{array}
 \]
 
 即所有形如$a + b \sqrt{\beta}$的数，其中$a, b \in F_1$的数构成了更高层次的扩域。这样我们就可以从有理数域开始，得到一个扩域系列：$Q \subset F_1 \subset F_2 ... \subset F_n$。
