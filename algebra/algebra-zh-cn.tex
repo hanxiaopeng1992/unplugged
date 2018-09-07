@@ -1630,7 +1630,38 @@ a^{-1}ab = b = 0
 \section{伽罗瓦理论}
 我们分别介绍了域和群，而伽罗瓦理论像是一座桥梁把它们连接到了一起。域里面有加减乘除四种运算和无穷多个元素，是很复杂的对象。而伽罗瓦理论可以把域中的一些问题化简到只有一种运算的有限群里去。整个伽罗瓦理论的核心思想就是这一点。
 
+\subsection{扩域}
+根据域的定义，我们知道全体有理数构成一个域，记作$Q$。我们现在考虑所有形如$a + b\sqrt{2}$的数组成的集合，其中$a, b$都是有理数。显然有理数是这一集合的子集（只要让$b=0$即可）。容易验证，任何两个这样的数做加、减、乘法都仍然可以写成$a + b \sqrt{2}$的形式。除法稍微难些。观察$x = \frac{1}{a + b\sqrt{2}}$，我们可以将分子分母同时乘以$a - b \sqrt{2}$，这样就有：
 
+\[
+\begin{array}{rl}
+x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\
+  & = \dfrac{a - b \sqrt{2}}{a^2 - 2b^2}
+\end{array}
+\]
+
+令$p = a^2 - 2b^2$，这样$x$就可以表示成$(a/p) -(b/p)\sqrt{2}$。这样除法也就验证了。这样的确这一集合构成一个域。我们将其记为$Q[\sqrt{2}]$。同理$Q[\sqrt{3}]$也是一个域。这就引出了扩域的概念。
+
+\begin{definition}
+如果域$E$包含域$F$，我们称$E$是$F$的\textbf{扩域}，记作$F \subseteq E$或者$E/F$。
+\end{definition}
+
+例如实数域就是有理数域的扩域，$Q[\sqrt{2}]$是有理数域$Q$的扩域。一般来说，如果$F$是一个域，$\alpha \in F$，但是$\sqrt{\alpha} \not\in F$，则$F_1 = F[\sqrt{\alpha}]$仍是一个域。这样，我们就可以重复使用这个方法不断扩张。若$\beta \in \F_1$, 但$\sqrt{\beta} \not\in F_1$，则：
+
+\[
+\begin{array}{rl}
+F_2 & = F_1[\sqrt{\beta}] \\
+    & = F[\sqrt{\alpha}][\sqrt{\beta}] \\
+    & = F[\sqrt{\alpha}, \sqrt{\beta}]
+\]
+
+即所有形如$a + b \sqrt{\beta}$的数，其中$a, b \in F_1$的数构成了更高层次的扩域。这样我们就可以从有理数域开始，得到一个扩域系列：$Q \subset F_1 \subset F_2 ... \subset F_n$。
+
+扩域有何意义呢？举个例子，方程$x^2 - 2 = 0$在有理数域上无解，但是它在有理数域的扩域$Q[\sqrt{2}]$上有一对解（$x = \pm \sqrt{2}$）。
+
+\begin{Exercise}
+\Question{证明$Q[a, b] = Q[a][b]$，其中$Q[a, b]$是所有由$a, b$组成的表达式如$2ab, a + a^2b$等。}
+\end{Exercise}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
