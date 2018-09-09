@@ -623,6 +623,8 @@ S = \{\tau, \lambda, \mu, ...\}
 \end{Exercise}
 
 \subsection{置换群}
+\label{permutation group}
+\label{symmetric group}
 
 我们现在介绍伽罗瓦用来判定方程是不是有根式解的群——置换群。这种群是变换群的一种特例。我们首先定义置换的概念。一个有限集合的一一变换叫做一个{\em 置换}。一个有限集合的若干个置换作成的一个群叫做一个{\em 置换群}（permutation group）。进一步，一个包含$n$个元素的集合的全体置换作成的群叫做$n$次{\em 对称群}（symmetric group）。这个群用$S_n$来表示。
 
@@ -1635,7 +1637,7 @@ a^{-1}ab = b = 0
 
 \[
 \begin{array}{rl}
-x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\
+x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\[2ex]
   & = \dfrac{a - b \sqrt{2}}{a^2 - 2b^2}
 \end{array}
 \]
@@ -1671,6 +1673,25 @@ F_2 & = F_1[\sqrt{\beta}] \\
 \end{Exercise}
 
 \subsection{自同构和伽罗瓦群}
+
+到目前位置，我们的思路是从方程系数所在的有理数域开始，通过逐步扩域，向较高层次的分裂域前进。如何进一步化简难题，找到答案呢？伽罗瓦在此进行逆向思维。他转而去考虑方程根之间的对称性。例如方程$x^2 - 2 = 0$有一对根$\pm \sqrt{2}$。显然用$-\sqrt{2}$去代替$\sqrt{2}$，方程仍然成立。除此之外，将等式$\sqrt{2}^2 + \sqrt{2} + 1 = 3 + \sqrt{2}$中的$\sqrt{2}$替换成$-\sqrt{2}$也是成立的。也就是说，这对根$\pm \sqrt{2}$，对于关系$\alpha^2 + \alpha + 1 = 3\alpha$是对称的。进一步说，对于任何仅仅对$\sqrt{2}$进行乘法和加法的表达式，这对根都可以进行互换。今天我们知道，描述对称的最有力武器是群。具体说是对称群（如果记不清了，请回过头去再看一下\ref{symmetric group}）。于是伽罗瓦引入了域上的自同构概念，将扩域和群联系了起来。
+
+我们还是用$Q[\sqrt{2}]$做例子。如果我们定义一个从$Q[\sqrt{2}]$到$Q[\sqrt{2}]$的函数$f: Q[\sqrt{2}] \to Q[\sqrt{2}]$。它的具体定义为：
+\[
+f(a + b \sqrt{2}) = a - b \sqrt{2}
+\]
+
+则$f$就是一个域上的自同构。
+
+\begin{definition}
+\textbf{域的自同构}（Field Automorphism）是一个可逆函数$f$，它满足$f(x + y) = f(x) + f(y)$，$f(ax) = f(a) f(x)$，$f(1/x) = 1/f(x)$。
+\end{definition}
+
+我们可以验证，前面那个例子$f(a + b \sqrt{2}) = a - b \sqrt{2}$满足这三个条件。域的自同构背后的思想是，我们可以重新调换域中的元素，而完全不影响域的结构。换句话说，我们可以将$\sqrt{2}$换成$-\sqrt{2}$，进行计算，然后在把结果中的$-\sqrt{2}$换回$\sqrt{2}$而得到正确的结果。这就是同构的特点。
+
+\begin{definition}
+$F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同构$f$的基础上还满足一条额外的性质：对$F$中的任何元素$x$都有$f(x) = x$，则称为$E$上的$F$-自同构。
+\end{definition}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
