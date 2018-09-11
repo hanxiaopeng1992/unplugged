@@ -1695,7 +1695,7 @@ F_2 & = F_1[\sqrt{\beta}] \\
 包含方程$p(x) = 0$全部根的最小扩域叫做$p(x)$的\textbf{分裂域}。也称为根域。
 \end{definition}
 
-这样方程$x^2 -2 = 0$的分裂域就是$Q[\sqrt{2}]$。对于某一多项式方程，如果我们能够从基本域有理数域开始，通过一系列上述的扩域，最终到达分裂域，那么自然这个方程是可以用根式解的。
+这样方程$x^2 -2 = 0$的分裂域就是$Q[\sqrt{2}]$。对于某一多项式方程，如果我们能够从基本域有理数域开始，通过一系列上述的扩域，最终到达分裂域，那么自然这个方程是可以用根式解的。特别地，我们称域的可分\footnote{代数扩张$E/F$是可分扩张，如果任何$a \in E$，$a$在域$F$上的极小多项式都没有重根。}正规扩张\footnote{代数扩张$E/F$称为正规扩张，如果$F$上的不可约多项式的全部根都在$E$中。}为伽罗瓦扩张。
 
 \begin{Exercise}
 \Question{证明$Q[a, b] = Q[a][b]$，其中$Q[a, b]$是所有由$a, b$组成的表达式如$2ab, a + a^2b$等。}
@@ -1756,18 +1756,7 @@ p(f(\alpha)) = f(p(\alpha)) = f(0) = 0
 \end{array}
 \]
 
-这说明$G$的确是一个群，并且在同构的意义下等同于二阶循环群$C_2$，它也同构于二阶对称群$S_2$。这个群可以写成$\{f, f^2\}$，这是因为$f^2 = f \cdot f = 1$，是群的单位元。
-
-我们注意到根据$F$-自同构定义，任何$F$中的元素$x$都有$f(x) = x$。这正好是不动点的特征，为此我们可以定义固定域（fixed field）的概念。
-
-\begin{definition}
-令$H$为域$E$的自同构群，我们称$E$上所有在$H$之下固定不变的元素组成$H$的固定域。记为$E^H$
-\[
-E^H = \{a | \sigma(a) = a, a \in E, \sigma \in H \}
-\]
-\end{definition}
-
-我们称域$E$为其固定域$E^H$的伽罗瓦扩张，而$H$为此扩域的伽罗瓦群，即$H = Gal(E/E^H)$。
+这说明$G$的确是一个群，并且在同构的意义下等同于二阶循环群，它也同构于二阶对称群$S_2$。这个群可以写成$\{f, f^2\}$，这是因为$f^2 = f \cdot f = 1$，是群的单位元。
 
 \begin{Exercise}
 \Question{试证明：对于有理数系数的任何多项式$p(x)$，若$E/Q$是扩域，$f$是$E$上的$Q$-自同构，则有$f(p(x)) = p(f(x))$。}
@@ -1776,21 +1765,58 @@ E^H = \{a | \sigma(a) = a, a \in E, \sigma \in H \}
 \Question{证明，如果$p$是素数，则方程$x^p - 1$的伽罗瓦群是$q-1$阶的循环群$C_{q-1}$。}
 \end{Exercise}
 
-\subsection{伽罗瓦大定理}
+\subsection{伽罗瓦基本定理}
 
 现在我们进入了伽罗瓦理论的核心部分了。从方程系数所在的域$F$开始，我们可以进行一系列扩域一直到达分裂域$F \subset F_1 \subset F_2 ... \subset E$。对应的伽罗瓦群为$Gal(E/F)$。伽罗瓦发现，这个群的所有子群和这些中间域$F_1, F_2, ...$之间存在着一一对应。并且这个一一对应是逆序的。
 
 \begin{theorem}
-\textbf{伽罗瓦大定理}：令$E$为域$F$的伽罗瓦扩张，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
+\textbf{伽罗瓦基本定理}：令$E$为域$F$的伽罗瓦扩张，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
 \end{theorem}
 
 之所以说是反序，是因为，随着域的扩张，对应的群是减小的。扩张的起点是域$F$，此时对应的群是完整的伽罗瓦群$G = Gal(E/F)$；扩张的终点是分裂域$E$，此时的群只有一个元素，就是恒等变换$\{1\}$。扩张的中间域$L$，对应的群是$H = Gal(E/L)$，它是子群，有$Gal(E/L) \subset Gal(E/F)$。并且如果$H$是正规子群（如果记不清了，可回去看一下\ref{normal-subgroup}），则它的商群$G/H = Gal(L/F)$。
 
-我们举一个具体的例子\cite{MArtin}。考虑方程$x^4 - 8x^2 + 15 = 0$，它也可以表示成$(x^2 - 3)(x^2 - 5) = 0$。它的系数域是有理数域$Q$，方程的分裂域是$E = Q[\sqrt{3}, \sqrt{5}]$。这是一个4次扩域，即$[E : Q] = 4$。它的伽罗瓦群$Gal(E/Q)$的阶是4，同构于一个4阶循环群。可以找到3个中间扩域分别是$Q[\sqrt{3}]$, $Q[\sqrt{5}]$和$Q[\sqrt{15}]$，这3个中间扩域都是$Q$上的二阶扩域，所以对应的子群的阶都是2。而方程的伽罗瓦群，也就是4阶循环群只有一个2阶子群。除此之外，它不再有其它非平凡子群了。根据伽罗瓦大定理，我们知道，除了那3个中间扩域之外，再也没有其它中间扩域了。换个角度看，对于分裂域上的任何元素$\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$，其中$a, b, c, d$是有理数，所以阶为4；对于3个中间扩域上的任何元素，$b, c, d$中至少有两个为0，所以阶为2。
+我们举一个具体的例子\cite{MArtin}。考虑方程$x^4 - 8x^2 + 15 = 0$，它也可以表示成$(x^2 - 3)(x^2 - 5) = 0$。它的系数域是有理数域$Q$，方程的分裂域是$E = Q[\sqrt{3}, \sqrt{5}]$。这是一个4次扩域，即$[E : Q] = 4$。它的伽罗瓦群$Gal(E/Q)$的阶是4，同构于一个4阶循环群。可以找到3个中间扩域分别是$Q[\sqrt{3}]$, $Q[\sqrt{5}]$和$Q[\sqrt{15}]$，这3个中间扩域都是$Q$上的二阶扩域，所以对应的子群的阶都是2。而方程的伽罗瓦群，也就是4阶循环群只有一个2阶子群。除此之外，它不再有其它非平凡子群了。根据伽罗瓦基本定理，我们知道，除了那3个中间扩域之外，再也没有其它中间扩域了。换个角度看，对于分裂域上的任何元素$\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$，其中$a, b, c, d$是有理数，所以阶为4；对于3个中间扩域上的任何元素，$b, c, d$中至少有两个为0，所以阶为2。
 
-通过伽罗瓦大定理，伽罗瓦已经成功地将方程在域上的问题，转换为对称群的问题了。接下来要做的就是最后一击，揭示可解性的本质。
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\draw (0, 1) node (semiring) {半环}
+      (0, 0) node (ring) {环}
+      (-4, -1) node (commu-ring) {交换环}
+      (0, -1) node (unit) {有单位元}
+      (3, -1) node (zero-factor) {无零因子}
+      (-3, -3) node (integral-domain) {整环}
+      (3, -3) node (division-ring) {除环}
+      (0, -4) node (field) {域};
+\draw (0, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (add-monoid) {加法幺半群}
+      (4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-monoid) {乘法幺半群}
+      (-4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (distribution-law) {分配律}
+      (4, 0.5) circle[x radius = 1.5cm, y radius = 0.5cm] node (negate) {加法可求反}
+      (-5, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-commu) {乘法可交换}
+      (0, -3) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-invert) {乘法可求逆};
+\draw (distribution-law) to (semiring)
+      (add-monoid) to (semiring)
+      (mul-monoid) to (semiring)
+      (semiring) to (ring)
+      (negate) to (ring)
+      (mul-commu) to (commu-ring)
+      (ring) to (commu-ring)
+      (ring) to (unit)
+      (ring) to (zero-factor)
+      (commu-ring) to (integral-domain)
+      (unit) to (integral-domain)
+      (zero-factor) to (integral-domain)
+      (unit) to (division-ring)
+      (zero-factor) to (division-ring)
+      (integral-domain) to (field)
+      (division-ring) to (field)
+      (mul-invert) to (division-ring);
+\end{tikzpicture}
+\caption{伽罗瓦对应}
+\label{fig:Galois-Correspondence}
+\end{figure}
 
-\subsection{三次和四次方程}
+通过伽罗瓦基本定理，我们已经成功地将方程在域上的问题，转换为对称群的问题了。接下来要做的就是最后一击，揭示可解性的本质。
 
 \subsection{五次方程}
 
