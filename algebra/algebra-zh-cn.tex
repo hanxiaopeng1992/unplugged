@@ -1767,7 +1767,7 @@ p(f(\alpha)) = f(p(\alpha)) = f(0) = 0
 
 \subsection{伽罗瓦基本定理}
 
-现在我们进入了伽罗瓦理论的核心部分了。从方程系数所在的域$F$开始，我们可以进行一系列扩域一直到达分裂域$F \subset F_1 \subset F_2 ... \subset E$。对应的伽罗瓦群为$Gal(E/F)$。伽罗瓦发现，这个群的所有子群和这些中间域$F_1, F_2, ...$之间存在着一一对应。并且这个一一对应是逆序的。
+现在我们进入了伽罗瓦理论的核心部分了。从方程系数所在的域$F$开始，我们可以进行一系列扩域一直到达分裂域$F \subset F_1 \subset F_2 ... \subset E$。对应的伽罗瓦群为$Gal(E/F)$。伽罗瓦发现，这个群的所有子群和这些中间域$F_1, F_2, ...$之间存在着反序的一一对应。
 
 \begin{theorem}
 \textbf{伽罗瓦基本定理}：令$E$为域$F$的伽罗瓦扩张，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
@@ -1780,43 +1780,84 @@ p(f(\alpha)) = f(p(\alpha)) = f(0) = 0
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.8]
-\draw (0, 1) node (semiring) {半环}
-      (0, 0) node (ring) {环}
-      (-4, -1) node (commu-ring) {交换环}
-      (0, -1) node (unit) {有单位元}
-      (3, -1) node (zero-factor) {无零因子}
-      (-3, -3) node (integral-domain) {整环}
-      (3, -3) node (division-ring) {除环}
-      (0, -4) node (field) {域};
-\draw (0, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (add-monoid) {加法幺半群}
-      (4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-monoid) {乘法幺半群}
-      (-4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (distribution-law) {分配律}
-      (4, 0.5) circle[x radius = 1.5cm, y radius = 0.5cm] node (negate) {加法可求反}
-      (-5, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-commu) {乘法可交换}
-      (0, -3) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-invert) {乘法可求逆};
-\draw (distribution-law) to (semiring)
-      (add-monoid) to (semiring)
-      (mul-monoid) to (semiring)
-      (semiring) to (ring)
-      (negate) to (ring)
-      (mul-commu) to (commu-ring)
-      (ring) to (commu-ring)
-      (ring) to (unit)
-      (ring) to (zero-factor)
-      (commu-ring) to (integral-domain)
-      (unit) to (integral-domain)
-      (zero-factor) to (integral-domain)
-      (unit) to (division-ring)
-      (zero-factor) to (division-ring)
-      (integral-domain) to (field)
-      (division-ring) to (field)
-      (mul-invert) to (division-ring);
+\draw (-3, 3) node (Q3-5) {$Q[\sqrt{3}, \sqrt{5}]$}
+      (-5, 0) node (Q5) {$Q[\sqrt{5}]$}
+      (-3, 0) node (Q15) {$Q[\sqrt{15}]$}
+      (-1, 0) node (Q3) {$Q[\sqrt{3}]$}
+      (-3, -3) node (Q) {$Q$};
+\draw (3, 3) node (G1) {$\{1\}$}
+      (1, 0) node (G3) {$\{1, f\}$}
+      (3, 0) node (G15) {$\{1, (f \cdot g)\}$}
+      (5, 0) node (G5) {$\{1, g\}$}
+      (3, -3) node (G) {$\{1, f, g, (f \cdot g)\}$};
+\draw[->] (Q3-5) edge node[midway, above] {伽罗瓦群} (G1)
+      (G) edge node[midway, above] {伽罗瓦扩张} (Q)
+      (Q3) edge node[midway] {扩域} (Q3-5)
+      (Q15) edge (Q3-5)
+      (Q5) edge (Q3-5)
+      (Q) edge (Q3)
+      (Q) edge (Q15)
+      (Q) edge (Q5)
+      (G1) edge node[midway] {子群} (G3)
+      (G1) edge (G15)
+      (G1) edge (G5)
+      (G3) edge (G)
+      (G15) edge (G)
+      (G5) edge (G);
 \end{tikzpicture}
 \caption{伽罗瓦对应}
 \label{fig:Galois-Correspondence}
 \end{figure}
 
-通过伽罗瓦基本定理，我们已经成功地将方程在域上的问题，转换为对称群的问题了。接下来要做的就是最后一击，揭示可解性的本质。
+如图\ref{fig:Galois-Correspondence}所示，分裂域上的任意元可以写成如下形式：
+
+\[
+\begin{array}{rl}
+\alpha &= (a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} \\
+       &= a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}
+\end{array}
+\]
+
+其中$a, b, c, d$都是有理数。我们定义如下自同构：
+
+变换$f$将$\sqrt{3}$反号：
+
+\[
+\begin{array}{rl}
+f((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a - b\sqrt{3}) + (c - d\sqrt{3})\sqrt{5} \\
+ & = a - b\sqrt{3} + c\sqrt{5} - d\sqrt{15}
+\end{array}
+\]
+
+变换$g$将$\sqrt{5}$反号
+
+\[
+\begin{array}{rl}
+g((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a + b\sqrt{3}) - (c + d\sqrt{3})\sqrt{5} \\
+ & = a + b\sqrt{3} - c\sqrt{5} - d\sqrt{15}
+\end{array}
+\]
+
+复合变换$f \cdot g$同时将$\sqrt{3}$和$\sqrt{5}$反号
+
+\[
+\begin{array}{rl}
+(f \cdot g)((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a - b\sqrt{3}) - (c - d\sqrt{3})\sqrt{5} \\
+ & = a - b\sqrt{3} - c\sqrt{5} + d\sqrt{15}
+\end{array}
+\]
+
+再加上恒等变换1，基本域$Q$上的伽罗瓦群一共有4个元素：$G = \{1, f, g, (f \cdot g)\}$。这个群同构于克莱因群，而克莱因群相当于是两个2阶循环群的积。它共有5个子群，每个都对应着一个扩域：
+
+\begin{itemize}
+\item 只含有单位元$\{1\}$的子群，对应于分裂域$Q[\sqrt{3}, \sqrt{5}]$；
+\item $G$自身，对应于有理数域$Q$；
+\item 二阶子群$\{1, f\}$，对应于扩域$Q[\sqrt{5}]$，$f$只反转$\sqrt{3}$而固定$\sqrt{5}$不变；
+\item 二阶子群$\{1, g\}$，对应于扩域$Q[\sqrt{3}]$，$f$只反转$\sqrt{5}$而固定$\sqrt{3}$不变；
+\item 二阶子群$\{1, (f \cdot g)\}$，对应于扩域$Q[\sqrt{15}]$，$(f \cdot g)$同时反转$\sqrt{5}$和$\sqrt{3}$，而固定$\sqrt{15}$不变。
+\end{itemize}
+
+通过伽罗瓦基本定理，我们已经成功地将方程在域上的问题，转换为对称群的问题了。接下来要做的就是最后一击，通过群揭示可解性的本质。
 
 \subsection{五次方程}
 
