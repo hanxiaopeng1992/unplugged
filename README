@@ -13,7 +13,8 @@ We'll keep adding links for the chapters ready for preview.
     * EN: https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf
 - Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator;
     * CN: https://github.com/liuxinyu95/unplugged/releases/download/v0.61801/recursion-zh-cn.pdf
-- Chapter 3, Group, Ring, and Field. Algebraic structure;
+- Chapter 3, Group, Ring, and Field. Galois Theory;
+    * CN: https://github.com/liuxinyu95/unplugged/releases/download/v0.61802/algebra-zh-cn.pdf
 - Chapter 4, Category theory. Category, functor, and arrows. Type system;
 - Chapter 5, Deforest. Build-fold fusion law, optimazation, and algorithm deduction;
 - Chapter 6, Infinity. Set theory, Infinity and stream;
