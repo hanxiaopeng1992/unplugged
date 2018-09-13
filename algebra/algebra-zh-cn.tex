@@ -299,7 +299,7 @@ data PHeap A = nil | node (A, List (PHeap A))
 
 除了名称外，这个定义和上一章的多叉树的结构完全相同。这是一个递归定义，一个配对堆要么为空，要么是一棵多叉树，包含一个根节点和一组子树。非空堆的最小元素在多叉树的根节点中。我们可以定义配对堆的归并操作：
 
-\be
+\[
 \begin{array}{rcl}
 merge(nil, h) & = & h \\
 merge(h, nil) & = & h \\
@@ -309,7 +309,7 @@ merge(h_1, h_2) & = &
   \text{否则} : & node(k_2, h_1 : ts_2)) \\
   \end{cases}
 \end{array}
-\ee
+\]
 
 如果任一堆为空，则归并结果为另一个堆。非空情况下，两个堆$h_1$和$h_2$分别可以表示为$node(k_1, ts_1)$和$node(k_2, ts_2)$。我们比较两个堆的根节点元素，令根节点较大的一个作为另一个的新子树。这样所有的配对堆组成的集合，在归并操作下构成一个幺半群，单位元是空堆nil。
 
@@ -1713,7 +1713,7 @@ F_2 & = F_1[\sqrt{\beta}] \\
 \]
 对于某一多项式方程，如果我们能够从基本域有理数域开始，通过一系列上述的扩域，最终到达分裂域，那么自然这个方程是可以用根式解的。
 
-我们给出了平方根的例子，显然还有更加复杂的情况。3次方程可能要开3次方，有些方程甚至还需要虚数单位$i$。从高中数学我们知道，最简单的方程$x^p-1=0$含有$p$个根$1, \zeta, \zeta^2, ..., \zeta^{p-1}$，其中$\zeta \neq 1$是单位圆上的一个复根。为了涵盖这些情况，我们需要更加严格地描述扩域。
+我们给出了平方根的例子，显然还有更加复杂的情况。3次方程可能要开3次方根，有些方程甚至还需要虚数单位$i$。从高中数学我们知道，最简单的方程$x^p-1=0$含有$p$个根$1, \zeta, \zeta^2, ..., \zeta^{p-1}$，其中$\zeta \neq 1$是单位圆上的一个复根。为了涵盖这些情况，我们需要更加严格地描述扩域。
 
 \begin{figure}[htbp]
 \centering
@@ -1789,7 +1789,7 @@ $F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同�
 \end{array}
 \]
 
-这说明$G$的确是一个群，并且在同构的意义下等同于二阶循环群，它也同构于二阶对称群$S_2$。这个群可以写成$\{f, f^2\}$，这是因为$f^2 = f \cdot f = 1$，是群的单位元。也可写成置换群的形式$\{(1), (1 2)\}$，其中(1)是保持两个根不变，(1 2)是对调两个根。
+这说明$G$的确是一个群，并且在同构的意义下等同于二阶循环群，它也同构于二阶对称群$S_2$。这个群可以写成$\{f, f^2\}$，这是因为$f^2 = f \cdot f = 1$，是群的单位元。也可写成置换群的形式$\{(1), (1\ 2)\}$，其中(1)是保持两个根不变，(1 2)是对调两个根。
 
 \begin{Exercise}
 \Question{试证明：对于有理数系数的任何多项式$p(x)$，若$E/Q$是扩域，$f$是$E$上的$Q$-自同构，则有$f(p(x)) = p(f(x))$。}
@@ -1803,7 +1803,7 @@ $F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同�
 现在我们进入了伽罗瓦理论的核心部分了。从方程系数所在的域$F$开始，我们可以进行一系列扩域一直到达分裂域$F \subset F_1 \subset F_2 ... \subset E$。对应的伽罗瓦群为$Gal(E/F)$。伽罗瓦发现，这个群的所有子群和这些中间域$F_1, F_2, ...$之间存在着反序的一一对应。
 
 \begin{theorem}
-\textbf{伽罗瓦基本定理}：令$E$为域$F$的伽罗瓦扩张，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
+\textbf{伽罗瓦基本定理}：令$E/F$为扩域\footnote{严格说，要求是伽罗瓦扩张，我们这里略去了伽罗瓦扩张的定义。}，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
 \end{theorem}
 
 之所以说是反序，是因为，随着域的扩张，对应的群是减小的。扩张的起点是域$F$，此时对应的群是完整的伽罗瓦群$G = Gal(E/F)$；扩张的终点是分裂域$E$，此时的群只有一个元素，就是恒等变换$\{1\}$。扩张的中间域$L$，对应的群是$H = Gal(E/L)$，它是子群，有$Gal(E/L) \subset Gal(E/F)$。并且如果$H$是正规子群（如果记不清了，可回去看一下\ref{normal-subgroup}），则它的商群$G/H = Gal(L/F)$。
@@ -1824,7 +1824,7 @@ $F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同�
       (5, 0) node (G5) {$\{1, g\}$}
       (3, -3) node (G) {$\{1, f, g, (f \cdot g)\}$};
 \draw[->] (Q3-5) edge node[midway, above] {伽罗瓦群} (G1)
-      (G) edge node[midway, above] {伽罗瓦扩张} (Q)
+      (G) edge node[midway, above] {对应到扩域} (Q)
       (Q3) edge node[midway] {扩域} (Q3-5)
       (Q15) edge (Q3-5)
       (Q5) edge (Q3-5)
@@ -1909,7 +1909,7 @@ g((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a + b\sqrt{3}) - (c + d\sqrt{
 
 \subsection{可解性}
 
-通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，若扩域$F[\alpha_1, ..., \alpha_{i-1}]$中不含有$p$次单位根，我们可以认为$F[\alpha_1, ..., \alpha_i]$中也不含有$p$次单位根。除非$\alpha_i$本身就是$p$次单位根。举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
+通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，若扩域$F[\alpha_1, ..., \alpha_{i-1}]$中不含有$p$次单位根，我们可以认为$F[\alpha_1, ..., \alpha_i]$中也不含有$p$次单位根。除非$\alpha_i$本身就是$p$次单位根。举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了所有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
 
 这样，任何根式扩域$F[\alpha_1, ..., \alpha_k]$都组成一系列递增的链条：
 
@@ -1920,13 +1920,17 @@ F = F_0 \subseteq F_1 \subseteq F_2 \subseteq ... \subseteq F_k = F[\alpha_1, ..
 其中每个$F_i = F_{i-1}[\alpha_i]$，而$\alpha_i$是$F_{i-1}$中某个元素的素数次方根。并且满足上面关于单位根的条件。和这一系列扩域链对应的，是一系列递减的子群链：
 
 \[
-Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = {1}
+Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = \{1\}
 \]
 
 其中$G_i = Gal(F_k/F_i) = Gal(F_k/F_{i-1}[\alpha_i])$。每一步从$G_{i-1}$前进到它的子群$G_i$，都反应了向域$F$中扩张素数次方根$\alpha_i$。用群论的术语说，$G_i$是前一个群$G_{i-1}$的正规子群，而商群$G_{i-1}/G_i$是阿贝尔群（可交换的）。我们下面来证明这点。
 
 \begin{theorem}
-如果扩域$B \subseteq B[\alpha] \subseteq E$中，$\alpha^p \in B$，$p$是素数。并且满足上面的单位根的条件，则$Gal(E/B[\alpha])$是群$Gal(E/B)$的正规子群，并且商群 $Gal(E/B)/Gal(E/B[\alpha])$ 是阿贝尔群。
+如果扩域$B \subseteq B[\alpha] \subseteq E$中，$\alpha^p \in B$，$p$是素数。并且满足上面的单位根的条件，则$Gal(E/B[\alpha])$是群$Gal(E/B)$的正规子群，并且商群
+\[
+Gal(E/B) / Gal(E/B[\alpha])
+\]
+是阿贝尔群。
 \end{theorem}
 
 \begin{proof}
@@ -1948,7 +1952,7 @@ Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = {1
 (\sigma(\alpha))^p = \sigma(\alpha^p) = \sigma(\zeta^p) = \sigma(1) = 1
 \]
 
-所以$\sigma(\alpha) = \zeta^i = \alpha_i \in B[\alpha]$，这是因为每个$p$次单位根都是$\zeta^i$的形式。第二种情况下，$\alpha$不是$p$次单位根，此时：
+所以$\sigma(\alpha) = \zeta^i \in B[\alpha]$，这是因为每个$p$次单位根都是$\zeta^i$的形式。第二种情况下，$\alpha$不是$p$次单位根，此时：
 
 \[
 (\sigma(\alpha))^p = \sigma(\alpha^p) = \alpha^p
@@ -1974,16 +1978,16 @@ Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = {1
 这样回过头来看伽罗瓦群的子群链：
 
 \[
-Gal(F[\alpha_1, ..., \alpha_k]/F) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = {1}
+Gal(F[\alpha_1, ..., \alpha_k]/F) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 \]
 
 如果这链条中，每个群$G_i$都是上一个群$G_{i-1}$的正规子群，并且每个商群$G_{i-1}/G_i$都是可交换的，我们称伽罗瓦群$Gal(F[\alpha_1, ..., \alpha_k]/F)$是\textbf{可解的}。
 
 现在我们来看一般的$n$次方程。
 
-\be
+\[
 x^n - a_1x^{n-1} + a_2x^{n-2}... \pm a_n = 0
-\ee
+\]
 
 包含系数的基本域为$Q[a_1, ..., a_n]$。如果它的$n$个根（不一定为根式）是$x_1, ..., x_n$，即
 
@@ -1994,29 +1998,29 @@ x^n - a_1x^{n-1} + a_2x^{n-2}... \pm a_n = 0
 方程的根域为$Q[x_1, ..., x_n]$。如果无论怎样对基本域做根式扩域，都无法包含方程的根域，我们就说方程是无法用根式求解的。
 
 \begin{theorem}
-当$n \geq 5$时，$Q[a_1, ..., a_n]$的根式扩域总不包含根域$Q[x_1, ..., x_n]$。
+当$n \geq 5$时，$Q[a_1, ..., a_n]$的根式扩域不包含根域$Q[x_1, ..., x_n]$。
 \end{theorem}
 
 \begin{proof}
-我们用反证法，假设某个根式扩域$E$包含根域$Q[x_1, ..., x_n]$，则$E$也是根域的根式扩域，根据我们此前的定理，还存在更大个根式扩域$\overline{E} \supseteq E$，使得对应的伽罗瓦群$G_0 = Gal(\overline{E}/Q[a_1, ..., a_n])$包括所有根的置换的自同构。这样我们就可以构造一个子群的链条：
+我们用反证法，假设某个根式扩域$E$包含根域$Q[x_1, ..., x_n]$，根据此前的定理，还存在更大个根式扩域$\overline{E} \supseteq E$，使得对应的伽罗瓦群$G_0 = Gal(\overline{E}/Q[a_1, ..., a_n])$包括所有根的置换的自同构。这样我们就可以构造一个子群的链条：
 
 \[
 G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 \]
 
-每个$G_i$都是上一个群$G_{i-1}$的正规子群，并且商群$G_{i-1}/G_i$是可交换的。我们要证明这是不可能的。由于商群$G_{i-1}/G_i$是可交换的，正规子群$G_i$是同态映射下$G_{i-1}$中的核。所以任意$G_{i-1}$中的两个自同构$\sigma, \tau$：
+每个$G_i$都是上一个群$G_{i-1}$的正规子群，并且商群$G_{i-1}/G_i$是可交换的。我们要证明这是不可能的。正规子群$G_i$是同态映射下$G_{i-1}$中的核，所以任意$G_{i-1}$中的两个自同构$\sigma, \tau$都有：
 
 \[
 \sigma^{-1}\tau^{-1}\sigma\tau \in G_{i}
 \]
 
-当$n$大于等于5时，$G_0$包含所有根的置换，同构于对称群$S_n$，它必然包含3循环的置换$(a b c)$。假设$G_{i-1}$中也包含3循环置换，我们有：
+当$n$大于等于5时，$G_0$包含所有根的置换，同构于对称群$S_n$，它必然包含3循环的置换$(a\ b\ c)$。假设$G_{i-1}$中也包含3循环置换，我们有：
 
 \[
-(a b c) = (d a c)^{-1}(c e b)^{-1}(d a c)(c e b) \in G_i
+(a\ b\ c) = (d\ a\ c)^{-1}(c\ e\ b)^{-1}(d\ a\ c)(c\ e\ b) \in G_i
 \]
 
-这说明$G_i$也包含3循环置换，根据数学归纳法，子群链条中所有的群都包含3循环置换。但这是不可能的，因为最后一个群是$\{1\}$它不含3循环置换。
+这说明$G_i$也包含3循环置换。根据数学归纳法，子群链条中所有的群都包含3循环置换。但这是不可能的，因为最后一个群是$\{1\}$，它不含3循环置换。
 \end{proof}
 
 \begin{figure}[htbp]
@@ -2029,7 +2033,7 @@ G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 %\end{wrapfigure}
 \end{figure}
 
-我们也可以从另一个角度做出解释。$S_5$的唯一正规子群是$A_5$，其中$A_5$叫做交错群，$A_5$的唯一正规子群是$\{1\}$。这一子群链是$S_5 \supset A_5 \supset \{1\}$。但是商群$A_5/\{1\}$不是阿贝尔群（不可交换）。因此它不是可解群。这样它对应的一般5次方程不是根式可解的。
+这样我们就证明了一般5次方程是不能用根式解的。我们也可以从另一个角度做出解释。对称群$S_5$有120个元素，它的唯一正规子群是$A_5$，其中$A_5$叫做交错群，有60个元素。$A_5$的唯一正规子群是$\{1\}$。这一子群链是$S_5 \supset A_5 \supset \{1\}$。但是商群$A_5/\{1\}$不是阿贝尔群（不可交换）。因此它不是可解群。这样它对应的一般5次方程不是根式可解的。
 
 一般4次方程，对称群$S_4$的正规子群是$A_4$，交错群$A_4$有一个正规子群
 
@@ -2043,15 +2047,17 @@ G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 
 \begin{figure}[htbp]
   \centering
-  \subcaptionbox{交错群$A_3$相当于3阶循环群。}[0.3\linewidth]{\includegraphics[scale=0.25]{img/C3.eps}} \quad
-  \subcaptionbox{对称群$S_3$}[0.3\linewidth]{\includegraphics[scale=0.25]{img/S3.eps}}
+  \subcaptionbox{交错群$A_3$相当于3阶循环群}[0.3\linewidth]{\includegraphics[scale=0.25]{img/C3.eps}} \quad
+  \subcaptionbox{对称群$S_3$，其上部为$A_3$}[0.3\linewidth]{\includegraphics[scale=0.25]{img/S3.eps}}
   \subcaptionbox{交错群$A_4$}[0.3\linewidth]{\includegraphics[scale=0.25]{img/A4.eps}}
   \caption{对称群和交错群，黑点是单位元，循环用闭环表示}
   \label{fig:group-graph}
 \end{figure}
 
+至此我们简单介绍了伽罗瓦理论。伽罗瓦理论是抽象代数中的强大工具，它可以解决很多问题，如证明代数基本定理、证明当年高斯用尺规作图画出的正17边形是可行的。证明无法用尺规作图完成古希腊三大作图问题——圆化方、三分角、倍立方等等。我们希望读者能通过这一章，领略到抽象思维的深邃和优美。
+
 \begin{Exercise}
-\Question{考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群是什么？}
+\Question{考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群和对应的子群链是什么？}
 \end{Exercise}
 
 \ifx\wholebook\relax \else
