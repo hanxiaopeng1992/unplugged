@@ -1044,7 +1044,7 @@ a \sim' b \text{当且仅当} b^{-1}a \in H
 
 为此，我们可以将子群$H$的陪集个数（左或者右）定义为$H$在$G$中的\textbf{指数}。
 
-一般情况下，子群的右陪集$Ha$未必等于左陪集$aH$，如果相等，这是的子群叫做正规子群。
+一般情况下，子群的右陪集$Ha$未必等于左陪集$aH$，如果相等，这是的子群叫做正规子群。正是伽罗瓦第一个引入了正规子群来分析方程的可解性。
 
 \begin{definition}
 一个群$G$的子群$N$叫做一个\textbf{正规子群}（或者不变子群），加入对$G$的每个元$a$都有：
@@ -1071,7 +1071,19 @@ ana^{-1} \in N
 \]
 \end{theorem}
 
-正规子群$N$的陪集叫做\textbf{商群}，用$G/N$表示。
+我们可以把正规子群$N$的所有陪集做成一个集合$\{aN, bN, cN, ...\}$，并且定义这个集合上的乘法为：
+
+\[
+(xN)(yN) = (xy)N
+\]
+
+可以验证，正规子群的陪集在这个乘法下构成一个群，叫做\textbf{商群}，用$G/N$表示。在正规子群、商群和同态映射之间存在着重要的关系。首先一个群$G$同它的每个商群$G/N$同态。要证明这一点，我们可以构造一个映射$a \to aN, a \in G$。这显然是一个从$G$到商群的满射，对于$G$中任何两个元素$a, b$，都有$ab \to abN = (aN)(bN)$。所以它是一个同态满射。这样我们既可以通过正规子群，也可以通过商群推测群$G$的性质。为了做到这一点，我们定义一下“核”的概念。
+
+\begin{definition}
+若$f$是群$G$到另一个群$G'$的同态满射，$G'$的单位元$e'$在映射$f$之下的逆像集合是$G$中的一个子集。这个子集叫做同态满射$f$的\textbf{核}。
+\end{definition}
+
+我们有如下定理，如果$G$和$G'$同态，那么这个同态满射的核$N$是$G$的正规子群。并且其商群$G/N \equiv G'$。这样一个群不仅和和它的每一个商群同态，并且抽象地来看，$G$只能和它的商群同态。有时候，我们发现群$G$和$G'$同态，但是$G'$的性质我们并不清楚，这时候，我们一定能找到$G$的一个正规子群$N$，使得$G'$的性质和商群$G/N$完全一样。从这里我们能看出不变子群和商群的意义。伽罗瓦正是通过这一点，最终解决了方程根式的问题。
 
 \begin{Exercise}
 \Question{证明子群的判定定理\ref{theorem:subgroup}。}
@@ -1705,7 +1717,20 @@ F_2 & = F_1[\sqrt{\beta}] \\
 
 我们给出了平方根的例子，显然还有更加复杂的情况。3次方程可能要开3次方，有些方程甚至还需要虚数单位$i$。从高中数学我们知道，最简单的方程$x^p-1=0$含有$p$个根$1, \zeta, \zeta^2, ..., \zeta^{p-1}$，其中$\zeta \neq 1$是单位圆上的一个复根。为了涵盖这些情况，我们需要更加严格地描述扩域。
 
-TODO: 加上一个3rd-root-of-unity的图
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=3]
+ \draw[step=.5cm, gray, very thin] (-1.2,-1.2) grid (1.2,1.2);
+ \draw[->] (-1.25,0) -- (1.25,0) coordinate (x axis);
+ \draw[->] (0,-1.25) -- (0,1.25) coordinate (y axis);
+ \draw (0,0) circle (1cm);
+ \draw[->, very thick] (0, 0) edge node[below=2pt,fill=white] {$\zeta^0 = \zeta^3 = 1$} (1, 0)
+     (0, 0) edge node[above] {$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$} (120:1cm)
+     (0, 0) edge node[below] {$\zeta^2 = \dfrac{-1 - i\sqrt{3}}{2}$} (-120:1cm);
+\end{tikzpicture}
+\caption{单位根，$x^3 - 1 = 0$}
+\label{fig:root-of-unity}
+\end{figure}
 
 如果$\alpha$的整数次方等于域$F$中的某个元素$b$，也就是说$\alpha^m = b \in F$，这样$\alpha$就可以写成$b$的根式形式$\alpha = \sqrt[m]{b}$。我们可以逐一用这样的一组根式进行扩域，从而得到$F[\alpha_1][\alpha_2]...[\alpha_k]$。如果每次扩张所用的$\alpha_i$都是根式，我们称扩域$F[\alpha_1, \alpha_2, ..., \alpha_k]$为$F$的根式扩域（radical extension）。设方程的根是$x_1, x_2, ..., x_n$（注意，这里我们没有说$x_i$一定是根式），如果其分裂域$E = Q[x_1, x_2, ..., x_n]$是根式扩域，我们说方程是根式可解的。
 
@@ -1743,7 +1768,7 @@ $F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同�
 \item $p(x)$的$Q$-自同构代表了根的对称性，它包含两个变换：$f(a + b\sqrt{2}) = a - b\sqrt{2}$和$g(x) = x$。
 \end{enumerate}
 
-但是根式扩域并不能保证对所有的根完全对称。例如$Q[x_1, ..., x_n, \sqrt{x_1}]$，它包含$x_1$的平方根，但是不含$x_2$的平方根。因此不存在能够调换$x_1$和$x_2$的自同构。但是，为了恢复对称性，我们可以继续把$\sqrt{x_2}, ..., \sqrt{x_n}$扩展到域里。
+但是仅仅扩展到分裂域并不能保证对所有的根完全对称。例如$x^4 - 5x + 6 = 0$的分裂域是$Q[\sqrt{2}, \sqrt{3}]$，虽然我们有能够调换$\pm \sqrt{2}$的自同构$f$，但是不存在能够调换$\sqrt{2}$和$\sqrt{3}$的自同构。否则根据自同构的定义$f(x) = x$，如果$f(\sqrt{2}) = \sqrt{3}$，则$f(\sqrt{2})^2 = \sqrt{3}^2$，即$\sqrt{2} = \sqrt{3}$。这显然是错误的。另外，考虑根式扩域$Q[x_1, ..., x_n, \sqrt{x_1}]$，它包含$x_1$的平方根，但是不含$x_2$的平方根。因此不存在能够调换$x_1$和$x_2$的自同构。为了恢复对称性，我们可以继续把$\sqrt{x_2}, ..., \sqrt{x_n}$扩展到域里。
 
 \begin{theorem}
 对于每个$Q[x_1, ..., x_n]$的根式扩域$E$，都存在一个更大的根式扩域$E \subseteq \overline{E}$，使得所有$x_1, ..., x_n$的置换都有自同构$\sigma$。
@@ -1785,7 +1810,7 @@ $F$-自同构：进一步，如果$E$是$F$的扩域，并且在域$E$的自同�
 
 之所以说是反序，是因为，随着域的扩张，对应的群是减小的。扩张的起点是域$F$，此时对应的群是完整的伽罗瓦群$G = Gal(E/F)$；扩张的终点是分裂域$E$，此时的群只有一个元素，就是恒等变换$\{1\}$。扩张的中间域$L$，对应的群是$H = Gal(E/L)$，它是子群，有$Gal(E/L) \subset Gal(E/F)$。并且如果$H$是正规子群（如果记不清了，可回去看一下\ref{normal-subgroup}），则它的商群$G/H = Gal(L/F)$。
 
-我们举一个具体的例子\cite{MArtin}。考虑方程$x^4 - 8x^2 + 15 = 0$，它也可以表示成$(x^2 - 3)(x^2 - 5) = 0$。它的系数域是有理数域$Q$，方程的分裂域是$E = Q[\sqrt{3}, \sqrt{5}]$。这是一个4次扩域，即$[E : Q] = 4$。它的伽罗瓦群$Gal(E/Q)$的阶是4，同构于一个4阶循环群。可以找到3个中间扩域分别是$Q[\sqrt{3}]$, $Q[\sqrt{5}]$和$Q[\sqrt{15}]$，这3个中间扩域都是$Q$上的二阶扩域，所以对应的子群的阶都是2。而方程的伽罗瓦群，也就是4阶循环群只有一个2阶子群。除此之外，它不再有其它非平凡子群了。根据伽罗瓦基本定理，我们知道，除了那3个中间扩域之外，再也没有其它中间扩域了。换个角度看，对于分裂域上的任何元素$\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$，其中$a, b, c, d$是有理数，所以阶为4；对于3个中间扩域上的任何元素，$b, c, d$中至少有两个为0，所以阶为2。
+我们举一个具体的例子\cite{MArtin}。考虑方程$x^4 - 8x^2 + 15 = 0$，它也可以表示成$(x^2 - 3)(x^2 - 5) = 0$。它的系数域是有理数域$Q$，方程的分裂域是$E = Q[\sqrt{3}, \sqrt{5}]$。它的伽罗瓦群$Gal(E/Q)$的阶是4，同构于一个4阶循环群。可以找到3个中间扩域分别是$Q[\sqrt{3}]$, $Q[\sqrt{5}]$和$Q[\sqrt{15}]$，这3个中间扩域对应的子群的阶都是2。而方程的伽罗瓦群，也就是4阶循环群只有一个2阶子群。除此之外，它不再有其它非平凡子群了。根据伽罗瓦基本定理，我们知道，除了那3个中间扩域之外，再也没有其它中间扩域了。换个角度看，分裂域上的任何元素都可以表示为$\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$，其中$a, b, c, d$是有理数；对于3个中间扩域上的任何元素，$b, c, d$中至少有两个为0。
 
 \begin{figure}[htbp]
 \centering
@@ -1886,7 +1911,7 @@ g((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a + b\sqrt{3}) - (c + d\sqrt{
 
 \subsection{可解性}
 
-通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数$p$次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，我们假设中间扩域$F[\alpha_1, ..., \alpha_{i-1}]$不包含1的$p$次方根（即$x^p - 1 = 0$的根$\zeta \neq 1$），除非$\alpha_i$恰好是1的$p$次方根。否则，我们先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$就包含了1的所有$p$次方根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。在此之后再用$\alpha_i$扩域。以上这两个限制并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
+通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，若扩域$F[\alpha_1, ..., \alpha_{i-1}]$中不含有$p$次单位根，我们可以认为$F[\alpha_1, ..., \alpha_i]$中也不含有$p$次单位根。除非$\alpha_i$本身就是$p$次单位根。举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
 
 这样，任何根式扩域$F[\alpha_1, ..., \alpha_k]$都组成一系列递增的链条：
 
@@ -1894,22 +1919,142 @@ g((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a + b\sqrt{3}) - (c + d\sqrt{
 F = F_0 \subseteq F_1 \subseteq F_2 \subseteq ... \subseteq F_k = F[\alpha_1, ..., \alpha_k]
 \]
 
-其中每个$F_i = F_{i-1}[\alpha_i]$，而$\alpha_i$是$F_{i-1}$中某个元素的素数次方根。并且除非$\alpha_i$是1的$p$次方根，$F_i$中包含所有1的$p$次方根。
-
-和这一系列扩域链对应的，是一系列递减的子群链：
+其中每个$F_i = F_{i-1}[\alpha_i]$，而$\alpha_i$是$F_{i-1}$中某个元素的素数次方根。并且满足上面关于单位根的条件。和这一系列扩域链对应的，是一系列递减的子群链：
 
 \[
 Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = {1}
 \]
 
-其中$G_i = Gal(F_k/F_i) = Gal(F_k/F_{i-1}[\alpha_i])$。每一步从$G_{i-1}$前进到它的子群$G_i$，都反应了向域$F$中扩张素数次方根$\alpha_i$。用群论的术语说，$G_i$是前一个群$G_{i-1}$的正规子群，而商群$G_{i-1}/G_i$是阿贝尔群（二元运算满足交换律）。我们下面来证明这点。
+其中$G_i = Gal(F_k/F_i) = Gal(F_k/F_{i-1}[\alpha_i])$。每一步从$G_{i-1}$前进到它的子群$G_i$，都反应了向域$F$中扩张素数次方根$\alpha_i$。用群论的术语说，$G_i$是前一个群$G_{i-1}$的正规子群，而商群$G_{i-1}/G_i$是阿贝尔群（可交换的）。我们下面来证明这点。
 
 \begin{theorem}
-如果扩域$B \subseteq B[\alpha] \subseteq E$中，$\alpha^p \in B$，$p$是素数。并且除非$\alpha$是1的$p$次方根，$B[\alpha]$中包含所有1的$p$次方根，则$Gal(E/B[\alpha])$是群$Gal(E/B)$的正规子群，并且商群$Gal(E/B)/Gal(E/B[\alpha])$是阿贝尔群。
+如果扩域$B \subseteq B[\alpha] \subseteq E$中，$\alpha^p \in B$，$p$是素数。并且满足上面的单位根的条件，则$Gal(E/B[\alpha])$是群$Gal(E/B)$的正规子群，并且商群 $Gal(E/B)/Gal(E/B[\alpha])$ 是阿贝尔群。
 \end{theorem}
 
 \begin{proof}
+我们要利用在\ref{normal-subgroup}中介绍的群同态定理来完成这一证明。我们要找到一个$Gal(E/B)$上的同态映射，它的核是$Gal(E/B[\alpha])$，它映射到一个阿贝尔群上。以$Gal(E/B[\alpha])$为核的映射显然限制在域$B[\alpha]$上，我们将这一映射记为$|_{B[\alpha]}$，根据伽罗瓦群的元素是自同构的定义：
+
+\[
+\sigma \in Gal(E/B[\alpha]) \iff \sigma|_{B[\alpha]} \text{是恒等变换}
+\]
+
+伽罗瓦群$Gal(E/B)$中所有这样的自同构$\sigma$满足同态映射的性质：
+
+\[
+\sigma'\sigma|_{B[\alpha]} = \sigma'|_{B[\alpha]}\sigma|_{B[\alpha]}
+\]
+
+由于$\sigma$固定所有$B$中的元素不变，所以$\sigma|_{B[\alpha]}$完全由$\sigma(\alpha)$决定。这里有两种情况。第一种情况是$\alpha$恰好等于$p$次单位根$\zeta$。此时：
+
+\[
+(\sigma(\alpha))^p = \sigma(\alpha^p) = \sigma(\zeta^p) = \sigma(1) = 1
+\]
+
+所以$\sigma(\alpha) = \zeta^i = \alpha_i \in B[\alpha]$，这是因为每个$p$次单位根都是$\zeta^i$的形式。第二种情况下，$\alpha$不是$p$次单位根，此时：
+
+\[
+(\sigma(\alpha))^p = \sigma(\alpha^p) = \alpha^p
+\]
+
+根据根式扩域的规则，$\alpha^p$是$B$中的元素，所以$\sigma(\alpha) = \zeta^j\alpha$。其中$\zeta$是$p$次单位根，并且$\zeta \in B$。所以也有$\sigma(\alpha) \in B[\alpha]$。两种情况合并到一起，说明映射在每个$\sigma$下都是封闭的。
+
+这就说明了$|_{B[\alpha]}$将伽罗瓦群$Gal(E/B)$映射到$Gal(E/B[\alpha])$。接下来我们要证明群$Gal(B[\alpha]/B)$是可交换的。我们仍然分两种情况来讨论：第一种情况$\alpha$是单位根，我们看到每个群中的元素，也就是自同构$\sigma_i = \sigma|_{B[\alpha]} \in Gal(B[\alpha]/B)$都可以写成$\sigma_i(\alpha) = \alpha^i$的形式，所以：
+
+\[
+\sigma_i\sigma_j(\alpha) = \sigma_i(\alpha^j) = \alpha^{ij} = \sigma_j\sigma_i(\alpha)
+\]
+
+第二种情况$\alpha$不是单位根，这样每个群中的元素，也就是自同构$\sigma_i$都可以写成$\sigma_i(\alpha) = \zeta^i\alpha$的形式，所以：
+
+\[
+\sigma_i\sigma_j(\alpha) = \sigma_i(\zeta^j\alpha) = \zeta^{i + j}\alpha = \sigma_j\sigma_i(\alpha)
+\]
+
+由于$\zeta \in B$，所以$\zeta$在自同构下固定不变。这样两种情况下，我们都证明了交换性。
 \end{proof}
+
+这样回过头来看伽罗瓦群的子群链：
+
+\[
+Gal(F[\alpha_1, ..., \alpha_k]/F) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = {1}
+\]
+
+如果这链条中，每个群$G_i$都是上一个群$G_{i-1}$的正规子群，并且每个商群$G_{i-1}/G_i$都是可交换的，我们称伽罗瓦群$Gal(F[\alpha_1, ..., \alpha_k]/F)$是\textbf{可解的}。
+
+现在我们来看一般的$n$次方程。
+
+\be
+x^n - a_1x^{n-1} + a_2x^{n-2}... \pm a_n = 0
+\ee
+
+包含系数的基本域为$Q[a_1, ..., a_n]$。如果它的$n$个根（不一定为根式）是$x_1, ..., x_n$，即
+
+\[
+(x - x_1)...(x - x_n) = x^n - a_1x^{n-1} ... \pm a_n
+\]
+
+方程的根域为$Q[x_1, ..., x_n]$。如果无论怎样对基本域做根式扩域，都无法包含方程的根域，我们就说方程是无法用根式求解的。
+
+\begin{theorem}
+当$n \geq 5$时，$Q[a_1, ..., a_n]$的根式扩域总不包含根域$Q[x_1, ..., x_n]$。
+\end{theorem}
+
+\begin{proof}
+我们用反证法，假设某个根式扩域$E$包含根域$Q[x_1, ..., x_n]$，则$E$也是根域的根式扩域，根据我们此前的定理，还存在更大个根式扩域$\overline{E} \supseteq E$，使得对应的伽罗瓦群$G_0 = Gal(\overline{E}/Q[a_1, ..., a_n])$包括所有根的置换的自同构。这样我们就可以构造一个子群的链条：
+
+\[
+G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
+\]
+
+每个$G_i$都是上一个群$G_{i-1}$的正规子群，并且商群$G_{i-1}/G_i$是可交换的。我们要证明这是不可能的。由于商群$G_{i-1}/G_i$是可交换的，正规子群$G_i$是同态映射下$G_{i-1}$中的核。所以任意$G_{i-1}$中的两个自同构$\sigma, \tau$：
+
+\[
+\sigma^{-1}\tau^{-1}\sigma\tau \in G_{i}
+\]
+
+当$n$大于等于5时，$G_0$包含所有根的置换，同构于对称群$S_n$，它必然包含3循环的置换$(a b c)$。假设$G_{i-1}$中也包含3循环置换，我们有：
+
+\[
+(a b c) = (d a c)^{-1}(c e b)^{-1}(d a c)(c e b) \in G_i
+\]
+
+这说明$G_i$也包含3循环置换，根据数学归纳法，子群链条中所有的群都包含3循环置换。但这是不可能的，因为最后一个群是$\{1\}$它不含3循环置换。
+\end{proof}
+
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.3\textwidth}
+ \centering
+ \includegraphics[scale=0.3]{img/Soccer-ball.eps}
+ \captionsetup{labelformat=empty}
+ \caption{对称群$S_5$是交错群$A_5$与二阶循环群的积。可以描述一个足球的对称}
+ \label{fig:S5}
+%\end{wrapfigure}
+\end{figure}
+
+我们也可以从另一个角度做出解释。$S_5$的唯一正规子群是$A_5$，其中$A_5$叫做交错群，$A_5$的唯一正规子群是$\{1\}$。这一子群链是$S_5 \supset A_5 \supset \{1\}$。但是商群$A_5/\{1\}$不是阿贝尔群（不可交换）。因此它不是可解群。这样它对应的一般5次方程不是根式可解的。
+
+一般4次方程，对称群$S_4$的正规子群是$A_4$，交错群$A_4$有一个正规子群
+
+\[
+\{(1), (1 2)(3 4), (1 3)(2 4), (1 4)(2 3)\}
+\]
+
+而这个群和克莱因群同构，所以是可解的。
+
+对于三次方程，对称群$S_3$的正规子群$A_3$，交错群$A_3$同构于3阶循环群。所以也是可解的。
+
+\begin{figure}[htbp]
+  \centering
+  \subcaptionbox{交错群$A_3$相当于3阶循环群。}[0.3\linewidth]{\includegraphics[scale=0.25]{img/C3.eps}} \quad
+  \subcaptionbox{对称群$S_3$}[0.3\linewidth]{\includegraphics[scale=0.25]{img/S3.eps}}
+  \subcaptionbox{交错群$A_4$}[0.3\linewidth]{\includegraphics[scale=0.25]{img/A4.eps}}
+  \caption{对称群和交错群，黑点是单位元，循环用闭环表示}
+  \label{fig:group-graph}
+\end{figure}
+
+\begin{Exercise}
+\Question{考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群是什么？}
+\end{Exercise}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
