@@ -366,32 +366,32 @@ g & = as + bt & \text{The definition} \\
 \end{array}
 \]
 
-这说明$c$可以度量$g$，也就是说$c \leq g$。这就证明了$g$是最大公度。综上我们就证明了贝祖等式，即存在整数使得$ax + by = g$，并且进一步得知最大公度是所有线性组合的正值中最小的。
+It means $c$ measure $g$, so $c \leq g$. It gives that $g$ is the greatest common measure. Summarize the above, we complete the proof of Bézout's identity. There exists integers, that $ax + by = g$ holds. Besides that, we know the greatest common measure is the minimum postive values among all the linear combinations.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.8]{img/Meziriac.eps}
  \captionsetup{labelformat=empty}
- \caption{梅齐里亚克（Claude Gaspard Bachet de Méziriac, 1581–1638），最早发现并证明了整数上的贝祖等式。}
+ \caption{Claude Gaspard Bachet de Méziriac, 1581–1638, who first discovered and proved Bézout's idendity for integers.}
  \label{fig:Meziriac}
 \end{figure}
 %\end{wrapfigure}
 
-使用贝祖等式，我们可以推导出扩展欧几里得算法。
+We can deduce the extended Euclid algorithm with Bézout's idendity.
 
 \[
 \begin{array}{rlr}
-ax + by & = gcm(a, b) & \text{贝祖等式} \\
-        & = gcm(b, r_0) & \text{欧几里得算法，式(\ref{eq:recursive-gcm})} \\
-        & = bx' + r_0 y' & \text{对$b$和$r_0$使用贝祖等式} \\
-        & = bx' + (a - bq_0)y' & \text{利用$a = b q_0 + r_0$} \\
-        & = ay' + b(x' - y'q_0) & \text{整理为$a$和$b$的线性组合} \\
-        & = ay' + b(x' - y' \lfloor a / b \rfloor) & \text{将$q_0$表示为$a$与$b$的商}
+ax + by & = gcm(a, b) & \text{Bézout's idendity} \\
+        & = gcm(b, r_0) & \text{Euclid algorithm (\ref{eq:recursive-gcm})} \\
+        & = bx' + r_0 y' & \text{Use Bézout's idendity for $b$ and $r_0$} \\
+        & = bx' + (a - bq_0)y' & \text{By $a = b q_0 + r_0$} \\
+        & = ay' + b(x' - y'q_0) & \text{As linear combination of $a$ and $b$} \\
+        & = ay' + b(x' - y' \lfloor a / b \rfloor) & \text{$q_0$ as the quotient of $a$ and $b$}
 \end{array}
 \]
 
-这样就得出了每次递归时的关系：
+This gives the recursion case:
 
 \[
 \left \{
@@ -402,14 +402,14 @@ ax + by & = gcm(a, b) & \text{贝祖等式} \\
 \right.
 \]
 
-递归的边界条件出现在$b = 0$的时候，此时$gcm(a, 0) = 1a + 0b$。把边界条件和递归关系归纳起来就得到了扩展欧几里得算法。
+The edge case happends when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, gives the extended Euclid algorithm.
 
 \be
 gcm_{ex}(a, b) = \left \{
   \begin{array}
   {r@{\quad:\quad}l}
   b = 0 & (a, 1, 0) \\
-  \text{否则} & \begin{array}{l}
+  \text{otherwise} & \begin{array}{l}
                 (g, y', x' - y' \lfloor a / b \rfloor) \\[2pt]
                 \text{其中}(g, x', y') = gcm_{ex}(b, a \bmod b)
                 \end{array} \\
