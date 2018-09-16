@@ -1,0 +1,41 @@
+\ifx\wholebook\relax \else
+
+\documentclass{article}
+
+\input{../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{范畴论}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{范畴论}{编程的数学原理}
+
+\ifx\wholebook\relax
+\chapter{范畴论}
+\numberwithin{Exercise}{chapter}
+\fi
+
+\epigraph{你只要能把自己提出的那些“点、线、面”都说的跟“桌子、椅子、啤酒杯子”一样自然连贯就行。}{——大卫$\cdot$希尔伯特}
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\bibitem{HanXueTao16}
+韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社. 2016, ISBN: 9787115430434
+
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
