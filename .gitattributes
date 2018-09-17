@@ -17,4 +17,5 @@
 Makefile text eol=lf
 *.dot    text eol=lf
 *.eps    text eol=lf
-README   text eol-lf
+README   text eol=lf
+*.md     text eol=lf
