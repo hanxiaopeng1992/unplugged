@@ -25,9 +25,9 @@ To build the book in PDF format from the sources, you need
 the following software pre-installed.
 
 - TeXLive, The book is built with XeLaTeX, a Unicode friendly version of TeX;
-- ImageMagick, which can convert the images files to eps format;
+- ImageMagick, which converts the images to eps format;
 
-Install TeXLive
+### Install TeXLive
 
 In Debian/Ubuntu like Linux environment, do **NOT** install the TeXLive through apt-get. Go to TeXLive official site to download the setup scrpt.
 
@@ -41,7 +41,7 @@ $ sudo ./install-tl -gui text -repository http://mirror.ctan.org/systems/texlive
 In Windows, TeXLive provide a gui based installer, in Mac OS X, there's a MacTeX, please visit TeXLive for detail:
 https://tug.org/texlive/
 
-Install ImageMagick
+### Install ImageMagick
 
 ```bash
 $ sudo apt-get install imagemagick
@@ -49,7 +49,7 @@ $ sudo apt-get install imagemagick
 
 For Windows and Mac OS X installer, it can be download through http://www.imagemagick.org
 
-Cusotmize font (Optional)
+### Cusotmize font (Optional)
 
 If the host system fonts are available, e.g. under VM. they
 could be imported as the following example:
@@ -60,7 +60,7 @@ $ sudo cp /Host-System/Fonts/{FontName, fontname}* /usr/share/fonts/host-system/
 $ fc-cache
 ```
 
-Others
+### Others
 
 You need the GNU make tool, in Debian/Ubuntu like Linux, it can be installed through the apt-get command:
 
@@ -74,7 +74,7 @@ In Windows, you can install the MSYS for it. In Mac OS X, please install the dev
 $ xcode-select --install
 ```
 
-Build the book PDF
+### Build the book PDF
 
 enter the folder contains the book TeX manuscript, run
 
