@@ -1,4 +1,4 @@
-IMG_OBJECTS =
+IMG_OBJECTS = Eilenberg Mac-Lane
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
