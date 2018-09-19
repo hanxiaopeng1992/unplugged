@@ -35,12 +35,14 @@
 %--------------------------------------------------------------------------
 \usepackage{graphicx, color}
 \usepackage{wrapfig}
-\usepackage{subfig}
+\usepackage{subcaption}  %subfig is deprecated
 \usepackage{multicol}
+\usepackage[table]{xcolor} %for colored table
 \usepackage{tikz}
 \usetikzlibrary{patterns,matrix,positioning,shapes}
 
 \usepackage{amsmath, amsthm, amssymb} % for math
+\usepackage{textgreek, upgreek}
 \usepackage{gensymb}
 \usepackage{mathtools}
 \usepackage{exercise} % for exercise
@@ -174,6 +176,8 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 \makeatletter
 \newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
