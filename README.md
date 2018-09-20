@@ -13,7 +13,7 @@ We'll keep adding links for the chapters ready for preview.
 - Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
 - Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61801/recursion-zh-cn.pdf))
 - Chapter 3, Group, Ring, and Field. Galois Theory; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61802/algebra-zh-cn.pdf))
-- Chapter 4, Category theory. Category, arrow, and functors. Type system;
+- Chapter 4, Category theory and type system;
 - Chapter 5, Deforest. Build-fold fusion law, optimazation, and algorithm deduction;
 - Chapter 6, Infinity. Set theory, Infinity and stream;
 - Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem.

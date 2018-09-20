@@ -99,11 +99,29 @@ foldMap f = foldr (mappend . f) mempty
 \item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何物体$A$，恒等箭头都指向$A$自己。记为：$A \xlongrightarrow{id_A} A$；
 \item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \xlongrightarrow{f} C$和$A \xlongrightarrow{g} B$，则$f$和$g$的组合为$f \cdot g$，读作“$g$然后$f$”。它表示$A \xlongrightarrow{f \cdot g} C$。
 \end{itemize}
-\end{definition}
 
 有时我们也将箭头$A \xlongrightarrow{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示为某一箭头指定源；目标的类型为$trg: Arw \to Obj$，为某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示为某一对象指定恒等箭头。
 
+除此之外，范畴还必须满足以下两条公理：
 
+\begin{itemize}
+\item \textbf{结合性公理}：箭头组合是可结合的。对任何三个可组合的箭头$f, g, h$都有：
+\[
+f \cdot (g \cdot h) = (f \cdot g) \cdot h
+\]
+\item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
+对于任何箭头$A \xlongrightarrow{f} B$来说，都有：
+\[
+f \cdot id_A = f = id_B \cdot f
+\]
+\end{itemize}
+\end{definition}
+
+由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点$\cdot$表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
+
+\[
+A \xlongrightarrow{id_A} A \xlongrightarrow{f} B \xlongrightarrow{id_B} B
+\]
 
 \section{函子}
 
