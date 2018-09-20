@@ -68,7 +68,7 @@ foldMap f = foldr (mappend . f) mempty
 
 艾伦伯格还是著名的亚洲艺术品收藏家。他收集了来自印度、印度尼西亚、尼泊尔、泰国、柬埔寨、斯里兰卡和中亚的雕塑和艺术品。1992年，他把自己收藏的400多件艺术品捐赠给了纽约大都会博物馆\cite{Wiki-Eilenberg}。
 
-\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{wrapfigure}{L}{0.3\textwidth}
  \centering
  \includegraphics[scale=1]{img/Mac-Lane.eps}
  \captionsetup{labelformat=empty}
@@ -87,6 +87,31 @@ foldMap f = foldr (mappend . f) mempty
 麦克兰恩的早期研究方向为域论与赋值论。1941年，麦克兰恩在访问密歇根大学时遇到了艾伦伯格。两人开始在代数和拓扑学上进行合作，并结出了累累硕果。1943年，他与艾伦伯格在研究同调代数时一起创立了范畴论。
 
 2005年，麦克兰恩逝世于美国的旧金山。
+
+\section{范畴}
+
+在介绍范畴的定义前，请先努力忘记集合、函数、映射这些概念。我们以后会看到它们在范畴论中的具体解释。
+
+\begin{definition}
+一个范畴$C$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
+\begin{itemize}
+\item 两个指定\footnote{英文为assignment}全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}。称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上记为$f: A \to B$，表示箭头$f$的源是$A$，目标是$B$；
+\item 第三个全操作叫恒等箭头（identity arrow），对于任何物体$A$，恒等箭头都指向$A$自己。记为：$id_A : A \to A$；
+\item 第四个操作是一个部分操作，称为组合（composition），它将两个箭头组合起来。如果对于某些对象$A, B, C$定义了箭头$f : B \to C, g: A \to B$，则$f$和$g$的组合为$f \cdot g$，读作“先$g$后$f$”，表示$f \cdot g : A \to C$。
+\end{itemize}
+\end{definition}
+
+如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，源的类型为$src: Arw \to Obj$，目标的类型为$trg: Arw \to Obj$，恒等箭头的类型为$id: Obj \to Arw$。
+
+\section{函子}
+
+\section{自然变换}
+
+\section{积和余积}
+
+\section{数据类型}
+
+\section{伴随}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
