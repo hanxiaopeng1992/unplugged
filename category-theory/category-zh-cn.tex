@@ -160,6 +160,78 @@ h = g \cdot f
 
 我们说这个三角形是可交换的（commute），我们后面将大量用到这个概念。
 
+\subsection{范畴的例子}
+
+我们需要用具体的例子来帮助理解范畴这一抽象概念。同时，前面使用的三角形图像能够帮助我们形成直观的感觉。我们会借助这种图（diagram）来对范畴及其关系进行描述。我们举的第一个例子是幺半群。回顾一下上一章中关于幺半群的定义。幺半群可以说是带有单位元的半群。而半群是二元运算满足结合律的集合。例如字符串在连接操作下构成一个幺半群，单位元是空串。
+
+\begin{lstlisting}
+instance Monoid String where
+    e = ""
+    (*) = (++)
+\end{lstlisting}
+
+我们可以把字符串幺半群记为$(S, \doubleplus, \texttt{""})$，不难验证它满足幺半群的条件：
+
+\[
+\begin{array}{rcl}
+r \doubleplus (s \doubleplus t) = (r \doubleplus s) \doubleplus t &
+\text{和} &
+\texttt{""} \doubleplus s = s = s \doubleplus \texttt{""}
+\end{array}
+\]
+
+我们再考虑另一个幺半群，群元素是若干个不同字符组成的集合，二元操作是集合的并，单位元是空集。记为$(C, \cup, \{\})$，将两个字符集并在一起可以获得一个更大的字符集，例如：
+
+\[
+\{a, b, c, 1, 2\} \cup \{X, Y, Z, 0, 1\} = \{a, b, c, X, Y, Z, 0, 1, 2\}
+\]
+
+我们再观察第三个幺半群，集合是包括0的自然数，二元运算是普通加法，单位元是0。记为$(N, +, 0)$。接下来我们建立这三个幺半群之间的态射（morphism），首先是从字符串幺半群$S$到字符集幺半群$C$之间的态射。任给一个字符串，我们可以把串中用到的字符组成一个字符集：
+
+\[
+S \xlongrightarrow{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
+\]
+
+可以验证，这个态射满足以下条件，对于任意两个字符串$r, s$，有：
+
+\[
+\begin{array}{rcl}
+\phi(s \doubleplus r) = \phi(s) \cup \phi(r) & \text{和} & \phi(\texttt{""}) = \{\}
+\end{array}
+\]
+
+如果我们把二元运算统一用点“$\cdot$”来表示，单位元统一表示为1，则可以写成：
+
+\[
+\begin{array}{rcl}
+\phi(s \cdot r) = \phi(s) \cdot \phi(r) & \text{和} & \phi(1) = 1
+\end{array}
+\]
+
+接下来再定义从字符集$C$到自然数$N$之间的态射。任给一个字符集，我们可以将集合的大小映射为正整数，空集的大小映射为0。
+
+\[
+C \xlongrightarrow{\psi} N \quad \quad \psi: c \mapsto |c|
+\]
+
+有了这两个态射$\phi, \psi$后，我们检查一下它们的组合：
+
+\[
+S \xlongrightarrow{\phi} C \xlongrightarrow{\psi} N
+\]
+
+和
+
+\[
+S \xlongrightarrow{\psi \cdot \phi} N
+\]
+
+显然组合后$\psi \cdot \phi$也是一个态射。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
+
+\[
+S \xlongrightarrow{id_R} S
+\]
+
 \section{函子}
 
 \section{自然变换}
