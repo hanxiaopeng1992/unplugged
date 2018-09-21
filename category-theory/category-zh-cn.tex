@@ -93,14 +93,14 @@ foldMap f = foldr (mappend . f) mempty
 在介绍范畴的定义前，请先努力忘记集合、函数、映射这些概念。我们以后会看到它们在范畴论中的具体解释。
 
 \begin{definition}
-一个范畴$\mathbf{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
+一个范畴$\pmb{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
 \begin{itemize}
 \item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上记为$A \xlongrightarrow{f} B$，表示箭头$f$的源是$A$，目标是$B$；
 \item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何物体$A$，恒等箭头都指向$A$自己。记为：$A \xlongrightarrow{id_A} A$；
 \item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \xlongrightarrow{f} C$和$A \xlongrightarrow{g} B$，则$f$和$g$的组合为$f \cdot g$，读作“$g$然后$f$”。它表示$A \xlongrightarrow{f \cdot g} C$。
 \end{itemize}
 
-有时我们也将箭头$A \xlongrightarrow{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示为某一箭头指定源；目标的类型为$trg: Arw \to Obj$，为某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示为某一对象指定恒等箭头。
+有时我们也将箭头$A \xlongrightarrow{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
 
 除此之外，范畴还必须满足以下两条公理：
 
@@ -109,6 +109,7 @@ foldMap f = foldr (mappend . f) mempty
 \[
 f \cdot (g \cdot h) = (f \cdot g) \cdot h
 \]
+我们可以将其写为$f g h$。
 \item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
 对于任何箭头$A \xlongrightarrow{f} B$来说，都有：
 \[
@@ -117,11 +118,47 @@ f \cdot id_A = f = id_B \cdot f
 \end{itemize}
 \end{definition}
 
-由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点$\cdot$表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
+由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\cdot$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
 
 \[
 A \xlongrightarrow{id_A} A \xlongrightarrow{f} B \xlongrightarrow{id_B} B
 \]
+
+我们再看一下箭头的组合。考虑如下图的3个箭头$f, g, h$，它们组成一个三角形。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     & B & \\
+     A & & C \\};
+  \path[-stealth]
+    (m-2-1) edge node [above] {$f$} (m-1-2)
+    (m-1-2) edge node [above] {$g$} (m-2-3)
+    (m-2-1) edge node [below] {$h$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+可以沿着两条通路从$A$到达$C$，一条是箭头组合$g \cdot f$，另一条是箭头$h$。这样我们就相当于得到了一对平行的箭头：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     A & C\\};
+  \path[-stealth]
+    (m-1-1.north east) edge node [above] {$g \cdot f$} (m-1-2.north west)
+    (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
+\end{tikzpicture}
+\end{center}
+
+这两个平行的箭头可能相同，也可能不同。如果它们满足：
+
+\[
+h = g \cdot f
+\]
+
+我们说这个三角形是可交换的（commute），我们后面将大量用到这个概念。
 
 \section{函子}
 
