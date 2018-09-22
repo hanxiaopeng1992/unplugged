@@ -95,12 +95,12 @@ foldMap f = foldr (mappend . f) mempty
 \begin{definition}
 一个范畴$\pmb{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
 \begin{itemize}
-\item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上记为$A \xlongrightarrow{f} B$，表示箭头$f$的源是$A$，目标是$B$；
-\item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何物体$A$，恒等箭头都指向$A$自己。记为：$A \xlongrightarrow{id_A} A$；
-\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \xlongrightarrow{f} C$和$A \xlongrightarrow{g} B$，则$f$和$g$的组合为$f \cdot g$，读作“$g$然后$f$”。它表示$A \xlongrightarrow{f \cdot g} C$。
+\item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上记为$A \arrowto{f} B$，表示箭头$f$的源是$A$，目标是$B$；
+\item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何物体$A$，恒等箭头都指向$A$自己。记为：$A \arrowto{id_A} A$；
+\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \cdot g$，读作“$g$然后$f$”。它表示$A \arrowto{f \cdot g} C$。
 \end{itemize}
 
-有时我们也将箭头$A \xlongrightarrow{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
+有时我们也将箭头$A \arrowto{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
 
 除此之外，范畴还必须满足以下两条公理：
 
@@ -111,7 +111,7 @@ f \cdot (g \cdot h) = (f \cdot g) \cdot h
 \]
 我们可以将其写为$f g h$。
 \item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
-对于任何箭头$A \xlongrightarrow{f} B$来说，都有：
+对于任何箭头$A \arrowto{f} B$来说，都有：
 \[
 f \cdot id_A = f = id_B \cdot f
 \]
@@ -121,7 +121,7 @@ f \cdot id_A = f = id_B \cdot f
 由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\cdot$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
 
 \[
-A \xlongrightarrow{id_A} A \xlongrightarrow{f} B \xlongrightarrow{id_B} B
+A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
 \]
 
 我们再看一下箭头的组合。考虑如下图的3个箭头$f, g, h$，它们组成一个三角形。
@@ -189,7 +189,7 @@ r \doubleplus (s \doubleplus t) = (r \doubleplus s) \doubleplus t &
 我们再观察第三个幺半群，集合是包括0的自然数，二元运算是普通加法，单位元是0。记为$(N, +, 0)$。接下来我们建立这三个幺半群之间的态射（morphism），首先是从字符串幺半群$S$到字符集幺半群$C$之间的态射。任给一个字符串，我们可以把串中用到的字符组成一个字符集：
 
 \[
-S \xlongrightarrow{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
+S \arrowto{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
 \]
 
 可以验证，这个态射满足以下条件，对于任意两个字符串$r, s$，有：
@@ -211,26 +211,30 @@ S \xlongrightarrow{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
 接下来再定义从字符集$C$到自然数$N$之间的态射。任给一个字符集，我们可以将集合的大小映射为正整数，空集的大小映射为0。
 
 \[
-C \xlongrightarrow{\psi} N \quad \quad \psi: c \mapsto |c|
+C \arrowto{\psi} N \quad \quad \psi: c \mapsto |c|
 \]
 
 有了这两个态射$\phi, \psi$后，我们检查一下它们的组合：
 
 \[
-S \xlongrightarrow{\phi} C \xlongrightarrow{\psi} N
+S \arrowto{\phi} C \arrowto{\psi} N
 \]
 
 和
 
 \[
-S \xlongrightarrow{\psi \cdot \phi} N
+S \arrowto{\psi \cdot \phi} N
 \]
 
 显然组合后$\psi \cdot \phi$也是一个态射。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
 
 \[
-S \xlongrightarrow{id_R} S
+S \arrowto{id_R} S
 \]
+
+注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。
+
+
 
 \section{函子}
 
