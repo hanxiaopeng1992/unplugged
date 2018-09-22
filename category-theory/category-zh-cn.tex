@@ -232,9 +232,41 @@ S \arrowto{\psi \cdot \phi} N
 S \arrowto{id_R} S
 \]
 
-注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。
+注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑$(S, \doubleplus, \text{""})$，它只有一个对象，就是全体字符串的集合$S$。下面定义了前缀映射$S \arrowto{(a \doubleplus)} S$：
 
+\[
+(a \doubleplus )(x) = a \doubleplus x
+\]
 
+这样，箭头$f = (\texttt{"hello"} \doubleplus)$，就会将字符换\texttt{"hello"}添加到任何字符串的前面，例如$f(\texttt{"Alice"})=\texttt{"helloAlice"}$。我们可以类似地定义箭头$g = (\texttt{"hi"} \doubleplus)$，它可以在任何字符串前添加前缀\texttt{"hi"}。类似地，还可以从后缀映射$(\doubleplus b)$定义箭头$h = (\doubleplus \text{"bye"})$。箭头组合$f \cdot g$的含义为：
+
+\[
+(f \cdot g)(x) = f(g(x)) = \texttt{"hello"} \doubleplus (\texttt{"hi"} \doubleplus x)
+\]
+
+表示先增加前缀\text{"hi"}，然后再增加前缀\texttt{"hello"}。不难验证，这3个箭头$f, g, h$的组合满足结合律。并且任意三个这样的箭头都满足结合律。为了验证这是一个范畴，我们还需要检查一下单位元箭头，它定义如下：
+
+\[
+id(x) = x
+\]
+
+就是维持字符串不变。这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\filldraw (0, 0) circle (4pt) node (obj) {};
+\draw[->] (-0.2, 0) arc[radius=5mm, start angle=225, end angle=-45] node[above]{$f$};
+\draw[->] (-0.4, 0) arc[radius=10mm, start angle=225, end angle=-45] node[above]{$g$};
+\draw[->] (-0.6, 0) arc[radius=15mm, start angle=225, end angle=-45] node[above]{$f \cdot g$};
+\end{tikzpicture}
+\caption{只有一个对象的幺半群范畴}
+\label{fig:monoid-as-category}
+\end{figure}
+
+\begin{Exercise}
+\Question{验证幺半群$(C, \cup, \{\})$和$(N, +, 0)$都是只含有一个对象的范畴。}
+\end{Exercise}
 
 \section{函子}
 
