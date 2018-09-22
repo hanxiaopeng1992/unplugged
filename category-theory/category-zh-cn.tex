@@ -275,6 +275,60 @@ id(x) = \texttt{""} \doubleplus x = x
 
 我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \cdot f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
 
+我们举的第三个例子包括一对概念。分别叫做\textbf{偏序集}和\textbf{预序集}。给定一个集合，所谓预序（pre-order），是说集合中的两个元素之间可以进行比较。我们用抽象的二元关系符号$\leq$来表示，注意这个符号不一定是大于小于关系，它可能表示一个集合是另一个集合的子集，一个字符串是另一个字符串的后缀，一个人是另一个人的后代等等。如果关系$\leq$满足以下两条性质，我们说这是一个预序关系：
+
+\begin{itemize}
+\item \textbf{自反性}：任何集合中的元素$a$都有$a \leq a$；
+\item \textbf{传递性}：若$a \leq b$且$b \leq c$，则$a \leq c$；
+\end{itemize}
+
+如果在此基础上还满足反对称性，则这一关系叫做偏序（partial order）:
+
+\begin{itemize}
+\item \textbf{反对称性}：若$a \leq b$且$b \leq a$，则$a = b$；
+\end{itemize}
+
+我们称满足预序关系的集合叫做预序集，满足偏序关系的集合叫做偏序集，分别记作：
+
+\[
+preset \quad \quad \quad poset
+\]
+
+在偏序集中，并非任何两个元素都能够进行比较。例如，《红楼梦》中贾家按照祖先关系构成一个偏序集。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.5]
+  \matrix (m) [matrix of math nodes,
+               row sep=1em, column sep=1em, minimum width=2em]{
+     & \text{贾演}   & & & & & \text{贾源} & & \\
+     & \text{贾代化} & & & & & \text{贾代善} & & \\
+     & \text{贾敬}   & & \text{贾赦} & & \text{贾政} & & & \text{贾敏} \\
+     \text{贾珍} & \text{贾惜春} & \text{贾迎春} & \text{贾琏} & \text{贾珠} & \text{贾元春} & \text{贾宝玉} & \text{贾探春} & \text{贾环} \\
+     \text{贾蓉} & & & \text{巧姐} & \text{贾兰} & & & & & \\};
+  \path[->]
+    (m-1-2) edge (m-2-2) %贾演 -- 贾代化
+    (m-1-7) edge (m-2-7) %贾源 -- 贾代善
+    (m-2-2) edge (m-3-2) %贾代化 -- 贾敬
+    (m-2-7) edge (m-3-4) %--贾赦
+    (m-2-7) edge (m-3-6) %--贾政
+    (m-2-7) edge (m-3-9) %--贾敏
+    (m-3-2) edge (m-4-1) %贾敬--贾珍
+    (m-3-2) edge (m-4-2) %贾敬--贾惜春
+    (m-3-4) edge (m-4-3) %贾赦--贾迎春
+    (m-3-4) edge (m-4-4) %贾赦--贾琏
+    (m-3-6) edge (m-4-5) %贾政--贾珠
+    (m-3-6) edge (m-4-6) %贾政--贾元春
+    (m-3-6) edge (m-4-7) %贾政--贾宝玉
+    (m-3-6) edge (m-4-8) %贾政--贾探春
+    (m-3-6) edge (m-4-9) %贾政--贾环
+    (m-4-1) edge (m-5-1) %贾珍--贾蓉
+    (m-4-4) edge (m-5-4) %贾琏--巧姐
+    (m-4-5) edge (m-5-5); %贾珠--贾兰
+\end{tikzpicture}
+\caption{《红楼梦》贾家的家族树}
+\end{figure}
+
 \begin{Exercise}
 \Question{验证幺半群$(C, \cup, \{\})$和$(N, +, 0)$都是只含有一个对象的范畴。}
 \end{Exercise}
