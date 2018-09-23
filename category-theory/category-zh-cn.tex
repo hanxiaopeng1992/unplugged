@@ -294,8 +294,6 @@ id(x) = \texttt{""} \doubleplus x = x
 preset \quad \quad \quad poset
 \]
 
-在偏序集中，并非任何两个元素都能够进行比较。例如，《红楼梦》中贾家按照祖先关系构成一个偏序集。
-
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.5]
@@ -306,7 +304,7 @@ preset \quad \quad \quad poset
      & \text{贾敬}   & & \text{贾赦} & & \text{贾政} & & & \text{贾敏} \\
      \text{贾珍} & \text{贾惜春} & \text{贾迎春} & \text{贾琏} & \text{贾珠} & \text{贾元春} & \text{贾宝玉} & \text{贾探春} & \text{贾环} \\
      \text{贾蓉} & & & \text{巧姐} & \text{贾兰} & & & & & \\};
-  \path[->]
+  \path[<-]
     (m-1-2) edge (m-2-2) %贾演 -- 贾代化
     (m-1-7) edge (m-2-7) %贾源 -- 贾代善
     (m-2-2) edge (m-3-2) %贾代化 -- 贾敬
@@ -327,7 +325,79 @@ preset \quad \quad \quad poset
     (m-4-5) edge (m-5-5); %贾珠--贾兰
 \end{tikzpicture}
 \caption{《红楼梦》贾家的家族树}
+\label{fig:genealogical-tree}
 \end{figure}
+
+在偏序集中，并非任何两个元素都能够进行比较。例如，《红楼梦》中贾家按照祖先关系构成一个偏序集。如果\ref{fig:genealogical-tree}所示。可以看到巧姐$\leq$贾琏，但是贾宝玉和贾探春之间，贾迎春和贾惜春之间无法用$\leq$进行比较。在这棵家族树中，尽管任何人都有祖先（位于树根的人根据自反性，可以认为自己是自己的祖先），但是平辈的人之间无法进行比较。不同枝干上的人之间也无法进行比较。
+
+如图\ref{fig:powerset}所示，一个集合$\{x, y, z\}$的所有子集在包含关系下构成一个偏序集。尽管图中任意元素，都可以找到其子集，但是图中同一层级上的元素间无法比较，另外$\{x\}$和$\{y, z\}$间也无法比较。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/powerset.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{一个集合的子集在包含关系下构成一个偏序集}
+ \label{fig:powerset}
+\end{figure}
+
+一般来说，任何一个偏序集都是一个预序集，但是反过来却不一定成立。一个预序集不一定是一个偏序集。考虑带有偏序（或者预序）关系的两个集合$(R, \leq)$和$(S, \leq)$。一个单调映射
+
+\[
+R \arrowto{f} S
+\]
+
+是满足如下条件的函数。对于$R$中的任意两个元素$x, y$
+
+\[
+\text{若} x \leq y \text{，则} f(x) \leq f(y)
+\]
+
+不难验证，对于任意两个单调映射：
+
+\[
+R \arrowto{f} S \arrowto{g} T
+\]
+
+它们的组合$g \cdot f$也是单调函数。这样我们就获得了一对范畴
+
+\[
+\pmb{Pre} \quad \quad \quad \pmb{Pos}
+\]
+
+它们的对象分别是所有的$preset$和$poset$，两个范畴中的箭头都是单调映射。由于恒等映射也是单调映射，所以范畴中的恒等箭头为恒等映射。
+
+考虑一对偏序集$R, S$，由于每个偏序集也是预序集，所以下面两个集合——所有从$R$出发到$S$的箭头组成的集合——是相等的。
+
+\[
+\pmb{Pre}[R, S] \quad \quad \quad \pmb{Pos}[R, S]
+\]
+
+这是因为，箭头集合中的每个元素都是一个从$R$到$S$的单调函数。这说明$\pmb{Pos}$是$\pmb{Pre}$的\textbf{子范畴}。
+
+幺半群范畴和预序集范畴这两个例子不是随便挑选的，我们有着特殊的用意。这两个范畴可以说是最简单的例子。通过幺半群范畴，我们可以学习组合；通过预序集范畴，我们可以学习比较。对数学结构的组合与比较是整个范畴论的核心。在这一意义上，任何范畴都是幺半群与预序集的某种混合形式\cite{Simmons2011}。
+
+$\pmb{Pre}$是包含所有预序集的巨大范畴。另一方面预序集范畴也可以很小。小到只含有一个预序集。其中的对象是预序集$(S, \leq)$中的元素$i, j, k, ...$。对于可比较的对象$i, j$，如果$i \leq j$，我们就定义箭头
+
+\[
+i \longrightarrow j
+\]
+
+这样任何对象间或者没有箭头，表示它们不可比较；或者存在一个箭头，表示它们有$\leq$关系。总之，任何两个对象间最多只有一个箭头。为了方便有时我们在箭头行做如下标记：
+
+\[
+i \arrowto{(j, i)} j
+\]
+
+看起来，似乎用$(j, i)$表示$i \leq j$像是写反了，格外别扭。实际上它会带来表达上的好处。我们来检验一下箭头的单位元和组合：
+
+\[
+\begin{array}{rll}
+id_i & = (i, i) & \text{因为：} i \leq i \\
+(k, j) \cdot (j, i) & = (k, i) & \text{若} i \leq j \leq k \text{，则} i \leq k
+\end{array}
+\]
+
+这样的确一个预序集就是一个范畴。我们再次看到了预序集范畴和幺半群范畴的对偶。幺半群作为范畴只含有一个对象，却含有丰富的箭头；预序集作为范畴对象很多，但是对象间的箭头却最多只有一个。
 
 \begin{Exercise}
 \Question{验证幺半群$(C, \cup, \{\})$和$(N, +, 0)$都是只含有一个对象的范畴。}
@@ -357,6 +427,10 @@ Wikipedia. ``塞缪尔$\cdot$艾伦伯格''. \url{https://en.wikipedia.org/wiki/
 
 \bibitem{Wiki-Mac-Lane}
 Wikipedia. ``桑德斯$\cdot$麦克兰恩''. \url{https://en.wikipedia.org/wiki/Saunders_Mac_Lane}
+
+\bibitem{Simmons2011}
+
+Harold Simmons. ``An introduction to Category Theory''.  Cambridge University Press; 1 edition, 2011. ISBN: 9780521283045
 
 \end{thebibliography}
 
