@@ -485,7 +485,7 @@ id_A = \{(a, a) | a \in A\}
 
 \subsection{左右消去}
 
-范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对这样的对偶性质，称为左消去\footnote{也有人译为“首一”，但是这里译为消去更易理解。}（monic）和右消去（epic）。既然是对偶的性质，我们就用对偶的形式给出：
+范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对相对偶的性质，称为左消去\footnote{也有人译为“首一”，但是这里译为消去更易理解。}（monic）和右消去（epic）。既然是对偶的性质，我们就用对偶的形式给出：
 
 \begin{definition}
 如果范畴中的箭头
@@ -503,7 +503,7 @@ B \arrowto{m} A \quad \quad \quad A \arrowto{e} B
     (m-1-1.north east) edge node [above] {$f$} (m-1-2.north west)
     (m-1-1.south east) edge node [below] {$g$} (m-1-2.south west)
     (m-1-4.north east) edge node [above] {$f$} (m-1-5.north west)
-    (m-1-4.south east) edge node [above] {$g$} (m-1-5.south west);
+    (m-1-4.south east) edge node [below] {$g$} (m-1-5.south west);
 \end{tikzpicture}
 \end{center}
 
@@ -515,16 +515,35 @@ B \arrowto{m} A \quad \quad \quad A \arrowto{e} B
 \]
 
 我们称$m$为可\textbf{左消去}的，$e$为可\textbf{右消去}的。
-
-左右可消去箭头有一些有趣的性质，我们以左消去为例，读者可以尝试用对偶的方式思考右消去的情形。
-
 \end{definition}
+
+左右可消去箭头有一些有趣的性质，我们以左消去为例，读者可以尝试用对偶的方式思考右消去的情形。如果两个箭头是左消去的，则它们的组合也是左消去的。
+
+\begin{proof}
+令$m: A \to B$和$n: B \to C$都是左消去的，若$(n \circ m) \circ f = (n \circ m) \circ g$，我们有
+
+\[
+\begin{array}{rll}
+(n \circ m) \circ f & = (n \circ m) \circ g & \\
+n \circ (m \circ f) & = n \circ (m \circ g) & \text{结合律} \\
+m \circ f &= m \circ g & \text{因为$n$是左消去的} \\
+f & = g & \text{因为$m$是左消去的}
+\end{array}
+\]
+所以，组合$m \circ n$也是左消去的。
+\end{proof}
+
+\begin{Exercise}
+\Question{证明右消去箭头的组合也是右消去的。}
+\end{Exercise}
 
 \section{函子}
 
 \section{自然变换}
 
 \section{积和余积}
+
+\subsection{起始对象和终止对象}
 
 \section{数据类型}
 
