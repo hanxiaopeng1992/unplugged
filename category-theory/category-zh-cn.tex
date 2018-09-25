@@ -97,28 +97,28 @@ foldMap f = foldr (mappend . f) mempty
 \begin{itemize}
 \item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上记为$A \arrowto{f} B$，表示箭头$f$的源是$A$，目标是$B$；
 \item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何物体$A$，恒等箭头都指向$A$自己。记为：$A \arrowto{id_A} A$；
-\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \cdot g$，读作“$g$然后$f$”。它表示$A \arrowto{f \cdot g} C$。
+\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \circ g$，读作“$g$然后$f$”。它表示$A \arrowto{f \circ g} C$。
 \end{itemize}
 
-有时我们也将箭头$A \arrowto{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\cdot) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
+有时我们也将箭头$A \arrowto{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\circ) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
 
 除此之外，范畴还必须满足以下两条公理：
 
 \begin{itemize}
 \item \textbf{结合性公理}：箭头组合是可结合的。对任何三个可组合的箭头$f, g, h$都有：
 \[
-f \cdot (g \cdot h) = (f \cdot g) \cdot h
+f \circ (g \circ h) = (f \circ g) \circ h
 \]
 我们可以将其写为$f g h$。
 \item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
 对于任何箭头$A \arrowto{f} B$来说，都有：
 \[
-f \cdot id_A = f = id_B \cdot f
+f \circ id_A = f = id_B \circ f
 \]
 \end{itemize}
 \end{definition}
 
-由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\cdot$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
+由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\circ$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
 
 \[
 A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
@@ -139,7 +139,7 @@ A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
 \end{tikzpicture}
 \end{center}
 
-可以沿着两条通路从$A$到达$C$，一条是箭头组合$g \cdot f$，另一条是箭头$h$。这样我们就相当于得到了一对平行的箭头：
+可以沿着两条通路从$A$到达$C$，一条是箭头组合$g \circ f$，另一条是箭头$h$。这样我们就相当于得到了一对平行的箭头：
 
 \begin{center}
 \begin{tikzpicture}
@@ -147,7 +147,7 @@ A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
                row sep=3em, column sep=4em, minimum width=2em]{
      A & C\\};
   \path[-stealth]
-    (m-1-1.north east) edge node [above] {$g \cdot f$} (m-1-2.north west)
+    (m-1-1.north east) edge node [above] {$g \circ f$} (m-1-2.north west)
     (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
 \end{tikzpicture}
 \end{center}
@@ -155,7 +155,7 @@ A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
 这两个平行的箭头可能相同，也可能不同。如果它们满足：
 
 \[
-h = g \cdot f
+h = g \circ f
 \]
 
 我们说这个三角形是可交换的（commute），我们后面将大量用到这个概念。
@@ -200,11 +200,11 @@ S \arrowto{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
 \end{array}
 \]
 
-如果我们把二元运算统一用点“$\cdot$”来表示，单位元统一表示为1，则可以写成：
+如果我们把二元运算统一用点“$\circ$”来表示，单位元统一表示为1，则可以写成：
 
 \[
 \begin{array}{rcl}
-\phi(s \cdot r) = \phi(s) \cdot \phi(r) & \text{和} & \phi(1) = 1
+\phi(s \circ r) = \phi(s) \circ \phi(r) & \text{和} & \phi(1) = 1
 \end{array}
 \]
 
@@ -223,10 +223,10 @@ S \arrowto{\phi} C \arrowto{\psi} N
 和
 
 \[
-S \arrowto{\psi \cdot \phi} N
+S \arrowto{\psi \circ \phi} N
 \]
 
-显然组合后$\psi \cdot \phi$也是一个态射。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
+显然组合后$\psi \circ \phi$也是一个态射。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
 
 \[
 S \arrowto{id_R} S
@@ -238,11 +238,11 @@ S \arrowto{id_R} S
 (a \doubleplus )(x) = a \doubleplus x
 \]
 
-这样，箭头$f = (\texttt{"hello"} \doubleplus)$，就会将字符换\texttt{"hello"}添加到任何字符串的前面，例如$f(\texttt{"Alice"})=\texttt{"helloAlice"}$。而箭头$g = (\texttt{"hi"} \doubleplus)$，它可以在任何字符串前添加前缀\texttt{"hi"}\footnote{类似地，还可以定义后缀映射$(\doubleplus b)$。例如箭头$h = (\doubleplus \texttt{"bye"})$在任何字符串后添加后缀\texttt{"bye"}。}。箭头组合$f \cdot g$的含义为：
+这样，箭头$f = (\texttt{"hello"} \doubleplus)$，就会将字符换\texttt{"hello"}添加到任何字符串的前面，例如$f(\texttt{"Alice"})=\texttt{"helloAlice"}$。而箭头$g = (\texttt{"hi"} \doubleplus)$，它可以在任何字符串前添加前缀\texttt{"hi"}\footnote{类似地，还可以定义后缀映射$(\doubleplus b)$。例如箭头$h = (\doubleplus \texttt{"bye"})$在任何字符串后添加后缀\texttt{"bye"}。}。箭头组合$f \circ g$的含义为：
 
 \[
 \begin{array}{rl}
-(f \cdot g)(x) & = f(g(x)) \\
+(f \circ g)(x) & = f(g(x)) \\
                & = \texttt{"hello"} \doubleplus (\texttt{"hi"} \doubleplus x) \\
                & = (\texttt{"hello"} \doubleplus \texttt{"hi"}) \doubleplus x) \\
                & = \texttt{"hellohi"} \doubleplus x
@@ -263,7 +263,7 @@ id(x) = \texttt{""} \doubleplus x = x
 \filldraw (0, 0) circle (4pt) node (obj) {};
 \draw[->] (-0.2, 0) arc[radius=5mm, start angle=225, end angle=-45] node[pos=0.5, above]{$f$};
 \draw[->] (-0.4, 0) arc[radius=10mm, start angle=225, end angle=-45] node[pos=0.5, above]{$g$};
-\draw[->] (-0.6, 0) arc[radius=15mm, start angle=225, end angle=-45] node[pos=0.5, above]{$f \cdot g$};
+\draw[->] (-0.6, 0) arc[radius=15mm, start angle=225, end angle=-45] node[pos=0.5, above]{$f \circ g$};
 \end{tikzpicture}
 \caption{只有一个对象的幺半群范畴}
 \label{fig:monoid-as-category}
@@ -273,7 +273,7 @@ id(x) = \texttt{""} \doubleplus x = x
 
 类似地，群构成的范畴也有这样特点。有一个由所有群构成的巨大范畴$\pmb{Grp}$，同样每个单个的群$G$本身也构成一个范畴。前者的对象是所有的群，箭头是态射；后者只有一个对象，和幺半群比起来，群中的二元运算都有逆，所以所有的箭头都存在一个逆向的箭头。
 
-我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \cdot f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
+我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \circ f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
 
 我们举的第三个例子包括一对概念。分别叫做\textbf{偏序集}和\textbf{预序集}。给定一个集合，所谓预序（pre-order），是说集合中的两个元素之间可以进行比较。我们用抽象的二元关系符号$\leq$来表示，注意这个符号不一定是大于小于关系，它可能表示一个集合是另一个集合的子集，一个字符串是另一个字符串的后缀，一个人是另一个人的后代等等。如果关系$\leq$满足以下两条性质，我们说这是一个预序关系：
 
@@ -358,7 +358,7 @@ R \arrowto{f} S
 R \arrowto{f} S \arrowto{g} T
 \]
 
-它们的组合$g \cdot f$也是单调函数。这样我们就获得了一对范畴
+它们的组合$g \circ f$也是单调函数。这样我们就获得了一对范畴
 
 \[
 \pmb{Pre} \quad \quad \quad \pmb{Pos}
@@ -393,7 +393,7 @@ i \arrowto{(j, i)} j
 \[
 \begin{array}{rll}
 id_i & = (i, i) & \text{因为：} i \leq i \\
-(k, j) \cdot (j, i) & = (k, i) & \text{若} i \leq j \leq k \text{，则} i \leq k
+(k, j) \circ (j, i) & = (k, i) & \text{若} i \leq j \leq k \text{，则} i \leq k
 \end{array}
 \]
 
@@ -408,7 +408,7 @@ A \arrowto{\phi} B
 它满足
 
 \[
-\phi \cdot f = g \cdot \phi \quad \text{且} \quad \phi(z) = c
+\phi \circ f = g \circ \phi \quad \text{且} \quad \phi(z) = c
 \]
 
 试验证$\pmb{Pno}$的确是一个范畴。}
@@ -425,12 +425,12 @@ A \arrowto{\phi} B
 A \arrowto{f} B \arrowto{g} C
 \]
 
-组合的意义为：$g \cdot f : A \times C \to \mathbb{R}$
+组合的意义为：$g \circ f : A \times C \to \mathbb{R}$
 
 这个组合函数的效果是怎样的呢？我们定义：
 
 \[
-(g \cdot f)(a, c) = \sum\{f(a, x) g(x, c) | x \in B\}
+(g \circ f)(a, c) = \sum\{f(a, x) g(x, c) | x \in B\}
 \]
 
 也就是说，我们从中间集合$B$中依次拿出每个元素$x$，计算$f(a, x)$和$g(x, c)$的积，然后将结果累加起来。显然这还是一个实数。不难验证，这构成一个范畴。
@@ -457,15 +457,15 @@ B \times A = \{(b, a) | a \in A, b \in B\}
 A \arrowto{R} B \arrowto{S} C
 \]
 
-定义箭头组合$S \cdot R$为：
+定义箭头组合$S \circ R$为：
 
 \[
-c (S \cdot R) a \iff \exists b \in B \text{使得} cSbRa
+c (S \circ R) a \iff \exists b \in B \text{使得} cSbRa
 \]
 
 也就是说，存在某个中间集合中的元素$b$，同时使得两个关系$bRa$，$cSb$都成立。即$(b, a) \in R$且$(c, b) \in S$。
 
-具体到红楼梦的例子，令集合$C=$\{王夫人, 薛姨妈, 邢夫人\}，关系$S=$\{(王夫人, 王熙凤), (薛姨妈, 王熙凤)\}表示姑妈关系。这样组合箭头$S \cdot R$的结果是：\{(王夫人, 贾琏), (薛姨妈, 贾琏)\}，表示$c$的侄女嫁给了$b$的关系。也就是说王夫人、薛姨妈和贾琏都通过王熙凤使得两个关系同时成立。
+具体到红楼梦的例子，令集合$C=$\{王夫人, 薛姨妈, 邢夫人\}，关系$S=$\{(王夫人, 王熙凤), (薛姨妈, 王熙凤)\}表示姑妈关系。这样组合箭头$S \circ R$的结果是：\{(王夫人, 贾琏), (薛姨妈, 贾琏)\}，表示$c$的侄女嫁给了$b$的关系。也就是说王夫人、薛姨妈和贾琏都通过王熙凤使得两个关系同时成立。
 
 恒等箭头的定义很简单为：
 
@@ -483,7 +483,42 @@ id_A = \{(a, a) | a \in A\}
 \Question{考虑集合上的部分函数构成的范畴$\pmb{Pfn}$。对象是集合，而箭头是部分函数，从集合$A$的$B$的部分函数$A \arrowto{f} B$是说，对于$A$的子集$A'$来说$f$有定义。这个范畴中的箭头组合、单位箭头的含义是什么？}
 \end{Exercise}
 
+\subsection{左右消去}
 
+范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对这样的对偶性质，称为左消去\footnote{也有人译为“首一”，但是这里译为消去更易理解。}（monic）和右消去（epic）。既然是对偶的性质，我们就用对偶的形式给出：
+
+\begin{definition}
+如果范畴中的箭头
+\[
+B \arrowto{m} A \quad \quad \quad A \arrowto{e} B
+\]
+对任意一对平行的箭头
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     X & B & & B & X\\};
+  \path[-stealth]
+    (m-1-1.north east) edge node [above] {$f$} (m-1-2.north west)
+    (m-1-1.south east) edge node [below] {$g$} (m-1-2.south west)
+    (m-1-4.north east) edge node [above] {$f$} (m-1-5.north west)
+    (m-1-4.south east) edge node [above] {$g$} (m-1-5.south west);
+\end{tikzpicture}
+\end{center}
+
+均满足如下条件：
+
+\[
+\text{若} m \circ f = m \circ g \text{，则}f = g \quad \quad \quad
+\text{若} f \circ e = g \circ e \text{，则}f = g
+\]
+
+我们称$m$为可\textbf{左消去}的，$e$为可\textbf{右消去}的。
+
+左右可消去箭头有一些有趣的性质，我们以左消去为例，读者可以尝试用对偶的方式思考右消去的情形。
+
+\end{definition}
 
 \section{函子}
 
