@@ -654,9 +654,33 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \begin{example}
 我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
+\begin{wrapfigure}{L}{0.3\textwidth}
+ \centering
+ \includegraphics[scale=0.3]{img/Hoare.eps}
+ \captionsetup{labelformat=empty}
+ \caption{霍尔}
+ \label{fig:Hoare}
+\end{wrapfigure}
+
 “我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
 
-近几年主流的编程环境都纷纷将Haskell中的可能函子引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
+2015年后主流的编程环境都纷纷将Haskell中的可能函子引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
+
+下图描述了$\mathbf{Maybe}$函子的行为。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2.5em, minimum width=2em]{
+     A & \mathbf{Maybe} A \\
+     B & \mathbf{Maybe} B \\};
+  \path[-stealth]
+    (m-1-1) edge (m-1-2)
+    (m-2-1) edge (m-2-2)
+    (m-1-1) edge node [left] {$f$} (m-1-2)
+    (m-1-2) edge node [right] {$\mathbf{Maybe}(f)$} (m-2-2);
+\end{tikzpicture}
+\end{center}
 
 \end{example}
 
