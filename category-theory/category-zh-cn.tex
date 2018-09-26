@@ -542,6 +542,8 @@ f & = g & \text{因为$m$是左消去的}
 
 在某种意义上说，函子好比是范畴之间的态射。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
+\section{函子的定义}
+
 \begin{definition}
 两个范畴$\pmb{Src}$和$\pmb{Trg}$之间的\textbf{函子}
 \[
@@ -632,6 +634,22 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 
 大多数情况下，我们关注协变函子。
 \end{itemize}
+
+函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。习惯上我们认为函子是右结合的，所以$\mathbf{F}\mathbf{G}A$表示先对对象$A$应用函子$\mathbf{G}$，然后再应用函子$\mathbf{F}$。
+
+\subsection{函子的例子}
+
+\begin{wrapfigure}{R}{0.3\textwidth}
+ \centering
+ \includegraphics[scale=0.3]{img/blackhole.eps}
+ \captionsetup{labelformat=empty}
+ \caption{常数函子的行为像一个黑洞}
+ \label{fig:blackhole}
+\end{wrapfigure}
+
+让我们用具体的例子来更好地理解函子的概念。我们在这一节将举一些编程中的实例。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
+
+其次简单的函子叫做“常函子”，它的行为像一个黑洞，我们可以把它记作$\mathbf{K}_B : \pmb{C} \to \pmb{B}$。它可以作用到任何范畴上，把所有的对象都映射为黑洞中的对象$B$，把所有的箭头都映射为黑洞中的恒等箭头$id_B$。黑洞范畴中只有一个恒等箭头，它显然也满足箭头组合的性质：$id_B \circ id_B = id_B$。
 
 \section{自然变换}
 
