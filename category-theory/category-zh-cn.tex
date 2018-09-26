@@ -542,7 +542,7 @@ f & = g & \text{因为$m$是左消去的}
 
 在某种意义上说，函子好比是范畴之间的态射。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
-\section{函子的定义}
+\subsection{函子的定义}
 
 \begin{definition}
 两个范畴$\pmb{Src}$和$\pmb{Trg}$之间的\textbf{函子}
@@ -654,17 +654,19 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \begin{example}
 我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
-\begin{wrapfigure}{L}{0.3\textwidth}
+%\begin{wrapfigure}{L}{0.25\textwidth}
+\begin{figure}[h!]
  \centering
- \includegraphics[scale=0.3]{img/Hoare.eps}
+ \includegraphics[scale=1]{img/Hoare.eps}
  \captionsetup{labelformat=empty}
  \caption{霍尔}
  \label{fig:Hoare}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 “我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
 
-2015年后主流的编程环境都纷纷将Haskell中的可能函子引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
+2015年后主流的编程环境都纷纷将Haskell中的Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
 
 下图描述了$\mathbf{Maybe}$函子的行为。
 
@@ -677,11 +679,62 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
   \path[-stealth]
     (m-1-1) edge (m-1-2)
     (m-2-1) edge (m-2-2)
-    (m-1-1) edge node [left] {$f$} (m-1-2)
+    (m-1-1) edge node [left] {$f$} (m-2-1)
     (m-1-2) edge node [right] {$\mathbf{Maybe}(f)$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
+图中左侧的对象$A, B$是一些数据类型，比如整形，布尔型。而右侧的对象，是通过函子$\mathbf{Maybe}$映射成的类型。如果$A$代表\texttt{Int}，则右侧对应是\texttt{Maybe Int}，$B$如果代表\texttt{Bool}，则右侧对应的是\texttt{Maybe Bool}。可能函子是怎样完成对象的映射呢？它的对象映射部分是这样定义的:
+
+\lstset{frame=none}
+\begin{lstlisting}
+data Maybe A = Nothing | Just A
+\end{lstlisting}
+
+也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}A$的值要么是一个空值\texttt{Nothing}，要么是一个用\texttt{Just}构造的值。
+
+例如，对象是类型\texttt{Int}，可能函子映射后对象是类型\texttt{Maybe Int}，它的值可能是\texttt{Nothing}或者\texttt{Just 5}。
+
+例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}A$。
+
+\[
+\begin{array}{rcl}
+lookup & : & BSTree\ A \to A \to \mathbf{Maybe} A \\
+lookup\ nil\ \_ & = & Nothing \\
+lookup\ (Node\ l\ k\ r)\ x & = & \begin{cases}
+  x < k: & lookup\ l\ x \\
+  x > k: & lookup\ r\ x \\
+  x = k: & Just\ k
+\end{cases}
+\end{array}
+\]
+
+在处理$\mathbf{Maybe}$数据类型时，必须处理可能的两种值，例如：
+
+\[
+\begin{array}{rcl}
+elem\ Nothing & = & False \\
+elem\ (Just\ x) & = & True
+\end{array}
+\]
+
+函子既映射对象，也映射箭头。以上我们看到了$\mathbf{Maybe}$如何映射对象，那么它是如何映射箭头的呢？上面图中的左侧从上到下有一个箭头$A \arrowto{f} B$，而右侧也有一个箭头$\mathbf{Maybe}A \arrowto{\mathbf{Maybe}(f)} \mathbf{Maybe}B$。我们不妨把右侧的箭头叫做$f'$。假设我们知道左侧箭头$f$的行为，那么右侧箭头的行为是什么呢？我们说过处理$\mathbf{Maybe}$类型的数据，必须处理两种可能的值，所以$f'$的行为应该是这样的：
+
+\[
+\begin{array}{rcl}
+f' & : & \mathbf{Maybe}A \to \mathbf{Maybe}B \\
+f'\ Nothing & = & Nothing \\
+f'\ (Just\ x) & = & Just\ (f\ x)
+\end{array}
+\]
+
+这种给定$f$，映射成$f'$的行为恰好就是$\mathbf{Maybe}$函子对箭头进行的映射。在Haskell中，通常使用\texttt{fmap}来定义函子对箭头的映射：
+
+\begin{lstlisting}
+fmap :: (a -> b) -> Maybe a -> Maybe b
+fmap _ Nothing = Nothing
+fmap f (Just x) = Just (f x)
+\end{lstlisting}
 \end{example}
 
 \section{自然变换}
