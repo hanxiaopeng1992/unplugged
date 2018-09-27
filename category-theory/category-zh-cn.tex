@@ -856,6 +856,33 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定�
 
 \section{附录：例子代码}
 
+函子的定义：
+
+\lstset{frame=single}
+\begin{lstlisting}[style=Haskell]
+class  Functor f  where
+    fmap        :: (a -> b) -> f a -> f b
+\end{lstlisting}
+
+Maybe函子的定义：
+
+\begin{lstlisting}
+instance  Functor Maybe  where
+    fmap _ Nothing       = Nothing
+    fmap f (Just a)      = Just (f a)
+\end{lstlisting}
+
+使用Maybe搜索二叉搜索树，并将结果转换成二进制：
+
+\begin{lstlisting}[style=Haskell]
+lookup Nil _ = Nothing
+lookup (Node l k r) x | x < k = lookup l x
+                      | x > k = lookup r x
+                      | otherwise = Just k
+
+lookupBin = (fmap binary) . lookup
+\end{lstlisting}
+
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
 
