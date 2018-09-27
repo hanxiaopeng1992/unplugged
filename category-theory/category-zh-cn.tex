@@ -699,7 +699,6 @@ data Maybe A = Nothing | Just A
 
 \[
 \begin{array}{rcl}
-lookup & : & BSTree\ A \to A \to \mathbf{Maybe} A \\
 lookup\ nil\ \_ & = & Nothing \\
 lookup\ (Node\ l\ k\ r)\ x & = & \begin{cases}
   x < k: & lookup\ l\ x \\
@@ -722,7 +721,6 @@ elem\ (Just\ x) & = & True
 
 \[
 \begin{array}{rcl}
-f' & : & \mathbf{Maybe}A \to \mathbf{Maybe}B \\
 f'\ Nothing & = & Nothing \\
 f'\ (Just\ x) & = & Just\ (f\ x)
 \end{array}
@@ -731,10 +729,55 @@ f'\ (Just\ x) & = & Just\ (f\ x)
 这种给定$f$，映射成$f'$的行为恰好就是$\mathbf{Maybe}$函子对箭头进行的映射。在Haskell中，通常使用\texttt{fmap}来定义函子对箭头的映射：
 
 \begin{lstlisting}
-fmap :: (a -> b) -> Maybe a -> Maybe b
-fmap _ Nothing = Nothing
-fmap f (Just x) = Just (f x)
+class Functor F where
+    fmap :: (A -> B) -> F A -> F B
 \end{lstlisting}
+
+也就是说，如果\texttt{F}是一个函子，它把从从\texttt{A}到\texttt{B}的箭头映射成从\texttt{F A}到\texttt{F B}的箭头。因此对于$\mathbf{Maybe}$函子，相应的\texttt{fmap}定义如下：
+
+\lstset{frame=single}
+\begin{lstlisting}
+instance Functor Maybe where
+    fmap :: (a -> b) -> Maybe a -> Maybe b
+    fmap _ Nothing = Nothing
+    fmap f (Just x) = Just (f x)
+\end{lstlisting}
+
+回到前面二叉搜索树的例子，假如树中元素的类型是自然数，我们在树中搜索一个值，如果搜到，就将这个值转换成二进制，否则返回$Nothing$。如果我们以前已经写过一个将十进制自然数转换成二进制的函数：
+
+\[
+binary(n) = \begin{cases}
+n < 2: & n \\
+\text{否则}: & binary(\lfloor\dfrac{n}{2}\rfloor)(n \bmod 2)
+\end{cases}
+\]
+
+下面是一个相应的Haskell代码实现。为了提高性能，这个实现使用了尾递归。
+
+\begin{lstlisting}
+binary = bin [] where
+   bin xs 0 = 0 : xs
+   bin xs 1 = 1 : xs
+   bin xs n = bin ((n `mod` 2) : xs) (n `div` 2)
+\end{lstlisting}
+
+有了函子，就可以直接将这个函数箭头“举”到上面去，如下图所示：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=5em, minimum width=2em]{
+     \texttt{Maybe Int} & \texttt{Maybe [Int]} \\
+     \texttt{Int} &  \texttt{[Int]} \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {\texttt{fmap binary}} (m-1-2)
+    (m-2-1) edge node [below] {\texttt{binary}} (m-2-2)
+    (m-2-1) edge (m-1-1)
+    (m-2-2) edge (m-1-2);
+\end{tikzpicture}
+\end{center}
+
+
 \end{example}
 
 \section{自然变换}
