@@ -556,7 +556,7 @@ f & \longmapsto & \mathbf{F}(f)
 包含两部分：它将范畴$\pmb{Src}$中的对象对应到另一个范畴$\pmb{Trg}$中；并且将$\pmb{Src}$中的箭头也对应到另一个范畴$\pmb{Trg}$中。
 \end{definition}
 
-由于历史的原因，我们用同一个符号$\mathbf{F}$既表示对象间的变换，也表示箭头间的变换。注意这是一个非斜体的粗体大写字母，请注意它和范畴（粗斜体大写）、对象（斜体大写）所用字体的差别。有些编程环境，如Haskell，使用不同的记号来表示函子中对象的变换和箭头的变换。我们稍后在例子中会看到这些不同点。
+通常我们用同一个符号$\mathbf{F}$既表示对象间的变换，也表示箭头间的变换。这是一个非斜体的粗体大写字母，请注意它和范畴（粗斜体大写）、对象（斜体大写）所用字体的差别。有些编程环境，如Haskell，使用不同的记号来表示函子中对象的变换和箭头的变换。我们稍后在例子中会看到这些不同点。
 
 既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
 
@@ -666,7 +666,7 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 
 “我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
 
-2015年后主流的编程环境都纷纷将Haskell中的Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
+2015年后主流的编程环境都纷纷将Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
 
 下图描述了$\mathbf{Maybe}$函子的行为。
 
@@ -695,7 +695,7 @@ data Maybe A = Nothing | Just A
 
 例如，对象是类型\texttt{Int}，可能函子映射后对象是类型\texttt{Maybe Int}，它的值可能是\texttt{Nothing}或者\texttt{Just 5}。
 
-例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}A$。
+例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}A$\footnote{完整的代码见本章附录}。
 
 \[
 \begin{array}{rcl}
@@ -726,35 +726,35 @@ f'\ (Just\ x) & = & Just\ (f\ x)
 \end{array}
 \]
 
-这种给定$f$，映射成$f'$的行为恰好就是$\mathbf{Maybe}$函子对箭头进行的映射。在Haskell中，通常使用\texttt{fmap}来定义函子对箭头的映射：
+这种给定$f$，映射成$f'$的行为恰好就是$\mathbf{Maybe}$函子对箭头进行的映射。实际的编程环境中，通常使用$fmap$来定义函子对箭头的映射。我们可以定义所有函子$\mathbf{F}$满足：
 
-\begin{lstlisting}
-class Functor F where
-    fmap :: (A -> B) -> F A -> F B
-\end{lstlisting}
+\[
+fmap : (A \to B) \to (\mathbf{F} A \to \mathbf{F} B)
+\]
 
-也就是说，如果\texttt{F}是一个函子，它把从从\texttt{A}到\texttt{B}的箭头映射成从\texttt{F A}到\texttt{F B}的箭头。因此对于$\mathbf{Maybe}$函子，相应的\texttt{fmap}定义如下：
+也就是说，如果$\mathbf{F}$是一个函子，它把从$A$到$B$的箭头映射成从$\mathbf{F} A$到$\mathbf{F} B$的箭头。因此对于$\mathbf{Maybe}$函子，相应的$fmap$定义如下：
 
-\lstset{frame=single}
-\begin{lstlisting}
-instance Functor Maybe where
-    fmap :: (a -> b) -> Maybe a -> Maybe b
-    fmap _ Nothing = Nothing
-    fmap f (Just x) = Just (f x)
-\end{lstlisting}
+\[
+\begin{array}{l}
+\quad    fmap : (A \to B) \to (\mathbf{Maybe} A \to \mathbf{Maybe} B) \\
+\quad    fmap\ \_\ Nothing = Nothing \\
+\quad    fmap\ f\ (Just\ x) = Just\ (f\ x) \\
+\end{array}
+\]
 
 回到前面二叉搜索树的例子，假如树中元素的类型是自然数，我们在树中搜索一个值，如果搜到，就将这个值转换成二进制，否则返回$Nothing$。如果我们以前已经写过一个将十进制自然数转换成二进制的函数：
 
 \[
 binary(n) = \begin{cases}
-n < 2: & n \\
-\text{否则}: & binary(\lfloor\dfrac{n}{2}\rfloor)(n \bmod 2)
+n < 2: & [n] \\
+\text{否则}: & binary(\lfloor\dfrac{n}{2}\rfloor)\doubleplus[n \bmod 2]
 \end{cases}
 \]
 
 下面是一个相应的Haskell代码实现。为了提高性能，这个实现使用了尾递归。
 
-\begin{lstlisting}
+\lstset{frame=single}
+\begin{lstlisting}[style=Haskell]
 binary = bin [] where
    bin xs 0 = 0 : xs
    bin xs 1 = 1 : xs
@@ -766,18 +766,82 @@ binary = bin [] where
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=5em, minimum width=2em]{
-     \texttt{Maybe Int} & \texttt{Maybe [Int]} \\
-     \texttt{Int} &  \texttt{[Int]} \\};
+               row sep=2em, column sep=6em, minimum width=2em]{
+     \mathbf{Maybe} Int & \mathbf{Maybe} [Int] \\
+     Int & \left [ Int \right] \\};
   \path[-stealth]
-    (m-1-1) edge node [above] {\texttt{fmap binary}} (m-1-2)
-    (m-2-1) edge node [below] {\texttt{binary}} (m-2-2)
+    (m-1-1) edge node [above] {$fmap\ binary$} (m-1-2)
+    (m-2-1) edge node [below] {$binary$} (m-2-2)
     (m-2-1) edge (m-1-1)
     (m-2-2) edge (m-1-2);
 \end{tikzpicture}
 \end{center}
 
+这样，我们就可以直接利用Maybe函子和$binary$箭头操作二叉树搜索的结果：
 
+\[
+fmap\ binary\ (lookup\ t\ x)
+\]
+
+\begin{proof}
+为了验证Maybe确是一个函子，我们还需要验证箭头映射的两条性质：
+
+\[
+\begin{array}{l}
+fmap\ id = id \\
+fmap\ (f \circ g) = fmap\ f \circ fmap\ g
+\end{array}
+\]
+
+首先验证第一条性质。$id$的定义为：
+\[
+id\ x = x
+\]
+
+因此：
+
+\[
+\begin{array}{rcll}
+fmap\ id\ Nothing & = & Nothing & \text{$fmap$的定义} \\
+                  & = & id\ Nothing & \text{反向用$id$的定义} \\
+\end{array}
+\]
+
+并且
+
+\[
+\begin{array}{rcll}
+fmap\ id\ (Just\ x) & = & Just\ (id\ x) & \text{$fmap$的定义} \\
+                    & = & Just\ x & \text{$id$的定义} \\
+                    & = & id\ (Just\ x) & \text{反向用$id$的定义}
+\end{array}
+\]
+
+接下来验证第二条性质：
+
+\[
+\begin{array}{rcll}
+fmap\ (f \circ g)\ Nothing & = & Nothing & \text{$fmap$的定义} \\
+           & = & fmap\ f\ Nothing & \text{反向使用$fmap$的定义} \\
+           & = & fmap\ f\ (fmap\ g\ Nothing) & \text{反向使用$fmap$的定义} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ Nothing & \text{反向用函数组合的定义}
+\end{array}
+\]
+
+并且
+
+\[
+\begin{array}{rcll}
+fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定义} \\
+           & = & Just\ (f\ (g\ x)) & \text{函数组合的定义} \\
+           & = & fmap\ f\ (Just\ (g\ x)) & \text{反向使用$fmap$的定义} \\
+           & = & fmap\ f\ (fmap\ g\ (Just\ x)) & \text{反向使用$fmap$的定义} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ (Just\ x) & \text{反向用函数组合的定义}
+\end{array}
+\]
+
+因此Maybe的确是一个函子。
+\end{proof}
 \end{example}
 
 \section{自然变换}
@@ -789,6 +853,8 @@ binary = bin [] where
 \section{数据类型}
 
 \section{伴随}
+
+\section{附录：例子代码}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
