@@ -1,4 +1,4 @@
-IMG_OBJECTS = Eilenberg Mac-Lane powerset blackhole Hoare
+IMG_OBJECTS = Eilenberg Mac-Lane powerset blackhole Hoare dewdrop
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
