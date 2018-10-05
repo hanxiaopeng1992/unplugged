@@ -674,6 +674,8 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 
 “我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
 
+% I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+
 2015年后主流的编程环境都纷纷将Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
 
 下图描述了$\mathbf{Maybe}$函子的行为。
@@ -849,6 +851,138 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定�
 \]
 
 因此Maybe的确是一个函子。
+\end{proof}
+\end{example}
+
+\begin{example}
+接下来介绍的例子是列表函子。第一章中我们介绍了列表的定义：
+
+\lstset{frame=none}
+\begin{lstlisting}
+data List A = nil | cons(A, List A)
+\end{lstlisting}
+
+从编程的观点看，这定义了“单向链表”的数据结构，链表中元素的类型是$A$，这样的链表称为类型为$A$的列表。从范畴的观点来看，一个列表函子要分别定义对象和箭头的映射。在这里，对象是类型，箭头是全函数。下图描述了列表函子的行为：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2.5em, minimum width=2em]{
+     A & \mathbf{List}\ A \\
+     B & \mathbf{List}\ B \\};
+  \path[-stealth]
+    (m-1-1) edge (m-1-2)
+    (m-2-1) edge (m-2-2)
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    (m-1-2) edge node [right] {$\mathbf{List}(f)$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+图中左侧的对象$A, B$是数据类型，例如整型、布尔型甚至是$\mathbf{Maybe}\ Char$这样的复杂类型。而右侧的对象，是通过列表函子映射成的类型，如果$A$为整形$Int$，则右侧对应$\mathbf{List}\ Int$，如果$B$代表$Char$，则右侧对应的是$\mathbf{List}\ Char$，也就是$String$。
+
+请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$nil$和$cons$两个具体的函数来产生空值或者$list(1, list(1, list(2, nil)))$。
+
+以上是列表函子在对象映射时的行为，那么它是如何对箭头进行映射的呢？也就是说，给定一个函数$f: A \to B$，如何通过列表函子得到另一个函数$g: \mathbf{List}\ A \to \mathbf{List}\ B$呢？与可能函子$\mathbf{Maybe}$类似，我们可以定义一个$fmap$实现从箭头$f$到箭头$g$的映射，对于列表函子它的类型为：
+
+\[
+fmap: (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B)
+\]
+
+接下来需要仔细分析$g$的行为。首先考虑最简单的情况，不管箭头$f$的定义如何，如果$\mathbf{List}\ A$是个空列表$nil$，则应用$g$后的结果也必然是空列表。所以有：
+
+\[
+fmap\ \_\ nil = nil
+\]
+
+接下来考虑递归的情况$cons(x, xs)$，其中$x$是类型为$A$的某个值，而$xs$是类型为$\mathbf{List}\ A$的子列表。如果$f(x) = y$，将类型$A$的值$x$映射为类型$B$的值$y$，那么我们就将$f$应用到$x$上，然后在将其递归地应用到子列表$xs$上从而得到一个元素类型为$B$的子列表$ys$，最后再将$y$和$ys$链接起来得到最终的结果：
+
+\[
+fmap\ f\ cons(x, xs) = cons(f\ x, fmap\ f\ xs)
+\]
+
+综上，我们得到了$fmap$的完整定义：
+
+\[
+\begin{array}{l}
+\quad    fmap : (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B) \\
+\quad    fmap\ \_\ nil = nil \\
+\quad    fmap\ f\ cons(x, xs) = cons(f\ x, fmap\ f\ xs) \\
+\end{array}
+\]
+
+如果使用第一章介绍的简记法，用冒号“:”表示$cons$，用中括号表示列表，用“[]”表示$nil$，则列表函子的箭头部分映射可以简写为：
+
+\[
+\begin{array}{l}
+\quad    fmap : (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B) \\
+\quad    fmap\ \_\ [] = [] \\
+\quad    fmap\ f\ (x:xs) = (f\ x):(fmap\ f\ xs) \\
+\end{array}
+\]
+
+仔细观察这个定义，再和第一章中列表的“逐一映射”定义对比，会发现它们除了名字之外完全一样，因此我们可以复用列表的“逐一映射”来定义列表函子，例如Haskell中列表函子的定义就是通过复用\texttt{map}实现的。
+
+\lstset{frame=single}
+\begin{lstlisting}
+instance Functor [] where
+    fmap = map
+\end{lstlisting}
+
+作为本例的结尾，我们来验证一下列表函子的箭头映射部分是否满足组合和恒等的两条性质。即：
+
+\[
+\begin{array}{l}
+fmap\ id = id \\
+fmap\ (f \circ g) = fmap\ f \circ fmap\ g
+\end{array}
+\]
+
+\begin{proof}
+我们用数学归纳法来验证恒等性质，首先针对空列表的情况：
+
+\[
+\begin{array}{rcll}
+fmap\ id\ nil & = & nil & \text{$fmap$的定义} \\
+              & = & id\ nil & \text{反向用$id$的定义} \\
+\end{array}
+\]
+
+针对$(x:xs)$的递归情况，令递归假设为$fmap\ id\ xs = id\ xs$，我们有：
+
+\[
+\begin{array}{rcll}
+fmap\ id\ (x:xs) & = & (id\ x):(fmap\ id\ xs) & \text{$fmap$的定义} \\
+                 & = & (id\ x):(id\ xs) & \text{递归假设} \\
+                 & = & x:xs & \text{$id$的定义} \\
+                 & = & id\ (x:xs) & \text{反向用$id$的定义}
+\end{array}
+\]
+
+同样，我们用数学归纳法来验证组合性质，对于空列表，我们有：
+
+\[
+\begin{array}{rcll}
+fmap\ (f \circ g)\ nil & = & nil & \text{$fmap$的定义} \\
+           & = & fmap\ f\ nil & \text{反向使用$fmap$的定义} \\
+           & = & fmap\ f\ (fmap\ g\ nil) & \text{反向使用$fmap$的定义} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ nil & \text{反向用函数组合的定义}
+\end{array}
+\]
+
+针对$(x:xs)$的递归情况，令递归假设为$fmap\ (f \circ g)\ xs = (fmap\ f \circ fmap\ g)\ xs$，我们有：
+
+\[
+\begin{array}{rcll}
+fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text{$fmap$的定义} \\
+  & = & ((f \circ g)\ x):((fmap\ f \circ fmap\ g)\ xs) & \text{递归假设} \\
+  & = & (f(g\ x)):(fmap\ f\ (fmap\ g\ xs)) & \text{函数组合的定义} \\
+  & = & fmap\ f\ ((g\ x):(fmap\ g\ xs)) & \text{反向使用$fmap$的定义} \\
+  & = & fmap\ f\ (fmap\ g\ (x:xs)) & \text{再次反向使用$fmap$的定义} \\
+  & = & (fmap\ f\ \circ fmap\ g)\ (x:xs) & \text{反向用函数组合的定义}
+\end{array}
+\]
+
+这就验证了$\mathbf{List}$的确是一个函子。
 \end{proof}
 \end{example}
 
