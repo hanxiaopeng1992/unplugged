@@ -986,6 +986,14 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \end{proof}
 \end{example}
 
+\begin{Exercise}
+\Question{请使用叠加操作$foldr$来定义列表函子的箭头映射。}
+\Question{证明可能函子和列表函子的组合$\mathbf{Maybe} \circ \mathbf{List}$与$\mathbf{List} \circ \mathbf{Maybe}$仍然是函子。}
+\Question{证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
+\Question{思考一个预序集范畴上的函子的例子。}
+\Question{回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
+\end{Exercise}
+
 \section{自然变换}
 
 \section{积和余积}
