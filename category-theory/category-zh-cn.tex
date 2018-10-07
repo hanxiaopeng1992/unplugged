@@ -1195,6 +1195,82 @@ S \arrowto{m} S
 \end{tikzpicture}
 \end{center}
 
+这一结论自然会引入下面的问题：在众多的楔形中，积和余积是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。那么积和余积是唯一的么？下面的定理回答了这个问题：
+
+\begin{lemma}
+对于范畴$\pmb{C}$中的一对对象$A$和$B$，令下图中的对象和箭头
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+    P &   &  &   & I \\
+      & A &  & A &   \\
+      & B &  & B &   \\
+    Q &   &  &   & J \\};
+  \path[-stealth]
+    % left
+    (m-1-1) edge node [above] {$p_A$} (m-2-2)
+    (m-1-1) edge node [below] {$p_B$} (m-3-2)
+    (m-4-1) edge node [above] {$q_A$} (m-2-2)
+    (m-4-1) edge node [below] {$q_B$} (m-3-2)
+    % right
+    (m-2-4) edge node [above] {$i_A$} (m-1-5)
+    (m-2-4) edge node [above] {$j_A$} (m-4-5)
+    (m-3-4) edge node [below] {$i_B$} (m-1-5)
+    (m-3-4) edge node [below] {$j_B$} (m-4-5);
+\end{tikzpicture}
+\end{center}
+
+各自为一对
+
+\begin{center}
+积 \quad \quad \quad 余积
+\end{center}
+
+的楔形。则
+
+\[
+P, Q \quad \quad \quad I, J
+\]
+
+是唯一的同构楔形。存在唯一的箭头：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=3em, minimum width=2em]{
+    P & & I \\
+    Q & & J \\};
+  \path[-stealth]
+    % left
+    (m-1-1.south west) edge node [left] {$f$} (m-2-1.north west)
+    (m-2-1.north east) edge node [right] {$g$} (m-1-1.south east)
+    % right
+    (m-1-3.south west) edge node [left] {$f$} (m-2-3.north west)
+    (m-2-3.north east) edge node [right] {$g$} (m-1-3.south east);
+\end{tikzpicture}
+\end{center}
+
+使得：
+
+\[
+\begin{array}{lcl}
+  \begin{cases}
+    p_A = q_A \circ f & p_B = q_B \circ f \\
+    q_A = p_A \circ g & q_B = p_B \circ g
+  \end{cases}
+  & \quad &
+  \begin{cases}
+    i_A = g \circ j_A & i_B = g \circ j_B \\
+    j_A = f \circ i_A & j_B = f \circ i_B
+  \end{cases}
+\end{array}
+\]
+
+并且，$f$和$g$是互逆的同构箭头对。
+\end{lemma}
+
 \section{自然变换}
 
 \subsection{起始对象和终止对象}
