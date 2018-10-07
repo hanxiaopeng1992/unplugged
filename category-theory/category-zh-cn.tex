@@ -1021,7 +1021,123 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \end{tikzpicture}
 \end{center}
 
-还有一种对偶的构造，我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$
+还有一种对偶的构造，我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$。为了分清和中的每个元素究竟是来自$A$还是$B$，可以给元素增加一个标记（tag）：
+
+\[
+A + B = (A \times \{0\}) \cup (B \times \{1\})
+\]
+
+或者等价地这样定义：
+
+\[
+A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
+\]
+
+当从$A+B$中取出一个元素$(x, tag)$，如果$tag$为0，我们就知道$x$本来属于$A$，如果$tag$为1，就知道$x$本来属于$B$。当$A, B$是同类的代数结构时，我们可以定义如下的对象和箭头：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+    a & A &        &       &        & B & b \\
+      &   &        &       &        &   & \\
+      &   & (a, 0) & A + B & (b, 1) &   & \\};
+  \path[|->]
+    (m-1-1) edge (m-3-3)
+    (m-1-7) edge (m-3-5);
+  \path[-stealth]
+    (m-1-2) edge (m-3-4)
+    (m-1-6) edge (m-3-4);
+\end{tikzpicture}
+\end{center}
+
+对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。
+
+\begin{definition}
+对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
+
+\[
+\text{指向$A, B$的} \quad \quad \quad \text{从$A, B$出发的}
+\]
+
+\textbf{楔形}（wedge）是范畴$\pmb{C}$中的一个对象$X$和一对箭头：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    X &   &  &   & X \\
+      & B &  & B & \\};
+  \path[-stealth]
+    (m-2-1) edge (m-1-2)
+    (m-2-1) edge (m-3-2)
+    (m-1-4) edge (m-2-5)
+    (m-3-4) edge (m-2-5);
+\end{tikzpicture}
+\end{center}
+\end{definition}
+
+给定范畴中的一对对象$A$和$B$，可能有不止一个向左的或者向右的楔形。我们关心那个“最好”的楔形，它距离两个对象“最近”。本质上，我们说在寻找一个泛性的（universal）楔形。这就引出了下面的（一对）定义：
+
+\begin{definition}
+对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
+
+\[
+\text{积（product）} \quad \quad \quad \text{余积（coproduct）}
+\]
+
+是一个满足如下泛性性质的楔形：对于任意楔形：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    X &   &  &   & X \\
+      & B &  & B & \\};
+  \path[-stealth]
+    (m-2-1) edge node {$f_A$} (m-1-2)
+    (m-2-1) edge node {$f_B$} (m-3-2)
+    (m-1-4) edge node {$f_A$} (m-2-5)
+    (m-3-4) edge node {$f_B$} (m-2-5);
+\end{tikzpicture}
+\end{center}
+
+都存在一个唯一的箭头：
+
+\[
+ X \arrowto{m} S \quad \quad \quad S \arrowto{m} X
+\]
+
+使得下面图中的箭头可交换。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    X & S &  & S & X \\
+      & B &  & B & \\};
+  \path[-stealth]
+    % left
+    (m-2-1) edge node {$f_A$} (m-1-2)
+    (m-2-1) edge node {$f_B$} (m-3-2)
+    (m-2-1) edge node {$m$}   (m-2-2)
+    (m-2-2) edge node {$p_A$} (m-1-2)
+    (m-2-2) edge node {$p_B$} (m-3-2)
+    % right
+    (m-1-4) edge node {$f_A$} (m-2-5)
+    (m-3-4) edge node {$f_B$} (m-2-5)
+    (m-2-4) edge node {$m$}   (m-2-5)
+    (m-1-4) edge node {$i_A$} (m-2-4)
+    (m-3-4) edge node {$i_B$} (m-2-4);
+\end{tikzpicture}
+\end{center}
+
+其中箭头$m$叫做楔形$X$的媒介箭头（mediating arrow或者mediator）
+
+\end{definition}
 
 \section{自然变换}
 
