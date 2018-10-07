@@ -1097,10 +1097,10 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
     X &   &  &   & X \\
       & B &  & B & \\};
   \path[-stealth]
-    (m-2-1) edge node {$f_A$} (m-1-2)
-    (m-2-1) edge node {$f_B$} (m-3-2)
-    (m-1-4) edge node {$f_A$} (m-2-5)
-    (m-3-4) edge node {$f_B$} (m-2-5);
+    (m-2-1) edge node [above] {$f_A$} (m-1-2)
+    (m-2-1) edge node [below] {$f_B$} (m-3-2)
+    (m-1-4) edge node [above] {$f_A$} (m-2-5)
+    (m-3-4) edge node [below] {$f_B$} (m-2-5);
 \end{tikzpicture}
 \end{center}
 
@@ -1121,17 +1121,17 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
       & B &  & B & \\};
   \path[-stealth]
     % left
-    (m-2-1) edge node {$f_A$} (m-1-2)
-    (m-2-1) edge node {$f_B$} (m-3-2)
-    (m-2-1) edge node {$m$}   (m-2-2)
-    (m-2-2) edge node {$p_A$} (m-1-2)
-    (m-2-2) edge node {$p_B$} (m-3-2)
+    (m-2-1) edge node [above] {$f_A$} (m-1-2)
+    (m-2-1) edge node [below] {$f_B$} (m-3-2)
+    (m-2-1) edge node [above] {$m$}   (m-2-2)
+    (m-2-2) edge node [right] {$p_A$} (m-1-2)
+    (m-2-2) edge node [right] {$p_B$} (m-3-2)
     % right
-    (m-1-4) edge node {$f_A$} (m-2-5)
-    (m-3-4) edge node {$f_B$} (m-2-5)
-    (m-2-4) edge node {$m$}   (m-2-5)
-    (m-1-4) edge node {$i_A$} (m-2-4)
-    (m-3-4) edge node {$i_B$} (m-2-4);
+    (m-1-4) edge node [above] {$f_A$} (m-2-5)
+    (m-3-4) edge node [below] {$f_B$} (m-2-5)
+    (m-2-4) edge node [above] {$m$}   (m-2-5)
+    (m-1-4) edge node [right] {$i_A$} (m-2-4)
+    (m-3-4) edge node [right] {$i_B$} (m-2-4);
 \end{tikzpicture}
 \end{center}
 
