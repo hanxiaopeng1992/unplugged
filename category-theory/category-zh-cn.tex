@@ -1087,7 +1087,24 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \text{积（product）} \quad \quad \quad \text{余积（coproduct）}
 \]
 
-是一个满足如下泛性性质的楔形：对于任意楔形：
+是一个特殊的楔形：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    S &   &  &   & S \\
+      & B &  & B & \\};
+  \path[-stealth]
+    (m-2-1) edge node [above] {$p_A$} (m-1-2)
+    (m-2-1) edge node [below] {$p_B$} (m-3-2)
+    (m-1-4) edge node [above] {$i_A$} (m-2-5)
+    (m-3-4) edge node [below] {$i_B$} (m-2-5);
+\end{tikzpicture}
+\end{center}
+
+这个楔形满足如下泛性性质：对于任意楔形，
 
 \begin{center}
 \begin{tikzpicture}
@@ -1136,8 +1153,9 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \end{center}
 
 其中箭头$m$叫做楔形$X$的媒介箭头（mediating arrow或者mediator）
-
 \end{definition}
+
+在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。
 
 \section{自然变换}
 
