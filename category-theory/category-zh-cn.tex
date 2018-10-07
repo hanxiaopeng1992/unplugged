@@ -1155,7 +1155,45 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 其中箭头$m$叫做楔形$X$的媒介箭头（mediating arrow或者mediator）
 \end{definition}
 
-在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。
+在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。其次，对于任意给定的$X$，媒介箭头$m$都是唯一的。所谓箭头可交换，我们用左侧的积来举例，是说箭头间的关系满足：
+
+\[
+\begin{array}{l}
+f_A = p_A \circ m \\
+f_B = p_B \circ m
+\end{array}
+\]
+
+这立刻告诉我们，下面的特例一定成立：如果$X$等于$S$，$m$是一个自箭头（endo-arrow）
+
+\[
+S \arrowto{m} S
+\]
+
+则$m$是恒等箭头。范畴图简化为：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    S & S &  & S & S \\
+      & B &  & B & \\};
+  \path[-stealth]
+    % left
+    (m-2-1) edge node [above] {$p_A$} (m-1-2)
+    (m-2-1) edge node [below] {$p_B$} (m-3-2)
+    (m-2-1) edge node [above] {$id_S$} (m-2-2)
+    (m-2-2) edge node [right] {$p_A$} (m-1-2)
+    (m-2-2) edge node [right] {$p_B$} (m-3-2)
+    % right
+    (m-1-4) edge node [above] {$i_A$} (m-2-5)
+    (m-3-4) edge node [below] {$i_B$} (m-2-5)
+    (m-2-4) edge node [above] {$id_S$} (m-2-5)
+    (m-1-4) edge node [right] {$i_A$} (m-2-4)
+    (m-3-4) edge node [right] {$i_B$} (m-2-4);
+\end{tikzpicture}
+\end{center}
 
 \section{自然变换}
 
