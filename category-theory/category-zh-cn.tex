@@ -1002,7 +1002,7 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \{(a, b) | a \in A, b \in B\}
 \]
 
-如果集合$A, B$是同类的代数结构，如群、环等，我们可以定义如下图的对象和箭头。
+例如有限集合$\{1, 2, 3\}$和$\{a, b\}$的积为$\{(1, a), (2, a), (3, a), (1, b), (2, b), (3, b)\}$。如果集合$A, B$是同类的代数结构，如群、环等，我们可以定义如下图的对象和箭头。
 
 \begin{center}
 \begin{tikzpicture}
@@ -1033,7 +1033,7 @@ A + B = (A \times \{0\}) \cup (B \times \{1\})
 A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \]
 
-当从$A+B$中取出一个元素$(x, tag)$，如果$tag$为0，我们就知道$x$本来属于$A$，如果$tag$为1，就知道$x$本来属于$B$。当$A, B$是同类的代数结构时，我们可以定义如下的对象和箭头：
+当从$A+B$中取出一个元素$(x, tag)$，如果$tag$为0，我们就知道$x$本来属于$A$，如果$tag$为1，就知道$x$本来属于$B$。这样有限集合$\{1, 2, 3\}$和$\{a, b\}$的和就是$\{(1, 0), (2, 0), (3, 0), (a, 1), (b, 1)\}$。当$A, B$是同类的代数结构时，我们可以定义如下的对象和箭头：
 
 \begin{center}
 \begin{tikzpicture}
@@ -1270,6 +1270,125 @@ P, Q \quad \quad \quad I, J
 
 并且，$f$和$g$是互逆的同构箭头对。
 \end{lemma}
+
+\begin{proof}
+我们只证明左侧积的部分，右侧余积部分的证明与此类似。给定$A, B$，对象$Q$和两个箭头$q_A, q_B$构成的楔形是一个积。我们把对象$P$和一对箭头$p_A, p_B$看成是另一个楔形。根据积的定义，存在唯一的媒介箭头$f$满足：
+
+\[
+p_A = q_A \circ f \quad \text{和} \quad p_B = q_B \circ f
+\]
+
+交换$P$和$Q$（另$P$为积，$Q$为任意楔形），又可以得到：
+
+\[
+q_A = p_A \circ g \quad \text{和} \quad q_B = p_B \circ g
+\]
+
+这样就有：
+
+\[
+\begin{array}{l}
+p_A \circ g \circ f = q_A \circ f = p_A \\
+p_B \circ g \circ f = q_B \circ f = p_B
+\end{array}
+\]
+
+因此：
+
+\[
+g \circ f = id_P \quad \quad \quad f \circ g = id_Q
+\]
+
+\end{proof}
+
+这一结论说明，如果两个对象存在积（或者余积）则它是唯一的。但是积和余积并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
+
+\begin{lemma}
+若$A, B$是两个集合，则它们的
+
+\begin{center}
+笛卡尔积$A \times B$ \quad \quad \quad 不相交并集$A + B$
+\end{center}
+
+在范畴$\pmb{Set}$中构成
+
+\begin{center}
+积 \quad \quad \quad 余积
+\end{center}
+ \end{lemma}
+
+\begin{proof}
+我们可以用构造法证明。首先证明左侧积的部分。$A \times B$的笛卡尔积是来自两个集合的元素对的全部组合
+
+\[
+\{(a, b) | a \in A, b \in B\}
+\]
+
+我们定义两个特殊的箭头（函数）作为$p_A$和$p_B$
+
+\[
+\begin{cases}
+fst\ (a, b) = a \\
+snd\ (a, b) = b
+\end{cases}
+\]
+
+考虑任意楔形
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A  \\
+    X &    \\
+      & B  \\};
+  \path[-stealth]
+    (m-2-1) edge node[above] {$p$} (m-1-2)
+    (m-2-1) edge node[below] {$q$} (m-3-2);
+\end{tikzpicture}
+\end{center}
+
+其中$p\ x = a, q\ x = b, x \in X$。举个具体的例子，$X$为$Int$, $A$为$Int$，$B$为$Bool$，而两个函数$p, q$的定义为：
+
+\[
+\begin{cases}
+p\ x = -x \\
+q\ x = even\ x
+\end{cases}
+\]
+
+也就是说，$p$对一个整数取相反数，$q$判断其是否是偶数。我们定义函数$X \arrowto{m} A \times B$如下：
+
+\[
+m\ x = (a, b)
+\]
+
+具体到上面的例子，有：
+
+\[
+m\ x = (-x, even\ x)
+\]
+
+这样，下面图中的箭头就可交换了：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A \\
+    X & A \times B \\
+      & B \\};
+  \path[-stealth]
+    % left
+    (m-2-1) edge node [above] {$p$} (m-1-2)
+    (m-2-1) edge node [below] {$q$} (m-3-2)
+    (m-2-1) edge node [above] {$m$}   (m-2-2)
+    (m-2-2) edge node [right] {$fst$} (m-1-2)
+    (m-2-2) edge node [right] {$snd$} (m-3-2);
+\end{tikzpicture}
+\end{center}
+
+\end{proof}
 
 \section{自然变换}
 
