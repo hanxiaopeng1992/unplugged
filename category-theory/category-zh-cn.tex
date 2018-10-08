@@ -1388,6 +1388,56 @@ m\ x = (-x, even\ x)
 \end{tikzpicture}
 \end{center}
 
+不难验证：
+
+\[
+\begin{array}{rcll}
+(fst \circ m)\ x & = & fst\ (m\ x) & \text{函数组合} \\
+                 & = & fst\ (a, b) & \text{$m$的定义} \\
+                 & = & a & \text{$fst$的定义} \\
+                 & = & p\ x & \text{反向用$p$的定义}
+\end{array}
+\]
+
+并且：
+
+\[
+\begin{array}{rcll}
+(snd \circ m)\ x & = & snd\ (m\ x) & \text{函数组合} \\
+                 & = & snd\ (a, b) & \text{$m$的定义} \\
+                 & = & b & \text{$snd$的定义} \\
+                 & = & q\ x & \text{反向用$q$的定义}
+\end{array}
+\]
+
+具体到上面的例子，有：
+
+\[
+\begin{cases}
+(fst \circ m)\ x = fst\ (-x, even\ x) = -x = p \\
+(snd \circ m)\ x = snd\ (-x, even\ x) = even\ x = q
+\end{cases}
+\]
+
+我们还需要证明$m$是唯一的。假设存在另一个函数$x \arrowto{h} A \times B$，也使得范畴图中的箭头可交换。即：
+
+\[
+fst \circ h = p \quad \text{且} \quad snd \circ h = q
+\]
+
+我们有：
+
+\[
+\begin{array}{rcll}
+(a, b) & = & (p\ x,\ q\ x) & \text{$p, q$的定义} \\
+       & = & ((fst \circ h)\ x,\ (snd \circ h)\ x) & \text{可交换} \\
+       & = & (fst\ (h\ x),\ snd\ (h\ x)) & \text{函数组合} \\
+       & = & (fst\ (a, b),\ snd\ (a, b)) & \text{反向用$fst, snd$的定义}
+\end{array}
+\]
+
+所以$h\ x = (a, b) = m\ x$。这样就证明了$m$的唯一性。
+
 \end{proof}
 
 \section{自然变换}
