@@ -1352,21 +1352,21 @@ snd\ (a, b) = b
 
 \[
 \begin{cases}
-p\ x = -x \\
-q\ x = even\ x
+p(x) = -x \\
+q(x) = even(x)
 \end{cases}
 \]
 
 也就是说，$p$对一个整数取相反数，$q$判断其是否是偶数。我们定义函数$X \arrowto{m} A \times B$如下：
 
 \[
-m\ x = (a, b)
+m(x) = (a, b)
 \]
 
 具体到上面的例子，有：
 
 \[
-m\ x = (-x, even\ x)
+m(x) = (-x, even(x))
 \]
 
 这样，下面图中的箭头就可交换了：
@@ -1392,10 +1392,10 @@ m\ x = (-x, even\ x)
 
 \[
 \begin{array}{rcll}
-(fst \circ m)\ x & = & fst\ (m\ x) & \text{函数组合} \\
+(fst \circ m)(x) & = & fst\ m(x) & \text{函数组合} \\
                  & = & fst\ (a, b) & \text{$m$的定义} \\
                  & = & a & \text{$fst$的定义} \\
-                 & = & p\ x & \text{反向用$p$的定义}
+                 & = & p(x) & \text{反向用$p$的定义}
 \end{array}
 \]
 
@@ -1403,10 +1403,10 @@ m\ x = (-x, even\ x)
 
 \[
 \begin{array}{rcll}
-(snd \circ m)\ x & = & snd\ (m\ x) & \text{函数组合} \\
+(snd \circ m)(x) & = & snd\ m(x) & \text{函数组合} \\
                  & = & snd\ (a, b) & \text{$m$的定义} \\
                  & = & b & \text{$snd$的定义} \\
-                 & = & q\ x & \text{反向用$q$的定义}
+                 & = & q(x) & \text{反向用$q$的定义}
 \end{array}
 \]
 
@@ -1414,8 +1414,8 @@ m\ x = (-x, even\ x)
 
 \[
 \begin{cases}
-(fst \circ m)\ x = fst\ (-x, even\ x) = -x = p \\
-(snd \circ m)\ x = snd\ (-x, even\ x) = even\ x = q
+(fst \circ m)(x) = fst\ (-x, even(x)) = -x = p(x) \\
+(snd \circ m)(x) = snd\ (-x, even(x)) = even(x) = q(x)
 \end{cases}
 \]
 
@@ -1429,16 +1429,101 @@ fst \circ h = p \quad \text{且} \quad snd \circ h = q
 
 \[
 \begin{array}{rcll}
-(a, b) & = & (p\ x,\ q\ x) & \text{$p, q$的定义} \\
-       & = & ((fst \circ h)\ x,\ (snd \circ h)\ x) & \text{可交换} \\
-       & = & (fst\ (h\ x),\ snd\ (h\ x)) & \text{函数组合} \\
+(a, b) & = & (p(x),\ q(x)) & \text{$p, q$的定义} \\
+       & = & ((fst \circ h)(x),\ (snd \circ h)(x)) & \text{可交换} \\
+       & = & (fst\ h(x),\ snd\ h(x)) & \text{函数组合} \\
        & = & (fst\ (a, b),\ snd\ (a, b)) & \text{反向用$fst, snd$的定义}
 \end{array}
 \]
 
-所以$h\ x = (a, b) = m\ x$。这样就证明了$m$的唯一性。
+所以$h(x) = (a, b) = m(x)$。这样就证明了$m$的唯一性。
 
+接下来，我们证明右侧的余积部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
+
+\[
+\begin{cases}
+left(a) = (a, 0) \\
+right(b) = (b, 1)
+\end{cases}
+\]
+
+考虑任意集合$X$构成的楔形：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+    A & \\
+      & X \\
+    B & \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$p$} (m-2-2)
+    (m-3-1) edge node [below] {$q$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+我们定义箭头$A + B \arrowto{m} X$如下：
+
+\[
+\begin{cases}
+m\ (a, 0) = p(a) \\
+m\ (b, 1) = q(b)
+\end{cases}
+\]
+
+这样，下图中的箭头就可交换了。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+    A & \\
+    A + B & X \\
+    B & \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$p$} (m-2-2)
+    (m-3-1) edge node [below] {$q$} (m-2-2)
+    (m-2-1) edge node [above] {$m$}   (m-2-2)
+    (m-1-1) edge node [left] {$left$} (m-2-1)
+    (m-3-1) edge node [left] {$right$} (m-2-1);
+\end{tikzpicture}
+\end{center}
+
+接下来要证明$m$的唯一性，也就是说$m$是唯一使上图可交换的箭头。假设存在另一个箭头$A + B \arrowto{h} X$也使得上图可交换。即满足：
+
+\[
+h \circ left = p \quad \text{且} \quad h \circ right = q
+\]
+
+我们任取$a \in A, b \in B$，有：
+
+\[
+\begin{cases}
+h\ (a, 0) = h(left(a)) = (h \circ left)(a) = p(a) = m\ (a, 0) \\
+h\ (b, 1) = h(right(a)) = (h \circ right)(b) = q(b) = m\ (b, 1)
+\end{cases}
+\]
+
+于是$h = m$，这就证明了$m$的唯一性。
 \end{proof}
+
+在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
+
+\begin{lstlisting}
+data Either a b = Left a | Right b
+\end{lstlisting}
+
+这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的Haskell例子代码使用模式匹配来决定如何处理余积的元素：
+
+\begin{lstlisting}
+either :: (a -> c) -> (b -> c) -> Either a b -> c
+either f _ (Left x)     =  f x
+either _ g (Right y)    =  g y
+\end{lstlisting}
+
+举个具体的例子，假设我们有一个\texttt{Either String Int}类型的余积，它或者为一个字符串，例如\texttt{s = Left "hello"}，或者是一个整数，例如\texttt{n = Right 8}。如果是字符串，我们希望得到它的长度；如果是整数，我们希望将它加倍。为此我们可以这样调用$either$函数：\texttt{either length (*2) x}。
+
+这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。
 
 \section{自然变换}
 
