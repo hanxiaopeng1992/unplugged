@@ -1053,6 +1053,8 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 
 对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。
 
+\subsection{积和余积的定义}
+
 \begin{definition}
 对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
 
@@ -1175,7 +1177,7 @@ S \arrowto{m} S
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
+               row sep=3em, column sep=3em, minimum width=2em]{
       & A &  & A & \\
     S & S &  & S & S \\
       & B &  & B & \\};
@@ -1525,6 +1527,89 @@ either _ g (Right y)    =  g y
 
 这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。
 
+\subsection{积和余积作为函子}
+
+在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。但是我们只给出了媒介箭头在集合范畴$\pmb{Set}$中的定义：
+
+\[
+\begin{array}{rcl}
+m(x) = (a, b) & \quad \quad &
+\begin{cases}
+m (a, 0) = p(a) \\
+m (b, 1) = q(b)
+\end{cases}
+\end{array}
+\]
+
+有没有办法，能够给出媒介箭头更好的定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=2em, minimum width=2em]{
+      & A &  & A & \\
+    X &   &  &   & X \\
+      & B &  & B & \\};
+  \path[-stealth]
+    (m-2-1) edge node [above] {$f$} (m-1-2)
+    (m-2-1) edge node [below] {$g$} (m-3-2)
+    (m-1-4) edge node [above] {$f$} (m-2-5)
+    (m-3-4) edge node [below] {$g$} (m-2-5);
+\end{tikzpicture}
+\end{center}
+
+分别定义
+
+\[
+m = \langle f, g \rangle \quad \quad \quad m =[f, g]
+\]
+
+使得它们满足：
+
+\[
+\begin{array}{rcl}
+\begin{cases}
+fst \circ m = f \\
+snd \circ m = g
+\end{cases}
+& \quad \quad &
+\begin{cases}
+m \circ left = f \\
+m \circ right = g
+\end{cases}
+\end{array}
+\]
+
+这样，下面范畴图中的箭头是可交换的：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+      & A &  & A & \\
+    X & S &  & S & X \\
+      & B &  & B & \\};
+  \path[-stealth]
+    % left
+    (m-2-1) edge node [above] {$f$} (m-1-2)
+    (m-2-1) edge node [below] {$g$} (m-3-2)
+    (m-2-1) edge node [above] {$\langle f, g \rangle$}   (m-2-2)
+    (m-2-2) edge node [right] {$fst$} (m-1-2)
+    (m-2-2) edge node [right] {$snd$} (m-3-2)
+    % right
+    (m-1-4) edge node [above] {$f$} (m-2-5)
+    (m-3-4) edge node [below] {$g$} (m-2-5)
+    (m-2-4) edge node [above] {$[f, g]$}   (m-2-5)
+    (m-1-4) edge node [left] {$left$} (m-2-4)
+    (m-3-4) edge node [left] {$right$} (m-2-4);
+\end{tikzpicture}
+\end{center}
+
+\begin{Exercise}
+\Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
+\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
+\end{Exercise}
+
 \section{自然变换}
 
 \subsection{起始对象和终止对象}
@@ -1532,6 +1617,8 @@ either _ g (Right y)    =  g y
 \section{数据类型}
 
 \section{伴随}
+
+\section{扩展阅读}
 
 \section{附录：例子代码}
 
