@@ -1248,7 +1248,7 @@ S \arrowto{m} S
 P, Q \quad \quad \quad I, J
 \]
 
-是唯一的同构楔形。存在唯一的箭头：
+是同构的楔形，存在唯一的箭头：
 
 \begin{center}
 \begin{tikzpicture}
@@ -1544,7 +1544,8 @@ either _ g (Right y)    =  g y
 在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。但是我们只给出了媒介箭头在集合范畴$\pmb{Set}$中的定义：
 
 \[
-\begin{array}{rcl}
+\begin{array}{ccc}
+\text{积} & & \text{余积} \\
 m(x) = (a, b) & \quad \quad &
 \begin{cases}
 m (a, 0) = p(a) \\
@@ -1617,7 +1618,7 @@ m \circ right = g
 \end{tikzpicture}
 \end{center}
 
-通过这对范畴图，我们立即可以得到一些积和余积的性质。首先是消去律：
+通过这对范畴图，我们立即可以得到一些积和余积的性质。首先是\textbf{消去律}：
 
 \[
 \begin{array}{rcl}
@@ -1633,16 +1634,17 @@ snd \circ \langle f, g \rangle = g
 \end{array}
 \]
 
-对于积，如果$f$恰好等于$fst$，而$g$恰好等于$snd$，我们就得到了上一小节中恒等箭头的特例；同样对于余积，如果$f$恰好等于$left$，而$g$恰好等于$right$，则媒介箭头也是恒等箭头。即：
+对于积，如果$f$恰好等于$fst$，而$g$恰好等于$snd$，我们就得到了上一小节中恒等箭头的特例；同样对于余积，如果$f$恰好等于$left$，而$g$恰好等于$right$，则媒介箭头也是恒等箭头。我们称这条性质为\textbf{反射律}（reflection law）：
 
 \[
 id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 \]
 
-如果存在另一个楔形$Y$和箭头$h, k$，在积和余积的情况下它们和$f, g$间满足关系：
+如果存在另一个楔形$Y$和箭头$h, k$，它们和$f, g$间满足关系：
 
 \[
-\begin{array}{rcl}
+\begin{array}{ccc}
+  \text{积} & & \text{余积} \\
   \begin{cases}
   h \circ \phi = f \\
   k \circ \phi = g
@@ -1661,10 +1663,11 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 \langle h, k \rangle \circ \phi \quad \quad \quad \phi \circ [h, k]
 \]
 
-代入$m$，并使用消去律，这样就得到了融合律（fusion law）：
+代入$m$，并使用消去律，这样就得到了\textbf{融合律}（fusion law）：
 
 \[
-\begin{array}{rcl}
+\begin{array}{ccc}
+  \text{积} & & \text{余积} \\
   \begin{cases}
   h \circ \phi = f \\
   k \circ \phi = g
@@ -1691,7 +1694,16 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 
 \subsection{积和余积作为函子}
 
+了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor）的概念。我们此前介绍的函子，将一个范畴中的对象对应到另一个范畴中的对象，将一个箭头对应到另一个箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的对应关系为：
 
+\[
+\begin{array}{rcl}
+\pmb{C} \times \pmb{D} & \longrightarrow & \pmb{E} \\
+A \times B & \longmapsto & \mathbf{F}A \times B \\
+\end{array}
+\]
+
+但是函子除了作用于对象之外，也作用于箭头，对于范畴$\pmb{C}$中的箭头$f$，和$\pmb{D}$中的箭头$g$，二元函子是怎样对应的呢？
 
 \begin{Exercise}
 \Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
