@@ -1791,68 +1791,139 @@ id \times id = id \\
 这样就证明了二元函子满足所有函子的性质。
 \end{proof}
 
-\subsubsection{积函子}
-有了二元函子的概念，就可以定义积函子了。我们用中缀的形式，将积函子记为“$\times$”。对于两个对象，积函子将其映射为对象的积；对于箭头，定义：
+与$fmap$类似，在一些编程环境中，无法用同一个符号既做对象的映射，也做箭头的映射。为此可以专门为二元函子定义一个$bimap$。我们要求所有的二元函子$\mathbf{F}$满足：
+
+\[
+bimap : (A \to C) \to (B \to D) \to (\mathbf{F}\ A \times B \to \mathbf{F}\ C \times D)
+\]
+
+也就是说，如果$\mathbf{F}$是一个二元函子，它把两个箭头$A \arrowto{g} C$、$B \arrowto{h} D$映射为从$\mathbf{F}\ A \times B$到$\mathbf{F}\ C \times D$的箭头。
+
+有了二元函子的概念，就可以定义积函子和余积函子了。我们用中缀的形式，将
+
+\begin{center}
+积函子记为“$\times$” \quad \quad \quad 余积函子记为“$+$”
+\end{center}
+
+对于两个对象，积函子将其映射为对象的积；余积函子将其映射为对象的余积。对于箭头，定义：
 
 \[
 f \times g = \langle f \circ fst, g \circ snd \rangle
+\quad \quad \quad
+f + g = [left \circ f, right \circ g]
 \]
 
 接下来需要验证函子的两条性质，首先是恒等性质。将$f, g$都用$id$代入：
 
 \[
-\begin{array}{rcll}
-id \times id & = & \langle id \circ fst, id \circ snd \rangle & \text{$\times$的定义} \\
-  & = & \langle fst, snd \rangle & \text{$id$的性质} \\
-  & = & id & \text{积的反射律} \\
+\begin{array}{lr}
+  \begin{array}{cll}
+    & id \times id & \\
+  = & \langle id \circ fst, id \circ snd \rangle & \text{$\times$的定义} \\
+  = & \langle fst, snd \rangle & \text{$id$的性质} \\
+  = & id & \text{积的反射律} \\
+  \end{array}
+  &
+  \begin{array}{cll}
+    & id + id & \\
+  = & [ left \circ id, right \circ id ] & \text{$+$的定义} \\
+  = & [ left, right] & \text{$id$的性质} \\
+  = & id & \text{余积的反射律} \\
+  \end{array}
 \end{array}
 \]
 
-其次验证组合性质$(f \times g) \circ (f' \times g') = (f \circ f') \times (g \circ g')$。为此，我们先证明积的\textbf{吸收律}（absorption law）：
+其次验证组合性质。
 
 \[
-(f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
+\begin{array}{ccc}
+\text{积} & \text{余积} \\
+ (f \times g) \circ (f' \times g') = f \circ f' \times g \circ g'
+ & \quad \quad &
+ (f + g) \circ (f' + g') = f \circ f' + g \circ g'
+\end{array}
 \]
 
+为此，我们先证明积和余积的\textbf{吸收律}（absorption law）：
+
 \[
-\begin{array}{rcll}
-(f \times g) \circ \langle p, q \rangle & = & \langle f \circ fst, g \circ snd \rangle \circ \langle p, q \rangle & \text{$\times$的定义} \\
-  & = & \langle f \circ fst \circ \langle p, q \rangle, g \circ snd \circ \langle p, q \rangle \rangle & \text{积的融合律} \\
-  & = & \langle f \circ p, g \circ q \rangle & \text{积的消去律} \\
+\begin{array}{ccc}
+  \text{积的吸收律} & \text{余积的吸收律} \\
+  (f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
+  & \quad \quad &
+  [p, q] \circ (f + g) = [p \circ f, q \circ g]
+\end{array}
+\]
+
+我们只给出左手边积的情况，余积的情况与此对称，我们将其留作练习。
+
+\[
+\begin{array}{cll}
+   & (f \times g) \circ \langle p, q \rangle & \\
+ = & \langle f \circ fst, g \circ snd \rangle \circ \langle p, q \rangle & \text{$\times$的定义} \\
+ = & \langle f \circ fst \circ \langle p, q \rangle, g \circ snd \circ \langle p, q \rangle \rangle & \text{积的融合律} \\
+ = & \langle f \circ p, g \circ q \rangle & \text{积的消去律} \\
 \end{array}
 \]
 
 使用吸收律，令$p = f' \circ fst, q = g' \circ snd$，就可以验证组合性质：
 
 \[
-\begin{array}{rcll}
-(f \times g) \circ (f' \times g') & = & (f \times g) \circ \langle f' \circ fst, g' \circ snd \rangle & \text{对第二项用$\times$的定义} \\
-  & = & (f \times g) \circ \langle p, q \rangle & \text{用$p, q$代换} \\
-  & = & \langle f \circ p, g \circ q \rangle & \text{吸收率} \\
-  & = & \langle f \circ f' \circ fst, g \circ g' \circ snd \rangle & \text{把$p, q$代换回} \\
-  & = & \langle (f \circ f') \circ fst, (g \circ g') \circ snd \rangle & \text{结合律} \\
-  & = & (f \circ f') \times (g \circ g') & \text{反向用$\times$的定义} \\
+\begin{array}{cll}
+  & (f \times g) \circ (f' \times g') & \\
+= & (f \times g) \circ \langle f' \circ fst, g' \circ snd \rangle & \text{对第二项用$\times$的定义} \\
+= & (f \times g) \circ \langle p, q \rangle & \text{用$p, q$代换} \\
+= & \langle f \circ p, g \circ q \rangle & \text{吸收率} \\
+= & \langle f \circ f' \circ fst, g \circ g' \circ snd \rangle & \text{把$p, q$代换回} \\
+= & \langle (f \circ f') \circ fst, (g \circ g') \circ snd \rangle & \text{结合律} \\
+= & (f \circ f') \times (g \circ g') & \text{反向用$\times$的定义} \\
 \end{array}
 \]
 
-积函子是二元函子的一个特例。与$fmap$类似，在Haskell中，专门为二元函子定义了一个$bimap$。
+积函子是二元函子的一个特例。我们可以为积函子定义$bimap$如下：
 
-\subsubsection{余积函子}
+\[
+\begin{array}{l}
+bimap : (A \to C) \to (B \to D) \to (A \times B \to C \times D) \\
+bimap\ f\ g\ (x, y) = (f\ x,\ g\ y)
+\end{array}
+\]
+
+如果使用\texttt{Either}类型实现余积函子，则相应的$bimap$可以定义如下：
+
+\[
+\begin{array}{l}
+bimap : (A \to C) \to (B \to D) \to (Either\ A\ B \to Either\ C\ D) \\
+bimap\ f\ g\ (left\ x) = left\ (f\ x) \\
+bimap\ f\ g\ (right\ y) = right\ (g\ y)
+\end{array}
+\]
 
 \begin{Exercise}
 \Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
 \Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
+\Question{证明余积的吸收率，并验证余积函子的组合性质。}
 \end{Exercise}
 
 \section{自然变换}
 
-\subsection{起始对象和终止对象}
+% \subsection{起始对象和终止对象}
 
 \section{数据类型}
 
-\section{伴随}
+% Haskell的foldable和fold的分析。
 
 \section{扩展阅读}
+
+% limits/colimits, 伴随，米田定理
+
+Mac Lane的Categories for working mathematicians
+
+Harold Simmons. ``An introduction to Category Theory''.
+
+Richard Bird的Algebra of Programming
+
+Bartosz Milewski的Category Theory for Programmers
 
 \section{附录：例子代码}
 
@@ -1881,6 +1952,24 @@ lookup (Node l k r) x | x < k = lookup l x
                       | otherwise = Just k
 
 lookupBin = (fmap binary) . lookup
+\end{lstlisting}
+
+二元函子的定义：
+
+\begin{lstlisting}
+class Bifunctor f where
+  bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
+\end{lstlisting}
+
+积函子和余积函子的定义：
+
+\begin{lstlisting}
+instance Bifunctor (,) where
+  bimap f g (x, y) = (f x, g y)
+
+instance Bifunctor Either where
+  bimap f _ (Left a) = Left (f a)
+  bimap _ g (Right b) = Right (g b)
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
