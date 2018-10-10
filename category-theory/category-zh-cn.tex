@@ -1907,6 +1907,72 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \section{自然变换}
 
+艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”（natural transformation）。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明他们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
+
+% Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
+
+考虑下面的两个函子：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     \pmb{Src} & \pmb{Trg} \\};
+  \path[-stealth]
+    (m-1-1.north east) edge node [above] {$\mathbf{F}$} (m-1-2.north west)
+    (m-1-1.south east) edge node [below] {$\mathbf{G}$} (m-1-2.south west);
+\end{tikzpicture}
+\end{center}
+
+它们联系两个同样的范畴，或者都是协变的，或者都是反变的。我们怎样比较它们呢？由于函子既映射对象，又映射箭头，所以我们也得既比较函子映射后的对象，也比较函子映射后的箭头。考虑$\pmb{Src}$中的任意对象$A$，它被两个函子映射成$\pmb{Trg}$中的两个对象$\mathbf{F}A$和$\mathbf{G}A$。我们要研究的是从$\mathbf{F}A$到$\mathbf{G}A$之间的箭头
+
+\[
+\mathbf{F}A \arrowto{\phi_A} \mathbf{G}A
+\]
+
+并且除了$A$外，我们对$\pmb{Src}$中的所有对象做同样的研究。
+
+\begin{definition}
+任给如上图所示的一对函子$\mathbf{F}, \mathbf{G}$，一个自然变换
+
+\[
+F \arrowto{\phi} G
+\]
+
+是由$A$索引的，在$\pmb{Trg}$中的一族箭头
+
+\[
+\mathbf{F}A \arrowto{\phi_A} \mathbf{G}A
+\]
+
+并且对$\pmb{Src}$中的任意箭头$A \arrowto{f} B$，下面的方形都是可交换的。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+     \mathbf{F}A & \mathbf{G}A & A & \mathbf{F}A & \mathbf{G}A \\
+     \mathbf{F}B & \mathbf{G}B & B & \mathbf{F}B & \mathbf{G}B \\};
+  \path[-stealth]
+    % left covariant
+    (m-1-1) edge node [above] {$\phi_A$} (m-1-2)
+    (m-2-1) edge node [below] {$\phi_B$} (m-2-2)
+    (m-1-1) edge node [left] {$\mathbf{F}(f)$} (m-2-1)
+    (m-1-2) edge node [right] {$\mathbf{G}(f)$} (m-2-2)
+    % middle
+    (m-1-3) edge node [left] {$f$} (m-2-3)
+    % right contravariant
+    (m-1-4) edge node [above] {$\phi_A$} (m-1-5)
+    (m-2-4) edge node [below] {$\phi_B$} (m-2-5)
+    (m-2-4) edge node [left] {$\mathbf{F}(f)$} (m-1-4)
+    (m-2-5) edge node [right] {$\mathbf{G}(f)$} (m-1-5);
+\end{tikzpicture}
+
+\text{协变} \quad \quad \quad \quad \text{反变}
+\end{center}
+
+\end{definition}
+
 % \subsection{起始对象和终止对象}
 
 \section{数据类型}
