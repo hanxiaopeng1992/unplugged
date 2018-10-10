@@ -1731,7 +1731,7 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 \end{tikzpicture}
 \end{center}
 
-这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到一个$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A times B$，它的行为如下：
+这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到范畴$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A \times B$，它的行为如下：
 
 \[
 (f \times g)(a, b) = (f\ a, f\ b)
@@ -1791,9 +1791,51 @@ id \times id = id \\
 这样就证明了二元函子满足所有函子的性质。
 \end{proof}
 
-为了更好地理解二元函子，我们举一些具体的例子。
-
 \subsubsection{积函子}
+有了二元函子的概念，就可以定义积函子了。我们用中缀的形式，将积函子记为“$\times$”。对于两个对象，积函子将其映射为对象的积；对于箭头，定义：
+
+\[
+f \times g = \langle f \circ fst, g \circ snd \rangle
+\]
+
+接下来需要验证函子的两条性质，首先是恒等性质。将$f, g$都用$id$代入：
+
+\[
+\begin{array}{rcll}
+id \times id & = & \langle id \circ fst, id \circ snd \rangle & \text{$\times$的定义} \\
+  & = & \langle fst, snd \rangle & \text{$id$的性质} \\
+  & = & id & \text{积的反射律} \\
+\end{array}
+\]
+
+其次验证组合性质$(f \times g) \circ (f' \times g') = (f \circ f') \times (g \circ g')$。为此，我们先证明积的\textbf{吸收律}（absorption law）：
+
+\[
+(f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
+\]
+
+\[
+\begin{array}{rcll}
+(f \times g) \circ \langle p, q \rangle & = & \langle f \circ fst, g \circ snd \rangle \circ \langle p, q \rangle & \text{$\times$的定义} \\
+  & = & \langle f \circ fst \circ \langle p, q \rangle, g \circ snd \circ \langle p, q \rangle \rangle & \text{积的融合律} \\
+  & = & \langle f \circ p, g \circ q \rangle & \text{积的消去律} \\
+\end{array}
+\]
+
+使用吸收律，令$p = f' \circ fst, q = g' \circ snd$，就可以验证组合性质：
+
+\[
+\begin{array}{rcll}
+(f \times g) \circ (f' \times g') & = & (f \times g) \circ \langle f' \circ fst, g' \circ snd \rangle & \text{对第二项用$\times$的定义} \\
+  & = & (f \times g) \circ \langle p, q \rangle & \text{用$p, q$代换} \\
+  & = & \langle f \circ p, g \circ q \rangle & \text{吸收率} \\
+  & = & \langle f \circ f' \circ fst, g \circ g' \circ snd \rangle & \text{把$p, q$代换回} \\
+  & = & \langle (f \circ f') \circ fst, (g \circ g') \circ snd \rangle & \text{结合律} \\
+  & = & (f \circ f') \times (g \circ g') & \text{反向用$\times$的定义} \\
+\end{array}
+\]
+
+积函子是二元函子的一个特例。与$fmap$类似，在Haskell中，专门为二元函子定义了一个$bimap$。
 
 \subsubsection{余积函子}
 
