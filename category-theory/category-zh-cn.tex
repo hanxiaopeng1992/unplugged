@@ -2083,7 +2083,7 @@ safeHead\ (x:xs) = Just\ x
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
+               row sep=3em, column sep=5em, minimum width=2em]{
      A & \lbrack A \rbrack & \mathbf{Maybe} A \\
      B & \lbrack B \rbrack & \mathbf{Maybe} B \\};
   \path[-stealth]
@@ -2131,10 +2131,44 @@ safeHead\ (x:xs) = Just\ x
 \end{proof}
 \end{example}
 
-我们说自然变换是被$A$索引的，在编程环境中，这相当于说给定类型
+我们总结一下这两个自然变换的例子。从范畴中的任意对象$A$开始（对于集合范畴，相当于一个集合$A$；对于编程，相当于一个类型$A$），通过一个函子$\mathbf{F}$，将其映射为对象$\mathbf{F}A$（对于集合范畴，$\mathbf{F}A$是另一个集合；对于编程，$\mathbf{F}A$是另一个类型），而另一函子$\mathbf{G}$将以映射为$\mathbf{G}A$。自然变换$\phi$经由$A$索引的箭头（在集合范畴中是一个映射；在编程中是一个函数）\footnote{也称在$A$上的部分（The component at $A$）}，形如：
 
+\[
+\phi_A : \mathbf{F} A \to \mathbf{G} A
+\]
 
-我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下我们认为两个函子是“自然同构”的。
+现在，我们说不仅对$A$，而是对\textbf{所有}对象进行抽象，这样就得到了一族箭头（在编程中，就是一个\textbf{多态函数}\footnote{我们可以联想到面向对象编程中的多态函数和泛型编程中的模板函数。}）：
+
+\[
+\phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
+\]
+
+例如在Haskell中，可以这样写\footnote{Haskell中有一个ExplicitForAll的选项，我们在下一章介绍构造——叠加融合律（build/fold fusion law）时会再次遇到它。}：
+
+\lstset{frame=single}
+\begin{lstlisting}
+phi :: forall a . F a -> G a
+\end{lstlisting}
+
+通常我们不需要明确标明\texttt{forall a}，这样自然变换就可以写为：
+
+\begin{lstlisting}
+phi : F a -> G a
+\end{lstlisting}
+
+回顾此前的两个例子，因此$inits$和$safeHead$的类型分别为：
+
+\begin{lstlisting}
+inits :: [a] -> [[a]]
+
+safeHead :: [a] -> Maybe a
+\end{lstlisting}
+
+它们仅仅是把\texttt{phi}换成了各自的名字，把$F, G$换成了各自的函子。
+
+\subsection{自然同构}
+
+我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“自然同构”的。
 
 \begin{definition}
 我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}（natural isomorphism）是一个自然变换：
