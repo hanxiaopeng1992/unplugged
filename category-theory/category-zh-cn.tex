@@ -1980,7 +1980,10 @@ F \arrowto{\phi} G
 
 \subsection{自然变换的例子}
 
-我们举一些具体的例子来帮助理解自然变换。第一个例子是前缀枚举函数$inits$。任给一个字符串或者列表，$inits$可以枚举出所有的前缀，例如：
+自然变换是在范畴，箭头，函子之上的又一层抽象。我们举一些具体的例子来帮助理解这一重要的概念。
+
+\begin{example}
+第一个例子是前缀枚举函数$inits$。任给一个字符串或者列表，$inits$可以枚举出所有的前缀，例如：
 
 \lstset{frame=none}
 \begin{lstlisting}
@@ -2056,8 +2059,77 @@ inits_A : \mathbf{List} A \to \mathbf{List}(\mathbf{List} A)
 \end{proof}
 
 所以$inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$的确是一个自然变换。
+\end{example}
 
-我们举的第二个例子叫做$safeHead$
+\begin{example}
+我们举的第二个例子叫做$safeHead$，它的行为是安全地获取列表中的第一个元素。所谓“安全”，就是说它能够处理空列表nil的情况。为此我们可以使用前面介绍过的可能函子$\mathbf{Maybe}$。它的定义如下：
+
+\[
+\begin{array}{l}
+safeHead : [A] \to \mathbf{Maybe} A \\
+safeHead\ [] = Nothing \\
+safeHead\ (x:xs) = Just\ x
+\end{array}
+\]
+
+同样在集合范畴，任何类型$A$是一个对象，它索引的箭头$safeHead$为：
+
+\[
+[A] \arrowto{safeHead_A} \mathbf{Maybe} A
+\]
+
+这里的两个函子分别是列表函子和可能函子。我们接下来要验证，对于任何箭头（函数）$A \arrowto{f} B$，下面的方形范畴图是可交换的：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     A & \lbrack A \rbrack & \mathbf{Maybe} A \\
+     B & \lbrack B \rbrack & \mathbf{Maybe} B \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    % square
+    (m-1-2) edge node [above] {$safeHead_A$} (m-1-3)
+    (m-2-2) edge node [below] {$safeHead_B$} (m-2-3)
+    (m-1-2) edge node [left] {$\mathbf{List}(f)$} (m-2-2)
+    (m-1-3) edge node [right] {$\mathbf{Maybe}(f)$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+也就是要证明：
+
+\[
+  \mathbf{Maybe}(f) \circ safeHead_A = safeHead_B \circ \mathbf{List}(f)
+\]
+
+\begin{proof}
+我们分两种情况证明。第一种情况是空列表：
+
+\[
+\begin{array}{cll}
+  & \mathbf{Maybe}(f) \circ safeHead_A\ [] & \\
+= & \mathbf{Maybe}(f)\ Nothing & \text{$safeHead$的定义} \\
+= & Nothing & \text{$fmap\ f\ Nothing$的定义} \\
+= & safeHead_B\ [] & \text{反向用$safeHead$的定义} \\
+= & safeHead_B \circ \mathbf{List}(f)\ [] & \text{反向用$fmap\ f\ []$的定义} \\
+\end{array}
+\]
+
+第二种情况是非空列表$(x:xs)$：
+
+\[
+\begin{array}{cll}
+  & \mathbf{Maybe}(f) \circ safeHead_A\ (x:xs) & \\
+= & \mathbf{Maybe}(f)\ (Just\ x) & \text{$safeHead$的定义} \\
+= & Just\ f(x) & \text{$fmap\ f\ Just\ x$的定义} \\
+= & safeHead_B\ (f(x) : fmap\ f\ xs) & \text{反向用$safeHead$的定义} \\
+= & safeHead_B \circ \mathbf{List}(f)\ (x:xs) & \text{反向用$fmap\ f\ (x:xs)$的定义} \\
+\end{array}
+\]
+
+综合这两种情况，就证明了$safeHead : \mathbf{List} \to \mathbf{Maybe}$的确是自然变换。
+\end{proof}
+\end{example}
 
 我们说自然变换是被$A$索引的，在编程环境中，这相当于说给定类型
 
