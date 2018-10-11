@@ -2168,7 +2168,7 @@ safeHead :: [a] -> Maybe a
 
 \subsection{自然同构}
 
-我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“自然同构”的。
+我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“等价”的。
 
 \begin{definition}
 我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}（natural isomorphism）是一个自然变换：
@@ -2186,8 +2186,67 @@ safeHead :: [a] -> Maybe a
 都是目的范畴中的同构。
 \end{definition}
 
-有时我们也说两个自然同构的函子是自然等价（natually equivalent）的。
+有时我们也说自然同构的两个函子是自然等价（naturally equivalent）的。
 
+我们举一个极端的例子$swap$。对于任意两个对象的积$A \times B$，$swap$将其对换为$B \times A$：
+
+\[
+\begin{array}{l}
+swap : A \times B \to B \times A \\
+swap\ (a, b) = (b, a)
+\end{array}
+\]
+
+$swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$”
+
+由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件（natural condition）使得范畴图可交换：
+
+\[
+(g \times f) \circ swap_{A \times B} = swap_{C \times D} \circ (f \times g)
+\]
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+       & B          & D \\
+     A & A \times B & B \times A \\
+     C & C \times D & D \times C \\};
+  \path[-stealth]
+    (m-2-1) edge node [left] {$f$} (m-3-1)
+    (m-1-2) edge node [above] {$g$} (m-1-3)
+    % square
+    (m-2-2) edge node [above] {$swap_{A \times B}$} (m-2-3)
+    (m-3-2) edge node [below] {$swap_{C \times D}$} (m-3-3)
+    (m-2-2) edge node [left] {$f \times g$} (m-3-2)
+    (m-2-3) edge node [right] {$g \times f$} (m-3-3);
+\end{tikzpicture}
+\end{center}
+
+证明这一点很简单，只要任选两个对象的积$(a, b)$和$(c, d)$分别代入自然条件的左右两侧即可。我们把它留给读者作为练习。
+
+虽然两个函子都是积函子，我们还是来证明一下它们是自然同构的。对于任何两个对象的积$A \times B$，注意到：
+
+\[
+swap_{A \times B} \circ swap_{B \times A} = id
+\]
+
+也就是说$swap$是一个一一映射，因此它在目标范畴中是同构的。这样就证明了自然同构。
+
+以上的三个例子$inits, safeHead, swap$都是多态函数，它们也都是自然变换。这不是一个巧合。在函数式编程中，所有的多态函数都是自然映射\cite{Wadler-1989}。
+
+\begin{Exercise}
+\Question{证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
+\Question{证明多态函数$length$是一个自然变换，其定义如下：
+\[
+\begin{array}{l}
+length : [A] \to Int \\
+length\ [] = 0 \\
+length\ (x:xs) = 1 + length\ xs
+\end{array}
+\]
+}
+\end{Exercise}
 
 \section{数据类型}
 
@@ -2273,6 +2332,9 @@ Harold Simmons. ``An introduction to Category Theory''.  Cambridge University Pr
 
 \bibitem{Wiki-Hoare}
 Wikipedia. ``Tony Hoare''. \url{https://en.wikipedia.org/wiki/Tony_Hoare}
+
+\bibitem{Wadler-1989}
+Wadler Philip. ``Theorems for free!''. Functional Programming Languages and Computer Architecture, pp. 347-359. Asociation for Computing Machinery. 1989.
 
 \end{thebibliography}
 
