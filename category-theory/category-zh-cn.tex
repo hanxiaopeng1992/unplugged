@@ -1980,7 +1980,7 @@ F \arrowto{\phi} G
 
 \subsection{自然变换的例子}
 
-自然变换是在范畴，箭头，函子之上的又一层抽象。我们举一些具体的例子来帮助理解这一重要的概念。
+自然变换是在范畴、箭头、函子之上的又一层抽象。我们举一些具体的例子来帮助理解这一重要的概念。
 
 \begin{example}
 第一个例子是前缀枚举函数$inits$。任给一个字符串或者列表，$inits$可以枚举出所有的前缀，例如：
@@ -2246,11 +2246,73 @@ length\ (x:xs) = 1 + length\ xs
 \end{array}
 \]
 }
+\Question{自然变换也可以进行组合，考虑两个自然变换$\mathbf{F} \arrowto{\phi} \mathbf{G}$}和$\mathbf{G} \arrowto{\psi} \mathbf{H}$，对于任意箭头$A \arrowto{f} B$，试画出自然变换组合$\phi \circ \psi$的范畴图，并列出可交换性的条件。
 \end{Exercise}
 
 \section{数据类型}
 
-% \subsection{起始对象和终止对象}
+我们已经简单介绍了范畴论中的最基本概念，包括范畴、函子、自然变换。接下来我们了解一下如何通过这些基本组件实现较复杂的数据类型。
+
+\subsection{起始对象和终止对象}
+让我们先认识两个最简单的数据类型，起始对象（initial object）和终止对象（terminal object或final object）。这两个对象也像左右手一样是对偶的，它们虽然简单，可是并不容易理解。
+
+\begin{definition}
+在任意范畴$\pmb{C}$中，如果有一个特殊的对象$S$，使得范畴中的每个对象$A$都有一个唯一的箭头
+
+\[
+  S \longrightarrow A \quad \quad \quad A \longrightarrow S
+\]
+
+也就是说$S$
+
+\begin{center}
+  存在指向所有其它对象  \quad \quad \quad 存在从所有其它对象指向自己
+\end{center}
+的唯一箭头，我们称这个对象$S$为
+
+\begin{center}
+  起始对象 \quad \quad \quad 终止对象
+\end{center}
+\end{definition}
+
+习惯上，我们用0表示起始对象，1表示终止对象。所以对任何对象$A$有：
+
+\[
+  0 \longrightarrow A \quad \quad \quad A \longrightarrow 1
+\]
+
+为什么说起始对象和终止对象是对偶的呢？如果$S$是范畴$\pmb{C}$中的起始对象，我们只要把所有的箭头都反向，则$S$就成了范畴$\pmb{C}^{op}$中的终止对象。
+一个范畴可能没有起始对象或终止对象，或者两个都没有，但如果有的话，起始对象或者终止对象在同构的意义下是唯一的。
+
+我们只证明起始对象的同构唯一性，终止对象可以通过对偶性得到证明。
+
+\begin{proof}
+假设除0外还存在另一个起始对象0'。考虑起始对象0，根据定义一定存在从0指向0'的箭头$f$；反过来，当考虑起始对象0'的时候，也一定存在从0'指向0的箭头$g$。但是根据范畴公理，一定也有从0指向自己的箭头$id_0$和从0'指向自己的箭头$id_0'$。根据起始对象定义中箭头的唯一性，一定有：
+
+\[
+  id_0 = f \circ g \quad \text{和} \quad id_{0'} = g \circ f
+\]
+
+这一关系可从下面的范畴图看出。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     0 & 0' \\};
+  \path[-stealth]
+    (m-1-1.north east) edge node [above] {$f$} (m-1-2.north west)
+    (m-1-2.south west) edge node [below] {$g$} (m-1-1.south east);
+  \draw[->]
+    (m-1-1.north west) arc[radius=5mm, start angle=45, end angle=315] node [pos=0.5, left] {$id_0$}; % (m-1-1.south west)
+  \draw[->]
+    (m-1-2.south east) arc[radius=5mm, start angle=-135, end angle=135] node [pos=0.5, right] {$id_{0'}$}; % (m-1-2.north east);
+\end{tikzpicture}
+\end{center}
+
+这就证明了0和0'是同构的。换言之，在同构的意义下，起始对象是唯一的。
+\end{proof}
+
 % Haskell的foldable和fold的分析。
 
 \section{扩展阅读}
