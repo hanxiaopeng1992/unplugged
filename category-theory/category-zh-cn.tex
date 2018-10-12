@@ -2370,10 +2370,52 @@ G \longrightarrow \{e\}
 
 回答刚才的问题，由于空集到任何集合都有唯一的箭头，所以空集到$\{ \bigstar \}$也有唯一的箭头。这样从任何集合（包括空集）都存在到$\{ \bigstar \}$的唯一箭头，因此$\{ \bigstar \}$的确是集合范畴中的终止对象。
 
+为什么不能像群一样，让只含有一个元素的集合$\{ \bigstar \}$成为起始对象呢？原因是，从$\{ \bigstar \}$到任意集合$S$的箭头可能不唯一。考虑有若干元素的集合$S = \{x, y, z, ...\}$，我们可以定义箭头（全函数）$\{ \bigstar \} \arrowto{\vec{x}} S$，将唯一元素映射到$x$上，也可以定义箭头$\{ \bigstar \} \arrowto{\vec{y}} S$和$\{ \bigstar \} \arrowto{\vec{z}} S$，将其映射到其它元素上。
+
+最后我们选择符号$\{ \bigstar \}$的用意是说，元素是什么不重要，只要它是只含有一个元素的集合（singleton set），在同构意义上就是等价的。
+\end{example}
+
+\begin{example}
+在最后一个例子中，我们来到编程领域。编程环境的类型系统本质上是集合范畴$\pmb{Set}$。一个集合相当于是一个数据类型。例如整形$Int$是所有整数的集合；布尔型是两个元素$\{True, False\}$组成的集合。既然集合范畴的终止对象是$\{ \bigstar \}$，那么什么数据类型是编程中的终止对象呢？由于终止对象在同构的意义下是唯一的，所以任何只含有一个值的数据类型都是编程中的终止对象。
+
+例如在Haskell中，特别定义了一个数据类型叫做“()”，它只含有一个元素，也叫做“()”。
+
+\begin{lstlisting}
+data  ()  =  ()
+\end{lstlisting}
+
+可以这样定义所有类型（集合）到这个终止对象的箭头（全函数）：
+
+\begin{lstlisting}
+unit :: a -> ()
+unit _ = ()
+\end{lstlisting}
+
+我们也可以自己定义终止对象——任何只有一个值的数据类型，在同构的意义上它和()是等价的。
+
+\begin{lstlisting}
+data Singleton = S
+
+proj :: a -> Singleton
+proj _ = S
+\end{lstlisting}
+
+看起来这像一个常函数，把任何值都映射到一个常数的值，但是并非所有常函数都指向终止对象，例如下面两个常函数：
+
+\begin{lstlisting}
+yes :: a -> Bool
+yes _ = True
+
+no :: a -> Bool
+no _ = False
+\end{lstlisting}
+
+因为数据类型$Bool$包含两个元素，所以任何其他数据类型都有$yes, no$两个箭头指向$Bool$，这样就不满足终止对象箭头的唯一性要求。
 \end{example}
 
 \begin{Exercise}
 \Question{在本节的例子中，我们说在一个偏序集中，如果存在最小值（或最大值），则最小值（或最大值）就是起始对象（或终止对象）。考虑全体偏序集构成的范畴$\pmb{Poset}$，如果存在起始对象，它是什么？如果存在终止对象，它是什么？}
+\Question{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
 \end{Exercise}
 
 % Haskell的foldable和fold的分析。
