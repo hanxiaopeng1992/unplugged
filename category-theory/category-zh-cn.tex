@@ -2412,7 +2412,44 @@ no _ = False
 
 因为数据类型$Bool$包含两个元素，所以任何其他数据类型都有$yes, no$两个箭头指向$Bool$，这样就不满足终止对象箭头的唯一性要求。
 
-起始对象
+在集合范畴中，起始对象是空集$varnothing$，那么在编程中它对应着什么数据类型呢？既然数据类型本质上是集合，那么空集就相当于没有任何值的数据类型。在编程中，相当于我们声明了一个数据类型，但是却没有对它进行定义。
+
+例如在Haskell中，声明了一个类型\texttt{Void}，但是却没有为它定义任何值：
+
+\begin{lstlisting}
+data Void
+\end{lstlisting}
+
+这样\texttt{Void}就表示一个空集。但是起始对象必须有到所有其它对象的唯一箭头。这就要求我们必须定义从\texttt{Void}到所有其他类型的函数。
+
+\begin{lstlisting}
+absurd :: Void -> a
+absurd _ = undefined
+\end{lstlisting}
+
+函数的具体实现并不重要，因为根本不存在一个实际的参数来调用这个函数。因此在Haskell标准库的某个版本中还有这样的实现：
+
+\begin{lstlisting}
+absurd :: Void -> a
+absurd a = case a of {}
+\end{lstlisting}
+
+我们也可以自己定义起始对象，只要在同构的意义上是等价的就可以。方法就是只声明类型，不定义任何值。例如：
+
+\begin{lstlisitng}
+data Empty
+
+f :: Empty -> a
+f _ = undefined
+
+iso :: Void -> Empty
+iso _ = undefined
+
+iso' :: Empty -> Void
+iso' _ = undefined
+\end{lstlisting}
+
+我们明确定义了$iso$和$iso'$，使得\texttt{Empty}和$\texttt{Void}$是同构的。并且容易验证\texttt{iso . iso' = id}。
 \end{example}
 
 \begin{Exercise}
