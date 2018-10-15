@@ -2459,7 +2459,7 @@ iso' _ = undefined
 
 \subsection{幂}
 
-起始对象和终止对象，相当于0和1，积和余积相当于$\times$和$+$，如果再有了乘方（幂），我们就可以在范畴这个抽象层面中拥有和基本算术运算，甚至和多项式“同构”的强大工具。
+起始对象和终止对象，相当于0和1，积和余积相当于$\times$和$+$，如果再有了指数（幂），我们就可以在范畴这个抽象层面中拥有和基本算术运算，甚至和多项式“同构”的强大工具。
 
 观察一个定义在自然数上二元函数$f(x, y) = z$，例如$f(x, y) = x^2 + 2y + 1$。其类型为$f: N \times N \to N$。我们会自然联想到，可以把这个类型写成:
 
@@ -2528,25 +2528,89 @@ isDigit 'b' = False
 虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^256$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
 \end{example}
 
-现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Righrarrow)^N$。
+现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
 
 一般来说，我们把函数的集合$f : B \to C$记为$C^B$。从这个集合中取出一个函数$f \in C^B$，然后在从集合$B$中取出一个值$b \in B$，我们可以用一个名叫$apply$的函数将$f$应用到$b$上，从而得到一个$C$中的值$c = f(b)$。即\footnote{有些文献，例如\cite{PeterSmith2018}, \cite{Wiki-Exponentials}使用$eval$，也就是求值（evaluation）作为名称，这里采用和\cite{Bird97}一致的命名。这样和Lisp中的命名传统一致。}：
 
 \[
-apply\ f\ b = f(b)
+apply(f, b) = f(b)
 \]
 
-聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把克里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个克里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$。我们称$\lambda g$为$g$的幂转移
-
-与其给这个新函数起一个单独的名字，我们不如用第二章中的$\lambda$符号。。
+聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把克里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个克里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$中。我们称$\lambda g$为$g$的幂转换（exponential transpose）\footnote{有的文献中用$\bar{g}$来表示，根据第二章中对$\lambda$的介绍，以及关于丘奇出版商的小插曲，我认为用$\lambda g$更为传神，它表示$a \mapsto \lambda \bullet \cdot g(a, \bullet)$。}。并且，有这样的关系：
 
 
+\[
+apply(\lambda g(a), b) = g(a, b)
+\]
 
-，就得到了完整的幂对象（Expenentials或Expenential object）定义。
+也就是说，$apply$把一个类型为$C^B$的函数对象$\lambda g(a)$与类型为$B$的参数$b$组合在一起，最终得到类型为$C$的结果$c$。所以箭头$apply$的类型为：
+
+\[
+C^B \times B \arrowto{apply} C
+\]
+
+现在，我们终于可以给出完整的幂对象（Expenentials或Expenential object）定义了。
 
 \begin{definition}
-如果范畴$\pmb{C}$中存在终止对象和积，
+如果范畴$\pmb{C}$中存在终止对象和积，则一个\textbf{幂对象}是一对对象和箭头
+
+\[
+(C^B, apply)
+\]
+
+它们满足对于任何的对象$A$和箭头$A \times B \arrowto{g} C$，都存在唯一的转换箭头
+
+\[
+ A \arrowto{\lambda g} C^B
+\]
+
+使得下面的范畴图可交换
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+     A & A \times B & \\
+     C^B & C^B \times B & C \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\lambda g$} (m-2-1)
+    (m-1-2) edge node [left] {$\lambda g \times id_B$} (m-2-2)
+    (m-1-2) edge node [above] {$g$} (m-2-3)
+    (m-2-2) edge node [below] {$apply$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+即：
+
+\[
+  apply \circ (\lambda g \times id_B) = g
+\]
+
 \end{definition}
+
+第二章中我们没有给出克里化的完整定义，现在利用幂对象，我们可以给出$curry$的定义了：
+
+\[
+\begin{array}{l}
+curry : (A \times B \to C) \to A \to (C^B) \\
+curry\ g = \lambda g
+\end{array}
+\]
+
+把这一关系代入上面的范畴图，我们有：
+
+\[
+  apply \circ (curry\ g \times id) = g
+\]
+
+换言之，我们就得到了这样的泛性性质：
+
+\[
+  f = curry\ g \equiv apply \circ (f \times id) = g
+\]
+
+
+
 % Haskell的foldable和fold的分析。
 
 \section{扩展阅读}
@@ -2606,6 +2670,16 @@ instance Bifunctor (,) where
 instance Bifunctor Either where
   bimap f _ (Left a) = Left (f a)
   bimap _ g (Right b) = Right (g b)
+\end{lstlisting}
+
+$curry$及其反向变换$uncurry$的定义：
+
+\begin{lstlisting}
+curry       :: ((a, b) -> c) -> a -> b -> c
+curry f x y =  f (x, y)
+
+uncurry     :: (a -> b -> c) -> ((a, b) -> c)
+uncurry f (x, y) =  f x y
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
