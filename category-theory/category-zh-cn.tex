@@ -2436,7 +2436,7 @@ absurd a = case a of {}
 
 我们也可以自己定义起始对象，只要在同构的意义上是等价的就可以。方法就是只声明类型，不定义任何值。例如：
 
-\begin{lstlisitng}
+\begin{lstlisting}
 data Empty
 
 f :: Empty -> a
@@ -2457,6 +2457,96 @@ iso' _ = undefined
 \Question{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
 \end{Exercise}
 
+\subsection{幂}
+
+起始对象和终止对象，相当于0和1，积和余积相当于$\times$和$+$，如果再有了乘方（幂），我们就可以在范畴这个抽象层面中拥有和基本算术运算，甚至和多项式“同构”的强大工具。
+
+观察一个定义在自然数上二元函数$f(x, y) = z$，例如$f(x, y) = x^2 + 2y + 1$。其类型为$f: N \times N \to N$。我们会自然联想到，可以把这个类型写成:
+
+\[
+f : N^2 \to N
+\]
+
+对于函数$f$，我们能否把$N^2$看成一个对象，而不是两个参数呢？也就是说，看成$f\ (x, y)$，而不是$f(x, y)$。如果把参数看成一个“洞”，则前者是$f\ \bullet$，然后把一个对$(x, y)$填入洞中；而后者是$f(\bullet, \bullet)$，然后分别把$x, y$填入到两个洞中。另一方面，在第二章我们介绍了克里化，可以把$f$看成$f: N \to (N \to N)$，也就是传入$x$后，$f\ x$会返回另一个函数，这个新函数把一个自然数映射到另一个自然数。但使用克里化，我们反而得不到幂的概念了。峰回路转，如果我们把克里化后返回的东西，也就是$N \to N$看成一个事物，比方叫做“函数对象”会怎样呢？$N$是一个无穷集，想起来比较困难。我们后退一步，构造一个简单点的例子——只有两个元素的有限集$Bool$——来分析一下。
+
+\begin{example}
+存在无穷多个从$Bool$到$Int$的函数（箭头）组成的集合$\{Bool \arrowto{f} Int\}$，我们从这个集合中挑选一个元素，也就是一个例子函数来看看：
+
+\[
+\begin{array}{l}
+ord : Bool \to Int \\
+ord\ False = 0 \\
+ord\ True = 1 \\
+\end{array}
+\]
+
+它的结果是一对整数$(0, 1)$，这是一个代表，我们可以把所有上述箭头集合中的元素写成这样的形式：
+
+\[
+\begin{array}{l}
+f : Bool \to Int \\
+f\ False = ... \\
+f\ True = ... \\
+\end{array}
+\]
+
+千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
+
+\[
+\begin{array}{rcl}
+\{Bool \arrowto{f} Int\} & = & \{(a = f\ False, b = f\ True)\} \\
+  & = & Int \times Int \\
+  & = & Int^2 = Int^{Bool}
+\end{array}
+\]
+
+这告诉我们，箭头的集合，也就是箭头的类型\footnote{严格来说，我们应该去掉上面箭头两侧的大括号，增加大括号是为了容易理解}：$Bool \to Int$，相当于一个幂$Int^{Bool}$。也就是说$Bool \to Int = Int^{Bool}$。为什么在上面的推理中，我们可以用$Bool$替换$2$，从而把$Int^2$变成$Int^{Bool}$呢？原因是同构，上述的等号的真正含义是同构，所以严格来说，应该用“$\cong$”符号，而不是“=”。$Int^2$，是两个整数积的自然记法，也就是一对$Int$值的集合。一对$Int$值的集合可以看成是从一个名叫\textbf{2}的，拥有2个元素的索引集合$\{0, 1\}$到$Int$的映射。
+
+\[
+\{0, 1\} \arrowto{f} Int = \{(f(0), f(1))\} = Int^2
+\]
+
+而索引集合$\mathbf{2} = \{0, 1\}$正是$Bool$的同构（例如在$ord$函数下）。
+\end{example}
+
+\begin{example}
+再举一个例子，考虑所有从字符$Char$到布尔值$Bool$的函数（箭头）集合$Char \to Bool$。这个集合里有很多函数，例如$isDigit(c)$可以判断传入的字符是否是数字。它可以实现为：
+
+\lstset{frame=none}
+\begin{lstlisting}[style=Haskell]
+isDigit : Char -> Bool
+...
+isDigit '0' = True
+isDigit '1' = True
+...
+isDigit '9' = True
+isDigit 'a' = False
+isDigit 'b' = False
+...
+\end{lstlisting}
+
+虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^256$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
+\end{example}
+
+现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Righrarrow)^N$。
+
+一般来说，我们把函数的集合$f : B \to C$记为$C^B$。从这个集合中取出一个函数$f \in C^B$，然后在从集合$B$中取出一个值$b \in B$，我们可以用一个名叫$apply$的函数将$f$应用到$b$上，从而得到一个$C$中的值$c = f(b)$。即\footnote{有些文献，例如\cite{PeterSmith2018}, \cite{Wiki-Exponentials}使用$eval$，也就是求值（evaluation）作为名称，这里采用和\cite{Bird97}一致的命名。这样和Lisp中的命名传统一致。}：
+
+\[
+apply\ f\ b = f(b)
+\]
+
+聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把克里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个克里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$。我们称$\lambda g$为$g$的幂转移
+
+与其给这个新函数起一个单独的名字，我们不如用第二章中的$\lambda$符号。。
+
+
+
+，就得到了完整的幂对象（Expenentials或Expenential object）定义。
+
+\begin{definition}
+如果范畴$\pmb{C}$中存在终止对象和积，
+\end{definition}
 % Haskell的foldable和fold的分析。
 
 \section{扩展阅读}
@@ -2541,6 +2631,18 @@ Wikipedia. ``Tony Hoare''. \url{https://en.wikipedia.org/wiki/Tony_Hoare}
 
 \bibitem{Wadler-1989}
 Wadler Philip. ``Theorems for free!''. Functional Programming Languages and Computer Architecture, pp. 347-359. Asociation for Computing Machinery. 1989.
+
+\bibitem{Milewski2018}
+Bartosz Milewski. ``Category Theory for Programmers''. \url{https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/}
+
+\bibitem{Bird97}
+Richard Bird, Oege de Moor. ``Algebra of Programming''. University of Oxford, Prentice Hall Europe. 1997. ISBN: 0-13-507245-X.
+
+\bibitem{PeterSmith2018}
+Peter Smith. ``Category Theory - A Gentle Introduction''. \url{http://www.academia.edu/21694792/A_Gentle_Introduction_to_Category_Theory_Jan_2018_version_}
+
+\bibitem{Wiki-Exponentials}
+Wikipedia. ``Exponential Object''. \url{https://en.wikipedia.org/wiki/Exponential_object}
 
 \end{thebibliography}
 
