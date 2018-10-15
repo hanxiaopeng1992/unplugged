@@ -2597,7 +2597,7 @@ curry\ g = \lambda g
 \end{array}
 \]
 
-把这一关系代入上面的范畴图，我们有：
+因此，$curry\ g$就是$g$的幂转换。把这一关系代入上面的范畴图，我们有：
 
 \[
   apply \circ (curry\ g \times id) = g
@@ -2606,10 +2606,46 @@ curry\ g = \lambda g
 换言之，我们就得到了这样的泛性性质：
 
 \[
-  f = curry\ g \equiv apply \circ (f \times id) = g
+  f = curry\ g \quad \equiv \quad apply \circ (f \times id) = g
 \]
 
+并且我们还能说明为什么幂转换箭头是唯一的，假设还存在另外的箭头$A \arrowto{h} C^B$，使得$apply \circ (h \times id) = g$，根据上述泛性性质，我们立刻得到$h = curry\ g$。
 
+我们还可以从范畴的角度来理解幂对象，在范畴$\pmb{C}$中，如果固定对象$B, C$，我们可以构造一个名叫$\pmb{Exp}$的范畴，这个范畴中的对象是$A \times B \to C$这样的箭头，范畴中的箭头是这样定义的。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+     A & A \times B \arrowto{h} \to C \\
+     D & D \times B \arrowto{k} \to C \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    (m-1-2) edge node [left] {$j$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+如果在$\pmb{C}$中存在$A \arrowto{f} D$的箭头，则$\pmb{Exp}$中的箭头为$h \longrightarrow{j} k$。当且仅当把上面范畴图中右侧的$C$合并时，箭头之间可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+     A & A \times B & \\
+     D & D \times B & C \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    (m-1-2) edge node [left] {$f \times id_B$} (m-2-2)
+    (m-1-2) edge node [above] {$h$} (m-2-3)
+    (m-2-2) edge node [below] {$k$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+即：$k \circ (f \times id_B) = h$。在这个范畴\pmb{Exp}中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry g$。
+
+\begin{Exercise}
+\Question{验证$\pmb{Exp}$的确是一个范畴，指出$id$箭头和箭头的组合。}
+\end{Exercise}
 
 % Haskell的foldable和fold的分析。
 
