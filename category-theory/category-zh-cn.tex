@@ -646,6 +646,7 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。习惯上我们认为函子是右结合的，所以$\mathbf{F}\mathbf{G}A$表示先对对象$A$应用函子$\mathbf{G}$，然后再应用函子$\mathbf{F}$。
 
 \subsection{函子的例子}
+\label{sec:functor:examples}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
@@ -655,11 +656,14 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
  \label{fig:blackhole}
 \end{wrapfigure}
 
+\index{函子!恒等函子} \index{函子!id函子}
 让我们用具体的例子来更好地理解函子的概念。我们在这一节将举一些编程中的实例。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
 
+\index{函子!常函子}
 其次简单的函子叫做“常函子”，它的行为像一个黑洞，我们可以把它记作$\mathbf{K}_B : \pmb{C} \to \pmb{B}$。它可以作用到任何范畴上，把所有的对象都映射为黑洞中的对象$B$，把所有的箭头都映射为黑洞中的恒等箭头$id_B$。黑洞范畴中只有一个恒等箭头，它显然也满足箭头组合的性质：$id_B \circ id_B = id_B$。
 
 \begin{example}
+\index{函子!可能函子} \index{函子!Maybe函子}
 我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
@@ -2412,7 +2416,7 @@ no _ = False
 
 因为数据类型$Bool$包含两个元素，所以任何其他数据类型都有$yes, no$两个箭头指向$Bool$，这样就不满足终止对象箭头的唯一性要求。
 
-在集合范畴中，起始对象是空集$varnothing$，那么在编程中它对应着什么数据类型呢？既然数据类型本质上是集合，那么空集就相当于没有任何值的数据类型。在编程中，相当于我们声明了一个数据类型，但是却没有对它进行定义。
+在集合范畴中，起始对象是空集$\varnothing$，那么在编程中它对应着什么数据类型呢？既然数据类型本质上是集合，那么空集就相当于没有任何值的数据类型。在编程中，相当于我们声明了一个数据类型，但是却没有对它进行定义。
 
 例如在Haskell中，声明了一个类型\texttt{Void}，但是却没有为它定义任何值：
 
@@ -2669,7 +2673,7 @@ curry\ apply = id
 \item 任何一对对象都有幂（$A^B$）
 \end{enumerate}
 
-我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴，集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型lambda演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
+我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴，集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
 
 如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（bicartesian closed）。
 
@@ -2750,7 +2754,7 @@ A^1 & = & \{ 1 \to A \} & \text{幂对象的定义} \\
   A^{B + C} = A^B \times A^C
 \]
 
-幂对象$A^{B + C}$表示从余积$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$Either\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
+幂对象$A^{B + C}$表示从余积$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$\mathbf{Either}\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
 \[
 \begin{array}{l}
 f : B + C \to A \\
@@ -2758,14 +2762,15 @@ f (b, 0) = ... \\
 f (c, 1) = ...
 \end{array}
 \]
-}，当我们实现任何$Either\ B\ C \to A$函数时，都可以写成这样的形式：
+}，当我们实现任何$\mathbf{Either}\ B\ C \to A$函数时，都可以写成这样的形式：
 
-\lstset{frame=none}
-\begin{lstlisting}[style = Haskell]
-f : Either B C -> A
-f Left b = ...
-f Right c = ...
-\end{lstlisting}
+\[
+\begin{array}{l}
+f : \mathbf{Either}\ B\ C \to A \\
+f\ left\ b = ... \\
+f\ right\ c = ... \\
+\end{array}
+\]
 
 也就是说，任何这样的函数，都可以看作一对映射$(b \mapsto a_1, c \mapsto a_2)$，而$\{(b \mapsto a_1, c \mapsto a_2)\}$恰好是$B \to A$和$C \to A$的积。因此$\{B + C \to A\} = \{B \to A\} \times \{C \to A\}$。另一方面，根据$\{B \to A\}$可以表示为幂对象$A^B$，同样$\{C \to A\}$可以表示为$A^C$。这样就解读了幂的和：
 
@@ -2814,8 +2819,40 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} 
 \]
 
 \subsection{多项式函子}
+\label{sec:polynomial-functors}
+\index{多项式函子}
+
+以上介绍的在笛卡尔闭范畴上的算术主要是针对对象的。如果我们把函子考虑进来，会怎样呢？由于函子既作用于对象，也作用于箭头，这样就产生了多项式函子的概念。多项式函子是使用常函子（参见\hyperref[sec:functor:examples]{函子的例子中的“黑洞”函子}）、积函子和余积函子递归构造的。
+
+\begin{itemize}
+  \item 恒等函子$id$和常函子$\mathbf{K}_A$是多项式函子；
+  \item 若函子$\mathbf{F}$和$\mathbf{G}$是多项式函子，则它们的组合$\mathbf{FG}$，和$\mathbf{F} + \mathbf{G}$与积$\mathbf{F} \times \mathbf{G}$也是多项式函子。其中和与积定义如下：
+  \[
+    \begin{array}{l}
+    (\mathbf{F} + \mathbf{G}) h = \mathbf{F} h + \mathbf{G} h \\
+    (\mathbf{F} \times \mathbf{G}) h = \mathbf{F} h \times \mathbf{G} h \\
+    \end{array}
+  \]
+\end{itemize}
+
+举一个例子，若函子$\mathbf{F}$对于对象和箭头的行为是：
+
+\[
+\begin{cases}
+\text{对象：} & \mathbf{F} X = A + X \times A \\
+\text{箭头：} & \mathbf{F} h = id_A + h \times id_A
+\end{cases}
+\]
+
+其中$A$是某个固定的对象。则函子$\mathbf{F}$是一个多项式函子。这是因为它可以表达为多项式：
+
+\[
+\mathbf{F} = \mathbf{K}_A + (id \times \mathbf{K}_A)
+\]
 
 \subsection{F-代数}
+
+为了构造复杂的带有递归的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
 
