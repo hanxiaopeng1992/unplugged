@@ -2657,19 +2657,173 @@ curry\ apply = id
 为克里化的融合律。请画出它的范畴图并证明它。}
 \end{Exercise}
 
-\subsection{笛卡尔闭和代数数据类型}
+\subsection{笛卡尔闭和对象算术}
 
 有了起始对象0，终止对象1，余积代表的加法，积代表的乘法，再加上幂对象代表的指数幂，我们终于拥有了在范畴上进行运算甚至构造抽象多项式的能力。但是且慢，让我们停下来看一下这样能跑多远。正如第三章开头我们讲到的，必须时刻关注一个问题：“某一种抽象的适用范围有多大？什么情况下这一抽象会失效？”
 
 并非所有的范畴都有起始或终止对象，也并非所有的范畴都有幂对象。如果一个范畴存在有限积、对于任何对象$A$和$B$都存在幂$A^B$，我们称这样的范畴为\textbf{笛卡尔闭}的（Cartesian closed）。一个笛卡尔闭范畴必须包含：
 
-\begin{enumeration}
+\begin{enumerate}
 \item 一个终止对象（1）；
 \item 任何一对对象都有积（$\times$）；
 \item 任何一对对象都有幂（$A^B$）
-\end{enumeration}
+\end{enumerate}
 
 我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴，集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型lambda演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
+
+如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（bicartesian closed）。
+
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item 一个起始对象（0）；
+  \item 任何一对对象都有余积（$+$）；
+  \item 积可以从左右两侧分配到余积上：
+  \[
+  \begin{array}{l}
+  A \times (B + C) = A \times B + A \times C \\
+  (B + C) \times A = B \times A + C \times A
+  \end{array}
+  \]
+\end{enumerate}
+
+现在我们可以看看基本算术运算在一个笛卡尔闭的范畴上，特别是编程中都意味着什么了。这一理论称为对象算术理论（Equational theory）。
+
+\subsubsection{0次幂}
+
+\[
+  A^0 = 1
+\]
+
+0代表了起始对象，1代表了终止对象，$A$的0次幂可以解读为类型为$0 \to A$的所有箭头的集合。但既然0是起始对象，所以它到任何对象只有唯一的箭头。因此集合$\{ 0 \to A \}$仅仅含有一个元素（singleton），而仅有一个元素的集合$\{ \bigstar \}$恰巧是（集合范畴的）终止对象1。下面的推导中等号应理解为同构。
+
+\[
+\begin{array}{rcll}
+A^0 & = & \{ 0 \to A \} & \text{幂对象的定义} \\
+    & = & \{ \bigstar \} & \text{起始对象到任何对象的箭头唯一} \\
+    & = & 1 & \{ \bigstar \}\text{是终止对象} \\
+\end{array}
+\]
+
+这样，算术中的任何数的0次幂等于1在范畴中也得到了解读。
+
+\subsubsection{1的幂}
+
+\[
+  1^A = 1
+\]
+
+1代表了终止对象，所以幂对象$1^A$表示所有从$A$出发，到终止对象的箭头的集合$\{ A \to 1 \}$。根据终止对象的定义，任何对象到终止对象只有唯一的箭头，所以这个箭头集合仅仅含有一个元素，而仅有一个元素的集合同构于$\{ \bigstar \}$。它恰好又是（集合范畴中的）终止对象。
+
+\[
+\begin{array}{rcll}
+1^A & = & \{ A \to 1 \} & \text{幂对象的定义} \\
+    & = & \{ \bigstar \} & \text{任何对象到终止对象的箭头唯一} \\
+    & = & 1 & \{ \bigstar \}\text{是终止对象} \\
+\end{array}
+\]
+
+\subsubsection{1次幂}
+
+\[
+  A^1 = A
+\]
+
+1是终止对象，所以幂$A^1$表示了从终止对象到到$A$的箭头集合$\{ 1 \to A\}$。它是什么含义呢？如果$A$是一个集合，我们可以针对集合中的任何元素$a \in A$构造一个从终止对象1到$a$的一个函数：
+
+\[
+  f_a : 1 \to a
+\]
+
+我们称这种函数叫做“选择函数”，它能从集合$A$中选出一个元素$a$。这样所有从1到$A$中元素的选择函数的集合为$\{f_a : 1 \mapsto a | a \in A\}$，它恰好就是集合$1 \to A$。另一方面，集合$\{ f_a \}$是和$A = \{a\}$一一对应的，也就是说它们是同构的。
+
+\[
+\begin{array}{rcll}
+A^1 & = & \{ 1 \to A \} & \text{幂对象的定义} \\
+    & = & \{ f_a : 1 \mapsto a | a \in A \} & \text{从1到$A$中元素的映射的集合} \\
+    & = & \{ a | a \in A \} = A & \text{一一映射同构} \\
+\end{array}
+\]
+
+\subsubsection{幂的和}
+
+\[
+  A^{B + C} = A^B \times A^C
+\]
+
+幂对象$A^{B + C}$表示从余积$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$Either\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
+\[
+\begin{array}{l}
+f : B + C \to A \\
+f (b, 0) = ... \\
+f (c, 1) = ...
+\end{array}
+\]
+}，当我们实现任何$Either\ B\ C \to A$函数时，都可以写成这样的形式：
+
+\lstset{frame=none}
+\begin{lstlisting}[style = Haskell]
+f : Either B C -> A
+f Left b = ...
+f Right c = ...
+\end{lstlisting}
+
+也就是说，任何这样的函数，都可以看作一对映射$(b \mapsto a_1, c \mapsto a_2)$，而$\{(b \mapsto a_1, c \mapsto a_2)\}$恰好是$B \to A$和$C \to A$的积。因此$\{B + C \to A\} = \{B \to A\} \times \{C \to A\}$。另一方面，根据$\{B \to A\}$可以表示为幂对象$A^B$，同样$\{C \to A\}$可以表示为$A^C$。这样就解读了幂的和：
+
+\[
+\begin{array}{rcll}
+A^{B + C} & = & \{ B + C \to A \} & \text{幂对象的定义} \\
+    & = & \{ (b \mapsto a_1,  c \mapsto a_2) | a_1, a_2 \in A, b \in B, c \in C\} & \text{$B$和$C$到$A$的箭头对} \\
+    & = & \{ B \to A \} \times \{ C \to A \} & \text{笛卡尔积} \\
+    & = & A^B \times A^C & \text{幂对象} \\
+\end{array}
+\]
+
+\subsubsection{幂的幂}
+
+\[
+  (A^B)^C = A^{B \times C}
+\]
+
+先看右侧，幂对象$A^{B \times C}$实际就是二元函数$B \times C \arrowto{g} A$的集合。交换积的次序$C \times B \arrowto{g \circ swap} A$，显然是一个自然同构（参见自然同构一节的$swap$自然变换）。如果克里化，就是$\{curry(g \circ swap)\} = \{C \to A^B\}$，再一次用幂对象表示就是$(A^B)^C$。
+
+\[
+\begin{array}{rcll}
+A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} \\
+    & = & \{ C \times B \arrowto{g \circ swap} A \} & \text{自然同构} \\
+    & = & \{ C \arrowto{curry(g \circ swap)} A^B \} & \text{克里化后仍然同构} \\
+    & = & (A^B)^C & \text{幂对象} \\
+\end{array}
+\]
+
+\subsubsection{积的幂}
+
+\[
+  (A \times B)^C = A^C \times B^C
+\]
+
+幂对象$(A \times B)^C$是箭头$C \to A \times B$的集合，它可以认为是返回一对值的函数集合$\{ c \mapsto (a, b)\}$，其中$c \in C, a \in A, b \in B$。它显然同构于$\{(c \mapsto a, c \mapsto b)\}$，而这恰恰是箭头$C \to A$和$C \to B$的积。最后再分别将$C \to A$和$C \to B$表示为幂对象就得到了幂的积。
+
+\[
+\begin{array}{rcll}
+(A \times B)^C & = & \{C \to A \times B \}  & \text{幂对象的定义} \\
+    & = & \{ c \mapsto (a, b) | a \in A, b \in B, c \in C\} & \text{箭头的集合} \\
+    & = & \{ (c \mapsto a, c \mapsto b) \} & \text{箭头对} \\
+    & = & \{C \to A\} \times \{C \to B\} & \text{笛卡尔积} \\
+    & = & A^C \times B^C & \text{幂对象} \\
+\end{array}
+\]
+
+\subsection{多项式函子}
+
+\subsection{F-代数}
+
+% https://en.wikipedia.org/wiki/Joachim_Lambek
+
+\subsubsection{不动点和向下态射}
+
+\subsubsection{代数数据类型}
+
+自然数，字符串，列表？
 
 % Haskell的foldable和fold的分析。
 
