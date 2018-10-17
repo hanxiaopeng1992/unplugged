@@ -2376,7 +2376,16 @@ G \longrightarrow \{e\}
 
 为什么不能像群一样，让只含有一个元素的集合$\{ \bigstar \}$成为起始对象呢？原因是，从$\{ \bigstar \}$到任意集合$S$的箭头可能不唯一。考虑有若干元素的集合$S = \{x, y, z, ...\}$，我们可以定义箭头（全函数）$\{ \bigstar \} \arrowto{\vec{x}} S$，将唯一元素映射到$x$上，也可以定义箭头$\{ \bigstar \} \arrowto{\vec{y}} S$和$\{ \bigstar \} \arrowto{\vec{z}} S$，将其映射到其它元素上。
 
-最后我们选择符号$\{ \bigstar \}$的用意是说，元素是什么不重要，只要它是只含有一个元素的集合（singleton set），在同构意义上就是等价的。
+我们选择符号$\{ \bigstar \}$的用意是说，元素是什么不重要，只要它是只含有一个元素的集合（singleton set），在同构意义上就是等价的。
+
+\label{sec:selection-arrow} \index{选择箭头}
+从终止对象$\{ \bigstar \}$到某一结合$S$的箭头
+
+\[
+  \{ \bigstar \} \longrightarrow S
+\]
+
+也有着特定的含义。它表明我们可以从集合$S$中选出一个元素，例如上述的箭头$\vec{x}$，从集合中选出元素$x$。我们把这样的箭头叫做\textbf{选择箭头}。
 \end{example}
 
 \begin{example}
@@ -2388,7 +2397,7 @@ G \longrightarrow \{e\}
 data  ()  =  ()
 \end{lstlisting}
 
-可以这样定义所有类型（集合）到这个终止对象的箭头（全函数）：
+在同构的意义下$\{ \bigstar \} = \{()\}$，我们稍后会看到用“()”的好处。可以这样定义所有类型（集合）到这个终止对象的箭头（全函数）：
 
 \begin{lstlisting}
 unit :: a -> ()
@@ -2454,6 +2463,18 @@ iso' _ = undefined
 \end{lstlisting}
 
 我们明确定义了$iso$和$iso'$，使得\texttt{Empty}和$\texttt{Void}$是同构的。并且容易验证\texttt{iso . iso' = id}。
+
+集合范畴的例子中，我们说从终止对象到任何集合的箭头叫做选择箭头，它在编程中意味着什么呢？集合对应着类型，它表示我们可以从任何类型中选出特定的值。例如下面的函数从$Int$中分别选出0和1：
+
+\begin{lstlisting}
+zero :: () -> Int
+zero () = 0
+
+one :: () -> Int
+one () = 1
+\end{lstlisting}
+
+现在我们看到用“()”的好处了，调用的时候，就像传入0个参数的函数那样：$zero\ ()$返回0，$one\ ()$返回1。
 \end{example}
 
 \begin{Exercise}
@@ -2732,13 +2753,13 @@ A^0 & = & \{ 0 \to A \} & \text{幂对象的定义} \\
   A^1 = A
 \]
 
-1是终止对象，所以幂$A^1$表示了从终止对象到到$A$的箭头集合$\{ 1 \to A\}$。它是什么含义呢？如果$A$是一个集合，我们可以针对集合中的任何元素$a \in A$构造一个从终止对象1到$a$的一个函数：
+这恰好是前面介绍过的“\hyperref[sec:selection-arrow]{选择箭头}”。1是终止对象，所以幂$A^1$表示了从终止对象到到$A$的箭头集合$\{ 1 \to A\}$。如果$A$是一个集合，我们可以针对集合中的任何元素$a \in A$构造一个从终止对象1到$a$的一个函数：
 
 \[
   f_a : 1 \to a
 \]
 
-我们称这种函数叫做“选择函数”，它能从集合$A$中选出一个元素$a$。这样所有从1到$A$中元素的选择函数的集合为$\{f_a : 1 \mapsto a | a \in A\}$，它恰好就是集合$1 \to A$。另一方面，集合$\{ f_a \}$是和$A = \{a\}$一一对应的，也就是说它们是同构的。
+这种选择函数，能从集合$A$中选出一个元素$a$。所有从1到$A$中元素的选择函数的集合为$\{f_a : 1 \mapsto a | a \in A\}$，它恰好就是集合$1 \to A$。另一方面，集合$\{ f_a \}$是和$A = \{a\}$一一对应的，也就是说它们是同构的。
 
 \[
 \begin{array}{rcll}
@@ -2852,15 +2873,96 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} 
 
 \subsection{F-代数}
 
-为了构造复杂的带有递归的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。
+为了构造复杂的带有递归结构的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。观察抽象代数中的概念，如幺半群、群、环、域，它们不仅仅是抽象的对象，而且带有结构。正是这些结构之间的关系，使得它们区别于过去那些具体的对象，例如数，点、线、面。如果关系和结构研究清楚了，不仅仅是数、点、线、面，所有具有同样关系和结构的对象（用希尔伯特的比喻，连同桌子、椅子、啤酒杯）就都尽在掌握了。
+
+我们从比较简单的幺半群作为开始的例子，一步一步导出F-代数的概念。一个幺半群是一个集合$M$，并且在集合上定义了可结合的二元运算和单位元。
+
+如果用$\oplus$表示二元运算，$1_M$表示单位元，则幺半群的两条公理可以描述如下：
+
+\[
+\begin{cases}
+\text{结合性公理：} & (x \oplus y) \oplus z = x \oplus (y \oplus z), \forall x, y, z \in M \\
+\text{单位元公理：} & x \oplus 1_M = 1_M \oplus x = x, \forall x \in M \\
+\end{cases}
+\]
+
+第一步，我们将二元运算$\oplus$表示为函数，将$1_M$表示为选择函数，定义：
+
+\[
+\begin{cases}
+m(x, y) = x \oplus y \\
+e() = 1_M
+\end{cases}
+\]
+
+这两种箭头的类型分别为：
+
+\[
+\left \{
+\begin{array}{lll}
+ & \text{类型} & \text{幂对象} \\
+\text{二元运算：} & M \times M \to M & M^{M \times M}\\
+\text{选择运算：} & 1 \to M & M^1 \\
+\end{array}
+\right .
+\]
+
+第一种箭头是说，两个幺半群的元素进行二元运算，其结果仍是这个幺半群中的元素（二元运算是封闭的）；第二种箭头是“选择函数”，1是终止对象\footnote{我们借鉴Haskell中符号，特意用“()”表示它，在同构的意义下$1 = \{ \bigstar \} = \{ () \}$}。
+
+现在我们就可以用函数$m$和$e$来替换幺半群公理了：
+
+\[
+\begin{cases}
+\text{结合性公理：} & m(m(x, y), z) = m(x, m(y, z)), \forall x, y, z \in M \\
+\text{单位元公理：} & m(x, e()) = m(e(), x) = x, \forall x \in M \\
+\end{cases}
+\]
+
+第二步，把所有的$x, y, z$等具体的元素和对象$M$都去掉。这样就得到了纯用函数（箭头)表示的幺半群公理：
+
+\[
+\begin{cases}
+\text{结合性公理：} & m \circ (m, id) = m \circ (id, m) \\
+\text{单位元公理：} & m \circ (id, e) = m \circ (e, id) = id \\
+\end{cases}
+\]
+
+这两条公理意味着下面的两个范畴图中的箭头可交换：
+
+\begin{figure}[htbp]
+\centering
+\subcaptionbox{结合性公理}{\subimport{img/}{monoid-assoc.tex}}
+\quad
+\subcaptionbox{单位元公理}{\subimport{img/}{monoid-e.tex}}
+\caption{幺半群公理对应的范畴图}
+\end{figure}
+
+全部组成幺半群的箭头的集合，也就是这两种幂对象的积
+
+\[
+M^{M \times M} \times M^1 = M^{M \times M + 1}
+\]
+
+我们再把右侧从幂对象写回箭头的形式，这样从任意集合$M$，产生幺半群的（类型）函子一定是下面的箭头：
+
+\[
+M \times M + 1 \to M
+\]
+
+
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
 
-\subsubsection{不动点和向下态射}
+\subsubsection{递归和不动点}
+自然数，环
+
+\subsubsection{初始代数和向下态射}
+
+自然数，字符串，
 
 \subsubsection{代数数据类型}
 
-自然数，字符串，列表？
+列表，二叉树
 
 % Haskell的foldable和fold的分析。
 
