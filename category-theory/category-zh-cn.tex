@@ -3067,8 +3067,8 @@ i (x) = x^{-1}
 \begin{array}{rcll}
 \alpha : 1 + A + A \times A & \longrightarrow & A & \text{和（余积）}\\
 1 & \longmapsto & 1 & \text{单位元}  \\
+x & \longmapsto & x^{-1} & \text{逆元} \\
 (x, y) & \longmapsto & x \cdot y & \text{二元运算} \\
-x & \longmapsto & x^{-1} & \text{逆元}
 \end{array}
 \]
 
@@ -3083,12 +3083,87 @@ x & \longmapsto & x^{-1} & \text{逆元}
 我们称这样定义了一个群上的F-代数$(G, \alpha)$。
 \end{example}
 
+现在我们可以给出F-代数的定义了。在范畴论中，许多概念是对偶的，成对出现的。这就像是买一送一，我们定义了F-代数，就同时得到了F-余代数（F-coalgebra）\footnote{也译作上代数和共代数。}。关于F-余代数，我们暂时只给出定义。稍后将在第6章介绍无穷的概念时，再给出相应的例子。
 
+\begin{definition}
+如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
+
+\[
+  \mathbf{F} A \arrowto{\alpha} A
+  \quad \quad \quad
+  A \arrowto{\alpha} \mathbf{F} A
+\]
+
+构成一对元组$(A, \alpha)$叫做
+
+\begin{center}
+  F-代数 \quad \quad \quad F-余代数
+\end{center}
+
+其中$A$，叫做携带对象。
+
+\end{definition}
+
+我们可以把
+
+\[
+  F-alg (A, \alpha) \quad \quad \quad F-coalg (A, \alpha)
+\]
+
+看成对象，则两个对象间的箭头定义如下：
+
+
+\begin{definition}
+F-态射：
+\[
+  F-alg (A, \alpha) \longrightarrow F-alg (B, \beta)
+  \quad \quad \quad
+  F-coalg (A, \alpha) \longrightarrow F-coalg (B, \beta)
+\]
+
+如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{F} A  & A &  & A & \mathbf{F} A \\
+    \mathbf{F} B  & B &  & B & \mathbf{F} B \\};
+  \path[-stealth]
+    % left
+    (m-1-1) edge node [above] {$\alpha$} (m-1-2)
+    (m-1-1) edge node [left] {$\mathbf{F}(f)$} (m-2-1)
+    (m-1-2) edge node [right] {$f$}   (m-2-2)
+    (m-2-1) edge node [below] {$\beta$} (m-2-2)
+    % right
+    (m-1-4) edge node [above] {$\alpha$} (m-1-5)
+    (m-1-4) edge node [left] {$f$} (m-2-4)
+    (m-1-5) edge node [right] {$\mathbf{F}(f)$}   (m-2-5)
+    (m-2-4) edge node [below] {$\beta$} (m-2-5);
+\end{tikzpicture}
+\end{center}
+
+即：
+
+\[
+  f \circ \alpha = \beta \circ \mathbf{F}(f)
+  \quad \quad \quad
+  \beta \circ f = \mathbf{F}(f) \circ \alpha
+\]
+\end{definition}
+
+这样F-代数和F-态射，F-余代数和F-态射分别构成了
+
+\begin{center}
+  F-代数范畴$\pmb{Alg}(\mathbf{F})$ \quad \quad \quad
+  F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$
+\end{center}
 
 \begin{Exercise}
 \Question{画出群的可逆性公理的范畴图。}
 \Question{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
 \Question{参考上一章环的定义，定义环的F-代数。}
+\Question{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
 \end{Exercise}
 
 \subsubsection{递归和不动点}
