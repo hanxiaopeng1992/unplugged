@@ -3206,7 +3206,17 @@ data NatF A = ZeroF | SuccF A
 Fix\ \mathbf{F} = \mathbf{F}\ (Fix\ \mathbf{F})
 \]
 
-自函子$\mathbf{F}$的不动点是$Fix\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。
+自函子$\mathbf{F}$的不动点是$Fix\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。我们可以定义一对函数，操作不动点：
+
+\[
+\begin{array}{l}
+fix : \mathbf{F}\ (Fix\ \mathbf{F}) \to Fix\ \mathbf{F} \\
+fix\ \mathbf{F} = let\ X = \mathbf{F} X\ in\ X \\
+\\
+unfix : (Fix\ \mathbf{F}) \to \mathbf{F}\ (Fix\ \mathbf{F}) \\
+unfix\ (Fix\ X) = X \\
+\end{array}
+\]
 
 \subsubsection{初始代数和向下态射}
 
@@ -3294,6 +3304,16 @@ uncurry f (x, y) =  f x y
 class Semigroup a => Monoid a where
     mempty  :: a             -- | Identity
     mappend :: a -> a -> a   -- | An associative operation
+\end{lstlisting}
+
+不动点相关的定义：
+
+\lstset{frame=single}
+\begin{lstlisting}
+newtype Fix f = Fix (f (Fix f))
+
+unFix :: Fix f -> f (Fix f)
+unFix (Fix x) = x
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
