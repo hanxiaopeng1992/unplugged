@@ -3331,7 +3331,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
                                     & I \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$\mathbf{NatF}(in)$} (m-1-2)
-    (m-2-2) edge node [right] {$k$}   (m-1-2);
+    (m-2-2) edge node [right] {$in$}   (m-1-2);
 \end{tikzpicture}
 \end{center}
 
@@ -3375,9 +3375,16 @@ k = in^{-1} = unfix \\
 \end{cases}
 \]
 
-1968年，兰贝克（Lambek）最早指出$in$是一个同构映射，并且称初始代数$(I, in)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
-
 % https://en.wikipedia.org/wiki/Joachim_Lambek
+\begin{wrapfigure}{R}{0.4\textwidth}
+ \centering
+ \includegraphics[scale=0.4]{img/Lambek.eps}
+ \captionsetup{labelformat=empty}
+ \caption{兰贝克（Joachim Lambek）1922-2014}
+ \label{fig:Escher-Dewdrop-1948}
+\end{wrapfigure}
+
+1968年，兰贝克（Lambek）最早指出$in$是一个同构映射，并且称初始代数$(I, in)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
 
 cata
 
