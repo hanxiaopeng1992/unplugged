@@ -3218,6 +3218,29 @@ unfix\ (Fix\ X) = X \\
 \end{array}
 \]
 
+\begin{Exercise}
+\Question{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
+\begin{lstlisting}
+data NatF A = ZeroF | SuccF (NatF A)
+\end{lstlisting}
+}
+\Question{我们可以为$\mathbf{NatF} Int \to Int$定义一个$\alpha$箭头，名叫$eval$：
+\[
+\begin{array}{l}
+eval : \mathbf{NatF} Int \to Int \\
+eval\ ZeroF = 0 \\
+eval\ (SuccF\ n) = n + 1 \\
+\end{array}
+\]
+如果迭代地将$A' = \mathbf{NatF} A$代入$\mathbf{NatF}$函子$n$次。我们把这样得到的函子记为$\mathbf{NatF}^n A$。试定义下面的$\alpha$箭头：
+\[
+\begin{array}{l}
+eval : \mathbf{NatF}^n Int \to Int \\
+\end{array}
+\]
+}
+\end{Exercise}
+
 \subsubsection{初始代数和向下态射}
 
 自然数，字符串，
