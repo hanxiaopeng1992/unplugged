@@ -3112,7 +3112,6 @@ x & \longmapsto & x^{-1} & \text{逆元} \\
 
 看成对象，则两个对象间的箭头定义如下：
 
-
 \begin{definition}
 F-态射：
 \[
@@ -3203,20 +3202,22 @@ data NatF A = ZeroF | SuccF A
 这是函子层面的递归，在第二章中，我们曾经遇到过类似的概念。将自函子应用到自身无穷次产生了\textbf{不动点}：
 
 \[
-Fix\ \mathbf{F} = \mathbf{F}\ (Fix\ \mathbf{F})
+\mathbf{Fix}\ \mathbf{F} = \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F})
 \]
 
-自函子$\mathbf{F}$的不动点是$Fix\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。我们可以定义一对函数，操作不动点：
+自函子$\mathbf{F}$的不动点是$\mathbf{Fix}\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。我们可以定义一对函数，操作不动点：
 
 \[
 \begin{array}{l}
-fix : \mathbf{F}\ (Fix\ \mathbf{F}) \to Fix\ \mathbf{F} \\
-fix\ \mathbf{F} = let\ X = \mathbf{F} X\ in\ X \\
+fix : \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{Fix}\ \mathbf{F} \\
+fix\ \mathbf{F} = let\ \mathbf{X} = \mathbf{F} \mathbf{X}\ in\ \mathbf{X} \\
 \\
-unfix : (Fix\ \mathbf{F}) \to \mathbf{F}\ (Fix\ \mathbf{F}) \\
-unfix\ (Fix\ X) = X \\
+unfix : (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \\
+unfix\ (\mathbf{Fix}\ \mathbf{X}) = \mathbf{X} \\
 \end{array}
 \]
+
+因此，$\mathbf{Nat}$是函子$\mathbf{NatF}$的不动点。
 
 \begin{Exercise}
 \Question{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
@@ -3243,7 +3244,142 @@ eval : \mathbf{NatF}^n Int \to Int \\
 
 \subsubsection{初始代数和向下态射}
 
-自然数，字符串，
+在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象形如$F-alg(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(NatF)$中，所有的对象都表示为$NatF-alg(A, \alpha)$。其中$NatF$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
+
+再具体些，F-代数$NatF-alg(Int, [zero, succ])$是一个对象，其中$zero, succ$的定义为：
+
+\[
+\begin{cases}
+zero() = 0 \\
+succ(n) = n + 1 \\
+\end{cases}
+\]
+
+它们的余积$\alpha = [zero, succ] = zero + succ$，我们将其命名为$eval$,它的定义为：
+
+\[
+\begin{array}{l}
+eval : \mathbf{NatF} Int \to Int \\
+eval\ ZeroF = zero() \\
+eval\ (SuccF\ n) = succ(n) \\
+\end{array}
+\]
+
+另一个具体对象是F-代数$NatF-alg(Int \times Int, fib)$，其中$\mathbf{NatF} (Int \times Int) \arrowto{fib} (Int \times Int)$定义为：
+
+\[
+\begin{array}{l}
+fib : \mathbf{NatF} (Int \times Int) \to (Int \times Int) \\
+fib\ ZeroF = (1, 1) \\
+fib\ (SuccF\ (m, n)) = (n, m + n) \\
+\end{array}
+\]
+
+如果范畴$\pmb{NatF}$有起始对象，则它一定具有形式$0 = \mathbf{NatF}-alg(I, in)$。因为起始对象到任何对象都存在唯一的箭头。所以它到$\mathbf{NatF}-alg(A, \alpha)$一定有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, in)$代表起始对象中的集合$I$和箭头$in$}：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{NatF} A  & A \\
+    \mathbf{NatF} I  & I \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\alpha$} (m-1-2)
+    (m-2-1) edge node [left] {$\mathbf{NatF}(f)$} (m-1-1)
+    (m-2-2) edge node [right] {$f$}   (m-1-2)
+    (m-2-1) edge node [below] {$in$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+因为起始对象到\textbf{任何}对象都有唯一箭头，所以它到自己的递归——由$\mathbf{NatF}(\mathbf{NatF}A)$等——构成的对象也一定有唯一的箭头。具体来说这个递归的F-代数具有的三要素是：
+
+\begin{enumerate}
+\item 共同的函子$\mathbf{NatF}$；
+\item 携带对象是$\mathbf{NatF}I$；
+\item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。我们知道函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$in$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(in)$。
+\end{enumerate}
+
+这样，这个递归的F-代数可以记为：$NatF-alg(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{k} \mathbf{NatF}I$，使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{NatF}(\mathbf{NatF} I)  & \mathbf{NatF} I \\
+    \mathbf{NatF} I  & I \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\mathbf{NatF}(in)$} (m-1-2)
+    (m-2-1) edge node [left] {$\mathbf{NatF}(k)$} (m-1-1)
+    (m-2-2) edge node [right] {$k$}   (m-1-2)
+    (m-2-1) edge node [below] {$in$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+现在我们考虑沿着$\mathbf{NatF}$递归路径上的两个箭头：
+
+\[
+  \mathbf{NatF}(\mathbf{NatF}I) \arrowto{\mathbf{NatF}(in)} \mathbf{NatF} I \arrowto{in} I
+\]
+
+为了明显期间，我们把它画成弯的：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{NatF}(\mathbf{NatF} I)  & \mathbf{NatF} I \\
+                                    & I \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\mathbf{NatF}(in)$} (m-1-2)
+    (m-2-2) edge node [right] {$k$}   (m-1-2);
+\end{tikzpicture}
+\end{center}
+
+和上面的范畴图对边，我们发现$in$和$k$的方向相反。如果把它们两个组合起来，就得到了一个从$I$出发指回自己的箭头。并且由于起始对象到自己的唯一箭头就是$id$，所以：
+
+\[
+in \circ k = id
+\]
+
+同样的分析对$\mathbf{NatF}I$也成立，因为起始对象到递归对象的箭头也是唯一的。所以从$\mathbf{NatF}I$出发到$I$的箭头$in$，然后再从箭头$k$返回$\mathbf{NatF}I$必然也是$id$：
+
+\[
+k \circ in = id_{\mathbf{NatF}I}
+\]
+
+这说明$\mathbf{NatF}I$和$I$是同构的。即：
+
+\[
+  \mathbf{NatF} I = I
+\]
+
+这恰好是上一小节介绍的不动点概念。这说明$I$是$\mathbf{NatF}$的不动点。并且我们在上一小节已经知道$\mathbf{NatF}$的不动点就是$\mathbf{Nat}$。所以：
+
+\[
+  \mathbf{NatF}\ \mathbf{Nat} = \mathbf{Nat}
+\]
+
+现在，我们可以给出\textbf{初始代数}（initial algebra）的定义了。
+
+\begin{definition}
+F-代数范畴$\pmb{Alg}(F)$中，如果存在初始对象，则这一初始对象叫做初始代数。
+\end{definition}
+
+在集合全函数范畴中，许多函子，包括多态函子都存在初始代数。我们略去了初始代数的存在性证明，读者可以参考\cite{Manes-Arbib-1986}。给定函子$\mathbf{F}$我们可以用上一小节定义的不动点函数得到这一F-代数中的初始对象：
+
+\[
+\begin{cases}
+I = fix\ F \\
+in = fix \\
+k = in^{-1} = unfix \\
+\end{cases}
+\]
+
+1968年，兰贝克（Lambek）最早指出$in$是一个同构映射，并且称初始代数$(I, in)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
+
+cata
+
+字符串，
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
 \subsubsection{代数数据类型}
