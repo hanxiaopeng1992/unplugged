@@ -3205,19 +3205,17 @@ data NatF A = ZeroF | SuccF A
 \mathbf{Fix}\ \mathbf{F} = \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F})
 \]
 
-自函子$\mathbf{F}$的不动点是$\mathbf{Fix}\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。我们可以定义一对函数，操作不动点：
+自函子$\mathbf{F}$的不动点是$\mathbf{Fix}\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。因此，$\mathbf{Nat}$是函子$\mathbf{NatF}$的不动点。也就是说$\mathbf{Nat} = \mathbf{Fix}\ \mathbf{NatF}$。
 
-\[
-\begin{array}{l}
-fix : \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{Fix}\ \mathbf{F} \\
-fix\ \mathbf{F} = let\ \mathbf{X} = \mathbf{F} \mathbf{X}\ in\ \mathbf{X} \\
-\\
-unfix : (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \\
-unfix\ (\mathbf{Fix}\ \mathbf{X}) = \mathbf{X} \\
-\end{array}
-\]
-
-因此，$\mathbf{Nat}$是函子$\mathbf{NatF}$的不动点。
+%% \[
+%% \begin{array}{l}
+%% fix : \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{Fix}\ \mathbf{F} \\
+%% fix\ \mathbf{F} = let\ \mathbf{X} = \mathbf{F} \mathbf{X}\ in\ \mathbf{X} \\
+%% \\
+%% unfix : (\mathbf{Fix}\ \mathbf{F}) \to \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F}) \\
+%% unfix\ (\mathbf{Fix}\ \mathbf{X}) = \mathbf{X} \\
+%% \end{array}
+%% \]
 
 \begin{Exercise}
 \Question{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
@@ -3233,7 +3231,7 @@ eval\ ZeroF = 0 \\
 eval\ (SuccF\ n) = n + 1 \\
 \end{array}
 \]
-如果迭代地将$A' = \mathbf{NatF} A$代入$\mathbf{NatF}$函子$n$次。我们把这样得到的函子记为$\mathbf{NatF}^n A$。试定义下面的$\alpha$箭头：
+如果迭代地将$A' = \mathbf{NatF} A$代入$\mathbf{NatF}$函子$n$次。我们把这样得到的函子记为$\mathbf{NatF}^n A$。试思考能否定义下面的$\alpha$箭头：
 \[
 \begin{array}{l}
 eval : \mathbf{NatF}^n Int \to Int \\
@@ -3244,28 +3242,28 @@ eval : \mathbf{NatF}^n Int \to Int \\
 
 \subsubsection{初始代数和向下态射}
 
-在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象形如$F-alg(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(NatF)$中，所有的对象都表示为$NatF-alg(A, \alpha)$。其中$NatF$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
+在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象形如$F-alg(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(\mathbf{NatF})$中，所有的对象都表示为$\mathbf{NatF}-alg(A, \alpha)$。其中$\mathbf{NatF}$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
 
-再具体些，F-代数$NatF-alg(Int, [zero, succ])$是一个对象，其中$zero, succ$的定义为：
+%% 例如$\mathbf{NatF}-alg(N, [zero, succ])$是一个F-代数对象，其中$zero, succ$的定义为：
 
-\[
-\begin{cases}
-zero() = 0 \\
-succ(n) = n + 1 \\
-\end{cases}
-\]
+%% \[
+%% \begin{cases}
+%% zero() = 0 \\
+%% succ(n) = n + 1 \\
+%% \end{cases}
+%% \]
 
-它们的余积$\alpha = [zero, succ] = zero + succ$，我们将其命名为$eval$,它的定义为：
+%% 它们的余积$\alpha = [zero, succ] = zero + succ$，也就是说：
 
-\[
-\begin{array}{l}
-eval : \mathbf{NatF} Int \to Int \\
-eval\ ZeroF = zero() \\
-eval\ (SuccF\ n) = succ(n) \\
-\end{array}
-\]
+%% \[
+%% \begin{array}{l}
+%% [zero, succ] : \mathbf{NatF} N \to N \\
+%% [zero, succ]\ ZeroF = zero() \\
+%% [zero, succ]\ (SuccF\ n) = succ(n) \\
+%% \end{array}
+%% \]
 
-另一个具体对象是F-代数$NatF-alg(Int \times Int, fib)$，其中$\mathbf{NatF} (Int \times Int) \arrowto{fib} (Int \times Int)$定义为：
+例如$\mathbf{NatF}-alg(Int \times Int, fib)$是一个F-代数对象。其中携带对象是整数的积，箭头$\mathbf{NatF} (Int \times Int) \arrowto{fib} (Int \times Int)$的定义为：
 
 \[
 \begin{array}{l}
@@ -3275,7 +3273,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \end{array}
 \]
 
-如果范畴$\pmb{NatF}$有起始对象，则它一定具有形式$0 = \mathbf{NatF}-alg(I, in)$。因为起始对象到任何对象都存在唯一的箭头。所以它到$\mathbf{NatF}-alg(A, \alpha)$一定有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, in)$代表起始对象中的集合$I$和箭头$in$}：
+如果范畴$\pmb{NatF}$有起始对象0，则它一定具有形式$\mathbf{NatF}-alg(I, i)$。因为起始对象到任何对象都存在唯一的箭头。所以它到$\mathbf{NatF}-alg(A, \alpha)$一定有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, i)$代表起始对象中的集合$I$和箭头$i$}：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3287,7 +3285,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
     (m-1-1) edge node [above] {$\alpha$} (m-1-2)
     (m-2-1) edge node [left] {$\mathbf{NatF}(f)$} (m-1-1)
     (m-2-2) edge node [right] {$f$}   (m-1-2)
-    (m-2-1) edge node [below] {$in$} (m-2-2);
+    (m-2-1) edge node [below] {$i$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
