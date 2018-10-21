@@ -3106,18 +3106,18 @@ x & \longmapsto & x^{-1} & \text{逆元} \\
 
 我们可以把
 
-\[
-  F-alg (A, \alpha) \quad \quad \quad F-coalg (A, \alpha)
-\]
+\begin{center}
+  F-代数$(A, \alpha)$ \quad \quad \quad F-余代数$(A, \alpha)$
+\end{center}
 
-看成对象，则两个对象间的箭头定义如下：
+看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。
+两个对象间的箭头定义如下：
 
 \begin{definition}
-F-态射：
+F-态射是F-代数或F-余代数对象间的箭头：
+
 \[
-  F-alg (A, \alpha) \longrightarrow F-alg (B, \beta)
-  \quad \quad \quad
-  F-coalg (A, \alpha) \longrightarrow F-coalg (B, \beta)
+  (A, \alpha) \longrightarrow (B, \beta)
 \]
 
 如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
@@ -3151,7 +3151,7 @@ F-态射：
 \]
 \end{definition}
 
-这样F-代数和F-态射，F-余代数和F-态射分别构成了
+F-代数和F-态射，F-余代数和F-态射分别构成了
 
 \begin{center}
   F-代数范畴$\pmb{Alg}(\mathbf{F})$ \quad \quad \quad
@@ -3273,6 +3273,8 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \end{array}
 \]
 
+这是一种紧凑的定义。我们可以把它也写成和（余积）的形式$fib = [start, next]$，其中$start$总返回$(1, 1)$，而$next(m, n) = (n, m + n)$。
+
 如果范畴$\pmb{NatF}$有起始对象0，则它一定具有形式$\mathbf{NatF}-alg(I, i)$。因为起始对象到任何对象都存在唯一的箭头。所以它到$\mathbf{NatF}-alg(A, \alpha)$一定有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, i)$代表起始对象中的集合$I$和箭头$i$}：
 
 \begin{center}
@@ -3294,10 +3296,10 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \begin{enumerate}
 \item 共同的函子$\mathbf{NatF}$；
 \item 携带对象是$\mathbf{NatF}I$；
-\item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。我们知道函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$in$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(in)$。
+\item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。我们知道函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$i$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(i)$。
 \end{enumerate}
 
-这样，这个递归的F-代数可以记为：$NatF-alg(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{k} \mathbf{NatF}I$，使得下面的范畴图可交换：
+这样，这个递归的F-代数可以记为：$\mathbf{NatF}-alg(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{k} \mathbf{NatF}I$，使得下面的范畴图可交换：
 
 \begin{center}
 \begin{tikzpicture}
