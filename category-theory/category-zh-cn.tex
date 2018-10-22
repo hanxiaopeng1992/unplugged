@@ -3169,7 +3169,7 @@ F-代数和F-态射，F-余代数和F-态射分别构成了
 
 在第一章中，我们介绍了自然数和皮亚诺公理。并且介绍了和自然数同构的事物。实际上，我们可以把所有类似自然数的东西都用F-代数描述。
 
-假设有一个集合$A$，具有自然数的代数结构。还记得第一章中斐波那契数列的例子么？具体到这个例子，$A$就是数对$(Int, Int)$。起始对象是$(1, 1)$，后继函数是$h(m, n) = (n, m + n)$。
+假设有一个集合$A$，具有自然数的代数结构。例如第一章中介绍过的斐波那契数列，其中$A$是数对$(Int, Int)$。起始对象是$(1, 1)$，后继函数是$h(m, n) = (n, m + n)$。
 
 为了用F-代数描述这一\textbf{类}代数结构，我们需要三样东西：函子，携带对象和$\alpha$箭头。根据皮亚诺公理，自然数的函子应当这样定义：
 
@@ -3178,9 +3178,7 @@ F-代数和F-态射，F-余代数和F-态射分别构成了
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。箭头$\alpha$是函数$zero, succ$的余积$[zero, succ]$。
-
-现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{Nat}(...))$起名为$\mathbf{Nat}$，即：
+这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{Nat}(...))$起名为$\mathbf{Nat}$，即：
 
 \[
 \begin{array}{rcll}
@@ -3191,7 +3189,7 @@ data NatF A = ZeroF | SuccF A
 \end{array}
 \]
 
-这恰恰是我们在第一章定义的自然数类型函子。我们把\texttt{Nat}和\texttt{Nat A}并列写在一起：
+这恰恰是我们在第一章定义的自然数类型。我们把\texttt{Nat}和\texttt{Nat A}并列写在一起：
 
 \begin{lstlisting}
 data Nat = Zero | Succ Nat
@@ -3242,7 +3240,7 @@ eval : \mathbf{NatF}^n Int \to Int \\
 
 \subsubsection{初始代数和向下态射}
 
-在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象形如$F-alg(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(\mathbf{NatF})$中，所有的对象都表示为$\mathbf{NatF}-alg(A, \alpha)$。其中$\mathbf{NatF}$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
+在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象可表示为二元组$(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(\mathbf{NatF})$中，所有的对象都表示为$(A, \alpha)$。其中$\mathbf{NatF}$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
 
 %% 例如$\mathbf{NatF}-alg(N, [zero, succ])$是一个F-代数对象，其中$zero, succ$的定义为：
 
@@ -3263,7 +3261,7 @@ eval : \mathbf{NatF}^n Int \to Int \\
 %% \end{array}
 %% \]
 
-例如$\mathbf{NatF}-alg(Int \times Int, fib)$是一个F-代数对象。其中携带对象是整数的积，箭头$\mathbf{NatF} (Int \times Int) \arrowto{fib} (Int \times Int)$的定义为：
+例如$(Int \times Int, fib)$是一个F-代数对象。其中携带对象是整数的积，箭头$\mathbf{NatF} (Int \times Int) \arrowto{fib} (Int \times Int)$的定义为：
 
 \[
 \begin{array}{l}
@@ -3275,7 +3273,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 
 这是一种紧凑的定义。我们可以把它也写成和（余积）的形式$fib = [start, next]$，其中$start$总返回$(1, 1)$，而$next(m, n) = (n, m + n)$。
 
-如果范畴$\pmb{NatF}$有起始对象0，则它一定具有形式$\mathbf{NatF}-alg(I, i)$。因为起始对象到任何对象都存在唯一的箭头。所以它到$\mathbf{NatF}-alg(A, \alpha)$一定有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, i)$代表起始对象中的集合$I$和箭头$i$}：
+如果范畴$\pmb{NatF}$有起始对象0，我们把它表示为二元组$(I, i)$。起始对象到任何对象$(A, \alpha)$都有唯一的箭头。即存在箭头$I \arrowto{f} A$，使得下面的范畴图可交换\footnote{起始的英文是initial，所以选择符号$(I, i)$代表起始对象中的集合$I$和箭头$i$}：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3291,15 +3289,15 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \end{tikzpicture}
 \end{center}
 
-因为起始对象到\textbf{任何}对象都有唯一箭头，所以它到自己的递归——由$\mathbf{NatF}(\mathbf{NatF}A)$等——构成的对象也一定有唯一的箭头。具体来说这个递归的F-代数具有的三要素是：
+因为起始对象到\textbf{任何}对象都有唯一箭头，所以它到自己的递归——由$\mathbf{NatF}(\mathbf{NatF}I)$——构成的对象也一定有唯一的箭头。具体来说这个递归的F-代数具有的三要素是：
 
 \begin{enumerate}
 \item 共同的函子$\mathbf{NatF}$；
 \item 携带对象是$\mathbf{NatF}I$；
-\item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。我们知道函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$i$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(i)$。
+\item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。因为函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$i$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(i)$。
 \end{enumerate}
 
-这样，这个递归的F-代数可以记为：$\mathbf{NatF}-alg(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{k} \mathbf{NatF}I$，使得下面的范畴图可交换：
+这样，这个递归的F-代数可以记为：$(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{j} \mathbf{NatF}I$，使得下面的范畴图可交换：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3308,20 +3306,20 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
     \mathbf{NatF}(\mathbf{NatF} I)  & \mathbf{NatF} I \\
     \mathbf{NatF} I  & I \\};
   \path[-stealth]
-    (m-1-1) edge node [above] {$\mathbf{NatF}(in)$} (m-1-2)
-    (m-2-1) edge node [left] {$\mathbf{NatF}(k)$} (m-1-1)
-    (m-2-2) edge node [right] {$k$}   (m-1-2)
-    (m-2-1) edge node [below] {$in$} (m-2-2);
+    (m-1-1) edge node [above] {$\mathbf{NatF}(i)$} (m-1-2)
+    (m-2-1) edge node [left] {$\mathbf{NatF}(j)$} (m-1-1)
+    (m-2-2) edge node [right] {$j$}   (m-1-2)
+    (m-2-1) edge node [below] {$i$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
 现在我们考虑沿着$\mathbf{NatF}$递归路径上的两个箭头：
 
 \[
-  \mathbf{NatF}(\mathbf{NatF}I) \arrowto{\mathbf{NatF}(in)} \mathbf{NatF} I \arrowto{in} I
+  \mathbf{NatF}(\mathbf{NatF}I) \arrowto{\mathbf{NatF}(i)} \mathbf{NatF} I \arrowto{i} I
 \]
 
-为了明显期间，我们把它画成弯的：
+为了明显，我们把它画成弯的：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3330,21 +3328,21 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
     \mathbf{NatF}(\mathbf{NatF} I)  & \mathbf{NatF} I \\
                                     & I \\};
   \path[-stealth]
-    (m-1-1) edge node [above] {$\mathbf{NatF}(in)$} (m-1-2)
-    (m-2-2) edge node [right] {$in$}   (m-1-2);
+    (m-1-1) edge node [above] {$\mathbf{NatF}(i)$} (m-1-2)
+    (m-2-2) edge node [right] {$i$}   (m-1-2);
 \end{tikzpicture}
 \end{center}
 
-和上面的范畴图对边，我们发现$in$和$k$的方向相反。如果把它们两个组合起来，就得到了一个从$I$出发指回自己的箭头。并且由于起始对象到自己的唯一箭头就是$id$，所以：
+和上面的范畴图对比，我们发现$i$和$j$的方向相反。如果把它们两个组合起来，就得到了一个从$I$出发指回自己的箭头。并且由于起始对象到自己的唯一箭头就是$id$，所以：
 
 \[
-in \circ k = id
+in \circ j = id
 \]
 
-同样的分析对$\mathbf{NatF}I$也成立，因为起始对象到递归对象的箭头也是唯一的。所以从$\mathbf{NatF}I$出发到$I$的箭头$in$，然后再从箭头$k$返回$\mathbf{NatF}I$必然也是$id$：
+同样的分析对$\mathbf{NatF}I$也成立，因为起始对象到递归对象的箭头也是唯一的。所以从$\mathbf{NatF}I$出发到$I$的箭头$i$，然后再从箭头$j$返回$\mathbf{NatF}I$必然也是$id$：
 
 \[
-k \circ in = id_{\mathbf{NatF}I}
+k \circ i = id_{\mathbf{NatF}I}
 \]
 
 这说明$\mathbf{NatF}I$和$I$是同构的。即：
@@ -3359,40 +3357,167 @@ k \circ in = id_{\mathbf{NatF}I}
   \mathbf{NatF}\ \mathbf{Nat} = \mathbf{Nat}
 \]
 
-这一结论，和1889年皮亚诺给出算术公理时的结论完全一样，任何满足皮亚诺公理的结构$(A, [e, f])$，都存在从自然数$(N, [zero, succ])$到这一结构的唯一同构。它将自然数$n$映射到$f^n(e) = f(f(...f(e))..)$上。现在，我们可以给出\textbf{初始代数}（initial algebra）的定义了。
+这一结论，和1889年皮亚诺给出算术公理时的结论完全一样，任何满足皮亚诺公理的结构$(A, [c, f])$，都存在从自然数$(N, [zero, succ])$到这一结构的唯一同构。它将自然数$n$映射到$f^n(c) = f(f(...f(c))..)$上。现在，我们可以给出\textbf{初始代数}（initial algebra）的定义了。
 
 \begin{definition}
 F-代数范畴$\pmb{Alg}(F)$中，如果存在初始对象，则这一初始对象叫做初始代数。
 \end{definition}
 
-在集合全函数范畴中，许多函子，包括多态函子都存在初始代数。我们略去了初始代数的存在性证明，读者可以参考\cite{Manes-Arbib-1986}。给定函子$\mathbf{F}$我们可以用上一小节定义的不动点函数得到这一F-代数中的初始对象：
-
-\[
-\begin{cases}
-I = fix\ F \\
-in = fix \\
-k = in^{-1} = unfix \\
-\end{cases}
-\]
+在集合全函数范畴中，许多函子，包括多态函子都存在初始代数。我们略去了初始代数的存在性证明，读者可以参考\cite{Manes-Arbib-1986}。给定函子$\mathbf{F}$我们可以通过它的不动点得到这一F-代数中的初始对象。
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
-\begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{wrapfigure}{R}{0.35\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/Lambek.eps}
  \captionsetup{labelformat=empty}
- \caption{兰贝克（Joachim Lambek）1922-2014}
- \label{fig:Escher-Dewdrop-1948}
-\end{wrapfigure}
+ \caption{兰贝克（Joachim Lambek） 1922 - 2014}
+ \label{fig:Lambek}
+\end{figure}
+%\end{wrapfigure}
 
-1968年，兰贝克（Lambek）最早指出$in$是一个同构映射，并且称初始代数$(I, in)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
+1968年，兰贝克（Lambek）最早指出$i$是一个同构映射，并且称初始代数$(I, i)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
 
-cata
+F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)$的唯一态射。我们把从$I$到$A$的态射记为$([f])$，使得下面的范畴图可交换：
 
-字符串，
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{F} I  & I \\
+    \mathbf{F} A  & A \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$i$} (m-1-2)
+    (m-1-1) edge node [left] {$\mathbf{F}([f])$} (m-2-1)
+    (m-1-2) edge node [right] {$([f])$}  (m-2-2)
+    (m-2-1) edge node [below] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+\[
+  \text{若} h = ([f]) \text{，当且仅当} h \circ i = f \circ \mathbf{F}(h)
+\]
+
+我们称箭头$([f])$为\textbf{向下态射}(catamorphism，来自希腊语$\kappa \alpha \kappa \alpha$，意思是向下)。它两侧的括号“([])”像一对香蕉，因此被称为“香蕉括号”。
+
+向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$([f])$。从而构造复杂的递归计算。我们用仍然类自然数来举例子。
+
+自然数函子$NatF$是非递归的，而其起始代数自然数$Nat$的定义是递归的：
+
+\begin{lstlisting}
+data NatF A = ZeroF | SuccF A
+
+data Nat = Zero | Succ Nat
+\end{lstlisting}
+
+所以箭头$\mathbf{NatF} A \arrowto{f} A$是非递归的。一个$cata$（向下态射）能够从$f$构造出在递归的$Nat$上进行计算的箭头$\mathbf{Nat} \to A$。所以$cata$的类型应为：
+
+\[
+(\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (Nat \to A)
+\]
+
+所以（克里化的）$cata(f)$应该能够作用于$Nat$的两种值$Zero$或者$Succ n$。我们可以根据这点定义出$cata$函数：
+
+\[
+\begin{array}{l}
+cata\ f\ Zero = f\ ZeroF \\
+cata\ f\ (Succ n) = f (SuccF\ (cata\ f\ n)) \\
+\end{array}
+\]
+
+这一定义的第一行处理递归的边界情况。针对$Nat$的零值$Zero$，我们转而用$f$对$\mathbf{NatF}A$的零值$Zero$求值；对于递归情况，也就是$Nat$的值$succ n$，我们先递归地用$cata\ f\ n$求出类型为$A$的值$a$，然后用$SuccF\ a$将其转化为$\mathbf{NatF}A$类型的值，最后再把$f$作用于其上。这个自然数的向下态射对于任何携带对象$A$都成立，它是非常通用的。我们进一步举两个具体的例子。第一个例子是将任何$Nat$的值转换回$Int$。
+
+\begin{lstlisting}[style=Haskell]
+toInt :: Nat -> Int
+toInt = cata eval where
+  eval :: NatF Int -> Int
+  eval ZeroF = 0
+  eval (SuccF x) = x + 1
+\end{lstlisting}
+
+这样$toInt\ Zero$会得到0，而$toInt\ (Succ\ (Succ\ (Succ\ Zero)))$会得到3。为了方便验证，可以再定义一个辅助函数：
+
+\begin{lstlisting}[style=Haskell]
+fromInt :: Int -> Nat
+fromInt 0 = Zero
+fromInt n = Succ $ fromInt (n-1)
+\end{lstlisting} %$
+
+我们有对于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
+
+\begin{lstlisting}[style=Haskell]
+toFib :: Nat -> (Integer, Integer)
+toFib = cata fibAlg where
+  fibAlg :: NatF (Integer, Integer) -> (Integer, Integer)
+  fibAlg ZeroF = (1, 1)
+  fibAlg (SuccF (m, n)) = (n, m + n)
+\end{lstlisting}
+
+我们特意将此前定义的函数$fib$改名为$fibAlg$，意思是说，从斐波那契的代数关系（非递归的），我们通过向下态射获得了递归计算斐波那契数列的能力。这样$toFib\ Zero$会得到数对$(1, 1)$，而$toFib\ (Succ\ (Succ\ (Succ\ Zero)))$会得到数对$(3, 5)$。下面的辅助函数，可以计算第$n$个斐波那契数。
+
+\[
+fibAt = fst \circ toFib \circ fromInt
+\]
+
+事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(Nat, zero + succ)$，得到能够进行递归计算的$([c + f])$\footnote{我们用符号$([c + f])$是因为$([[c, f]])$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+    \mathbf{NatF} Nat  & Nat \\
+    \mathbf{NatF} A  & A \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$[zero, succ]$} (m-1-2)
+    (m-1-1) edge node [left] {$\mathbf{NatF}([h])$} (m-2-1)
+    (m-1-2) edge node [right] {$([h])$}   (m-2-2)
+    (m-2-1) edge node [below] {$[c, f]$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+由于向下态射使得这个范畴图可交换。
+
+\[
+\begin{array}{rll}
+            & h \circ [zero, succ] = [c, f] \circ \mathbf{NatF}(h) & \text{可交换} \\
+\Rightarrow & h \circ [zero, succ] = [c, f] \circ (id + h) & \text{多项式函子} \\
+\Rightarrow & h \circ [zero, succ] = [c \circ id, f \circ h] & \text{右侧用余积的吸收律} \\
+\Rightarrow & [h \circ zero, h \circ succ] = [c, f \circ h] & \text{左侧用余积的融合律} \\
+\Rightarrow &
+  \begin{cases}
+    h \circ zero = c \\
+    h \circ succ = f \circ h \\
+  \end{cases} & \\
+\Rightarrow &
+  \begin{cases}
+    h\ Zero = c \\
+    h\ (Succ\ n) = f(h(n))
+  \end{cases} & \\
+\Rightarrow &
+  \begin{cases}
+    h(0) = c \\
+    h(n + 1) = f(h(n))
+  \end{cases} & \\
+\end{array}
+\]
+
+这恰恰是自然数叠加的定义:
+
+\[
+  h = foldn(c, f)
+\]
+
+也就是说，自然数上的向下态射$([c + f]) = foldn(c, f)$。因此，对于斐波那契数列，我们可以用
+
+\[
+([fibAlg]) = ([start, next]) = foldn(start, next)
+\]
+
+来进行代数计算。我相读到这里，大家会有一种转了一大圈又回到了第一章的感觉。这是一种认知的螺旋上升。第一章中，我们是用归纳和抽象的方法得到了这个结论，现在，我们从更高的层面，把抽象的规律应用到具体的问题上得到了同样的结论。
 
 \subsubsection{代数数据类型}
 
-列表，二叉树
+使用初始F-代数，我们可以定义更多的代数数据类型。本小节我们介绍字符串，列表，和二叉树这三个例子。
 
 % Haskell的foldable和fold的分析。
 
@@ -3471,16 +3596,6 @@ uncurry f (x, y) =  f x y
 class Semigroup a => Monoid a where
     mempty  :: a             -- | Identity
     mappend :: a -> a -> a   -- | An associative operation
-\end{lstlisting}
-
-不动点相关的定义：
-
-\lstset{frame=single}
-\begin{lstlisting}
-newtype Fix f = Fix (f (Fix f))
-
-unFix :: Fix f -> f (Fix f)
-unFix (Fix x) = x
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
