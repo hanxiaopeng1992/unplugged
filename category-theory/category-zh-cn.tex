@@ -3784,7 +3784,7 @@ concat_M = foldr (\oplus) e \\
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=2em, column sep=5em, minimum width=2em]{
-     [A] & [M] & M\\
+     \lbrack A \rbrack & \lbrack M \rbrack & M\\
      A   &  M  & \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$fmap\ g$} (m-1-2)
@@ -3851,9 +3851,9 @@ foldCompose f = foldMap\ (Endo . f)
 \Rightarrow & concat_M\ (fmap (Endo \circ (+)))\ [1, 2, 3] \\
 \Rightarrow & concat_M\ (fmap Endo\ [(+1), (+2), (+3)]) \\
 \Rightarrow & concat_M\ [Endo\ (+1), Endo\ (+2), Endo\ (+3)] \\
-\Rightarrow & Endo\ ((+1) \circ (+2) \circ (+3))
-\Rightarrow & Endo\ (+6)
-\end{lstlisting}
+\Rightarrow & Endo\ ((+1) \circ (+2) \circ (+3)) \\
+\Rightarrow & Endo\ (+6) \\
+\end{array}
 \]
 
 所以，最后一步我们要把$Endo$中的结果取回，具体到这个例子，就是用$appEndo$把$(+6)$拿出，然后把它应用到传入$foldr$的初始值$z$上：
