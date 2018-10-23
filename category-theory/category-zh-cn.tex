@@ -50,11 +50,10 @@ foldr f z (x:xs) = f x (foldr f z xs)
 实际上，今天的标准库用范畴的语言这样写：
 
 \begin{lstlisting}
-foldr f z t = appEndo (foldMap (Endo #. f) t) z
-foldMap f = foldr (mappend . f) mempty
+foldr f z t = appEndo (foldMap (Endo . f) t) z
 \end{lstlisting}
 
-你也许觉得，反正工作中不用Haskell，不了解范畴论也没有关系。但是最近十几年的情况是，范畴论由于其强大的抽象，几乎普适于任何问题，正向其它的语言和环境中渗透。不要说各大编程语言纷纷引入lambda演算和闭包等结构，有超过20种语言已经实现了单子\cite{Monad-Haskell-Wiki}——用范畴论的语言说，叫做“函子范畴上的幺半群”。
+你也许觉得，反正工作中不用Haskell，不了解范畴论也没有关系。但是最近十几年的情况是，范畴论由于其强大的抽象，几乎普适于任何问题，正向其它的语言和环境中渗透。不要说各大编程语言纷纷引入lambda演算和闭包等结构，有超过20种语言已经实现了单子（Monad）\cite{Monad-Haskell-Wiki}——用范畴论的语言说，叫做“函子范畴上的幺半群”。
 
 较长的答案是：我们需要抽象。请原谅这个答案看起来更短。赫尔曼$\cdot$外尔说现代数学在过去几十年不断沉湎在抽象和形式化上。编程领域何尝不是如此呢？现代计算机科学解决的问题空前复杂，大数据量、分布式、高并发、还要保证数据和计算的安全。仅仅靠着前几十年的传统方法——暴力求解、务实的工程实践再加上一点聪明的头脑已经不够了。这逼迫着我们去吸取其它科学和数学中的新方法和新工具。
 
@@ -3731,13 +3730,142 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 \end{cases}
 \]
 
-因此，累加二叉树中元素的运算可以用叠加表示为$foldt\ 0_B, +)$。
+因此，累加二叉树中元素的运算可以用叠加表示为$foldt(0_B, (\bullet + \bullet + \bullet))$。
 \end{example}
 
 \begin{Exercise}
 \Question{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
 \end{Exercise}
-% Haskell的foldable和fold的分析。
+
+\section{小节}
+
+本章介绍了范畴论中最基本的概念，包括范畴，函子、自然变换。并且还介绍了积和余积、起始对象和终止对象，幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
+
+\lstset{frame=single}
+\begin{lstlisting}
+foldr f z t = appEndo (foldMap (Endo . f) t) z
+foldMap f = foldr (mappend . f) mempty
+\end{lstlisting}
+
+所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表，在任何可叠加的结构上进行运算。
+
+我们先看看传统的在列表上的右侧叠加的定义：
+
+\begin{lstlisting}
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f z [] = z
+foldr f z (x:xs) = f x (foldr f z xs)
+\end{lstlisting}
+
+其中$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$,根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
+
+\[
+a \oplus (b \oplus (c \oplus e))
+\]
+
+这让我们联想到幺半群，$foldr$相当于在幺半群上重复进行二元操作。在Haskell的抽象幺半群定义中，除了单位元和二元操作外，还定义了将一列元素“累加”的操作。用我们的$\oplus$和$e$符号，这个定义相当于：
+
+\[
+\begin{array}{l}
+concat_M : [M] \to M \\
+concat_M = foldr (\oplus) e \\
+\end{array}
+\]
+
+在Haskell中这个函数的名字叫做\texttt{mconcat}。它的意思是说，对于任何幺半群$M$，$concat$可以将一个$M$中元素的列表，通过二元运算和单位元叠加计算到一起。例如字符串可以看作是幺半群，单位元是空串，而二元运算是连接。所以$concat_M$ \texttt{["Hello", "String" "Monoid"]}就得到：
+
+\begin{verbatim}
+"Hello" ++ ("String" ++ ("Monoid" ++ "")) = "HelloStringMonoid"
+\end{verbatim}
+
+现在我们可以对任何幺半群元素进行累加了。但能否让它变得更通用呢？如果有一列元素，它们虽然不是幺半群中的元素，但是如果我们能将它们转换为幺半群，就仍然可以进行累加。将某一类型的列表映射为幺半群列表恰巧就是函子的行为，确切地说我们把箭头$A \arrowto{g} M$，通过列表函子“举”到$\mathbf{List}(g)$。然后再执行累加：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=2em, column sep=5em, minimum width=2em]{
+     [A] & [M] & M\\
+     A   &  M  & \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$fmap\ g$} (m-1-2)
+    (m-2-1) edge node [above] {$g$} (m-2-2)
+    (m-2-1) edge node [left] {$\mathbf{List}$} (m-1-1)
+    (m-2-2) edge node [right] {$\mathbf{List}$} (m-1-2)
+    (m-1-2) edge node [above] {$concat$} (m-1-3);
+\end{tikzpicture}
+\end{center}
+
+\[
+\begin{array}{l}
+foldMap : (A \to M) -> [A] -> M \\
+foldMap\ g = concat_M \circ fmap\ g
+\end{array}
+\]
+
+可是美中不足的是，对于任何传入$foldr$的二元组合函数$f : A \to B \to B$，如果$B$不是幺半群，我们仍然无法进行叠加。现在考虑$f$的克里化形式$f : A \to (B \to B)$，我们发现以箭头$B \to B$为对象，可以组成一个幺半群。其中单位元是恒等箭头$id$，而二元运算是函数组合。为此，我们把这种$B \to B$的箭头通过函子封装成一个类型（集合）：
+
+\lstset{frame=none}
+\begin{lstlisting}
+newtype Endo B = Endo (B \to B)
+\end{lstlisting}
+
+并且定义一个函数，从$\mathbf{Endo}B \arrowto{appEndo} B$：
+
+\[
+appEndo(Endo a) = a
+\]
+
+然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。在Haskell中，这相当于一下代码：
+
+\lstset{frame=single}
+\begin{lstlisting}[style=Haskell]
+instance Monoid Endo where
+    mempty = Endo id
+    Endo f `mappend` Endo g = Endo (f . g)
+\end{lstlisting}
+
+现在任给一个二元组合函数$f$，我们都可以把它利用$foldMap$叠加到$Endo$幺半群上去了：
+
+\[
+\begin{array}{l}
+foldCompose : (A \to (B \to B)) \to [A] \to \mathbf{Endo}B \\
+foldCompose f = foldMap\ (Endo . f)
+\end{array}
+\]
+
+这样如果计算$foldCompose\ f\ [a, b, c]$则展开为：
+
+\[
+\begin{array}{cl}
+  & Endo(f\ a) \oplus (Endo(f\ b) \oplus (Endo(f\ c) \oplus Endo(id))) \\
+= & Endo(f\ a) \oplus (f\ b \oplus (f\ c \oplus id))
+\end{array}
+\]
+
+下面是一个具体的例子
+
+\[
+\begin{array}{cl}
+            & foldCompose\ (+)\ [1, 2, 3] \\
+\Rightarrow & foldMap\ (Endo \circ (+))\ [1, 2, 3] \\
+\Rightarrow & concat_M\ (fmap (Endo \circ (+)))\ [1, 2, 3] \\
+\Rightarrow & concat_M\ (fmap Endo\ [(+1), (+2), (+3)]) \\
+\Rightarrow & concat_M\ [Endo\ (+1), Endo\ (+2), Endo\ (+3)] \\
+\Rightarrow & Endo\ ((+1) \circ (+2) \circ (+3))
+\Rightarrow & Endo\ (+6)
+\end{lstlisting}
+\]
+
+所以，最后一步我们要把$Endo$中的结果取回，具体到这个例子，就是用$appEndo$把$(+6)$拿出，然后把它应用到传入$foldr$的初始值$z$上：
+
+\[
+\begin{array}{rcll}
+foldr\ f\ z\ xs = appEndo\ (foldCompose\ f\ xs)\ z & \\
+  & = & appEndo\ (foldMap\ (Endo \circ f)\ xs)\ z
+\end{array}
+\]
+
+这就是我们在本章开头给出的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
 
 \section{扩展阅读}
 
@@ -3813,7 +3941,25 @@ uncurry f (x, y) =  f x y
 \begin{lstlisting}
 class Semigroup a => Monoid a where
     mempty  :: a             -- | Identity
+
     mappend :: a -> a -> a   -- | An associative operation
+    mappend = (<>)           -- | default implementation
+
+    mconcat :: [a] -> a
+    mconcat = foldr mappend mempty
+\end{lstlisting}
+
+可叠加类型（Foldable）的定义：
+
+\begin{lstlisting}
+newtype Endo a = Endo { appEndo :: a -> a }
+
+class Foldable t where
+    foldr :: (a -> b -> b) -> b -> t a -> b
+    foldr f z t = appEndo (foldMap (Endo . f) t) z
+
+    foldMap :: Monoid m => (a -> m) -> t a -> m
+    foldMap f = foldr (mappend . f) mempty
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
@@ -3857,6 +4003,9 @@ Manes, E. G. and Arbib, M. A. ``Algebraic Approaches to Program Semantics''. Tex
 
 \bibitem{Lambek-1968}
 Lambek, J. ``A fixpoint theorem for complete categories''. Mathematische Zeischrift, 103, pp.151-161. 1968.
+
+\bibitem{Haskell-foldable}
+Wikibooks. ``Haskell/Foldable''.  \url{https://en.wikibooks.org/wiki/Haskell/Foldable}
 
 \end{thebibliography}
 
