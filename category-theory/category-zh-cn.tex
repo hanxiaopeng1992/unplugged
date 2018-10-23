@@ -39,7 +39,7 @@
 
 如果你已经坚持看到了本书这一章，我建议你小小的奖励自己一下。你已经迈过了第一道门槛，正在通往神奇的抽象王国之路上。这条路是世界上许多最聪明的心智披荆斩棘开辟出来的。如果说，人们将具体的事物，抽象成不带具体意义的数与形是原始阶段；将数、形与计算的意义去除，抽象成代数结构（例如群）和代数关系（例如同构）是第一阶段；范畴论可以算是抽象的第二阶段。
 
-你也许会问，我们为什么要了解范畴论？这和编程有什么关系？对此有一个比较短的答案和一个比较长的答案。较短的回答是，如果不了解范畴论，过不了多久，你也许看不懂别人写的程序了。2010年以后，如果翻看Haskell标准库的源代码，就会发现几乎所有的内容，都用范畴论重新写过了。映射、叠加、遍历……几乎所有的计算都在说着范畴的语言，犹如天书。你也许觉得叠加操作可以这样写：
+你也许会问，我们为什么要了解范畴论？这和编程有什么关系？对此有一个比较短的答案和一个比较长的答案。较短的回答是，如果不了解范畴论，过不了多久，你也许看不懂别人写的程序了。2000年以后，如果翻看Haskell标准库的源代码，就会发现几乎所有的内容，都用范畴论重新写过了。映射、叠加、遍历……几乎所有的计算都在说着范畴的语言，犹如天书。你也许觉得叠加操作可以这样写：
 
 \lstset{language=Haskell, frame=single}
  \begin{lstlisting}
@@ -57,7 +57,7 @@ foldr f z t = appEndo (foldMap (Endo . f) t) z
 
 较长的答案是：我们需要抽象。请原谅这个答案看起来更短。赫尔曼$\cdot$外尔说现代数学在过去几十年不断沉湎在抽象和形式化上。编程领域何尝不是如此呢？现代计算机科学解决的问题空前复杂，大数据量、分布式、高并发、还要保证数据和计算的安全。仅仅靠着前几十年的传统方法——暴力求解、务实的工程实践再加上一点聪明的头脑已经不够了。这逼迫着我们去吸取其它科学和数学中的新方法和新工具。
 
-正如迪厄多内所说：“这种抽象绝不是来自数学家的反常意愿，似乎他们想通过使用深奥莫测的语言来把自己与其它人隔开。数学家是被经典对象和关系的本质特性逼着去锻造新的抽象工具，来解决过去看来是不可攻克的问题。”\cite{Dieudonne1987}（中文版第2页，英文版第9页）
+正如迪厄多内所说：“这种抽象绝不是来自数学家的反常意愿，似乎他们想通过使用深奥莫测的语言来把自己与其他人隔开。数学家是被经典对象和关系的本质特性逼着去锻造新的抽象工具，来解决过去看来是不可攻克的问题。”\cite{Dieudonne1987}（中文版第2页，英文版第9页）
 
 本章内容将再次挑战我们的抽象思维。如果读完一遍没有理解是完全正常的。请不要灰心丧气，生活不是直线发展的，我们理解知识的过程是螺旋上升的。要不断回过头去反复体会。开卷有益，去阅读大师的作品。也许某个瞬间豁然开朗，就能体会到“蓦然回首，那人却在灯火阑珊处”的感觉。
 
@@ -71,7 +71,7 @@ foldr f z t = appEndo (foldMap (Endo . f) t) z
  \label{fig:Eilenberg}
 \end{wrapfigure}
 
-塞缪尔·艾伦伯格于1913年生于波兰华沙的一个犹太人家庭。他于1936年在华沙大学获得博士学位。艾伦伯格主要研究代数拓扑。他与诺曼·斯廷罗德（Norman Steenrod）一起对同调理论进行了公理化。艾伦伯格在与麦克兰恩合作研究同调代数的过程中一起创立了范畴论。艾伦伯格也是著名的布尔巴基小组成员。他与昂利·嘉当合作，在1956年完成了经典著作《同调代数》。艾伦伯格后来移居美国，在纽约哥伦比亚大学做教授，他的主要工作是发展纯粹的范畴论，是该领域的奠基者之一。1986年他获得沃尔夫奖。1998年艾伦伯格逝世于美国纽约市。
+塞缪尔·艾伦伯格于1913年生于波兰华沙的一个犹太人家庭。他于1936年在华沙大学获得博士学位。艾伦伯格主要研究代数拓扑。他与诺曼·斯廷罗德（Norman Steenrod）一起对同调理论进行了公理化。艾伦伯格在与麦克兰恩合作研究同调代数的过程中一起创立了范畴论。艾伦伯格也是著名的布尔巴基小组成员。他与昂利·嘉当合作，在1956年完成了经典著作《同调代数》。艾伦伯格后来移居美国，在纽约哥伦比亚大学做教授，他的主要工作是发展纯粹的范畴论。他是该领域的奠基者之一。1986年他获得沃尔夫奖。1998年艾伦伯格逝世于美国纽约市。
 
 艾伦伯格还是著名的亚洲艺术品收藏家。他收集了来自印度、印度尼西亚、尼泊尔、泰国、柬埔寨、斯里兰卡和中亚的雕塑和艺术品。1992年，他把自己收藏的400多件艺术品捐赠给了纽约大都会博物馆\cite{Wiki-Eilenberg}。
 
@@ -207,7 +207,7 @@ S \arrowto{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
 \end{array}
 \]
 
-如果我们把二元运算统一用点“$\circ$”来表示，单位元统一表示为1，则可以写成：
+也就是说，两个字符串连在一起所涵盖的字符集，等于各个串的字符集的并；空串的字符集是空集。如果我们把二元运算统一用点“$\circ$”来表示，单位元统一表示为1，则可以写成：
 
 \[
 \begin{array}{rcl}
@@ -233,10 +233,10 @@ S \arrowto{\phi} C \arrowto{\psi} N
 S \arrowto{\psi \circ \phi} N
 \]
 
-显然组合后$\psi \circ \phi$也是一个态射。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
+显然组合后$\psi \circ \phi$也是一个态射。它表示先从字符串中抽出字符集，然后再统计不同字符的个数。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
 
 \[
-S \arrowto{id_R} S
+S \arrowto{id} S
 \]
 
 注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑$(S, \doubleplus, \texttt{""})$，它只有一个对象，就是全体字符串的集合$S$。对于任何字符串$a$，我们都可以定义前缀映射$S \arrowto{(a \doubleplus)} S$：
@@ -486,13 +486,13 @@ id_A = \{(a, a) | a \in A\}
 我们还可以从任何已知的范畴产生新的范畴，例如把一个范畴$\pmb{C}$中的所有箭头反向就得到了一个对偶的范畴$\pmb{C}^{op}$。这样我们了解了一个范畴，就同时了解了它的对偶范畴。
 
 \begin{Exercise}
-\Question{本节第一例子中的恒等箭头是什么？}
+\Question{本节第一个例子中的恒等箭头是什么？}
 \Question{考虑集合上的部分函数构成的范畴$\pmb{Pfn}$。对象是集合，而箭头是部分函数，从集合$A$的$B$的部分函数$A \arrowto{f} B$是说，对于$A$的子集$A'$来说$f$有定义。这个范畴中的箭头组合、单位箭头的含义是什么？}
 \end{Exercise}
 
 \subsection{左右消去}
 
-范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对相对偶的性质，称为左消去\footnote{也有人译为“首一”，但是这里译为消去更易理解。}（monic）和右消去\footnote{有文献将monic和epic翻译为“单态射”和“满态射”。但是这只有在集合和全函数的范畴内才成立。因此本书使用左右消去的说法。}（epic）。既然是对偶的性质，我们就用对偶的形式给出：
+范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对相对偶的性质，称为左消去（monic）和右消去\footnote{有文献将monic和epic翻译为“单态射”和“满态射”。但是这只有在集合和全函数的范畴内才成立。因此本书使用左右消去的说法。}（epic）。既然是对偶的性质，我们就用对偶的形式给出：
 
 \begin{definition}
 如果范畴中的箭头
@@ -545,7 +545,7 @@ f & = g & \text{因为$m$是左消去的}
 \end{Exercise}
 
 \section{函子}
-我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间假设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
+我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间架设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
 
 在某种意义上说，函子好比是范畴之间的态射。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
@@ -580,7 +580,7 @@ A \arrowto{id_A} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id_{\mathbf{F}A}
 \mathbf{F}(id_A) = id_{\mathbf{F}A}
 \]
 
-\item 第二条性质看似简单，实则不然。函子必须能够保持箭头的组合仍然变换为将头的组合。之所以说不简单，是因为存在两种箭头的变换方式：
+\item 第二条性质看似简单，实则不然。函子必须能够保持箭头的组合仍然变换为箭头的组合。之所以说不简单，是因为存在两种箭头的变换方式：
 
 \[
 \begin{array}{rcll}
@@ -697,23 +697,23 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \end{tikzpicture}
 \end{center}
 
-图中左侧的对象$A, B$是一些数据类型，比如整形，布尔型。而右侧的对象，是通过函子$\mathbf{Maybe}$映射成的类型。如果$A$代表\texttt{Int}，则右侧对应是\texttt{Maybe Int}，$B$如果代表\texttt{Bool}，则右侧对应的是\texttt{Maybe Bool}。可能函子是怎样完成对象的映射呢？它的对象映射部分是这样定义的:
+图中左侧的对象$A, B$是一些数据类型，比如整形，布尔型。而右侧的对象，是通过函子$\mathbf{Maybe}$映射成的类型。如果$A$代表$Int$，则右侧对应是$\mathbf{Maybe}\ Int$，$B$如果代表$Bool$，则右侧对应的是$\mathbf{Maybe}\ Bool$。可能函子是怎样完成对象的映射呢？它的对象映射部分是这样定义的:
 
 \lstset{frame=none}
 \begin{lstlisting}
 data Maybe A = Nothing | Just A
 \end{lstlisting}
 
-也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}A$的值要么是一个空值\texttt{Nothing}，要么是一个用\texttt{Just}构造的值。
+也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}A$的值要么是一个空值$Nothing$，要么是一个用$Just$构造的值。
 
-例如，对象是类型\texttt{Int}，可能函子映射后对象是类型\texttt{Maybe Int}，它的值可能是\texttt{Nothing}或者\texttt{Just 5}。
+例如，对象是类型$Int$，可能函子映射后对象是类型$\mathbf{Maybe}\ Int$，它的值可能是$Nothing$或者$Just\ 5$。
 
 例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}A$\footnote{完整的代码见本章附录}。
 
 \[
 \begin{array}{rcl}
-lookup\ nil\ \_ & = & Nothing \\
-lookup\ (Node\ l\ k\ r)\ x & = & \begin{cases}
+lookup\ Nil\ \_ & = & Nothing \\
+lookup\ (Br\ l\ k\ r)\ x & = & \begin{cases}
   x < k: & lookup\ l\ x \\
   x > k: & lookup\ r\ x \\
   x = k: & Just\ k
@@ -750,7 +750,7 @@ fmap : (A \to B) \to (\mathbf{F} A \to \mathbf{F} B)
 \[
 \begin{array}{l}
 \quad    fmap : (A \to B) \to (\mathbf{Maybe} A \to \mathbf{Maybe} B) \\
-\quad    fmap\ \_\ Nothing = Nothing \\
+\quad    fmap\ f\ Nothing = Nothing \\
 \quad    fmap\ f\ (Just\ x) = Just\ (f\ x) \\
 \end{array}
 \]
@@ -862,7 +862,7 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定�
 
 \lstset{frame=none}
 \begin{lstlisting}
-data List A = nil | cons(A, List A)
+data List A = Nil | Cons(A, List A)
 \end{lstlisting}
 
 从编程的观点看，这定义了“单向链表”的数据结构，链表中元素的类型是$A$，这样的链表称为类型为$A$的列表。从范畴的观点来看，一个列表函子要分别定义对象和箭头的映射。在这里，对象是类型，箭头是全函数。下图描述了列表函子的行为：
@@ -883,7 +883,7 @@ data List A = nil | cons(A, List A)
 
 图中左侧的对象$A, B$是数据类型，例如整型、布尔型甚至是$\mathbf{Maybe}\ Char$这样的复杂类型。而右侧的对象，是通过列表函子映射成的类型，如果$A$为整形$Int$，则右侧对应$\mathbf{List}\ Int$，如果$B$代表$Char$，则右侧对应的是$\mathbf{List}\ Char$，也就是$String$。
 
-请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$nil$和$cons$两个具体的函数来产生空值或者$list(1, list(1, list(2, nil)))$。
+请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$Nil$和$Cons$两个具体的函数来产生空值或者$List(1, List(1, List(2, Nil)))$。
 
 以上是列表函子在对象映射时的行为，那么它是如何对箭头进行映射的呢？也就是说，给定一个函数$f: A \to B$，如何通过列表函子得到另一个函数$g: \mathbf{List}\ A \to \mathbf{List}\ B$呢？与可能函子$\mathbf{Maybe}$类似，我们可以定义一个$fmap$实现从箭头$f$到箭头$g$的映射，对于列表函子它的类型为：
 
@@ -891,16 +891,16 @@ data List A = nil | cons(A, List A)
 fmap: (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B)
 \]
 
-接下来需要仔细分析$g$的行为。首先考虑最简单的情况，不管箭头$f$的定义如何，如果$\mathbf{List}\ A$是个空列表$nil$，则应用$g$后的结果也必然是空列表。所以有：
+接下来需要仔细分析$g$的行为。首先考虑最简单的情况，不管箭头$f$的定义如何，如果$\mathbf{List}\ A$是个空列表$Nil$，则应用$g$后的结果也必然是空列表。所以有：
 
 \[
-fmap\ \_\ nil = nil
+fmap\ f\ Nil = Nil
 \]
 
-接下来考虑递归的情况$cons(x, xs)$，其中$x$是类型为$A$的某个值，而$xs$是类型为$\mathbf{List}\ A$的子列表。如果$f(x) = y$，将类型$A$的值$x$映射为类型$B$的值$y$，那么我们就将$f$应用到$x$上，然后在将其递归地应用到子列表$xs$上从而得到一个元素类型为$B$的子列表$ys$，最后再将$y$和$ys$链接起来得到最终的结果：
+接下来考虑递归的情况$Cons(x, xs)$，其中$x$是类型为$A$的某个值，而$xs$是类型为$\mathbf{List}\ A$的子列表。如果$f(x) = y$，将类型$A$的值$x$映射为类型$B$的值$y$，那么我们就将$f$应用到$x$上，然后在将其递归地应用到子列表$xs$上从而得到一个元素类型为$B$的子列表$ys$，最后再将$y$和$ys$链接起来得到最终的结果：
 
 \[
-fmap\ f\ cons(x, xs) = cons(f\ x, fmap\ f\ xs)
+fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \]
 
 综上，我们得到了$fmap$的完整定义：
@@ -908,17 +908,17 @@ fmap\ f\ cons(x, xs) = cons(f\ x, fmap\ f\ xs)
 \[
 \begin{array}{l}
 \quad    fmap : (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B) \\
-\quad    fmap\ \_\ nil = nil \\
-\quad    fmap\ f\ cons(x, xs) = cons(f\ x, fmap\ f\ xs) \\
+\quad    fmap\ f\ Nil = Nil \\
+\quad    fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs) \\
 \end{array}
 \]
 
-如果使用第一章介绍的简记法，用冒号“:”表示$cons$，用中括号表示列表，用“[]”表示$nil$，则列表函子的箭头部分映射可以简写为：
+如果使用第一章介绍的简记法，用冒号“:”表示$Cons$，用中括号表示列表，用“[]”表示$Nil$，则列表函子的箭头部分映射可以简写为：
 
 \[
 \begin{array}{l}
 \quad    fmap : (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B) \\
-\quad    fmap\ \_\ [] = [] \\
+\quad    fmap\ f\ [] = [] \\
 \quad    fmap\ f\ (x:xs) = (f\ x):(fmap\ f\ xs) \\
 \end{array}
 \]
@@ -945,8 +945,8 @@ fmap\ (f \circ g) = fmap\ f \circ fmap\ g
 
 \[
 \begin{array}{rcll}
-fmap\ id\ nil & = & nil & \text{$fmap$的定义} \\
-              & = & id\ nil & \text{反向用$id$的定义} \\
+fmap\ id\ Nil & = & Nil & \text{$fmap$的定义} \\
+              & = & id\ Nil & \text{反向用$id$的定义} \\
 \end{array}
 \]
 
@@ -965,10 +965,10 @@ fmap\ id\ (x:xs) & = & (id\ x):(fmap\ id\ xs) & \text{$fmap$的定义} \\
 
 \[
 \begin{array}{rcll}
-fmap\ (f \circ g)\ nil & = & nil & \text{$fmap$的定义} \\
-           & = & fmap\ f\ nil & \text{反向使用$fmap$的定义} \\
-           & = & fmap\ f\ (fmap\ g\ nil) & \text{反向使用$fmap$的定义} \\
-           & = & (fmap\ f\ \circ fmap\ g)\ nil & \text{反向用函数组合的定义}
+fmap\ (f \circ g)\ Nil & = & Nil & \text{$fmap$的定义} \\
+           & = & fmap\ f\ Nil & \text{反向使用$fmap$的定义} \\
+           & = & fmap\ f\ (fmap\ g\ Nil) & \text{反向使用$fmap$的定义} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ Nil & \text{反向用函数组合的定义}
 \end{array}
 \]
 
@@ -1737,7 +1737,7 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到范畴$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A \times B$，它的行为如下：
 
 \[
-(f \times g)(a, b) = (f\ a, f\ b)
+(f \times g)(a, b) = (f\ a, g\ b)
 \]
 
 然后二元函子$F$作用于这两个箭头的积$f \times g$，将其对应到新的箭头$\mathbf{F}(f \times g)$上。于是最终的二元函子的定义如下：
@@ -1840,7 +1840,7 @@ f + g = [left \circ f, right \circ g]
 
 \[
 \begin{array}{ccc}
-\text{积} & \text{余积} \\
+\text{积} & \quad \quad & \text{余积} \\
  (f \times g) \circ (f' \times g') = f \circ f' \times g \circ g'
  & \quad \quad &
  (f + g) \circ (f' + g') = f \circ f' + g \circ g'
@@ -1851,7 +1851,7 @@ f + g = [left \circ f, right \circ g]
 
 \[
 \begin{array}{ccc}
-  \text{积的吸收律} & \text{余积的吸收律} \\
+  \text{积的吸收律} & \quad \quad & \text{余积的吸收律} \\
   (f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
   & \quad \quad &
   [p, q] \circ (f + g) = [p \circ f, q \circ g]
@@ -1910,7 +1910,7 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \section{自然变换}
 
-艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”（natural transformation）。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明他们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
+艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”（natural transformation）。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明它们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
 
 % Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
 
@@ -1942,7 +1942,7 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 F \arrowto{\phi} G
 \]
 
-是由$A$索引的，在$\pmb{Trg}$中的一族箭头
+是由$A$索引的在$\pmb{Trg}$中的一族箭头
 
 \[
 \mathbf{F}A \arrowto{\phi_A} \mathbf{G}A
@@ -2065,7 +2065,7 @@ inits_A : \mathbf{List} A \to \mathbf{List}(\mathbf{List} A)
 \end{example}
 
 \begin{example}
-我们举的第二个例子叫做$safeHead$，它的行为是安全地获取列表中的第一个元素。所谓“安全”，就是说它能够处理空列表nil的情况。为此我们可以使用前面介绍过的可能函子$\mathbf{Maybe}$。它的定义如下：
+我们举的第二个例子叫做$safeHead$，它的行为是安全地获取列表中的第一个元素。所谓“安全”，就是说它能够处理空列表Nil的情况。为此我们可以使用前面介绍过的可能函子$\mathbf{Maybe}$。它的定义如下：
 
 \[
 \begin{array}{l}
@@ -2200,7 +2200,7 @@ swap\ (a, b) = (b, a)
 \end{array}
 \]
 
-$swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$”
+$swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$
 
 由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件（natural condition）使得范畴图可交换：
 
@@ -2284,8 +2284,7 @@ length\ (x:xs) = 1 + length\ xs
   0 \longrightarrow A \quad \quad \quad A \longrightarrow 1
 \]
 
-为什么说起始对象和终止对象是对偶的呢？如果$S$是范畴$\pmb{C}$中的起始对象，我们只要把所有的箭头都反向，则$S$就成了范畴$\pmb{C}^{op}$中的终止对象。
-一个范畴可能没有起始对象或终止对象，或者两个都没有，但如果有的话，起始对象或者终止对象在同构的意义下是唯一的。
+为什么说起始对象和终止对象是对偶的呢？如果$S$是范畴$\pmb{C}$中的起始对象，我们只要把所有的箭头都反向，则$S$就成了范畴$\pmb{C}^{op}$中的终止对象。一个范畴可能没有起始对象或终止对象，或者两个都没有，但如果有的话，起始对象或者终止对象在同构的意义下是唯一的。
 
 我们只证明起始对象的同构唯一性，终止对象可以通过对偶性得到证明。
 
@@ -2378,7 +2377,7 @@ G \longrightarrow \{e\}
 我们选择符号$\{ \bigstar \}$的用意是说，元素是什么不重要，只要它是只含有一个元素的集合（singleton set），在同构意义上就是等价的。
 
 \label{sec:selection-arrow} \index{选择箭头}
-从终止对象$\{ \bigstar \}$到某一结合$S$的箭头
+从终止对象$\{ \bigstar \}$到某一集合$S$的箭头
 
 \[
   \{ \bigstar \} \longrightarrow S
@@ -2549,7 +2548,7 @@ isDigit 'b' = False
 ...
 \end{lstlisting}
 
-虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^256$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
+虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^{256}$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
 \end{example}
 
 现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
@@ -2641,15 +2640,15 @@ curry\ g = \lambda g
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=5em, minimum width=2em]{
-     A & A \times B \arrowto{h} \to C \\
-     D & D \times B \arrowto{k} \to C \\};
+     A & A \times B \arrowto{h} C \\
+     D & D \times B \arrowto{k} C \\};
   \path[-stealth]
     (m-1-1) edge node [left] {$f$} (m-2-1)
     (m-1-2) edge node [left] {$j$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
-如果在$\pmb{C}$中存在$A \arrowto{f} D$的箭头，则$\pmb{Exp}$中的箭头为$h \longrightarrow{j} k$。当且仅当把上面范畴图中右侧的$C$合并时，箭头之间可交换：
+如果在$\pmb{C}$中存在$A \arrowto{f} D$的箭头，则$\pmb{Exp}$中的箭头为$h \arrowto{j} k$。当且仅当把上面范畴图中右侧的$C$合并时，箭头之间可交换：
 
 \begin{center}
 \begin{tikzpicture}
@@ -2752,7 +2751,7 @@ A^0 & = & \{ 0 \to A \} & \text{幂对象的定义} \\
   A^1 = A
 \]
 
-这恰好是前面介绍过的“\hyperref[sec:selection-arrow]{选择箭头}”。1是终止对象，所以幂$A^1$表示了从终止对象到到$A$的箭头集合$\{ 1 \to A\}$。如果$A$是一个集合，我们可以针对集合中的任何元素$a \in A$构造一个从终止对象1到$a$的一个函数：
+这恰好是前面介绍过的“\hyperref[sec:selection-arrow]{选择箭头}”。1是终止对象，所以幂$A^1$表示了从终止对象到$A$的箭头集合$\{ 1 \to A\}$。如果$A$是一个集合，我们可以针对集合中的任何元素$a \in A$构造一个从终止对象1到$a$的一个函数：
 
 \[
   f_a : 1 \to a
@@ -2872,7 +2871,7 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} 
 
 \subsection{F-代数}
 
-为了构造复杂的带有递归结构的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。观察抽象代数中的概念，如幺半群、群、环、域，它们不仅仅是抽象的对象，而且带有结构。正是这些结构之间的关系，使得它们区别于过去那些具体的对象，例如数，点、线、面。如果关系和结构研究清楚了，不仅仅是数、点、线、面，所有具有同样关系和结构的对象（用希尔伯特的比喻，连同桌子、椅子、啤酒杯）就都尽在掌握了。
+为了构造复杂的带有递归结构的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。观察抽象代数中的概念，如幺半群、群、环、域，它们不仅仅是抽象的对象，而且带有结构。正是这些结构之间的关系，使得它们区别于过去那些具体的对象，例如数、点、线、面。如果关系和结构研究清楚了，不仅仅是数、点、线、面，所有具有同样关系和结构的对象（用希尔伯特的比喻，连同桌子、椅子、啤酒杯）就都尽在掌握了。
 
 \begin{example}
 我们从比较简单的幺半群作为开始的例子，一步一步导出F-代数的概念。一个幺半群是一个集合$M$，并且在集合上定义了可结合的二元运算和单位元。
