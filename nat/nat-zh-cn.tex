@@ -619,6 +619,15 @@ h(x, c) = cons(f(x), c)
 
 这种把函数映射到一对值中的第一个之上的操作称为$first$，即$first(f, (x, y)) = (f(x), y)$，我们在此后讲解范畴的时候还会再仔细讨论它。使用$first$，逐一映射可以定义为$map(f) = foldr(nil, cons \cdot first(f))$。
 
+求列表的长度也可以利用逐一映射来实现。首先将列表的所有元素都映射为1，然后在将这些1加起来就等于列表的长度。
+
+\[
+\begin{array}{l}
+len = sum \cdot map(one) \\
+one(x) = 1 \\
+\end{array}
+\]
+
 \begin{Exercise}
 \begin{enumerate}
 \item 表达式$foldr(nil, cons)$定义了什么？

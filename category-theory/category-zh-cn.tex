@@ -3520,6 +3520,7 @@ fibAt = fst \circ toFib \circ fromInt
 
 使用初始F-代数，我们可以定义更多的代数数据类型。本小节我们介绍列表和二叉树的例子。
 
+\begin{example}
 在第一章中，我们给出的列表定义为：
 
 \lstset{frame=none}
@@ -3640,8 +3641,102 @@ sum = cataL sumAlg where
   h = foldr(c, f)
 \]
 
-也就是说，列表F-代数的向下态射$([c + f]) = foldr(c, f)$。因此，求长度的运算是$foldr(0, (a, b) \mapsto b + 1)$，累加的运算是$foldr(0, +)$。
+也就是说，列表F-代数的向下态射$([c + f]) = foldr(c, f)$。因此，求长度的
+运算是$foldr(0, (a, b) \mapsto b + 1)$，累加的运算是$foldr(0, +)$。
+\end{example}
 
+\begin{example}
+在第二章中，我们定义了二叉树的类型为：
+
+\begin{lstlisting}
+data Tree A = Nil | Br A (Tree A) (Tree A)
+\end{lstlisting}
+
+所有类似二叉树的结构也可以通过F-代数来描述。首先定义函子：
+
+\begin{lstlisting}
+data TreeF A B = NilF | BrF A B B
+\end{lstlisting}
+
+携带对象是$B$，而初始代数是$(\mathbf{Tree}\ A, [nil, branch])$。我们把证明作为本小节的练习。这样二叉树的向下态射表示为如下范畴图：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+    \mathbf{TreeF}\ A\ (\mathbf{Tree}\ A)  & (\mathbf{Tree}\ A) \\
+    \mathbf{TreeF}\ A\ B & B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$[nil, branch]$} (m-1-2)
+    (m-1-1) edge node [left] {$(\mathbf{TreeF}\ A)(h)$} (m-2-1)
+    (m-1-2) edge node [right] {$h$}   (m-2-2)
+    (m-2-1) edge node [below] {$[c, f]$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+我们可以定义二叉树的向下态射函数。它接受一个F-代数的箭头$\mathbf{TreeF}\ A\ B \arrowto{f} B$，返回一个从$\mathbf{Tree}\ A \to B$的函数：
+
+\[
+\begin{array}{l}
+cata : (\mathbf{TreeF}\ A\ B \to B) \to (\mathbf{Tree}\ A \to B) \\
+cata\ f\ Nil = f\ NilF \\
+cata\ f\ (Br\ k\ l\ r) =f\ (BrF\ k\ (cata\ f\ l)\ (cata\ f\ r)) \\
+\end{array}
+\]
+
+如果定义了一个将二叉树中元素累加起来的代数运算，就可以利用向下态射递归地应用到任意二叉树上：
+
+\[
+\begin{array}{l}
+sum : \mathbf{Tree}\ A \to A \\
+sum = cata \circ sumAlg \\
+\text{其中：}
+      \begin{cases}
+        sumAlg : \mathbf{TreeF}\ A\ B \to B \\
+        sumAlg\ NilF = 0_{B} \\
+        sumAlg\ (Br\ k\ l\ r) = k + l + r \\
+      \end{cases} \\
+\end{array}
+\]
+
+接下来，我们证明二叉树的向下态射就相当于二叉树的叠加操作$foldt$。固定对象$A$，二叉树的函子$\mathbf{TreeF}\ A\ B$是携带对象$B$的一个多项式函子。即：$\mathbf{TreeF}\ A\ B = 1 + (A \times B \times B)$，对于箭头$h$，为：$(\mathbf{TreeF}\ A)(h) = id + (id_A \times h \times h)$。
+
+由于上面的范畴图可交换，所以有：
+
+\[
+\begin{array}{rll}
+            & h \circ [nil, branch] = [c, f] \circ (\mathbf{TreeF}\ A)(h) & \text{可交换} \\
+\Rightarrow & h \circ [nil, branch] = [c, f] \circ (id + (id_A \times h \times h)) & \text{多项式函子} \\
+\Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{右侧用余积的吸收律} \\
+\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h)] & \text{左侧用余积的融合律} \\
+\Rightarrow &
+  \begin{cases}
+    h \circ nil = c \\
+    h \circ branch = f \circ (id_A \times h \times h) \\
+  \end{cases} & \\
+\Rightarrow &
+  \begin{cases}
+    h\ Nil = c \\
+    h\ (Br\ k\ l\ r) = f(k, h(l), h(r))
+  \end{cases} & \\
+\end{array}
+\]
+
+这恰恰是二叉树叠加的定义$h = foldt(c, f)$，其中：
+
+\[
+\begin{cases}
+foldt\ c\ h\ Nil = c \\
+foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
+\end{cases}
+\]
+
+因此，累加二叉树中元素的运算可以用叠加表示为$foldt\ 0_B, +)$。
+\end{example}
+
+\begin{Exercise}
+\Question{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
+\end{Exercise}
 % Haskell的foldable和fold的分析。
 
 \section{扩展阅读}
