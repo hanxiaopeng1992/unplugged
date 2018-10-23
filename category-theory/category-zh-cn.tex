@@ -3108,7 +3108,7 @@ x & \longmapsto & x^{-1} & \text{逆元} \\
   F-代数$(A, \alpha)$ \quad \quad \quad F-余代数$(A, \alpha)$
 \end{center}
 
-看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。
+本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。
 两个对象间的箭头定义如下：
 
 \begin{definition}
@@ -3295,7 +3295,7 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
 \item 箭头$\mathbf{NatF}(\mathbf{NatF}I) \to \mathbf{NatF}I$。因为函子既作用于对象，也作用于箭头。所以我们可以通过函子$\mathbf{NatF}$，将初始对象中的箭头$i$“举”上去。因此，这个递归的F-代数的箭头就是$\mathbf{NatF}(i)$。
 \end{enumerate}
 
-这样，这个递归的F-代数可以记为：$(\mathbf{NatF}I, \mathbf{NatF}(in))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{j} \mathbf{NatF}I$，使得下面的范畴图可交换：
+这样，这个递归的F-代数可以记为：$(\mathbf{NatF}I, \mathbf{NatF}(i))$。因为从初始对象到它也有唯一的箭头，所以存在$I \arrowto{j} \mathbf{NatF}I$，使得下面的范畴图可交换：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3327,20 +3327,20 @@ fib\ (SuccF\ (m, n)) = (n, m + n) \\
                                     & I \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$\mathbf{NatF}(i)$} (m-1-2)
-    (m-2-2) edge node [right] {$i$}   (m-1-2);
+    (m-1-2) edge node [right] {$i$}   (m-2-2);
 \end{tikzpicture}
 \end{center}
 
 和上面的范畴图对比，我们发现$i$和$j$的方向相反。如果把它们两个组合起来，就得到了一个从$I$出发指回自己的箭头。并且由于起始对象到自己的唯一箭头就是$id$，所以：
 
 \[
-in \circ j = id
+i \circ j = id
 \]
 
 同样的分析对$\mathbf{NatF}I$也成立，因为起始对象到递归对象的箭头也是唯一的。所以从$\mathbf{NatF}I$出发到$I$的箭头$i$，然后再从箭头$j$返回$\mathbf{NatF}I$必然也是$id$：
 
 \[
-k \circ i = id_{\mathbf{NatF}I}
+j \circ i = id_{\mathbf{NatF}I}
 \]
 
 这说明$\mathbf{NatF}I$和$I$是同构的。即：
@@ -3398,9 +3398,9 @@ F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)
 
 我们称箭头$([f])$为\textbf{向下态射}(catamorphism，来自希腊语$\kappa \alpha \kappa \alpha$，意思是向下)。它两侧的括号“([])”像一对香蕉，因此被称为“香蕉括号”。
 
-向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$([f])$。从而构造复杂的递归计算。我们用仍然类自然数来举例子。
+向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$([f])$。从而构造复杂的递归计算。我们仍然用自然数来举例子。
 
-自然数函子$NatF$是非递归的，而其起始代数自然数$Nat$的定义是递归的：
+自然数函子$\mathbf{NatF}$是非递归的，而其起始代数自然数$\mathbf{Nat}$的定义是递归的：
 
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF A
@@ -3408,22 +3408,22 @@ data NatF A = ZeroF | SuccF A
 data Nat = Zero | Succ Nat
 \end{lstlisting}
 
-所以箭头$\mathbf{NatF} A \arrowto{f} A$是非递归的。一个$cata$（向下态射）能够从$f$构造出在递归的$Nat$上进行计算的箭头$\mathbf{Nat} \to A$。所以$cata$的类型应为：
+所以箭头$\mathbf{NatF} A \arrowto{f} A$是非递归的。一个$cata$（向下态射）能够从$f$构造出在递归的$\mathbf{Nat}$上进行计算的箭头$\mathbf{Nat} \to A$。所以$cata$的类型应为：
 
 \[
-(\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (Nat \to A)
+(\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (\mathbf{Nat} \to A)
 \]
 
-所以（克里化的）$cata(f)$应该能够作用于$Nat$的两种值$Zero$或者$Succ n$。我们可以根据这点定义出$cata$函数：
+所以（克里化的）$cata(f)$应该能够作用于$\mathbf{Nat}$的两种值$Zero$或者$Succ\ n$。我们可以根据这点定义出$cata$函数：
 
 \[
 \begin{array}{l}
 cata\ f\ Zero = f\ ZeroF \\
-cata\ f\ (Succ n) = f (SuccF\ (cata\ f\ n)) \\
+cata\ f\ (Succ\ n) = f (SuccF\ (cata\ f\ n)) \\
 \end{array}
 \]
 
-这一定义的第一行处理递归的边界情况。针对$Nat$的零值$Zero$，我们转而用$f$对$\mathbf{NatF}A$的零值$Zero$求值；对于递归情况，也就是$Nat$的值$succ n$，我们先递归地用$cata\ f\ n$求出类型为$A$的值$a$，然后用$SuccF\ a$将其转化为$\mathbf{NatF}A$类型的值，最后再把$f$作用于其上。这个自然数的向下态射对于任何携带对象$A$都成立，它是非常通用的。我们进一步举两个具体的例子。第一个例子是将任何$Nat$的值转换回$Int$。
+这一定义的第一行处理递归的边界情况。针对$\mathbf{Nat}$的零值$Zero$，我们转而用$f$对$\mathbf{NatF}A$的零值$Zero$求值；对于递归情况，也就是$\mathbf{Nat}$的值$Succ\ n$，我们先递归地用$cata\ f\ n$求出类型为$A$的值$a$，然后用$SuccF\ a$将其转化为$\mathbf{NatF}A$类型的值，最后再把$f$作用于其上。这个自然数的向下态射对于任何携带对象$A$都成立，它是非常通用的。我们进一步举两个具体的例子。第一个例子是将任何$\mathbf{Nat}$的值转换回$Int$。
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3439,10 +3439,10 @@ toInt = cata eval where
 \begin{lstlisting}[style=Haskell]
 fromInt :: Int -> Nat
 fromInt 0 = Zero
-fromInt n = Succ $ fromInt (n-1)
-\end{lstlisting} %$
+fromInt n = Succ (fromInt (n-1))
+\end{lstlisting}
 
-我们有对于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
+于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
 
 \begin{lstlisting}[style=Haskell]
 toFib :: Nat -> (Integer, Integer)
@@ -3458,18 +3458,18 @@ toFib = cata fibAlg where
 fibAt = fst \circ toFib \circ fromInt
 \]
 
-事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(Nat, zero + succ)$，得到能够进行递归计算的$([c + f])$\footnote{我们用符号$([c + f])$是因为$([[c, f]])$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
+事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(\mathbf{Nat}, zero + succ)$，得到能够进行递归计算的$([c + f])$\footnote{我们用符号$([c + f])$是因为$([[c, f]])$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=5em, minimum width=2em]{
-    \mathbf{NatF} Nat  & Nat \\
+    \mathbf{NatF} \mathbf{Nat}  & \mathbf{Nat} \\
     \mathbf{NatF} A  & A \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$[zero, succ]$} (m-1-2)
     (m-1-1) edge node [left] {$\mathbf{NatF}(h)$} (m-2-1)
-    (m-1-2) edge node [right] {$h)$}   (m-2-2)
+    (m-1-2) edge node [right] {$h$}   (m-2-2)
     (m-2-1) edge node [below] {$[c, f]$} (m-2-2);
 \end{tikzpicture}
 \end{center}
@@ -3509,10 +3509,10 @@ fibAt = fst \circ toFib \circ fromInt
 也就是说，自然数上的向下态射$([c + f]) = foldn(c, f)$。因此，对于斐波那契数列，我们可以用
 
 \[
-([fibAlg]) = ([start, next]) = foldn(start, next)
+([fibAlg]) = ([start + next]) = foldn(start, next)
 \]
 
-来进行代数计算。我相读到这里，大家会有一种转了一大圈又回到了第一章的感觉。这是一种认知的螺旋上升。第一章中，我们是用归纳和抽象的方法得到了这个结论，现在，我们从更高的层面，把抽象的规律应用到具体的问题上得到了同样的结论。
+来进行代数计算。读到这里，大家会有一种转了一大圈又回到了第一章的感觉。这是一种认知的螺旋上升。第一章中，我们是用归纳和抽象的方法得到了这个结论，现在，我们从更高的层面，把抽象的规律应用到具体的问题上得到了同样的结论。
 
 \subsubsection{代数数据类型}
 
@@ -3585,7 +3585,7 @@ cata f (Cons x xs) = f (ConsF x (cata f xs))
 
 \begin{lstlisting}[style=Haskell]
 len :: (List a) -> Int
-len = cataL lenAlg where
+len = cata lenAlg where
   lenAlg :: ListF a Int -> Int
   lenAlg NilF = 0
   lenAlg (ConsF _ n) = n + 1
@@ -3605,7 +3605,7 @@ fromList (x:xs) = Cons x (fromList xs)
 
 \begin{lstlisting}
 sum :: (Num a) => (List a) -> a
-sum = cataL sumAlg where
+sum = cata sumAlg where
   sumAlg :: (Num a) => ListF a a -> a
   sumAlg NilF = 0
   sumAlg (ConsF x y) = x + y
@@ -3646,6 +3646,7 @@ sum = cataL sumAlg where
 \begin{example}
 在第二章中，我们定义了二叉树的类型为：
 
+\lstset{frame=none}
 \begin{lstlisting}
 data Tree A = Nil | Br A (Tree A) (Tree A)
 \end{lstlisting}
@@ -3738,17 +3739,14 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 
 \section{小节}
 
-本章介绍了范畴论中最基本的概念，包括范畴，函子、自然变换。并且还介绍了积和余积、起始对象和终止对象，幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
+本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
 
 \lstset{frame=single}
 \begin{lstlisting}
 foldr f z t = appEndo (foldMap (Endo . f) t) z
-foldMap f = foldr (mappend . f) mempty
 \end{lstlisting}
 
-所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表，在任何可叠加的结构上进行运算。
-
-我们先看看传统的在列表上的右侧叠加的定义：
+所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表，在任何可叠加的结构上进行运算。我们先看看传统的列表叠加定义：
 
 \begin{lstlisting}
 foldr :: (a -> b -> b) -> b -> [a] -> b
@@ -3767,7 +3765,7 @@ a \oplus (b \oplus (c \oplus e))
 \[
 \begin{array}{l}
 concat_M : [M] \to M \\
-concat_M = foldr (\oplus) e \\
+concat_M = foldr\ (\oplus)\ e \\
 \end{array}
 \]
 
@@ -3796,7 +3794,7 @@ concat_M = foldr (\oplus) e \\
 
 \[
 \begin{array}{l}
-foldMap : (A \to M) -> [A] -> M \\
+foldMap : (A \to M) \to [A] \to M \\
 foldMap\ g = concat_M \circ fmap\ g
 \end{array}
 \]
@@ -3804,17 +3802,17 @@ foldMap\ g = concat_M \circ fmap\ g
 可是美中不足的是，对于任何传入$foldr$的二元组合函数$f : A \to B \to B$，如果$B$不是幺半群，我们仍然无法进行叠加。现在考虑$f$的克里化形式$f : A \to (B \to B)$，我们发现以箭头$B \to B$为对象，可以组成一个幺半群。其中单位元是恒等箭头$id$，而二元运算是函数组合。为此，我们把这种$B \to B$的箭头通过函子封装成一个类型（集合）：
 
 \lstset{frame=none}
-\begin{lstlisting}
-newtype Endo B = Endo (B \to B)
+\begin{lstlisting}[style=Haskell]
+newtype Endo B = Endo (B -> B)
 \end{lstlisting}
 
 并且定义一个函数，从$\mathbf{Endo}B \arrowto{appEndo} B$：
 
 \[
-appEndo(Endo a) = a
+appEndo(Endo\ a) = a
 \]
 
-然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。在Haskell中，这相当于一下代码：
+然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。在Haskell中，这相当于以下代码：
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3828,7 +3826,7 @@ instance Monoid Endo where
 \[
 \begin{array}{l}
 foldCompose : (A \to (B \to B)) \to [A] \to \mathbf{Endo}B \\
-foldCompose f = foldMap\ (Endo . f)
+foldCompose\ f = foldMap\ (Endo . f)
 \end{array}
 \]
 
@@ -3837,7 +3835,7 @@ foldCompose f = foldMap\ (Endo . f)
 \[
 \begin{array}{cl}
   & Endo(f\ a) \oplus (Endo(f\ b) \oplus (Endo(f\ c) \oplus Endo(id))) \\
-= & Endo(f\ a) \oplus (f\ b \oplus (f\ c \oplus id))
+= & Endo(f\ a \oplus (f\ b \oplus (f\ c \oplus id))
 \end{array}
 \]
 
@@ -3855,12 +3853,13 @@ foldCompose f = foldMap\ (Endo . f)
 \end{array}
 \]
 
-所以，最后一步我们要把$Endo$中的结果取回，具体到这个例子，就是用$appEndo$把$(+6)$拿出，然后把它应用到传入$foldr$的初始值$z$上：
+所以，最后一步我们要把$Endo$中的结果取回。具体到这个例子，就是用$appEndo$把$(+6)$拿出，然后把它应用到传入$foldr$的初始值$z$上：
 
 \[
 \begin{array}{rcll}
-foldr\ f\ z\ xs = appEndo\ (foldCompose\ f\ xs)\ z & \\
-  & = & appEndo\ (foldMap\ (Endo \circ f)\ xs)\ z
+foldr\ f\ z\ xs
+  & = & appEndo\ (foldCompose\ f\ xs)\ z & \\
+  & = & appEndo\ (foldMap\ (Endo \circ f)\ xs)\ z \\
 \end{array}
 \]
 
@@ -3868,7 +3867,7 @@ foldr\ f\ z\ xs = appEndo\ (foldCompose\ f\ xs)\ z & \\
 
 \section{扩展阅读}
 
-限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（junction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍编程中的范畴论讨原理。
+限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（junction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》\cite{Milewski2018}是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍了编程中的范畴原理。
 
 % limits/colimits, 伴随，米田定理
 
@@ -3933,10 +3932,10 @@ uncurry f (x, y) =  f x y
 
 \begin{lstlisting}
 class Semigroup a => Monoid a where
-    mempty  :: a             -- | Identity
+    mempty  :: a
 
-    mappend :: a -> a -> a   -- | An associative operation
-    mappend = (<>)           -- | default implementation
+    mappend :: a -> a -> a
+    mappend = (<>)
 
     mconcat :: [a] -> a
     mconcat = foldr mappend mempty
