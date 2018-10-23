@@ -3869,15 +3869,9 @@ foldr\ f\ z\ xs = appEndo\ (foldCompose\ f\ xs)\ z & \\
 
 \section{扩展阅读}
 
+限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（junction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍编程中的范畴论讨原理。
+
 % limits/colimits, 伴随，米田定理
-
-Mac Lane的Categories for working mathematicians
-
-Harold Simmons. ``An introduction to Category Theory''.
-
-Richard Bird的Algebra of Programming
-
-Bartosz Milewski的Category Theory for Programmers
 
 \section{附录：例子代码}
 
