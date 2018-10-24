@@ -29,7 +29,7 @@ the following software pre-installed.
 
 ### Install TeXLive
 
-In Debian/Ubuntu like Linux environment, do **NOT** install the TeXLive through apt-get. Go to TeXLive (official site)[https://tug.org/texlive/] to download the setup scrpt.
+In Debian/Ubuntu like Linux environment, do **NOT** install the TeXLive through apt-get. Go to TeXLive [official site](https://tug.org/texlive/) to download the setup script.
 
 ```bash
 $ wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
@@ -38,7 +38,7 @@ $ cd install-tl
 $ sudo ./install-tl -gui text -repository http://mirror.ctan.org/systems/texlive/tlnet
 ```
 
-In Windows, TeXLive provide a (gui based installer)[https://tug.org/texlive/], in Mac OS X, there's a (MacTeX)[https://www.tug.org/mactex/].
+In Windows, TeXLive provide a [gui based installer](https://tug.org/texlive/), in Mac OS X, there's a [MacTeX](https://www.tug.org/mactex/).
 
 
 ### Install ImageMagick
