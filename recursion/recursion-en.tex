@@ -454,10 +454,9 @@ a & 3b - 2a & pour from $B$ to $A$ \\
 \caption{The water in the jars and the operations.} \label{tab:jug-ops}
 \end{table}
 
-无论进行何种操作，每个瓶子中的水的容量总可以表示为$ax + by$的形式，其中$x$、$y$是整数。也就是说，我们能获得的水的体积总是$a$与$b$的线性组合。根据贝祖等式的证明，我们知道线性组合的最小正值恰好是$a$和$b$的最大公度$g$。
-因此给定两个瓶子的容量，我们立即能够判断是否可以得到体积为$c$的水——只要$c$能够被$g$度量\footnote{如果容积为整数，当且仅当$c$能够被最大公约数$g$整除。}。当然还要求$c$不能超过两个瓶子中较大瓶子的容积。
+No matter what sequence of operations, the water in the jars can always be expressed as $ax + by$ where $x$ and $y$ are integers. It means the water we get is the linear combination of $a$ and $b$. From the proof of Bézout's identity, we know the smallest positive number of this linear combination is exactly the greatest common measure $g$. We can tell it is possible to get $c$ gallon water if and only if $c$ can be measured by $g$\footnote{If and only if $c$ can be devided by the greatest common divisor $g$ for integer capacities.}. We assume $c$ is not greater than the capacity of the bigger jar.
 
-例如，使用容量为4升和6升的瓶子，我们永远无法得到5升水。这是因为4与6的最大公约数是2，但5不能被2整除。（换个思路想这个问题：用两个容积为偶数升的瓶子，永远无法从河里打到奇数升的水。）如果$a$和$b$是互素的整数，即$gcd(a, b) = 1$，则可以得到任意自然数$c$升的水。
+For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divides 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to get any natural number $c$ gallons of water.
 
 虽然通过检查$g$是否能度量$c$可以判断是否有解，但是我们并不知道具体的倒水步骤。如果我们可以找到整数$x$和$y$，使得$ax + by = c$。就可以得到一组操作来解决此题。具体思路是这样的：若$x > 0$、$y < 0$，我们需要倒满瓶子$A$共$x$次，倒空瓶子$B$共$y$次；反之若$x < 0$、$y > 0$，则需要倒空瓶子$A$共$x$次，倒空瓶子$B$共$y$次。
 
