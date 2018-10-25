@@ -1,0 +1,52 @@
+\ifx\wholebook\relax \else
+
+\documentclass{article}
+
+\input{../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{推理}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{推理}{编程的数学原理}
+
+\ifx\wholebook\relax
+\chapter{推理}
+\numberwithin{Exercise}{chapter}
+\fi
+
+\epigraph{3表示2+1，4表示3+1。所以接下来（虽然证明很长），4等于2+2。因此, 数学知识不再是神秘的。}{——罗素}
+
+% ... mathematical knowledge ... is, in fact, merely verbal knowledge. "3" means "2+1", and "4" means "3+1". Hence it follows (though the proof is long) that "4" means the same as "2+2". Thus mathematical knowledge ceases to be mysterious.  -- Bertrand Russell
+
+%% \begin{wrapfigure}{R}{0.4\textwidth}
+%%  \centering
+%%  \includegraphics[scale=0.5]{img/dewdrop.eps}
+%%  \captionsetup{labelformat=empty}
+%%  \caption{艾舍尔《露珠》1948}
+%%  \label{fig:Escher-Dewdrop-1948}
+%% \end{wrapfigure}
+
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\bibitem{Dieudonne1987}
+[法]让$\cdot$迪厄多内 著，沈用欢 译 ``当代数学，为了人类心智的荣耀''. 上海教育出版社. 2000年3月. ISBN: 7532063062
+
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
