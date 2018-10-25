@@ -45,11 +45,11 @@ fact(n + 1) = (n + 1) fact(n)
 
 Why does recursion work? what's the theory of recursion? Could the recursion be expressed in some formal way? We'll explore these questions in this chapter.
 
-\section{Numerology}
+\section{Everything is number}
 
 Pythagoras is the first mathematician and philosopher who study the universe from numbers. Pythagoras is famous all over the world in the theory named after him. He was born in the island of Samos, off the coast of modern Turkey. Pythagoras might have learnt from Thales of Miletus. With Thales suggestion, he went to Oriental to learn about mathematics. He spent 13 years (22 years in other sayings) in Egypt. After the Persian Empire conquered Egypt, Pythagoras went eastward to Babylon with the army. He learned mathematics and astronomy from the Babylonians. Pythagoras might also arrived in India. Wherever he went, Pythagoras learned from the local scholars to enrich his knowledge. He did not only study hard, but also thought deeply. After long time of learning and studying, Pythagoras formed his own thoughts\cite{HanXueTao16}.
 
-Pythagoras returned his hometown after long journey abroad and began to give lectures. Around 520BC, he left Samos, possibly because he disagreed with the local tyranny. He arrived in the Greek colony of Croton (today's southern Italy). At Croton, he won the trust and admiration of people and founded the philosophical school of Pythagoreanism. Many prominent members of his school were women. The school is devoted to study astronomy, geometry, number theory and music. They are called quadrivium, affecting more than 2000 years of European education\cite{StepanovRose15}. Quadrivium reflects the numerology of Pythagoreans' philosophy. The planetary motion corresponds to geometry, while geometry is built on top of numbers. Numbers is also connected with music. The so-called Pythagoreans, who were the first to take up mathematics, not only advanced this subject, but saturated with it, they fancied that the principles of mathematics were the principles of all things. said Aristotle in Metaphysics. Pythagoras is the first one discovered the pattern of octiave in mathematics. Pythagoras was revered as the founder of mathematics and music\footnote{There are different sayings about Pythagoras' death. His teachings of dedication and asceticism are credited with aiding in Croton's victory over the neighboring colony. After the victory, a democratic constitution was proposed, but the Pythagoreans rejected it. The supporters of democracy roused the populace against them. An attack was made upon them in some meeting-place. The building was set on fire, and many of the members perished; Different sources disagree regarding whether Pythagoras was killed, or if he managed to flee to Metapontum, where he lived out the rest of his life.}.
+Pythagoras returned his hometown after long journey abroad and began to give lectures. Around 520BC, he left Samos, possibly because he disagreed with the local tyranny. He arrived in the Greek colony of Croton (today's southern Italy). At Croton, he won the trust and admiration of people and founded the philosophical school of Pythagoreanism. Many prominent members of his school were women. The school is devoted to study astronomy, geometry, number theory and music. They are called quadrivium, affecting more than 2000 years of European education\cite{StepanovRose15}. Quadrivium reflects the Pythagoreans' philosophy, everything is number. The planetary motion corresponds to geometry, while geometry is built on top of numbers. Numbers is also connected with music. The so-called Pythagoreans, who were the first to take up mathematics, not only advanced this subject, but saturated with it, they fancied that the principles of mathematics were the principles of all things. said Aristotle in Metaphysics. Pythagoras is the first one discovered the pattern of octiave in mathematics. Pythagoras was revered as the founder of mathematics and music\footnote{There are different sayings about Pythagoras' death. His teachings of dedication and asceticism are credited with aiding in Croton's victory over the neighboring colony. After the victory, a democratic constitution was proposed, but the Pythagoreans rejected it. The supporters of democracy roused the populace against them. An attack was made upon them in some meeting-place. The building was set on fire, and many of the members perished; Different sources disagree regarding whether Pythagoras was killed, or if he managed to flee to Metapontum, where he lived out the rest of his life.}.
 
 The Pythagreans believed all things were made of numbers. They studied the numbers and the their connection to the nature. It developed the early number theory, one of the most important area in mathematics. The pythagreans classified the natural numbers, defined many important concept including even and odd numbers, prime and composite numbers and so on. They found some number equal to the sum of their proper postive divisors\footnote{The proer postive divisors are those positive divisors less than the number}, and named them as perfect numbers. Pythagreans found the first two perfect numbers\footnote{Also known as complete numbers or ideal numbers. Euclid proved a formation rule (Euclid's Element, Book IX, proposition 35) whereby $q(q+1)/2$ is an even perfect number whenever $q$ is a prime of the form $2^p-1$ for prime $p$—what is now called a Mersenne prime. Much later, Euler proved that all even perfect numbers are of this form. This is known as the Euclid–Euler theorem.}. The smallest perfrect number is 6 (6 = 1 + 2 + 3), the next is 28 (28 = 1 + 2 + 4 + 7 + 14). The Pythagorean also found a class of figurate numbers\footnote{The Pythagorean studied mathematics by making figures with small stones. The English word calculus comes from the Greek word stone\cite{HanXueTao16}.}, when they formed geometry figure with stones.
 
@@ -183,9 +183,9 @@ The Pythagoreans also observed that the odd number could be represented in gnomo
 %\end{wrapfigure}
 \end{figure}
 
-This is the answer to the exercise problem in chapter 1. With these facts, the Pythagreans found there were many things can be explained with numbers. Given two strings under the same tension, it's said Pythagras found the tune is harmonic if the ratio of their lengths is integer. He developed the earlist music theory based on this. It seemed that music and mathematics are totally different things, while finally Pythagoras concluded that music was mathematics. Such unexpected relationship impacted Pythagoras greatly. He guess that all things can be explained with integers or the ratio of integers. The Pythagoreans started to finding more and more things connected to nunbers, they believed the meaning of the whole universe is the harmonic of numbers, and developed the numerology phylosophy. This led to the attempt to build the geometry also on top of the numbers, so the overall mathematics is based on integers.
+This is the answer to the exercise problem in chapter 1. With these facts, the Pythagreans found there were many things can be explained with numbers. Given two strings under the same tension, it's said Pythagras found the tune is harmonic if the ratio of their lengths is integer. He developed the earlist music theory based on this. It seemed that music and mathematics are totally different things, while finally Pythagoras concluded that music was mathematics. Such unexpected relationship impacted Pythagoras greatly. He guess that all things can be explained with integers or the ratio of integers. The Pythagoreans started to finding more and more things connected to nunbers, they believed the meaning of the whole universe is the harmonic of numbers, and developed the phylosophy based on number. This led to the attempt to build the geometry also on top of the numbers, so the overall mathematics is based on integers.
 
-The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we'll see later, this theorem is a double-edged sward, it leads to a recursive circle, and reveals the loophole of the numerology. In order to understand this, we need introduce the concept of commensurable and the Euclidean algorithm. To build the geometry on top of the numbers, The Pythagorean defined how to measure a line segment with another, if segment A can be represented by duplicating segment V finite times, we say V can measure A. It means the length of one segment is the integer times of the other. Altough we can use varies of measurements, when use the same segment to measure different ones, it has to be the common measure. That is to say if and only if segment V can measure both A and B, it is the common measure of them. The Pythagoreans believed for any two segments, there must be a common measure. If this was true, then the whole geometry can be built on integers.
+The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we'll see later, this theorem is a double-edged sward, it leads to a recursive circle, and reveals the loophole of the idea that everything is number. In order to understand this, we need introduce the concept of commensurable and the Euclidean algorithm. To build the geometry on top of the numbers, The Pythagorean defined how to measure a line segment with another, if segment A can be represented by duplicating segment V finite times, we say V can measure A. It means the length of one segment is the integer times of the other. Altough we can use varies of measurements, when use the same segment to measure different ones, it has to be the common measure. That is to say if and only if segment V can measure both A and B, it is the common measure of them. The Pythagoreans believed for any two segments, there must be a common measure. If this was true, then the whole geometry can be built on integers.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -418,40 +418,40 @@ gcm_{ex}(a, b) = \left \{
 \label{eq:gcm-ext}
 \ee
 
-我们下面给出一个使用扩展欧几里得算法解决的趣题（\cite{LiuXinyu2017}，第450页）。有两个水瓶，一个的容量是9升，另一个的容量是4升。问如何才能从河中打出6升水？
+As an example, here is a puzzle can be solved with the extended Euclid algorithm(\cite{LiuXinyu2017}, p50). Given two jars with capacity of 9 and 4 gallons, how to get 4 gallons from the river?
 
-这道题目有很多变化形式，瓶子的容积和取水的容量可以是其它数值。有一个故事说解决这道题目的主人公是少年时代的法国数学家泊松（Sim\`{e}on Denis Poisson）。
+There are some variances of this puzzle. The capacities can be other nunmbers. It's said the French mathematician Poisson (Sim\`{e}on Denis Poisson) solved this puzzle when he was a kid.
 
-使用两个瓶子，共有6种操作。记大瓶子为$A$，容积为$a$；小瓶子为$B$，容积为$b$：
+There are total six operations between two jars. Denote the big one as $A$, its capacity is $a$; denote the small one as $B$ with capacity $b$:
 
 \begin{itemize}
-\item 将大瓶子$A$装满水；
-\item 将小瓶子$B$装满水；
-\item 将大瓶子$A$中的水倒空；
-\item 将小瓶子$B$中的水倒空；
-\item 将大瓶子$A$中的水倒入小瓶子$B$；
-\item 将小瓶子$B$中的水倒入大瓶子$A$。
+\item Fill the big jar $A$;
+\item Fill the small jar $B$;
+\item Empty the big jar $A$;
+\item Empty the small jar $B$;
+\item Pour the water from jar $A$ to $B$;
+\item Pour the warer from jar $B$ to jar $A$.
 \end{itemize}
 
-其中最后两种操作中，任意一个瓶子满或者另一个瓶子空时就停止。下面的是一系列倒水动作的例子，这里假设容积$b < a < 2b$。
+The last two operation stop when either jar is empty or filled. Below example shows a list of operations (suppose $b < a  2b$ hold).
 
 \begin{table}[htbp]
 \centering
 \begin{tabular}{l|l|l}
-$A$ & $B$ & 操作 \\
+$A$ & $B$ & Operation \\
 \hline
-0 & 0 & 开始 \\
-0 & b & 倒满$B$ \\
-b & 0 & 将$B$倒入$A$ \\
-b & b & 倒满$B$ \\
-a & 2b - a & 将$B$倒入$A$ \\
-0 & 2b - a & 倒光$A$ \\
-2b - a & 0 & 将$B$倒入$A$ \\
-2b - a & b & 倒满$B$ \\
-a & 3b - 2a & 将$B$倒入$A$ \\
+0 & 0 & start \\
+0 & b & fill $B$ \\
+b & 0 & pour from $B$ to $A$ \\
+b & b & fill $B$ \\
+a & 2b - a & pour from $B$ to $A$ \\
+0 & 2b - a & empty $A$ \\
+2b - a & 0 & pour from $B$ to $A$ \\
+2b - a & b & fill $B$ \\
+a & 3b - 2a & pour from $B$ to $A$ \\
 ... & ... & ... \\
 \end{tabular}
-\caption{两个瓶子内的水量和倒水操作的对应关系} \label{tab:jug-ops}
+\caption{The water in the jars and the operations.} \label{tab:jug-ops}
 \end{table}
 
 无论进行何种操作，每个瓶子中的水的容量总可以表示为$ax + by$的形式，其中$x$、$y$是整数。也就是说，我们能获得的水的体积总是$a$与$b$的线性组合。根据贝祖等式的证明，我们知道线性组合的最小正值恰好是$a$和$b$的最大公度$g$。
