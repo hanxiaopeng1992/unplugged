@@ -2,8 +2,7 @@ Mathematics of Programming - A gentle introduction
 
 2018/11
 
-This book introduces the mathematics behind computer programming.
-This is the **gentle** version for the people without mathematic or programming background. For the complete version, please refer to the [master branch](https://github.com/liuxinyu95/unplugged).
+This book introduces the mathematics behind computer programming. This is the **gentle** version for the people without mathematic or programming background. For the complete version, please refer to the [master branch](https://github.com/liuxinyu95/unplugged).
 
 Contents
 --------
