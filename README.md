@@ -3,19 +3,18 @@ Mathematics of Programming - A gentle introduction
 
 2019/04
 
-This book introduces the mathematics behind computer programming.
-This is the **gentle** version for the people without mathematic or programming background. For the complete version, please refer to the [master branch](https://github.com/liuxinyu95/unplugged).
+This book introduces the mathematics behind computer programming. This is the **gentle** version for the people without mathematic or programming background. For the complete version, please refer to the [master branch](https://github.com/liuxinyu95/unplugged).
 
 Contents
 --------
 
 We'll keep adding links for the chapters ready for preview.
 
-- Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
-- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61801/recursion-zh-cn.pdf))
-- Chapter 3, Group, Ring, and Field. Galois Theory; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61802/algebra-zh-cn.pdf))
-- Chapter 4, Category theory and type system; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803/category-zh-cn.pdf))
-- Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618030/deduction-zh-cn.pdf))
+- Chapter 1, Natural numbers. Peano Axiom, list and folding;
+- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator;
+- Chapter 3, Group, Ring, and Field. Galois Theory;
+- Chapter 4, Category theory and type system;
+- Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction;
 - Chapter 6, Infinity. Set theory, Infinity and stream;
 - Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem.
 
