@@ -1,6 +1,5 @@
 Mathematics of Programming - A gentle introduction
-
-=======
+====
 
 2019/04
 
