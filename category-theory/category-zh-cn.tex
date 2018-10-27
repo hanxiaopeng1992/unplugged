@@ -329,51 +329,20 @@ A \to B \to C
 \section{函子}
 我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间架设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
 
-在某种意义上说，函子好比是范畴之间的态射。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
-
 \subsection{函子的定义}
 
-\begin{definition}
-两个范畴$\pmb{Src}$和$\pmb{Trg}$之间的\textbf{函子}
-\[
-\begin{array}{rcl}
-\pmb{Src} & \longrightarrow & \pmb{Trg} \\
-A & \longmapsto & \mathbf{F}A \\
-f & \longmapsto & \mathbf{F}(f)
-\end{array}
-\]
-包含两部分：它将范畴$\pmb{Src}$中的对象对应到另一个范畴$\pmb{Trg}$中；并且将$\pmb{Src}$中的箭头也对应到另一个范畴$\pmb{Trg}$中。
-\end{definition}
+在某种意义上说，函子好比是范畴之间的变换关系（态射）。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
-通常我们用同一个符号$\mathbf{F}$既表示对象间的变换，也表示箭头间的变换。这是一个非斜体的粗体大写字母，请注意它和范畴（粗斜体大写）、对象（斜体大写）所用字体的差别。有些编程环境，如Haskell，使用不同的记号来表示函子中对象的变换和箭头的变换。我们稍后在例子中会看到这些不同点。
-
-既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
+函子通常用符号$\mathbf{F}$表示。既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
 
 \begin{itemize}
 \item 第一条性质，是函子必须保持恒等箭头仍然变换为恒等箭头。用图来表示就是：
 
 \[
-A \arrowto{id_A} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id_{\mathbf{F}A}} \mathbf{F}A
+A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \]
 
-写成公式为：
-
-\[
-\mathbf{F}(id_A) = id_{\mathbf{F}A}
-\]
-
-\item 第二条性质看似简单，实则不然。函子必须能够保持箭头的组合仍然变换为箭头的组合。之所以说不简单，是因为存在两种箭头的变换方式：
-
-\[
-\begin{array}{rcll}
-A \arrowto{f} B & \longmapsto & \mathbf{F}A \arrowto{\mathbf{F}(f)} \mathbf{F}B & \text{协变} \\
-A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A & \text{反变} \\
-\end{array}
-\]
-
-其中箭头方向不变的方式叫做\textbf{协变}（covariant），而箭头方向反向的方式叫做\textbf{反变}（contravariant）。一个函子要么是协变的要么是反变的。它是一致的，因而不会对某个箭头$f$进行协变，而对另一个将头$g$进行反变。
-
-因此对于协变函子来说，箭头的组合性质是按照下图保持的：
+\item 第二条性质，函子必须能够保持箭头的组合仍然变换为箭头的组合\footnote{实际存在两种变换方式，一种叫做协变，一种叫做反变。这里仅考虑了协变。}。
 
 \begin{center}
 \begin{tikzpicture}
@@ -391,40 +360,12 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \end{tikzpicture}
 \end{center}
 
-写成公式为：
-
 \[
 \mathbf{F}(g \circ f) = \mathbf{F}(g) \circ \mathbf{F}(f)
 \]
-
-与此对应，反变函子的箭头组合性质中，箭头的方向全部反向：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2.5em, minimum width=2em]{
-       & B &   & \longmapsto &             & \mathbf{F}B & \\
-     A &   & C & \text{反变} & \mathbf{F}A &  & \mathbf{F}C\\};
-  \path[-stealth]
-    (m-2-1) edge node [above] {$f$} (m-1-2)
-    (m-1-2) edge node [above] {$g$} (m-2-3)
-    (m-2-1) edge node [below] {$g \circ f$} (m-2-3)
-    (m-1-6) edge node [above] {$\mathbf{F}(f)$} (m-2-5)
-    (m-2-7) edge node [above] {$\mathbf{F}(g)$} (m-1-6)
-    (m-2-7) edge node [below] {$\mathbf{F}(g \circ f)$} (m-2-5);
-\end{tikzpicture}
-\end{center}
-
-写成公式为：
-
-\[
-\mathbf{F}(g \circ f) = \mathbf{F}(f) \circ \mathbf{F}(g)
-\]
-
-大多数情况下，我们关注协变函子。
 \end{itemize}
 
-函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。习惯上我们认为函子是右结合的，所以$\mathbf{F}\mathbf{G}A$表示先对对象$A$应用函子$\mathbf{G}$，然后再应用函子$\mathbf{F}$。
+函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。
 
 \subsection{函子的例子}
 \label{sec:functor:examples}
