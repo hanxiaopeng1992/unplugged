@@ -83,48 +83,24 @@
 
 让我们用非洲大草原来了解范畴。在大草原这个范畴中，有很多种动植物。狮子、鬣狗、猎豹、羚羊、水牛、斑马、秃鹫、蜥蜴、眼镜蛇、蚂蚁……我们管这些动物叫做对象\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，每种动物和植物都是一个对象。
 
-这些动植物之间会产生联系，例如狮子会吃羚羊，羚羊吃掉草。我们很容易构造一个食物链。
+这些动植物之间会产生联系，例如狮子会吃羚羊，羚羊吃掉草。我们很容易构造一个食物链。可以从羚羊画一个箭头指向狮子，从草画一个箭头指向羚羊来表示这样的关系。这样对象加上箭头就构成了一个有结构的，彼此联系在一起的系统。
 
-\begin{definition}
-一个范畴$\pmb{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
-\begin{itemize}
-\item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上，记为$A \arrowto{f} B$，表示箭头$f$的源是$A$，目标是$B$；
-\item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何对象$A$，恒等箭头都指向$A$自己。记为：$A \arrowto{id_A} A$；
-\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \circ g$，读作“$g$然后$f$”。它表示$A \arrowto{f \circ g} C$。
-\end{itemize}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/food-chain.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{动植物对象与食物关系箭头组成了一个有结构的系统}
+ \label{fig:powerset}
+\end{figure}
 
-有时我们也将箭头$A \arrowto{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\circ) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
-
-除此之外，范畴还必须满足以下两条公理：
-
-\begin{itemize}
-\item \textbf{结合性公理}：箭头组合是可结合的。对任何三个可组合的箭头$f, g, h$都有：
-\[
-f \circ (g \circ h) = (f \circ g) \circ h
-\]
-我们可以将其写为$f g h$。
-\item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
-对于任何箭头$A \arrowto{f} B$来说，都有：
-\[
-f \circ id_A = f = id_B \circ f
-\]
-\end{itemize}
-\end{definition}
-
-由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\circ$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
-
-\[
-A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
-\]
-
-我们再看一下箭头的组合。考虑如下图的3个箭头$f, g, h$，它们组成一个三角形。
+这样的系统要想成为范畴，还必须满足两点。第一点是每个对象都有指向自己的箭头。这种特殊的箭头称为恒等箭头。对于草原上的动植物，从羚羊到狮子箭头说明羚羊在狮子食物链的下游。我们可以认为每种动植物都处于自己物种食物链的下游（别误会，并不是指吃同类，而是指不吃同类）。这样每个物种就都有自指的箭头了。第二点是箭头之间是可组合的。什么叫做组合呢？例如下面图中，
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=4em, minimum width=2em]{
-     & B & \\
-     A & & C \\};
+     & \text{羚羊} & \\
+     \text{草} & & \text{狮子} \\};
   \path[-stealth]
     (m-2-1) edge node [above] {$f$} (m-1-2)
     (m-1-2) edge node [above] {$g$} (m-2-3)
@@ -132,123 +108,83 @@ A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
 \end{tikzpicture}
 \end{center}
 
-可以沿着两条通路从$A$到达$C$，一条是箭头组合$g \circ f$，另一条是箭头$h$。这样我们就相当于得到了一对平行的箭头：
+可以沿着两条通路从草到达狮子，一条是箭头组合$g \circ f$，表示草在羚羊的下游，羚羊又在狮子的下游；另一条是箭头$h$，表示草在狮子的下游。这样我们就相当于得到了一对平行的箭头：
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=4em, minimum width=2em]{
-     A & C\\};
+     \text{草} & \text{狮子} \\};
   \path[-stealth]
     (m-1-1.north east) edge node [above] {$g \circ f$} (m-1-2.north west)
     (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
 \end{tikzpicture}
 \end{center}
 
-这两个平行的箭头可能相同，也可能不同。如果它们满足：
+如果这两个平行的箭头是等效的，我们称它们是可交换的。用符号表示就是：
 
 \[
 h = g \circ f
 \]
 
-我们说这个三角形是可交换的（commute），我们后面将大量用到这个概念。
+这样，我们说草原上的动植物，在食物链关系这个箭头下，构成了一个范畴。
 
 \subsection{范畴的例子}
 
-我们需要用具体的例子来帮助理解范畴这一抽象概念。同时，前面使用的三角形图像能够帮助我们形成直观的感觉。我们会借助这种图（diagram）来对范畴及其关系进行描述。我们举的第一个例子是幺半群。回顾一下上一章中关于幺半群的定义。幺半群可以说是带有单位元的半群。而半群是二元运算满足结合律的集合。例如字符串在连接操作下构成一个幺半群，单位元是空串。
+我们再来看看更多范畴的例子。在数学上，如果一个集合带有特殊的单位元，元素间定义了可结合的二元运算。我们说这样的集合构成一个幺半群。例如全体整数中，令0是单位元，二元运算是加法，则构成了整数加法幺半群。
 
-\begin{lstlisting}
-instance Monoid String where
-    e = ""
-    (*) = (++)
-\end{lstlisting}
-
-我们可以把字符串幺半群记为$(S, \doubleplus, \texttt{""})$，不难验证它满足幺半群的条件：
+幺半群的集合不仅可以包含数，也可以是其它东西。例如英文的词语和句子（在编程中称为字符串）构成一个集合。如果我们把两个英文词句连在一起称为二元运算，例如“red ” $\doubleplus$ “apple” = “red apple”，则这些英文词句构成一个幺半群。其中单位元是空词句“”。不难验证它满足幺半群的条件：
 
 \[
-\begin{array}{rcl}
-r \doubleplus (s \doubleplus t) = (r \doubleplus s) \doubleplus t &
-\text{和} &
-\texttt{""} \doubleplus s = s = s \doubleplus \texttt{""}
-\end{array}
+red \doubleplus (apple \doubleplus tree) = (red \doubleplus apple) \doubleplus tree
+\]
+词句连接满足结合律。
+
+\[
+\texttt{""} \doubleplus apple = apple = apple \doubleplus \texttt{""}
 \]
 
-我们再考虑另一个幺半群，群元素是若干个不同字符组成的集合，二元操作是集合的并，单位元是空集。记为$(C, \cup, \{\})$，将两个字符集并在一起可以获得一个更大的字符集，例如：
+任何词句连接上空词句（单位元）都仍然等于它本身。
+
+把词句幺半群放在一边，再考虑另一个幺半群。群元素是字母组成的集合（在编程中称为字符集），二元操作是集合的并，单位元是空集。将两个字母集合并在一起可以获得一个更大的集合，例如：
 
 \[
 \{a, b, c, 1, 2\} \cup \{X, Y, Z, 0, 1\} = \{a, b, c, X, Y, Z, 0, 1, 2\}
 \]
 
-我们再观察第三个幺半群，集合是包括0的自然数，二元运算是普通加法，单位元是0。记为$(N, +, 0)$。接下来我们建立这三个幺半群之间的态射（morphism），首先是从字符串幺半群$S$到字符集幺半群$C$之间的态射。任给一个字符串，我们可以把串中用到的字符组成一个字符集：
-
-\[
-S \arrowto{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
-\]
-
-可以验证，这个态射满足以下条件，对于任意两个字符串$r, s$，有：
+再加上最初的例子，整数加法幺半群，我们就有三个幺半群了。接下来我们建立这三个幺半群之间的转换关系\footnote{数学上叫做态射（morphism）}，首先是从词句幺半群到字母集合幺半群之间的转换关系。任给一个英文词句，我们可以把这句英文中用到的所有不同字母组成一个集合。可以把这个操作叫做“取字母”。可以验证，取字母满足以下条件：
 
 \[
 \begin{array}{rcl}
-\phi(s \doubleplus r) = \phi(s) \cup \phi(r) & \text{和} & \phi(\texttt{""}) = \{\}
+\text{取字母}(red \doubleplus apple) = \text{取字母}(red) \cup \text{取字母}(apple) & \text{和} & \text{取字母}(\texttt{""}) = \varnothing
 \end{array}
 \]
 
-也就是说，两个字符串连在一起所涵盖的字符集，等于各个串的字符集的并；空串的字符集是空集。如果我们把二元运算统一用点“$\circ$”来表示，单位元统一表示为1，则可以写成：
+也就是说，两句英文字词连在一起所涵盖的字母，等于各个字词中字母的并；空串不含有任何字母（空集）。
+
+接下来再定义从字母集合到整数加法幺半群之间的转换关系。任给一个字母集合，我们可以数出它含有多少字母，空集含有0个字母。我们把这个操作叫做“数个数”。
+
+这样就有了两个变换：“取字母”和“数个数”，我们检查一下它们的组合：
 
 \[
-\begin{array}{rcl}
-\phi(s \circ r) = \phi(s) \circ \phi(r) & \text{和} & \phi(1) = 1
-\end{array}
-\]
-
-接下来再定义从字符集$C$到自然数$N$之间的态射。任给一个字符集，我们可以将集合的大小映射为正整数，空集的大小映射为0。
-
-\[
-C \arrowto{\psi} N \quad \quad \psi: c \mapsto |c|
-\]
-
-有了这两个态射$\phi, \psi$后，我们检查一下它们的组合：
-
-\[
-S \arrowto{\phi} C \arrowto{\psi} N
+\text{词句} \arrowto{\text{取字母}} \text{字母集合} \arrowto{\text{数个数}} \text{整数}
 \]
 
 和
 
 \[
-S \arrowto{\psi \circ \phi} N
+\text{词句} \arrowto{\text{数个数} \circ \text{取字母}} \text{整数}
 \]
 
-显然组合后$\psi \circ \phi$也是一个态射。它表示先从字符串中抽出字符集，然后再统计不同字符的个数。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
+显然组合后“数个数$\circ$取字母”也是一个转换关系。它表示先从英文词句中抽取出不同的字母，然后再统计不同字母的个数。这样，我们就得到了\textbf{幺半群范畴}$\pmb{Mon}$。其中对象是各种各样的幺半群，箭头是彼此间的转换关系，数学上叫做态射。恒等箭头从一个幺半群指向它自己。
 
-\[
-S \arrowto{id} S
-\]
+这是一个非常巨大的范畴，它包含宇宙中\textbf{所有}的幺半群\footnote{你可能想到了罗素悖论。确切地说，$\pmb{Mon}$包含了宇宙中所有“小”的幺半群}。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑英文词句这个幺半群，它只有一个对象，就是全体英文的集合（请原谅，这看起来也不怎么小）。对于任何一个英文词句，例如hello，我们都可以定义一个前缀操作，把hello添加到任何其它英文词句前面。我们管这个操作叫“加前缀hello”。例如：“加前缀hello”作用到单词Alice上就变成了helloAlice；类似地还可以定义“加前缀hi”，把它作用到Alice上就得到了hiAlice。如果认为这是两个不同的箭头，则它们的组合就是：
 
-注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑$(S, \doubleplus, \texttt{""})$，它只有一个对象，就是全体字符串的集合$S$。对于任何字符串$a$，我们都可以定义前缀映射$S \arrowto{(a \doubleplus)} S$：
+\begin{center}
+加前缀hello $\circ$ 加前缀hi = 加前缀hellohi
+\end{center}
 
-\[
-(a \doubleplus )(x) = a \doubleplus x
-\]
-
-这样，箭头$f = (\texttt{"hello"} \doubleplus)$，就会将字符换\texttt{"hello"}添加到任何字符串的前面，例如$f(\texttt{"Alice"})=\texttt{"helloAlice"}$。而箭头$g = (\texttt{"hi"} \doubleplus)$，它可以在任何字符串前添加前缀\texttt{"hi"}\footnote{类似地，还可以定义后缀映射$(\doubleplus b)$。例如箭头$h = (\doubleplus \texttt{"bye"})$在任何字符串后添加后缀\texttt{"bye"}。}。箭头组合$f \circ g$的含义为：
-
-\[
-\begin{array}{rl}
-(f \circ g)(x) & = f(g(x)) \\
-               & = \texttt{"hello"} \doubleplus (\texttt{"hi"} \doubleplus x) \\
-               & = (\texttt{"hello"} \doubleplus \texttt{"hi"}) \doubleplus x) \\
-               & = \texttt{"hellohi"} \doubleplus x
-\end{array}
-\]
-
-表示先增加前缀\text{"hi"}，然后再增加前缀\texttt{"hello"}。不难验证，任意三个这样的箭头满足结合律。接下来我们还需要检查一下单位元，也就是空串\texttt{""}。以空串作为前缀等于恒等变换：
-
-\[
-id(x) = \texttt{""} \doubleplus x = x
-\]
-
-这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
+表示先增加前缀hi，然后再增加前缀hello。不难验证，任意三个这样的箭头满足结合律。接下来我们还需要检查一下单位元，也就是空词句“”。以空词句作为前缀等于没有变化，也就是恒等变换。这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
 
 \begin{figure}[htbp]
 \centering
@@ -262,9 +198,7 @@ id(x) = \texttt{""} \doubleplus x = x
 \label{fig:monoid-as-category}
 \end{figure}
 
-同样是幺半群，我们既看到了包含全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$a \in \pmb{C}$，定义集合$hom(a, a)$为所有从$a$指向$a$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
-
-类似地，群构成的范畴也有这样特点。有一个由所有群构成的巨大范畴$\pmb{Grp}$，同样每个单个的群$G$本身也构成一个范畴。前者的对象是所有的群，箭头是态射；后者只有一个对象，和幺半群比起来，群中的二元运算都有逆，所以所有的箭头都存在一个逆向的箭头。
+同样是幺半群，我们既看到了包含宇宙中全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界，一花一叶一如来。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$A$，定义集合$hom(A, A)$为所有从$A$指向$A$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
 
 我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \circ f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
 
