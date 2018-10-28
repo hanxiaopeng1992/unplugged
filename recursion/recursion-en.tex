@@ -458,28 +458,26 @@ No matter what sequence of operations, the water in the jars can always be expre
 
 For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divides 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to get any natural number $c$ gallons of water.
 
-Although we can tell the puzzle is solvable if $g$ measures $c$, we still don't know the steps to pour the water. Actually, the step can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$.
+Although we can tell the puzzle is solvable if $g$ measures $c$, we still don't know the steps to pour the water. Actually, the steps can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$. If $x > 0, y < 0$, it means we need fill jar $A$ $x$ times, and empty jar $B$ $y$ times; Else if $x < 0, y > 0$, we need empty jar $A$ $x$ times, and fill jar $B$ $y$ times.
 
-虽然通过检查$g$是否能度量$c$可以判断是否有解，但是我们并不知道具体的倒水步骤。如果我们可以找到整数$x$和$y$，使得$ax + by = c$。就可以得到一组操作来解决此题。具体思路是这样的：若$x > 0$、$y < 0$，我们需要倒满瓶子$A$共$x$次，倒空瓶子$B$共$y$次；反之若$x < 0$、$y > 0$，则需要倒空瓶子$A$共$x$次，倒空瓶子$B$共$y$次。
-
-例如，若大瓶容积$a=5$、小瓶容积$b=3$，要取得$c=4$升水，因为$4 = 3 \times 3 - 5$，即$x = -1$、$y = 3$我们可以设计下面的一系列操作：
+For instance, let the capacity of the big jar $a = 5$ gallon, the small jar $b = 3$ gallon. We want to get $c=4$ gallons of water. As $4 = 3 \times 3 - 5$, so $x = -1, y = 3$. We can arrange the steps as below.
 
 \begin{table}[htbp]
 \centering
 \begin{tabular}{l|l|l}
-$A$ & $B$ & 操作 \\
+$A$ & $B$ & operation \\
 \hline
-0 & 0 & 开始 \\
-0 & 3 & 倒满$B$ \\
-3 & 0 & 将$B$倒入$A$ \\
-3 & 3 & 倒满$B$ \\
-5 & 1 & 将$B$倒入$A$ \\
-0 & 1 & 将$A$倒空 \\
-1 & 0 & 将$B$倒入$A$ \\
-1 & 3 & 倒满$B$ \\
-4 & 0 & 将$B$倒入$A$ \\
+0 & 0 & start \\
+0 & 3 & fill $B$ \\
+3 & 0 & pour from $B$ to $A$ \\
+3 & 3 & fill $B$ \\
+5 & 1 & pour from $B$ to $A$ \\
+0 & 1 & empty $A$ \\
+1 & 0 & pour from $B$ to $A$ \\
+1 & 3 & fill $B$ \\
+4 & 0 & pour from $B$ to $A$ \\
 \end{tabular}
-\caption{取得4升水需要进行的操作} \label{tab:designed-jugs-ops}
+\caption{Steps to get 4 gallons of water.} \label{tab:designed-jugs-ops}
 \end{table}
 
 在这一系列操作中，倒满$B$共3次，倒空$A$共1次。因此剩下的问题是如何寻找整数$x$和$y$。使得$ax + by = c$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$c$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
