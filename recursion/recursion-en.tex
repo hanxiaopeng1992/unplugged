@@ -458,6 +458,8 @@ No matter what sequence of operations, the water in the jars can always be expre
 
 For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divides 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to get any natural number $c$ gallons of water.
 
+Although we can tell the puzzle is solvable if $g$ measures $c$, we still don't know the steps to pour the water. Actually, the step can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$.
+
 虽然通过检查$g$是否能度量$c$可以判断是否有解，但是我们并不知道具体的倒水步骤。如果我们可以找到整数$x$和$y$，使得$ax + by = c$。就可以得到一组操作来解决此题。具体思路是这样的：若$x > 0$、$y < 0$，我们需要倒满瓶子$A$共$x$次，倒空瓶子$B$共$y$次；反之若$x < 0$、$y > 0$，则需要倒空瓶子$A$共$x$次，倒空瓶子$B$共$y$次。
 
 例如，若大瓶容积$a=5$、小瓶容积$b=3$，要取得$c=4$升水，因为$4 = 3 \times 3 - 5$，即$x = -1$、$y = 3$我们可以设计下面的一系列操作：
