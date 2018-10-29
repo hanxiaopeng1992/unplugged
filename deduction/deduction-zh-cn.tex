@@ -66,6 +66,21 @@
 \caption{$(a + b)^2 = a^2 + 2ab + b^2$的几何意义}
 \end{figure}
 
+本章中，我们用两个例子说明如何进行编程中的推理。每个例子都首先用直观的方法给出分析和解释，然后再用纯推理的方式给出另一个解法。这就像$(a+b)^2$的情形。一方面我们可以用几何的直观，将其理解为一大一小两个小正方形和两个相等的矩形的面积；另一方面，我们也可以用纯推理一步一步导出同样的结果。
+
+\[
+\begin{array}{rcll}
+(a + b)^2 & = & (a + b)(a + b) & \text{二次方的定义} \\
+          & = & a(a + b) + b(a + b) & \text{乘法分配律} \\
+          & = & a^2 + ab + ba + b^2 & \text{再次用分配律} \\
+          & = & a^2 + 2ab + b^2 & \text{合并同类项$ab$和$ba$}
+\end{array}
+\]
+
+\section{构建——叠加的融合}
+
+我们要举的第一个例子是构建——叠加的融合（build/foldr fusion law）。
+
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
 
