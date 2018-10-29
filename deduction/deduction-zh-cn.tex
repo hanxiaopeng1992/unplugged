@@ -79,7 +79,50 @@
 
 \section{构建——叠加的融合}
 
-我们要举的第一个例子是构建——叠加的融合（build/foldr fusion law）。
+我们要举的第一个例子是构建——叠加的融合（build/foldr fusion law）。2015年Java在其1.8版本中加入了lambda表达式并且提供了一系列支持函数式编程的工具。但是有人很快发现，尽管一连串地函数调用表达能力很强，简洁优雅，但是性能会下降很多。原因之一就是这些串起来函数调用产生了大量中间结果。这些中间结果往往不是一两个简单的数值，而通常是列表、容器这样规模很大的结构。这些结构被下一个函数消费使用，然后就丢弃了。但是接下来会产生另一个同等规模的结构。这种产生——一次性消费——丢弃——再产生的过程，沿着函数调用链一环一环地重复，造成了很大浪费。
+
+例如\cite{GLPJ-1993}，我们想判断一个列表中的每个元素是否都满足某个条件。可以这样定义：
+
+\[
+all(p, xs) = and(map(p, xs))
+\]
+
+传入$all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$就可以判断是否列表中都是素数。但是这个实现的效率却不高。首先$map(prime, xs)$会产生一个和$xs$同样长度的列表，列表中的每个元素是一个布尔值[True, True, ...]，每个布尔值表示对应的元素是不是素数。然后这个布尔值列表传入$and$函数，检查是否存在False。最后$xs$和布尔值列表都被丢弃，而仅仅返回一个布尔值作为最终结果。
+
+下面是另一种定义，它能够避免产生中间的布尔值列表：
+
+\[
+\begin{array}{l}
+all(p, xs) = h(xs) \\
+  \begin{cases}
+  h([]) = True \\
+  h(x:xs) = p(x) \land h(xs) \\
+  \end{cases}
+\end{array}
+\]
+
+虽然这个实现不产生中间结果，可是和前面的$and(map(p, xs)$比起来，既冗长又不直观。有没有什么办法，鱼和熊掌兼得，即不丧失直观性，又能避免低效的实现呢？我们发现有些变换满足这一要求。例如：
+
+\[
+map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs) xs
+\]
+
+先把列表中每个元素取绝对值构成一列新数，然后再把这列数中的每个开方。这和把列表中每个数先取绝对值然后再立即开方后构成一列新数等价。由此我们可以得到一个转换规则：
+
+\be
+map\ f\ (map\ g\ xs) = map\ (f \circ g)\ xs
+\ee
+
+但是这样的规则太多了，我们无法全部把它们列出。并且在千变万化的程序中，我们无法一眼就看出应该用哪一条规则优化。吉尔（Gill)、朗奇布瑞（Launchbury）、佩顿琼斯(Peyton Jones)在1993年提出了一个方法，他们从列表最本质的构造和叠加操作入手，找到了优化的规律。
+
+我们在第一章就给出过列表的叠加操作，它的定义为：
+
+\[
+\begin{array}{l}
+foldr\ \oplus\ z\ [] = z \\
+foldr\ \oplus\ z\ (x:xs) = x\ \oplus\ (foldr\ \oplus\ z\ xs) \\
+\end{array}
+\]
 
 \section{KMP匹配算法}
 
@@ -96,7 +139,7 @@ Andrew Gill, John Launchbury, Simon L. Peyton Jones. ``A Short Cut to Deforestat
 \bibitem{Bird-2010}
 Richard Bird. ``Pearls of Functional Algorithm Design''. Cambridge University Press; 1 edition November 1, 2010. ISBN: 978-0521513388.
 
-\End{thebibliography}
+\end{thebibliography}
 
 \expandafter\enddocument
 %\end{document}
