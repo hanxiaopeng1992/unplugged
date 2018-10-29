@@ -480,7 +480,7 @@ $A$ & $B$ & operation \\
 \caption{Steps to get 4 gallons of water.} \label{tab:designed-jugs-ops}
 \end{table}
 
-在这一系列操作中，倒满$B$共3次，倒空$A$共1次。因此剩下的问题是如何寻找整数$x$和$y$。使得$ax + by = c$，根据扩展欧几里得算法，我们可以找到满足贝祖等式的一组解$ax_0 + by_0 = g$。因为$c$是最大公度$g$的$m$倍，我们只要把$x_0$和$y_0$相应加大$m$倍即可得到一组特解：
+We can see from these steps, jar $B$ is filled 3 times, jar $A$ is emptied 1 time. The next question is how to find $x$ and $y$ that satisfies $ax + by = c$. With the extended Euclid algorithm, we can find a solution to Bézout's identity $ax_0 + by_0 = g$. Since $c$ is $m$ times of the greatest common measure $g$, we can make a solution by multiplying $x_0$ and $y_0$ $m$ times.
 
 \[
 \begin{cases}
@@ -489,7 +489,7 @@ $A$ & $B$ & operation \\
 \end{cases}
 \]
 
-根据这组特解，我们可以找到满足不定方程\footnote{又叫做丢番图方程，是用古希腊亚历山大的数学家丢番图（Diophantus，约200-284）的名字命名的。丢番图在他的著作《算术》中，独创地引入了代数符号系统。被一些数学史家誉为“代数学之父”\cite{HanXueTao2009}。}的所有整数解：
+From this solution, we can have all the integer solutions to the Diophantus equation{Naming after the acient Greek mathematician, Diophantus of Alexandira (about 200 - 284AD). In his book \textit{Arithmetica}, he made important advances in mathematical notation, becoming the first person known to use algebraic notation and symbolism. Diophantus is often called “the father of algebra" because he contributed greatly to number theory, mathematical notation, and because \textit{Arithmetica} contains the earliest known use of syncopated notation\cite{HanXueTao2009}.}.
 
 \be
 \begin{cases}
@@ -498,12 +498,11 @@ $A$ & $B$ & operation \\
 \end{cases}
 \ee
 
-这里$k$为整数。这样我们就找到了倒水问题的所有解。进一步，我们可以找到一个特定的$k$，使得$|x| + |y|$的值最小，从而得到最快的倒水步骤\footnote{例如，可以将表示解的两条直线画出。取绝对值后，将横轴下方的部分对称翻转。进而找到使得$|x|+|y|$最小的$k$。}。下面是解决这一趣题的Haskell例子程序。
+Where $k$ is an integer number. Thus we achieve all the integer solutions to the water jar puzzle. Further, we can find a special $k$, which minimizes $|x| + |y|$, it gives the fast pouring steps\footnote{One way to get this special $k$ is to represent the solution as two lines in Cartesian plain. When taking absoluted value, it flips the lower part to the x-axis. Then we can find the $k$ minimizes $|x| + |y|$ from the figure.}. Below is the example Haskell program solves this  puzzle.
 
 \lstset{frame=single}
 \begin{lstlisting}
 import Data.List
-import Data.Tuple (swap)
 import Data.Function (on)
 
 -- Extended Euclidean Algorithm
@@ -529,9 +528,9 @@ jars a b c = (x, y) where
   m = max (abs x1 `div` u) (abs y1 `div` v)
 \end{lstlisting}
 
-求得两个瓶子倒空和倒满的次数$x$、$y$后，就可以生成一系列倒水的步骤，附录二提供了完整的例子程序。
+After figure out $x$ and $y$, we can populate the steps as in Appendix.
 
-\subsection{欧几里得算法的意义}
+\subsection{Influence of Euclid algorithm}
 
 在“万物皆数”的哲学思想下，虽然欧几里得算法最初是为了寻找两个整数的最大公约数而产生的。但是经过欧几里得之手，算法却应用到了抽象的几何量上。从整数的最大公约数，到可公度量的最大公度，我们看到了几何量和数的分离\footnote{这也是我们使用gcm，而没有使用更常见的gcd作为算法简写的原因。}。几何不仅没有建立在整数之上，反而独立发展，解决了整数之外的问题。以至于后来古希腊数学形成了这样的传统，任何关于数的结论，都需要给出几何的证明。这一传统直到十六世纪仍然影响着人们。意大利数学家卡尔丹（Gerolamo Cardano）\footnote{也译作卡尔达诺}在关于解三次、四次方程的著作《大术》（Ars Magna，1545年出版）中，仍然使用类似立方体填补法的几何论证\cite{HanXueTao2009}。
 
