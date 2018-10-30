@@ -77,9 +77,9 @@
 \end{array}
 \]
 
-\section{构建——叠加的融合}
+\section{叠加——构建的融合}
 
-我们要举的第一个例子是构建——叠加的融合（build/foldr fusion law）。2015年Java在其1.8版本中加入了lambda表达式并且提供了一系列支持函数式编程的工具。但是有人很快发现，尽管一连串地函数调用表达能力很强，简洁优雅，但是性能会下降很多。原因之一就是这些串起来函数调用产生了大量中间结果。这些中间结果往往不是一两个简单的数值，而通常是列表、容器这样规模很大的结构。这些结构被下一个函数消费使用，然后就丢弃了。但是接下来会产生另一个同等规模的结构。这种产生——一次性消费——丢弃——再产生的过程，沿着函数调用链一环一环地重复，造成了很大浪费。
+我们要举的第一个例子是叠加——构建的融合（foldr/build fusion law）。2015年Java在其1.8版本中加入了lambda表达式并且提供了一系列支持函数式编程的工具。但是有人很快发现，尽管一连串地函数调用表达能力很强，简洁优雅，但是性能会下降很多。原因之一就是这些串起来函数调用产生了大量中间结果。这些中间结果往往不是一两个简单的数值，而通常是列表、容器这样规模很大的结构。这些结构被下一个函数消费使用，然后就丢弃了。但是接下来会产生另一个同等规模的结构。这种产生——一次性消费——丢弃——再产生的过程，沿着函数调用链一环一环地重复，造成了很大浪费。
 
 例如\cite{GLPJ-1993}，我们想判断一个列表中的每个元素是否都满足某个条件。可以这样定义：
 
@@ -123,6 +123,166 @@ foldr\ \oplus\ z\ [] = z \\
 foldr\ \oplus\ z\ (x:xs) = x\ \oplus\ (foldr\ \oplus\ z\ xs) \\
 \end{array}
 \]
+
+展开就是：
+
+\be
+foldr\ \oplus\ z [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z))...)
+\ee
+
+许多列表相关的操作都可以用叠加来定义。例如累加：
+
+\[
+sum = foldr\ (+)\ 0
+\]
+
+前面提到的$and$函数，计算一个布尔值列表中的所有元素的逻辑与：
+
+\[
+and = foldr\ (\land)\ True
+\]
+
+这是因为：
+
+\[
+and\ [x_1, x_2, ..., x_n] = x_1 \land (x_2 \land (...(x_n \land True))...)
+\]
+
+在一个列表中查找某一个元素是否存在：
+
+\[
+elem\ x\ xs\ = foldr\ (a\ b \mapsto a = x \lor b)\ False\ xs
+\]
+
+逐一映射：
+
+\[
+\begin{array}{rcl}
+map\ f\ xs & = & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs \\
+           & = & foldr\ ((:) \circ f)\ []\ xs \\
+\end{array}
+\]
+
+用某一条件过滤列表中的元素：
+
+\[
+filter\ f\ xs = foldr\ (x\ ys \mapsto if\ f(x)\ then\ x:ys\ else\ ys)\ []\ xs
+\]
+
+两个列表连接：
+
+\[
+xs \doubleplus ys = foldr\ (:)\ ys\ xs
+\]
+
+这是因为:
+
+\[
+[x_1, x_2, ..., x_n] \doubleplus ys = x_1 : (x_2 : (...(x_n : ys))...)
+\]
+
+多个列表连接：
+
+\[
+concat\ xss = foldr\ (\doubleplus)\ []\ xss
+\]
+
+叠加操作是如此基本，如果我们能把列表的叠加操作的化简规律找到，就找到了几乎所有列表操作的化简规律。
+
+现在我们考虑，如果把空列表[]（即Nil）和连接操作“:”（即Cons）进行叠加会产生什么结果。
+
+\be
+foldr\ (:)\ []\ [x_1, x_2, ..., x_n] = x_1 : (x_2 : (...(x_n : []))...)
+\ee
+
+这回我们得到了列表本身。你也许想到了上一章介绍的不动点，我们稍后会回到这个话题。换言之，如果我们有一个运算$g$，它能够从一个起始值，例如[]，和一个二元组合运算，例如“:”，产生一个列表。我们可以定义这个列表构造过程$build$：
+
+\be
+build(g) = g((:), [])
+\ee
+
+接着，如果用另一个起始值$z$和二元组合运算$\oplus$，对这一列表进行叠加，其结果就相当于用$z$替换[]，用“$\oplus$”替换“:”，然后直接调用过程$g$。
+
+\be
+foldr((\oplus), z, build(g)) = g((\oplus), z)
+\ee
+
+写成无参数括号的形式就是：
+
+\be
+foldr\ (\oplus)\ z\ (build\ g) = g\ (\oplus)\ z
+\ee
+
+我们称这一结果为\textbf{叠加——构建融合定律}。
+
+在继续深入介绍前，让我们先看一些具体的例子。考虑如何计算从$a$到$b$间的整数和$sum([a, a+1, ..., b-1, b])$。为此我们可以先产生从$a$到$b$之间的所有整数$a, a+1, a+2, ..., b-1, b$，例如使用下面的方法：
+
+\[
+range(a, b) =
+\begin{cases}
+a > b: & [] \\
+\text{否则}: & a : range(a+1, b) \\
+\end{cases}
+\]
+
+这样$range(1, 5)$就产生列表[1, 2, 3, 4, 5]。现在我们只要把这个列表中的元素累加起来就得到答案了：
+
+\[
+sum(range(a, b))
+\]
+
+接下来关键的一步，我们把$range$中的起始值[]和二元组合运算(:)抽出成为参数：
+
+\[
+range'(a, b, (\oplus), z) =
+  \begin{cases}
+  a > b: & z \\
+  \text{否则}: & a \oplus range'(a+1, b, (\oplus), z) \\
+  \end{cases}
+\]
+
+我们甚至可以把$range'$的后两个参数克里化：
+
+\[
+range'\ a\ b = f\ c \mapsto
+  \begin{cases}
+  a > b: & c \\
+  \text{否则}: & f\ a\ (range' (a+1)\ b\ f\ c) \\
+  \end{cases}
+\]
+
+这样原来的$range$就可以用$range'$和$build$表示了：
+
+\[
+range(a, b) = build(range'(a, b))
+\]
+
+写下来我们用融合律化简累加和的计算：
+
+\[
+\begin{array}{rcll}
+sum(range(a, b)) & = & sum(build(range'(a, b))) & \text{代入} \\
+  & = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (range'\ a\ b)) & \text{用叠加表示累加} \\
+  & = & range'\ a\ b\ (+)\ 0 & \text{使用融合律} \\
+\end{array}
+\]
+
+这样就完成了化简，避免产生了中间列表。优化了算法。我们可以看一下最后算法的效果：
+
+\[
+range'\ a\ b\ (+)\ 0 =
+  \begin{cases}
+  a > b: & 0 \\
+  \text{否则}: & a + range'(a+1, b, (+), 0) \\
+  \end{cases}
+\]
+
+\begin{Exercise}
+\Question{验证从左侧叠加也可以表示为$foldr$:
+\[
+foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
+\]}
+\end{Exercise}
 
 \section{KMP匹配算法}
 
