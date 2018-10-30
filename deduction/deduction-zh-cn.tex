@@ -133,13 +133,13 @@ foldr\ \oplus\ z [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z
 许多列表相关的操作都可以用叠加来定义。例如累加：
 
 \[
-sum = foldr\ (+)\ 0
+sum = foldr\ +\ 0
 \]
 
 前面提到的$and$函数，计算一个布尔值列表中的所有元素的逻辑与：
 
 \[
-and = foldr\ (\land)\ True
+and = foldr\ \land\ True
 \]
 
 这是因为：
@@ -184,7 +184,7 @@ xs \doubleplus ys = foldr\ (:)\ ys\ xs
 多个列表连接：
 
 \[
-concat\ xss = foldr\ (\doubleplus)\ []\ xss
+concat\ xss = foldr\ \doubleplus\ []\ xss
 \]
 
 叠加操作是如此基本，如果我们能把列表的叠加操作的化简规律找到，就找到了几乎所有列表操作的化简规律。
@@ -201,16 +201,16 @@ foldr\ (:)\ []\ [x_1, x_2, ..., x_n] = x_1 : (x_2 : (...(x_n : []))...)
 build(g) = g((:), [])
 \ee
 
-接着，如果用另一个起始值$z$和二元组合运算$\oplus$，对这一列表进行叠加，其结果就相当于用$z$替换[]，用“$\oplus$”替换“:”，然后直接调用过程$g$。
+接着，如果用另一个起始值$z$和二元组合运算$f$，对这一列表进行叠加，其结果就相当于用$z$替换[]，用“$f$”替换“(:)”，然后直接调用过程$g$。
 
 \be
-foldr((\oplus), z, build(g)) = g((\oplus), z)
+foldr(f, z, build(g)) = g(f, z)
 \ee
 
 写成无参数括号的形式就是：
 
 \be
-foldr\ (\oplus)\ z\ (build\ g) = g\ (\oplus)\ z
+foldr\ f\ z\ (build\ g) = g\ f\ z
 \ee
 
 我们称这一结果为\textbf{叠加——构建融合定律}。
@@ -234,10 +234,10 @@ sum(range(a, b))
 接下来关键的一步，我们把$range$中的起始值[]和二元组合运算(:)抽出成为参数：
 
 \[
-range'(a, b, (\oplus), z) =
+range'(a, b, \oplus, z) =
   \begin{cases}
   a > b: & z \\
-  \text{否则}: & a \oplus range'(a+1, b, (\oplus), z) \\
+  \text{否则}: & a \oplus range'(a+1, b, \oplus, z) \\
   \end{cases}
 \]
 
