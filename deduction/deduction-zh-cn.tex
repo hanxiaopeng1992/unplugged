@@ -172,9 +172,11 @@ map\ f\ xs & = & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs \\
 
 \[
 \begin{array}{rl}
-filter\ f\ xs = foldr\ (x\ ys \mapsto & if\ f(x)\ \\
-                                      & then\ x:ys\ \\
-                                      & else\ ys)\ []\ xs \\
+filter\ f\ xs = foldr\ (x\ ys \mapsto
+  \begin{cases}
+    f(x): & x:ys\ \\
+    \text{否则}: & ys
+  \end{cases})\ []\ xs \\
 \end{array}
 \]
 
@@ -376,6 +378,38 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
 \]
 
 \subsection{使用融合律化简}
+
+接下来我们继续使用刚刚打造好的融合律来化简计算。首先是本节开始时的$all(p, xs) = and(map(p, xs))$的例子。
+
+\begin{example}
+我们把$and$改为叠加形式，把$map$改为构建形式就可以开始化简了。
+
+\bre
+all(p, xs) & = & and(map(p, xs)) & \text{原始定义} \\
+  & = & foldr\ \land\ True\ map(p, xs) & and\text{的叠加形式} \\
+  & = & \pmb{foldr}\ \land\ True\ \pmb{build}\ (\oplus\ z \mapsto & \\
+  &   & \quad \quad foldr\ (x\ ys \mapsto p(x) \oplus ys)\ z\ xs) & map\text{的构建形式} \\
+  & = & (\oplus\ z \mapsto foldr\ (x\ ys \mapsto p(x) \oplus ys)\ z\ xs)\ \land\ True & \text{融合律} \\
+  & = & foldr\ (x\ ys \mapsto p(x) \land ys)\ True\ xs & \beta-\text{规约} \\
+\ere
+
+如果使用第一章介绍过的$first$函数，还可以进一步化简为：
+
+\[
+all\ p = foldr\ (\land) \circ (first\ p)\ True
+\]
+
+\end{example}
+
+我们举的第二个例子是把一段文字，按照换行符切分成句子的列表。
+
+\begin{example}
+这样的文字处理过程通常叫做$unlines$，一个典型的定义如下：
+
+\[
+unlines\ txt
+\]
+\end{example}
 
 \subsection{类型限制}
 
