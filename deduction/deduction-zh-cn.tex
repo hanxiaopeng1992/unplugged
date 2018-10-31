@@ -115,6 +115,8 @@ map\ f\ (map\ g\ xs) = map\ (f \circ g)\ xs
 
 但是这样的规则太多了，我们无法全部把它们列出。并且在千变万化的程序中，我们无法一眼就看出应该用哪一条规则优化。吉尔（Gill)、朗奇布瑞（Launchbury）、佩顿琼斯(Peyton Jones)在1993年提出了一个方法，他们从列表最本质的构造和叠加操作入手，找到了优化的规律。
 
+\subsection{列表的叠加操作}
+
 我们在第一章就给出过列表的叠加操作，它的定义为：
 
 \[
@@ -130,13 +132,16 @@ foldr\ \oplus\ z\ (x:xs) = x\ \oplus\ (foldr\ \oplus\ z\ xs) \\
 foldr\ \oplus\ z [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z))...)
 \ee
 
-许多列表相关的操作都可以用叠加来定义。例如累加：
+许多列表相关的操作都可以用叠加来定义。我们接下来给出一些典型的例子:
+
+\begin{enumerate}
+\item 累加：
 
 \[
 sum = foldr\ +\ 0
 \]
 
-前面提到的$and$函数，计算一个布尔值列表中的所有元素的逻辑与：
+\item 前面提到的$and$函数，计算一个布尔值列表中的所有元素的逻辑与：
 
 \[
 and = foldr\ \land\ True
@@ -148,13 +153,13 @@ and = foldr\ \land\ True
 and\ [x_1, x_2, ..., x_n] = x_1 \land (x_2 \land (...(x_n \land True))...)
 \]
 
-在一个列表中查找某一个元素是否存在：
+\item 在一个列表中查找某一个元素是否存在：
 
 \[
 elem\ x\ xs\ = foldr\ (a\ b \mapsto a = x \lor b)\ False\ xs
 \]
 
-逐一映射：
+\item 逐一映射：
 
 \[
 \begin{array}{rcl}
@@ -163,16 +168,21 @@ map\ f\ xs & = & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs \\
 \end{array}
 \]
 
-用某一条件过滤列表中的元素：
+\item 用某一条件过滤列表中的元素：
 
 \[
-filter\ f\ xs = foldr\ (x\ ys \mapsto if\ f(x)\ then\ x:ys\ else\ ys)\ []\ xs
+\begin{array}{rl}
+filter\ f\ xs = foldr\ (x\ ys \mapsto & if\ f(x)\ \\
+                                      & then\ x:ys\ \\
+                                      & else\ ys)\ []\ xs \\
+\end{array}
 \]
 
-两个列表连接：
+\item 两个列表连接：
 
 \[
 xs \doubleplus ys = foldr\ (:)\ ys\ xs
+\label{eq:binary-concat}
 \]
 
 这是因为:
@@ -181,36 +191,42 @@ xs \doubleplus ys = foldr\ (:)\ ys\ xs
 [x_1, x_2, ..., x_n] \doubleplus ys = x_1 : (x_2 : (...(x_n : ys))...)
 \]
 
-多个列表连接：
+\item 多个列表连接：
 
 \[
 concat\ xss = foldr\ \doubleplus\ []\ xss
 \]
 
+\end{enumerate}
+
 叠加操作是如此基本，如果我们能把列表的叠加操作的化简规律找到，就找到了几乎所有列表操作的化简规律。
 
+\subsection{叠加——构建融合律}
 现在我们考虑，如果把空列表[]（即Nil）和连接操作“:”（即Cons）进行叠加会产生什么结果。
 
 \be
 foldr\ (:)\ []\ [x_1, x_2, ..., x_n] = x_1 : (x_2 : (...(x_n : []))...)
+\label{eq:foldr-fixed-point}
 \ee
 
 这回我们得到了列表本身。你也许想到了上一章介绍的不动点，我们稍后会回到这个话题。换言之，如果我们有一个运算$g$，它能够从一个起始值，例如[]，和一个二元组合运算，例如“:”，产生一个列表。我们可以定义这个列表构造过程$build$：
 
 \be
 build(g) = g((:), [])
+\label{eq:build-definition}
 \ee
 
 接着，如果用另一个起始值$z$和二元组合运算$f$，对这一列表进行叠加，其结果就相当于用$z$替换[]，用“$f$”替换“(:)”，然后直接调用过程$g$。
 
 \be
-foldr(f, z, build(g)) = g(f, z)
+\pmb{foldr}(f, z, \pmb{build}(g)) = g(f, z)
 \ee
 
 写成无参数括号的形式就是：
 
 \be
-foldr\ f\ z\ (build\ g) = g\ f\ z
+\pmb{foldr}\ f\ z\ (\pmb{build}\ g) = g\ f\ z
+\label{eq:foldr-build-fusion-law}
 \ee
 
 我们称这一结果为\textbf{叠加——构建融合定律}。
@@ -277,11 +293,113 @@ range'\ a\ b\ (+)\ 0 =
   \end{cases}
 \]
 
+\subsection{列表的构建形式}
+
+为了方便使用融合律，我们可以把常见的能够产生新列表操作都写为$build...foldr$的形式。这样当用叠加操作和这种形式的操作组合起来时，$\pmb{foldr}...(\pmb{build}...foldr)$，就可以使用融合律化简。
+
+首先是最简单的操作——构造空列表：
+
+\[
+[] = build\ (f\ z \mapsto z)
+\]
+
+我们可以代入$build$的定义(\ref{eq:build-definition})来验证这个定义：
+
+\begin{proof}
+\bre
+build\ (f\ z \mapsto z) & = & (f\ z \mapsto z)\ (:)\ [] & build\text{的定义} \\
+  & = & (:)\ [] \mapsto [] & \beta-\text{规约，参见第二章} \\
+  & = & [] & \\
+\ere
+\end{proof}
+
+接下来是列表的链接（Cons）操作：
+
+\[
+x : xs = build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))
+\]
+
+我们来验证一下：
+
+\begin{proof}
+\blre
+  & build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs)) & \\
+= & (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))\ (:)\ [] & build\text{的定义} \\
+= & x : (foldr\ (:)\ []\ xs) & \beta-\text{规约} \\
+= & x : xs & \text{由(\ref{eq:foldr-fixed-point})，叠加的不动点} \\
+\elre
+\end{proof}
+
+然后是列表的连接：
+
+\[
+xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
+\]
+
+\begin{proof}
+\blre
+  & build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys) xs) & \\
+= & (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)\ (:)\ [] & build \text{的定义} \\
+= & foldr\ (:)\ (foldr\ (:)\ []\ ys)\ xs & \beta-\text{规约} \\
+= & foldr\ (:)\ ys\ xs & \text{对内层用叠加的不动点} \\
+= & xs \doubleplus ys & \text{由(\ref{eq:binary-concat})，列表的连接} \\
+\elre
+\end{proof}
+
+以下操作我们只列出结果，我们把它们的证明作为本小节的练习。
+多个列表的连接：
+
+\[
+concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss)
+\]
+
+一一映射产生新列表：
+
+\[
+map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)
+\]
+
+过滤元素产生新列表：
+
+\[
+filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
+  \begin{cases}
+    f(x): & x \oplus xs' \\
+    \text{否则}: & xs' \\
+  \end{cases})\ z\ xs) \\
+\]
+
+重复不断产生同一元素的（无穷）列表：
+
+\[
+repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
+\]
+
+\subsection{使用融合律化简}
+
+\subsection{类型限制}
+
+\subsection{用范畴论推导融合律}
+
 \begin{Exercise}
 \Question{验证从左侧叠加也可以表示为$foldr$:
 \[
 foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \]}
+\Question{证明以下列表的构建——叠加形式：
+\[
+\begin{array}{l}
+concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss) \\
+map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
+filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
+  \begin{cases}
+    f(x): & x \oplus xs' \\
+    \text{否则}: & xs' \\
+  \end{cases})\ z\ xs) \\
+repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
+\end{array}
+\]
+}
 \end{Exercise}
 
 \section{KMP匹配算法}
