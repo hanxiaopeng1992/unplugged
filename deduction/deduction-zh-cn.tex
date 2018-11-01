@@ -401,10 +401,8 @@ all\ p = foldr\ (\land) \circ (first\ p)\ True
 
 \end{example}
 
-我们举的第二个例子是把若干词语添加上空格，然后连接成句子。
-
 \begin{example}
-这样的文字处理过程通常叫做$join$，简单起见，我们在句子最后也添上一个空格。一个典型的定义如下：
+我们举的第二个例子是把若干词语添加上空格，然后连接成句子。这样的文字处理过程通常叫做$join$，简单起见，我们在句子最后也添上一个空格。一个典型的定义如下：
 
 \[
 join(ws) = concat(map(w \mapsto w \doubleplus ['\ '], ws))
@@ -446,7 +444,7 @@ join(ws) = concat(map(w \mapsto w \doubleplus ['\ '], ws))
   & \quad \quad foldr\ (foldr\ f\ b\ ['\ '])\ w)\ z\ ws) \\
 
   & \{\text{据$build$的定义，将$(:)$和$[]$代入}\} \\
-= & foldr\ (w\ b \mapsto foldr\ (:)\ \pmb{(foldr (:) b ['\ '])}\ w)\ []\ ws \\
+= & foldr\ (w\ b \mapsto foldr\ (:)\ \pmb{(foldr\ (:)\ b\ ['\ '])}\ w)\ []\ ws \\
 
   & \{\text{对黑体字部分求值}\} \\
 = & foldr\ (w\ b \mapsto foldr\ (:)\ ('\ ' : b)\ w)\ []\ ws \\
