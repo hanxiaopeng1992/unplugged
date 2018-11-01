@@ -478,6 +478,37 @@ join\ (w:ws) = h\ w \\
 
 \subsection{类型限制}
 
+每当我们打造出抽象的工具，就要思考它的适用范围，了解它什么情况下会失效。对于融合律也是如此。考虑下面的矛盾结果：
+
+\blre
+  & \pmb{foldr}\ f\ z\ (\pmb{build}\ (c\ n \mapsto [0])) & \\
+= & (c\ n \mapsto [0])\ f\ z & \text{融合律} \\
+= & [0] & \beta-\text{规约} \\
+\elre
+
+另一方面：
+
+\blre
+  & foldr\ f\ z\ (build\ (c\ n \mapsto [0])) & \\
+= & foldr\ f\ z\ ((c\ n \mapsto [0])\ (:)\ []) & build\text{的定义} \\
+= & foldr\ f\ z\ [0] & \beta-\text{规约} \\
+= & f(0, z) & \text{叠加展开} \\
+\elre
+
+显然$f(0, z)$不等于$[0]$，它们两个的类型都甚至不同\footnote{除非极特殊情况$f = (:), z = []$。}。造成这一矛盾结果的原因是$(c\ n \mapsto [0])$不是一个真正用$c$和$n$构造结果的函数。为此我们需要对融合律$foldr\ f\ z\ (build\ g) = g\ f\ z$中$g$的类型做出限制。它的第一个参数既可以接受$c$，也可以接受$f$，换言之，它接受一个多态的二元运算$\forall A. \forall B.\ A \times B \to B$；同理它的第二个参数也是一个多态类型$B$的起始值，并产生一个类型为$B$的结果。我们把二元运算写为克里化的形式就得到：
+
+\[
+g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
+\]
+
+容易看出，上面反例中的类型是：$\forall A. (\forall B. (A \to B \to B) \to B \to [Int])$。不满足我们的类型限制。与此对应，构建函数$build$的类型为：
+
+\[
+build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
+\]
+
+由于里面有两个多态的类型$A$和$B$，因此它被称为二阶多态函数（rank-2 type polymorphic）。
+
 \subsection{用范畴论推导融合律}
 
 \begin{Exercise}
@@ -513,6 +544,18 @@ qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsor
 我们给出的第二个例子是著名的KMP字符串匹配算法。
 
 \cite{Bird-2010} pp. 117-135
+
+\section{附录代码}
+
+Haskell中的\texttt{build}和\texttt{concatMap}定义：
+
+\lstset{frame=single}
+\begin{lstlisting}
+build :: forall a. (forall b. (a -> b -> b) -> b -> b) -> [a]
+build g = g (:) []
+
+concatMap f xs = build (\c n -> foldr (\x b -> foldr c b (f x)) n xs)
+\end{lstlisting}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
