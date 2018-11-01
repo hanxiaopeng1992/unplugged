@@ -129,7 +129,7 @@ foldr\ \oplus\ z\ (x:xs) = x\ \oplus\ (foldr\ \oplus\ z\ xs) \\
 展开就是：
 
 \be
-foldr\ \oplus\ z [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z))...)
+foldr\ \oplus\ z\ [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z))...)
 \ee
 
 许多列表相关的操作都可以用叠加来定义。我们接下来给出一些典型的例子:
@@ -299,7 +299,8 @@ range'\ a\ b\ (+)\ 0 =
 
 为了方便使用融合律，我们可以把常见的能够产生新列表操作都写为$build...foldr$的形式。这样当用叠加操作和这种形式的操作组合起来时，$\pmb{foldr}...(\pmb{build}...foldr)$，就可以使用融合律化简。
 
-首先是最简单的操作——构造空列表：
+\begin{enumerate}
+\item 首先是最简单的操作——构造空列表：
 
 \[
 [] = build\ (f\ z \mapsto z)
@@ -315,7 +316,7 @@ build\ (f\ z \mapsto z) & = & (f\ z \mapsto z)\ (:)\ [] & build\text{的定义} 
 \ere
 \end{proof}
 
-接下来是列表的链接（Cons）操作：
+\item 接下来是列表的链接（Cons）操作：
 
 \[
 x : xs = build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))
@@ -332,7 +333,7 @@ x : xs = build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))
 \elre
 \end{proof}
 
-然后是列表的连接：
+\item 然后是列表的连接：
 
 \[
 xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
@@ -348,20 +349,24 @@ xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
 \elre
 \end{proof}
 
-以下操作我们只列出结果，我们把它们的证明作为本小节的练习。
-多个列表的连接：
+\end{enumerate}
 
+以下操作我们只列出结果，而把它们的证明作为本小节的练习。
+
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item 多个列表的连接：
 \[
 concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss)
 \]
 
-一一映射产生新列表：
+\item 一一映射产生新列表：
 
 \[
 map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)
 \]
 
-过滤元素产生新列表：
+\item 过滤元素产生新列表：
 
 \[
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
@@ -371,11 +376,13 @@ filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \end{cases})\ z\ xs) \\
 \]
 
-重复不断产生同一元素的（无穷）列表：
+\item 重复不断产生同一元素的（无穷）列表：
 
 \[
 repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
 \]
+
+\end{enumerate}
 
 \subsection{使用融合律化简}
 
