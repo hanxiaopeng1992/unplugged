@@ -379,7 +379,7 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
 
 \subsection{使用融合律化简}
 
-接下来我们继续使用刚刚打造好的融合律来化简计算。首先是本节开始时的$all(p, xs) = and(map(p, xs))$的例子。
+接下来我们继续使用刚刚打造好的融合律来化简计算。首先是本节开始时$all(p, xs) = and(map(p, xs))$的例子。
 
 \begin{example}
 我们把$and$改为叠加形式，把$map$改为构建形式就可以开始化简了。
@@ -401,15 +401,82 @@ all\ p = foldr\ (\land) \circ (first\ p)\ True
 
 \end{example}
 
-我们举的第二个例子是把一段文字，按照换行符切分成句子的列表。
+我们举的第二个例子是把若干词语添加上空格，然后连接成句子。
 
 \begin{example}
-这样的文字处理过程通常叫做$unlines$，一个典型的定义如下：
+这样的文字处理过程通常叫做$join$，简单起见，我们在句子最后也添上一个空格。一个典型的定义如下：
 
 \[
-unlines\ txt
+join(ws) = concat(map(w \mapsto w \doubleplus ['\ '], ws))
 \]
+
+这个定义简单直观，它先用逐一映射，在每个单词的末尾添加空格，得到一个新的单词列表，然后再把这个列表连接成一个字符串。但是这个定义的性能不佳。首先在单词末尾添加空格就是一个昂贵的计算，需要移动到每个单词的末尾，然后使用字符串连接操作。其次有多少单词，逐一映射就会产生一个同样数量的单词列表。最后这些中间结果都被丢弃了。我们接下来用融合律优化这一计算。
+
+\[ \begin{array}{rl}
+  & join(ws) \\
+  & \{\text{定义} \} \\
+= & concat(map(w \mapsto w \doubleplus ['\ '], ws)) \\
+
+  & \{\text{把$concat$写为构建形式}\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad foldr\ (x\ y \mapsto foldr\ f\ y\ x)\ z\ map(w \mapsto w \doubleplus ['\ '], ws)) \\
+
+  & \{\text{把$map$写为构建形式}\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad \pmb{foldr}\ (x\ y \mapsto foldr\ f\ y\ x)\ z\ (\pmb{build}\ (f'\ z' \mapsto \\
+  & \quad \quad foldr\ (w\ b \mapsto f'\ (w \mapsto w \doubleplus ['\ '])\ b)\ z'\ ws))) \\
+
+  & \{\text{融合律}\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad foldr\ (w\ b \mapsto (x\ y \mapsto foldr\ f\ y\ x)\ (w \doubleplus ['\ '])\ b)\ z\ ws) \\
+
+  & \{\beta-\text{规约}x, y\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad foldr\ (w\ b \mapsto foldr\ f\ b\ (w \doubleplus ['\ ']))\ z\ ws) \\
+
+  & \{\text{把$\doubleplus$写为构建形式}\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad foldr\ (w\ b \mapsto \\
+  & \quad \quad \pmb{foldr}\ f\ b\ (\pmb{build}\ (f'\ z' \mapsto \\
+  & \quad \quad \quad foldr\ f'\ (foldr\ f'\ z'\ ['\ '])\ w)))\ z\ ws) \\
+
+  & \{\text{融合律}\} \\
+= & build\ (f\ z \mapsto \\
+  & \quad foldr\ (w\ b \mapsto \\
+  & \quad \quad foldr\ (foldr\ f\ b\ ['\ '])\ w)\ z\ ws) \\
+
+  & \{\text{据$build$的定义，将$(:)$和$[]$代入}\} \\
+= & foldr\ (w\ b \mapsto foldr\ (:)\ \pmb{(foldr (:) b ['\ '])}\ w)\ []\ ws \\
+
+  & \{\text{对黑体字部分求值}\} \\
+= & foldr\ (w\ b \mapsto foldr\ (:)\ ('\ ' : b)\ w)\ []\ ws \\
+\end{array} \]
+
+因此最后化简的结果为：
+
+\[
+join(ws) = foldr\ (w\ b \mapsto foldr\ (:)\ ('\ ' : b)\ w)\ []\ ws
+\]
+
+我们还可以据此把叠加操作展开，得到一个可读性较好的优化定义：
+
+\[
+\begin{array}{l}
+\begin{cases}
+join\ [] = [] \\
+join\ (w:ws) = h\ w \\
+\end{cases} \\
+\text{其中}: \begin{cases}
+             h\ [] = '\ ' : join\ ws \\
+             h\ (x:xs) = x : h\ xs \\
+             \end{cases} \\
+\end{array}
+\]
+
+由于$concat \circ map(f)$十分常见，很多编程环境的标准库已经提供了这样的优化实现。例如Haskell中的\texttt{concatMap}，Java和Scala中的\texttt{flatMap}。
 \end{example}
+
+第二个例子虽然展示了融合律的强大，但是也暴露出了一个问题。推导过程机械繁琐、容易出错。这恰恰是机器，而非人类擅长的事情。有些编程环境，例如Haskell已经把融合律实现在编译器内部\cite{GLPJ-1993}。这样只要我们把列表的常见操作用构建、叠加形式定义好，机器就可以替代我们利用融合律进行上述化简，从而得到优化的程序，避免中间结果和多余的递归\footnote{例如Haskell标准库已经用构建、叠加形式实现了大多数列表操作。}。随着时间的推移，更多的编译器会逐渐支持这一优化工具。
 
 \subsection{类型限制}
 
@@ -434,6 +501,13 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \end{array}
 \]
 }
+\Question{利用融合律化简快速排序算法：
+\[
+\begin{cases}
+qsort\ [] = [] \\
+qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsort\ [a | a \in xs, x < a] \\
+\end{cases}\]
+提示：将ZF表达式\footnote{全称为“策梅罗——弗兰克尔表达式”。指集合论中$\{f(x) | x \in X, p(x), q(x), ...\}$这样的集合构建表达式。我们在下一章介绍无穷和集合论时会再次遇到它。}转换为$filter$。}
 \end{Exercise}
 
 \section{KMP匹配算法}
