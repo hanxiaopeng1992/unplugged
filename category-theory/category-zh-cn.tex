@@ -1978,7 +1978,7 @@ F \arrowto{\phi} G
 从自然变换的范畴图中，我们看到任何一个箭头$f$，都对应一个可交换的方形。对于协变的情况，可交换意味着对于任何箭头$f$，下面的关系成立：
 
 \[
-\mathbf{F}(f) \circ \phi_B = \phi_A \circ \mathbf{G}(f)
+\mathbf{G}(f) \circ \phi_A= \phi_B \circ \mathbf{F}(f)
 \]
 
 \subsection{自然变换的例子}
@@ -3376,7 +3376,7 @@ F-代数范畴$\pmb{Alg}(F)$中，如果存在初始对象，则这一初始对�
 
 1968年，兰贝克（Lambek）最早指出$i$是一个同构映射，并且称初始代数$(I, i)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
 
-F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)$的唯一态射。我们把从$I$到$A$的态射记为$([f])$，使得下面的范畴图可交换：
+F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)$的唯一态射。我们把从$I$到$A$的态射记为$\lbb f \rbb$，使得下面的范畴图可交换：
 
 \begin{center}
 \begin{tikzpicture}
@@ -3386,19 +3386,19 @@ F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)
     \mathbf{F} A  & A \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$i$} (m-1-2)
-    (m-1-1) edge node [left] {$\mathbf{F}([f])$} (m-2-1)
-    (m-1-2) edge node [right] {$([f])$}  (m-2-2)
+    (m-1-1) edge node [left] {$\mathbf{F} \lbb f \rbb$} (m-2-1)
+    (m-1-2) edge node [right] {$\lbb f \rbb$}  (m-2-2)
     (m-2-1) edge node [below] {$f$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
 \[
-  \text{若} h = ([f]) \text{，当且仅当} h \circ i = f \circ \mathbf{F}(h)
+  \text{若} h = \lbb f \rbb \text{，当且仅当} h \circ i = f \circ \mathbf{F}(h)
 \]
 
-我们称箭头$([f])$为\textbf{向下态射}(catamorphism，来自希腊语$\kappa \alpha \kappa \alpha$，意思是向下)。它两侧的括号“([])”像一对香蕉，因此被称为“香蕉括号”。
+我们称箭头$\lbb f \rbb$为\textbf{向下态射}(catamorphism，来自希腊语$\kappa \alpha \kappa \alpha$，意思是向下)。它两侧的括号“$\lbb \rbb$”像一对香蕉，因此被称为“香蕉括号”。
 
-向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$([f])$。从而构造复杂的递归计算。我们仍然用自然数来举例子。
+向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$\lbb f \rbb$。从而构造复杂的递归计算。我们仍然用自然数来举例子。
 
 自然数函子$\mathbf{NatF}$是非递归的，而其起始代数自然数$\mathbf{Nat}$的定义是递归的：
 
@@ -3458,7 +3458,7 @@ toFib = cata fibAlg where
 fibAt = fst \circ toFib \circ fromInt
 \]
 
-事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(\mathbf{Nat}, zero + succ)$，得到能够进行递归计算的$([c + f])$\footnote{我们用符号$([c + f])$是因为$([[c, f]])$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
+事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(\mathbf{Nat}, zero + succ)$，得到能够进行递归计算的$\lbb c + f \rbb$\footnote{我们用符号$\lbb c + f \rbb$是因为$\lbb [c, f] \rbb$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
 
 \begin{center}
 \begin{tikzpicture}
@@ -3506,10 +3506,10 @@ fibAt = fst \circ toFib \circ fromInt
   h = foldn(c, f)
 \]
 
-也就是说，自然数上的向下态射$([c + f]) = foldn(c, f)$。因此，对于斐波那契数列，我们可以用
+也就是说，自然数上的向下态射$\lbb c + f \rbb = foldn(c, f)$。因此，对于斐波那契数列，我们可以用
 
 \[
-([fibAlg]) = ([start + next]) = foldn(start, next)
+\lbb fibAlg \rbb = \lbb start + next \rbb = foldn(start, next)
 \]
 
 来进行代数计算。读到这里，大家会有一种转了一大圈又回到了第一章的感觉。这是一种认知的螺旋上升。第一章中，我们是用归纳和抽象的方法得到了这个结论，现在，我们从更高的层面，把抽象的规律应用到具体的问题上得到了同样的结论。
@@ -3639,7 +3639,7 @@ sum = cata sumAlg where
   h = foldr(c, f)
 \]
 
-也就是说，列表F-代数的向下态射$([c + f]) = foldr(c, f)$。因此，求长度的
+也就是说，列表F-代数的向下态射$\lbb c + f \rbb = foldr(c, f)$。因此，求长度的
 运算是$foldr(0, (a, b) \mapsto b + 1)$，累加的运算是$foldr(0, +)$。
 \end{example}
 

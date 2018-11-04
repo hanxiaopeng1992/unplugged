@@ -518,6 +518,26 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 
 \subsection{用范畴论推导融合律}
 
+叠加——构建融合律可以用范畴理论推导出来并进行扩展。一旦把范畴论作为理论工具，人们就发现叠加——构建融合仅仅是众多种融合规则中的一个。现在这些规则统一被称为“短路融合”（shortcut fusion）。它们在编译器优化，程序库优化中发挥了重要的作用。我们无法在这一章中对它们做全面的介绍。读者可以参考\cite{Hinze-Harper-James-2010}深入了解短路融合的理论和实践方法。
+
+在上一章中，我们介绍了F-代数，特别是初始代数和向下态射。由于初始代数是起始对象，所以它到任何其他代数都有唯一的箭头。如下图所示：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{F} I  & I \\
+    \mathbf{F} A  & A \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$i$} (m-1-2)
+    (m-1-1) edge node [left] {$\mathbf{F} \lbb a \rbb$} (m-2-1)
+    (m-1-2) edge node [right] {$\lbb a \rbb$}  (m-2-2)
+    (m-2-1) edge node [below] {$a$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+从初始代数$(I, i)$到另一代数$(A, a)$的箭头可以通过向下态射$\lbb a \rbb$来。
+
 \begin{Exercise}
 \Question{验证从左侧叠加也可以表示为$foldr$:
 \[
@@ -572,6 +592,9 @@ Andrew Gill, John Launchbury, Simon L. Peyton Jones. ``A Short Cut to Deforestat
 
 \bibitem{Bird-2010}
 Richard Bird. ``Pearls of Functional Algorithm Design''. Cambridge University Press; 1 edition November 1, 2010. ISBN: 978-0521513388.
+
+\bibitem{Hinze-Harper-James-2010}
+Ralf Hinze, Thomas Harper, Daniel W. H. James. ``Theory and Practice of Fusion''. 2010, 22nd international symposium of IFL (Implementation and application of functional languages). pp.19-37.
 
 \end{thebibliography}
 
