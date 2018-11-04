@@ -588,6 +588,14 @@ h \circ a = b \circ \mathbf{F}(h) \\
 \end{array}
 \ee
 
+初始代数的融合律意味这什么呢？在上一章中，我们发现向下态射可以将非递归的计算，转换成在递归结构上的叠加计算。例如，当函子$\mathbf{F}$是$\mathbf{ListF}A$（其中$A$是给定的对象）时，箭头$a = [f, z]$，而初始箭头$i = [cons, nil]$，向下态射$\lbb a \rbb = foldr(f, z)$。如果记$b = [c, n]$，则融合律可以写成：
+
+\[
+h \circ foldr(f, z) = foldr(c, n)
+\]
+
+它说明叠加之后再进行变换可以化简为单一的叠加。但是这意味着我们必须定义另一个F-代数$(B, b)$。
+
 \begin{Exercise}
 \Question{验证从左侧叠加也可以表示为$foldr$:
 \[
