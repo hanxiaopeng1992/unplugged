@@ -594,7 +594,25 @@ h \circ a = b \circ \mathbf{F}(h) \\
 h \circ foldr(f, z) = foldr(c, n)
 \]
 
-它说明叠加之后再进行变换可以化简为单一的叠加。但是这意味着我们必须定义另一个F-代数$(B, b)$。
+它说明叠加之后再进行变换可以化简为单一的叠加。如果我们进一步将向下态射$\lbb a \rbb$抽象成从$a$构造某种代数结构$\beta a$，则融合律就可以推广为：
+
+\be
+h \circ \beta\ a = \beta\ b \Leftarrow a \arrowto{h} b
+\ee
+
+这一推广的融合律被称为“酸雨定律”\footnote{由于融合律能够消除不必要的中间结果，所以最早被称为“砍伐定律”（deforestation），所以推广的融合律被幽默地称为酸雨定律（acid rain law）。}。另一方面，由于存在从初始代数$i$到$a$的箭头：$i \arrowto{\lbb a \rbb} a$，所以将$\lbb a \rbb$代入酸雨定律右侧的$h$，我们有：
+
+\be
+\lbb a \rbb \circ \beta\ i = \beta\ a \Leftarrow i \arrowto{\lbb a \rbb} a
+\ee
+
+具体到列表的例子，把$\lbb a \rbb$替换为$foldr(f, z)$，把初始代数$i$替换为列表的初始代数$(:)/[]$。我们就得到了列表的叠加——构建融合律：
+
+\[
+foldr\ f\ z\ (\beta\ (:)\ []) = \beta f\ z
+\]
+
+我们发现抽象的构建$\beta$在列表的例子中就相当于$build$\cite{Hinze-Harper-James-2010}。
 
 \begin{Exercise}
 \Question{验证从左侧叠加也可以表示为$foldr$:
@@ -608,7 +626,7 @@ concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss) \
 map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
-    f(x): & x \oplus xs' \\
+     f(x): & x \oplus xs' \\
     \text{否则}: & xs' \\
   \end{cases})\ z\ xs) \\
 repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
