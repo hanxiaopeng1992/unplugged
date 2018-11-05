@@ -582,37 +582,49 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 
 \be
 \begin{array}{rcl}
-h \circ \lbb a \rbb = \lbb b \rbb \Leftarrow a \arrowto{h} b
+A \arrowto{h} B \Rightarrow h \circ \lbb a \rbb = \lbb b \rbb
 & \iff &
 h \circ a = b \circ \mathbf{F}(h) \\
 \end{array}
 \ee
 
-初始代数的融合律意味这什么呢？在上一章中，我们发现向下态射可以将非递归的计算，转换成在递归结构上的叠加计算。例如，当函子$\mathbf{F}$是$\mathbf{ListF}A$（其中$A$是给定的对象）时，箭头$a = [f, z]$，而初始箭头$i = [cons, nil]$，向下态射$\lbb a \rbb = foldr(f, z)$。如果记$b = [c, n]$，则融合律可以写成：
+初始代数的融合律意味这什么呢？在上一章中，我们发现向下态射可以将非递归的计算，转换成在递归结构上的叠加计算。例如，当函子$\mathbf{F}$是$\mathbf{ListF}A$（其中$A$是给定的对象）时，箭头$a = f + z$（加号表示余积），而初始箭头$i = (:) + []$，向下态射$\lbb a \rbb = foldr(f, z)$。如果记$b = c + n$，则融合律可以写成：
 
 \[
 h \circ foldr(f, z) = foldr(c, n)
 \]
 
-它说明叠加之后再进行变换可以化简为单一的叠加。如果我们进一步将向下态射$\lbb a \rbb$抽象成从$a$构造某种代数结构$\beta a$，则融合律就可以推广为：
+它说明叠加之后再进行变换可以化简为单一的叠加。1995年，高野秋彦和梅耶（Meijer）进一步将向下态射$\lbb a \rbb$抽象成从$a$构造某种代数结构$g\ a$，这样融合律就可以推广为\cite{Takano-Meijer-1995}：
 
 \be
-h \circ \beta\ a = \beta\ b \Leftarrow a \arrowto{h} b
+A \arrowto{h} B \quad \Rightarrow \quad h \circ g\ a = g\ b
 \ee
 
-这一推广的融合律被称为“酸雨定律”\footnote{由于融合律能够消除不必要的中间结果，所以最早被称为“砍伐定律”（deforestation），所以推广的融合律被幽默地称为酸雨定律（acid rain law）。}。另一方面，由于存在从初始代数$i$到$a$的箭头：$i \arrowto{\lbb a \rbb} a$，所以将$\lbb a \rbb$代入酸雨定律右侧的$h$，我们有：
+这一推广的融合律被称为“酸雨定律”\footnote{由于融合律能够消除不必要的中间结果，所以最早被称为“砍伐定律”（deforestation），所以推广的融合律被幽默地称为酸雨定律（acid rain law）。}。另一方面，由于存在从初始代数$I$到$A$的箭头：$I \arrowto{\lbb a \rbb} A$，所以将$\lbb a \rbb$代入酸雨定律左侧的$h$，并且用$i$替换酸雨定律中的$a$，用$a$替换酸雨定律中的$b$，我们有：
 
 \be
-\lbb a \rbb \circ \beta\ i = \beta\ a \Leftarrow i \arrowto{\lbb a \rbb} a
+I \arrowto{\lbb a \rbb} A \quad \Rightarrow \quad \lbb a \rbb \circ g\ i = g\ a
 \ee
 
-具体到列表的例子，把$\lbb a \rbb$替换为$foldr(f, z)$，把初始代数$i$替换为列表的初始代数$(:)/[]$。我们就得到了列表的叠加——构建融合律：
+具体到列表的例子，把$\lbb a \rbb$代换为$foldr(f, z)$；把初始代数$i$代换为列表的初始代数$(:) + []$；定义$build(g) = g\ (:)\ []$，并代入酸雨定律左侧，就得到了列表的叠加——构建融合律：
 
-\[
-foldr\ f\ z\ (\beta\ (:)\ []) = \beta f\ z
-\]
+\blre
+& \lbb a \rbb \circ g\ i = g\ a & \text{酸雨定律} \\
 
-我们发现抽象的构建$\beta$在列表的例子中就相当于$build$\cite{Hinze-Harper-James-2010}。
+\Rightarrow &
+foldr\ f\ z\ (g\ i) = g\ a & \text{列表的向下态射是叠加} \\
+
+\Rightarrow &
+foldr\ f\ z\ (g\ (:)\ []) = g\ a & \text{列表的初始代数$i$是$(:), []$} \\
+
+\Rightarrow &
+foldr\ f\ z\ (g\ (:)\ []) = g\ f\ z & \text{用$f, z$替换$a$} \\
+
+\Rightarrow &
+\pmb{foldr}\ f\ z\ (\pmb{build}\ g) = g\ f\ z & \text{反向用$build$的定义} \\
+\elre
+
+这样我们就用范畴论证明了叠加——构建融合律\cite{Hinze-Harper-James-2010}。
 
 \begin{Exercise}
 \Question{验证从左侧叠加也可以表示为$foldr$:
@@ -640,6 +652,7 @@ qsort\ [] = [] \\
 qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsort\ [a | a \in xs, x < a] \\
 \end{cases}\]
 提示：将ZF表达式\footnote{全称为“策梅罗——弗兰克尔表达式”。指集合论中$\{f(x) | x \in X, p(x), q(x), ...\}$这样的集合构建表达式。我们在下一章介绍无穷和集合论时会再次遇到它。}转换为$filter$。}
+\Question{利用范畴论验证融合律的类型限制。提示：考虑向下态射的类型。}
 \end{Exercise}
 
 \section{KMP匹配算法}
@@ -671,6 +684,9 @@ Richard Bird. ``Pearls of Functional Algorithm Design''. Cambridge University Pr
 
 \bibitem{Hinze-Harper-James-2010}
 Ralf Hinze, Thomas Harper, Daniel W. H. James. ``Theory and Practice of Fusion''. 2010, 22nd international symposium of IFL (Implementation and application of functional languages). pp.19-37.
+
+\bibitem{Takano-Meijer-1995}
+Akihiko Takano, Erik Meijer. ``Shortcut Deforestation in Calculational Form''. Functional programming languages and computer architecture. pp. 306-313. 1995.
 
 \end{thebibliography}
 
