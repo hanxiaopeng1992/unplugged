@@ -1,7 +1,7 @@
 Mathematics of Programming
 ====
 
-2018/07
+2018/11
 
 This book introduces the mathematics behind computer programming.
 
@@ -82,7 +82,7 @@ enter the folder contains the book TeX manuscript, run
 $ make
 ```
 
-This will generate unplugged-en.pdf.
+This will generate unplugged-en.pdf and unplugged-zh-cn.pdf. If you only need the Chinese version for example, you can run `make cn` instead.
 
 --
 
