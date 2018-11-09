@@ -13,6 +13,7 @@ expr d = [[[d]]]  -- single digit expr
 eval :: Expr -> Int
 eval = sum . map (product . (map dec))
 
+-- | 1, brute-force, exhausted search
 exprs :: [Int] -> [Expr]
 exprs = foldr extend []
 
@@ -20,11 +21,36 @@ extend :: Int -> [Expr] -> [Expr]
 extend d [] = [expr d]
 extend d es = concatMap (add d) es where
   add :: Int -> Expr -> [Expr]
-  add d ((ds:fs):ts) = [(((d:ds):fs):ts),
-                        (([d]:ds:fs):ts),
-                        ([[d]]:(ds:fs):ts)]
+  add d ((ds:fs):ts) = [((d:ds):fs):ts,
+                        ([d]:ds:fs):ts,
+                        [[d]]:(ds:fs):ts]
 
-solution = filter ((==100) . eval) (exprs [1..9])
+sol1 = filter ((==100) . eval) (exprs [1..9])
+
+-- | 2, improved exhausted search, filter out the invalid
+--      candidate as early as possible
+
+type Val = (Int, Int, Int, Int)   -- | (exponent,
+                                  --    value of first factor,
+                                  --    value of rest factors,
+                                  --    value of rest terms)
+
+value :: Val -> Int
+value (_, f, fs, ts) = f * fs + ts
+
+expand :: Int -> [(Expr, Val)] -> [(Expr, Val)]
+expand d [] = [(expr d, (10, d, 0, 0))]
+expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs where
+  add :: Int -> (Expr, Val) -> [(Expr, Val)]
+  add d (((ds:fs):ts), (e, f, vfs, vts)) =
+    [(((d:ds):fs):ts, (10 * e, d * e + f, vfs, vts)),
+     (([d]:ds:fs):ts, (10, d, f * vfs, vts)),
+     ([[d]]:(ds:fs):ts, (10, d, 0, f * vfs + vts))]
+
+-- | usage: sol2 [1..9]
+sol2 = map fst . filter ((==100) . eval . fst) . foldr expand []
+
+sol3 = map (\(e, v) -> (fromExpr e, v, value v)) . filter ((==100) . eval . fst) . foldr expand []
 
 -- Is it possible to simplify the below expr?
 fromExpr :: Expr -> String
