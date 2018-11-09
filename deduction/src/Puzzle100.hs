@@ -39,18 +39,16 @@ value :: Val -> Int
 value (_, f, fs, ts) = f * fs + ts
 
 expand :: Int -> [(Expr, Val)] -> [(Expr, Val)]
-expand d [] = [(expr d, (10, d, 0, 0))]
+expand d [] = [(expr d, (10, d, 1, 0))]
 expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs where
   add :: Int -> (Expr, Val) -> [(Expr, Val)]
   add d (((ds:fs):ts), (e, f, vfs, vts)) =
     [(((d:ds):fs):ts, (10 * e, d * e + f, vfs, vts)),
      (([d]:ds:fs):ts, (10, d, f * vfs, vts)),
-     ([[d]]:(ds:fs):ts, (10, d, 0, f * vfs + vts))]
+     ([[d]]:(ds:fs):ts, (10, d, 1, f * vfs + vts))]
 
--- | usage: sol2 [1..9]
-sol2 = map fst . filter ((==100) . eval . fst) . foldr expand []
-
-sol3 = map (\(e, v) -> (fromExpr e, v, value v)) . filter ((==100) . eval . fst) . foldr expand []
+-- | usage: sol2 [1..9] or map fromExpr (sol2 [1..9])
+sol2 = map fst . filter ((==100) . value . snd) . foldr expand []
 
 -- Is it possible to simplify the below expr?
 fromExpr :: Expr -> String
