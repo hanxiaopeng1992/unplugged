@@ -11,7 +11,7 @@ dec = foldl (\n d -> n * 10 + d) 0
 
 expr d = [[[d]]]  -- | single digit expr
 
--- | evaluate the expression
+-- |
 -- > eval = sum . map (product . (map dec))
 --   directly using foldr/build fusion gives:
 -- > eval = foldr (\t ts -> (foldr ((*) . fork (dec, id)) 1 t) + ts) 0
