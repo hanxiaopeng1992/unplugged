@@ -676,7 +676,7 @@ qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsor
 由于先乘除后加减，我们可以把它看作由加号分割的若干子算式。所以上述算式的等价于：
 
 \[
-sum [12, 32, 5 \times 6, 7, 8, 9]
+sum [12, 34, 5 \times 6, 7, 8, 9]
 \]
 
 这样我们定义一个算式是由加号分割的若干子算式。即$expr = [t_1, t_2, ..., t_n]$：
@@ -686,7 +686,48 @@ sum [12, 32, 5 \times 6, 7, 8, 9]
 type Expr = [Term]
 \end{lstlisting}
 
-具体到每个子算式，我们可以把它看作由乘号分割的若干因子，例如$5 \times 6 = product [5, 6]$。如果是单一的数，例如$34$，我们仍然可以把它看作$34 = product [34]$
+具体到每个子算式，我们可以把它看作由乘号分割的若干因子，例如$5 \times 6 = product [5, 6]$。如果是单一的数，例如$34$，我们仍然可以把它看作$34 = product [34]$。这样我们就可以定义由因子组成的子算式。即$term = [f_1, f_2, ..., f_m]$：
+
+\begin{lstlisting}
+type Term = [Factor]
+\end{lstlisting}
+
+最终，每个因子都可以看作若干数字组成的整数，例如由两个数字组成的34，或仅有一个数字的5。也就是说$factor = [d_1, d_2, ..., d_k]$：
+
+\begin{lstlisting}
+type Factor = [Int]
+\end{lstlisting}
+
+从若干数字求得整数是一个叠加的过程，例如$[1, 2, 3] \Rightarrow (((1 \times 10) + 2) \times 10) + 3$。我们可以将其定义为一个函数：
+
+\[
+dec = foldl\ (n\ d \mapsto n \times 10 + d)\ 0
+\]
+
+穷举法的思路是针对每一个可能的表达式，计算并检查它是否得100。为此，我们需要定义一个函数，求出一个表达式的值。根据表达式的定义，我们需要递归地求出每个子表达式（term）的值，然后将其累加起来；为了求每个子表达式的值，需要递归地求出每个因子的值，然后再累乘起来；为了求每个因子的值，需要对每个因子使用$dec$函数。
+
+\[
+eval = sum \circ map\ (product \circ (map\ dec))
+\]
+
+明显这一定义可以用上一节介绍的融合律进行优化，优化结果如下：
+
+\[
+eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork(dec, id))\ 1\ t) + ts)\ 0
+\]
+
+从这一结果可以写出一个可读性和性能更好的定义：
+
+\[
+\begin{cases}
+eval\ [] = 0 \\
+eval (t:ts) = product\ (map\ dec\ t) + eval(ts) \\
+\end{cases}
+\]
+
+\begin{Exercise}
+\Question{利用融合律化简表达式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
+\end{Exercise}
 
 \section{附录代码}
 
