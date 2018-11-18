@@ -55,7 +55,7 @@
 (setq basic:packages
       '(el-get
         cl-lib
-        color-theme
+        ;; color-theme
         ;; color-theme-tango
         graphviz-dot-mode
         smart-tab
@@ -232,8 +232,9 @@
                        )
   (setq chinese-fonts-scale (or chinese-fonts-scale 1.0))
   (setq face-font-rescale-alist `(("Microsoft Yahei" . ,chinese-fonts-scale)
-                                  ("Microsoft_Yahei" . ,chinese-fonts-scale)
+                                  ("STHeiti" . ,chinese-fonts-scale)
                                   ("微软雅黑" . ,chinese-fonts-scale)
+                                  ("STSong" . ,chinese-fonts-scale)
                                   ("WenQuanYi Zen Hei" . ,chinese-fonts-scale)))
   (require 'cl)                         ; for find if
   (setq bhj-english-font-size english-font-size)
@@ -266,7 +267,7 @@
 
 
 (defvar bhj-english-fonts '("Monaco" "Consolas" "DejaVu Sans Mono" "Monospace" "Courier New"))
-(defvar bhj-chinese-fonts '("Microsoft Yahei" "Microsoft_Yahei" "微软雅黑" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
+(defvar bhj-chinese-fonts '("Microsoft Yahei" "Microsoft_Yahei" "微软雅黑" "STSong" "STHei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
 
 (qiang-set-font
  bhj-english-fonts
