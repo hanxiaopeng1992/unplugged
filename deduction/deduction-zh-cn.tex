@@ -710,7 +710,7 @@ dec = foldl\ (n\ d \mapsto n \times 10 + d)\ 0
 eval = sum \circ map\ (product \circ (map\ dec))
 \]
 
-明显这一定义可以用上一节介绍的融合律进行优化，优化结果如下：
+明显这一定义可以用上一节介绍的融合律进行优化，我们把具体的推导过程留作练习。最终的优化结果如下：
 
 \[
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork(dec, id))\ 1\ t) + ts)\ 0
@@ -724,6 +724,8 @@ eval\ [] = 0 \\
 eval (t:ts) = product\ (map\ dec\ t) + eval(ts) \\
 \end{cases}
 \]
+
+这一定义表示，如果表达式为空，则其值为0；否则我们取出第一个子表达式，将其中的每个因子求出并乘到一起。然后再加上剩余子表达式的求值结果。
 
 \begin{Exercise}
 \Question{利用融合律化简表达式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
