@@ -759,7 +759,7 @@ add d ((ds:fs):ts) = [((d:ds):fs):ts,
 \[
 \begin{cases}
 extend\ d\ [] = [expr(d)] \\
-extend\ d\ es = concatMap\ (add d)\ es
+extend\ d\ es = concatMap\ (add\ d)\ es
 \end{cases}
 \]
 
@@ -785,6 +785,31 @@ build :: forall a. (forall b. (a -> b -> b) -> b -> b) -> [a]
 build g = g (:) []
 
 concatMap f xs = build (\c n -> foldr (\x b -> foldr c b (f x)) n xs)
+\end{lstlisting}
+
+巧算100穷举法的基本定义：
+\begin{lstlisting}
+type Expr = [Term]     -- | T1 + T2 + ... Tn
+type Term = [Factor]   -- | F1 * F2 * ... Fm
+type Factor = [Int]    -- | d1d2...dk
+
+dec :: Factor -> Int
+dec = foldl (\n d -> n * 10 + d) 0
+
+expr d = [[[d]]]  -- | single digit expr
+
+eval [] = 0
+eval (t:ts) = product (map dec t) + eval ts
+
+extend :: Int -> [Expr] -> [Expr]
+extend d [] = [expr d]
+extend d es = concatMap (add d) es where
+  add :: Int -> Expr -> [Expr]
+  add d ((ds:fs):ts) = [((d:ds):fs):ts,
+                        ([d]:ds:fs):ts,
+                        [[d]]:(ds:fs):ts]
+
+sol = filter ((==100) . eval) . foldr extend []
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
