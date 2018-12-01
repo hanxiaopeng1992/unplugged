@@ -777,22 +777,31 @@ filter\ (e \mapsto eval(e) == 100)\ (foldr\ extend\ [1..9])
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\path (0, 0)  node (9) {9}
-      (-5, 1) node (89) {89}
-      (0, 1)  node (8x9) {$8 \times 9$}
-      (5, 1)  node (8+9) {$8 + 9$}
-      (-6, 2) node (789) {789}
-      (-5, 2) node (7x89) {$7 \times 89$}
-      (-4, 2) node (7+89) {$7 + 89$}
-      (-2, 2) node (78x9) {$78 \times 9$}
-      (0, 2)  node (7x8x9) {$7 \times 8 \times 9$}
-      (1, 2)  node (7+8x9) {$7 + 8 \times 9$}
-      (4, 2)  node (78+9) {$78 + 9$}
-      (5, 2)  node (7x8+9) {$7 \times 8 + 9$}
-      (6, 2)  node (7+8+9) {$7 + 8 + 9$};
+\path (0, 0)  node[rectangle, draw] (9) {9}
+      (-4, 1) node[rectangle, draw] (89) {89}
+      (0, 1)  node[rectangle, draw] (8x9) {$8 \times 9$}
+      (4, 1)  node[rectangle, draw] (8+9) {$8 + 9$}
+      (-5.5, 2) node[rectangle, draw] (789) {789}
+      (-4, 2) node[rectangle, draw] (7x89) {$7 \times 89$}
+      (-2.5, 2) node[rectangle, draw] (7+89) {$7 + 89$}
+      (-2, 3) node[rectangle, draw] (78x9) {$78 \times 9$}
+      (-0.5, 3)  node[rectangle, draw] (7x8x9) {$7 \times 8 \times 9$}
+      (1.5, 3)  node[rectangle, draw] (7+8x9) {$7 + 8 \times 9$}
+      (2, 2)  node[rectangle, draw] (78+9) {$78 + 9$}
+      (3.5, 2)  node[rectangle, draw] (7x8+9) {$7 \times 8 + 9$}
+      (5.5, 2)  node[rectangle, draw] (7+8+9) {$7 + 8 + 9$};
 \draw[->] (9) edge (89)
           (9) edge (8x9)
-          (9) edge (8+9);
+          (9) edge (8+9)
+          (89) edge (789)
+          (89) edge (7x89)
+          (89) edge (7+89)
+          (8x9) edge (78x9)
+          (8x9) edge (7x8x9)
+          (8x9) edge (7+8x9)
+          (8+9) edge (78+9)
+          (8+9) edge (7x8+9)
+          (8+9) edge (7+8+9);
 \end{tikzpicture}
 \caption{穷举表达式的过程类似一棵生长的树}
 \end{figure}
