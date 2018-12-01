@@ -28,15 +28,17 @@ extend d es = concatMap (add d) es where
                         [[d]]:(ds:fs):ts] -- | insert "+", add a new term
 
 -- | usage: sol1 [1..9] or map str (sol1 [1..9])
+sol1 :: [Int] -> [Expr]
 sol1 = filter ((==100) . eval) . foldr extend []
 
 -- | 2, improved exhausted search, filter out the invalid
 --      candidate as early as possible
 
-type Val = (Int, Int, Int, Int)   -- | (exponent,
-                                  --    value of first factor,
-                                  --    value of rest factors,
-                                  --    value of rest terms)
+-- Express the value in 4 parts: type Val = (Int, Int, Int, Int)
+--    exponent,
+--    value of first factor,
+--    value of rest factors,
+--    value of rest terms.
 
 value (_, f, fs, ts) = f * fs + ts
 
@@ -49,6 +51,7 @@ expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs where
      ([[d]]:(ds:fs):ts, (10, d, 1, f * vfs + vts))]
 
 -- | usage: sol2 [1..9] or map str (sol2 [1..9])
+sol2 :: [Int] -> [Expr]
 sol2 = map fst . filter ((==100) . value . snd) . foldr expand []
 
 -- Is it possible to simplify the below expr?

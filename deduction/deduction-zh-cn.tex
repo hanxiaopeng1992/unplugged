@@ -667,6 +667,8 @@ qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsor
 
 这看起来像是一道小学生的数学竞赛题目。如果要求找到所有可能的解法，就是一道编程趣题。最简单直接的方法，就是利用计算机进行穷举，每两个数字间一共有三种选择：1）什么都不插入；2）插入加号；3）插入乘号。由于九个数字间一共有8个空，所以共有$3^8 = 6561$种方法。我们只要让计算机逐一检查这6561种方案，看看哪些最终得数是100就可以了。
 
+\subsection{穷举法}
+
 为此，我们先把一个由数字、加法、乘法组成的式子定义出来。考虑刚才的算式：
 
 \[
@@ -739,11 +741,11 @@ expr(d) = [[[d]]]
 
 接下来，考虑一般情形。我们的策略是从右侧开始，不断取出数字9, 8, 7, ...来扩展表达式。假设我们已经用数字构造了一个表达式集合$[e_1, e_2, ..., e_n]$，此时如果取出下一个数字$d$，如何扩展出所有的合法表达式呢？我们在本节的开头说过，每两个数字间一共由三种选择：1）什么都不插入；2）插入加号；3）插入乘号。我们来看看对于表达式集合中的任意$e_i$这三种选择的含义分别是什么。将$e_i$展开表示成若干子表达式的和$e_i = t_1 + t_2 + ...$，其中第一个子表达式$t_1$表示为若干因子的积$t_1 = f_1 \times f_2 \times ...$。
 
-\begin{itemize}
+\begin{enumerate}
 \item 什么都不插入意味着将数字$d$直接添加到$e_i$的第一个子表达式中的第一个因子的前面。这样由$d:f_1$组成一个新的因子。例如$e_i$是表达式$8 + 9$，数字$d$是7，将7写在$8+9$的前面而什么符号都不插入，这样就得到新表达式$78 + 9$；
 \item 插入乘号意味着用数字$d$构成一个因子$[d]$，然后将它添加到$e_i$中第一个字表达式的前面。这样由$[d]:t_1$组成一个新的子表达式。具体到$8 + 9$这个例子，我们把7写在它的前面，然后在7和8之间插入一个乘号，这样就得到新表达式$7 \times 8 + 9$；
 \item 插入加号意味着用数字$d$构成一个子表达式$[[d]]$，然后将将它添加到$e_i$的最前面，组成新的表达式$[[d]]:e_i$。具体到$8 + 9$这个例子，我们把7写在它的前面，然后在7和8之间插入一个加号，这样就得到新表达式$7 + 8 + 9$；
-\end{itemize}
+\end{enumerate}
 
 把这三种情形转换为定义就得到了下面的函数：
 
@@ -769,6 +771,8 @@ extend\ d\ es = concatMap\ (add\ d)\ es
 filter\ (e \mapsto eval(e) == 100)\ (foldr\ extend\ [1..9])
 \label{eq:puzzle100-basic}
 \ee
+
+\subsection{改进}
 
 我们能继续改进这个穷举法么？观察用1到9这些数字从右向左穷举表达式的过程。首先我们写下数字9，在添加数字8时，可能产生3个表达式，分别是：89，$8 \times 9 = 72$，和8 + 9 = 17。接下来添加7，表达式789显然大于100，可以立即丢弃。并且我们确信任何在789左侧扩展出的新表达式也都不可能等于100，因此也可以丢弃。这样就避免了无谓的计算。同样$7 \times 89$也大于100，可以丢弃并停止向左扩展。只有7+89是可能的候选表达式。接下来我们扩展出$78 \times 9$，由于它大于100，因此被丢弃并停止扩展……
 
@@ -806,10 +810,78 @@ filter\ (e \mapsto eval(e) == 100)\ (foldr\ extend\ [1..9])
 \caption{穷举表达式的过程类似一棵生长的树}
 \end{figure}
 
+为了能够一边扩展表达式，一边快速计算当前表达式的值，我们可以将表达式的值分离成三个部分：第一个子表达式中的第一个因子的值$f$，除去$f$外剩余因子的乘积$v_{fs}$，以及除去第一个子表达式外，剩余所有子表达式的和$v_{ts}$。有了这三个部分，我们就可以计算出整个表达式的值$f \times v_{fs} + v_{ts}$。
+
+此时，如果继续向左扩展一个数字$d$，对应三种选择，表达式及其值的更新分别如下：
+
+\begin{enumerate}
+\item 不插入任何符号，将$d$添加到第一个因子前作为最高位数字。表达式的值等于：$(d \times 10^{n+1} + f) \times v_{fs} + v_{ts}$，其中$n$是因子$f$的位数。因此值的三个部分更新为：$f' = d \times 10^{n+1} + f$，$v_{fs}$和$v_{ts}$保持不变。
+\item 插入乘号，将$d$作为第一个子表达式中的第一个因子。表达式的值等于：$d \times f \times v_{fs} + v_{ts}$。因此值的三个部分更新为：$f' = d, v_{fs'} = f \times v_{fs}$，$v_{ts}$不变。
+\item 插入加号，将$d$作为新的第一个子表达式。表达式的值等于：$d + f \times v_{fs} $。因此值的三个部分更新为：$f' = d, v_{fs'} = 1, v_{ts'} = f \times v_{fs} + v_{ts}$。
+\end{enumerate}
+
+为了方便第一条中$10^{n+1}$的计算，我们可以把指数也记录下来作为表达式值的第四个部分。这样表达式的值就可以表示为一个四元组$(e, f, v_{fs}, v_{ts})$。从四元组计算表达式值的定义为：
+
+\be
+value(e, f, v_{fs}, v_{ts}) = f \times v_{fs} + v_{ts}
+\ee
+
+这样在扩展表达式时，我们可以一边扩展，一边更新四元组，并将结果成对放在一起：
+
+\be
+\begin{array}{rrl}
+add & d\ (((ds:fs):ts), & (e, f, v_{fs}, v_{ts})) = \\
+&  [(((d:ds):fs):ts, & (10 \times e, d \times e + f, v_{fs}, v_{ts})), \\
+&   (([d]:ds:fs):ts, & (10, d, f \times v_{fs}, v_{ts})), \\
+&   ([[d]]:(ds:fs):ts, & (10, d, 1, f \times v_{fs} + v_{ts}))] \\
+\end{array}
+\ee
+
+对于每一对表达式和四元组，我们利用$value$函数，将四元组的值求出，如果大于100就立即丢弃，停止对其继续扩展。然后将候选表达式和四元组对连接成一个列表。根据这一思路，我们将之前定义的$extend$重新定义为：
+
+\be
+\begin{cases}
+expand\ d\ [] = [(expr(d), (10, d, 1, 0))] \\
+expand\ d\ evs = concatMap\ ((filter\ ((\leq 100) \circ value \circ snd)) \circ (add\ d))\ evs\\
+\end{cases}
+\ee
+
+现在我们可以对$expand$进行叠加，从1到9扩展出所有小于等于100的候选表达式和四元组。最后我们计算四元组的值，然后选出所有恰好等于100的表达式。
+
+\be
+map\ fst \circ filter\ ((=100) \circ value \circ snd)\ (foldr\ expand\ []\ [1, 2, ..., 9])
+\ee
+
+在本章附录中，我们给出了根据这一定义编写的程序。下面列出了等于100的所有7个表达式：
+
+\[
+\begin{array}{rl}
+1: & 1 \times 2 \times 3 + 4 + 5 + 6 + 7 + 8 \times 9 \\
+2: & 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 \times 9 \\
+3: & 1 \times 2 \times 3 \times 4 + 5 + 6 + 7 \times 8 + 9 \\
+4: & 12 + 3 \times 4 + 5 + 6 + 7 \times 8 + 9 \\
+5: & 1 + 2 \times 3 + 4 + 5 + 67 + 8 + 9 \\
+6: & 1 \times 2 + 34 + 5 + 6 \times 7 + 8 + 9 \\
+7: & 12 + 34 + 5 \times 6 + 7 + 8 + 9 \\
+\end{array}
+\]
+
 \begin{Exercise}
 \Question{利用融合律化简表达式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
 \Question{如何从左侧扩展出所有的表达式？}
+\Question{下面定义可以将表达式翻译为字符串：
+\[
+str = (join\ ``+'') \circ (map\ ((join\ ``*'') \circ (map\ (show \circ dec))))
+\]
+其中$show$可以将数字转换为字符串。函数$join(c, s)$将一组字符串$s$用$c$连接起来，例如$join(``,'', [``abc'', ``def'']) = ``abc,def''$。利用融合律化简$str$的定义。
+}
 \end{Exercise}
+
+\section{小节和扩展阅读}
+
+程序推导是数学推导的一种特殊情况。通过这一手段，我们可以从直观的、未经化简或优化的定义出发，利用一套形式化的方法和定理，一步一步进行变换。从而最终得到更加简洁的、优化的结果。伯德在他的《函数式算法设计珠玑》\cite{Bird-2010}中给出了大量的例子，甚至推导出了字符串匹配的博耶尔——摩尔算法和KMP算法。
+
+程序推导的正确性根植于数学。为此需要一套完整的理论，能够将计算机程序形式化、数学化。而不是仅仅依赖于人的直觉。抽象代数和范畴理论正是帮助我们对计算机编程进行形式化的强大工具。叠加——构建融合律就是这样的一个典型的例子。在1993年的论文\cite{GLPJ-1993}中，人们发现了系统化简程序的一个工具。随着范畴理论的引入，一系列融合律通过代数和余代数被发展出来\cite{Hinze-Harper-James-2010}。
 
 \section{附录代码}
 
@@ -823,7 +895,7 @@ build g = g (:) []
 concatMap f xs = build (\c n -> foldr (\x b -> foldr c b (f x)) n xs)
 \end{lstlisting}
 
-巧算100穷举法的基本定义：
+用穷举法巧算100的基本定义：
 \begin{lstlisting}
 type Expr = [Term]     -- | T1 + T2 + ... Tn
 type Term = [Factor]   -- | F1 * F2 * ... Fm
@@ -846,6 +918,20 @@ extend d es = concatMap (add d) es where
                         [[d]]:(ds:fs):ts]
 
 sol = filter ((==100) . eval) . foldr extend []
+\end{lstlisting}
+
+用改进的穷举法解决巧算100问题：
+\begin{lstlisting}
+value (_, f, fs, ts) = f * fs + ts
+
+expand d [] = [(expr d, (10, d, 1, 0))]
+expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs where
+  add d (((ds:fs):ts), (e, f, vfs, vts)) =
+    [(((d:ds):fs):ts, (10 * e, d * e + f, vfs, vts)),
+     (([d]:ds:fs):ts, (10, d, f * vfs, vts)),
+     ([[d]]:(ds:fs):ts, (10, d, 1, f * vfs + vts))]
+
+sol = map fst . filter ((==100) . value . snd) . foldr expand []
 \end{lstlisting}
 
 \ifx\wholebook\relax \else
