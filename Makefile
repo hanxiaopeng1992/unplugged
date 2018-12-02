@@ -16,9 +16,12 @@ endif
 SRC = common unplugged
 SRC_EN = $(foreach file, $(SRC), $(file)-en.tex)
 SRC_CN = $(foreach file, $(SRC), $(file)-zh-cn.tex)
-CHAPTERS =
-CHAPTER_OBJS = $(foreach file, $(CHAPTERS), $(file).pdf)
-CHAPTER_SRCS = $(foreach file, $(CHAPTERS), $(file).tex)
+CHAPTERS = nat/nat recursion/recursion algebra/algebra category-theory/category \
+deduction/deduction
+CHAPTER_OBJ_EN = $(foreach file, $(CHAPTERS), $(file)-en.pdf)
+CHAPTER_OBJ_CN = $(foreach file, $(CHAPTERS), $(file)-zh-cn.pdf)
+CHAPTER_SRC_EN = $(foreach file, $(CHAPTERS), $(file)-en.tex)
+CHAPTER_SRC_EN = $(foreach file, $(CHAPTERS), $(file)-zh-cn.tex)
 
 all: cn en
 
@@ -35,13 +38,13 @@ image:
 index:
 	makeindex $(BOOK)
 
-$(OBJ_CN): image $(SRC_CN) $(CHAPTER_OBJS)
+$(OBJ_CN): image $(SRC_CN) $(CHAPTER_OBJ_CN)
 	$(LATEX) $(BOOK_CN).tex
 	makeindex $(BOOK_CN).idx
 	$(LATEX) $(BOOK_CN).tex
 	$(DVIPDFM) $(BOOK_CN)
 
-$(OBJ_EN): image $(SRC_EN) $(CHAPTER_OBJS)
+$(OBJ_EN): image $(SRC_EN) $(CHAPTER_OBJ_EN)
 	$(LATEX) $(BOOK_EN).tex
 	makeindex $(BOOK_EN).idx
 	$(LATEX) $(BOOK_EN).tex
