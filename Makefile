@@ -29,8 +29,9 @@ cn: $(OBJ_CN)
 
 en: $(OBJ_EN)
 
+# only build the dependant images, but not the PDF for performance consideration
 %.pdf : %.tex
-	$(MAKE) -C $(@D) tex
+	$(MAKE) -C $(@D) img
 
 image:
 	$(MAKE) -C img
