@@ -1,5 +1,5 @@
 SRC = deduction
-OBJ = $(SRC)-en.pdf
+# OBJ = $(SRC)-en.pdf  # uncomment this line when EN is ready.
 OBJ_CN = $(SRC)-zh-cn.pdf
 TEX = xelatex
 
