@@ -1,4 +1,4 @@
-SRC = nat
+SRC = recursion
 OBJ = $(SRC)-en.pdf
 OBJ_CN = $(SRC)-zh-cn.pdf
 TEX = xelatex
