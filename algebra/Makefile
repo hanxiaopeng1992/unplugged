@@ -1,5 +1,5 @@
 SRC = algebra
-# OBJ = $(SRC)-en.pdf  # uncomment this line when EN version is ready.
+OBJ = $(SRC)-en.pdf
 OBJ_CN = $(SRC)-zh-cn.pdf
 TEX = xelatex
 
