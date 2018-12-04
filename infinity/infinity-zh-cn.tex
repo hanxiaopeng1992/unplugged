@@ -1,0 +1,48 @@
+\ifx\wholebook\relax \else
+
+\documentclass{article}
+
+\input{../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{无穷}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{无穷}{编程的数学原理}
+
+\ifx\wholebook\relax
+\chapter{无穷}
+\numberwithin{Exercise}{chapter}
+\fi
+
+% \epigraph{3表示2+1，4表示3+1。所以接下来（虽然证明很长），4等于2+2。因此, 数学知识不再是神秘的。}{——罗素}
+
+% ... mathematical knowledge ... is, in fact, merely verbal knowledge. "3" means "2+1", and "4" means "3+1". Hence it follows (though the proof is long) that "4" means the same as "2+2". Thus mathematical knowledge ceases to be mysterious.  -- Bertrand Russell
+
+%% \begin{wrapfigure}{R}{0.4\textwidth}
+%%  \centering
+%%  \includegraphics[scale=0.5]{img/penrose-triangle.eps}
+%%  \captionsetup{labelformat=empty}
+%%  \caption{彭罗斯三角形}
+%%  \label{fig:Penrose-triangle}
+%% \end{wrapfigure}
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi

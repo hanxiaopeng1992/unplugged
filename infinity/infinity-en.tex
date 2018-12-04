@@ -1,0 +1,37 @@
+\ifx\wholebook\relax \else
+
+\documentclass{article}
+
+\input{../common-en.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{Infinity}
+
+\author{Liu Xinyu
+\thanks{{\bfseries Liu Xinyu} \newline
+  Email: liuxinyu95@gmail.com}}
+
+\maketitle
+\fi
+
+\markboth{Infinity}{Mathematics of Programming}
+
+\ifx\wholebook\relax
+\chapter{Infinity}
+\numberwithin{Exercise}{chapter}
+\fi
+
+this is the placeholder for the EN draft.
+
+\ifx\wholebook\relax \else
+\begin{thebibliography}{99}
+
+\end{thebibliography}
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
