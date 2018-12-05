@@ -1,4 +1,4 @@
-IMG_OBJECTS =
+IMG_OBJECTS = circle-limit-IV-1960 circle-limit-III-1959
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
