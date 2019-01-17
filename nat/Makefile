@@ -7,6 +7,10 @@ TEX = xelatex
 
 all: tex
 
+cn: $(OBJ_CN)
+
+en: $(OBJ)
+
 image:
 	$(MAKE) -C img
 
