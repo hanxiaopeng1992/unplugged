@@ -309,7 +309,7 @@ int a[10];
 为此，人们提出了惰性求值的概念。所谓惰性求值，就是并不立即计算一个变量的值，而是把计算推迟到需要这个值的时候。具体到自然数的例子，根据第一章介绍的皮亚诺公理，任给一个自然数$n$，都存在它的后继$n+1$。而第一个自然数是0。这样自然数就可以表示为：
 
 \[
-iterate(n \mapsto n + 1, 0)
+N = iterate(n \mapsto n + 1, 0)
 \]
 
 其中$iterate$的定义为：
@@ -331,7 +331,7 @@ iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
 \end{array}
 \]
 
-如果没有惰性求值，上述过程就一会一直计算下去，永不终止。这是无法用来解决实际问题的。为此我们必须把链表的链接操作“:”实现为惰性的，其中一种方法就是利用第二章介绍的$\lambda$表达式：
+如果没有惰性求值，上述过程就一会一直计算下去，永不终止。这是无法用来解决实际问题的。为此我们必须把链表的链接操作实现为惰性的，其中一种方法就是利用第二章介绍的$\lambda$表达式：
 
 \[
 x : xs = cons(x, () \mapsto xs)
@@ -346,8 +346,52 @@ iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
 \end{array}
 \]
 
+计算到此为止，而不会继续进行下去。结果是一个列表，表中第一个元素是0，下一个元素是一个$\lambda$表达式。如果想求出后继的元素，我们必须强制让列表求值。
 
-潜无穷的例子，流与惰性求值
+\[
+next(cons(x, e)) = e()
+\]
+
+这样，将$next$应用到$cons(0, () \mapsto iterate(succ, succ(0)))$就得到：
+
+\[
+\begin{array}{cll}
+  & next(cons(0, () \mapsto iterate(succ, succ(0)))) & \\
+= & iterate(succ, succ(0)) & next\text{的定义} \\
+= & iterate(succ, 1) & succ\text{的定义} \\
+= & 1 : iterate(succ, succ(1)) & iterate\text{的定义} \\
+= & cons(1, () \mapsto iterate(succ, succ(1))) & \text{惰性链接}
+\end{array}
+\]
+
+计算到这里又停了下来。不断对$N$计算$next$，就源源不断的获得了一个一个的自然数。人们称这种模型为“流”（Stream），用它来表示潜无穷。我们甚至可以定义一个函数从潜无穷的流中取得前$m$个自然数。
+
+\[
+\begin{array}{l}
+take\ 0\ \_\ = [] \\
+take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
+\end{array}
+\]
+
+例如$take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$。有些编程环境，所有的求值默认都是惰性的，在这样的环境中，我们甚至可以直接拿潜无穷流进行复杂的计算。例如下面是另一种自然数的定义方法：
+
+\[
+N = 0 : map(succ, N)
+\]
+
+它的含义是，$N$是一个潜无穷，代表自然数。第一个自然数是0，从第二个自然数开始，后面每个自然数，都等于前一个自然数的后继。如同下面的表格：
+
+\begin{tabular}{|r|r|l|l|l|l|}
+\hline
+                 & $N$: & 0 & 1 & 2 & ... \\
+\hline
+                 & $map(succ, N)$: & $succ(0)$ & $succ(1)$ & $succ(2)$ & ... \\
+\hline
+$0 : map(succ, N)$: & 0 & 1 & 2 & 3 & ... \\
+\hline
+\end{tabular}
+
+TODO: Fibonacci sequence.
 
 流的范畴论解释
 
