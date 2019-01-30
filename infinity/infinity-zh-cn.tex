@@ -337,6 +337,16 @@ iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
 x : xs = cons(x, () \mapsto xs)
 \]
 
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+ \centering
+ \includegraphics[scale=0.5]{img/stream-cons.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{链表指向的下一个节点是一个$lambda$表达式，强制求值后产生一个新节点}
+ \label{fig:stream-cons}
+%\end{wrapfigure}
+\end{figure}
+
 这样，当把$x$和$xs$链接到一起的时候，我们并不会求出$xs$的值，而是把它放入一个$\lambda$表达式中，推迟到将来再求值。这样改动后，产生自然数时就变成：
 
 \[
