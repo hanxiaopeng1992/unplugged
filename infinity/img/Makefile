@@ -22,8 +22,9 @@ $(IMG_OBJECTS): % : %.eps
 
 # pattern rule matching
 # Makefile auto variable: $< first prerequisite, $@ target
+# -flattern deal with the transparent color
 %.eps : %.png
-	convert $< $@
+	convert -flatten $< $@
 
 %.eps : %.jpg
 	convert $< $@
