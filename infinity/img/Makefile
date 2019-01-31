@@ -1,6 +1,6 @@
 IMG_OBJECTS = circle-limit-IV-1960 circle-limit-III-1959 Archimedes Zeno \
 Achilles-paradox Dichotomy-paradox Arrow-paradox Moving-rows-paradox Aristotle \
-Archimedes-book pi-exhaustion stream-cons
+Archimedes-book pi-exhaustion stream-cons circles-paradox Cantor Cantor-1870
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
