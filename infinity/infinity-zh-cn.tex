@@ -438,22 +438,37 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
 \begin{figure}[htbp]
 %\begin{wrapfigure}{R}{0.4\textwidth}
  \centering
- \includegraphics[scale=0.5]{img/Hilbert-hotel-1.eps}
+ \includegraphics[scale=0.4]{img/Hilbert-hotel-1.eps}
  %\captionsetup{labelformat=empty}
  \caption{希尔伯特无穷旅馆的第一天}
  \label{fig:Hilbert-hotel-1}
 %\end{wrapfigure}
 \end{figure}
 
+如图\ref{fig:Hilbert-hotel-1}所示，在第一天的故事中，我们让每个客人搬到下一个房间去，从而空出1号房间。实际上，这建立了图中上下两行灰色圆形之间的一种对应关系$n \leftrightarrow n+1$。这告诉我们一个有趣的事实，无穷加上1还是无穷。不仅如此，即使来了有限多名$k$位新客人，我们可以重复这一“腾笼换鸟”的过程$k$次，仍然能够让满员的宾馆住下他们。这相当于：
+
+\bean
+\infty + 1 = \infty \\
+\infty + k = \infty \\
+\eean
+
 \begin{figure}[htbp]
 %\begin{wrapfigure}{R}{0.4\textwidth}
  \centering
- \includegraphics[scale=0.5]{img/Hilbert-hotel-2.eps}
+ \includegraphics[scale=0.4]{img/Hilbert-hotel-2.eps}
  %\captionsetup{labelformat=empty}
  \caption{希尔伯特无穷旅馆的第二天}
  \label{fig:Hilbert-hotel-2}
 %\end{wrapfigure}
 \end{figure}
+
+第二天的故事如图\ref{fig:Hilbert-hotel-2}所示，我们实际上建立了自然数到偶数间的一一映射，从而空出了无穷多间奇数房间，而这些空房间又和旅游图的无穷多位客人之间建立了一一映射，这恰好是奇数到自然数间的一一映射。第二天的故事告诉我们，无穷加上无穷仍然是无穷。
+
+\[
+\infty + \infty = \infty
+\]
+
+尽管符号相同，我们还是不禁会问，等号左边的无穷和等号右边的无穷是相同的么？无穷之间还能再比较大小么？我们稍后会看到，正是这个问题，导致了康托尔的进一步研究。在希尔伯特旅馆的问题中，这些无穷之间都可以建立一一对应关系，因此它们是“相等”的。我们把和自然数一一对应的无穷叫作可数无穷。
 
 
 一一对应与无穷集合
