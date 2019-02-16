@@ -482,21 +482,23 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
     \path (\x, -0.25) node[left] {\x};
   \foreach \y in {1, 2, 3, 4, 5}
     \path (-0.25, \y) node[below] {\y};
-  \foreach \i / \x / \y in {0/0/0, 1/1/0, 2/0/1}{
+  \foreach \i / \x / \y in {0/0/0, 1/1/0, 2/0/1, 3/0/2, 4/1/1, 5/2/0, 6/3/0, 7/2/1, 8/1/2, 9/0/3, 10/0/4}{
     \path (\x, \y) coordinate (N\i);
     \fill (N\i) circle (1pt) node[above right=3pt of N\i] {\i};
   }
-  %\draw[->] (N0) -- (N1) -- (N2);
-  \foreach \i in {0, 1} {
+  \foreach \i in {0,...,9} {
     \pgfmathsetmacro{\j}{\i+1}
     \draw[-latex, thick] (N\i) to (N\j);
   }
 \end{tikzpicture}
-\caption{集合间的一一对应}
+\caption{对无穷个无穷的一种编号方案}
 \label{fig:NNtoN}
 \end{figure}
 
-图
+图\ref{fig:NNtoN}给出了一种编号方案。为了方便，我们让每个旅游团的第一个客人编号为0，第二个客人编号为1，第三个客人编号为2……，我们把已经在旅馆中入住的客人编号为0号旅游团，新来的第一个旅游团编号为1号团，第二个旅游团编号为2号团……对应到这个图中，每个客人就对应无穷伸展的方格子中的一个点。同样我们让旅馆的房间号也从0开始。
+
+现在我们按照这个顺序安排入住：第0号团的第0号客人入住0号房间，第0号团的第1号客人入住1号房间，第1号团的第0号客人入住第2号房间，第2号团的第0号客人入住3号房间，第1号团的第1号客人入住4号房间……这样按照图中往返画“之”字形，就可以逐一、并且毫无遗漏地安排每个客人入住。
+
 
 \subsection{一一对应与无穷集合}
 
