@@ -815,8 +815,34 @@ fib !! 1500
 \end{theorem}
 
 \begin{proof}
-我们分两步证明。首先证明$|S| \leq |2^S|$。
+我们分两步证明。首先证明$|S| \leq |2^S|$。对于任一$x$，令$f(x) = \{x\}$，也就是仅含有$x$唯一元素的集合。对于不同的元素$x_1 \neq x_2$，自然有$\{x_1\} \neq \{x_2\}$，即$f(x_1) \neq f(x_2)$。从而映射$S \arrowto{f} 2^S$是一单射。因此有
+\[
+  |S| \leq |2^S|
+\]
+
+第二步，我们证明$|S| \neq |2^S|$。采用反证法，假设等号成立。则存在一一映射$S \arrowto{\phi} 2^S$，使得对任一$x \in S$，都有$\phi(x) \in 2^S$。即$\phi(x)$是$S$的某个子集，所以$\phi(x) \subseteq S$。现在要问：$x$是否属于$\phi(x)$？有两种可能：一种是$x \in \phi(x)$，也可能是$x \notin \phi(x)$。我们把所有$x$不属于$\phi(x)$的元素放在一起构造一个新集合$S_0$：
+
+\be
+S_0 = \{ x | x \in S, \text{并且} x \notin \phi(x)\}
+\label{eq:def-s0}
+\ee
+
+显然$S_0$是$S$的子集，即$S_0 \subseteq S$，因此$S_0 \in 2^S$。由于$\phi$是一一映射，所以必然存在一个$x_0$，使得$\phi(x_0) = S_0$。根据逻辑中的排中律，要么$x_0 \in S_0$，要么$x_0 \notin S_0$，二者必居其一，且仅有一个成立。
+
+接下来分情况讨论。如果$x_0 \in S_0$成立，根据式(\ref{eq:def-s0})中$S_0$的定义，应该有$x_0 \notin \phi(x_0)$，由于$\phi(x_0) = S_0$，所以$x_0 \notin S_0$。
+
+如果$x_0 \notin S_0$，因为$S_0 = \phi(x_0)$，所以得到$x_0 \notin \phi(x_0)$。这样根据$S_0$的定义(\ref{eq:def-s0})，又应该有$x_0 \in S_0$。
+
+这样不论$x_0$是否属于$S_0$，都导致矛盾。这说明我们最初的假设$S$到$2^S$间存在一一映射是错误的。所以不等式$S \neq 2^S$成立。
+
+由这两步的结果：$|S| \leq |2^S|$，并且$S \neq 2^S$，我们得到了康托尔定理的结论：
+
+\[
+  |S| < 2^S
+\]
 \end{proof}
+
+证明的第二部分，不由让我们联想起了著名的罗素悖论：令$S$为所有不属于自己的集合构成的集合，问$S$是否属于自己？我们将在下一章讲述罗素悖论和哥德尔不完全性定理。
 
 % Mathematicians aren't satisfied because they know there are no solutions up to four million or four billion, they really want to know that there are no solutions up to infinity. -- Andrew Wiles
 
