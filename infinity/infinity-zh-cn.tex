@@ -718,9 +718,9 @@ y = 0.01 & 7 & 06 & 8 & 04 & ... \\
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.8]{img/Dedekind-cut.eps}
+ \includegraphics[scale=0.6]{img/Dedekind-cut.eps}
  %\captionsetup{labelformat=empty}
- \caption{用戴徳金分割构造的$\sqrt{2}$(此图需重画)}
+ \caption{用戴徳金分割构造的$\sqrt{2}$}
  \label{fig:Dedekind-cut}
 \end{figure}
 
@@ -731,6 +731,10 @@ y = 0.01 & 7 & 06 & 8 & 04 & ... \\
 从毕达哥拉斯学派的希帕索斯发现无理数到戴徳金最终给出实数的定义，时光经历了两千多年\footnote{同一年，魏尔斯特拉斯通过有界单调序列理论，康托尔通过有理数序列理论也都从有理数出发定义出无理数，从而构筑起了实数理论。可谓殊途同归。}。在戴徳金分割中，总是把数分成两个完成了的无穷整体，即无穷集合。这是对实无穷概念的运用和发展。
 
 \subsection{超限数和连续统假设}
+
+为了寻找更大的无穷，康托尔首先考虑了幂集。所谓幂集，就是一个集合的所有子集构成的集合。例如集合$A = \{a, b\}$，则它的幂集包含$\{\phi, \{a\}, \{b\}, \{a, b\}\}$一共四个元素。而有3个元素集合的幂集包含8个子集。一个集合中每个元素都可以被选中或者跳过以构造子集，这样具有$n$个元素的集合的幂集大小为$2^n$。显然有限集的幂集元素个数大于原集合。
+
+康托尔在1891年证明了，当推广到无限集时，这一结论也成立。所以幂集的基数总是大于原集合的基数。这一定理现在被人们称作\textbf{康托尔定理}。这一证明并不困难。读者可以参考本章的附录，了解其详细过程。
 
 \section{无穷与艺术}
 无穷与艺术
@@ -804,9 +808,17 @@ fib !! 1500
 187122583354898000
 \end{lstlisting}
 
+\section{附录：康托尔定理的证明}
+
+\begin{theorem}
+\textbf{康托尔定理}：对于任意集合都有$|S| < |2^S|$，其中$|S|$表示集合$S$的基数，$2^S$表示$S$的幂集，即$S$的所有子集组成的集合。
+\end{theorem}
+
+\begin{proof}
+我们分两步证明。首先证明$|S| \leq |2^S|$。
+\end{proof}
+
 % Mathematicians aren't satisfied because they know there are no solutions up to four million or four billion, they really want to know that there are no solutions up to infinity. -- Andrew Wiles
-
-
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
