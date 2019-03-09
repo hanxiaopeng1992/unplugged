@@ -1,14 +1,14 @@
 IMG_OBJECTS = circle-limit-IV-1960 circle-limit-III-1959 Archimedes Zeno \
 Achilles-paradox Dichotomy-paradox Arrow-paradox Moving-rows-paradox Aristotle \
 Archimedes-book pi-exhaustion stream-cons circles-paradox Cantor Cantor-1870 \
-Hilbert-hotel-1 Hilbert-hotel-2 bijection PWW Dedekind
+Hilbert-hotel-1 Hilbert-hotel-2 bijection PWW Dedekind Dedekind-cut
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
 #suffix replacement, replace .dot with .png
 PNG_OBJECTS = $(DOT_SOURCES:.dot=.png)
 
-.SUFFIXES: .eps .jpg .jpeg .png .gif .dot .ps
+.SUFFIXES: .eps .jpg .jpeg .png .gif .dot .ps .svg
 
 .PHONY: all
 
@@ -25,6 +25,9 @@ $(IMG_OBJECTS): % : %.eps
 # Makefile auto variable: $< first prerequisite, $@ target
 # -flattern deal with the transparent color
 %.eps : %.png
+	convert -flatten $< $@
+
+%.eps : %.svg
 	convert -flatten $< $@
 
 %.eps : %.jpg
