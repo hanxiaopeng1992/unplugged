@@ -434,7 +434,21 @@ F-态射是F-代数或F-余代数对象间的箭头：
 即$\beta \circ f = \mathbf{F}(f) \circ \alpha$
 \end{definition}
 
-F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。
+F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F-代数中，我们关心的是初始代数。对称地，在F-余代数中，我们关心的是终止余代数。所谓终止余代数是F-余代数范畴中的终止对象，记为$(T, \mu)$。对于任何其它代数$(A, f)$，存在唯一的态射$m$使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{F} T & \mathbf{F} A \\
+    T & A \\};
+  \path[-stealth]
+    (m-1-2) edge node [above] {$\mathbf{F}(m)$} (m-1-1)
+    (m-2-1) edge node [left] {$\mu$} (m-1-1)
+    (m-2-2) edge node [right] {$f$} (m-1-2)
+    (m-2-2) edge node [below] {$m$} (m-2-1);
+\end{tikzpicture}
+\end{center}
 
 \section{实无穷的思考}
 亚里士多德的影响是深远的。在两千多年的时间里，数学家和哲学家们不断思考无穷的本质，大多数人能够接受潜无穷的观念。但是对于实无穷，却产生了严重的分歧。在很长一段时间，人们认为实无穷就是无所不能的上帝，或者只有上帝才能掌握实无穷。一些对实无穷的尝试带来的是令人困惑的矛盾结果。例如，假设全体自然数是一个实无穷。由于自然数从头开始，间隔着一个偶数一个奇数，人们自然认为全体偶数是全体自然数的一半。可是任何自然数乘以2，就得到了一个偶数，反之，任何偶数除以2，也对应这个一个自然数。这样看来全体自然数和全体偶数存在一一对应关系。于是这两个实无穷是同样多的。究竟是自然数多还是偶数多呢？
