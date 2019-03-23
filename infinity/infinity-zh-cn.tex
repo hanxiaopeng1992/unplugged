@@ -392,6 +392,50 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
 \Question{用叠加操作定义$iterate$。}
 \end{Exercise}
 
+\subsection{余代数和无穷流$\bigstar$}
+
+本小节给出无穷流的数学解释，它需要使用第四章范畴论中介绍的余代数概念。一般的读者可以跳过直接阅读下一节关于实无穷的思考。首先我们回顾一下余代数和F-态射的概念。
+
+\begin{definition}
+如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
+
+\[
+  A \arrowto{\alpha} \mathbf{F} A
+\]
+
+构成一对元组$(A, \alpha)$叫做F-余代数。其中$A$叫做携带对象。
+\end{definition}
+
+我们可以把F-余代数$(A, \alpha)$本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。两个对象间的箭头定义如下：
+
+\begin{definition}
+F-态射是F-代数或F-余代数对象间的箭头：
+
+\[
+  (A, \alpha) \longrightarrow (B, \beta)
+\]
+
+如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    A & \mathbf{F} A \\
+    B & \mathbf{F} B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\alpha$} (m-1-2)
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    (m-1-2) edge node [right] {$\mathbf{F}(f)$}   (m-2-2)
+    (m-2-1) edge node [below] {$\beta$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+即$\beta \circ f = \mathbf{F}(f) \circ \alpha$
+\end{definition}
+
+F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。
+
 \section{实无穷的思考}
 亚里士多德的影响是深远的。在两千多年的时间里，数学家和哲学家们不断思考无穷的本质，大多数人能够接受潜无穷的观念。但是对于实无穷，却产生了严重的分歧。在很长一段时间，人们认为实无穷就是无所不能的上帝，或者只有上帝才能掌握实无穷。一些对实无穷的尝试带来的是令人困惑的矛盾结果。例如，假设全体自然数是一个实无穷。由于自然数从头开始，间隔着一个偶数一个奇数，人们自然认为全体偶数是全体自然数的一半。可是任何自然数乘以2，就得到了一个偶数，反之，任何偶数除以2，也对应这个一个自然数。这样看来全体自然数和全体偶数存在一一对应关系。于是这两个实无穷是同样多的。究竟是自然数多还是偶数多呢？
 
