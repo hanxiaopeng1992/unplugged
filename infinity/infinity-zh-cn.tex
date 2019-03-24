@@ -392,6 +392,173 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
 \Question{用叠加操作定义$iterate$。}
 \end{Exercise}
 
+\subsection{余代数和无穷流$\bigstar$}
+
+本小节给出无穷流的数学解释，它需要使用第四章范畴论中介绍的余代数概念。一般的读者可以跳过两页直接阅读下一节\textbf{关于实无穷的思考}。首先我们回顾一下余代数和F-态射的概念。
+
+\begin{definition}
+如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
+
+\[
+  A \arrowto{\alpha} \mathbf{F} A
+\]
+
+构成一对元组$(A, \alpha)$叫做F-余代数。其中$A$叫做携带对象。
+\end{definition}
+
+我们可以把F-余代数$(A, \alpha)$本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。两个对象间的箭头定义如下：
+
+\begin{definition}
+F-态射是F-代数或F-余代数对象间的箭头：
+
+\[
+  (A, \alpha) \longrightarrow (B, \beta)
+\]
+
+如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    A & \mathbf{F} A \\
+    B & \mathbf{F} B \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\alpha$} (m-1-2)
+    (m-1-1) edge node [left] {$f$} (m-2-1)
+    (m-1-2) edge node [right] {$\mathbf{F}(f)$}   (m-2-2)
+    (m-2-1) edge node [below] {$\beta$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+即$\beta \circ f = \mathbf{F}(f) \circ \alpha$
+\end{definition}
+
+F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F-代数中，我们关心的是初始代数。对称地，在F-余代数中，我们关心的是终止余代数。所谓终止余代数是F-余代数范畴中的终止对象，记为$(T, \mu)$。对于任何其它代数$(A, f)$，存在唯一的态射$m$使得下面的范畴图可交换：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    \mathbf{F} T & \mathbf{F} A \\
+    T & A \\};
+  \path[-stealth]
+    (m-1-2) edge node [above] {$\mathbf{F}(m)$} (m-1-1)
+    (m-2-1) edge node [left] {$\mu$} (m-1-1)
+    (m-2-2) edge node [right] {$f$} (m-1-2)
+    (m-2-2) edge node [below] {$m$} (m-2-1);
+\end{tikzpicture}
+\end{center}
+
+使用兰贝克定理，终止余代数是函子的不动点，态射$T \arrowto{\mu} \mathbf{F} T$是一个同构映射，使得$\mathbf{F} T$和$T$同构。终止余代数在编程中可用来构建无穷的数据结构。
+
+我们使用向下态射对初始代数进行计算。对称地，我们用向上态射(anamorphism，词根ana-的意思是向上)对终止余代数进行余计算(coevaluate)。对于任何余代数$(A, f)$，它到终止余代数$(T, \mu)$的唯一箭头可以用向上态射表示为$\llb f \rlb$。这种括号的形状不再像香蕉，而像一对光学中的透镜，所以常被叫作“透镜箭头”。用范畴图表示就是：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=3em, minimum width=2em]{
+    T  & \mathbf{F} T \\
+    A  & \mathbf{F} A \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$\mu$} (m-1-2)
+    (m-2-1) edge node [left] {$\llb f \rlb$} (m-1-1)
+    (m-2-2) edge node [right] {$\mathbf{F} \llb f \rlb$}  (m-1-2)
+    (m-2-1) edge node [below] {$f$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+\[
+  \text{若} m = \llb f \rlb \text{，当且仅当} \mu \circ m = \mathbf{F}(m) \circ f
+\]
+
+我们现在来看向上态射是如何构造无穷流的。向上态射接受一个余代数$A \arrowto{f} \mathbf{F} A$和一个携带对象$A$，它产生一个函子$\mathbf{F}$的不动点$\mathbf{Fix}\ \mathbf{F}$。其关键一点就是，这个不动点就是终止余代数，它具有无穷流的形式。
+
+\[
+\llb f \rlb = \mathbf{Fix} \circ \mathbf{F} \llb f \rlb \circ f
+\]
+
+我们也可以将向下态射定义为返回函子不动点的函数：
+
+\begin{lstlisting}
+ana :: Functor f => (a -> f a) -> (a -> Fix f)
+ana coalg = Fix . fmap (ana coalg) . coalg
+\end{lstlisting}
+
+举一个具体的例子，令函子$\mathbf{F}$的定义为：
+
+\begin{lstlisting}
+data StreamF E A = StreamF E A
+\end{lstlisting}
+
+它的不动点为：
+
+\begin{lstlisting}
+data Stream E = Stream E (Stream E)
+\end{lstlisting}
+
+$\mathbf{StreamF}\ E$是一个普通的函子，只是我们故意把名字叫作“流”。这个函子上的余代数是这样一个函数，它把一个类型为$A$的“种子”$a$变换为一对值，包含$a$，和下一个种子。
+
+可以用余代数产生各种无穷流。我们给出两个例子，第一个例子是斐波那契数列。思路是从$(0, 1)$开始作为起始种子。为了产生下一个种子，我们把第二个数1作为新的第一个数，把$0+1$作为新的第二个数构成一对新种子$(1, 0 + 1)$。然后不断重复这一过程，对于种子$(m, n)$，我们产生下一个新种子$(n, m + n)$。写成余代数就是下面的定义：
+
+\[
+\begin{array}{l}
+(Int, Int) \arrowto{fib} \mathbf{StreamF}\ Int\ (Int, Int) \\
+fib (m, n) = \mathbf{StreamF}\ m\ (n, m + n)
+\end{array}
+\]
+
+在这个定义中，携带对象$A$是一对整数。有了余代数，我们就可以利用向上态射构造无穷斐波那契数列的流了。对于$\mathbf{StreamF}\ E$函子，向上态射的类型为：
+
+\[
+(A \to \mathbf{StreamF}\ E\ A) \arrowto{ana} (A \to \mathbf{Stream}\ E)
+\]
+
+我们可以将其具体定义为：
+
+\begin{lstlisting}
+ana f = fix . f where
+  fix (StreamF e a) = Stream e (ana f a)
+\end{lstlisting}
+
+将向上态射作用于余代数$fib$和起始对象$(0, 1)$就可以产生无穷斐波那契数列的流：
+
+\[
+ana\ fib\ (0, 1)
+\]
+
+为了从无穷流中获取前$n$个元素，可以定义一个辅助函数：
+
+\begin{lstlisting}
+take 0 _ = []
+take n (Stream e s) = e : take (n - 1) s
+\end{lstlisting}
+
+接下来再展示一个用埃拉托斯特尼筛法产生全体素数无穷流的例子。我们使用去掉1的自然数无穷列表作为携带对象2, 3, 4, ...这个种子开始，我们接下来把2的所有倍数去掉就获得了下一个种子，它是从3开始的列表3, 5, 7, ...接下来，我们再把3的倍数都去掉，并不断重复。把这一过程写成余代数就是下面的定义：
+
+\[
+\begin{array}{l}
+[Int] \arrowto{era} \mathbf{StreamF}\ Int\ [Int] \\
+era (p:ns) = \mathbf{StreamF}\ p\ \{ n\ |\ p \nmid n, n \in ns\} \\
+\end{array}
+\]
+
+写成程序就是：
+
+\begin{lstlisting}
+era :: [Int] -> StreamF Int [Int]
+era (p : ns) = StreamF p (filter (notdiv p) ns)
+  where notdiv p n = n `mod` p /= 0
+\end{lstlisting}
+
+然后使用向上态射我们就获得了全体素数的无穷流：
+
+\begin{lstlisting}
+ps = ana era [2..]
+\end{lstlisting}
+
+特别地，对于列表的向上态射被成为展开（反折叠unfold）。向上态射和向下态射是互逆的。我们可以用向下态射把无穷流重新转换为列表。
+
 \section{实无穷的思考}
 亚里士多德的影响是深远的。在两千多年的时间里，数学家和哲学家们不断思考无穷的本质，大多数人能够接受潜无穷的观念。但是对于实无穷，却产生了严重的分歧。在很长一段时间，人们认为实无穷就是无所不能的上帝，或者只有上帝才能掌握实无穷。一些对实无穷的尝试带来的是令人困惑的矛盾结果。例如，假设全体自然数是一个实无穷。由于自然数从头开始，间隔着一个偶数一个奇数，人们自然认为全体偶数是全体自然数的一半。可是任何自然数乘以2，就得到了一个偶数，反之，任何偶数除以2，也对应这个一个自然数。这样看来全体自然数和全体偶数存在一一对应关系。于是这两个实无穷是同样多的。究竟是自然数多还是偶数多呢？
 
@@ -698,145 +865,6 @@ ham !! 1000000
 \end{lstlisting}
 
 \lstset{frame=none}
-
-\subsection{余代数和无穷流$\bigstar$}
-
-本小节给出无穷流的数学解释，它需要使用第四章范畴论中介绍的余代数概念。一般的读者可以跳过2页直接阅读下一节\textbf{可数无穷与不可数无穷}。首先我们回顾一下余代数和F-态射的概念。
-
-\begin{definition}
-如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
-
-\[
-  A \arrowto{\alpha} \mathbf{F} A
-\]
-
-构成一对元组$(A, \alpha)$叫做F-余代数。其中$A$叫做携带对象。
-\end{definition}
-
-我们可以把F-余代数$(A, \alpha)$本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。两个对象间的箭头定义如下：
-
-\begin{definition}
-F-态射是F-代数或F-余代数对象间的箭头：
-
-\[
-  (A, \alpha) \longrightarrow (B, \beta)
-\]
-
-如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=3em, minimum width=2em]{
-    A & \mathbf{F} A \\
-    B & \mathbf{F} B \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$\alpha$} (m-1-2)
-    (m-1-1) edge node [left] {$f$} (m-2-1)
-    (m-1-2) edge node [right] {$\mathbf{F}(f)$}   (m-2-2)
-    (m-2-1) edge node [below] {$\beta$} (m-2-2);
-\end{tikzpicture}
-\end{center}
-
-即$\beta \circ f = \mathbf{F}(f) \circ \alpha$
-\end{definition}
-
-F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F-代数中，我们关心的是初始代数。对称地，在F-余代数中，我们关心的是终止余代数。所谓终止余代数是F-余代数范畴中的终止对象，记为$(T, \mu)$。对于任何其它代数$(A, f)$，存在唯一的态射$m$使得下面的范畴图可交换：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=3em, minimum width=2em]{
-    \mathbf{F} T & \mathbf{F} A \\
-    T & A \\};
-  \path[-stealth]
-    (m-1-2) edge node [above] {$\mathbf{F}(m)$} (m-1-1)
-    (m-2-1) edge node [left] {$\mu$} (m-1-1)
-    (m-2-2) edge node [right] {$f$} (m-1-2)
-    (m-2-2) edge node [below] {$m$} (m-2-1);
-\end{tikzpicture}
-\end{center}
-
-使用兰贝克定理，终止余代数是函子的不动点，态射$T \arrowto{\mu} \mathbf{F} T$是一个同构映射，使得$\mathbf{F} T$和$T$同构。终止余代数在编程中可用来构建无穷的数据结构。
-
-我们使用向下态射对初始代数进行计算。对称地，我们用向上态射(anamorphism，词根ana-的意思是向上)对终止余代数进行余计算(coevaluate)。对于任何余代数$(A, f)$，它到终止余代数$(T, \mu)$的唯一箭头可以用向上态射表示为$\llb f \rlb$。这种括号的形状不再像香蕉，而像一对光学中的透镜，所以常被叫作“透镜箭头”。用范畴图表示就是：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=3em, minimum width=2em]{
-    T  & \mathbf{F} T \\
-    A  & \mathbf{F} A \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$\mu$} (m-1-2)
-    (m-2-1) edge node [left] {$\llb f \rlb$} (m-1-1)
-    (m-2-2) edge node [right] {$\mathbf{F} \llb f \rlb$}  (m-1-2)
-    (m-2-1) edge node [below] {$f$} (m-2-2);
-\end{tikzpicture}
-\end{center}
-
-\[
-  \text{若} m = \llb f \rlb \text{，当且仅当} \mu \circ m = \mathbf{F}(m) \circ f
-\]
-
-我们现在来看向上态射是如何构造无穷流的。向上态射接受一个余代数$A \arrowto{f} \mathbf{F} A$和一个携带对象$A$，它产生一个函子$\mathbf{F}$的不动点$\mathbf{Fix} \mathbf{F}$。其关键一点就是，这个不动点就是终止余代数，它具有无穷流的形式。
-
-\[
-\llb f \rlb = \mathbf{Fix} \circ \mathbf{F} (\llb f \rlb) \circ f
-\]
-
-或者明确用一个函数来定义向上态射：
-
-\begin{lstlisting}[style=Haskell]
-ana :: Funtor F => (a -> F a) -> a -> Fix F
-ana coalg = Fix . fmap (ana coalg) . coalg
-\end{lstlisting}
-
-举一个具体的例子，令函子$\mathbf{F}$的定义为：
-
-\begin{lstlisting}
-data StreamF E A = StreamF E A
-\end{lstlisting}
-
-它的不动点为：
-
-\begin{lstlisting}
-data Stream E = Stream E (Stream E)
-\end{lstlisting}
-
-$\mathbf{StreamF}\ E$是一个普通的函子，只是我们故意把名字叫作“流”。这个函子上的余代数是这样一个函数，它把一个类型为$A$的“种子”$a$变换为一对值，包含$a$，和下一个种子。
-
-我们可以用余代数产生各种无穷流，下面展示一个用埃拉托斯特尼筛法产生全体素数无穷流的例子。我们使用去掉1的自然数无穷列表作为携带对象2, 3, 4, ...这个种子开始，我们接下来把2的所有倍数去掉就获得了下一个种子，它是从3开始的列表3, 5, 7, ...接下来，我们再把3的倍数都去掉，并不断重复。把这一过程写成余代数就是下面的定义：
-
-\[
-\begin{array}{l}
-[Int] \arrowto{era} \mathbf{StreamF}\ Int\ [Int] \\
-era (p:ns) = \mathbf{StreamF}\ p\ \{ n\ |\ p \nmid n, n \in ns\} \\
-\end{array}
-\]
-
-写成程序就是：
-
-\begin{lstlisting}
-era :: [Int] -> StreamF Int [Int]
-era (p : ns) = StreamF p (filter (notdiv p) ns)
-  where notdiv p n = n `mod` p /= 0
-\end{lstlisting}
-
-然后使用向上态射我们就获得了全体素数的无穷流：
-
-\begin{lstlisting}
-ps = ana era [2..]
-\end{lstlisting}
-
-特别地，对于列表的向上态射被成为展开（反折叠unfold）。向上态射和向下态射是互逆的。我们可以用向下态射把无穷流重新转换为普通列表（无穷长的）：
-
-\begin{lstlisting}
-toList :: Fix (StreamF E) -> [E]
-toList = cata alg where
-    alg :: StreamF E [E] -> [E]
-    alg (StreamF e a] = e : a
-\end{lstlisting}
 
 \subsection{可数无穷与不可数无穷}
 迄今为止，我们用自然数构造了整数、有理数、和包含部分无理数的代数数。它们都和自然数之间存在一一映射，或者说和自然数一样多。我们把和自然数等势的无穷集合叫作可数无穷。是不是所有的无穷集合都是可数的呢？是否存在更大的无穷呢？1873年11月29日康托尔给戴徳金的一封信中提到了这个问题：“取所有的自然数集合，记为$N$，然后考虑所有实数的集合，记为$R$。简单来说，问题就是两者是否能够对应起来，是的一个集中的每一个体只对应另一集中一个唯一的个体？乍一看，我们可以说答案是否定的，这种对应不可能，因为前者由离散的部分组成，而后者则构成一个连续统。但从这种说法里我们什么也得不到。虽然我非常倾向认为这两者不能有这样的一个一一对应，但是我找不出理由，我对这事极为关注，也许这理由非常简单。”
