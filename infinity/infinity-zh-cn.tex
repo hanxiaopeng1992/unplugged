@@ -480,10 +480,12 @@ F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F
 
 我们也可以将向下态射定义为返回函子不动点的函数：
 
-\begin{lstlisting}
-ana :: Functor f => (a -> f a) -> (a -> Fix f)
-ana coalg = Fix . fmap (ana coalg) . coalg
-\end{lstlisting}
+\[
+\begin{array}{l}
+(A \to \mathbf{F} A) \arrowto{ana} (A \to \mathbf{Fix}\ \mathbf{F}) \\
+ana\ f = Fix \circ fmap\ (ana\ f) \circ f \\
+\end{array}
+\]
 
 举一个具体的例子，令函子$\mathbf{F}$的定义为：
 
@@ -516,10 +518,12 @@ fib (m, n) = \mathbf{StreamF}\ m\ (n, m + n)
 
 我们可以将其具体定义为：
 
-\begin{lstlisting}
-ana f = fix . f where
-  fix (StreamF e a) = Stream e (ana f a)
-\end{lstlisting}
+\[
+\begin{array}{l}
+ana\ f = fix \circ f \\
+\text{其中：} fix\ (StreamF\ e\ a) = Stream\ e\ (ana\ f\ a)
+\end{array}
+\]
 
 将向上态射作用于余代数$fib$和起始对象$(0, 1)$就可以产生无穷斐波那契数列的流：
 
@@ -543,18 +547,10 @@ era (p:ns) = \mathbf{StreamF}\ p\ \{ n\ |\ p \nmid n, n \in ns\} \\
 \end{array}
 \]
 
-写成程序就是：
-
-\begin{lstlisting}
-era :: [Int] -> StreamF Int [Int]
-era (p : ns) = StreamF p (filter (notdiv p) ns)
-  where notdiv p n = n `mod` p /= 0
-\end{lstlisting}
-
 然后使用向上态射我们就获得了全体素数的无穷流：
 
 \begin{lstlisting}
-ps = ana era [2..]
+primes = ana era [2...]
 \end{lstlisting}
 
 特别地，对于列表的向上态射被成为展开（反折叠unfold）。向上态射和向下态射是互逆的。我们可以用向下态射把无穷流重新转换为列表。
@@ -1208,7 +1204,7 @@ y = 0.01 & 7 & 06 & 8 & 04 & ... \\
 
 \section{附录：例子代码}
 
-使用流定义自然数潜无穷，然后从中取出前15个自然数。Java语言1.8中的例子：
+使用流定义自然数潜无穷，并取出前15个自然数。Java语言1.8中的例子：
 
 \lstset{frame=single, language=Java}
 \begin{lstlisting}
@@ -1228,15 +1224,6 @@ def naturals():
         yield n + 1
 \end{lstlisting}
 
-Haskell语言的例子：
-
-\lstset{frame=single, language=Haskell}
-\begin{lstlisting}
-nat = [1..]
-
-take 15 nat
-\end{lstlisting}
-
 Haskell语言中使用递归定义自然数潜无穷：
 
 \lstset{frame=single, language=Haskell}
@@ -1246,13 +1233,13 @@ nat = 1 : (map (+1) nat)
 take 15 nat
 \end{lstlisting}
 
-Haskell语言中使用递归定义斐波那契数列潜无穷。获取前15个斐波那契数，以及计算第1500个斐波那契数。
+Haskell语言中使用递归定义斐波那契数列潜无穷，以及计算第1500个斐波那契数。
 
 \lstset{frame=single, language=Haskell}
 \begin{lstlisting}
 fib = 0 : 1 : zipWith (+) fib (tail fib)
 
-take 15 $ fib
+take 15 fib
 [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377]
 
 fib !! 1500
@@ -1261,6 +1248,25 @@ fib !! 1500
 29242495959974839822286992875272419318113250950996424476212422002092544399
 20196960465321438498305345893378932585393381539093549479296194800838145996
 187122583354898000
+\end{lstlisting}
+
+Haskell语言中使用余代数定义素数的潜无穷流
+
+\lstset{frame=single, language=Haskell}
+\begin{lstlisting}
+data StreamF e a = StreamF e a
+data Stream e = Stream e (Stream e)
+
+takeStream 0 _ = []
+takeStream n (Stream e s) = e : takeStream (n - 1) s
+
+era (p:ns) = StreamF p (filter (p `notdiv`) ns)
+  where notdiv p n = n `mod` p /= 0
+
+primes = ana era [2..]
+
+takeStream 15 primes
+[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
 \end{lstlisting}
 
 \section{附录：康托尔定理的证明}
