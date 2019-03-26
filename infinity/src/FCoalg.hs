@@ -8,10 +8,6 @@ data StreamF e a = StreamF e a deriving Show
 
 data Stream e = Stream e (Stream e)
 
-instance Functor (StreamF e) where
-  fmap :: Functor f => (a -> b) -> f a -> f b
-  fmap f (StreamF e a) = StreamF e (f a)
-
 -- Fibonacci numbers
 
 fib :: (Int, Int) -> StreamF Int (Int, Int)
@@ -31,3 +27,13 @@ takeStream n (Stream e s) = e : takeStream (n - 1) s
 fibs = ana fib (0, 1)
 
 -- takeStream 10 fibs
+
+-- Prime numbers by Eratosthenes seive
+
+era :: [Int] -> StreamF Int [Int]
+era (p:ns) = StreamF p (filter (p `notdiv`) ns)
+  where notdiv p n = n `mod` p /= 0
+
+primes = ana era [2..]
+
+-- takeStream 10 primes
