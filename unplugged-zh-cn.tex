@@ -1,5 +1,12 @@
 %\documentclass{article}
 \documentclass[UTF8, a4paper,twoside]{book} %this has problems
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
 
 % ==================== Book flag==========================
 
@@ -15,6 +22,8 @@
   {recursion/}
   {algebra/}
   {category-theory/}
+  {deduction/}
+  {infinity/}
 }
 
 \makeindex
@@ -62,6 +71,8 @@
 \subimport{category-theory/}{category-zh-cn.tex}
 
 \subimport{deduction/}{deduction-zh-cn.tex}
+
+\subimport{infinity/}{infinity-zh-cn.tex}
 
 \part{附录}
 \appendix
