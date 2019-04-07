@@ -1,4 +1,5 @@
-IMG_OBJECTS = Escher-Waterfall-1961 Deep-blue-1997 style-transfer Escher-Dragon
+IMG_OBJECTS = Escher-Waterfall-1961 Deep-blue-1997 style-transfer Escher-Dragon \
+father-and-son
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
