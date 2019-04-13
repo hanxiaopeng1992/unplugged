@@ -1,5 +1,5 @@
 IMG_OBJECTS = Escher-Waterfall-1961 Deep-blue-1997 style-transfer Escher-Dragon \
-father-and-son Russell Frege Whitehead
+father-and-son Russell Frege Whitehead Brouwer
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
