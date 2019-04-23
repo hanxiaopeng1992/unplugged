@@ -8,7 +8,7 @@ This book introduces the mathematics behind computer programming.
 Contents
 --------
 
-We'll keep adding links for the chapters ready for preview.
+The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618033/unplugged-zh-cn.pdf)).
 
 - Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
 - Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61801/recursion-zh-cn.pdf))
