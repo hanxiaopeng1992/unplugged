@@ -17,7 +17,7 @@ SRC = common unplugged
 SRC_EN = $(foreach file, $(SRC), $(file)-en.tex)
 SRC_CN = $(foreach file, $(SRC), $(file)-zh-cn.tex)
 CHAPTERS = nat/nat recursion/recursion algebra/algebra category-theory/category \
-deduction/deduction
+deduction/deduction infinity/infinity paradox/paradox
 CHAPTER_OBJ_EN = $(foreach file, $(CHAPTERS), $(file)-en.pdf)
 CHAPTER_OBJ_CN = $(foreach file, $(CHAPTERS), $(file)-zh-cn.pdf)
 CHAPTER_SRC_EN = $(foreach file, $(CHAPTERS), $(file)-en.tex)
