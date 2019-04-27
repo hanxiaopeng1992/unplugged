@@ -419,14 +419,14 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 
 \begin{example}
 \index{函子!可能函子} \index{函子!Maybe函子}
-我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
+我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔\footnote{英文是Hoare，不是美国物理学家霍尔（Hall）。}曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
-\begin{figure}[h!]
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=1]{img/Hoare.eps}
  \captionsetup{labelformat=empty}
- \caption{霍尔}
+ \caption{计算机科学家霍尔}
  \label{fig:Hoare}
 \end{figure}
 %\end{wrapfigure}
@@ -790,6 +790,18 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \end{tikzpicture}
 \end{center}
 
+%\begin{wrapfigure}{L}{0.25\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.2]{img/Descartes.eps}
+ \captionsetup{labelformat=empty}
+ \caption{勒内$\cdot$笛卡尔（1596-1650）}
+ \label{fig:Decartes}
+\end{figure}
+%\end{wrapfigure}
+
+加入笛卡尔的介绍。
+
 还有一种对偶的构造，我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$。为了分清和中的每个元素究竟是来自$A$还是$B$，可以给元素增加一个标记（tag）：
 
 \[
@@ -997,200 +1009,11 @@ S \arrowto{m} S
 \begin{center}
 积 \quad \quad \quad 余积
 \end{center}
- \end{lemma}
+\end{lemma}
 
-\begin{proof}
-我们可以用构造法证明。首先证明左侧积的部分。$A \times B$的笛卡尔积是来自两个集合的元素对的全部组合
+详细的证明过程可以参考本书后面的附录。在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
 
-\[
-\{(a, b) | a \in A, b \in B\}
-\]
-
-我们定义两个特殊的箭头（函数）作为$p_A$和$p_B$
-
-\[
-\begin{cases}
-fst\ (a, b) = a \\
-snd\ (a, b) = b
-\end{cases}
-\]
-
-考虑任意楔形
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-      & A  \\
-    X &    \\
-      & B  \\};
-  \path[-stealth]
-    (m-2-1) edge node[above] {$p$} (m-1-2)
-    (m-2-1) edge node[below] {$q$} (m-3-2);
-\end{tikzpicture}
-\end{center}
-
-其中$p\ x = a, q\ x = b, x \in X$。举个具体的例子，$X$为$Int$, $A$为$Int$，$B$为$Bool$，而两个函数$p, q$的定义为：
-
-\[
-\begin{cases}
-p(x) = -x \\
-q(x) = even(x)
-\end{cases}
-\]
-
-也就是说，$p$对一个整数取相反数，$q$判断其是否是偶数。我们定义函数$X \arrowto{m} A \times B$如下：
-
-\[
-m(x) = (a, b)
-\]
-
-具体到上面的例子，有：
-
-\[
-m(x) = (-x, even(x))
-\]
-
-这样，下面图中的箭头就可交换了：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-      & A \\
-    X & A \times B \\
-      & B \\};
-  \path[-stealth]
-    % left
-    (m-2-1) edge node [above] {$p$} (m-1-2)
-    (m-2-1) edge node [below] {$q$} (m-3-2)
-    (m-2-1) edge node [above] {$m$}   (m-2-2)
-    (m-2-2) edge node [right] {$fst$} (m-1-2)
-    (m-2-2) edge node [right] {$snd$} (m-3-2);
-\end{tikzpicture}
-\end{center}
-
-不难验证：
-
-\[
-\begin{array}{rcll}
-(fst \circ m)(x) & = & fst\ m(x) & \text{函数组合} \\
-                 & = & fst\ (a, b) & \text{$m$的定义} \\
-                 & = & a & \text{$fst$的定义} \\
-                 & = & p(x) & \text{反向用$p$的定义}
-\end{array}
-\]
-
-并且：
-
-\[
-\begin{array}{rcll}
-(snd \circ m)(x) & = & snd\ m(x) & \text{函数组合} \\
-                 & = & snd\ (a, b) & \text{$m$的定义} \\
-                 & = & b & \text{$snd$的定义} \\
-                 & = & q(x) & \text{反向用$q$的定义}
-\end{array}
-\]
-
-具体到上面的例子，有：
-
-\[
-\begin{cases}
-(fst \circ m)(x) = fst\ (-x, even(x)) = -x = p(x) \\
-(snd \circ m)(x) = snd\ (-x, even(x)) = even(x) = q(x)
-\end{cases}
-\]
-
-我们还需要证明$m$是唯一的。假设存在另一个函数$x \arrowto{h} A \times B$，也使得范畴图中的箭头可交换。即：
-
-\[
-fst \circ h = p \quad \text{且} \quad snd \circ h = q
-\]
-
-我们有：
-
-\[
-\begin{array}{rcll}
-(a, b) & = & (p(x),\ q(x)) & \text{$p, q$的定义} \\
-       & = & ((fst \circ h)(x),\ (snd \circ h)(x)) & \text{可交换} \\
-       & = & (fst\ h(x),\ snd\ h(x)) & \text{函数组合} \\
-       & = & (fst\ (a, b),\ snd\ (a, b)) & \text{反向用$fst, snd$的定义}
-\end{array}
-\]
-
-所以$h(x) = (a, b) = m(x)$。这样就证明了$m$的唯一性。
-
-接下来，我们证明右侧的余积部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
-
-\[
-\begin{cases}
-left(a) = (a, 0) \\
-right(b) = (b, 1)
-\end{cases}
-\]
-
-考虑任意集合$X$构成的楔形：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-    A & \\
-      & X \\
-    B & \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$p$} (m-2-2)
-    (m-3-1) edge node [below] {$q$} (m-2-2);
-\end{tikzpicture}
-\end{center}
-
-我们定义箭头$A + B \arrowto{m} X$如下：
-
-\[
-\begin{cases}
-m\ (a, 0) = p(a) \\
-m\ (b, 1) = q(b)
-\end{cases}
-\]
-
-这样，下图中的箭头就可交换了。
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-    A & \\
-    A + B & X \\
-    B & \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$p$} (m-2-2)
-    (m-3-1) edge node [below] {$q$} (m-2-2)
-    (m-2-1) edge node [above] {$m$}   (m-2-2)
-    (m-1-1) edge node [left] {$left$} (m-2-1)
-    (m-3-1) edge node [left] {$right$} (m-2-1);
-\end{tikzpicture}
-\end{center}
-
-接下来要证明$m$的唯一性，也就是说$m$是唯一使上图可交换的箭头。假设存在另一个箭头$A + B \arrowto{h} X$也使得上图可交换。即满足：
-
-\[
-h \circ left = p \quad \text{且} \quad h \circ right = q
-\]
-
-我们任取$a \in A, b \in B$，有：
-
-\[
-\begin{cases}
-h\ (a, 0) = h(left(a)) = (h \circ left)(a) = p(a) = m\ (a, 0) \\
-h\ (b, 1) = h(right(a)) = (h \circ right)(b) = q(b) = m\ (b, 1)
-\end{cases}
-\]
-
-于是$h = m$，这就证明了$m$的唯一性。
-\end{proof}
-
-在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
-
+\lstset{frame = single}
 \begin{lstlisting}
 data Either a b = Left a | Right b
 \end{lstlisting}
@@ -1202,14 +1025,15 @@ either :: (a -> c) -> (b -> c) -> Either a b -> c
 either f _ (Left x)     =  f x
 either _ g (Right y)    =  g y
 \end{lstlisting}
+\lstset{frame = none}
 
 举个具体的例子，假设我们有一个\texttt{Either String Int}类型的余积，它或者为一个字符串，例如\texttt{s = Left "hello"}，或者是一个整数，例如\texttt{n = Right 8}。如果是字符串，我们希望得到它的长度；如果是整数，我们希望将它加倍。为此我们可以这样调用$either$函数：\texttt{either length (*2) x}。
 
-这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。
+这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。方便起见，我们有时把集合余积的这两个箭头称为$left$和$right$。
 
 \subsection{积和余积的性质}
 
-在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。但是我们只给出了媒介箭头在集合范畴$\pmb{Set}$中的定义：
+在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。媒介箭头在集合范畴$\pmb{Set}$中可以这样定义：
 
 \[
 \begin{array}{ccc}
@@ -1222,7 +1046,7 @@ m (b, 1) = q(b)
 \end{array}
 \]
 
-有没有办法，能够给出媒介箭头更好的定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
+在更一般的范畴中更，媒介箭头如何定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
 
 \begin{center}
 \begin{tikzpicture}
@@ -1358,11 +1182,11 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 \phi \circ [h, k] = [\phi \circ h, \phi \circ k]
 \]
 
-我们在下一章将看到，这些性质和定律对于我们进行算法推导、程序化简和优化会起很重要的作用。
+我们在下一章将看到，这些性质和定律对于我们进行算法推导、程序化简、性能优化会起很重要的作用。
 
 \subsection{积和余积作为函子}
 
-了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象对应到另一个范畴中的对象，将一个箭头对应到另一个箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的对应关系为：
+了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象转换成另一个范畴中的对象，同时将一个范畴中箭头转成另一个范畴中的箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的转换关系为：
 
 \[
 \begin{array}{rcl}
@@ -1402,7 +1226,7 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到范畴$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A \times B$，它的行为如下：
 
 \[
-(f \times g)(a, b) = (f\ a, g\ b)
+(f \times g)(a, b) = (f\ a\ , g\ b)
 \]
 
 然后二元函子$F$作用于这两个箭头的积$f \times g$，将其对应到新的箭头$\mathbf{F}(f \times g)$上。于是最终的二元函子的定义如下：
@@ -1415,7 +1239,8 @@ f \times g & \longmapsto & \mathbf{F}(f \times g) \\
 \end{array}
 \]
 
-既然是函子，我们还必须验证这个定义满足函子的两条性质：恒等性质和组合性质：
+\begin{mdframed}
+既然是函子，我们还必须验证这个定义满足函子的两条性质：恒等性质和组合性质。\textbf{一般的读者可以略过框中的内容}。
 
 \[
 \begin{array}{l}
@@ -1458,6 +1283,7 @@ id \times id = id \\
 
 这样就证明了二元函子满足所有函子的性质。
 \end{proof}
+\end{mdframed}
 
 与$fmap$类似，在一些编程环境中，无法用同一个符号既做对象的映射，也做箭头的映射。为此可以专门为二元函子定义一个$bimap$。我们要求所有的二元函子$\mathbf{F}$满足：
 
@@ -1481,7 +1307,8 @@ f \times g = \langle f \circ fst, g \circ snd \rangle
 f + g = [left \circ f, right \circ g]
 \]
 
-接下来需要验证函子的两条性质，首先是恒等性质。将$f, g$都用$id$代入：
+\begin{mdframed}
+接下来需要验证函子的两条性质，\textbf{一般的读者可以略过框中的内容}。首先是恒等性质。将$f, g$都用$id$代入：
 
 \[
 \begin{array}{lr}
@@ -1548,6 +1375,8 @@ f + g = [left \circ f, right \circ g]
 \end{array}
 \]
 
+\end{mdframed}
+
 积函子是二元函子的一个特例。我们可以为积函子定义$bimap$如下：
 
 \[
@@ -1569,7 +1398,7 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \begin{Exercise}
 \Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
-\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
+%\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
 \Question{证明余积的吸收率，并验证余积函子的组合性质。}
 \end{Exercise}
 
