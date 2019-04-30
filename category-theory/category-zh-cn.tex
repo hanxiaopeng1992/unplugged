@@ -1683,8 +1683,10 @@ safeHead :: [a] -> Maybe a
 
 我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“等价”的。
 
+% natural isomorphism
+
 \begin{definition}
-我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}（natural isomorphism）是一个自然变换：
+我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}是一个自然变换：
 
 \[
   \mathbf{F} \arrowto{\phi} \mathbf{G}
@@ -1699,7 +1701,7 @@ safeHead :: [a] -> Maybe a
 都是目的范畴中的同构。
 \end{definition}
 
-有时我们也说自然同构的两个函子是自然等价（naturally equivalent）的。
+有时我们也说自然同构的两个函子是自然等价的。 % naturally equivalent
 
 我们举一个极端的例子$swap$。对于任意两个对象的积$A \times B$，$swap$将其对换为$B \times A$：
 
@@ -1712,7 +1714,9 @@ swap\ (a, b) = (b, a)
 
 $swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$
 
-由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件（natural condition）使得范畴图可交换：
+由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件使得范畴图可交换：
+
+% natural condition
 
 \[
 (g \times f) \circ swap_{A \times B} = swap_{C \times D} \circ (f \times g)
@@ -1776,10 +1780,10 @@ length\ (x:xs) = 1 + length\ xs
   S \longrightarrow A \quad \quad \quad A \longrightarrow S
 \]
 
-也就是说$S$
+也就是说$S$存在
 
 \begin{center}
-  存在指向所有其它对象  \quad \quad \quad 存在从所有其它对象指向自己
+  指向所有其它对象  \quad \quad \quad 从所有其它对象指向自己
 \end{center}
 的唯一箭头，我们称这个对象$S$为
 
@@ -1866,7 +1870,7 @@ G \longrightarrow \{e\}
 \end{example}
 
 \begin{example}
-现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这一唯一的元素上去$\forall x \in S, x \mapsto \bigstar$。显然这一箭头是唯一的。
+现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这个唯一的元素上去：$\forall x \in S, x \mapsto \bigstar$。显然这个箭头是唯一的。
 
 \[
   S \longrightarrow \{ \bigstar \}
@@ -2023,7 +2027,7 @@ f\ True = ... \\
 \end{array}
 \]
 
-千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
+不管$f$怎样千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
 
 \[
 \begin{array}{rcl}
@@ -2174,7 +2178,7 @@ curry\ g = \lambda g
 \end{tikzpicture}
 \end{center}
 
-即：$k \circ (f \times id_B) = h$。在这个范畴$\pmb{Exp}$中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry\ g$。另外根据终止对象的性质，从终止对象自己到自己的箭头一定是$id$，所以我们有\textbf{反射律}：
+即：$k \circ (f \times id_B) = h$。在这个范畴$\pmb{Exp}$中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry\ g$。另外根据终止对象的性质，从终止对象到自己的箭头一定是$id$，所以我们有\textbf{反射律}：
 
 \[
 curry\ apply = id
@@ -2202,9 +2206,9 @@ curry\ apply = id
 \item 任何一对对象都有幂（$A^B$）
 \end{enumerate}
 
-我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴，集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
+我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴——集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
 
-如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（bicartesian closed）。
+如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
 
 \begin{enumerate}
   \setcounter{enumi}{4}
@@ -2686,7 +2690,7 @@ F-代数和F-态射，F-余代数和F-态射分别构成了
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{Nat}(...))$起名为$\mathbf{Nat}$，即：
+这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{NatF}(...))$起名为$\mathbf{Nat}$，即：
 
 \[
 \begin{array}{rcll}
