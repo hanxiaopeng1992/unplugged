@@ -1,6 +1,13 @@
 \ifx\wholebook\relax \else
 
 \documentclass{article}
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
 
 \input{../common-zh-cn.tex}
 
@@ -8,7 +15,7 @@
 
 \begin{document}
 
-\title{范畴论}
+\title{范畴}
 
 \author{刘新宇
 \thanks{{\bfseries 刘新宇} \newline
@@ -18,7 +25,7 @@
 \maketitle
 \fi
 
-\markboth{范畴论}{编程的数学原理}
+\markboth{范畴}{编程中的数学}
 
 \ifx\wholebook\relax
 \chapter{范畴论}
@@ -37,29 +44,13 @@
  \label{fig:Escher-Dewdrop-1948}
 \end{wrapfigure}
 
-如果你已经坚持看到了本书这一章，我建议你小小的奖励自己一下。你已经迈过了第一道门槛，正在通往神奇的抽象王国之路上。这条路是世界上许多最聪明的心智披荆斩棘开辟出来的。如果说，人们将具体的事物，抽象成不带具体意义的数与形是原始阶段；将数、形与计算的意义去除，抽象成代数结构（例如群）和代数关系（例如同构）是第一阶段；范畴论可以算是抽象的第二阶段。
+欢迎来到范畴世界！我建议你小小的奖励自己一下。你已经迈过了第一道门槛，正在通往神奇的抽象王国之路上。这条路是世界上许多最聪明的心智披荆斩棘开辟出来的。如果说，人们将具体的事物，抽象成不带具体意义的数与形是原始阶段；将数、形与计算的意义去除，抽象成代数结构（例如群）和代数关系（例如同构）是第一阶段；范畴可以算是抽象的第二阶段。
 
-你也许会问，我们为什么要了解范畴论？这和编程有什么关系？对此有一个比较短的答案和一个比较长的答案。较短的回答是，如果不了解范畴论，过不了多久，你也许看不懂别人写的程序了。2000年以后，如果翻看Haskell标准库的源代码，就会发现几乎所有的内容，都用范畴论重新写过了。映射、叠加、遍历……几乎所有的计算都在说着范畴的语言，犹如天书。你也许觉得叠加操作可以这样写：
+你也许会问，什么是范畴？为什么要了解范畴？这和编程有什么关系？范畴是数学家在1940年代研究同调代数时的“副产品”——顺手发明的理论。最近十几年，范畴论由于其强大的抽象，几乎普适于任何问题，正向各种各样的领域渗透。不要说各大编程语言纷纷引入lambda演算和闭包等结构，有超过20种语言已经实现了单子（Monad）\cite{Monad-Haskell-Wiki}——用范畴的语言说，叫做“函子范畴上的幺半群”。
 
-\lstset{language=Haskell, frame=single}
- \begin{lstlisting}
-foldr _ z [] = z
-foldr f z (x:xs) = f x (foldr f z xs)
-\end{lstlisting}
-
-实际上，今天的标准库用范畴的语言这样写：
-
-\begin{lstlisting}
-foldr f z t = appEndo (foldMap (Endo . f) t) z
-\end{lstlisting}
-
-你也许觉得，反正工作中不用Haskell，不了解范畴论也没有关系。但是最近十几年的情况是，范畴论由于其强大的抽象，几乎普适于任何问题，正向其它的语言和环境中渗透。不要说各大编程语言纷纷引入lambda演算和闭包等结构，有超过20种语言已经实现了单子（Monad）\cite{Monad-Haskell-Wiki}——用范畴论的语言说，叫做“函子范畴上的幺半群”。
-
-较长的答案是：我们需要抽象。请原谅这个答案看起来更短。赫尔曼$\cdot$外尔说现代数学在过去几十年不断沉湎在抽象和形式化上。编程领域何尝不是如此呢？现代计算机科学解决的问题空前复杂，大数据量、分布式、高并发、还要保证数据和计算的安全。仅仅靠着前几十年的传统方法——暴力求解、务实的工程实践再加上一点聪明的头脑已经不够了。这逼迫着我们去吸取其它科学和数学中的新方法和新工具。
+更重要的是：我们需要抽象。赫尔曼$\cdot$外尔说现代数学在过去几十年不断沉湎在抽象和形式化上。编程领域何尝不是如此呢？现代计算机科学解决的问题空前复杂，大数据量、分布式、高并发、还要保证数据和计算的安全。仅仅靠着前几十年的传统方法——暴力求解、务实的工程实践再加上一点聪明的头脑已经不够了。这逼迫着我们去吸取其它科学和数学中的新方法和新工具。
 
 正如迪厄多内所说：“这种抽象绝不是来自数学家的反常意愿，似乎他们想通过使用深奥莫测的语言来把自己与其他人隔开。数学家是被经典对象和关系的本质特性逼着去锻造新的抽象工具，来解决过去看来是不可攻克的问题。”\cite{Dieudonne1987}（中文版第2页，英文版第9页）
-
-本章内容将再次挑战我们的抽象思维。如果读完一遍没有理解是完全正常的。请不要灰心丧气，生活不是直线发展的，我们理解知识的过程是螺旋上升的。要不断回过头去反复体会。开卷有益，去阅读大师的作品。也许某个瞬间豁然开朗，就能体会到“蓦然回首，那人却在灯火阑珊处”的感觉。
 
 范畴论是数学家艾伦伯格和麦克兰恩在1940年代创立的。
 
@@ -97,7 +88,53 @@ foldr f z t = appEndo (foldMap (Endo . f) t) z
 
 \section{范畴}
 
-在介绍范畴的定义前，请先暂时忘记集合、函数、映射这些概念。我们以后会看到它们在范畴论中的具体解释。
+让我们用非洲大草原来了解范畴。在大草原这个范畴中，有很多种动植物。狮子、鬣狗、猎豹、羚羊、水牛、斑马、秃鹫、蜥蜴、眼镜蛇、蚂蚁……我们管这些动物叫做对象\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，每种动物和植物都是一个对象。这些动植物之间会产生联系，例如狮子会吃羚羊，羚羊吃掉草。我们很容易构造一个食物链。可以从羚羊画一个箭头指向狮子，从草画一个箭头指向羚羊来表示这样的关系。这样对象加上箭头就构成了一个有结构的，彼此联系在一起的系统。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/food-chain.eps}
+ %\captionsetup{labelformat=empty}
+ \caption{动植物对象与食物关系箭头组成了一个有结构的系统}
+ \label{fig:powerset}
+\end{figure}
+
+这样的系统要想成为范畴，还必须满足两点。第一点是每个对象都有指向自己的箭头。这种特殊的箭头称为恒等箭头。对于草原上的动植物，从羚羊到狮子箭头说明羚羊在狮子食物链的下游。我们可以认为每种动植物都处于自己物种食物链的下游（别误会，并不是指吃同类，而是指不吃同类）。这样每个物种就都有自指的箭头了。第二点是箭头之间是可组合的。什么叫做组合呢？草有一个指向羚羊的箭头$f$，羚羊有一个指向狮子的箭头$g$。我们即可以把这两个箭头组合起来成为$g \circ f$，表示草处于狮子食物链的下游。进一步，把两个箭头组合起来后，还可以和第三个箭头再次组合。例如狮子死后会被秃鹫吃掉，这样我们可以从狮子画一个指向秃鹫的箭头$h$。组合在一起就是$h \circ (g \circ f)$。这个箭头的含义表示草处于秃鹫食物链的下游，它等价与$(h \circ g) \circ f$。也就是说，食物链的上下游关系是满足结合性的。
+
+在组合的基础上，还有一个叫作“可交换”的概念。例如下面图中，
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     & \text{羚羊} & \\
+     \text{草} & & \text{狮子} \\};
+  \path[-stealth]
+    (m-2-1) edge node [above] {$f$} (m-1-2)
+    (m-1-2) edge node [above] {$g$} (m-2-3)
+    (m-2-1) edge node [below] {$h$} (m-2-3);
+\end{tikzpicture}
+\end{center}
+
+可以沿着两条通路从草到达狮子，一条是箭头组合$g \circ f$，表示草在羚羊的下游，羚羊又在狮子的下游；另一条是箭头$h$，表示草在狮子的下游。这样我们就相当于得到了一对平行的箭头：
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=4em, minimum width=2em]{
+     \text{草} & \text{狮子} \\};
+  \path[-stealth]
+    (m-1-1.north east) edge node [above] {$g \circ f$} (m-1-2.north west)
+    (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
+\end{tikzpicture}
+\end{center}
+
+如果这两个平行的箭头是等效的，我们称它们是可交换的。用符号表示就是：
+
+\[
+h = g \circ f
+\]
+
+这样，我们说草原上的动植物，在食物链关系这个箭头下，构成了一个范畴。现在我们给出较为正式的范畴的定义。
 
 \begin{definition}
 一个范畴$\pmb{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
@@ -106,8 +143,6 @@ foldr f z t = appEndo (foldMap (Endo . f) t) z
 \item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何对象$A$，恒等箭头都指向$A$自己。记为：$A \arrowto{id_A} A$；
 \item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \circ g$，读作“$g$然后$f$”。它表示$A \arrowto{f \circ g} C$。
 \end{itemize}
-
-有时我们也将箭头$A \arrowto{f} B$写成$f: A \to B$，如果上下文中对象很清楚，不会产生歧义，有时也直接简写成$f$。如果将对象简记为$Obj$，箭头简记为$Arw$，则组合操作的类型为$(\circ) : Arw \times Arw \to Arw$，表示从两个箭头产生一个新的箭头；源的类型为$src: Arw \to Obj$，表示给某一箭头指定源；目标的类型为$trg: Arw \to Obj$，表示给某一箭头指定目标；恒等箭头的类型为$id: Obj \to Arw$，表示给某一对象指定恒等箭头。
 
 除此之外，范畴还必须满足以下两条公理：
 
@@ -125,144 +160,64 @@ f \circ id_A = f = id_B \circ f
 \end{itemize}
 \end{definition}
 
-由于恒等箭头相当于单位元，我们有时也把$id_A$写成$1_A$，这样组合操作用点“$\circ$”表示，我们可以把它类比为“乘法”。下面的图有助于我们理解单位元公理：
-
-\[
-A \arrowto{id_A} A \arrowto{f} B \arrowto{id_B} B
-\]
-
-我们再看一下箭头的组合。考虑如下图的3个箭头$f, g, h$，它们组成一个三角形。
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
-     & B & \\
-     A & & C \\};
-  \path[-stealth]
-    (m-2-1) edge node [above] {$f$} (m-1-2)
-    (m-1-2) edge node [above] {$g$} (m-2-3)
-    (m-2-1) edge node [below] {$h$} (m-2-3);
-\end{tikzpicture}
-\end{center}
-
-可以沿着两条通路从$A$到达$C$，一条是箭头组合$g \circ f$，另一条是箭头$h$。这样我们就相当于得到了一对平行的箭头：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
-     A & C\\};
-  \path[-stealth]
-    (m-1-1.north east) edge node [above] {$g \circ f$} (m-1-2.north west)
-    (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
-\end{tikzpicture}
-\end{center}
-
-这两个平行的箭头可能相同，也可能不同。如果它们满足：
-
-\[
-h = g \circ f
-\]
-
-我们说这个三角形是可交换的（commute），我们后面将大量用到这个概念。
+和大草原上的食物链比起来，范畴和箭头的定义是很抽象的。我们可以通过一些较为具体的例子，来加深对这个定义的理解。
 
 \subsection{范畴的例子}
 
-我们需要用具体的例子来帮助理解范畴这一抽象概念。同时，前面使用的三角形图像能够帮助我们形成直观的感觉。我们会借助这种图（diagram）来对范畴及其关系进行描述。我们举的第一个例子是幺半群。回顾一下上一章中关于幺半群的定义。幺半群可以说是带有单位元的半群。而半群是二元运算满足结合律的集合。例如字符串在连接操作下构成一个幺半群，单位元是空串。
+在数学上，如果一个集合带有特殊的单位元，元素间定义了可结合的二元运算。我们说这样的集合构成一个幺半群。例如全体整数中，令0是单位元，二元运算是加法，则构成了整数加法幺半群。
 
-\begin{lstlisting}
-instance Monoid String where
-    e = ""
-    (*) = (++)
-\end{lstlisting}
-
-我们可以把字符串幺半群记为$(S, \doubleplus, \texttt{""})$，不难验证它满足幺半群的条件：
+幺半群的集合不仅可以包含数，也可以是其它东西。例如英文的词语和句子（在编程中称为字符串）构成一个集合。如果我们把两个英文词句连在一起称为二元运算，例如“red ” $\doubleplus$ “apple” = “red apple”，则这些英文词句构成一个幺半群。其中单位元是空词句“”。不难验证它满足幺半群的条件：
 
 \[
-\begin{array}{rcl}
-r \doubleplus (s \doubleplus t) = (r \doubleplus s) \doubleplus t &
-\text{和} &
-\texttt{""} \doubleplus s = s = s \doubleplus \texttt{""}
-\end{array}
+red \doubleplus (apple \doubleplus tree) = (red \doubleplus apple) \doubleplus tree
+\]
+词句连接满足结合律。
+
+\[
+\texttt{""} \doubleplus apple = apple = apple \doubleplus \texttt{""}
 \]
 
-我们再考虑另一个幺半群，群元素是若干个不同字符组成的集合，二元操作是集合的并，单位元是空集。记为$(C, \cup, \{\})$，将两个字符集并在一起可以获得一个更大的字符集，例如：
+任何词句连接上空词句（单位元）都仍然等于它本身。
+
+把词句幺半群放在一边，再考虑另一个幺半群。群元素是字母组成的集合（在编程中称为字符集），二元操作是集合的并，单位元是空集。将两个字母集合并在一起可以获得一个更大的集合，例如：
 
 \[
 \{a, b, c, 1, 2\} \cup \{X, Y, Z, 0, 1\} = \{a, b, c, X, Y, Z, 0, 1, 2\}
 \]
 
-我们再观察第三个幺半群，集合是包括0的自然数，二元运算是普通加法，单位元是0。记为$(N, +, 0)$。接下来我们建立这三个幺半群之间的态射（morphism），首先是从字符串幺半群$S$到字符集幺半群$C$之间的态射。任给一个字符串，我们可以把串中用到的字符组成一个字符集：
-
-\[
-S \arrowto{\phi} C \quad \quad \phi: s \mapsto \{c | c \in s\}
-\]
-
-可以验证，这个态射满足以下条件，对于任意两个字符串$r, s$，有：
+再加上最初的例子，整数加法幺半群，我们就有三个幺半群了。接下来我们建立这三个幺半群之间的转换关系\footnote{数学上叫做态射（morphism）}，首先是从词句幺半群到字母集合幺半群之间的转换关系。任给一个英文词句，我们可以把这句英文中用到的所有不同字母组成一个集合。可以把这个操作叫做“取字母”。可以验证，取字母满足以下条件：
 
 \[
 \begin{array}{rcl}
-\phi(s \doubleplus r) = \phi(s) \cup \phi(r) & \text{和} & \phi(\texttt{""}) = \{\}
+\text{取字母}(red \doubleplus apple) = \text{取字母}(red) \cup \text{取字母}(apple) & \text{和} & \text{取字母}(\texttt{""}) = \varnothing
 \end{array}
 \]
 
-也就是说，两个字符串连在一起所涵盖的字符集，等于各个串的字符集的并；空串的字符集是空集。如果我们把二元运算统一用点“$\circ$”来表示，单位元统一表示为1，则可以写成：
+也就是说，两句英文字词连在一起所涵盖的字母，等于各个字词中字母的并；空串不含有任何字母（空集）。
+
+接下来再定义从字母集合到整数加法幺半群之间的转换关系。任给一个字母集合，我们可以数出它含有多少字母，空集含有0个字母。我们把这个操作叫做“数个数”。
+
+这样就有了两个变换：“取字母”和“数个数”，我们检查一下它们的组合：
 
 \[
-\begin{array}{rcl}
-\phi(s \circ r) = \phi(s) \circ \phi(r) & \text{和} & \phi(1) = 1
-\end{array}
-\]
-
-接下来再定义从字符集$C$到自然数$N$之间的态射。任给一个字符集，我们可以将集合的大小映射为正整数，空集的大小映射为0。
-
-\[
-C \arrowto{\psi} N \quad \quad \psi: c \mapsto |c|
-\]
-
-有了这两个态射$\phi, \psi$后，我们检查一下它们的组合：
-
-\[
-S \arrowto{\phi} C \arrowto{\psi} N
+\text{词句} \arrowto{\text{取字母}} \text{字母集合} \arrowto{\text{数个数}} \text{整数}
 \]
 
 和
 
 \[
-S \arrowto{\psi \circ \phi} N
+\text{词句} \arrowto{\text{数个数} \circ \text{取字母}} \text{整数}
 \]
 
-显然组合后$\psi \circ \phi$也是一个态射。它表示先从字符串中抽出字符集，然后再统计不同字符的个数。这样，我们就得到了幺半群范畴，记为$\pmb{Mon}$。其中对象是幺半群，箭头是态射。恒等箭头是从一个幺半群到它自己的态射：
+显然组合后“数个数$\circ$取字母”也是一个转换关系。它表示先从英文词句中抽取出不同的字母，然后再统计不同字母的个数。这样，我们就得到了\textbf{幺半群范畴}$\pmb{Mon}$。其中对象是各种各样的幺半群，箭头是彼此间的转换关系，数学上叫做态射。恒等箭头从一个幺半群指向它自己。
 
-\[
-S \arrowto{id} S
-\]
+这是一个非常巨大的范畴，它包含宇宙中\textbf{所有}的幺半群\footnote{你可能想到了罗素悖论。确切地说，$\pmb{Mon}$包含了宇宙中所有“小”的幺半群}。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑英文词句这个幺半群，它只有一个对象，就是全体英文的集合（请原谅，这看起来也不怎么小）。对于任何一个英文词句，例如hello，我们都可以定义一个前缀操作，把hello添加到任何其它英文词句前面。我们管这个操作叫“加前缀hello”。例如：“加前缀hello”作用到单词Alice上就变成了helloAlice；类似地还可以定义“加前缀hi”，把它作用到Alice上就得到了hiAlice。如果认为这是两个不同的箭头，则它们的组合就是：
 
-注意范畴$\pmb{Mon}$是包含\textbf{所有}幺半群的范畴。这是一个非常巨大的范畴。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑$(S, \doubleplus, \texttt{""})$，它只有一个对象，就是全体字符串的集合$S$。对于任何字符串$a$，我们都可以定义前缀映射$S \arrowto{(a \doubleplus)} S$：
+\begin{center}
+加前缀hello $\circ$ 加前缀hi = 加前缀hellohi
+\end{center}
 
-\[
-(a \doubleplus )(x) = a \doubleplus x
-\]
-
-这样，箭头$f = (\texttt{"hello"} \doubleplus)$，就会将字符换\texttt{"hello"}添加到任何字符串的前面，例如$f(\texttt{"Alice"})=\texttt{"helloAlice"}$。而箭头$g = (\texttt{"hi"} \doubleplus)$，它可以在任何字符串前添加前缀\texttt{"hi"}\footnote{类似地，还可以定义后缀映射$(\doubleplus b)$。例如箭头$h = (\doubleplus \texttt{"bye"})$在任何字符串后添加后缀\texttt{"bye"}。}。箭头组合$f \circ g$的含义为：
-
-\[
-\begin{array}{rl}
-(f \circ g)(x) & = f(g(x)) \\
-               & = \texttt{"hello"} \doubleplus (\texttt{"hi"} \doubleplus x) \\
-               & = (\texttt{"hello"} \doubleplus \texttt{"hi"}) \doubleplus x) \\
-               & = \texttt{"hellohi"} \doubleplus x
-\end{array}
-\]
-
-表示先增加前缀\text{"hi"}，然后再增加前缀\texttt{"hello"}。不难验证，任意三个这样的箭头满足结合律。接下来我们还需要检查一下单位元，也就是空串\texttt{""}。以空串作为前缀等于恒等变换：
-
-\[
-id(x) = \texttt{""} \doubleplus x = x
-\]
-
-这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
+表示先增加前缀hi，然后再增加前缀hello。不难验证，任意三个这样的箭头满足结合律。接下来我们还需要检查一下单位元，也就是空词句“”。以空词句作为前缀等于没有变化，也就是恒等变换。这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
 
 \begin{figure}[htbp]
 \centering
@@ -276,13 +231,11 @@ id(x) = \texttt{""} \doubleplus x = x
 \label{fig:monoid-as-category}
 \end{figure}
 
-同样是幺半群，我们既看到了包含全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$a \in \pmb{C}$，定义集合$hom(a, a)$为所有从$a$指向$a$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
-
-类似地，群构成的范畴也有这样特点。有一个由所有群构成的巨大范畴$\pmb{Grp}$，同样每个单个的群$G$本身也构成一个范畴。前者的对象是所有的群，箭头是态射；后者只有一个对象，和幺半群比起来，群中的二元运算都有逆，所以所有的箭头都存在一个逆向的箭头。
+同样是幺半群，我们既看到了包含宇宙中全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界，一花一叶一如来。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$A$，定义集合$hom(A, A)$为所有从$A$指向$A$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
 
 我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \circ f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
 
-我们举的第三个例子包括一对概念。分别叫做\textbf{偏序集}和\textbf{预序集}。给定一个集合，所谓预序（pre-order），是说集合中的两个元素之间可以进行比较。我们用抽象的二元关系符号$\leq$来表示，注意这个符号不一定是大于小于关系，它可能表示一个集合是另一个集合的子集，一个字符串是另一个字符串的后缀，一个人是另一个人的后代等等。如果关系$\leq$满足以下两条性质，我们说这是一个预序关系：
+我们举的第三个例子包括一对概念。分别叫做\textbf{偏序集}和\textbf{预序集}。给定一个集合，所谓预序（pre-order），是说集合中的两个元素之间可以进行比较。我们用二元关系符号$\leq$来表示，这个符号不一定是大于小于关系，它可能表示一个集合是另一个集合的子集，一个词句是另一个词句的后缀，一个人是另一个人的后代等等。如果关系$\leq$满足以下两条性质，我们说这是一个预序关系：
 
 \begin{itemize}
 \item \textbf{自反性}：任何集合中的元素$a$都有$a \leq a$；
@@ -347,25 +300,7 @@ preset \quad \quad \quad poset
  \label{fig:powerset}
 \end{figure}
 
-一般来说，任何一个偏序集都是一个预序集，但是反过来却不一定成立。一个预序集不一定是一个偏序集。考虑带有偏序（或者预序）关系的两个集合$(R, \leq)$和$(S, \leq)$。一个单调映射
-
-\[
-R \arrowto{f} S
-\]
-
-是满足如下条件的函数。对于$R$中的任意两个元素$x, y$
-
-\[
-\text{若} x \leq y \text{，则} f(x) \leq f(y)
-\]
-
-不难验证，对于任意两个单调映射：
-
-\[
-R \arrowto{f} S \arrowto{g} T
-\]
-
-它们的组合$g \circ f$也是单调映射。这样我们就获得了一对范畴
+一般来说，任何一个偏序集都是一个预序集，但是反过来却不一定成立。一个预序集不一定是一个偏序集。高中时我们都学过单调函数，就是那种只增不减的函数，如果$x \leq y$，则$f(x) \leq f(y)$。把这种单调函数组合起来用到偏序集和预序集上，我们就获得了一对范畴
 
 \[
 \pmb{Pre} \quad \quad \quad \pmb{Pos}
@@ -373,42 +308,19 @@ R \arrowto{f} S \arrowto{g} T
 
 它们的对象分别是所有的$preset$和$poset$，两个范畴中的箭头都是单调映射。由于恒等映射也是单调映射，所以范畴中的恒等箭头为恒等映射。
 
-考虑一对偏序集$R, S$，由于每个偏序集也是预序集，所以下面两个集合——所有从$R$出发到$S$的箭头组成的集合——是相等的。
-
-\[
-\pmb{Pre}[R, S] \quad \quad \quad \pmb{Pos}[R, S]
-\]
-
-这是因为，箭头集合中的每个元素都是一个从$R$到$S$的单调函数。这说明$\pmb{Pos}$是$\pmb{Pre}$的\textbf{子范畴}。
-
 幺半群范畴和预序集范畴这两个例子不是随便挑选的，我们有着特殊的用意。这两个范畴可以说是最简单的例子。通过幺半群范畴，我们可以学习组合；通过预序集范畴，我们可以学习比较。对数学结构的组合与比较是整个范畴论的核心。在这一意义上，任何范畴都是幺半群与预序集的某种混合形式（\cite{Simmons2011}第13页）。
 
-$\pmb{Pre}$是包含所有预序集的巨大范畴。另一方面预序集范畴也可以很小。小到只含有一个预序集。其中的对象是预序集$(S, \leq)$中的元素$i, j, k, ...$。对于可比较的对象$i, j$，如果$i \leq j$，我们就定义箭头
+$\pmb{Pre}$是包含所有预序集的巨大范畴。另一方面预序集范畴也可以很小。小到只含有一个预序集。考虑一个集合，对象是集合中的元素$i, j, k, ...$。如果$i, j$，可比较并且$i \leq j$，我们就定义箭头
 
 \[
 i \longrightarrow j
 \]
 
-这样任何对象间或者没有箭头，表示它们不可比较；或者存在一个箭头，表示它们有$\leq$关系。总之，任何两个对象间最多只有一个箭头。为了方便有时我们在箭头行做如下标记：
-
-\[
-i \arrowto{(j, i)} j
-\]
-
-看起来，似乎用$(j, i)$表示$i \leq j$像是写反了，格外别扭。实际上它会带来表达上的好处。我们来检验一下箭头的单位元和组合：
-
-\[
-\begin{array}{rll}
-id_i & = (i, i) & \text{因为：} i \leq i \\
-(k, j) \circ (j, i) & = (k, i) & \text{若} i \leq j \leq k \text{，则} i \leq k
-\end{array}
-\]
-
-这样的确一个预序集就是一个范畴。我们再次看到了预序集范畴和幺半群范畴的对偶。幺半群作为范畴只含有一个对象，却含有丰富的箭头；预序集作为范畴对象很多，但是对象间的箭头却最多只有一个。
+这样任何对象间或者没有箭头，表示它们不可比较；或者存在一个箭头，表示它们有$\leq$关系。总之，任何两个对象间最多只有一个箭头。可以验证这样定义的箭头可以组合，并且每个元素都有$i \leq i$，因此有指向自己的箭头。这样一个预序集本身就是一个范畴。我们再次看到了预序集范畴和幺半群范畴的对偶。幺半群作为范畴只含有一个对象，却含有丰富的箭头；预序集作为范畴对象很多，但是对象间的箭头却最多只有一个。
 
 \begin{Exercise}
-\Question{验证幺半群$(C, \cup, \{\})$和$(N, +, 0)$都是只含有一个对象的范畴。}
-\Question{第一章中我们介绍了自然数的皮亚诺公理，并且介绍了和皮亚诺算术同构的其它结构，例如链表等。这些完全可以用范畴来解释。这一结论是德国数学家戴德金发现的，尽管当时还没有范畴论。我们今天将这一范畴命名为皮亚诺范畴$\pmb{Pno}$。范畴中的对象为$(A, f, z)$，其中$A$为元素的集合，对于自然数来说这个集合是全体自然数$N$；$f: A \to A$是后继函数，对于自然数来说，就是$succ$；$z \in A$是起始元素，对于自然数来说是0。任给两个皮亚诺对象$(A, f, z)$和$(B, g, c)$，现在定义态射
+\Question{验证幺半群$(S, \cup, \varnothing)$（群元素是集合，二元运算是集合的并，单位元是空集）和$(N, +, 0)$（群元素是自然数，二元运算是加法，单位元是零）都是只含有一个对象的范畴。}
+\Question{第一章中我们介绍了自然数的皮亚诺公理，并且介绍了和皮亚诺算术同构的其它结构，例如链表等。这些完全可以用范畴来解释。这一结论是德国数学家戴德金发现的，尽管当时还没有范畴论。我们今天将这一范畴命名为皮亚诺范畴$\pmb{Pno}$。范畴中的对象为$(A, f, z)$，其中$A$为元素的集合，对于自然数来说这个集合是全体自然数$N$；$f: A \to A$是后继函数，对于自然数来说，就是$succ$；$z \in A$是起始元素，对于自然数来说是0。任给两个皮亚诺对象$(A, f, z)$和$(B, g, c)$，现在定义从$A$到$B$的态射
 \[
 A \arrowto{\phi} B
 \]
@@ -423,28 +335,7 @@ A \arrowto{\phi} B
 
 \subsection{箭头$\neq$函数}
 
-在此前的例子中，箭头要么是一般意义上的函数，要么是类似函数意义的映射和态射。这容易造成一种错觉，认为箭头等同于函数。我们接下来看的例子有助于打破这种错觉。
-
-\begin{example}
-在这个例子中，对象是有限集合。箭头仍然是函数，但是意义变了。若集合$A$到集合$B$间有一个箭头$f$为$A \arrowto{f} B$。但是$f$的意义是这样一个函数$f: A \times B \to \mathbb{R}$，也就是说$f$接受两个自变量，分别是$A$和$B$中的元素，然后得到一个实数。如果从$B$到$C$还有一个这样的箭头$g$，其意义为：$g: B \times C \to \mathbb{R}$，则箭头的组合
-
-\[
-A \arrowto{f} B \arrowto{g} C
-\]
-
-组合的意义为：$g \circ f : A \times C \to \mathbb{R}$
-
-这个组合函数的效果是怎样的呢？我们定义：
-
-\[
-(g \circ f)(a, c) = \sum\{f(a, x) g(x, c) | x \in B\}
-\]
-
-也就是说，我们从中间集合$B$中依次拿出每个元素$x$，计算$f(a, x)$和$g(x, c)$的积，然后将结果累加起来。显然这还是一个实数。不难验证，这构成一个范畴。
-\end{example}
-
-\begin{example}
-接下来的例子名叫关系范畴$\pmb{Rel}$。范畴中的对象是集合。从对象$A$到$B$的箭头$A \arrowto{R} B$的定义为：
+在此前的例子中，箭头要么是一般意义上的函数，要么是类似函数意义的映射和态射。这容易造成一种错觉，认为箭头等同于函数。我们接下来看的例子有助于打破这种错觉。有一种名叫关系的范畴。范畴中的对象是集合。从集合$A$到$B$的箭头$A \arrowto{R} B$的定义为：
 
 \[
 R \subseteq B \times A
@@ -453,145 +344,38 @@ R \subseteq B \times A
 我们来看看这个箭头的含义是什么。集合$B \times A$代表了所有$B$和$A$中元素对的组合。也叫做$B$和$A$的积：
 
 \[
-B \times A = \{(b, a) | a \in A, b \in B\}
+B \times A = \{(b, a) | b \in B, a \in A\}
 \]
 
 我们以红楼梦人物为例，集合$A =$ \{贾蓉, 贾惜春, 贾琏\}，集合$B =$ \{秦可卿, 王熙凤\}，则$B \times A$的积为\{(秦可卿, 贾蓉), (秦可卿, 贾惜春), (秦可卿, 贾琏), (王熙凤, 贾蓉), (王熙凤, 贾惜春), (王熙凤, 贾琏)\}。集合$R$是$B \times A$的子集，它可以看作$A$与$B$的某种关系。如果$A$中的元素$a$和$B$中的元素$b$满足关系$R$，则有$(b, a) \in R$，我们将其记为$bRa$。具体到这个例子，我们令$R=$\{(秦可卿, 贾蓉), (王熙凤, 贾琏)\}，则$R$代表婚姻关系。
 
-这样从对象$A$到$B$的\textbf{所有}箭头构成的集合$\pmb{Rel}[A, B]$就代表了从$A$到$B$的各种可能的关系。现在我们考虑箭头的组合
+这样从对象$A$到$B$的\textbf{所有}箭头构成的集合就代表了从$A$到$B$的各种可能的关系。现在我们考虑箭头的组合
 
 \[
-A \arrowto{R} B \arrowto{S} C
+A \to B \to C
 \]
 
-定义箭头组合$S \circ R$为：
-
-\[
-c (S \circ R) a \iff \exists b \in B \text{使得} cSbRa
-\]
-
-也就是说，存在某个中间集合中的元素$b$，同时使得两个关系$bRa$，$cSb$都成立。即$(b, a) \in R$且$(c, b) \in S$。
-
-具体到红楼梦的例子，令集合$C=$\{王夫人, 薛姨妈, 邢夫人\}，关系$S=$\{(王夫人, 王熙凤), (薛姨妈, 王熙凤)\}表示姑妈关系。这样组合箭头$S \circ R$的结果是：\{(王夫人, 贾琏), (薛姨妈, 贾琏)\}，表示$c$的侄女嫁给了$b$的关系。也就是说王夫人、薛姨妈和贾琏都通过王熙凤使得两个关系同时成立。
-
-恒等箭头的定义很简单为：
-
-\[
-id_A = \{(a, a) | a \in A\}
-\]
-
-表示所有元素都和自己产生恒等关系。
-\end{example}
+如果存在某个中间集合中的元素$b$，同时使得两个关系$bRa$，$cSb$都成立，我们就说存在箭头间的组合。具体到红楼梦的例子，令集合$C=$\{王夫人, 薛姨妈, 邢夫人\}，关系$S=$\{(王夫人, 王熙凤), (薛姨妈, 王熙凤)\}表示姑妈关系。这样组合箭头$S \circ R$的结果是：\{(王夫人, 贾琏), (薛姨妈, 贾琏)\}，表示$c$的侄女嫁给了$b$的关系。也就是说王夫人、薛姨妈和贾琏都通过王熙凤使得两个关系同时成立。恒等箭头的定义很简单，所有元素都和自己产生恒等关系。
 
 我们还可以从任何已知的范畴产生新的范畴，例如把一个范畴$\pmb{C}$中的所有箭头反向就得到了一个对偶的范畴$\pmb{C}^{op}$。这样我们了解了一个范畴，就同时了解了它的对偶范畴。
-
-\begin{Exercise}
-\Question{本节第一个例子中的恒等箭头是什么？}
-\Question{考虑集合上的部分函数构成的范畴$\pmb{Pfn}$。对象是集合，而箭头是部分函数，从集合$A$的$B$的部分函数$A \arrowto{f} B$是说，对于$A$的子集$A'$来说$f$有定义。这个范畴中的箭头组合、单位箭头的含义是什么？}
-\end{Exercise}
-
-\subsection{左右消去}
-
-范畴中的某些箭头具有有一些特殊的性质，我们这一节介绍一对相对偶的性质，称为左消去（monic）和右消去\footnote{有文献将monic和epic翻译为“单态射”和“满态射”。但是这只有在集合和全函数的范畴内才成立。因此本书使用左右消去的说法。}（epic）。既然是对偶的性质，我们就用对偶的形式给出：
-
-\begin{definition}
-如果范畴中的箭头
-\[
-B \arrowto{m} A \quad \quad \quad A \arrowto{e} B
-\]
-对任意一对平行的箭头
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
-     X & B & & B & X\\};
-  \path[-stealth]
-    (m-1-1.north east) edge node [above] {$f$} (m-1-2.north west)
-    (m-1-1.south east) edge node [below] {$g$} (m-1-2.south west)
-    (m-1-4.north east) edge node [above] {$f$} (m-1-5.north west)
-    (m-1-4.south east) edge node [below] {$g$} (m-1-5.south west);
-\end{tikzpicture}
-\end{center}
-
-均满足如下条件：
-
-\[
-\text{若} m \circ f = m \circ g \text{，则}f = g \quad \quad \quad
-\text{若} f \circ e = g \circ e \text{，则}f = g
-\]
-
-我们称$m$为可\textbf{左消去}的，$e$为可\textbf{右消去}的。
-\end{definition}
-
-左右可消去箭头有一些有趣的性质，我们以左消去为例，读者可以尝试用对偶的方式思考右消去的情形。如果两个箭头是左消去的，则它们的组合也是左消去的。
-
-\begin{proof}
-令$m: A \to B$和$n: B \to C$都是左消去的，若$(n \circ m) \circ f = (n \circ m) \circ g$，我们有
-
-\[
-\begin{array}{rll}
-(n \circ m) \circ f & = (n \circ m) \circ g & \\
-n \circ (m \circ f) & = n \circ (m \circ g) & \text{结合律} \\
-m \circ f &= m \circ g & \text{因为$n$是左消去的} \\
-f & = g & \text{因为$m$是左消去的}
-\end{array}
-\]
-所以，组合$m \circ n$也是左消去的。
-\end{proof}
-
-\begin{Exercise}
-\Question{证明右消去箭头的组合也是右消去的。}
-\end{Exercise}
 
 \section{函子}
 我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间架设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
 
-在某种意义上说，函子好比是范畴之间的态射。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
-
 \subsection{函子的定义}
 
-\begin{definition}
-两个范畴$\pmb{Src}$和$\pmb{Trg}$之间的\textbf{函子}
-\[
-\begin{array}{rcl}
-\pmb{Src} & \longrightarrow & \pmb{Trg} \\
-A & \longmapsto & \mathbf{F}A \\
-f & \longmapsto & \mathbf{F}(f)
-\end{array}
-\]
-包含两部分：它将范畴$\pmb{Src}$中的对象对应到另一个范畴$\pmb{Trg}$中；并且将$\pmb{Src}$中的箭头也对应到另一个范畴$\pmb{Trg}$中。
-\end{definition}
+在某种意义上说，函子好比是范畴之间的变换关系（态射）。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
-通常我们用同一个符号$\mathbf{F}$既表示对象间的变换，也表示箭头间的变换。这是一个非斜体的粗体大写字母，请注意它和范畴（粗斜体大写）、对象（斜体大写）所用字体的差别。有些编程环境，如Haskell，使用不同的记号来表示函子中对象的变换和箭头的变换。我们稍后在例子中会看到这些不同点。
-
-既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
+函子通常用符号$\mathbf{F}$表示。既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
 
 \begin{itemize}
 \item 第一条性质，是函子必须保持恒等箭头仍然变换为恒等箭头。用图来表示就是：
 
 \[
-A \arrowto{id_A} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id_{\mathbf{F}A}} \mathbf{F}A
+A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \]
 
-写成公式为：
-
-\[
-\mathbf{F}(id_A) = id_{\mathbf{F}A}
-\]
-
-\item 第二条性质看似简单，实则不然。函子必须能够保持箭头的组合仍然变换为箭头的组合。之所以说不简单，是因为存在两种箭头的变换方式：
-
-\[
-\begin{array}{rcll}
-A \arrowto{f} B & \longmapsto & \mathbf{F}A \arrowto{\mathbf{F}(f)} \mathbf{F}B & \text{协变} \\
-A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A & \text{反变} \\
-\end{array}
-\]
-
-其中箭头方向不变的方式叫做\textbf{协变}（covariant），而箭头方向反向的方式叫做\textbf{反变}（contravariant）。一个函子要么是协变的要么是反变的。它是一致的，因而不会对某个箭头$f$进行协变，而对另一个将头$g$进行反变。
-
-因此对于协变函子来说，箭头的组合性质是按照下图保持的：
+\item 第二条性质，函子必须能够保持箭头的组合仍然变换为箭头的组合\footnote{实际存在两种变换方式，一种叫做协变，一种叫做反变。这里仅考虑了协变。}。
 
 \begin{center}
 \begin{tikzpicture}
@@ -609,40 +393,12 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \end{tikzpicture}
 \end{center}
 
-写成公式为：
-
 \[
 \mathbf{F}(g \circ f) = \mathbf{F}(g) \circ \mathbf{F}(f)
 \]
-
-与此对应，反变函子的箭头组合性质中，箭头的方向全部反向：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2.5em, minimum width=2em]{
-       & B &   & \longmapsto &             & \mathbf{F}B & \\
-     A &   & C & \text{反变} & \mathbf{F}A &  & \mathbf{F}C\\};
-  \path[-stealth]
-    (m-2-1) edge node [above] {$f$} (m-1-2)
-    (m-1-2) edge node [above] {$g$} (m-2-3)
-    (m-2-1) edge node [below] {$g \circ f$} (m-2-3)
-    (m-1-6) edge node [above] {$\mathbf{F}(f)$} (m-2-5)
-    (m-2-7) edge node [above] {$\mathbf{F}(g)$} (m-1-6)
-    (m-2-7) edge node [below] {$\mathbf{F}(g \circ f)$} (m-2-5);
-\end{tikzpicture}
-\end{center}
-
-写成公式为：
-
-\[
-\mathbf{F}(g \circ f) = \mathbf{F}(f) \circ \mathbf{F}(g)
-\]
-
-大多数情况下，我们关注协变函子。
 \end{itemize}
 
-函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。习惯上我们认为函子是右结合的，所以$\mathbf{F}\mathbf{G}A$表示先对对象$A$应用函子$\mathbf{G}$，然后再应用函子$\mathbf{F}$。
+函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。
 
 \subsection{函子的例子}
 \label{sec:functor:examples}
@@ -656,21 +412,21 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \end{wrapfigure}
 
 \index{函子!恒等函子} \index{函子!id函子}
-让我们用具体的例子来更好地理解函子的概念。我们在这一节将举一些编程中的实例。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
+让我们用具体的例子来更好地理解函子的概念。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
 
 \index{函子!常函子}
 其次简单的函子叫做“常函子”，它的行为像一个黑洞，我们可以把它记作$\mathbf{K}_B : \pmb{C} \to \pmb{B}$。它可以作用到任何范畴上，把所有的对象都映射为黑洞中的对象$B$，把所有的箭头都映射为黑洞中的恒等箭头$id_B$。黑洞范畴中只有一个恒等箭头，它显然也满足箭头组合的性质：$id_B \circ id_B = id_B$。
 
 \begin{example}
 \index{函子!可能函子} \index{函子!Maybe函子}
-我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
+我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔\footnote{英文是Hoare，不是美国物理学家霍尔（Hall）。}曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
-\begin{figure}[h!]
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=1]{img/Hoare.eps}
  \captionsetup{labelformat=empty}
- \caption{霍尔}
+ \caption{计算机科学家霍尔}
  \label{fig:Hoare}
 \end{figure}
 %\end{wrapfigure}
@@ -687,8 +443,8 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=2em, column sep=2.5em, minimum width=2em]{
-     A & \mathbf{Maybe} A \\
-     B & \mathbf{Maybe} B \\};
+     A & \mathbf{Maybe}\ A \\
+     B & \mathbf{Maybe}\ B \\};
   \path[-stealth]
     (m-1-1) edge (m-1-2)
     (m-2-1) edge (m-2-2)
@@ -704,11 +460,11 @@ A \arrowto{f} B & \longmapsto & \mathbf{F}B \arrowto{\mathbf{F}(f)} \mathbf{F}A 
 data Maybe A = Nothing | Just A
 \end{lstlisting}
 
-也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}A$的值要么是一个空值$Nothing$，要么是一个用$Just$构造的值。
+也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}\ A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}\ A$的值要么是一个空值$Nothing$，要么是一个用$Just$构造的值。
 
 例如，对象是类型$Int$，可能函子映射后对象是类型$\mathbf{Maybe}\ Int$，它的值可能是$Nothing$或者$Just\ 5$。
 
-例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}A$\footnote{完整的代码见本章附录}。
+例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}\ A$\footnote{完整的代码见本章附录}。
 
 \[
 \begin{array}{rcl}
@@ -724,16 +480,16 @@ lookup\ (Br\ l\ k\ r)\ x & = & \begin{cases}
 在处理$\mathbf{Maybe}$数据类型时，必须处理可能的两种值，例如：
 
 \[
-\begin{array}{rcl}
+\begin{array}{lcl}
 elem\ Nothing & = & False \\
 elem\ (Just\ x) & = & True
 \end{array}
 \]
 
-函子既映射对象，也映射箭头。以上我们看到了$\mathbf{Maybe}$如何映射对象，那么它是如何映射箭头的呢？上面图中的左侧从上到下有一个箭头$A \arrowto{f} B$，而右侧也有一个箭头$\mathbf{Maybe}A \arrowto{\mathbf{Maybe}(f)} \mathbf{Maybe}B$。我们不妨把右侧的箭头叫做$f'$。假设我们知道左侧箭头$f$的行为，那么右侧箭头的行为是什么呢？我们说过处理$\mathbf{Maybe}$类型的数据，必须处理两种可能的值，所以$f'$的行为应该是这样的：
+函子既映射对象，也映射箭头。以上我们看到了$\mathbf{Maybe}$如何映射对象，那么它是如何映射箭头的呢？上面图中的左侧从上到下有一个箭头$A \arrowto{f} B$，而右侧也有一个箭头$\mathbf{Maybe}\ A \arrowto{\mathbf{Maybe}(f)} \mathbf{Maybe}\ B$。我们不妨把右侧的箭头叫做$f'$。假设我们知道左侧箭头$f$的行为，那么右侧箭头的行为是什么呢？我们说过处理$\mathbf{Maybe}$类型的数据，必须处理两种可能的值，所以$f'$的行为应该是这样的：
 
 \[
-\begin{array}{rcl}
+\begin{array}{lcl}
 f'\ Nothing & = & Nothing \\
 f'\ (Just\ x) & = & Just\ (f\ x)
 \end{array}
@@ -749,7 +505,7 @@ fmap : (A \to B) \to (\mathbf{F} A \to \mathbf{F} B)
 
 \[
 \begin{array}{l}
-\quad    fmap : (A \to B) \to (\mathbf{Maybe} A \to \mathbf{Maybe} B) \\
+\quad    fmap : (A \to B) \to (\mathbf{Maybe}\ A \to \mathbf{Maybe}\ B) \\
 \quad    fmap\ f\ Nothing = Nothing \\
 \quad    fmap\ f\ (Just\ x) = Just\ (f\ x) \\
 \end{array}
@@ -780,7 +536,7 @@ binary = bin [] where
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=2em, column sep=6em, minimum width=2em]{
-     \mathbf{Maybe} Int & \mathbf{Maybe} [Int] \\
+     \mathbf{Maybe}\ Int & \mathbf{Maybe}\ [Int] \\
      Int & \left [ Int \right] \\};
   \path[-stealth]
     (m-1-1) edge node [above] {$fmap\ binary$} (m-1-2)
@@ -796,8 +552,9 @@ binary = bin [] where
 fmap\ binary\ (lookup\ t\ x)
 \]
 
+\begin{mdframed}
 \begin{proof}
-为了验证Maybe确是一个函子，我们还需要验证箭头映射的两条性质：
+\textbf{一般的读者可以跳过这个框中的内容。}为了验证Maybe的确是一个函子，我们还需要验证箭头映射的两条性质：
 
 \[
 \begin{array}{l}
@@ -855,10 +612,11 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定�
 
 因此Maybe的确是一个函子。
 \end{proof}
+\end{mdframed}
 \end{example}
 
 \begin{example}
-接下来介绍的例子是列表函子。第一章中我们介绍了列表的定义：
+接下来介绍的例子是列表函子。在第一章中我们介绍了列表的定义：
 
 \lstset{frame=none}
 \begin{lstlisting}
@@ -883,7 +641,7 @@ data List A = Nil | Cons(A, List A)
 
 图中左侧的对象$A, B$是数据类型，例如整型、布尔型甚至是$\mathbf{Maybe}\ Char$这样的复杂类型。而右侧的对象，是通过列表函子映射成的类型，如果$A$为整形$Int$，则右侧对应$\mathbf{List}\ Int$，如果$B$代表$Char$，则右侧对应的是$\mathbf{List}\ Char$，也就是$String$。
 
-请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$Nil$和$Cons$两个具体的函数来产生空值或者$List(1, List(1, List(2, Nil)))$。
+请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$Nil$和$Cons$两个具体的函数来产生空值或者诸如$List(1, List(1, List(2, Nil)))$这样的具体列表。
 
 以上是列表函子在对象映射时的行为，那么它是如何对箭头进行映射的呢？也就是说，给定一个函数$f: A \to B$，如何通过列表函子得到另一个函数$g: \mathbf{List}\ A \to \mathbf{List}\ B$呢？与可能函子$\mathbf{Maybe}$类似，我们可以定义一个$fmap$实现从箭头$f$到箭头$g$的映射，对于列表函子它的类型为：
 
@@ -931,8 +689,9 @@ instance Functor [] where
     fmap = map
 \end{lstlisting}
 
-作为本例的结尾，我们来验证一下列表函子的箭头映射部分是否满足组合和恒等的两条性质。即：
+作为本例的结尾，我们来验证一下列表函子的箭头映射部分是否满足组合和恒等的两条性质。\textbf{一般的读者可以跳过这一证明部分}。
 
+\begin{mdframed}
 \[
 \begin{array}{l}
 fmap\ id = id \\
@@ -987,6 +746,7 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 
 这就验证了$\mathbf{List}$的确是一个函子。
 \end{proof}
+\end{mdframed}
 \end{example}
 
 \begin{Exercise}
@@ -1030,16 +790,36 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 \end{tikzpicture}
 \end{center}
 
-还有一种对偶的构造，我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$。为了分清和中的每个元素究竟是来自$A$还是$B$，可以给元素增加一个标记（tag）：
+%\begin{wrapfigure}{L}{0.25\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.2]{img/Descartes.eps}
+ \captionsetup{labelformat=empty}
+ \caption{勒内$\cdot$笛卡尔（1596-1650）。哈尔斯的画布油画，现藏于卢浮宫}
+ \label{fig:Decartes}
+\end{figure}
+%\end{wrapfigure}
+
+笛卡尔积又称直积，是用法国哲学家、数学家、物理学家笛卡尔的名字命名的。在笛卡尔的时代，拉丁文是学术上广泛使用的语言。笛卡尔也有一个拉丁化的名字——卡提修斯（Cartesius）。正因为如此，笛卡尔积也称卡氏积，笛卡尔坐标系也称卡氏坐标系。
+
+笛卡尔1596年生于法国一个地位较低的贵族家庭。一岁时他的母亲患肺结核去世，而他也受到传染，造成体弱多病。母亲去世后，父亲移居他乡并再婚，笛卡尔由外祖母带大，自此父子很少见面，但是父亲一直提供金钱方面的帮助，使他能够受到良好的教育。
+
+笛卡尔后来进入位于拉弗莱什的耶稣会的皇家大亨利学院学习。在那里，他学习到了数学和物理学，包括伽利略的工作。1616年毕业后，他遵从父亲的意愿，进入普瓦捷大学学习法律，并获得业士学位和文凭。毕业后笛卡尔一直对职业选择不定，又决心游历欧洲各地，专心寻求“世界这本大书”中的智慧。1618年，笛卡尔加入荷兰的拿骚的毛里茨的军队。
+
+笛卡尔对结合数学与物理学的兴趣，是在荷兰当兵期间产生的。1618年，他偶然在路旁公告栏上，看到用佛莱芒语提出的数学问题征答。这引起了他的兴趣，并且让身旁的人，将他不懂的佛莱芒语翻译成拉丁语。这位身旁的人就是大他八岁的以撒·贝克曼（Isaac Beeckman）。贝克曼在数学和物理学方面有很高造诣，很快成为了他的导师。4个月后，他写信给贝克曼：“你是将我从冷漠中唤醒的人……”。
+
+1622年，当他26岁时，笛卡尔变卖掉父亲留下的资产，用4年时间游历欧洲。他先在意大利住了2年，随后迁往于巴黎。当时法国教会势力庞大，不能自由讨论宗教问题，因此笛卡尔在1628年移居荷兰，在那里住了20多年。在此期间，笛卡尔致力于哲学研究，他发表了多部重要的文集，包括《方法论》、《形而上学的沉思》和《哲学原理》等，成为欧洲最有影响力的哲学家之一。
+
+1649年笛卡尔受瑞典克里斯蒂娜女王之邀来到斯德哥尔摩担任女王的私人教师，但不幸在这片“熊、冰雪与岩石的土地”上得了肺炎，在1650年2月去世，享年54岁。
+
+笛卡尔留下名言“我思故我在”，提出了“普遍怀疑”的主张。他开拓了欧洲理性主义哲学，是西方现代哲学的奠基人。他的哲学思想深深影响了之后的几代人。笛卡尔对现代数学的发展做出了重要的贡献，他创立的解析几何，成功地将当时完全分开的代数和几何学联系到了一起。
+
+\vspace{5mm}
+
+相对于集合的笛卡尔积，还有一种对偶的构造。我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$。为了分清和中的每个元素究竟是来自$A$还是$B$，可以给元素增加一个标记（tag）：
 
 \[
 A + B = (A \times \{0\}) \cup (B \times \{1\})
-\]
-
-或者等价地这样定义：
-
-\[
-A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \]
 
 当从$A+B$中取出一个元素$(x, tag)$，如果$tag$为0，我们就知道$x$本来属于$A$，如果$tag$为1，就知道$x$本来属于$B$。这样有限集合$\{1, 2, 3\}$和$\{a, b\}$的和就是
@@ -1047,6 +827,15 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \[
 \{(1, 0), (2, 0), (3, 0), (a, 1), (b, 1)\}
 \]
+
+$A + B$也可以用程序等价地这样定义：
+
+\begin{mdframed}
+\[
+A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
+\]
+\end{mdframed}
+
 
 当$A, B$是同类的代数结构时，我们可以定义如下的对象和箭头：
 
@@ -1066,7 +855,15 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \end{tikzpicture}
 \end{center}
 
-对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。
+\begin{wrapfigure}{R}{0.4\textwidth}
+ \centering
+ \includegraphics[scale=0.06]{img/hands.eps}
+ \captionsetup{labelformat=empty}
+ \caption{}
+ \label{fig:hands}
+\end{wrapfigure}
+
+对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。我们后面会发现，这种现象在范畴的相关概念中很常见。甚至我们的宇宙中也充满了对称。这样当我们了解了一个事物，就对偶地了解了另一个事物。
 
 \subsection{积和余积的定义}
 
@@ -1095,7 +892,7 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \end{center}
 \end{definition}
 
-给定范畴中的一对对象$A$和$B$，可能有不止一个向左的或者向右的楔形。我们关心那个“最好”的楔形，它距离两个对象“最近”。本质上，我们说在寻找一个泛性的（universal）楔形。这就引出了下面的（一对）定义：
+给定范畴中的一对对象$A$和$B$，可能有不止一个向左的或者向右的楔形。我们关心那个“最好”的楔形，它距离两个对象“最近”。本质上，我们在寻找一个泛性的（universal）楔形。这就引出了下面的（一对）定义：
 
 \begin{definition}
 对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
@@ -1138,7 +935,7 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \end{tikzpicture}
 \end{center}
 
-都存在一个唯一的箭头：
+都存在相应唯一的箭头：
 
 \[
  X \arrowto{m} S \quad \quad \quad S \arrowto{m} X
@@ -1181,13 +978,13 @@ f_B = p_B \circ m
 \end{array}
 \]
 
-这立刻告诉我们，下面的特例一定成立：如果$X$等于$S$，$m$是一个自箭头（endo-arrow）
+这立刻告诉我们，下面的特例一定成立：如果$X$等于$S$，$m$是一个自指箭头（endo-arrow）
 
 \[
 S \arrowto{m} S
 \]
 
-则$m$是恒等箭头。范畴图简化为：
+则$m$一定是恒等箭头。此时的范畴图简化为：
 
 \begin{center}
 \begin{tikzpicture}
@@ -1212,113 +1009,7 @@ S \arrowto{m} S
 \end{tikzpicture}
 \end{center}
 
-这一结论自然会引入下面的问题：在众多的楔形中，积和余积是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。那么积和余积是唯一的么？下面的定理回答了这个问题：
-
-\begin{lemma}
-对于范畴$\pmb{C}$中的一对对象$A$和$B$，令下图中的对象和箭头
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-    P &   &  &   & I \\
-      & A &  & A &   \\
-      & B &  & B &   \\
-    Q &   &  &   & J \\};
-  \path[-stealth]
-    % left
-    (m-1-1) edge node [above] {$p_A$} (m-2-2)
-    (m-1-1) edge node [below] {$p_B$} (m-3-2)
-    (m-4-1) edge node [above] {$q_A$} (m-2-2)
-    (m-4-1) edge node [below] {$q_B$} (m-3-2)
-    % right
-    (m-2-4) edge node [above] {$i_A$} (m-1-5)
-    (m-2-4) edge node [above] {$j_A$} (m-4-5)
-    (m-3-4) edge node [below] {$i_B$} (m-1-5)
-    (m-3-4) edge node [below] {$j_B$} (m-4-5);
-\end{tikzpicture}
-\end{center}
-
-各自为一对
-
-\begin{center}
-积 \quad \quad \quad 余积
-\end{center}
-
-的楔形。则
-
-\[
-P, Q \quad \quad \quad I, J
-\]
-
-是同构的楔形，存在唯一的箭头：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=3em, minimum width=2em]{
-    P & & I \\
-    Q & & J \\};
-  \path[-stealth]
-    % left
-    (m-1-1.south west) edge node [left] {$f$} (m-2-1.north west)
-    (m-2-1.north east) edge node [right] {$g$} (m-1-1.south east)
-    % right
-    (m-1-3.south west) edge node [left] {$f$} (m-2-3.north west)
-    (m-2-3.north east) edge node [right] {$g$} (m-1-3.south east);
-\end{tikzpicture}
-\end{center}
-
-使得：
-
-\[
-\begin{array}{lcl}
-  \begin{cases}
-    p_A = q_A \circ f & p_B = q_B \circ f \\
-    q_A = p_A \circ g & q_B = p_B \circ g
-  \end{cases}
-  & \quad &
-  \begin{cases}
-    i_A = g \circ j_A & i_B = g \circ j_B \\
-    j_A = f \circ i_A & j_B = f \circ i_B
-  \end{cases}
-\end{array}
-\]
-
-并且，$f$和$g$是互逆的同构箭头对。
-\end{lemma}
-
-\begin{proof}
-我们只证明左侧积的部分，右侧余积部分的证明与此类似。给定$A, B$，对象$Q$和两个箭头$q_A, q_B$构成的楔形是一个积。我们把对象$P$和一对箭头$p_A, p_B$看成是另一个楔形。根据积的定义，存在唯一的媒介箭头$f$满足：
-
-\[
-p_A = q_A \circ f \quad \text{和} \quad p_B = q_B \circ f
-\]
-
-交换$P$和$Q$（另$P$为积，$Q$为任意楔形），又可以得到：
-
-\[
-q_A = p_A \circ g \quad \text{和} \quad q_B = p_B \circ g
-\]
-
-这样就有：
-
-\[
-\begin{array}{l}
-p_A \circ g \circ f = q_A \circ f = p_A \\
-p_B \circ g \circ f = q_B \circ f = p_B
-\end{array}
-\]
-
-因此：
-
-\[
-g \circ f = id_P \quad \quad \quad f \circ g = id_Q
-\]
-
-\end{proof}
-
-这一结论说明，如果两个对象存在积（或者余积）则它是唯一的。但是积和余积并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
+在众多的楔形中，积和余积是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。并且可以证明（见书后附录）积和余积是唯一的。但是积和余积并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
 
 \begin{lemma}
 若$A, B$是两个集合，则它们的
@@ -1332,200 +1023,11 @@ g \circ f = id_P \quad \quad \quad f \circ g = id_Q
 \begin{center}
 积 \quad \quad \quad 余积
 \end{center}
- \end{lemma}
+\end{lemma}
 
-\begin{proof}
-我们可以用构造法证明。首先证明左侧积的部分。$A \times B$的笛卡尔积是来自两个集合的元素对的全部组合
+详细的证明过程可以参考本书后面的附录。在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
 
-\[
-\{(a, b) | a \in A, b \in B\}
-\]
-
-我们定义两个特殊的箭头（函数）作为$p_A$和$p_B$
-
-\[
-\begin{cases}
-fst\ (a, b) = a \\
-snd\ (a, b) = b
-\end{cases}
-\]
-
-考虑任意楔形
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-      & A  \\
-    X &    \\
-      & B  \\};
-  \path[-stealth]
-    (m-2-1) edge node[above] {$p$} (m-1-2)
-    (m-2-1) edge node[below] {$q$} (m-3-2);
-\end{tikzpicture}
-\end{center}
-
-其中$p\ x = a, q\ x = b, x \in X$。举个具体的例子，$X$为$Int$, $A$为$Int$，$B$为$Bool$，而两个函数$p, q$的定义为：
-
-\[
-\begin{cases}
-p(x) = -x \\
-q(x) = even(x)
-\end{cases}
-\]
-
-也就是说，$p$对一个整数取相反数，$q$判断其是否是偶数。我们定义函数$X \arrowto{m} A \times B$如下：
-
-\[
-m(x) = (a, b)
-\]
-
-具体到上面的例子，有：
-
-\[
-m(x) = (-x, even(x))
-\]
-
-这样，下面图中的箭头就可交换了：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-      & A \\
-    X & A \times B \\
-      & B \\};
-  \path[-stealth]
-    % left
-    (m-2-1) edge node [above] {$p$} (m-1-2)
-    (m-2-1) edge node [below] {$q$} (m-3-2)
-    (m-2-1) edge node [above] {$m$}   (m-2-2)
-    (m-2-2) edge node [right] {$fst$} (m-1-2)
-    (m-2-2) edge node [right] {$snd$} (m-3-2);
-\end{tikzpicture}
-\end{center}
-
-不难验证：
-
-\[
-\begin{array}{rcll}
-(fst \circ m)(x) & = & fst\ m(x) & \text{函数组合} \\
-                 & = & fst\ (a, b) & \text{$m$的定义} \\
-                 & = & a & \text{$fst$的定义} \\
-                 & = & p(x) & \text{反向用$p$的定义}
-\end{array}
-\]
-
-并且：
-
-\[
-\begin{array}{rcll}
-(snd \circ m)(x) & = & snd\ m(x) & \text{函数组合} \\
-                 & = & snd\ (a, b) & \text{$m$的定义} \\
-                 & = & b & \text{$snd$的定义} \\
-                 & = & q(x) & \text{反向用$q$的定义}
-\end{array}
-\]
-
-具体到上面的例子，有：
-
-\[
-\begin{cases}
-(fst \circ m)(x) = fst\ (-x, even(x)) = -x = p(x) \\
-(snd \circ m)(x) = snd\ (-x, even(x)) = even(x) = q(x)
-\end{cases}
-\]
-
-我们还需要证明$m$是唯一的。假设存在另一个函数$x \arrowto{h} A \times B$，也使得范畴图中的箭头可交换。即：
-
-\[
-fst \circ h = p \quad \text{且} \quad snd \circ h = q
-\]
-
-我们有：
-
-\[
-\begin{array}{rcll}
-(a, b) & = & (p(x),\ q(x)) & \text{$p, q$的定义} \\
-       & = & ((fst \circ h)(x),\ (snd \circ h)(x)) & \text{可交换} \\
-       & = & (fst\ h(x),\ snd\ h(x)) & \text{函数组合} \\
-       & = & (fst\ (a, b),\ snd\ (a, b)) & \text{反向用$fst, snd$的定义}
-\end{array}
-\]
-
-所以$h(x) = (a, b) = m(x)$。这样就证明了$m$的唯一性。
-
-接下来，我们证明右侧的余积部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
-
-\[
-\begin{cases}
-left(a) = (a, 0) \\
-right(b) = (b, 1)
-\end{cases}
-\]
-
-考虑任意集合$X$构成的楔形：
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-    A & \\
-      & X \\
-    B & \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$p$} (m-2-2)
-    (m-3-1) edge node [below] {$q$} (m-2-2);
-\end{tikzpicture}
-\end{center}
-
-我们定义箭头$A + B \arrowto{m} X$如下：
-
-\[
-\begin{cases}
-m\ (a, 0) = p(a) \\
-m\ (b, 1) = q(b)
-\end{cases}
-\]
-
-这样，下图中的箭头就可交换了。
-
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,
-               row sep=2em, column sep=2em, minimum width=2em]{
-    A & \\
-    A + B & X \\
-    B & \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$p$} (m-2-2)
-    (m-3-1) edge node [below] {$q$} (m-2-2)
-    (m-2-1) edge node [above] {$m$}   (m-2-2)
-    (m-1-1) edge node [left] {$left$} (m-2-1)
-    (m-3-1) edge node [left] {$right$} (m-2-1);
-\end{tikzpicture}
-\end{center}
-
-接下来要证明$m$的唯一性，也就是说$m$是唯一使上图可交换的箭头。假设存在另一个箭头$A + B \arrowto{h} X$也使得上图可交换。即满足：
-
-\[
-h \circ left = p \quad \text{且} \quad h \circ right = q
-\]
-
-我们任取$a \in A, b \in B$，有：
-
-\[
-\begin{cases}
-h\ (a, 0) = h(left(a)) = (h \circ left)(a) = p(a) = m\ (a, 0) \\
-h\ (b, 1) = h(right(a)) = (h \circ right)(b) = q(b) = m\ (b, 1)
-\end{cases}
-\]
-
-于是$h = m$，这就证明了$m$的唯一性。
-\end{proof}
-
-在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
-
+\lstset{frame = single}
 \begin{lstlisting}
 data Either a b = Left a | Right b
 \end{lstlisting}
@@ -1537,14 +1039,15 @@ either :: (a -> c) -> (b -> c) -> Either a b -> c
 either f _ (Left x)     =  f x
 either _ g (Right y)    =  g y
 \end{lstlisting}
+\lstset{frame = none}
 
 举个具体的例子，假设我们有一个\texttt{Either String Int}类型的余积，它或者为一个字符串，例如\texttt{s = Left "hello"}，或者是一个整数，例如\texttt{n = Right 8}。如果是字符串，我们希望得到它的长度；如果是整数，我们希望将它加倍。为此我们可以这样调用$either$函数：\texttt{either length (*2) x}。
 
-这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。
+这样\texttt{either length (*2) s}会计算“hello”的长度，结果为5；而\texttt{either length (*2) n}会将8加倍，结果为16。有些编程环境中，使用联合体（union）或者枚举（enum）来部分实现余积的概念。方便起见，我们有时把集合余积的这两个箭头称为$left$和$right$。
 
 \subsection{积和余积的性质}
 
-在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。但是我们只给出了媒介箭头在集合范畴$\pmb{Set}$中的定义：
+在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。媒介箭头在集合范畴$\pmb{Set}$中可以这样定义：
 
 \[
 \begin{array}{ccc}
@@ -1557,7 +1060,7 @@ m (b, 1) = q(b)
 \end{array}
 \]
 
-有没有办法，能够给出媒介箭头更好的定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
+在更一般的范畴中更，媒介箭头如何定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
 
 \begin{center}
 \begin{tikzpicture}
@@ -1693,11 +1196,11 @@ id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 \phi \circ [h, k] = [\phi \circ h, \phi \circ k]
 \]
 
-我们在下一章将看到，这些性质和定律对于我们进行算法推导、程序化简和优化会起很重要的作用。
+我们在下一章将看到，这些性质和定律对于我们进行算法推导、程序化简、性能优化会起很重要的作用。
 
 \subsection{积和余积作为函子}
 
-了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象对应到另一个范畴中的对象，将一个箭头对应到另一个箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的对应关系为：
+了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象转换成另一个范畴中的对象，同时将一个范畴中箭头转成另一个范畴中的箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的转换关系为：
 
 \[
 \begin{array}{rcl}
@@ -1737,7 +1240,7 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到范畴$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A \times B$，它的行为如下：
 
 \[
-(f \times g)(a, b) = (f\ a, g\ b)
+(f \times g)(a, b) = (f\ a\ , g\ b)
 \]
 
 然后二元函子$F$作用于这两个箭头的积$f \times g$，将其对应到新的箭头$\mathbf{F}(f \times g)$上。于是最终的二元函子的定义如下：
@@ -1750,7 +1253,8 @@ f \times g & \longmapsto & \mathbf{F}(f \times g) \\
 \end{array}
 \]
 
-既然是函子，我们还必须验证这个定义满足函子的两条性质：恒等性质和组合性质：
+\begin{mdframed}
+既然是函子，我们还必须验证这个定义满足函子的两条性质：恒等性质和组合性质。\textbf{一般的读者可以略过框中的内容}。
 
 \[
 \begin{array}{l}
@@ -1793,6 +1297,7 @@ id \times id = id \\
 
 这样就证明了二元函子满足所有函子的性质。
 \end{proof}
+\end{mdframed}
 
 与$fmap$类似，在一些编程环境中，无法用同一个符号既做对象的映射，也做箭头的映射。为此可以专门为二元函子定义一个$bimap$。我们要求所有的二元函子$\mathbf{F}$满足：
 
@@ -1816,7 +1321,8 @@ f \times g = \langle f \circ fst, g \circ snd \rangle
 f + g = [left \circ f, right \circ g]
 \]
 
-接下来需要验证函子的两条性质，首先是恒等性质。将$f, g$都用$id$代入：
+\begin{mdframed}
+接下来需要验证函子的两条性质，\textbf{一般的读者可以略过框中的内容}。首先是恒等性质。将$f, g$都用$id$代入：
 
 \[
 \begin{array}{lr}
@@ -1883,6 +1389,8 @@ f + g = [left \circ f, right \circ g]
 \end{array}
 \]
 
+\end{mdframed}
+
 积函子是二元函子的一个特例。我们可以为积函子定义$bimap$如下：
 
 \[
@@ -1904,13 +1412,15 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \begin{Exercise}
 \Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
-\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
+%\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
 \Question{证明余积的吸收率，并验证余积函子的组合性质。}
 \end{Exercise}
 
 \section{自然变换}
 
-艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”（natural transformation）。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明它们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
+% natural transformation
+
+艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明它们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
 
 % Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
 
@@ -2069,7 +1579,7 @@ inits_A : \mathbf{List} A \to \mathbf{List}(\mathbf{List} A)
 
 \[
 \begin{array}{l}
-safeHead : [A] \to \mathbf{Maybe} A \\
+safeHead : [A] \to \mathbf{Maybe}\ A \\
 safeHead\ [] = Nothing \\
 safeHead\ (x:xs) = Just\ x
 \end{array}
@@ -2078,7 +1588,7 @@ safeHead\ (x:xs) = Just\ x
 同样在集合范畴，任何类型$A$是一个对象，它索引的箭头$safeHead$为：
 
 \[
-[A] \arrowto{safeHead_A} \mathbf{Maybe} A
+[A] \arrowto{safeHead_A} \mathbf{Maybe}\ A
 \]
 
 这里的两个函子分别是列表函子和可能函子。我们接下来要验证，对于任何箭头（函数）$A \arrowto{f} B$，下面的方形范畴图是可交换的：
@@ -2087,8 +1597,8 @@ safeHead\ (x:xs) = Just\ x
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=5em, minimum width=2em]{
-     A & \lbrack A \rbrack & \mathbf{Maybe} A \\
-     B & \lbrack B \rbrack & \mathbf{Maybe} B \\};
+     A & \lbrack A \rbrack & \mathbf{Maybe}\ A \\
+     B & \lbrack B \rbrack & \mathbf{Maybe}\ B \\};
   \path[-stealth]
     (m-1-1) edge node [left] {$f$} (m-2-1)
     % square
@@ -2159,7 +1669,7 @@ phi :: forall a . F a -> G a
 phi : F a -> G a
 \end{lstlisting}
 
-回顾此前的两个例子，因此$inits$和$safeHead$的类型分别为：
+回顾此前的两个例子，我们可以知道$inits$和$safeHead$的类型分别为：
 
 \begin{lstlisting}
 inits :: [a] -> [[a]]
@@ -2173,8 +1683,10 @@ safeHead :: [a] -> Maybe a
 
 我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“等价”的。
 
+% natural isomorphism
+
 \begin{definition}
-我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}（natural isomorphism）是一个自然变换：
+我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}是一个自然变换：
 
 \[
   \mathbf{F} \arrowto{\phi} \mathbf{G}
@@ -2189,7 +1701,7 @@ safeHead :: [a] -> Maybe a
 都是目的范畴中的同构。
 \end{definition}
 
-有时我们也说自然同构的两个函子是自然等价（naturally equivalent）的。
+有时我们也说自然同构的两个函子是自然等价的。 % naturally equivalent
 
 我们举一个极端的例子$swap$。对于任意两个对象的积$A \times B$，$swap$将其对换为$B \times A$：
 
@@ -2202,7 +1714,9 @@ swap\ (a, b) = (b, a)
 
 $swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$
 
-由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件（natural condition）使得范畴图可交换：
+由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件使得范畴图可交换：
+
+% natural condition
 
 \[
 (g \times f) \circ swap_{A \times B} = swap_{C \times D} \circ (f \times g)
@@ -2266,10 +1780,10 @@ length\ (x:xs) = 1 + length\ xs
   S \longrightarrow A \quad \quad \quad A \longrightarrow S
 \]
 
-也就是说$S$
+也就是说$S$存在
 
 \begin{center}
-  存在指向所有其它对象  \quad \quad \quad 存在从所有其它对象指向自己
+  指向所有其它对象  \quad \quad \quad 从所有其它对象指向自己
 \end{center}
 的唯一箭头，我们称这个对象$S$为
 
@@ -2356,7 +1870,7 @@ G \longrightarrow \{e\}
 \end{example}
 
 \begin{example}
-现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这一唯一的元素上去$\forall x \in S, x \mapsto \bigstar$。显然这一箭头是唯一的。
+现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这个唯一的元素上去：$\forall x \in S, x \mapsto \bigstar$。显然这个箭头是唯一的。
 
 \[
   S \longrightarrow \{ \bigstar \}
@@ -2513,7 +2027,7 @@ f\ True = ... \\
 \end{array}
 \]
 
-千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
+不管$f$怎样千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
 
 \[
 \begin{array}{rcl}
@@ -2664,7 +2178,7 @@ curry\ g = \lambda g
 \end{tikzpicture}
 \end{center}
 
-即：$k \circ (f \times id_B) = h$。在这个范畴$\pmb{Exp}$中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry\ g$。另外根据终止对象的性质，从终止对象自己到自己的箭头一定是$id$，所以我们有\textbf{反射律}：
+即：$k \circ (f \times id_B) = h$。在这个范畴$\pmb{Exp}$中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry\ g$。另外根据终止对象的性质，从终止对象到自己的箭头一定是$id$，所以我们有\textbf{反射律}：
 
 \[
 curry\ apply = id
@@ -2692,9 +2206,9 @@ curry\ apply = id
 \item 任何一对对象都有幂（$A^B$）
 \end{enumerate}
 
-我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴，集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
+我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴——集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
 
-如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（bicartesian closed）。
+如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
 
 \begin{enumerate}
   \setcounter{enumi}{4}
@@ -3176,7 +2690,7 @@ F-代数和F-态射，F-余代数和F-态射分别构成了
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{Nat}(...))$起名为$\mathbf{Nat}$，即：
+这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{NatF}(...))$起名为$\mathbf{Nat}$，即：
 
 \[
 \begin{array}{rcll}
