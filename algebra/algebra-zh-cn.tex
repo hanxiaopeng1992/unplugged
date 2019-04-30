@@ -456,12 +456,12 @@ ab = 6 & f(ab) = f(a)f(b) = 36
 \label{fig:isomorphism}
 \end{figure}
 
-我们就说$f$是从$A$到$B$的{\em 同态映射}（homomorphism）。如果$f$是满射（surjection，即$B$中所有元素都在$A$中有原像），则称为同态满射。举一个例子，考虑一个奇偶判定函数$odd: Z \to Bool$，它接受一个整数，如果是奇数就返回真值True，否额返回假False。整数在加法下构成一个群。而布尔集合$\{True, False\}$在逻辑或运算下也构成一个群。我们可以很容易验证：
+我们就说$f$是从$A$到$B$的{\em 同态映射}（homomorphism）。如果$f$是满射（surjection，即$B$中所有元素都在$A$中有原像），则称为同态满射。举一个例子，考虑一个奇偶判定函数$odd: Z \to Bool$，它接受一个整数，如果是奇数就返回真值True，否则返回假False。整数在加法下构成一个群。而布尔集合$\{True, False\}$在逻辑异或运算下也构成一个群。我们可以很容易验证：
 
 \begin{enumerate}
-\item $a$和$b$都是奇数，$odd(a)$和$odd(b)$都为真。它们的和也是奇数，$odd(a+b)$也为真。满足$odd(a) \lor odd(b) = odd(a+b)$；
-\item $a$和$b$都是偶数，$odd(a)$和$odd(b)$都为假。它们的和也是偶数，$odd(a+b)$也为假。满足$odd(a) \lor odd(b) = odd(a+b)$；
-\item $a$和$b$一奇一偶，$odd(a)$和$odd(b)$一真一假。它们的和为奇数，$odd(a+b)$为真。满足$odd(a) \lor odd(b) = odd(a+b)$；
+\item $a$和$b$都是奇数，$odd(a)$和$odd(b)$都为真。它们的和是偶数，$odd(a+b)$为假。满足$odd(a) \oplus odd(b) = odd(a+b)$；
+\item $a$和$b$都是偶数，$odd(a)$和$odd(b)$都为假。它们的和也是偶数，$odd(a+b)$也为假。满足$odd(a) \oplus odd(b) = odd(a+b)$；
+\item $a$和$b$一奇一偶，$odd(a)$和$odd(b)$一真一假。它们的和为奇数，$odd(a+b)$为真。满足$odd(a) \oplus odd(b) = odd(a+b)$；
 \end{enumerate}
 
 如果$f$不仅是满射，还是单射（injection）。那么它就是一一映射。这种情况下，我们称$f$是从$A$到$B$的同构映射，简称{\em 同构}（isomorphism）。记为$A \cong B$。同构是一种非常强大的关系，不仅两个群可以同构，半群、幺半群以及其他代数结构也可以同构，如图\ref{fig:isomorphism}所示。如果$A$和$B$同构，那么抽象地来看，它们没有什么区别，只有命名上的不同。如果$A$上有一个代数性质，那么在$B$上也有一个完全类似的性质\cite{ZhangHeRui1978}（\textbf{页码}）。另外，$A$与$A$之间的同构映射称为$A$的{\em 自同构}（automorphism）。例如整数加群在取相反数下成为自同构。
