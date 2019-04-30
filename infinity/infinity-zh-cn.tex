@@ -856,7 +856,7 @@ x_1 > y_1 : & \{y_1, X \cup Y' \} \\
 写成代码就是：
 
 \begin{lstlisting}
-ham = 1 : map (*2) ham # map (*3) ham # map (*5) ham
+ham = 1 : map (*2) ham # map (*3) ham \# map (*5) ham
   where xxs@(x:xs) # yys@(y:ys)
     | x==y = x : xs # ys
     | x<y  = x : xs # yys
