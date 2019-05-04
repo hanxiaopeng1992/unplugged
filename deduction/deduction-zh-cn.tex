@@ -2,6 +2,14 @@
 
 \documentclass{article}
 
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
+
 \input{../common-zh-cn.tex}
 
 \setcounter{page}{1}
@@ -231,6 +239,7 @@ build(g) = g((:), [])
 \label{eq:foldr-build-fusion-law}
 \ee
 
+\index{叠加——构建融合}
 我们称这一结果为\textbf{叠加——构建融合定律}。
 
 在继续深入介绍前，让我们先看一些具体的例子。考虑如何计算从$a$到$b$间的整数和$sum([a, a+1, ..., b-1, b])$。为此我们可以先产生从$a$到$b$之间的所有整数$a, a+1, a+2, ..., b-1, b$，例如使用下面的方法：
@@ -484,6 +493,7 @@ join\ (w:ws) = h\ w \\
 \end{array}
 \]
 
+\index{concatMap} \index{flatMap}
 由于$concat \circ map(f)$十分常见，很多编程环境的标准库已经提供了这样的优化实现。例如Haskell中的\texttt{concatMap}，Java和Scala中的\texttt{flatMap}。
 \end{example}
 
@@ -520,10 +530,11 @@ g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 \]
 
+\index{二阶多态函数}
 由于里面有两个多态的类型$A$和$B$，因此它被称为二阶多态函数（rank-2 type polymorphic）。
 
 \subsection{用范畴论推导融合律}
-
+\index{短路融合（shortcut fusion}
 叠加——构建融合律可以用范畴理论推导出来并进行扩展。一旦把范畴论作为理论工具，人们就发现叠加——构建融合仅仅是众多种融合规则中的一个。现在这些规则统一被称为“短路融合”（shortcut fusion）。它们在编译器优化，程序库优化中发挥了重要的作用。我们无法在这一章中对它们做全面的介绍。读者可以参考\cite{Hinze-Harper-James-2010}深入了解短路融合的理论和实践方法。
 
 在上一章中，我们介绍了F-代数，特别是初始代数和向下态射。由于初始代数是起始对象，所以它到任何其他代数都有唯一的箭头。如下图所示：
@@ -606,6 +617,7 @@ h \circ foldr(f, z) = foldr(c, n)
 A \arrowto{h} B \quad \Rightarrow \quad h \circ g\ a = g\ b
 \ee
 
+\index{酸雨定律} \index{砍伐定律（deforestation）}
 这一推广的融合律被称为“酸雨定律”\footnote{由于融合律能够消除不必要的中间结果，所以最早被称为“砍伐定律”（deforestation）。而推广的融合律被幽默地称为酸雨定律（acid rain law）。}。另一方面，由于存在从初始代数$I$到$A$的箭头：$I \arrowto{\lbb a \rbb} A$，所以将$\lbb a \rbb$代入酸雨定律左侧的$h$，并且用$i$替换酸雨定律中的$a$，用$a$替换酸雨定律中的$b$，我们有：
 
 \be
@@ -879,7 +891,7 @@ map\ fst \circ filter\ ((=100) \circ value \circ snd)\ (foldr\ expand\ []\ [1, 2
 \[
 str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ (map\ (show \circ dec))))
 \]
-其中$show$可以将数字转换为字符串。函数$join(c, s)$将一组字符串$s$用$c$连接起来，例如$join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def''。利用融合律化简$str$的定义。
+其中$show$可以将数字转换为字符串。函数 $join(c, s)$ 将一组字符串$s$用$c$连接起来，例如 $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def'' 。利用融合律化简$str$的定义。
 }
 \end{Exercise}
 
