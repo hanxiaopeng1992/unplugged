@@ -1,0 +1,138 @@
+\ifx\wholebook\relax \else
+
+\documentclass[UTF8]{article}
+
+\input{../../common-zh-cn.tex}
+
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{前言}
+
+\author{刘新宇
+\thanks{{\bfseries 刘新宇} \newline
+  Email: liuxinyu95@gmail.com \newline}
+  }
+
+\maketitle
+\fi
+
+\markboth{前言}{编程中的数学}
+
+\chapter*{前言}
+%\phantomsection  % so hyperref creates bookmarks
+%\addcontentsline{toc}{chapter}{前言}
+
+我讲一个从马爷爷那里听来的故事。有一年春节的时候，北京地坛公园的庙会里人山人海，小朋友们拿着压岁钱在各种摊位上买自己喜欢的玩具。
+有一个摊位上围了一群人。地上一字排开摆了九个小玩具，每个玩具上依次贴着一元、二元、三元……一直到九元的标签。摊主一边向大家吆喝，
+一边讲解游戏规则：“大家快来玩套圈游戏！一次一元钱，你扔一个，我扔一个，一个玩具只能套一个圈。谁有三个圈套中的玩具加到一起值
+十五元，就可以把套中的玩具都赢走。”
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+有个小男孩掏出一元钱，拿了一个红色的圈，使劲一扔。真准！正好套在了七块钱的玩具汽车上，摊主拿出一个蓝色的圈，一下子套中了八块钱
+的兔爷。
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+  &   &   &   &   &   & 男孩 & 摊主 & \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+小男孩又花了一元钱，这次他套中了价值两元的一个风车，这样只要他下次再套中那个六元的九连环，他就赢了。可这次摊主不慌不忙地
+把蓝圈准准地套住了那只九连环。
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+  & 男孩  &   &   &   & 摊主  & 男孩 & 摊主 & \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+这下可糟了，如果接下来摊主再套中那个一元钱的中国结，小男孩就要输了。小男孩涨红了脸，只能抢先去套那个中国结，他试了两次
+终于套中了。
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+男孩  & 男孩  &   &   &   & 摊主  & 男孩 & 摊主 & \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+摊主接下来扔了一个圈，套住了四元钱的孙悟空面具。小男孩套住了五元钱的小猪存钱罐。
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+男孩  & 男孩  &   & 摊主  & 男孩  & 摊主  & 男孩 & 摊主 & \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+但是摊主扔出一个圈，套住了三元的不倒翁。由于3 + 4 + 8 = 15，小男孩输了。
+
+\vspace{5mm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+男孩  & 男孩  & 摊主  & 摊主  & 男孩  & 摊主  & 男孩 & 摊主 & \\
+\hline
+\end{tabular}
+\vspace{5mm}
+
+周围的人看着很好玩，也纷纷掏钱套圈玩。马爷爷看了一阵，觉得很奇怪，大多数
+情况下都是摊主赢，偶尔会平局。马爷爷怀疑摊主一定有什么秘密，他只是为了避免
+人们怀疑，有时才故意输掉游戏。
+
+马爷爷回到家，电视里正在讲中国古老的《河图洛书》，据说在文字尚未发明之前，伏羲
+治理天下的时候，在黄河支流，有乌龟背负着神秘的图案。如果把图案中的圆点数目用
+现代的方法表示出来，就是一个数学上的三阶幻方。
+
+%\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \subcaptionbox{洛书}[0.45\linewidth]{ \includegraphics[scale=0.8]{img/luo-shu.png}}
+ \subcaptionbox{三阶幻方}[0.45\linewidth]{
+   \begin{tabular}{|c|c|c|}
+   \hline
+   4 & 9 & 2 \\
+   \hline
+   3 & 5 & 7 \\
+   \hline
+   8 & 1 & 6 \\
+   \hline
+   \end{tabular}
+   \vspace{8mm}
+ }
+ \captionsetup{labelformat=empty}
+ \caption{}
+ \label{fig:luo-shu}
+\end{figure}
+%\end{wrapfigure}
+
+\ifx\wholebook\relax \else
+
+\expandafter\enddocument
+%\end{document}
+
+\fi
