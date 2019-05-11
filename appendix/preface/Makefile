@@ -1,4 +1,4 @@
-SRC = nat
+SRC = preface
 OBJ = $(SRC)-en.pdf
 OBJ_CN = $(SRC)-zh-cn.pdf
 TEX = xelatex
@@ -13,8 +13,8 @@ cpp:
 haskell:
 	$(MAKE) haskell -C src
 
-image:
-	$(MAKE) -C img
+#image:
+#	$(MAKE) -C img
 
 tex: $(OBJ) $(OBJ_CN)
 
