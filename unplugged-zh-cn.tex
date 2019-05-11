@@ -13,6 +13,8 @@
 \global\let\wholebook=\relax %without relax, we build article, esle book
 
 \input{common-zh-cn.tex}
+\usepackage{graphicx}
+\usepackage[firstpage=true]{background}
 
 \setcounter{page}{1}
 
@@ -41,13 +43,27 @@
 %                 COVER PAGE
 % ================================================================
 
-\title{{\bf \Huge 编程中的数学}
+% https://en.wikipedia.org/wiki/File:FWF_Samuel_Monnier_d%C3%A9tail.jpg
+\backgroundsetup{
+  scale=2,
+  opacity=0.4,
+  angle=0,
+  position={0,0},
+  contents={
+    \includegraphics[width=\paperwidth,height=\paperheight]{img/cover-bg.jpg}
+  }
+}
+
+\title{
+  {\bf \Huge 同构 \newline}
+  \vspace{5mm}
+  {\bf ——编程中的数学 \newline \newline \newline}
   \centering
-  \scalebox{0.4}{\includegraphics{img/fibonacci-spiral.eps}}
-            }
+  \scalebox{1.5}{\includegraphics{nat/img/the-school-of-athens.eps}}
+}
 
 \author{刘新宇
-  \thanks{{\bfseries 刘新宇} \newline
+    %\thanks{{\bfseries 刘新宇} \newline
     Version: 0.6180339887498949 \newline
     Email: liuxinyu95@gmail.com \newline
     }}
