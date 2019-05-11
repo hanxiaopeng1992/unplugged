@@ -5,7 +5,7 @@ Mathematics of Programming
 
 This book introduces the mathematics behind computer programming.
 
-[![image](https://github.com/liuxinyu95/unplugged/blob/master/img/unplugged-cover-cn.png?raw=true | width=410)](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)
+[![image](https://github.com/liuxinyu95/unplugged/blob/master/img/unplugged-cover-cn.png?raw=true|width=410)](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)
 
 Contents
 --------
