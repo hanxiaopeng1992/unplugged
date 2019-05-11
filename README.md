@@ -1,9 +1,11 @@
 Mathematics of Programming
 ====
 
-2019/04
+2019/05
 
 This book introduces the mathematics behind computer programming.
+
+[![image](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-cover-cn.png)](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)
 
 Contents
 --------
