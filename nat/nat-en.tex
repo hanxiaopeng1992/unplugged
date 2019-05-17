@@ -1,6 +1,13 @@
 \ifx\wholebook\relax \else
 
 \documentclass[UTF8]{article}
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
 
 \input{../common-en.tex}
 
@@ -49,38 +56,24 @@ The next big step happened around 3100 BC. The abstract numbers dissociated from
 %\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.6]{img/Babylonian_numerals.eps}
- \caption{Babylonian numerals\cite{wiki-babylonian-num}。}
+ \subcaptionbox{Babylonian numerals\cite{wiki-babylonian-num}}[0.45\linewidth]{
+   \includegraphics[scale=0.6]{img/Babylonian_numerals.eps}} \quad \quad
+ \subcaptionbox{The abstract three}[0.45\linewidth]{
+   \includegraphics[scale=0.25]{img/abstract-num.eps}}
+ \captionsetup{labelformat=empty}
  \label{fig:babylonian-num}
+ \label{fig:abstract-num}
 \end{figure}
 %\end{wrapfigure}
 
 The abstract number emerged from intelligent mind. People realized the abstract three could represent three eggs, three trees, and three jars. It's a powerful tool. People can manipulate the pure numbers and apply the result to the concrete things. When increase the abstract three by one to get four, we know gathering another egg after three egges gives four eggs; we also know baking another jar after three jars gives four jars. We resolve a whole kind of problem instead of one by one.
-
-%\begin{wrapfigure}{R}{0.5\textwidth}
-\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.2]{img/abstract-num.eps}
- \caption{The concrete three things and the abstract three}
- \label{fig:abstract-num}
-\end{figure}
-%\end{wrapfigure}
 
 Starting from the numbers, people developed add, subtraction, then the more powerful methods of multiplication and division. When measure the length, angles, areas, and volumes, we connected the number to the geometry quantity. People from different places found the inner relationships and laws for the numbers and shapes. Ancient Egyptian, Greece, and Chinese people found the Pythagoras theorem independently, and applied it to the amazing works like to build the great pyramid. Trace back from the modern civilization, we find the natural number is the source of math and science. Kronecker, a German mathematician said `God made the integers; all else is the work of man.'\footnote{Natural number is different from integer. We'll come back to the story of Kronecker in the chapter of infinity and Cantor.}
 
 
 \section{Peano Axioms}
 
-%\begin{wrapfigure}{R}{0.4\textwidth}
-\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.2]{img/Peano.eps}
- \caption{Giuseppe Peano (1858-1932)}
- \label{fig:Peano}
-\end{figure}
-%\end{wrapfigure}
-
-Euclid's {\em Element} is the first work introduced the axiomatic methods. From the five axioms and five postulates, Euclid developed the laws one by one elaborately. Every result is only based on the axioms and the laws proved before. With this approach, he built the great building of geometry. However, theres no axiomatic formal system for natural numbers for long time. People have been considering the natural number is straightforward and the related facts are obvious. The axioms of natural number was setup by Italian mathematician Peano till 1889\footnote{Peano is a mathematician, logician, and linguist. He is the pioneer of mathematical logic and set theory. Peano influenced Russel and Whitehead for their work {\em Principia Mathematica}, and the further programs of French Bourbaki school. Peano also invented an international auxiliary language called Latino sine flexione ("Latin without inflexion," later called Interlingua, and the precursor of the Interlingua of the IALA).}. Today, we called Peano Axioms. Surprised similar to Euclid's five geometry axioms, there are five Peano natural number axioms.
+Euclid's {\em Element} is the first work introduced the axiomatic methods. From the five axioms and five postulates, Euclid developed the laws one by one elaborately. Every result is only based on the axioms and the laws proved before. With this approach, he built the great building of geometry. However, theres no axiomatic formal system for natural numbers for long time. People have been considering the natural number is straightforward and the related facts are obvious. The axioms of natural number was setup by Italian mathematician Peano till 1889. Today, we called Peano Axioms. Surprised similar to Euclid's five geometry axioms, there are five Peano natural number axioms.
 
 \begin{enumerate}
 \item 0 is a natural number. It can be expressed as $\exists 0 \in N$;
@@ -118,6 +111,17 @@ Why does the fifth axiom exclude the above counter example? For $\{$0, 0.5, 1, 1
 \end{enumerate}
 
 This the complete statement of the five Peano axioms. They can build the first-order arithmetic, also known as Peano arithmetic\footnote{Some people use 1, but not 0 as the first natural number. The order is different from the original works published by Peano, where the fifth axiom of induction was list as the third one.}.
+
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.2]{img/Peano.eps}
+ \caption{Giuseppe Peano (1858-1932)}
+ \label{fig:Peano}
+\end{figure}
+%\end{wrapfigure}
+
+% \footnote{Peano is a mathematician, logician, and linguist. He is the pioneer of mathematical logic and set theory. Peano influenced Russel and Whitehead for their work {\em Principia Mathematica}, and the further programs of French Bourbaki school. Peano also invented an international auxiliary language called Latino sine flexione ("Latin without inflexion," later called Interlingua, and the precursor of the Interlingua of the IALA).}
 
 \section{Natural numbers and programming}
 
@@ -389,15 +393,6 @@ fact = 2nd \cdot foldn(c, h) \\
 
 Here we use the symbol `$\cdot$' to `connect' the $2nd$ function and the $foldn(c, h)$ function. We call it {\em function composition}. $f\cdot g$ means firstly apply $g$ to the variable, then apply $f$ on top of the result. That is $(f\cdot g)(x) = f(g(x))$.
 
-\begin{wrapfigure}{R}{0.4\textwidth}
-%\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.4]{img/Fibonacci.eps}
- \caption{Leonardo Pisano, Fibonacci (1175-1250)}
- \label{fig:Fibonacci}
-%\end{figure}
-\end{wrapfigure}
-
 Let's see another example powered by this abstract tool, Fibonacci sequence. It's named after the medieval mathematician Leonardo Pisano. Fibonacci originates from `filius Bonacci' in Latin. It means the son of (the) Bonacci. Fibonacci's father was a wealthy Italian merchant
  often did trading around North Africa and the Mediterranean coast. Fibonacci traveled with him as a young boy. It was in Bugia (now Béjaïa, Algeria) that he learned about the Hindu–Arabic numeral system. Fibonacci realized the many advantage of this numeral system. He introduced it to Europe through his book, the Liber Abaci (Book of Abacus or Book of Calculation, 1202). European people were using Roman numeral system before that. We can still see Roman numbers in clock plat today. The Roman number for year 2018 is MMXVIII. Where an M for 1000, so two M letters mean 2000; X represents for 10, V for 5, the three I mean 3. Sum them up, we get 2018. The Hindu-Arabic numeral system introduced by Fibonacci is a positional decimal numeral system. We are using it almost everywhere today. It uses the zero invented by Indian mathematicians. Numbers at different position means different value. This advanced numeral system were widely used in business, for example converting different currencies, calculating profit and interest, which were important to the growing banking industry. It influenced the mathematics in Europe greatly.
 
@@ -407,12 +402,18 @@ When start, there is a pair in the first month. In the second month, there is a 
 
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
 
-%\begin{wrapfigure}{L}{0.3\textwidth}
+
+%\begin{wrapfigure}{R}{0.35\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.5]{img/fibonacci_spiral.eps}
- \caption{The length of the rectangles give a Fibonacci sequence.}
+ \subcaptionbox{The length of the squares give a Fibonacci sequence}[0.45\linewidth]{
+     \includegraphics[scale=0.4]{img/fibonacci_spiral.eps}}
+ \subcaptionbox{Leonardo Pisano, Fibonacci (1175-1250)}[0.45\linewidth]{
+     \includegraphics[scale=0.35]{img/Fibonacci.eps}}
+ \captionsetup{labelformat=empty}
+ \caption{}
  \label{fig:fibonacci_spiral}
+ \label{fig:Fibonacci}
 \end{figure}
 %\end{wrapfigure}
 
