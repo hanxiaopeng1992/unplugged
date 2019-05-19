@@ -121,11 +121,15 @@ This the complete statement of the five Peano axioms. They can build the first-o
 \end{figure}
 %\end{wrapfigure}
 
-% \footnote{Peano is a mathematician, logician, and linguist. He is the pioneer of mathematical logic and set theory. Peano influenced Russel and Whitehead for their work {\em Principia Mathematica}, and the further programs of French Bourbaki school. Peano also invented an international auxiliary language called Latino sine flexione ("Latin without inflexion," later called Interlingua, and the precursor of the Interlingua of the IALA).}
+Giuseppe Peano was an Italian mathematician, logician, and linguist. Peano was born and raised on a farm at Spinetta, a hamlet now belonging to Cuneo, Italy. He enrolled at the University of Turin in 1876, graduating in 1880 with high honors, after which the University employed him to teach calculus course. In 1887, Peano married Carola Crosio. In 1886, he began teaching concurrently at the Royal Military Academy. From 1880s, Peano started to study mathematical logic. In 1889, he published the Peano axioms, a formal foundation for the natural numbers. In 1891 Peano started the Formulario Project. It was to be an ``Encyclopedia of Mathematics'', containing all known formulae and theorems of mathematical science. In 1900, the Second International Congress of Mathematicians was held in Paris. At the conference Peano met Bertrand Russell and gave him a copy of Formulario. Russell was so struck by Peano's innovative logical symbols that he left the conference and returned home to study Peano's text\cite{M-Kline-2007}.
+
+When Russell and Whitehead wrote Principia Mathematica, they were deeply influenced by Peano. Peano played a key role in the axiomatization of mathematics and was a leading pioneer in the development of mathematical logic and set theory. As part of this effort, he made key contributions to the modern rigorous and systematic treatment of the method of mathematical induction. He spent most of his career teaching mathematics at the University of Turin. He also wrote an international auxiliary language, Latino sine flexione ("Latin without inflections", later called Interlingua), which is a simplified version of Classical Latin. Most of his books and papers are in Latino sine flexione. Although Peano put a lot of effort to rewrite his works in the new language, few people read it. On the other hand, his early works in French influnced many mathematicians, especially to the Bourbaki group, which came out many top mathematicians like André Weil, Jean Dieudonné, Henri Cartan, Schwartz, Serre, Grothendieck and so on.
+
+Giuseppe Peano died on April, 20th, 1932 when he suffered a fatal heart attack.
 
 \section{Natural numbers and programming}
 
-People make amazing achievement with the modern computer systems. We didn't establish the axioms of computer programming before developing these results. After the great success of computer application, then the foundation of computer science is gradually developed to be strict, formal, and mathematized. The similar thing happens several times in our history. Calculus was developed by Newton and Leibniz independently in the 17th century, then applied to a wide range of areas, including fluid dynamics, astronomy and so on. However, it was not formalized until Cauchy developed the foundation in the 19th century.
+People make amazing achievement with the modern computer systems. We didn't establish the axioms of computer programming before developing these results. After the great success of computer application, then the foundation of computer science is gradually developed to be strict, formal, and mathematized. The similar thing happens several times in our history. Calculus was developed by Newton and Leibniz independently in the 17th century, then applied to a wide range of areas, including fluid dynamics, astronomy and so on. However, it was not formalized until Bolzano, Abel, Cauchy and Weierstrass developed the foundation in the 19th century\cite{M-Kline-2007}.
 
 We'll emulate it. From the Peano axioms, define the natural numbers with computer programs. In a computer system without familiar numbers like 0, 1, 2, ..., we can define the natural numbers as below\footnote{We use a virtual, ideal programming language in this book. Some real programs are given at the end of each chapter for reference.}:
 
@@ -256,8 +260,8 @@ This complete the proof of associative law for addition. However, it is a bit co
 \begin{Exercise}
 \begin{enumerate}
 \item Define 1 as the successor of 0, prove $a \cdot 1 = a$ hold for all natural numbers;
-\item Prove the associative and commutative laws for multiplication;
-\item Prove the distributive law for multiplication.
+\item Prove the distributive law for multiplication;
+\item Prove the associative and commutative laws for multiplication.
 \end{enumerate}
 \end{Exercise}
 
@@ -671,6 +675,9 @@ Calvin C Clawson. ``The Mathematical Traveler, Exploring the Grand History of Nu
 
 \bibitem{wiki-babylonian-num}
 Wikipedia. ``Babylonian numerals''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
+
+\bibitem{M-Kline-2007}
+Morris Kline ``Mathematics: The Loss of Certainty''. Oxford University Press, 1980. 0-19-502754-X.
 
 \bibitem{GEB}
 Douglas R. Hofstadter ``Gödel, Escher, Bach: An Eternal Golden Braid''. Basic Books; Anniversary edition (February 5, 1999). ISBN: 978-0465026562
