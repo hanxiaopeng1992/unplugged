@@ -225,8 +225,8 @@ From ancient times to the late 19th century, people considered the {\em Elements
 
 \subsection{Euclidean algorithm}
 
-\begin{proposition}[Elements, Book X, Proposition 3]
-Given two commensurable quantities, find the greatest common measure.
+\begin{proposition}[Euclid's Elements, Book X, Proposition 3]
+To find the greatest common measure of two given commensurable magnitudes.
 \end{proposition}
 
 The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term 'gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use gcd as the abbreviation for the greatest common divisor.}.
@@ -290,7 +290,7 @@ $gcm(6, 6)$ & 6 & 6 \\
 \hline
 \end{tabular}
 
-Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one quantity is an integeral multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $gcm(0, b) = gcm(b, 0) = b$. We can compare $a$ and $b$ first and exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when next time do the recursive computation, we can directly exchange them as $gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
+Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one magnitude is an integeral multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $gcm(0, b) = gcm(b, 0) = b$. We can compare $a$ and $b$ first and exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when next time do the recursive computation, we can directly exchange them as $gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
 
 \be
 gcm(a, b) = \left \{
@@ -315,13 +315,13 @@ r_1 &=& r_2 q_3 + r_3 \\
 \end{array}
 \]
 
-As long as $a$ and $b$ are commensurable, this list is not infinite. This is because every time, we use compass to intercept integral times, the quotients are integers. And the remainders are less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial quantity is finite, we must reach to $r_{n-2} = r_{n-1} q_n$ within finite steps.
+As long as $a$ and $b$ are commensurable, this list is not infinite. This is because every time, we use compass to intercept integral times, the quotients are integers. And the remainders are less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, we must reach to $r_{n-2} = r_{n-1} q_n$ within finite steps.
 
 Next is to prove $r_{n-1}$ can measure both $a$ and $b$. Obviously $r_{n-1}$ measures $r_{n-2}$ by definition. Consider the last second equation $r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$, since $r_{n-1}$ measures $r_{n-2}$, $r_{n-1}$ also measures $r_{n-2} q_{n-1}$. So it measures $r_{n-2} q_{n-1} + r_{n-1}$, which equals to $r_{n-3}$. Similiarily, we can prove $r_{n-1}$ measures the left hand of every equations step by step up, till $b$ and $a$. This proves the answer found by Euclidean algorithm, $r_{n-1}$ is the common measure of $a$ and $b$. Suppose the greatest common measure is $g$, we have $r_{n-1} \leq g$.
 
 The next step is to prove, for any common measure $c$ for $a$ and $b$, it measures $r_{n-1}$. As $c$ is the common measure, both $a$ and $b$ can be expressed with it, let $a = mc$, $b = nc$, where $m$ and $n$ are some integers. Then the first equation $a = b q_0 + r_0$ can be denoted as $mc = ncq_0 + r_0$, as we know $r_0 = (m - nq_0)c$, it means $c$ measures $r_0$. Similarily, we can prove $c$ measures $r_1$, $r_2$, ..., $r_{n-1}$ one by one. Thus we proved any common measure also measures $r_{n-1}$, so the greatest one $g$ also measures $r_{n-1}$. It means $g \leq r_{n-1}$.
 
-Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduced the greatest common measure $g = r_{n-1}$. It does not only proved the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of quantities:
+Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduced the greatest common measure $g = r_{n-1}$. It does not only proved the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of magnitudes:
 
 \be
 g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
@@ -340,7 +340,7 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 %\end{figure}
 \end{wrapfigure}
 
-The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given quantity $a$ and $b$, in addition to compute the greatest common measure $g$, it also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
+The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given magnitude $a$ and $b$, in addition to compute the greatest common measure $g$, it also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
 
 \[
 S = \{ ax + by | x, y \in \mathbb{Z}\ \text{and} \ ax + by > 0\}
@@ -553,7 +553,7 @@ The Euclidean algorithm is the most famous recursive algorithm. German mathemati
 %\end{figure}
 \end{wrapfigure}
 
-The Euclid algorithm is a double edge sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believe any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the edge and diagonal of a square. However, no matter how small quantity be used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, it was saying that Hippasus also found segment AC and AG couldn't be co-measured.
+The Euclid algorithm is a double edge sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believe any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the edge and diagonal of a square. However, no matter how small magnitude being used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, it was saying that Hippasus also found segment AC and AG couldn't be commensurable.
 
 %\begin{wrapfigure}{L}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -565,7 +565,7 @@ The Euclid algorithm is a double edge sword. The powerful recursive method can b
 \end{figure}
 %\end{wrapfigure}
 
-The Scottish mathematician George Chrystal reconstructed Hippasus's proof in the 19th Century. Using reduction to absurdity, suppose there exists a segment $c$ that co-measures the edge and diagonal of the square. From the definition of the common measurement, let the edge be $mc$, and the diagonal be $nc$, where $m, n$ both are integers. As shown in figure \ref{fig:irrational}, take the edge as radius, we draw an arc with $A$ as the center, which intersect the diagonal $AC$ at point $E$. Then draw a ling from $E$ that is perpendicular to the diagonal, and intersects edge $BC$ at point $F$.
+The Scottish mathematician George Chrystal reconstructed Hippasus's proof in the 19th Century. Using reduction to absurdity, suppose there exists a segment $c$ that measures both the edge and diagonal of the square. From the definition of the common measurement, let the edge be $mc$, and the diagonal be $nc$, where $m, n$ both are integers. As shown in figure \ref{fig:irrational}, take the edge as radius, we draw an arc with $A$ as the center, which intersect the diagonal $AC$ at point $E$. Then draw a ling from $E$ that is perpendicular to the diagonal, and intersects edge $BC$ at point $F$.
 
 %\begin{wrapfigure}{L}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -593,12 +593,12 @@ As it is an arc, the length of $AE$ equals to the square edge. Thus the length o
 \end{array}
 \]
 
-As both $m, n$ are integers, it's obvious that $c$ co-measures the diagonal $CF$ and edge $CE$ of the small square. Using the same method as above, we can draw a smaller square. Repeating it leads to smaller and smaller infinite squares. But $c$ co-measures each diagonal and edge for each square. Since $m, n$ are finite integers, we can't endlessly duplicate this process, which leads to absurdity. Therefore, our assumption is not true, there is no common measure for the diagonal and edge of a square.
+As both $m, n$ are integers, it's obvious that $c$ measures both the diagonal $CF$ and edge $CE$ of the small square. Using the same method as above, we can draw a smaller square. Repeating it leads to smaller and smaller infinite squares. But $c$ measures both diagonal and edge for every square. Since $m, n$ are finite integers, we can't endlessly duplicate this process, which leads to absurdity. Therefore, our assumption is not true, there is no common measure for the diagonal and edge of a square.
 
-这样毕达哥拉斯万物皆数的理论就出现了一个漏洞：存在线段的长度无法用整数比进行度量。据说希帕索思因为这个发现，而遭到谋杀，毕达哥拉斯学派担心这个秘密被泄露出去，而把希帕索思沉入大海。然而历史的车轮不会倒退，古希腊的哲学家和数学家们正视了这个问题，经过欧多克索斯、亚里士多德和欧几里得等人的工作，终于严格定义了不可公度和无理量，并通过几何将它们纳入了古希腊的数学体系。
+It is a loophole in Pythagorean theory about all things are made of numbers, there exists segments that can't be represented by ratio of integers. It was said Hippasus was murdered due to this finding. The Pythagoreans didn't want that secrete be disclosed, they drowned Hippasus at sea. The discovery of irrational number greatly boost mathematics. The ancient Greek philosophers and mathematicians considered this problem seriously. After the work of Odoxos, Aristotle, and Euclid, they finally strictly defined the incommensurable magnitude, and incorporate it into the ancient Greek mathematics through geometry.
 
-\begin{proposition}[《几何原本》，卷十，命题二]
-如果从两个不等量的大量中连续减去小量，直到余量小于小量，再从小量中连续减去余量直到小于余量，这样一直作下去，当所余的量总不能量尽它前面的量时，则称两个量不可公度。
+\begin{proposition}[Euclid's Elements, Book X, Proposition 2]
+If, when the less of two unequal magnitudes is continually subtracted in turn from the greater that which is left never measures the one before it, then the two magnitudes are incommensurable.
 \end{proposition}
 
 这里出现了一个有趣的现象，不可公度是用欧几里得算法能否停止来定义的。由于欧几里得算法是递归的，也就是说递归能否中止成了判断条件。这再次将我们的注意力引入到递归的本质上。递归究竟是什么？它怎样用形式化的方法表示？
