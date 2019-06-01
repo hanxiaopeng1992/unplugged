@@ -595,17 +595,17 @@ As it is an arc, the length of $AE$ equals to the square edge. Thus the length o
 
 As both $m, n$ are integers, it's obvious that $c$ measures both the diagonal $CF$ and edge $CE$ of the small square. Using the same method as above, we can draw a smaller square. Repeating it leads to smaller and smaller infinite squares. But $c$ measures both diagonal and edge for every square. Since $m, n$ are finite integers, we can't endlessly duplicate this process, which leads to absurdity. Therefore, our assumption is not true, there is no common measure for the diagonal and edge of a square.
 
-It is a loophole in Pythagorean theory about all things are made of numbers, there exists segments that can't be represented by ratio of integers. It was said Hippasus was murdered due to this finding. The Pythagoreans didn't want that secrete be disclosed, they drowned Hippasus at sea. The discovery of irrational number greatly boost mathematics. The ancient Greek philosophers and mathematicians considered this problem seriously. After the work of Odoxos, Aristotle, and Euclid, they finally strictly defined the incommensurable magnitude, and incorporate it into the ancient Greek mathematics through geometry.
+It is a loophole in Pythagorean theory about all things are made of numbers, there exists segments that can't be represented by ratio of integers. It was said Hippasus was murdered due to this finding. The Pythagoreans didn't want that secrete be disclosed, they drowned Hippasus at sea. The discovery of irrational number greatly boost mathematics. The ancient Greek philosophers and mathematicians considered this problem seriously. After the work of Odoxos, Aristotle, and Euclid, they finally strictly defined the incommensurable magnitudes, and incorporate it into the ancient Greek mathematics through geometry.
 
 \begin{proposition}[Euclid's Elements, Book X, Proposition 2]
 If, when the less of two unequal magnitudes is continually subtracted in turn from the greater that which is left never measures the one before it, then the two magnitudes are incommensurable.
 \end{proposition}
 
-这里出现了一个有趣的现象，不可公度是用欧几里得算法能否停止来定义的。由于欧几里得算法是递归的，也就是说递归能否中止成了判断条件。这再次将我们的注意力引入到递归的本质上。递归究竟是什么？它怎样用形式化的方法表示？
+It's interesting that the incommensurable is defined by checking whether the Euclidean algorithm terminates or not. Because Euclidean algorithm is recursive, it means the condition is essentially whether recursion terminates or not. It brings our attention to the nature of recursion, what's recursion? How to represent recursion in a formal way?
 
 \begin{Exercise}
-\Question{我们给出的欧几里得算法是递归的，请消除递归，只使用循环实现欧几里得算法和扩展欧几里得算法。}
-\Question{大多数编程环境中的取模运算，要求除数、被除数都是整数。但是线段的长度不一定是整数，请实现一个针对线段的取摸运算。它的效率如何？}
+\Question{The Euclidean algorithm described in this section is in recursive manner. Try to eliminate recursion, implement it and the extended Euclidean algorithm only with loop.}
+\Question{Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integers. Implement a modular operation that manipulates segments. What's the efficiency of it?}
 \Question{我们在证明欧几里得算法正确性的过程中说：“每次都保证余数小于除数。即$b > r_0 > r_1 > r_2 > ... > 0$，但是余数不可能小于零。由于起始值是有限的，故最终算法一定中止。”为什么不会出现，$r_{n}$无限接近于零但不等于零的情况？算法一定会中止么？$a$和$b$是可公度的这一前提保证了什么？}
 \Question{对于二元线性不定方程$ax + by = c$，若$x_1$、$y_1$和$x_2$、$y_2$为两对整数解。试证明$|x_1 - x_2|$的最小值为$b/gcm(a, b)$，且$|y_1 - y_2|$的最小值为$a/gcm(a, b)$。}
 \Question{试证明图\ref{fig:pentagram}的五角星中的线段AC和AG是不可公度的。使用实数表示，它们比值是什么？}
