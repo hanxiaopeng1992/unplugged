@@ -26,6 +26,21 @@ sqr = snd . foldn (0, 0) h where
 expo m = snd . foldn (0, 0) h where
   h (i, b) = (i + 1, power (i + 1) m)
 
+-- ()^m with Newton Binomial theorem
+-- (n + 1)^m = n^m + (n, 1)n^(m-1) + ... + (n, n-1)n + 1
+exp' m n = snd $ foldn (1, 1) h (n - 1) where
+  cs = foldn [1] pascal m
+  h (i, x) = (i + 1, sum $ zipWith (*) cs xs) where
+    xs = take (m + 1) $ iterate (/i) x
+
+--      1
+--    1   1
+--  1   2   1
+--1   3   3   1
+pascal = gen [1] where
+  gen cs (x:y:xs) = gen ((x + y) : cs) (y:xs)
+  gen cs _ = 1 : cs
+
 -- sum [1, 3, 5, ...]
 sumOdd = snd . foldn (1, 0) h where
   h (i, s) = (i + 2, s + i)
