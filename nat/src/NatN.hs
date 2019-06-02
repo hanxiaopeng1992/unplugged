@@ -31,7 +31,7 @@ expo m = snd . foldn (0, 0) h where
 exp' m n = snd $ foldn (1, 1) h (n - 1) where
   cs = foldn [1] pascal m
   h (i, x) = (i + 1, sum $ zipWith (*) cs xs) where
-    xs = take (m + 1) $ iterate (/i) x
+    xs = take (m + 1) $ iterate (`div` i) x
 
 --      1
 --    1   1
