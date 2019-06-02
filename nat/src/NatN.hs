@@ -20,3 +20,18 @@ power m = foldn 1 (*m)
 -- ()^m
 expo m = snd . foldn (0, 0) h where
   h (i, b) = (i + 1, power (i + 1) m)
+
+-- ()^2
+sqr = snd . foldn (0, 0) h where
+  h (i, s) = (i + 1, s + 2 * i + 1)
+
+-- sum [1, 3, 5, ...]
+sumOdd = snd . foldn (1, 0) h where
+  h (i, s) = (i + 2, s + i)
+
+-- There is a line of holes in the forest. A fox hides in one hole.
+-- It moves to the next hole every day. If we can
+-- check only one hole a day, is there a way to catch the fox?
+fox m = foldn (1, m) h n where
+  h (c, f) = (c + 2, f + 1)
+  n = m - 1 -- solve equation: 2n + 1 = m + n, alternatively let n = inf
