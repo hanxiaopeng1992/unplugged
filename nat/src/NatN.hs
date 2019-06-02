@@ -17,13 +17,14 @@ times m = foldn 0 (+m)
 -- m^()
 power m = foldn 1 (*m)
 
+-- ()^2
+-- (n + 1)^2 = n^2 + 2n + 1
+sqr = snd . foldn (0, 0) h where
+  h (i, s) = (i + 1, s + 2 * i + 1)
+
 -- ()^m
 expo m = snd . foldn (0, 0) h where
   h (i, b) = (i + 1, power (i + 1) m)
-
--- ()^2
-sqr = snd . foldn (0, 0) h where
-  h (i, s) = (i + 1, s + 2 * i + 1)
 
 -- sum [1, 3, 5, ...]
 sumOdd = snd . foldn (1, 0) h where
@@ -34,4 +35,4 @@ sumOdd = snd . foldn (1, 0) h where
 -- check only one hole a day, is there a way to catch the fox?
 fox m = foldn (1, m) h n where
   h (c, f) = (c + 2, f + 1)
-  n = m - 1 -- solve equation: 2n + 1 = m + n, alternatively let n = inf
+  n = m - 1 -- solve equation: 2n + 1 = m + n
