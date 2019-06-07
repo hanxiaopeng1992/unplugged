@@ -662,7 +662,7 @@ The arrow symbol $\to$ read as `reduce to'. Note that when apply $f$ to variable
 
 There will be too many parentheses if written strictly in Curried form. To make it concise, we'll omit some parentheses without causing ambiguity. For example we'll simplify $((f\ ((+\ 3)\ 4))\ (g\ x))$ to $(f\ (+\ 3\ 4)\ (g\ x))$.
 
-在进行表达式化简时，需要能够理解一些基本含义并做出计算。对于四则运算，我们已经在第一章中介绍的皮亚诺算术的基础上定义了加法和乘法。我们也可以用类似的方式定义其逆运算减法和除法。对于参与运算以及表示结果的常数，我们也有基于零和后继的定义。在这些理论基础上，实现时通常将基本运算和数字内置实现（built-in）以提高性能。通常加以内置实现的还有与或非等逻辑运算、布尔常量真(true)和假(false)。条件表达式可以按照第一章描述的麦卡锡形式$(p \mapsto f, g)$实现，也可以定义为下面的if形式。
+We need define the meanings for basic components when perform expression reduction. For arithmetic operation, we've defined plus and multiplication in chapter 1 on top of Peano axioms. We can use the similar approach to define their reverse operation for minus and divide. For the numbers as operands, we can define them with zero and the successor. With these being clarified in theory, we realize the arithmetic operators and numbers built-in for performance consideration. The logic and, or, not, Boolean constant value true and false are also typically built-in realized. The conditional expression can be realized in McCarthy form like $(p \mapsto f, g)$ in chapter 1, or defined as the below \texttt{if} form:
 
 \[
 \begin{array}{llcl}
@@ -671,7 +671,7 @@ There will be too many parentheses if written strictly in Curried form. To make 
 \end{array}
 \]
 
-其中$e_t$和$e_f$都是表达式。第一章中通过$cons$定义的复合数据结构，也可以通过函数来抽取其中的各个部分：
+Where $e_t$, $e_f$ both are expressions. For the compound data structure defined by $cons$ in chapter 1, we also need define functions to extract the every part:
 
 \[
 \begin{array}{l}
@@ -680,32 +680,32 @@ tail\ (cons\ a\ b) \mapsto b
 \end{array}
 \]
 
-\subsection{$\lambda$抽象}
+\subsection{$\lambda$ abstraction}
 
-我们前面简单介绍了$\lambda$符号的由来，所谓$\lambda$抽象，实际上是一种构建函数的方法。我们通过一个例子来了解$\lambda$抽象的各个组成部分。
+We introduced how $\lambda$ symbol was introduced. $\lambda$ abstraction is a method to construct function. Let's use an example to understand every component in $\lambda$ abstraction.
 
 \[
 (\lambda x . +\ x\ 1)
 \]
 
-一个$\lambda$抽象包含四个组成部分，首先是$\lambda$符号，表示“接下来要定义一个函数”。紧随其后的是变量，在本例中就是$x$，被称为形参（formal parameter）。形参之后是一个点，剩余部分是函数体，它向右延申到最长，在本例中是$+\ x\ 1$。有时为了避免对函数体的右边界产生歧义，可以增加括号，对于本例，可以写成：$(+\ x\ 1)$。为了记忆方便，我们可以将$\lambda$抽象的四个部分按照如下方法对应到自然语言上。
+A $\lambda$ abstraction contains four parts. First is the $\lambda$ symbol, it means we start to define a function. The next part is the variable. It's $x$ in this example. The variable is called formal parameter. Following the formal parameter, there is a dot. The rest part is the function body that extends to the right most. It's $+\ x\ 1$ in our example. We can add parentheses to avoid ambiguity about the right boundary for the body. For our example, it will be $(+\ x\ 1)$. To make it easy for memory, we write the four parts in $\lambda$ abstraction corresponding to natural language as below.
 
 \begin{tabular}{cccc}
 ($\lambda$ & $x$ & . & +\  $x$\ 1) \\
 $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
-函数的 & 自变量是$x$ & 它 & 将$x$和1相加 \\
+That function of & $x$ & which & add $x$ to 1 \\
 \end{tabular}
 
-为了方便，在后继的推导中我们也会等价地使用$x \mapsto x + 1$形式的记法。这里有一点需要澄清，$\lambda$抽象并不等同于$\lambda$表达式。$\lambda$抽象只是$\lambda$表达式的一种情况，$\lambda$表达式还包括其它三种情况：
+We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that $\lambda$ abstraction is not equivalent to $\lambda$ expression, $\lambda$ abstraction is only one type of $\lambda$ expression. $\lambda$ expression also has two other types:
 
 \begin{tabular}{rcll}
-<表达式> & = & <常量> & 内置的常量，数字、布尔值等 \\
-        & | & <变量> & 变量名 \\
-        & | & <表达式> <表达式> & 应用 \\
-        & | & $\lambda$ <变量> . <表达式> & $\lambda$抽象
+<exp> & = & <constant> & built-in constants, numbers, Boolean etc. \\
+        & | & <variable> & variable names \\
+        & | & <exp> <exp> & applications \\
+        & | & $\lambda$ <variable> . <exp> & $\lambda$ abstraction
 \end{tabular}
 
-\subsection{$\lambda$变换规则}
+\subsection{$\lambda$ conversion rules}
 
 考虑下面的$\lambda$表达式，如果对它化简，我们需要知道“全局”变量$y$的值。与之相对，我们不需要事先知道变量$x$的值，因为它以形参出现在函数中。
 
