@@ -646,7 +646,8 @@ The formalization of computation itself is called {\em Metamathematics}. This at
 The `$\mapsto$' symbol is introduced by Nicolas Bourbaki\footnote{Nicolas Bourbaki is the collective pseudonym of a group of (mainly French) mathematicians. Their aim is to reformulate mathematics on an extremely abstract and formal but self-contained basis with the goal of grounding all of mathematics on set theory. Many famous mathematician participants the Bourbaki group, like Henri Cartan, Claude Chevalley, Jean Dieudonné, André Weil, Laurent Schwartz, Jean-Pierre Serre, Alexander Grothendieck, and Serge Lang.} around 1930. Russel and Whitehead use the notation $\hat{x}(x \times x)$ in their famous book ``Principia Mathematica'' in 1910s. Church wanted to use a similar notation in 1930s, however, the publisher he worked with didn't know how to print the `hat' symbol on top of $x$. Alternatively, they printed the uppercase Greek letter $\Lambda$ before $x$, and later changed to lowercase letter $\lambda$. That is the reason why we see it's in the form of $\lambda x . x \times x$ today\cite{Dowek2011}. Although the $x \mapsto x \times x$ presentation is widely accepted, people tend to use Church's notation particularly in logic and computer science, and named it as the `$\lambda$-calculus'.
 
 \subsection{Expression reduction}
-我们先从一些简单的例子开始了解如何用$\lambda$演算形式化算法与计算过程。首先是加减乘除四则运算，我们把它们也看成某种函数。比如加法1+2，可以看作用一个名为“+”的函数，作用到1和2两个变量上。按照把函数名写在前面的习惯，这一表达式可以写成$(+\ 1\ 2)$。针对表达式的求值，就可以看作是一系列的化简过程，例如：
+
+We start from some simple example of $\lambda$-calculus to demonstrate how to formalize the computation and algorithm. For basic arithmetic operations of plus, minus, times, and subtraction, we treat them also as functions. For instance 1 + 2 can be considered as applying function `+' to two arguments 1 and 2. Following the traditions to write function name first, this expression can be written as $(+\ 1\ 2)$. The process of expression evaluation can be viewed as a series of reduction steps. For example:
 
 \[
 \begin{array}{ll}
@@ -657,9 +658,9 @@ The `$\mapsto$' symbol is introduced by Nicolas Bourbaki\footnote{Nicolas Bourba
 \end{array}
 \]
 
-这里箭头符号$\to$读作“化简为”。注意到函数$f$应用到变量$x$上，并没有写成$f(x)$而是写成了$f\ x$的形式。对于多元函数，如$f(x, y)$，我们不把它写成$(f\ (x, y))$而是用更加简单一致的方法写成$((f\ x)\ y)$。这样为了表达“三加四”这样的加法，需要写成$((+\ 3)\ 4)$。表达式$(+\ 3)$实际上表示了一个函数，它把任何传入的变量都加3。这样在整体上这个表达式的含义就是：把加法“+”函数先应用到变量3上，这样的结果是一个函数，然后再把这个函数应用到变量4上。这样本质上，我们认为所有的函数都只接受一个参数。这一方法最初是由肖芬格尔（Schönfinkel, 1889 - 1942）在1924年提出，后来经哈斯克尔$\cdot$克里在1958年后被广泛使用的。因此它被称为函数的“克里化”（Currying）\cite{SPJ1987}。
+The arrow symbol $\to$ read as `reduce to'. Note that when apply $f$ to variable $x$, we don't write it as $f(x)$, but as $f\ x$. For multi-variable functions, like $f(x, y)$, we don't write as $(f\ (x, y))$, but use the uniformed way as $((f\ x)\ y)$. Therefore, three plus four should be written as $((+\ 3)\ 4)$. Expression $(+\ 3)$ actually represents a function, it adds 3 to any argument passed in. As a whole, this expression means `apply function + to a variable that equals to 3, it gives a function. Then apply this function to another variable that equals to 4'. By this means, we treat every function only takes one argument. This method was first introduced by Schönfinkel (1889 - 1942) in 1924, then widely used by Haskell Curry from 1958. It is known as {\em Currying}\cite{SPJ1987}.
 
-严格按照克里化的方式写出的表达式含有很多括弧，为了简化描述，我们在不引起歧义的情况下会省略一些括弧，例如将$((f\ ((+\ 3)\ 4))\ (g\ x))$简写为$(f\ (+\ 3\ 4)\ (g\ x))$。
+There will be too many parentheses if written strictly in Curried form. To make it concise, we'll omit some parentheses without causing ambiguity. For example we'll simplify $((f\ ((+\ 3)\ 4))\ (g\ x))$ to $(f\ (+\ 3\ 4)\ (g\ x))$.
 
 在进行表达式化简时，需要能够理解一些基本含义并做出计算。对于四则运算，我们已经在第一章中介绍的皮亚诺算术的基础上定义了加法和乘法。我们也可以用类似的方式定义其逆运算减法和除法。对于参与运算以及表示结果的常数，我们也有基于零和后继的定义。在这些理论基础上，实现时通常将基本运算和数字内置实现（built-in）以提高性能。通常加以内置实现的还有与或非等逻辑运算、布尔常量真(true)和假(false)。条件表达式可以按照第一章描述的麦卡锡形式$(p \mapsto f, g)$实现，也可以定义为下面的if形式。
 
