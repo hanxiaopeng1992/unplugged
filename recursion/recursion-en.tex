@@ -707,37 +707,37 @@ We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that 
 
 \subsection{$\lambda$ conversion rules}
 
-考虑下面的$\lambda$表达式，如果对它化简，我们需要知道“全局”变量$y$的值。与之相对，我们不需要事先知道变量$x$的值，因为它以形参出现在函数中。
+When evaluate the below $lambda$ expression, we need to know the value for the global variable $y$. On the other hand, we needn't know the value of variable $x$, because it appears as the formal parameter.
 
 \[
 (\lambda x . +\ x\ y)\ 2
 \]
 
-比较$x$和$y$的不同之处，我们称$x$是被$\lambda x$“绑定”的。当将这一$\lambda$抽象应用到参数2时，我们会用2替换掉所有的$x$。相反，$y$没有被$\lambda$绑定，我们称变量$y$是自由的。总之，表达式的值是由未被绑定的自由变量的值决定的。一个变量要么是被绑定的，要么是自由的。下面是一个稍复杂点的例子：
+Different from $y$, we say $x$ is bound to $\lambda x$. When apply this $\lambda$ abstraction to argument 2, we replace $x$ by 2. On the contrary, $y$ is not bound by $\lambda$, we say $y$ is free. Overall, the expression value is determined by the unbound free variable values. A variable is either bound or free. Here is another example:
 
 \[
 \lambda x . +\ ((\lambda y . +\ y\ z)\ 3)\ x
 \]
 
-我们可以把它写成箭头记法，这样可以看得更清楚：
+We can make it clear with the arrow notation:
 
 \[
 x \mapsto ((y \mapsto y + z)\ 3) + x
 \]
 
-这样就可以看出，$x$与$y$是被绑定的，而$z$是自由变量。在更加复杂的表达式中，同一变量的名字，有时是被绑定的，有时又以自由变量的形式出现，例如：
+We see that both $x$ and $y$ are bound, while $z$ is free. In the more complex expression, the same variable name may be bound, and at the same time appears as free. For example:
 
 \[
 +\ x\ ((\lambda x . +\ x\ 1)\ 2)
 \]
 
-写成箭头形式为：
+Written in the arrow form:
 
 \[
 x + ((x \mapsto x + 1)\ 2)
 \]
 
-我们看到，第一次出现的$x$是个自由变量，而后面出现的$x$是被绑定的。在复杂的表达式中，这种同一名字代表不同的变量的情况给会表达式化简带来麻烦。为了解决名称冲突的问题，我们引入第一条$\lambda$变换规则——$\alpha$-变换。其中$\alpha$是希腊字母阿尔法。这一规则说，我们可以将$\lambda$表达式中的一个变量，重新命名为另一个变量。例如：
+We see that, $x$ is free in its first occurrence, but is bound in the second occurrence. The same name represents for different variable can cause confusion in a complex expression. To solve the name conflict, we introduce the first $\lambda$ conversion rule, $\alpha$-conversion. Where $\alpha$ is the Greek letter alpha. This rule allows us to rename a variable in $\lambda$ expression to another one. For example:
 
 \[
 \lambda x . +\ x\ 1 \quad \overset{\alpha}{\longleftrightarrow} \quad \lambda y . +\ y\ 1
@@ -745,7 +745,7 @@ x + ((x \mapsto x + 1)\ 2)
 
 %for short arrow, can be replaced with \xleftrightarrow{\alpha}
 
-写成箭头形式为：
+Written in the arrow form:
 
 \[
 x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 1
