@@ -751,19 +751,19 @@ Written in the arrow form:
 x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 1
 \]
 
-我们说$\lambda$抽象是一种构建函数的方法，如何将构建好的函数应用到参数值上呢？这就需要引入第二条$\lambda$变换规则——$\beta$-变换。正向使用这条规则时，把$\lambda$抽象函数体中的所有形参的自由出现替换成形参的值。例如：
+We mentioned that $\lambda$ abstraction is a method to construct function. How to apply the constructed function to specific parameter? In order to do that, we need the second $\lambda$ conversion rule, the $\beta$-conversion. When using this rule, we replace all the free occurrence of formal parameter in function body to it value. For example:
 
 \[
 (x \mapsto x + 1)\ 2
 \]
 
-根据变换规则，把$\lambda$抽象$x \mapsto x + 1$应用到自变量2上得2 + 1。即2 + 1是将函数体$x + 1$中出现的形参$x$替换为2的结果。用箭头将这一变换表示为：
+According to the conversion rule, applying the $\lambda$ abstraction $x \mapsto x + 1$ to the free variable 2 gives 2 + 1. 2 + 1 is the result when replace the formal parameter $x$ in function body $x + 1$ with 2. It can be written in arrow form as below:
 
 \[
 (x \mapsto x + 1)\ 2 \quad \overset{\beta}{\longrightarrow} \quad 2 + 1
 \]
 
-我们称这一特定箭头方向的变换为$\beta$-规约（$\beta$-reduction）\footnote{也称为$\beta$-消解或$\beta$-化简}。而反向使用这条规则称为$\beta$-抽象。下面再通过更多的列子了解一下$\beta$-规约。首先是形参多次出现的例子：
+We call the conversion along the direction of this arrow as $\beta$-reduction. When using it reversely, we call it $\beta$-abstraction. Let's understand $\beta$-reduction with more examples. First is about multiple occurrence of the formal parameter.
 
 \[
 \begin{array}{rcl}
@@ -772,35 +772,35 @@ x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 
 \end{array}
 \]
 
-然后是形参出现零次的情况：
+Here's another example that the formal parameter does not occur.
 
 \[
 (x \mapsto 1)\ 2 \quad \overset{\beta}{\longrightarrow} \quad 1
 \]
 
-这是一个典型的“常量映射”的例子。接下来是一个多重规约的例子：
+This is a typical example of constant projection. The next is a multiple steps reduction.
 
 \[
 \begin{array}{rcll}
-(x \mapsto (y \mapsto y - x))\ 2\ 4\ & \overset{\beta}{\longrightarrow} & (y \mapsto y - 2)\ 4 & \text{克里化} \\
-                                     & \overset{\beta}{\longrightarrow} & 4 - 2 & \text{内层规约} \\
-                                     & \longrightarrow & 1 & \text{内置四则运算}
+(x \mapsto (y \mapsto y - x))\ 2\ 4\ & \overset{\beta}{\longrightarrow} & (y \mapsto y - 2)\ 4 & \text{Currying} \\
+                                     & \overset{\beta}{\longrightarrow} & 4 - 2 & \text{Inner reduction} \\
+                                     & \longrightarrow & 1 & \text{Built-in arithmetic}
 \end{array}
 \]
 
-可以看到，从外向内逐层规约是一个不断克里化的过程。有时我们把多重规约简写如下：
+We see that the reduction from inner to outer is a repeated Currying process. We write the multiple steps reduction in a simplified way sometimes:
 
 \[
 (\lambda x . (\lambda y . E)) \quad \Rightarrow \quad (\lambda x . \lambda y . E)
 \]
 
-其中$E$表示函数体。写成箭头形式为：
+Where $E$ represents the function body. Written in the arrow form:
 
 \[
 (x \mapsto (y \mapsto E)) \quad \Rightarrow \quad (x \mapsto y \mapsto E)
 \]
 
-使用$\beta$-规约进行函数应用时，参数也可以是另一个函数，例如：
+When applying a function with $\beta$-reduction, the parameter can be another function. For example:
 
 \[
 \begin{array}{rcl}
@@ -810,23 +810,25 @@ x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 
 \end{array}
 \]
 
-最后一个我们要介绍的变换是$\eta$-变换。它的定义如下：
+The last conversion rule we'll introduce is the $\eta$-conversion. It's defined as the following:
 
 \[
 (\lambda x . F\ x) \quad \overset{\eta}{\longleftrightarrow} \quad F
 \]
 
-写成箭头形式为：
+Written in the arrow form:
 
 \[
 x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
 \]
 
-其中$F$是函数，且$x$不是$F$中的自由变量。我们来看一个例子：
+Where $F$ is a function, and $x$ is not the free variable in $F$. Here is an example:
 
 \[
 (\lambda x . +\ 1\ x) \quad \overset{\eta}{\longleftrightarrow} \quad (+\ 1)
 \]
+
+In this example, the $\eta$-conversions in both sides behave same. When applies to a parameter, the results is add 1 to it.
 
 在这个例子中，$\eta$-变换两边的行为表现得完全一样。如果应用到一个参数上，效果都是把这个参数增加1。$\eta$-变换之所以要求$x$不能是$F$的自由变量是为了避免错误地将$(\lambda x. +\ x\ x)$变换为$(+\ x)$。我们可以看到，$x$是$(+\ x)$中的自由变量。同样，限定$F$必须为函数是为了避免错误地将1变换为$(\lambda x . 1\ x)$。在上面的定义中，称从左向右的变换为$\eta$-规约。
 
