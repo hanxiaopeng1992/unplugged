@@ -828,23 +828,21 @@ Where $F$ is a function, and $x$ is not the free variable in $F$. Here is an exa
 (\lambda x . +\ 1\ x) \quad \overset{\eta}{\longleftrightarrow} \quad (+\ 1)
 \]
 
-In this example, the $\eta$-conversions in both sides behave same. When applies to a parameter, the results is add 1 to it.
+In this example, the $\eta$-conversions in both sides behave same. When applies to a parameter, the results is add 1 to it. The reason why $x$ must not be the free variable in $F$ in $\eta$-conversion is to avoid wrongly convert expression like $(\lambda x. +\ x\ x)$ to $(+\ x)$. We can see that $x$ is the free variable in $(+\ x)$. It's also necessary to limit $F$ to function, otherwise we can convert 1 to $(\lambda x . 1\ x)$, which does not make sense. We call the transform from left to right as $\eta$-reduction.
 
-在这个例子中，$\eta$-变换两边的行为表现得完全一样。如果应用到一个参数上，效果都是把这个参数增加1。$\eta$-变换之所以要求$x$不能是$F$的自由变量是为了避免错误地将$(\lambda x. +\ x\ x)$变换为$(+\ x)$。我们可以看到，$x$是$(+\ x)$中的自由变量。同样，限定$F$必须为函数是为了避免错误地将1变换为$(\lambda x . 1\ x)$。在上面的定义中，称从左向右的变换为$\eta$-规约。
-
-至此，我们介绍了$\lambda$表达式变换的三大规则，我们小结一下。
+So far, we introduced the three conversion rules for $\lambda$ expression. Summarized as the following.
 
 \begin{enumerate}
-\item $\alpha$-变换用于改变形参的名字；
-\item $\beta$-规约用于实现函数应用；
-\item $\eta$-规约用于去除多余的$\lambda$抽象。
+\item $\alpha$-conversion to change the name for formal parameters;
+\item $\beta$-reduction to realize function application;
+\item $\eta$-reduction to eliminate redundant $\lambda$ abstraction.
 \end{enumerate}
 
-此外，我们称内置函数的化简，如加减乘除四则运算、逻辑上的与或非等为$\delta$-变换。在某些文献上，还会看到另外一种$\lambda$表达式变换的简记形式，我们这里简单介绍一下。对表达式$(\lambda x. E)\ M$，进行$\beta$-规约时，我们用$M$替换$E$中的$x$，将此结果记为$E[M/x]$。这样三大变换就可以简写成下面的形式：
+Besides these three rules, we call the built-in functions, like arithmetic operations, logic and, or, not as $\delta$-conversion. Some materials about $\lambda$-calculus uses another simplified notation. When perform $\beta$-reduction for expression $(\lambda x. E)\ M$, we use $M$ to replace $x$ in $E$, written the result as $E[M/x]$. Then the three conversion rules can be simplified as below:
 
 \begin{tabular}{|l|rcl|rcl|}
 \hline
-变换 & \multicolumn{3}{|c|}{$\lambda$形式} & \multicolumn{3}{|c|}{箭头形式} \\
+conversion & \multicolumn{3}{|c|}{$\lambda$ form} & \multicolumn{3}{|c|}{arrow form} \\
 \hline
 $\alpha$ & $(\lambda x . E)$ & $\overset{\alpha}{\longleftrightarrow}$ & $\lambda y . E[y/x]$
          & $x \mapsto E$ & $\overset{\alpha}{\longleftrightarrow}$ & $y \mapsto E[y/x]$ \\
@@ -857,15 +855,15 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 \hline
 \end{tabular}
 
-由于这些转换规则都是双向的，在对一个$\lambda$表达式进行变换时，既可以从左向右进行规约，也可以反过来从右向左进行抽象。这样自然会产生两个问题。第一个问题是，化简过程最终会停止么？第二个问题是，不同的化简方式得到的结果是一致的么？对于第一个问题，答案是不确定的，化简过程不能保证一定会中止\footnote{注意答案并不是“否定”，而是不确定。这本质上和图灵停机问题是一致的。即不存在一个可判定过程，确定任意化简是否中止。我们在最后一章会详细讨论这个问题。}。下面就是一个“死循环”的例子：$(D\ D)$，其中$D$定义为$\lambda x. x\ x$，写成箭头形式为$x \mapsto x\ x$。如果我们试图化简，就会得到这样的结果：
+All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, can the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell a given reduction process terminate. We'll introduce the details in the last chapter.}. Here is a example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
 
 \[
 \begin{array}{rcll}
-(D\ D) & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{代入$D$的定义} \\
-       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (y \mapsto y\ y) & \text{对第二个$\lambda$抽象用$\alpha$-变换} \\
-       & \xrightarrow{\beta} & (y \mapsto y\ y)\ (y \mapsto y\ y) & \text{用第二个表达式替换$x$} \\
-       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{再用$x$替换回$y$} \\
-       & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{重复使用上述步骤} \\
+(D\ D) & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{Substitute with definition of $D$} \\
+       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (y \mapsto y\ y) & \text{$\alpha$-conversion for the second $\lambda$ abstraction} \\
+       & \xrightarrow{\beta} & (y \mapsto y\ y)\ (y \mapsto y\ y) & \text{replace $x$ with the second expression} \\
+       & \xrightarrow{\alpha} & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{replace $y$ with $x$} \\
+       & \to & (x \mapsto x\ x)\ (x \mapsto x\ x) & \text{repeat the above steps} \\
        & ... &
 \end{array}
 \]
@@ -875,131 +873,133 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
  \centering
  \includegraphics[scale=0.3]{img/Church-Rosser.eps}
  %\captionsetup{labelformat=empty}
- \caption{丘奇-罗瑟定理的示意}
+ \caption{Church-Rosser confluence}
  \label{fig:Church-Rosser-confluence}
 %\end{figure}
 \end{wrapfigure}
 
-更耐人寻味的是这个例子：$(\lambda x . 1)\ (D\ D)$，如果先化简$(\lambda x . 1)$，那么化简过程会中止，答案为1。反之如果先化简$(D\ D)$，则根据上面的结论，这一过程就会陷入“死循环”而无法中止。丘奇和他的学生罗瑟\footnote{罗瑟（John Barkley Rosser Sr. 1907 - 1989）是美国数学家、逻辑学家。除了丘奇-罗瑟定理外，罗瑟还和克莱尼一起还提出了克莱尼-罗瑟悖论，在数论领域，他提出了罗瑟筛法，并证明了罗瑟定理，该定理指出，第$n$个素数$p_n > n \ln n$。罗瑟在1936年还给出了一种更强的哥德尔第一不完全定理的形式，他把不可判定命题改进为：“对本命题的任何证明，都存在一个对否命题的更短证明。”}在1936年证明了一对定理，完整地回答了第二个问题。
+A more interesting example is $(\lambda x . 1)\ (D\ D)$, if firstly reduce the $(\lambda x . 1)$ part, it terminates with the result of 1. But if firstly reduce $(D\ D)$ part, it loops endlessly as shown above. Church and his student Rosser\footnote{John Barkley Rosser Sr. 1907 - 1989. is a mathematician and logician in US. Besides Church-Rosser confluence theory, he also published Klinee-Rosser paradox with Klinee. In number theory, he developed Rosser sieve and proved Rosser theorem that the $n$-th prime number $p_n > n \ln n$. Rosser gave a stronger form for the Godel's first incompleteness theorem. He improved the none deterministic proposition to `For any proof to this proposition, there exists a shorter one for the negated one.'} proved a pair of theorems that completely answered the second question.
 
-\begin{theorem}[丘奇-罗瑟定理一]
-若$E_1 \leftrightarrow E_2$，则存在$E$，使得$E_1 \to E$且$E_2 \to E$。
+% TODO: Check the spell for Klinee
+
+\begin{theorem}[Church-Rosser theorem 1]
+If $E_1 \leftrightarrow E_2$, then there exists $E$ that $E_1 \to E$ and $E_2 \to E$.
 \end{theorem}
 
-也就是说，如果化简过程是可终止的，则化简结果是一致的。不同的化简方法会化简到同一结果，如图\ref{fig:Church-Rosser-confluence}所示。在此基础上，丘奇和罗瑟又证明了第二定理。为此我们先要给出“范式”（Normal form）的概念，所谓范式，又称$\beta$范式，是指不能再进行$\beta$-规约的形式。简单来讲，就是表达式中能够应用的函数都已经应用了。更严格的范式是$\beta-\eta$范式，在这样的范式中，既不能进行$\beta$-规约，也不能进行$\eta$-规约。例如$(x \mapsto x + 1)\ y$不是范式，因为它可以进行$\beta$-规约变成$y + 1$。下面是范式的递归定义。
+It means, if the reduction process terminates, then the results confluence. Varies reduction steps give the same result, as shown in \ref{fig:Church-Rosser-confluence}. Church and Rosser proved the second theorem on top of the first one. We need the concept of the {\em normal form} to understand it. The normal form, also known as $\beta$ normal form, is an expression that can't do any further $\beta$-reduction. It means all the functions have already been applied. A more strict normal form is the $\beta-\eta$ normal form, which neither $\beta$-reduction, nor $\eta$-reduction can be performed. For example, $(x \mapsto x + 1)\ y$ is not normal form, because we can apply $\beta$-reduction to change it to $y + 1$. The following defines the normal form recursively.
 
 \[
 \begin{array}{rcll}
-normal((\lambda x . y)\ z) & = & \textbf{false} & \text{可进一步$\beta$-规约} \\
-normal(\lambda x . (f\ x)) & = & \textbf{false} & \text{可进一步$\eta$-规约} \\
-normal(x\ y) & = & normal(x) \land normal(y) & \text{应用：函数和参数都是范式} \\
-normal(x) & = & \textbf{true} & \text{其它情况}
+normal((\lambda x . y)\ z) & = & \textbf{false} & \text{can do further $\beta$-reduction} \\
+normal(\lambda x . (f\ x)) & = & \textbf{false} & \text{can do further $\eta$-reduction} \\
+normal(x\ y) & = & normal(x) \land normal(y) & \text{Application: both function and parameter are normal forms} \\
+normal(x) & = & \textbf{true} & \text{others}
 \end{array}
 \]
 
-\begin{theorem}[丘奇-罗瑟定理二]
-若$E_1 \to E_2$，且$E_2$为范式，则存在从$E_1$化简到$E_2$的正规顺序。
+\begin{theorem}[Church-Rosser Theorem 2]
+If $E_1 \to E_2$, and $E_2$ is normal form, then there exists normal order to convert from $E_1$ to $E_2$.
 \end{theorem}
 
-注意，这一定理要求化简过程也必须是可终止的。所谓正规顺序（normal order）就是从左向右，从外向内的化简顺序。
+Note this theorem requires the reduction process terminates. The normal order is the order to reduce from left to right, from outer to inner.
 
-\section{递归的定义}
+\section{Definition of recursion}
 
-利用上一节中介绍的$\lambda$抽象，我们已经可以定义一些简单函数，但是如何定义递归函数呢？比如阶乘，它可以递归地定义为：
+With $\lambda$ abstraction, we can define some simple functions. How to define recursive function? The faction for example can be recursively defined as below:
 
 \[
 fact = n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times fact (n - 1)
 \]
 
-但这并不是一个合法的$\lambda$表达式，问题是由于$\lambda$抽象只定义了匿名函数，而我们并未定义如何给函数命名。再次观察递归的阶乘定义，它形如:
+But this is not a valid $\lambda$ expression. The $\lambda$ abstraction only can define anonymous functions, while we don't know how to name a function. Observe the recursive faction definition, it has the pattern like:
 
 \[
 fact = n \mapsto (... fact ...)
 \]
 
-我们反向使用$\beta$-规约（即$\beta$-抽象），将其变换为：
+Reverse using the $\beta$-reduction (i.e. $\beta$-abstraction), we can get:
 
 \[
 fact = (f \mapsto (n \mapsto (... f ...)))\ fact
 \]
 
-进一步可以抽象为
+It can be further abstract to:
 
 \be
 fact = H\ fact
 \label{eq:H-fact}
 \ee
 
-其中
+where
 
 \[
 H = f \mapsto (n \mapsto (... f ...))
 \]
 
-注意到，经过这样的变换，我们得到的$H$不再是递归的，它是一个普通的$\lambda$表达式。观察式(\ref{eq:H-fact})，它表示了递归。在形式上它是一个数学方程，让我们联想起“微分方程”的概念。例如解微分方程$y' = sin(x)$得到$y = a - cos(x)$。如果我们能将方程$F = H\ F$解出，就能完整地定义阶乘了。进一步观察，我们发现这个方程的含义是，将$H$应用到$F$上，得到的结果仍然是$F$。这一概念在数学上叫做“不动点”。我们称$F$是$H$的不动点。再举一个不动点的例子：$\lambda$表达式$x \mapsto x \times x$的不动点是0和1，这是因为$(x \mapsto x \times x)\ 0 = 0$且$(x \mapsto x \times x)\ 1 = 1$。
+Note that after this conversion, $H$ is not recursive any more. It is a common $\lambda$ expression. Observe the equation (\ref{eq:H-fact}), it represents recursion. It is in equation form, which remind us about the differential equation. For example solving the differential equation $y' = sin(x)$ gives $y = a - cos(x)$. If we can solve the equation $F = H\ F$, then we are able to define faction independently. Further observe this equation, it means when apply $H$ to $F$, the result is still $F$. Such concept is called {\em fixed point} in mathematics. We say that $F$ is the fixed point of $H$. Here's another example: the fixed points for $\lambda$ expression $x \mapsto x \times x$ are 0 and 1, this is because we have $(x \mapsto x \times x)\ 0 = 0$ and $(x \mapsto x \times x)\ 1 = 1$.
 
-\subsection{Y组合子}
+\subsection{Y combinator}
 
-我们希望找到$H$的不动点，显然$H$的不动点只依赖于$H$本身。为此，我们引入一个函数$Y$，它接受一个函数，然后返回这个函数的不动点。$Y$的行为表现如下：
+We want to figure out the fixed point for $H$, it's obvious that the fixed point of $H$ only depends on $H$. To do that, we introduce a function $Y$. It accepts a function, then return its fixed point. $Y$ behaves like this:
 
 \be
 Y\ H = H\ (Y\ H)
 \label{eq:Y-H}
 \ee
 
-为此$Y$被称为“不动点组合子”（fixpoint combinator）。使用$Y$，我们就得到了方程(\ref{eq:H-fact})的解：
+$Y$ is called fixpoint combinator. By using $Y$, we get the solution to equation (\ref{eq:H-fact}).
 
 \be
 fact = Y\ H
 \label{eq:fact-in-Y}
 \ee
 
-这样得到的$fact$是一个无递归的定义。我们可以这样验证这个解：
+Such $fact$ is a non-recursive definition. We can verify this solution as the following:
 
 \[
 \begin{array}{rcll}
-fact & = & Y\ H & \text{式(\ref{eq:fact-in-Y})} \\
-     & = & H\ (Y\ H) & \text{式(\ref{eq:Y-H})} \\
-     & = & H\ fact & \text{式(\ref{eq:fact-in-Y})反向}
+fact & = & Y\ H & \text{By (\ref{eq:fact-in-Y})} \\
+     & = & H\ (Y\ H) & \text{By (\ref{eq:Y-H})} \\
+     & = & H\ fact & \text{Reverse of (\ref{eq:fact-in-Y})}
 \end{array}
 \]
 
-$Y$的强大之处在于它可以表达所有的递归函数。但是现在的$Y$仍然是个黑盒子，我们需要用$\lambda$抽象来真正实现它。下面就是$Y$的实现：
+$Y$ is so powerful that it can represents any recursive functions. However, it is still a black box to us. We need realize it with $\lambda$ abstraction.
 
 \be
 Y = \lambda h . (\lambda x . h\ (x\ x))\ (\lambda x . h\ (x\ x))
 \ee
 
-写成箭头形式为：
+Written in the arrow form:
 
 \[
 Y = h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x))
 \]
 
-我们打开了潘多拉的魔盒，现在来验证一下这个$Y$的$\lambda$抽象是否表现得符合我们的预期：$Y\ H = H\ (Y\ H)$。
+We opened a magic box, let's verify if $Y$ in $\lambda$ abstraction behaves as we expected: $Y\ H = H\ (Y\ H)$.
 
 \begin{proof}
 \[
 \begin{array}{rcll}
-Y\ H & = & (h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x)))\ H & \text{$Y$的定义} \\
-     & \xleftrightarrow{\beta} & (x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x)) & \text{$\beta$-规约，用$H$代换$h$} \\
-     & \xleftrightarrow{\alpha} & (y \mapsto H\ (y\ y))\ (x \mapsto H\ (x\ x)) & \text{对前半部分用$\alpha$-变换} \\
-     & \xleftrightarrow{\beta} & H\ ((x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x))) & \text{$\beta$-规约，$y$被后半部代换} \\
-     & \xleftrightarrow{\beta} & H\ (h \mapsto (x \mapsto h\ (x\ x))\ (x \mapsto h\ (x\ x))\ H) & \text{$\beta$-抽象，$H$抽出为参数} \\
-     & = & H\ (Y\ H) & \text{代入$Y$的定义}
+Y\ H & = & (h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x)))\ H & \text{Definition of $Y$} \\
+     & \xleftrightarrow{\beta} & (x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x)) & \text{$\beta$-reduction, substitute $h$ with $H$} \\
+     & \xleftrightarrow{\alpha} & (y \mapsto H\ (y\ y))\ (x \mapsto H\ (x\ x)) & \text{$\alpha$-conversion for the first half} \\
+     & \xleftrightarrow{\beta} & H\ ((x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x))) & \text{$\beta$-reduction, substitute $y$ with the latter half} \\
+     & \xleftrightarrow{\beta} & H\ (h \mapsto (x \mapsto h\ (x\ x))\ (x \mapsto h\ (x\ x))\ H) & \text{$\beta$-abstraction, extract $H$ as parameter} \\
+     & = & H\ (Y\ H) & \text{Definition of $Y$}
 \end{array}
 \]
 \end{proof}
 
-最终，使用$Y$，我们可以如下实现阶乘的定义：
+Finally, we can define faction with $Y$ as below:
 
 \[
 Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times f\ (n - 1)))
 \]
 
-用$\lambda$-抽象来定义$Y$的数学意义远大于其实现的意义。在真实的环境中，通常$Y$被内置实现为函数，可以直接将$Y\ H$转化为$H\ (Y\ H)$。
+It is more significant in mathematics than in practice to define $Y$ with $\lambda$ abstraction. $Y$ is often realized as built-in function in real environment, which directly converts $Y\ H$ to $H\ (Y\ H)$.
 
-\section{$\lambda$演算的意义}
+\section{The impact of $\lambda$ calculus}
 
 $\lambda$演算的意义在于，它用一组简单的规则对复杂的计算过程进行了定义。将欧几里得算法用$\lambda$表示出来，再利用$\beta$规约进行计算。这样的实现可能比较复杂，但确实可行。它不仅可以表达这一函数，而是对所有的可计算函数都使用。图灵后来证明了$\lambda$演算与图灵机的等价性。$\lambda$演算的一大优势在于它仅仅使用了传统的数学概念——函数。因而在十九世纪30年代，$\lambda$演算被用来对数学进行形式化。然而在1935年，克莱尼-罗瑟悖论证明了最初的$\lambda$形式系统在逻辑上是不一致的。1936年，丘奇将$\lambda$演算模型中和纯计算有关的部分分离出来，称为的无类型$\lambda$演算。1940年时，丘奇又提出了一个弱化计算，但是逻辑自洽的形式系统，被称之为简单类型$\lambda$演算。
 
