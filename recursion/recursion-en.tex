@@ -1001,7 +1001,7 @@ It is more significant in mathematics than in practice to define $Y$ with $\lamb
 
 The significant of the $\lambda$ calculus is that it models the complex computation process with a set of simple rules. Consider the way of representing the Euclidean algorithm in $\lambda$ expressions, then perform $\beta$-reduction to evaluate the result, it's feasible although looks complex from realization perspective. It does not limit to this one, but can represents any computable functions. People later proved that $\lambda$ calculus and Turing machine are equivalent. One advantage of $\lambda$ calculus is that it only uses the traditional function concept in mathematics. People used it in 1930s to formalize the metamathematics. However, Kleene and Rosser proved that the original lambda calculus was inconsistent in 1935. Subsequently, in 1936 Church isolated and published just the portion relevant to computation, what is now called the untyped lambda calculus. In 1940, he also introduced a computationally weaker, but logically consistent system, known as the simply typed lambda calculus.
 
-我们展示了如何用$\lambda$演算定义基本的四则运算、逻辑运算、定义和应用普通函数以及递归函数。最后，我们给出如何用$\lambda$演算定义复合数据结构。我们用此前定义的$cons$、$head$、$tail$作为例子。以下是它们的$\lambda$抽象定义：
+We showed how to use $\lambda$ calculus to define arithmetic operations, logic operations, the simple functions, and recursive functions. There is also an important thing, the composed data structure, need be covered. Actually, $\lambda$ calculus can define $cons$, $head$, and $tail$ as well:
 
 \[
 \begin{array}{rcl}
@@ -1011,7 +1011,7 @@ tail & = & (\lambda c . c\ (\lambda a . \lambda b . b))
 \end{array}
 \]
 
-写成箭头形式为：
+Written in the arrow form:
 
 \[
 \begin{array}{rcl}
@@ -1021,7 +1021,7 @@ tail & = & c \mapsto c\ (a \mapsto b \mapsto b)
 \end{array}
 \]
 
-我们来验证一下$head\ (cons\ p\ q) = p$这一关系。
+Let's verify that $head\ (cons\ p\ q) = p$ holds.
 
 \[
 \begin{array}{rcl}
@@ -1036,11 +1036,12 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 \end{array}
 \]
 
-这说明，理论上复合数据结构不必一定要内置实现，而可以用$\lambda$定义。本章练习中还展示了如何用$\lambda$演算基于皮亚诺公理系统定义自然数、布尔值及逻辑运算。
+It tells us that the composite data structure needn't be built-in realized. We can use $\lambda$ to define them. The exercise of this chapter demands you to consider how to define the natural numbers in Peano Axioms, the Boolean values, and the logic operators with $\lambda$ calculus.
 
 \begin{Exercise}
-\Question{使用$\lambda$变换规则验证$tail\ (cons\ p\ q) = q$。}
-\Question{可以仅仅使用$\lambda$演算来定义自然数。下面是丘奇数的定义：
+\Question{Use $\lambda$ conversion rules to verify$tail\ (cons\ p\ q) = q$。}
+\Question{We can define numbers with $\lambda$ calculus. The following definition is called Church numbers:
+
 \[
 \begin{array}{r@{\quad:\quad}l}
 0 & \lambda f . \lambda x . x \\
@@ -1050,9 +1051,10 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
   & ...
 \end{array}
 \]
-请利用第一章介绍的内容，定义丘奇数的加法和乘法。
+Define the addition and multiplication operators for the Church numbers with what we introduced in chapter 1.
 }
-\Question{以下是丘奇布尔值的定义，以及逻辑运算的一种实现：
+\Question{The following defines the Church Boolean values, and the relative logic operators:
+
 \[
 \begin{array}{r@{\quad:\quad}l}
 \textbf{true} & \lambda x . \lambda y . x \\
@@ -1062,11 +1064,12 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 \textbf{not} & \lambda p . p\ \textbf{false}\ \textbf{true}
 \end{array}
 \]
-其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
+
+where \textbf{false} is defined as same as the Church number 0. Use the $\lambda$ conversion rules to prove that: \textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}. Please give the definition of if ... then ... else ... expression with the $\lambda$ calculus.
 }
 \end{Exercise}
 
-\section{更多的递归结构}
+\section{More recursive structures}
 
 至此，我们已经将递归函数和递归数据结构建立在完整的数学基础上。利用这些工具，我们可以继续定义一些较复杂的数据结构。例如下面的二叉树。
 
