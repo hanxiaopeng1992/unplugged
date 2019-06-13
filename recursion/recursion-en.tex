@@ -1071,14 +1071,14 @@ where \textbf{false} is defined as same as the Church number 0. Use the $\lambda
 
 \section{More recursive structures}
 
-至此，我们已经将递归函数和递归数据结构建立在完整的数学基础上。利用这些工具，我们可以继续定义一些较复杂的数据结构。例如下面的二叉树。
+We've completely defined the recursive functions and the data structures on top of the pure mathematics. We can next define complex data structures like the binary trees.
 
 \lstset{frame=none}
 \begin{lstlisting}
 data Tree A = nil | node (Tree A, A, Tree A)
 \end{lstlisting}
 
-这个递归定义说，一棵元素类型为A的二叉树或者为空，或者是一个分支节点。节点包含三部分：两棵元素类型为A的子树和一个类型为A的元素。习惯上我们称这两棵子树为左子树和右子树。A是类型参数，例如自然数。$node(nil, 0, node(nil, 1, nil))$表示了一棵元素为自然数的二叉树。下面我们为二叉树定义抽象的叠加操作$foldt$。
+This definitions says, a binary tree of type A is either empty, or a branch node, which is consist of three parts: two sub-trees of type A, together with an element of type A. We often call the two sub-trees as the left and right sub-trees. A is the type parameter, for example natural numbers. $node(nil, 0, node(nil, 1, nil))$ is a binary tree of natural numbers. We can define the abstract fold operation $foldt$ for binary trees.
 
 \be
 \begin{array}{l}
@@ -1087,27 +1087,27 @@ foldt(f, g, c, node(l, x, r)) = g(foldt(f, g, c, l), f(x), foldt(f, g, c, r))
 \end{array}
 \ee
 
-如果函数$f$将类型为A的自变量映射为类型为B的值，我们将其类型记为$f : A \to B$。克里化的函数$foldt(f, g, c)$的类型为$foldt(f, g, c) : Tree\ A \to B$，其中$c$的类型为$B$，而函数$g$的类型为$g : (B \times B \times B) \to B$，写成克里化的形式为$g : B \to B \to B \to B$。使用抽象的叠加函数$foldt$我们可以定义针对二叉树的逐一映射$mapt$：
+If function $f$ maps variable of type A to B, we write its type as $f : A \to B$. The Curried function $foldt(f, g, c)$ has type of $foldt(f, g, c) : Tree\ A \to B$, where the type of $c$ is $B$; the type of $g$ is $g : (B \times B \times B) \to B$, written in Curried form is $g : B \to B \to B \to B$. We can define the map function $mapt$ for binary trees with the $foldt$ function.
 
 \be
 mapt(f) = foldt(f, node, nil)
 \ee
 
-通过叠加操作，还可以定义函数来统计一棵二叉树中的元素个数：
+With the folding function, we can count the number of elements in a tree:
 
 \be
 sizet = foldt(one, sum, 0)
 \ee
 
-其中$one(x) = 1$，是一个常数函数，它对任何变量都返回1。$sum$是一个三元的累加函数：$sum(a, b, c) = a + b + c$。
+Where, $one(x) = 1$ is a constant function, it always returns 1 for any parameters. $sum$ is a ternary summation function defined as $sum(a, b, c) = a + b + c$.
 
-在此基础上，复合使用第一章定义的列表，我们还可以从二叉树扩展到多叉树，下面是一个多叉树的定义：
+Using the list defined in chapter 1, we can expand binary trees to multi-trees as below.
 
 \begin{lstlisting}
 data MTree A = nil | node (A, List (MTree A))
 \end{lstlisting}
 
-一棵元素类型为A的多叉树或者为空，或者为一个复合节点。复合节点包括一个类型为A的元素，和若干子树。所有子树用一个多叉树的列表来表示。定义多叉树的抽象叠加操作需要相互递归调用列表的叠加操作。
+A multi-tree of type A is either empty, or a composite node, which contains an element of type A, together with multiple sub-trees. The sub-trees is hold in a list. The abstract tree folding operation recursively calls the list folding operation.
 
 \be
 \begin{array}{l}
@@ -1118,21 +1118,21 @@ h(t, z) = foldm(f, g, z, t)
 \ee
 
 \begin{Exercise}
-\Question{不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
-\Question{定义一个函数$depth$，计算一棵二叉树的最大深度；}
-\Question{有人认为，二叉树的抽象叠加操作$foldt$应该这样定义：
+\Question{Define the abstract $mapt$ for binary trees without of using $foldt$.}
+\Question{Define a function $depth$, which counts for the maximum depth of a binary tree.}
+\Question{Someone think the abstract fold operation for binary tree $foldt$, should be defined as the following:
 \[
 \begin{array}{l}
 foldt(f, g, c, nil) = c \\
 foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \end{array}
 \]
-也就是说，$g : (B \times B) \to B$是一个类似于加法这样的二元函数。能否利用这个$foldt$定义逐一映射$mapt$？}
-\Question{排序二叉树（又称二叉搜索树）是一种特殊的二叉树，如果二叉树的元素类型A是可比较的，并且对任何非空节点$node(l, k, r)$都满足：左子树$l$中的任何元素都小于$k$，右子树$r$中的任何元素都大于$k$。定义二叉树的插入函数$insert(x, t) : (A \times Tree A) \to Tree A$}
-\Question{为多叉树定义逐一映射。能否利用多叉树的叠加操作来定义？如果不能，应当怎样修改叠加操作？}
+That is to say $g : (B \times B) \to B$ is a binary operation like adding. Can we use this $foldt$ to define $mapt$?}
+\Question{The binary search tree (BST) is a special tree that the type A is comparable. For any none empty node $node(l, k, r)$ that, any elements in the left sub-tree $l$ is less than $K$, and any elements in the right sub-tree $r$ is greater than $k$. Define function $insert(x, t) : (A \times Tree A) \to Tree A$ that insert an element into the tree.}
+\Question{Can we define the mapping operation for multi-trees with folding? If not, how should we modify the folding operation?}
 \end{Exercise}
 
-\section{递归的形式与结构}
+\section{The recursive form and structure}
 
 递归不仅存在于古老的欧几里得算法和现代计算机系统中，它迷人的形式和结构还出现在各种人类文明艺术中。图\ref{fig:Ceramic-Tile-Tessellations-Marrakech}的平面镶嵌中，可以看到多重不同的递归形式。
 
