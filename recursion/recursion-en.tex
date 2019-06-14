@@ -903,13 +903,13 @@ Note this theorem requires the reduction process terminates. The normal order is
 
 \section{Definition of recursion}
 
-With $\lambda$ abstraction, we can define some simple functions. How to define recursive function? The faction for example can be recursively defined as below:
+With $\lambda$ abstraction, we can define some simple functions. How to define recursive function? The factorial for example can be recursively defined as below:
 
 \[
 fact = n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times fact (n - 1)
 \]
 
-But this is not a valid $\lambda$ expression. The $\lambda$ abstraction only can define anonymous functions, while we don't know how to name a function. Observe the recursive faction definition, it has the pattern like:
+But this is not a valid $\lambda$ expression. The $\lambda$ abstraction only can define anonymous functions, while we don't know how to name a function. Observe the recursive factorial definition, it has the pattern like:
 
 \[
 fact = n \mapsto (... fact ...)
@@ -934,7 +934,7 @@ where
 H = f \mapsto (n \mapsto (... f ...))
 \]
 
-Note that after this conversion, $H$ is not recursive any more. It is a common $\lambda$ expression. Observe the equation (\ref{eq:H-fact}), it represents recursion. It is in equation form, which remind us about the differential equation. For example solving the differential equation $y' = sin(x)$ gives $y = a - cos(x)$. If we can solve the equation $F = H\ F$, then we are able to define faction independently. Further observe this equation, it means when apply $H$ to $F$, the result is still $F$. Such concept is called {\em fixed point} in mathematics. We say that $F$ is the fixed point of $H$. Here's another example: the fixed points for $\lambda$ expression $x \mapsto x \times x$ are 0 and 1, this is because we have $(x \mapsto x \times x)\ 0 = 0$ and $(x \mapsto x \times x)\ 1 = 1$.
+Note that after this conversion, $H$ is not recursive any more. It is a common $\lambda$ expression. Observe the equation (\ref{eq:H-fact}), it represents recursion. It is in equation form, which remind us about the differential equation. For example solving the differential equation $y' = sin(x)$ gives $y = a - cos(x)$. If we can solve the equation $F = H\ F$, then we are able to define factorial independently. Further observe this equation, it means when apply $H$ to $F$, the result is still $F$. Such concept is called {\em fixed point} in mathematics. We say that $F$ is the fixed point of $H$. Here's another example: the fixed points for $\lambda$ expression $x \mapsto x \times x$ are 0 and 1, this is because we have $(x \mapsto x \times x)\ 0 = 0$ and $(x \mapsto x \times x)\ 1 = 1$.
 
 \subsection{Y combinator}
 
@@ -989,7 +989,7 @@ Y\ H & = & (h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x)))\ H & \text{De
 \]
 \end{proof}
 
-Finally, we can define faction with $Y$ as below:
+Finally, we can define factorial with $Y$ as below:
 
 \[
 Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times f\ (n - 1)))
@@ -1161,6 +1161,16 @@ We can see the polygon patterns in the mosaic recursively contain smaller polygo
 
 Not only in art, recursion also appears in music. For example, the polyphonic music Canon and Fugue can have recursive musical texture. Canon is a contrapuntal music that employs a melody with one or more imitations of the melody played after a given duration. The initial melody is called the leader, while the imitative melody, which is played in a different voice, is called the follower. The follower must imitate the leader, either as an exact replication of its rhythms and intervals or some transformation thereof. The weaving of the leader and followers, results in a continuous effect. Each part imitates the theme but contains various changes, such as raising or lowering the pitch, retrograde overlapping, faster (diminution) or slowing (augmentation), melody reflection, and so on.
 
+%\begin{wrapfigure}{L}{0.45\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.8]{img/Haydn-OP-76.png}
+ %\captionsetup{labelformat=empty}
+ \caption{Minuet of Haydn's String Quartet in D Minor, Op. 76, No. 2}
+ \label{fig:Drawing-Hands}
+\end{figure}
+%\end{wrapfigure}
+
 \begin{wrapfigure}{L}{0.45\textwidth}
 %\begin{figure}[htbp]
  \centering
@@ -1173,29 +1183,29 @@ Not only in art, recursion also appears in music. For example, the polyphonic mu
 
 A fugue is like a canon, in that it is usually based on one theme which gets played in different voices and different keys, and occasionally at different speeds or upside down or backwards. However, the notion of fugue is much less rigid than that of canon, and consequently it allows for more emotional and artistic expression. The telltale sign of a fugue is the way it begins: with a single voice singing its theme. When it is done, then a second voice enters, either five scale-notes up, or four down. Meanwhile the first voice goes on, singing the "countersubject": a secondary theme, chosen to provide rhythmic, harmonic, and melodic contrasts to the subject. Each of the voices enters in turn, singing the theme, often to the accompaniment of the countersubject in some other voice, with the remaining voices doing whatever fanciful things entered the composer's mind. When all the voices have "arrived", then there are no rules. There are, to be sure, standard kinds of things to do-but not so standard that one can merely compose a fugue by formula. The two fugues in the Musical Offering are outstanding examples of fugues that could never have been "composed by formula". There is something much deeper in them than mere fugality\cite{GEB}.
 
-这些都是有限递归的例子。图\ref{fig:Drawing-Hands}是荷兰艺术大师艾舍尔在1948年创作的《画手》，两只手递归地在描绘着对方。《画手》是无穷递归的典型例子。画中上方的手正在用一支笔描绘着下方的手，而下方的手也在地归地描绘着上方的手。这组相互递归的嵌套一层一层，无穷无尽。
+Not only finite recursion, we can also find the infinite recursion in arts. Figure \ref{fig:Drawing-Hands}, Drawing Hands is a lithograph by the Dutch artist M. C. Escher first printed in January 1948. Two hands mutual recursively are drawing each other. It an example of infinite recursion. The upper hand is using a pencil drawing the lower hand, while the lower hand, at the same time, is drawing the upper hand. The recursion is embedded loop by loop endlessly.
 
-无穷递归的一个数学与艺术完美结合的例子是“分形”（fractal）。例如著名的分形图案“科克雪花”（Kock snowflake）曲线可以通过这样的无穷递归规则来产生：对图形中的每个线段，均分为三段，以第二段为底向上方作出一个等腰三角形，然后再把这个底擦掉。图\ref{fig:fractal}中展示了三重递归后从一个正三角形得到的科克雪花。另一个著名的递归分形图案是谢尔平斯基三角形（Sierpinski），它的生成规则是对图形中的每个三角形，分别取三边的中点，然后连成一个内部的小三角形。下图展示了递归四次后的谢尔平斯基三角形。
+The perfect combination of mathematical recursion and art is fractal. Kock snowflake is a famous fractal curve, which can be generated by infinite recursion rules: For every section, divided it into 3 equal parts, draw a equilateral triangle on top of the middle section, then erase the bottom side of the triangle. Figure \ref{fig:fractal} shows the Kock snowflake result after recursively applying this rule three times on a equilateral triangle. Another famous fractal pattern is called Sierpinski triangle. The generation rule is to connect all the three middle points of the side in a triangle recursively. Below figure shows the Sierpinski triangle after recursively applying the rules four times.
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
  \centering
- \subcaptionbox{科克雪花的递归生成规则}[0.4\linewidth]{\includegraphics[scale=0.25]{img/KochFlake.eps}}
- \subcaptionbox{谢尔平斯基三角形}[0.4\linewidth]{\includegraphics[scale=0.1]{img/Sierpinski-triangle.eps}}
+ \subcaptionbox{Recursive generate rules for Kock snowflake}[0.4\linewidth]{\includegraphics[scale=0.25]{img/KochFlake.eps}}
+ \subcaptionbox{Sierpinski triangle}[0.4\linewidth]{\includegraphics[scale=0.1]{img/Sierpinski-triangle.eps}}
  %\captionsetup{labelformat=empty}
- \caption{递归产生的分形图案}
+ \caption{Recursive generated fractal patterns.}
  \label{fig:fractal}
 \end{figure}
 %\end{wrapfigure}
 
-最后让我们以两张分形图案来结束本章，其中一张是人类思维产生的分形——茱莉亚集（Julia）；另一张是自然界产生的分形。
+We show another two fractal patterns as the close of this chapter. One is the fractal in human mind, Julia set; the other is a fractal in nature.
 
 \begin{figure}[htbp]
  \centering
- \subcaptionbox{茱莉亚集分形}[0.45\linewidth]{\includegraphics[scale=0.18]{img/Julia_set.eps}}
- \subcaptionbox{西兰花中的分形}[0.45\linewidth]{\includegraphics[scale=0.2]{img/Broccoli.eps}}
+ \subcaptionbox{Julia set fractal}[0.45\linewidth]{\includegraphics[scale=0.18]{img/Julia_set.eps}}
+ \subcaptionbox{Broccoli fractal}[0.45\linewidth]{\includegraphics[scale=0.2]{img/Broccoli.eps}}
  %\captionsetup{labelformat=empty}
- \caption{人类思维和自然界产生的分形}
+ %\caption{人类思维和自然界产生的分形}
  \label{fig:more-fractal}
 \end{figure}
 
