@@ -127,7 +127,7 @@ Figure \ref{fig:triangular-num} and \ref{fig:oblong-num} demonstrate the triangu
 1 + 2 + 3 + ... + n = \frac{1}{2}n(n+1)
 \]
 
-The Pythagoreans also observed that the odd number could be represented in gnomon shape as shown in figure \ref{fig:gnomon-num}. And the first $n$ gnome shapes form a square, as in figure \ref{fig:square-num}. By this way, they found the formula to calculate the sum of $n$-odd numbers.
+The Pythagoreans also found the odd number could be represented in gnomon shape as shown in figure \ref{fig:gnomon-num}. And the first $n$ gnomon shapes form a square, as in figure \ref{fig:square-num}. By this way, they found the formula to calculate the sum of $n$-odd numbers.
 
 \[
 1 + 3 + 5 + ... + (2n - 1) = n^2
@@ -190,38 +190,38 @@ The Pythagoreans also observed that the odd number could be represented in gnomo
 %\end{wrapfigure}
 \end{figure}
 
-This is the answer to the exercise problem in chapter 1. With these facts, the Pythagreans found there were many things can be explained with numbers. Given two strings under the same tension, it's said Pythagras found the tune is harmonic if the ratio of their lengths is integer. He developed the earlist music theory based on this. It seemed that music and mathematics are totally different things, while finally Pythagoras concluded that music was mathematics. Such unexpected relationship impacted Pythagoras greatly. He guess that all things can be explained with integers or the ratio of integers. The Pythagoreans started to finding more and more things connected to nunbers, they believed the meaning of the whole universe is the harmonic of numbers, and developed the phylosophy based on number. This led to the attempt to build the geometry also on top of the numbers, so the overall mathematics is based on integers.
+This is the answer to the exercise problem in chapter 1. With these facts, the Pythagreans found there were many things could be explained in numbers. Given two strings under the same tension, it's said Pythagras found the tune was harmonic if the ratio of their lengths is an integer. He developed the earlist music theory based on this. It seemed that music and mathematics were totally different things, while finally Pythagoras concluded that music was mathematics. Such unexpected relationship impacted Pythagoras greatly. He guessed that all things could be explained with integers or the ratio of integers. The Pythagoreans started to find more and more things connected to nunbers, they believed the meaning of the whole universe was the harmonic of numbers, and developed the phylosophy based on number. This led to the attempt to build the geometry also on top of the numbers, so the overall mathematics is based on integers.
 
-The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we'll see later, this theorem is a double-edged sward, it leads to a recursive circle, and reveals the loophole of the idea that everything is number. In order to understand this, we need introduce the concept of commensurable and the Euclidean algorithm. To build the geometry on top of the numbers, The Pythagorean defined how to measure a line segment with another, if segment A can be represented by duplicating segment V finite times, we say V can measure A. It means the length of one segment is the integer times of the other. Altough we can use varies of measurements, when use the same segment to measure different ones, it has to be the common measure. That is to say if and only if segment V can measure both A and B, it is the common measure of them. The Pythagoreans believed for any two segments, there must be a common measure. If this was true, then the whole geometry can be built on integers.
+The Pythagoreans' most famous achievement is the Pythagoras theorem. However, we'll see later, this theorem is a double-edged sward. It led to a recursive circle, and revealed the loophole of the idea that everything is number. In order to understand this, we need introduce the concept of commensurable and the Euclidean algorithm. To build the geometry on top of the numbers, The Pythagoreans defined how to measure a line segment with another, if segment A can be represented by duplicating segment V finite times, we say V measures A. It means the length of one segment is the integer times of the other. There can be varies of measurements for a given line. When one can use the same segment to measure different lines, it has to be the common measure. That is to say if and only if segment V can measure both A and B, it is the common measure of them. The Pythagoreans believed for any two segments, there must be a common measure. If this was true, then the whole geometry can be built on top of numbers.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/Pythagoras-proof.eps}
- \caption{One of the methods to prove the Pythagoras theorem. The areas in white are same.）}
+ \caption{One of the methods to prove the Pythagoras theorem. The areas in white are same.}
  \label{fig:Pythagoras-proof}
 \end{figure}
 %\end{wrapfigure}
 
 \section{The Euclidean algorithm}
 
-As there can be mutliple common measures, we define the biggest one as the greatest common measure. Formally speaking, if segment V is the common measure of A and B, and V is greater than any other common measure, we say V is the greatest common measure of A and B. Given two segments, how to find the greatest common measure? There is a famous acient recursive method, called the Euclidean algorithm to solve this problem. It named after the great ancient Greek methematician Euclid\footnote{The Euclidean algorithm was also developed independently in ancient India and China. The Indian methematician Aryabhata used this method to solve the Diophantine equation around the end of the 5th centry. The Euclidean algorithm was treated as a special case of the Chinese remainder theorem in {\em Sunzi Suanjing}. In 1247, Qin Jiushao gave the detailed algorithm in his Mathematical Treatise in Nine Sections (Shushu Jiuzhang).}. This algorithm is defined as proposition 3, in book X\footnote{The same algorithm for integers is also defined as propostion 1, book VII. However, the algorithm for segements covers the integer case.} of Euclid's Elements\cite{Elements}.
+As there can be mutliple common measures, we define the biggest one as the greatest common measure. Formally speaking, if segment V is the common measure of A and B, and V is greater than any other common measures, we say V is the greatest common measure of A and B. Given two segments, how to find the greatest common measure? There is a famous acient recursive method, called the Euclidean algorithm can solve this problem. It is named after the great ancient Greek methematician Euclid\footnote{The Euclidean algorithm was also developed independently in ancient India and China. The Indian mathematician Aryabhata used this method to solve the Diophantine equation around the end of the 5th centry. The Euclidean algorithm was treated as a special case of the Chinese remainder theorem in {\em Sunzi Suanjing}. Qin Jiushao gave the detailed algorithm in his {\em Mathematical Treatise in Nine Sections} ({\fontspec{\cnmainft}数书九章}) in 1247.}. This algorithm is defined as proposition 3, in book X\footnote{The same algorithm for integers is also defined as propostion 1, book VII. However, the algorithm for segements covers the integer case.} of Euclid's Elements\cite{Elements}.
 
 \subsection{The Euclid's Elements}
 
-\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{wrapfigure}{R}{0.35\textwidth}
 %\begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.6]{img/Euclid.eps}
+ \includegraphics[scale=0.65]{img/Euclid.eps}
  \captionsetup{labelformat=empty}
  \caption{Euclid, About 300BC}
  \label{fig:Euclid}
 %\end{figure}
 \end{wrapfigure}
 
-Euclid of Alexandria is the most prominent ancient Greek mathematican, often referred to as ``father of geometry''. His {\em Elements} is one of the most influential works in the history of mathematics. However, little is known of Euclid's life except that he taught at Alexandria in Egypt. The year and place of both his birth and death are unknown. Proclus, the last major Greek philosopher who lived around 450AD introduced Euclid briefly in his {\em Commentary on the Elements}. He mentioned a interesting story about Euclid. When Ptolemy I of Alexandria (ruler of Egypt 323BC - 283BC) grew frustrated at the degree of effort required to master geometry via Eculid's {\em Elements}, he asked if there was a shorter path, Euclid replied there is no royal road to geometry. This becomes the learning maxim of eternal. Another story told by Stobaeus said someone who had begun to learn geometry with Euclid, when he had learnt the first theorem, asked Euclid "What shall I get by learning these things?" Euclid said "Give him threepence since he must make gain out of what he learns". Euclid disagree with the narrow practical view of learning\cite{Elements}.
+Euclid of Alexandria is the most prominent ancient Greek mathematican, often referred as ``father of geometry''. His {\em Elements} is one of the most influential works in the history. However, little is known of Euclid's life except that he taught at Alexandria in Egypt. The year and place of his birth and death are unknown. Proclus, the last major Greek philosopher who lived around 450AD introduced Euclid briefly in his {\em Commentary on the Elements}. He mentioned a interesting story about Euclid. When Ptolemy I of Alexandria (ruler of Egypt 323BC - 283BC) grew frustrated at the degree of effort required to master geometry via Eculid's {\em Elements}, he asked if there was a shorter path, Euclid replied there is no royal road to geometry. This becomes the learning maxim of eternal. Another story told by Stobaeus said someone who had begun to learn geometry with Euclid, when he had learnt the first theorem, asked Euclid ``What shall I get by learning these things?'' Euclid said ``Give him three pence since he must make gain out of what he learns''. Euclid disagreed with the narrow practical view of learning\cite{Elements}.
 
-From ancient times to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school\footnote{The most popular version is edited by the French mathematician Lagrange (1736 - 1813).} as one of the basic way to train logic reasoning\cite{HanXueTao16}.
+From ancient time to the late 19th century, people considered the {\em Elements} as a perfect example of correct reasoning. Although many of the results in {\em Elements} originated with earlier mathematicians, one of Euclid's accomplishments was to present them in a single, logically coherent framework, making it easy to use and easy to reference, including a system of rigorous mathematical proofs that remains the basis of mathematics 23 centuries later. More than a thousand editions have been published, making it one of the most popular books after the Bible. Even today, {\em Elements} is still widely taught in school\footnote{The most popular version is edited by the French mathematician Lagrange (1736 - 1813).} as one of the basic way to train logic reasoning\cite{HanXueTao16}.
 
 \subsection{Euclidean algorithm}
 
@@ -229,7 +229,7 @@ From ancient times to the late 19th century, people considered the {\em Elements
 To find the greatest common measure of two given commensurable magnitudes.
 \end{proposition}
 
-The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term 'gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use gcd as the abbreviation for the greatest common divisor.}.
+The solution Euclid gave only uses recursion and subtraction. It means the greatest common measure can be solved only with ruler and compass essentially. This algorithm can be formalized as the following\footnote{Term `gcm' is the abbreviation for the greatest common measure. When $a$ and $b$ are integers, we often use `gcd' as the abbreviation for the greatest common divisor.}.
 
 \be
 gcm(a, b) = \left \{
@@ -277,7 +277,7 @@ Suppose segement $a$ and $b$ are comensurable. If they are equal, then either on
 \begin{tabular}{|l|l|l|}
 \hline
 $gcm(a, b)$ & $a$ & $b$ \\
-\hline
+\hhline{|=|=|=|}
 $gcm(42, 30)$ & 42 & 30 \\
 \hline
 $gcm(12, 30)$ & 12 & 30 \\
