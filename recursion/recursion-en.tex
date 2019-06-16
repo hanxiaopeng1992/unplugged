@@ -290,7 +290,7 @@ $gcm(6, 6)$ & 6 & 6 \\
 \hline
 \end{tabular}
 
-Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one magnitude is an integeral multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $gcm(0, b) = gcm(b, 0) = b$. We can compare $a$ and $b$ first and exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when next time do the recursive computation, we can directly exchange them as $gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
+Repeatedly subtracting $b$ from $a$ to get $a'$, it's exactly the definition of division with remainder: $a' = a - \lfloor a / b \rfloor$, or denoted as $a'= a \bmod b$. We can use the division with remainder to replace the repeated subtraction in the origin Euclidean algorithm. Besides that, when one magnitude is an integer multiple of the other, for example $b \leq a$ and $a$ can be divided by $b$, we know the greatest common measure is $b$. As the remainder $a \bmod b = 0$, we define $gcm(0, b) = gcm(b, 0) = b$. We can compare $a$ and $b$ first, then exchange them if $a < b$. As we know $a \bmod b$ must be less than $b$, when recursively compute the next time, we can directly exchange them as $gcm(b, a \bmod b)$. This gives the improved Euclidean algorithm.
 
 \be
 gcm(a, b) = \left \{
@@ -303,7 +303,7 @@ gcm(a, b) = \left \{
 \label{eq:gcm}
 \ee
 
-Why does this algorithm give the greatest common measure? We need prove it with two steps. At step one, we prove this algorithm gives the common measure. Suppose $b \leq a$, let the integer $q_0$ be the quotient, $r_0$ be the remainder. We have $a = b q_0 + r_0$. As we get the common measure if $r_0$ is zero, let's focus on the case that $r_0$ is not zero. We can next express $b$ as $b = r_0 q_1 + r_1$, and list the similar equations unless the remainder is zero.
+Why does this algorithm give the greatest common measure? We prove it with two steps. At step one, we prove this algorithm gives the common measure. Suppose $b \leq a$, let the integer $q_0$ be the quotient, $r_0$ be the remainder. We have $a = b q_0 + r_0$. As we get the common measure if $r_0$ is zero, let's focus on the case that $r_0$ is not zero. We can next express $b$ as $b = r_0 q_1 + r_1$, and list the similar equations unless the remainder is not zero.
 
 \[
 \begin{array}{rcl}
@@ -315,13 +315,13 @@ r_1 &=& r_2 q_3 + r_3 \\
 \end{array}
 \]
 
-As long as $a$ and $b$ are commensurable, this list is not infinite. This is because every time, we use compass to intercept integral times, the quotients are integers. And the remainders are less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, we must reach to $r_{n-2} = r_{n-1} q_n$ within finite steps.
+This list grows as long as $a$ and $b$ are commensurable. But it is not infinite. This is because every time, we use compass to intercept integer times. The quotients are integers. And all the remainders are less than the relative divisors. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not be less than zero, and the initial magnitude is finite, we must reach to $r_{n-2} = r_{n-1} q_n$ within finite steps.
 
-Next is to prove $r_{n-1}$ can measure both $a$ and $b$. Obviously $r_{n-1}$ measures $r_{n-2}$ by definition. Consider the last second equation $r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$, since $r_{n-1}$ measures $r_{n-2}$, $r_{n-1}$ also measures $r_{n-2} q_{n-1}$. So it measures $r_{n-2} q_{n-1} + r_{n-1}$, which equals to $r_{n-3}$. Similiarily, we can prove $r_{n-1}$ measures the left hand of every equations step by step up, till $b$ and $a$. This proves the answer found by Euclidean algorithm, $r_{n-1}$ is the common measure of $a$ and $b$. Suppose the greatest common measure is $g$, we have $r_{n-1} \leq g$.
+Next is to prove $r_{n-1}$ can measure both $a$ and $b$. Obviously $r_{n-1}$ measures $r_{n-2}$ by definition. Consider the last second equation $r_{n-3} = r_{n-2} q_{n-1} + r_{n-1}$, since $r_{n-1}$ measures $r_{n-2}$, $r_{n-1}$ also measures $r_{n-2} q_{n-1}$. So it measures $r_{n-2} q_{n-1} + r_{n-1}$, which equals to $r_{n-3}$. Similiarily, we can prove $r_{n-1}$ measures the left hand of every equations step by step upwards to $b$ and $a$. Thus proves the answer found by Euclidean algorithm, $r_{n-1}$ is the common measure of $a$ and $b$. Suppose the greatest common measure is $g$, we have $r_{n-1} \leq g$.
 
 The next step is to prove, for any common measure $c$ for $a$ and $b$, it measures $r_{n-1}$. As $c$ is the common measure, both $a$ and $b$ can be expressed with it, let $a = mc$, $b = nc$, where $m$ and $n$ are some integers. Then the first equation $a = b q_0 + r_0$ can be denoted as $mc = ncq_0 + r_0$, as we know $r_0 = (m - nq_0)c$, it means $c$ measures $r_0$. Similarily, we can prove $c$ measures $r_1$, $r_2$, ..., $r_{n-1}$ one by one. Thus we proved any common measure also measures $r_{n-1}$, so the greatest one $g$ also measures $r_{n-1}$. It means $g \leq r_{n-1}$.
 
-Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduced the greatest common measure $g = r_{n-1}$. It does not only proved the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of magnitudes:
+Combine the results from step one and two, that $r_{n-1} \leq g$ and $g \leq r_{n-1}$, we deduce the greatest common measure $g = r_{n-1}$. It does not only prove the correctness of Euclidean algorithm, but also tells us $g$ is the greatest common measure for every pair of magnitudes:
 
 \be
 g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
@@ -340,20 +340,20 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 %\end{figure}
 \end{wrapfigure}
 
-The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given magnitude $a$ and $b$, in addition to compute the greatest common measure $g$, it also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
+The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given magnitude $a$ and $b$, in addition to compute the greatest common measure $g$, it can also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
 
 \[
 S = \{ ax + by | x, y \in \mathbb{Z}\ \text{and} \ ax + by > 0\}
 \]
 
-For line segments, $S$ must not be empty, as it at least contains $a$ (where $x = 1, y = 0$) and $b$ (where $x = 0, y = 1$). Since all the elements in $S$ are positive, there must exist the smallest one. We denote the smallest element as $g = as + bt$. We'll next show that $g$ is the greatest common measure of $a$ and $b$. Let's express $a$ as the quotient and remainder of $g$.
+For line segments, $S$ must not be empty, as it contains at least $a$ (where $x = 1, y = 0$) and $b$ (where $x = 0, y = 1$). Since all the elements in $S$ are positive, there must exist the smallest one. We denote the smallest element as $g = as + bt$. We'll next show that $g$ is the greatest common measure of $a$ and $b$. Let's express $a$ as the quotient and remainder of $g$.
 
 \be
 a = qg + r
 \label{eq:Euclidean-division}
 \ee
 
-Where the remainder $0 \leq r < g$. It is either zero or belongs to set $S$, this is because the following.
+Where the remainder $0 \leq r < g$. It is either zero or belongs to set $S$, this is because:
 
 \[
 \begin{array}{rll}
@@ -363,7 +363,7 @@ r & = a - qg & \text{From (\ref{eq:Euclidean-division})} \\
 \end{array}
 \]
 
-It means $r$ can be expressed as the linear combination of $a$ and $b$, therefore, if it's not zero, it must belong to set $S$. However, this is not possible because we previously defined $g$ as the least postive element in $S$, while $r$ is less than $g$. To avoid this contradition, we know that $r$ has to be zero. from equation (\ref{eq:Euclidean-division}), $g$ measures $a$. With the same method, we can prove $g$ also measures $b$. Therefore $g$ is the common measure of them. We'll next prove that $g$ is the greatest one. Consider an arbitrary common measure $c$ for $a$ and $b$, according to the definition, there exists integers $m$ and $n$, that $a = mc$ and $b = nc$. Then $g$ can be expressed as:
+It means $r$ can be expressed as the linear combination of $a$ and $b$, therefore, if it's not zero, it must belong to set $S$. However, this is not possible because we previously defined $g$ as the least postive element in $S$, while $r$ is less than $g$. To avoid this contradition, we know that $r$ has to be zero. From equation (\ref{eq:Euclidean-division}), $g$ measures $a$. With the same method, we can prove $g$ also measures $b$. Therefore $g$ is the common measure of them. We'll next prove that $g$ is the greatest one. Consider an arbitrary common measure $c$ for $a$ and $b$, according to the definition, there exists integers $m$ and $n$, that $a = mc$ and $b = nc$. Then $g$ can be expressed as:
 
 \[
 \begin{array}{rll}
@@ -398,7 +398,7 @@ ax + by & = gcm(a, b) & \text{Bézout's idendity} \\
 \end{array}
 \]
 
-This gives the recursion case:
+This gives the recursive case:
 
 \[
 \left \{
@@ -409,7 +409,7 @@ This gives the recursion case:
 \right.
 \]
 
-The edge case happends when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, gives the extended Euclid algorithm.
+The edge case happens when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, we get the extended Euclidean algorithm.
 
 \be
 gcm_{ex}(a, b) = \left \{
@@ -425,22 +425,22 @@ gcm_{ex}(a, b) = \left \{
 \label{eq:gcm-ext}
 \ee
 
-As an example, here is a puzzle can be solved with the extended Euclid algorithm(\cite{LiuXinyu2017}, p50). Given two jars with capacity of 9 and 4 gallons, how to get 4 gallons from the river?
+Here is a puzzle can be solved with the extended Euclidean algorithm(\cite{LiuXinyu2017}, p50). Given two jars with capacity of 9 and 4 gallons, how to get 4 gallons of water from the river?
 
-There are some variances of this puzzle. The capacities can be other nunmbers. It's said the French mathematician Poisson (Sim\`{e}on Denis Poisson) solved this puzzle when he was a kid.
+There are some variances of this puzzle. The capacities can be other nunmbers. It's said the French mathematician Sim\`{e}on Denis Poisson solved this puzzle when he was a child.
 
-There are total six operations between two jars. Denote the big one as $A$, its capacity is $a$; denote the small one as $B$ with capacity $b$:
+There are total six operations between two jars. Denote the big one as $A$ with capacity of $a$; denote the small one as $B$ with capacity of $b$:
 
 \begin{itemize}
 \item Fill the big jar $A$;
 \item Fill the small jar $B$;
 \item Empty the big jar $A$;
 \item Empty the small jar $B$;
-\item Pour the water from jar $A$ to $B$;
+\item Pour the water from jar $A$ to jar $B$;
 \item Pour the warer from jar $B$ to jar $A$.
 \end{itemize}
 
-The last two operation stop when either jar is empty or filled. Below example shows a list of operations (suppose $b < a  2b$ hold).
+The last two operations stop when either jar is empty or full. Below example shows a list of operations (suppose $b < a  2b$ hold).
 
 \begin{table}[htbp]
 \centering
@@ -461,13 +461,13 @@ a & 3b - 2a & pour from $B$ to $A$ \\
 \caption{The water in the jars and the operations.} \label{tab:jug-ops}
 \end{table}
 
-No matter what sequence of operations, the water in the jars can always be expressed as $ax + by$ where $x$ and $y$ are integers. It means the water we get is the linear combination of $a$ and $b$. From the proof of Bézout's identity, we know the smallest positive number of this linear combination is exactly the greatest common measure $g$. We can tell it is possible to get $c$ gallon water if and only if $c$ can be measured by $g$\footnote{If and only if $c$ can be devided by the greatest common divisor $g$ for integer capacities.}. We assume $c$ is not greater than the capacity of the bigger jar.
+No matter what sequence of operations, the water in the jars can always be expressed as $ax + by$ where $x$ and $y$ are integers. It means the water we get is the linear combination of $a$ and $b$. From the proof of Bézout's identity, we know the smallest positive number of this linear combination is exactly the greatest common measure $g$. We can tell if it is possible to get $c$ gallons of water if and only if $c$ can be measured by $g$\footnote{If and only if $c$ can be devided by the greatest common divisor $g$ for integer capacities.}. We assume $c$ is not greater than the capacity of the bigger jar.
 
-For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divides 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to get any natural number $c$ gallons of water.
+For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 gallons. This is because the greatest common divisor of 4 and 6 is 2. Which can't divide 5. (In other words, we can't get odd galons of water with two jars of even gallons capacities.) If $a$ and $b$ are coprime, i.e. $gcd(a, b) = 1$, then we are sure to be able to get any natural number $c$ gallons of water.
 
-Although we can tell the puzzle is solvable if $g$ measures $c$, we still don't know the steps to pour the water. Actually, the steps can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$. If $x > 0, y < 0$, it means we need fill jar $A$ $x$ times, and empty jar $B$ $y$ times; Else if $x < 0, y > 0$, we need empty jar $A$ $x$ times, and fill jar $B$ $y$ times.
+Although we can tell that the puzzle is solvable when $g$ measures $c$, we still don't know the detailed steps to pour water. Actually, the steps can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$. If $x > 0, y < 0$, it means we need fill jar $A$ $x$ times, and empty jar $B$ $y$ times; Else if $x < 0, y > 0$, we need empty jar $A$ $x$ times, and fill jar $B$ $y$ times.
 
-For instance, let the capacity of the big jar $a = 5$ gallon, the small jar $b = 3$ gallon. We want to get $c=4$ gallons of water. As $4 = 3 \times 3 - 5$, so $x = -1, y = 3$. We can arrange the steps as below.
+For instance, let the capacity of the big jar $a = 5$ gallons, the small jar $b = 3$ gallons. We want to get $c=4$ gallons of water. As $4 = 3 \times 3 - 5$, so $x = -1, y = 3$. We can arrange the steps as below.
 
 \begin{table}[htbp]
 \centering
@@ -492,20 +492,22 @@ We can see from these steps, jar $B$ is filled 3 times, jar $A$ is emptied 1 tim
 \[
 \begin{cases}
   x_1 = x_0 \dfrac{c}{g} \\[2ex]
+  \\
   y_1 = y_0 \dfrac{c}{g}
 \end{cases}
 \]
 
-From this solution, we can have all the integer solutions to the Diophantus equation{Naming after the acient Greek mathematician, Diophantus of Alexandira (about 200 - 284AD). In his book \textit{Arithmetica}, he made important advances in mathematical notation, becoming the first person known to use algebraic notation and symbolism. Diophantus is often called “the father of algebra" because he contributed greatly to number theory, mathematical notation, and because \textit{Arithmetica} contains the earliest known use of syncopated notation\cite{HanXueTao2009}.}.
+From this solution, we can generate all the integer solutions to the Diophantus equation \footnote{Naming after the acient Greek mathematician, Diophantus of Alexandira (about 200 - 284AD). In his book \textit{Arithmetica}, he made important advances in mathematical notation, becoming the first person known to use algebraic notation and symbolism. Diophantus is often called “the father of algebra" because he contributed greatly to number theory, mathematical notation, and because \textit{Arithmetica} contains the earliest known use of syncopated notation\cite{HanXueTao2009}.}.
 
 \be
 \begin{cases}
   x = x_1 - k \dfrac{b}{g} \\[2ex]
+  \\
   y = y_1 + k \dfrac{a}{g}
 \end{cases}
 \ee
 
-Where $k$ is an integer number. Thus we achieve all the integer solutions to the water jar puzzle. Further, we can find a special $k$, which minimizes $|x| + |y|$, it gives the fast pouring steps\footnote{One way to get this special $k$ is to represent the solution as two lines in Cartesian plain. When taking absoluted value, it flips the lower part to the x-axis. Then we can find the $k$ minimizes $|x| + |y|$ from the figure.}. Below is the example Haskell program solves this  puzzle.
+Where $k$ is an integer. Thus we get all the integer solutions to the water jar puzzle. Further, we can find a special $k$, that minimizes $|x| + |y|$, it gives the fast pouring steps\footnote{One way to get this special $k$ is to represent the solution as two lines in Cartesian plain. When taking absoluted value, it flips the lower part to the x-axis. Then we can find the $k$ minimizes $|x| + |y|$ from the figure.}. Below is the example Haskell program solves this  puzzle.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -535,13 +537,13 @@ jars a b c = (x, y) where
   m = max (abs x1 `div` u) (abs y1 `div` v)
 \end{lstlisting}
 
-After figure out $x$ and $y$, we can populate the steps as in Appendix.
+After figure out $x$ and $y$, we can populate the steps as in Appendix of this book.
 
-\subsection{Influence of Euclid algorithm}
+\subsection{Influence of Euclidean algorithm}
 
-Euclid algorithm was developed to find the the greatest common divisor for two integrals in spirit of all things are made of numbers. However, Eculid applied it to the abstract geometric measurements. We see the separation of geometry from numbers\footnote{This is the reason why we name Euclide algorithm gcm, but not gcd.}. Geometry was not built on top of numbers, but developed independently to solve the generic problems not limit to numbers. The ancient Greek formed such a tradition, that even for any conclusion about number, one need to give proof in terms of geometry. It kept influencing people till the 16th Century. For example, the Italian mathematician Gerolamo Cardano still used geometric cubic filling method in his book `Ars Magna' when solving the cubic and four-order equations in 1545\cite{HanXueTao2009}.
+Euclidean algorithm was developed to find the the greatest common divisor for two integers in spirit of all things are made of numbers. However, Eculid applied it to the abstract geometric measurements. We see the separation of geometry from numbers\footnote{This is the reason why we name Euclide algorithm gcm, but not gcd.}. Geometry was not built on top of numbers, but developed independently to solve the generic problems not limit to numbers. The ancient Greek formed such a tradition, that even for any conclusion about number, one need to give proof in terms of geometry. It kept influencing people till the 16th Century. For example, the Italian mathematician Gerolamo Cardano still used geometric cubic filling method in his book `Ars Magna' when solving the cubic and four-order equations in 1545\cite{HanXueTao2009}.
 
-The Euclidean algorithm is the most famous recursive algorithm. German mathematician, Dirichlet, the founder of analytic number theory, commented in his {\em Lectures on Number Theory}\footnote{Lejeune Dirichlet, J.P.G.; Richard Dedekind (1863). Vorlesungen über Zahlentheorie. F. Vieweg und sohn.}, The structure of the whole number theory is based on the same foundation, which is the greatest common divisor algorithm. The modern RSA cryptosystem\footnote{RSA is the world first public-key asymmetric crypto algorithm developed by Ron Rivest, Adi Schamir, and Leonard Adelman in MIT, 1977. The acronym RSA is made of the initial letters of their surnames.} utilizes the extended Euclidean algorithm directly. We demonstrated how to figure the integer solutions for binary linear Diophantine equation $ax + by = c$. Find the GCM $g$. There's no integer solution if it does not divide $c$. Otherwise, for the $x_0, y_0$ satisfy Bezout identity, duplicate them $c/g$ times to get one special solution $x_1, y_1$, then gives the common solution of $x = x_1 - k b / g$, and $y = y_1 + k a / g$.
+The Euclidean algorithm is the most famous recursive algorithm. German mathematician, Dirichlet, the founder of analytic number theory, commented in his {\em Lectures on Number Theory}\footnote{Lejeune Dirichlet, J.P.G.; Richard Dedekind (1863). {\em Vorlesungen über Zahlentheorie}. F. Vieweg und sohn.}, The structure of the whole number theory is based on the same foundation, which is the greatest common divisor algorithm. The modern RSA cryptosystem\footnote{RSA is the world first public-key asymmetric crypto algorithm developed by Ron Rivest, Adi Schamir, and Leonard Adelman in MIT, 1977. The acronym RSA is made of the initial letters of their surnames.} utilizes the extended Euclidean algorithm directly. We demonstrated how to figure out the integer solutions for binary linear Diophantine equation $ax + by = c$. Find the greatest common measure $g$. There's no integer solution if $g$ does not divide $c$. Otherwise, for the $x_0, y_0$ satisfying Bézout identity, duplicate them $c/g$ times to get a special solution $x_1, y_1$, then define the common solution of $x = x_1 - k b / g$, and $y = y_1 + k a / g$.
 
 \begin{wrapfigure}{R}{0.32\textwidth}
 %\begin{figure}[htbp]
@@ -553,7 +555,7 @@ The Euclidean algorithm is the most famous recursive algorithm. German mathemati
 %\end{figure}
 \end{wrapfigure}
 
-The Euclid algorithm is a double edge sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believe any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the edge and diagonal of a square. However, no matter how small magnitude being used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, it was saying that Hippasus also found segment AC and AG couldn't be commensurable.
+The Euclid algorithm is a double edge sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believed any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the side and diagonal of a square. However, no matter how small magnitude being used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles of music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, there is another story said that Hippasus also found segment AC and AG couldn't be commensurable.
 
 %\begin{wrapfigure}{L}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -565,19 +567,19 @@ The Euclid algorithm is a double edge sword. The powerful recursive method can b
 \end{figure}
 %\end{wrapfigure}
 
-The Scottish mathematician George Chrystal reconstructed Hippasus's proof in the 19th Century. Using reduction to absurdity, suppose there exists a segment $c$ that measures both the edge and diagonal of the square. From the definition of the common measurement, let the edge be $mc$, and the diagonal be $nc$, where $m, n$ both are integers. As shown in figure \ref{fig:irrational}, take the edge as radius, we draw an arc with $A$ as the center, which intersect the diagonal $AC$ at point $E$. Then draw a ling from $E$ that is perpendicular to the diagonal, and intersects edge $BC$ at point $F$.
+The Scottish mathematician George Chrystal reconstructed Hippasus's proof in the 19th Century. Using reduction to absurdity, suppose there exists a segment $c$ that measures both the side and diagonal of the square. From the definition of the common measurement, let the side be $mc$, and the diagonal be $nc$, where both $m, n$ are integers. As shown in figure \ref{fig:irrational}, taking the side as radius, we draw an arc with $A$ as the center, which intersects the diagonal $AC$ at point $E$. Then draw a line from $E$ that is perpendicular to the diagonal, and intersects side $BC$ at point $F$.
 
 %\begin{wrapfigure}{L}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=2]{img/irrational.eps}
  %\captionsetup{labelformat=empty}
- \caption{The edge and the diagonal of the square.}
+ \caption{The side and the diagonal of the square.}
  \label{fig:irrational}
 \end{figure}
 %\end{wrapfigure}
 
-As it is an arc, the length of $AE$ equals to the square edge. Thus the length of segment $AE$ is $(m - n)c$. Because $EF$ is perpendicular to $AC$, while angle $\angle ECF$ spans $45\degree$, therefore the triangle $ECF$ is the isosceles right triangle. Since the isosceles triangle has two sides of equal length, we have $|EC| = |EF|$ holds. Observe two right triangle $\triangle AEF$ and $\triangle ABF$. Side $AE$ equals $AB$, and $AF$ is the shared side, they congruent. Then we have $|EF| = |FB|$. As the result, the three segments $|EC| = |EF| = |FB|$. Therefore the length of $FB$ is also $(m - n)c$, while segment $CF$ can be get by deducing $FB$ from $CB$, which is $nc - (m - n)c = (2n - m)c$. We list all the results as below.
+As it is an arc, the length of $AE$ equals to the square side. Thus the length of segment $AE$ is $(m - n)c$. Because $EF$ is perpendicular to $AC$, while angle $\angle ECF$ spans $45\degree$, therefore the triangle $ECF$ is the isosceles right triangle. Since the isosceles triangle has two sides of equal length, we have $|EC| = |EF|$ holds. Observe two right triangles $\triangle AEF$ and $\triangle ABF$. Side $AE$ equals $AB$, and $AF$ is the shared side, they congruent. Then we have $|EF| = |FB|$. As the result, the three segments $|EC| = |EF| = |FB|$. Therefore the length of $FB$ is also $(m - n)c$, while segment $CF$ can be get by deducing $FB$ from $CB$, which is $nc - (m - n)c = (2n - m)c$. We list all the results as below.
 
 \[
 \begin{array}{c|c}
@@ -589,11 +591,12 @@ As it is an arc, the length of $AE$ equals to the square edge. Thus the length o
 |CF| = (2n - m)c \\
 |CE| = (m - n)c
 \end{cases} \\[4ex]
+\\
 \text{The big square} & \text{The small square}
 \end{array}
 \]
 
-As both $m, n$ are integers, it's obvious that $c$ measures both the diagonal $CF$ and edge $CE$ of the small square. Using the same method as above, we can draw a smaller square. Repeating it leads to smaller and smaller infinite squares. But $c$ measures both diagonal and edge for every square. Since $m, n$ are finite integers, we can't endlessly duplicate this process, which leads to absurdity. Therefore, our assumption is not true, there is no common measure for the diagonal and edge of a square.
+As both $m, n$ are integers, it's obvious that $c$ measures both the diagonal $CF$ and side $CE$ of the small square. Using the same method as above, we can draw another even smaller square. Repeating it leads to smaller and smaller infinite squares. But $c$ measures both diagonal and side for every square. Since $m, n$ are finite integers, we can't endlessly duplicate this process, which leads to absurdity. Therefore, our assumption is not true, there is no common measure for the diagonal and side of a square.
 
 It is a loophole in Pythagorean theory about all things are made of numbers, there exists segments that can't be represented by ratio of integers. It was said Hippasus was murdered due to this finding. The Pythagoreans didn't want that secrete be disclosed, they drowned Hippasus at sea. The discovery of irrational number greatly boost mathematics. The ancient Greek philosophers and mathematicians considered this problem seriously. After the work of Odoxos, Aristotle, and Euclid, they finally strictly defined the incommensurable magnitudes, and incorporate it into the ancient Greek mathematics through geometry.
 
@@ -605,10 +608,10 @@ It's interesting that the incommensurable is defined by checking whether the Euc
 
 \begin{Exercise}
 \Question{The Euclidean algorithm described in this section is in recursive manner. Try to eliminate recursion, implement it and the extended Euclidean algorithm only with loop.}
-\Question{Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integers. Implement a modular operation that manipulates segments. What's the efficiency of it?}
-\Question{In the proof of Euclidean algorithm, we mentioned ``Remainders are always less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, the algorithm must terminate.'' Can $r_{n}$ infinitely approximate zero, but not be zero? Does the algorithm always terminate? What does the precondition $a$ and $b$ are commensurable ensure?}
+\Question{Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integer. Implement a modular operation that manipulates segments. What's the efficiency of it?}
+\Question{In the proof of Euclidean algorithm, we mentioned ``Remainders are always less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, the algorithm must terminate.'' Can $r_{n}$ infinitely approximate zero, but not be zero? Does the algorithm always terminate? What does the precondition that $a$ and $b$ are commensurable ensure?}
 \Question{For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ are two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$}
-\Question{Proof that in the pentagram shown in figure \ref{fig:pentagram}. The segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
+\Question{Proof that in the pentagram shown in figure \ref{fig:pentagram}, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
 \end{Exercise}
 
 \section{The $\lambda$ calculus}
