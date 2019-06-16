@@ -621,32 +621,23 @@ If it's intelligent beings like human to perform computation, recursion will not
 %\begin{wrapfigure}{L}{0.35\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.2]{img/Turing.eps}
+ \subcaptionbox{Alan Mathison Turing, 1912 - 1954}[0.45\linewidth]{\includegraphics[scale=0.2]{img/Turing.eps}} \quad
+ \subcaptionbox{Alonzo Church, 1903 - 1995}[0.45\linewidth]{\includegraphics[scale=0.65]{img/Church.eps}}
  \captionsetup{labelformat=empty}
- \caption{Alan Mathison Turing, 1912 - 1954}
  \label{fig:Turing}
+ \label{fig:Church}
 \end{figure}
 %\end{wrapfigure}
 
 Turing was an English mathematician, computer scientist, and logician. Turing was highly influential in the development of theoretical computer science, providing a formalization of the concepts of algorithm and computation with the Turing machine, which can be considered a model of a general-purpose computer. Turing is widely considered to be the father of theoretical computer science and artificial intelligence\cite{wiki-Turing}.
 
-During the Second World War, Turing worked for the Government at Bletchley Park, Britain's codebreaking center that produced Ultra intelligence. He devised a number of techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bombe method, an electromechanical machine that could find settings for the Enigma machine. Turing played a pivotal role in cracking intercepted coded messages that enabled the Allies to defeat the Nazis in many crucial engagements. It has been estimated that this work shortened the war in Europe by more than two years and saved millions lives.
+During the Second World War, Turing worked for the Government at Bletchley Park, Britain's codebreaking center that produced Ultra intelligence. He devised a number of techniques for speeding the breaking of German ciphers, including improvements to the pre-war Polish bombe method, an electromechanical machine that could find settings for the Enigma cipher machine. Turing played a pivotal role in cracking intercepted coded messages that enabled the Allies to defeat the Nazis in many crucial engagements. It has been estimated that this work shortened the war in Europe by more than two years and saved millions lives.
 
-After the war, Turing worked on the Automatic Computing Engine (ACE), which was one of the first designs for a stored-program computer. the Pilot ACE  executed its first program on 1950, and a number of later computers around the world owe much to it. The full version of ACE was built in 1958 after his death. From 1950, Turing worked in "Computing Machinery and Intelligence". He addressed the problem of artificial intelligence, and proposed an experiment that became known as the Turing test, an attempt to define a standard for a machine to be called "intelligent". The idea was that a computer could be said to "think" if a human interrogator could not tell it apart, through conversation, from a human being. Turing was elected a Fellow of the Royal Society (FRS) in 1951 at the age of 39. Since 1966, the Turing Award has been given annually by the Association for Computing Machinery (ACM) for technical or theoretical contributions to the computing community. It is widely considered to be the computing world's highest honour, equivalent to the Nobel Prize.
+After the war, Turing worked on the Automatic Computing Engine (ACE), which was one of the first designs for a stored-program computer. the Pilot ACE  executed its first program on 1950, and a number of later computers around the world owe much to it. The full version of ACE was built in 1958 after his death. From 1950, Turing worked in ``Computing Machinery and Intelligence''. He addressed the problem of artificial intelligence, and proposed an experiment that became known as the Turing test, an attempt to define a standard for a machine to be called ``intelligent''. The idea was that a computer could be said to ``think'' if a human interrogator could not tell it apart, through conversation, from a human being. Turing was elected a Fellow of the Royal Society (FRS) in 1951 at the age of 39. Since 1966, the Turing Award has been given annually by the Association for Computing Machinery (ACM) for technical or theoretical contributions to the computing community. It is widely considered to be the computing world's highest honour, equivalent to the Nobel Prize.
 
-\begin{wrapfigure}{R}{0.3\textwidth}
-%\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.6]{img/Church.eps}
- \captionsetup{labelformat=empty}
- \caption{Alonzo Church, 1903 - 1995}
- \label{fig:Church}
-%\end{figure}
-\end{wrapfigure}
+The formalization of computation itself is called {\em Metamathematics}. This attempt led to a great work, the $\lambda$-calculus. There's a interesting story about the name. When considering the computation itself, people realized we should distinguish function and its evaluation result. For example, if we say `if $x$ is odd, then $x \times x$ is also odd', we mean the evaluated value of the function; while if we say `$x \times x$ is monotonic increasing', we mean the function itself. To differentiate these two concepts, we write function as $x \mapsto x \times x$, but not only $x \times x$.
 
-The formalization of computation itself is called {\em Metamathematics}. This attempt lead to a great work, the $\lambda$-calculus. There's a interesting story about its name. When considering the computation itself, people realized we should distinguish function and its evaluation result. For example, if we say `if $x$ is odd, then $x \times x$ is also odd', we mean the evaluated value of the function; while if we say `$x \times x$ is monotonic increasing', we mean the function itself. To differentiate these two concepts, we write function as $x \mapsto x \times x$, but not only $x \times x$.
-
-The `$\mapsto$' symbol is introduced by Nicolas Bourbaki\footnote{Nicolas Bourbaki is the collective pseudonym of a group of (mainly French) mathematicians. Their aim is to reformulate mathematics on an extremely abstract and formal but self-contained basis with the goal of grounding all of mathematics on set theory. Many famous mathematician participants the Bourbaki group, like Henri Cartan, Claude Chevalley, Jean Dieudonné, André Weil, Laurent Schwartz, Jean-Pierre Serre, Alexander Grothendieck, and Serge Lang.} around 1930. Russel and Whitehead use the notation $\hat{x}(x \times x)$ in their famous book ``Principia Mathematica'' in 1910s. Church wanted to use a similar notation in 1930s, however, the publisher he worked with didn't know how to print the `hat' symbol on top of $x$. Alternatively, they printed the uppercase Greek letter $\Lambda$ before $x$, and later changed to lowercase letter $\lambda$. That is the reason why we see it's in the form of $\lambda x . x \times x$ today\cite{Dowek2011}. Although the $x \mapsto x \times x$ presentation is widely accepted, people tend to use Church's notation particularly in logic and computer science, and named it as the `$\lambda$-calculus'.
+The `$\mapsto$' symbol was introduced by Nicolas Bourbaki\footnote{Nicolas Bourbaki is the collective pseudonym of a group of (mainly French) mathematicians. Their aim is to reformulate mathematics on an extremely abstract and formal but self-contained basis with the goal of grounding all of mathematics on set theory. Many famous mathematician participants the Bourbaki group, like Henri Cartan, Claude Chevalley, Jean Dieudonné, André Weil, Laurent Schwartz, Jean-Pierre Serre, Alexander Grothendieck, and Serge Lang.} around 1930. Russel and Whitehead used the notation $\hat{x}(x \times x)$ in their famous book ``Principia Mathematica'' in 1910s. Church wanted to use a similar notation in 1930s, however, the publisher he worked with didn't know how to print the `hat' symbol on top of $x$. Alternatively, they printed the uppercase Greek letter $\Lambda$ before $x$, and later changed to lowercase letter $\lambda$. That is the reason why we see it's in the form of $\lambda x . x \times x$ today\cite{Dowek2011}. Although the $x \mapsto x \times x$ presentation is widely accepted, people tend to use Church's notation particularly in logic and computer science, and named it as the `$\lambda$-calculus'.
 
 \subsection{Expression reduction}
 
@@ -661,11 +652,11 @@ We start from some simple example of $\lambda$-calculus to demonstrate how to fo
 \end{array}
 \]
 
-The arrow symbol $\to$ read as `reduce to'. Note that when apply $f$ to variable $x$, we don't write it as $f(x)$, but as $f\ x$. For multi-variable functions, like $f(x, y)$, we don't write as $(f\ (x, y))$, but use the uniformed way as $((f\ x)\ y)$. Therefore, three plus four should be written as $((+\ 3)\ 4)$. Expression $(+\ 3)$ actually represents a function, it adds 3 to any argument passed in. As a whole, this expression means `apply function + to a variable that equals to 3, it gives a function. Then apply this function to another variable that equals to 4'. By this means, we treat every function only takes one argument. This method was first introduced by Schönfinkel (1889 - 1942) in 1924, then widely used by Haskell Curry from 1958. It is known as {\em Currying}\cite{SPJ1987}.
+The arrow symbol $\to$ read as `reduce to'. Note that when apply $f$ to variable $x$, we don't write it as $f(x)$, but as $f\ x$. For multi-variable functions, like $f(x, y)$, we don't write as $(f\ (x, y))$, but use the uniformed way as $((f\ x)\ y)$. Therefore, three plus four should be written as $((+\ 3)\ 4)$. Expression $(+\ 3)$ actually represents a function, it adds 3 to any argument passed in. As a whole, this expression means `apply function + to a variable that equals to 3, it gives a function as result. Then apply this function to another variable that equals to 4'. By this means, we treat every function only takes one argument. This method was first introduced by Schönfinkel (1889 - 1942) in 1924, then widely used by Haskell Curry from 1958. It is known as {\em Currying}\cite{SPJ1987}.
 
 There will be too many parentheses if written strictly in Curried form. To make it concise, we'll omit some parentheses without causing ambiguity. For example we'll simplify $((f\ ((+\ 3)\ 4))\ (g\ x))$ to $(f\ (+\ 3\ 4)\ (g\ x))$.
 
-We need define the meanings for basic components when perform expression reduction. For arithmetic operation, we've defined plus and multiplication in chapter 1 on top of Peano axioms. We can use the similar approach to define their reverse operation for minus and divide. For the numbers as operands, we can define them with zero and the successor. With these being clarified in theory, we realize the arithmetic operators and numbers built-in for performance consideration. The logic and, or, not, Boolean constant value true and false are also typically built-in realized. The conditional expression can be realized in McCarthy form like $(p \mapsto f, g)$ in chapter 1, or defined as the below \texttt{if} form:
+We need define the meanings for basic components when perform expression reduction. For arithmetic operation, we've defined plus and multiplication in chapter 1 on top of Peano axioms. We can use the similar approach to define their reversed operation for minus and divide. For the numbers as operands, we can define them with zero and the successor. With these being clarified in theory, we realize the arithmetic operators and numbers built-in for performance consideration. The logic and, or, not, Boolean constant value true and false are also typically built-in realized. The conditional expression can be realized in McCarthy form like $(p \mapsto f, g)$ introduced in chapter 1, or defined as the below \texttt{if} form:
 
 \[
 \begin{array}{llcl}
@@ -674,7 +665,7 @@ We need define the meanings for basic components when perform expression reducti
 \end{array}
 \]
 
-Where $e_t$, $e_f$ both are expressions. For the compound data structure defined by $cons$ in chapter 1, we also need define functions to extract the every part:
+Where both $e_t$, $e_f$ are expressions. For the compound data structure defined by $cons$ in chapter 1, we also need define functions to extract every part:
 
 \[
 \begin{array}{l}
@@ -691,13 +682,15 @@ We introduced how $\lambda$ symbol was introduced. $\lambda$ abstraction is a me
 (\lambda x . +\ x\ 1)
 \]
 
-A $\lambda$ abstraction contains four parts. First is the $\lambda$ symbol, it means we start to define a function. The next part is the variable. It's $x$ in this example. The variable is called formal parameter. Following the formal parameter, there is a dot. The rest part is the function body that extends to the right most. It's $+\ x\ 1$ in our example. We can add parentheses to avoid ambiguity about the right boundary for the body. For our example, it will be $(+\ x\ 1)$. To make it easy for memory, we write the four parts in $\lambda$ abstraction corresponding to natural language as below.
+A $\lambda$ abstraction contains four parts. First is the $\lambda$ symbol, it means we start to define a function. The next part is the variable. It's $x$ in this example. The variable is called formal parameter. Following the formal parameter, there is a dot. The rest part is the function body that extends to the right most. It's $+\ x\ 1$ in our example. We can add parentheses to avoid ambiguity about the right boundary of the body. For our example, it will be $(+\ x\ 1)$. To make it easy for memory, we write the four parts in $\lambda$ abstraction corresponding to natural language as below.
 
+\vspace{5mm}
 \begin{tabular}{cccc}
 ($\lambda$ & $x$ & . & +\  $x$\ 1) \\
 $\uparrow$ & $\uparrow$ & $\uparrow$ & $\uparrow$ \\
 That function of & $x$ & which & add $x$ to 1 \\
 \end{tabular}
+\vspace{5mm}
 
 We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that $\lambda$ abstraction is not equivalent to $\lambda$ expression, $\lambda$ abstraction is only one type of $\lambda$ expression. $\lambda$ expression also has two other types:
 
@@ -728,7 +721,7 @@ We can make it clear with the arrow notation:
 x \mapsto ((y \mapsto y + z)\ 3) + x
 \]
 
-We see that both $x$ and $y$ are bound, while $z$ is free. In the more complex expression, the same variable name may be bound, and at the same time appears as free. For example:
+We see that both $x$ and $y$ are bound, while $z$ is free. In the more complex expression, the same variable name may be bound, and at the same time appear as free. For example:
 
 \[
 +\ x\ ((\lambda x . +\ x\ 1)\ 2)
@@ -748,13 +741,13 @@ We see that, $x$ is free in its first occurrence, but is bound in the second occ
 
 %for short arrow, can be replaced with \xleftrightarrow{\alpha}
 
-Written in the arrow form:
+or written in the arrow form:
 
 \[
 x \mapsto x + 1 \quad \overset{\alpha}{\longleftrightarrow} \quad y \mapsto y + 1
 \]
 
-We mentioned that $\lambda$ abstraction is a method to construct function. How to apply the constructed function to specific parameter? In order to do that, we need the second $\lambda$ conversion rule, the $\beta$-conversion. When using this rule, we replace all the free occurrence of formal parameter in function body to it value. For example:
+We mentioned that $\lambda$ abstraction is a method to construct function. How to apply the constructed function to specific parameter? In order to do that, we need the second $\lambda$ conversion rule, the $\beta$-conversion. When using this rule, we replace all the free occurrence of formal parameter in function body to its value. For example:
 
 \[
 (x \mapsto x + 1)\ 2
@@ -766,7 +759,7 @@ According to the conversion rule, applying the $\lambda$ abstraction $x \mapsto 
 (x \mapsto x + 1)\ 2 \quad \overset{\beta}{\longrightarrow} \quad 2 + 1
 \]
 
-We call the conversion along the direction of this arrow as $\beta$-reduction. When using it reversely, we call it $\beta$-abstraction. Let's understand $\beta$-reduction with more examples. First is about multiple occurrence of the formal parameter.
+We call the conversion along the direction of this arrow as $\beta$-reduction. When using it reversely, we call it $\beta$-abstraction. Let's get familiar with $\beta$-reduction with more examples. First is about multiple occurrences of the formal parameter.
 
 \[
 \begin{array}{rcl}
@@ -819,7 +812,7 @@ The last conversion rule we'll introduce is the $\eta$-conversion. It's defined 
 (\lambda x . F\ x) \quad \overset{\eta}{\longleftrightarrow} \quad F
 \]
 
-Written in the arrow form:
+or written in the arrow form:
 
 \[
 x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
@@ -831,9 +824,9 @@ Where $F$ is a function, and $x$ is not the free variable in $F$. Here is an exa
 (\lambda x . +\ 1\ x) \quad \overset{\eta}{\longleftrightarrow} \quad (+\ 1)
 \]
 
-In this example, the $\eta$-conversions in both sides behave same. When applies to a parameter, the results is add 1 to it. The reason why $x$ must not be the free variable in $F$ in $\eta$-conversion is to avoid wrongly convert expression like $(\lambda x. +\ x\ x)$ to $(+\ x)$. We can see that $x$ is the free variable in $(+\ x)$. It's also necessary to limit $F$ to function, otherwise we can convert 1 to $(\lambda x . 1\ x)$, which does not make sense. We call the transform from left to right as $\eta$-reduction.
+In this example, the $\lambda$-expressions in both sides of $\eta$-conversion behave same. When apply to a parameter, the effect is add 1 to it. The reason why $x$ must not be the free variable in $F$ in $\eta$-conversion is to avoid wrongly converting expression like $(\lambda x. +\ x\ x)$ to $(+\ x)$. We can see that $x$ is the free variable in $(+\ x)$. It's also necessary to limit $F$ to function, otherwise it could convert 1 to $(\lambda x . 1\ x)$, which does not make sense. We call the transform from left to right as $\eta$-reduction.
 
-So far, we introduced the three conversion rules for $\lambda$ expression. Summarized as the following.
+So far, we introduced the three conversion rules for $\lambda$ expression. Summarized as below:
 
 \begin{enumerate}
 \item $\alpha$-conversion to change the name for formal parameters;
@@ -843,6 +836,7 @@ So far, we introduced the three conversion rules for $\lambda$ expression. Summa
 
 Besides these three rules, we call the built-in functions, like arithmetic operations, logic and, or, not as $\delta$-conversion. Some materials about $\lambda$-calculus uses another simplified notation. When perform $\beta$-reduction for expression $(\lambda x. E)\ M$, we use $M$ to replace $x$ in $E$, written the result as $E[M/x]$. Then the three conversion rules can be simplified as below:
 
+\vspace{5mm}
 \begin{tabular}{|l|rcl|rcl|}
 \hline
 conversion & \multicolumn{3}{|c|}{$\lambda$ form} & \multicolumn{3}{|c|}{arrow form} \\
@@ -857,6 +851,7 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
          & $x \mapsto E\ x$ & $\overset{\eta}{\longleftrightarrow}$ & $E$ \\
 \hline
 \end{tabular}
+\vspace{5mm}
 
 All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, can the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell a given reduction process terminate. We'll introduce the details in the last chapter.}. Here is a example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
 
