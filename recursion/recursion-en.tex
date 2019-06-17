@@ -851,7 +851,7 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 \end{tabular}
 \vspace{5mm}
 
-All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, will the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell a given reduction process terminate. We'll introduce the details in the last chapter.}. Here is a example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
+All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, will the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell if a given reduction process terminates. We'll introduce the details in the last chapter.}. Here is an example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
 
 \[
 \begin{array}{rcll}
@@ -880,7 +880,7 @@ A more interesting example is $(\lambda x . 1)\ (D\ D)$, if firstly reduce the $
 If $E_1 \leftrightarrow E_2$, then there exists $E$ that $E_1 \to E$ and $E_2 \to E$.
 \end{theorem}
 
-It means, if the reduction process terminates, then the results confluence. Varies reduction steps give the same result, as shown in \ref{fig:Church-Rosser-confluence}. Church and Rosser proved the second theorem on top of the first one. We need the concept of the {\em normal form} to understand it. The normal form, also known as $\beta$ normal form, is an expression that can't do any further $\beta$-reduction. It means all the functions have already been applied. A more strict normal form is the $\beta-\eta$ normal form, which neither $\beta$-reduction, nor $\eta$-reduction can be performed. For example, $(x \mapsto x + 1)\ y$ is not normal form, because we can apply $\beta$-reduction to change it to $y + 1$. The following defines the normal form recursively.
+It means, if the reduction process terminates, then the results confluence. Varies reduction steps give the same result, as shown in \ref{fig:Church-Rosser-confluence}. Church and Rosser proved the second theorem on top of the first one. We need the concept of the {\em normal form} to understand it. The normal form, also known as $\beta$ normal form, is an expression that we can't do any further $\beta$-reduction. It means all the functions have already been applied. A more strict normal form is the $\beta-\eta$ normal form, which neither $\beta$-reduction, nor $\eta$-reduction can be performed. For example, $(x \mapsto x + 1)\ y$ is not normal form, because we can apply $\beta$-reduction to change it to $y + 1$. The following defines the normal form recursively.
 
 \[
 \begin{array}{rcll}
@@ -905,13 +905,13 @@ With $\lambda$ abstraction, we can define some simple functions. How to define r
 fact = n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times fact (n - 1)
 \]
 
-But this is not a valid $\lambda$ expression. The $\lambda$ abstraction only can define anonymous functions, while we don't know how to name a function. Observe the recursive factorial definition, it has the pattern like:
+But this is not a valid $\lambda$ expression. The $\lambda$ abstraction can only define anonymous functions, while we don't know how to name a function. Observe the recursive factorial definition, it has the pattern like:
 
 \[
 fact = n \mapsto (... fact ...)
 \]
 
-Reverse using the $\beta$-reduction (i.e. $\beta$-abstraction), we can get:
+Reversely using the $\beta$-reduction (i.e. $\beta$-abstraction), we can get:
 
 \[
 fact = (f \mapsto (n \mapsto (... f ...)))\ fact
@@ -930,7 +930,7 @@ where
 H = f \mapsto (n \mapsto (... f ...))
 \]
 
-Note that after this conversion, $H$ is not recursive any more. It is a common $\lambda$ expression. Observe the equation (\ref{eq:H-fact}), it represents recursion. It is in equation form, which remind us about the differential equation. For example solving the differential equation $y' = sin(x)$ gives $y = a - cos(x)$. If we can solve the equation $F = H\ F$, then we are able to define factorial independently. Further observe this equation, it means when apply $H$ to $F$, the result is still $F$. Such concept is called {\em fixed point} in mathematics. We say that $F$ is the fixed point of $H$. Here's another example: the fixed points for $\lambda$ expression $x \mapsto x \times x$ are 0 and 1, this is because we have $(x \mapsto x \times x)\ 0 = 0$ and $(x \mapsto x \times x)\ 1 = 1$.
+Note that after this conversion, $H$ is not recursive any more. It is a normal $\lambda$ expression. Observe the equation (\ref{eq:H-fact}), it represents recursion. It is in equation form, which reminds us about the differential equation. For example, solving the differential equation $y' = sin(x)$ gives $y = a - cos(x)$. If we can solve the equation $F = H\ F$, then we are able to define factorial independently. Further observe this equation, it means when apply $H$ to $F$, the result is still $F$. Such concept is called {\em fixed point} in mathematics. We say that $F$ is the fixed point of $H$. Here's another example: the fixed points for $\lambda$ expression $x \mapsto x \times x$ are 0 and 1, this is because we have $(x \mapsto x \times x)\ 0 = 0$ and $(x \mapsto x \times x)\ 1 = 1$.
 
 \subsection{Y combinator}
 
