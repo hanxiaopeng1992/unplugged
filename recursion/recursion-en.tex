@@ -490,21 +490,19 @@ $A$ & $B$ & operation \\
 We can see from these steps, jar $B$ is filled 3 times, jar $A$ is emptied 1 time. The next question is how to find $x$ and $y$ that satisfies $ax + by = c$. With the extended Euclid algorithm, we can find a solution to Bézout's identity $ax_0 + by_0 = g$. Since $c$ is $m$ times of the greatest common measure $g$, we can make a solution by multiplying $x_0$ and $y_0$ $m$ times.
 
 \[
-\begin{cases}
-  x_1 = x_0 \dfrac{c}{g} \\[2ex]
-  \\
+\begin{dcases}
+  x_1 = x_0 \dfrac{c}{g} \\
   y_1 = y_0 \dfrac{c}{g}
-\end{cases}
+\end{dcases}
 \]
 
 From this solution, we can generate all the integer solutions to the Diophantus equation \footnote{Naming after the acient Greek mathematician, Diophantus of Alexandira (about 200 - 284AD). In his book \textit{Arithmetica}, he made important advances in mathematical notation, becoming the first person known to use algebraic notation and symbolism. Diophantus is often called “the father of algebra" because he contributed greatly to number theory, mathematical notation, and because \textit{Arithmetica} contains the earliest known use of syncopated notation\cite{HanXueTao2009}.}.
 
 \be
-\begin{cases}
-  x = x_1 - k \dfrac{b}{g} \\[2ex]
-  \\
+\begin{dcases}
+  x = x_1 - k \dfrac{b}{g} \\
   y = y_1 + k \dfrac{a}{g}
-\end{cases}
+\end{dcases}
 \ee
 
 Where $k$ is an integer. Thus we get all the integer solutions to the water jar puzzle. Further, we can find a special $k$, that minimizes $|x| + |y|$, it gives the fast pouring steps\footnote{One way to get this special $k$ is to represent the solution as two lines in Cartesian plain. When taking absoluted value, it flips the lower part to the x-axis. Then we can find the $k$ minimizes $|x| + |y|$ from the figure.}. Below is the example Haskell program solves this  puzzle.
@@ -853,7 +851,7 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 \end{tabular}
 \vspace{5mm}
 
-All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, can the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell a given reduction process terminate. We'll introduce the details in the last chapter.}. Here is a example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
+All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, will the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell a given reduction process terminate. We'll introduce the details in the last chapter.}. Here is a example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
 
 \[
 \begin{array}{rcll}
