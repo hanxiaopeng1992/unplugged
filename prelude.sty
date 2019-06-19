@@ -276,6 +276,49 @@
 
   \XeTeXlinebreaklocale "zh"  % to solve the line breaking issue
   \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+
+  \newtheorem{axiom}{公理}[section]
+  \newtheorem{theorem}{定理}[section]
+  \newtheorem{lemma}[theorem]{引理}
+  \newtheorem{proposition}[theorem]{命题}
+  \newtheorem{corollary}[theorem]{推论}
+  \newtheorem{definition}{定义}[section]
+  \newtheorem{example}{例}[section]
+
+  % 中文书籍设置
+  % ====================================
+  \renewcommand\contentsname{目\ 录}
+  %\renewcommand\listfigurename{插图目录}
+  %\renewcommand\listtablename{表格目录}
+  \renewcommand\figurename{图}
+  \renewcommand\tablename{表}
+  \renewcommand\proofname{证明}
+  \renewcommand\ExerciseName{练习}
+  %\renewcommand{\algorithmcfname}{算法}
+
+  \ifx\wholebook\relax
+  \renewcommand\bibname{参\ 考\ 文\ 献}                    %book类型
+  %\newtheorem{Definition}[Theorem]{定义}
+
+  \else
+  \renewcommand\refname{参\ 考\ 文\ 献}
+  \fi
+
+  %\setcounter{secnumdepth}{4}
+  \titleformat{\chapter}
+    {\normalfont\bfseries\Large}
+    {第\arabic{chapter}章}
+    {12pt}{\Large}
+  %% \titleformat{\subsection}
+  %%   {\normalfont\bfseries\large}
+  %%   {\CJKnumber{\arabic{subsection}}、}
+  %%   {12pt}{\large}
+  %% \titleformat{\subsubsection}
+  %%   {\normalfont\bfseries\normalsize}
+  %%   {\arabic{subsubsection}.}
+  %%   {12pt}{\normalsize}
+
+  %\renewcommand{\baselinestretch}{1.5}                        %文章行间距为1.5倍。
 }
 
 \DeclareOption{en}{
