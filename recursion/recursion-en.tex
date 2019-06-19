@@ -996,7 +996,7 @@ It is more significant in mathematics than in practice to define $Y$ in $\lambda
 
 \section{The impact of $\lambda$ calculus}
 
-The significant of the $\lambda$ calculus is that it models the complex computation process with a set of simple rules. Consider the way of representing the Euclidean algorithm in $\lambda$ expressions, then perform $\beta$-reduction to evaluate the result, it's feasible although looks complex from realization perspective. It does not limit to this one, but can represents any computable functions. People later proved that $\lambda$ calculus and Turing machine are equivalent. One advantage of $\lambda$ calculus is that it only uses the traditional function concept in mathematics. People used it in 1930s to formalize the metamathematics. However, Kleene and Rosser proved that the original lambda calculus was inconsistent in 1935. Subsequently, in 1936 Church isolated and published just the portion relevant to computation, what is now called the untyped lambda calculus. In 1940, he also introduced a computationally weaker, but logically consistent system, known as the simply typed lambda calculus.
+The significant of the $\lambda$ calculus is that it models the complex computation process with a set of simple rules. Consider the way of representing the Euclidean algorithm in $\lambda$ expressions, then perform $\beta$-reduction to evaluate the result, it's feasible although looks complex from realization perspective. It does not limit to Euclidean algorithm, but can represents any computable functions. People later proved that $\lambda$ calculus and Turing machine are equivalent. One advantage of $\lambda$ calculus is that it only uses the traditional function concept in mathematics. People used it in 1930s to formalize the metamathematics. However, Kleene and Rosser proved that the original lambda calculus was inconsistent in 1935. Subsequently, in 1936 Church isolated and published just the portion relevant to computation, what is now called the untyped lambda calculus. In 1940, he also introduced a computationally weaker, but logically consistent system, known as the simply typed lambda calculus.
 
 We showed how to use $\lambda$ calculus to define arithmetic operations, logic operations, the simple functions, and recursive functions. There is also an important thing, the composed data structure, need be covered. Actually, $\lambda$ calculus can define $cons$, $head$, and $tail$ as well:
 
@@ -1036,7 +1036,7 @@ head\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto a))\ (cons\ p\ q) \\
 It tells us that the composite data structure needn't be built-in realized. We can use $\lambda$ to define them. The exercise of this chapter demands you to consider how to define the natural numbers in Peano Axioms, the Boolean values, and the logic operators with $\lambda$ calculus.
 
 \begin{Exercise}
-\Question{Use $\lambda$ conversion rules to verify$tail\ (cons\ p\ q) = q$。}
+\Question{Use $\lambda$ conversion rules to verify $tail\ (cons\ p\ q) = q$。}
 \Question{We can define numbers with $\lambda$ calculus. The following definition is called Church numbers:
 
 \[
