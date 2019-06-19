@@ -934,14 +934,14 @@ Note that after this conversion, $H$ is not recursive any more. It is a normal $
 
 \subsection{Y combinator}
 
-We want to figure out the fixed point for $H$, it's obvious that the fixed point of $H$ only depends on $H$. To do that, we introduce a function $Y$. It accepts a function, then return its fixed point. $Y$ behaves like this:
+We want to figure out the fixed point for $H$, it's obvious that the fixed point only depends on $H$. To do that, we introduce a function $Y$. It accepts a function, then returns its fixed point. $Y$ behaves like this:
 
 \be
 Y\ H = H\ (Y\ H)
 \label{eq:Y-H}
 \ee
 
-$Y$ is called fixpoint combinator. By using $Y$, we get the solution to equation (\ref{eq:H-fact}).
+$Y$ is called fixpoint combinator. By using $Y$, we define the solution to equation (\ref{eq:H-fact}).
 
 \be
 fact = Y\ H
@@ -958,7 +958,7 @@ fact & = & Y\ H & \text{By (\ref{eq:fact-in-Y})} \\
 \end{array}
 \]
 
-$Y$ is so powerful that it can represents any recursive functions. However, it is still a black box to us. We need realize it with $\lambda$ abstraction.
+$Y$ is so powerful that it can represent any recursive functions. However, it is still a black box to us. We need realize it in $\lambda$ abstraction.
 
 \be
 Y = \lambda h . (\lambda x . h\ (x\ x))\ (\lambda x . h\ (x\ x))
@@ -970,7 +970,7 @@ Written in the arrow form:
 Y = h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x))
 \]
 
-We opened a magic box, let's verify if $Y$ in $\lambda$ abstraction behaves as we expected: $Y\ H = H\ (Y\ H)$.
+We are opening a magic box, let's verify if $Y$ in $\lambda$ abstraction behaves as we expected: $Y\ H = H\ (Y\ H)$.
 
 \begin{proof}
 \[
@@ -978,20 +978,20 @@ We opened a magic box, let's verify if $Y$ in $\lambda$ abstraction behaves as w
 Y\ H & = & (h \mapsto (x \mapsto h\ (x\ x)) (x \mapsto h\ (x\ x)))\ H & \text{Definition of $Y$} \\
      & \xleftrightarrow{\beta} & (x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x)) & \text{$\beta$-reduction, substitute $h$ with $H$} \\
      & \xleftrightarrow{\alpha} & (y \mapsto H\ (y\ y))\ (x \mapsto H\ (x\ x)) & \text{$\alpha$-conversion for the first half} \\
-     & \xleftrightarrow{\beta} & H\ ((x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x))) & \text{$\beta$-reduction, substitute $y$ with the latter half} \\
+     & \xleftrightarrow{\beta} & H\ ((x \mapsto H\ (x\ x))\ (x \mapsto H\ (x\ x))) & \text{$\beta$-reduction, substitute $y$ with the second half} \\
      & \xleftrightarrow{\beta} & H\ (h \mapsto (x \mapsto h\ (x\ x))\ (x \mapsto h\ (x\ x))\ H) & \text{$\beta$-abstraction, extract $H$ as parameter} \\
      & = & H\ (Y\ H) & \text{Definition of $Y$}
 \end{array}
 \]
 \end{proof}
 
-Finally, we can define factorial with $Y$ as below:
+Finally, let us define factorial with $Y$:
 
 \[
 Y\ (f \mapsto (n \mapsto \textbf{if}\ n = 0\ \textbf{then}\ 1\ \textbf{else}\ n \times f\ (n - 1)))
 \]
 
-It is more significant in mathematics than in practice to define $Y$ with $\lambda$ abstraction. $Y$ is often realized as built-in function in real environment, which directly converts $Y\ H$ to $H\ (Y\ H)$.
+It is more significant in mathematics than in practice to define $Y$ in $\lambda$ abstraction. $Y$ is often realized as a built-in function in real environment, which directly converts $Y\ H$ to $H\ (Y\ H)$.
 
 \section{The impact of $\lambda$ calculus}
 
