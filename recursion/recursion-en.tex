@@ -1067,14 +1067,14 @@ where \textbf{false} is defined as same as the Church number 0. Use the $\lambda
 
 \section{More recursive structures}
 
-We've completely defined the recursive functions and the data structures on top of the pure mathematics. We can next define complex data structures like the binary trees.
+We've completely defined the recursive functions and the basic pair data structures on top of pure mathematics. We can next define complex data structures like the binary trees.
 
 \lstset{frame=none}
 \begin{lstlisting}
 data Tree A = nil | node (Tree A, A, Tree A)
 \end{lstlisting}
 
-This definitions says, a binary tree of type A is either empty, or a branch node, which is consist of three parts: two sub-trees of type A, together with an element of type A. We often call the two sub-trees as the left and right sub-trees. A is the type parameter, for example natural numbers. $node(nil, 0, node(nil, 1, nil))$ is a binary tree of natural numbers. We can define the abstract fold operation $foldt$ for binary trees.
+This definition says, a binary tree of type A is either empty, or a branch node with three parts: two sub-trees of type A, together with an element of type A. We often call the two sub-trees as the left and right sub-trees. A is the type parameter, like natural numbers for example. $node(nil, 0, node(nil, 1, nil))$ is a binary tree of natural numbers. We can define the abstract fold operation $foldt$ for binary trees.
 
 \be
 \begin{array}{l}
@@ -1097,13 +1097,13 @@ sizet = foldt(one, sum, 0)
 
 Where, $one(x) = 1$ is a constant function, it always returns 1 for any parameters. $sum$ is a ternary summation function defined as $sum(a, b, c) = a + b + c$.
 
-Using the list defined in chapter 1, we can expand binary trees to multi-trees as below.
+Using the list defined in chapter 1, we can expand the binary trees to multi-trees as below.
 
 \begin{lstlisting}
 data MTree A = nil | node (A, List (MTree A))
 \end{lstlisting}
 
-A multi-tree of type A is either empty, or a composite node, which contains an element of type A, together with multiple sub-trees. The sub-trees is hold in a list. The abstract tree folding operation recursively calls the list folding operation.
+A multi-tree of type A is either empty, or a composite node, which contains an element of type A, together with multiple sub-trees. The sub-trees are hold in a list. The abstract tree folding operation recursively calls the list folding operation.
 
 \be
 \begin{array}{l}
@@ -1116,7 +1116,7 @@ h(t, z) = foldm(f, g, z, t)
 \begin{Exercise}
 \Question{Define the abstract $mapt$ for binary trees without of using $foldt$.}
 \Question{Define a function $depth$, which counts for the maximum depth of a binary tree.}
-\Question{Someone think the abstract fold operation for binary tree $foldt$, should be defined as the following:
+\Question{Someone thought the abstract fold operation for binary tree $foldt$, should be defined as the following:
 \[
 \begin{array}{l}
 foldt(f, g, c, nil) = c \\
