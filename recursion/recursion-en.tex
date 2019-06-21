@@ -535,7 +535,7 @@ jars a b c = (x, y) where
   m = max (abs x1 `div` u) (abs y1 `div` v)
 \end{lstlisting}
 
-After figure out $x$ and $y$, we can populate the steps as in Appendix of this book.
+After figure out $x$ and $y$, we can populate the steps as in Appendix of this chapter.
 
 \subsection{Influence of Euclidean algorithm}
 
@@ -1211,7 +1211,7 @@ We show another two fractal patterns as the close of this chapter. One is the fr
 
 \section{Appendix: Example program for 2 water jars puzzle}
 
-求得两个瓶子倒水的次数后，就可以生成一系列倒水的步骤，将这些步骤像表(\ref{tab:designed-jugs-ops})一样输出。
+After figure out the integer solutions for 2 water jars puzzle, we can generate the detailed steps, and output them like table (\ref{tab:designed-jugs-ops}).
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -1232,7 +1232,8 @@ pour a x b y = steps x y [(0, 0)]
                                 min (a' + b') b):ps) -- a to b
 \end{lstlisting}
 
-运行这一程序，输入\texttt{water 9 4 6}就可以得到最佳的倒水步骤:
+Run this program, enter \texttt{water 9 4 6}, the best pour water steps
+are output as below:
 
 \begin{verbatim}
 [(0,0),(9,0),(5,4),(5,0),(1,4),(1,0),(0,1),(9,1),(6,4),(6,0)]
