@@ -1123,14 +1123,14 @@ foldt(f, g, c, nil) = c \\
 foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 \end{array}
 \]
-That is to say $g : (B \times B) \to B$ is a binary operation like adding. Can we use this $foldt$ to define $mapt$?}
-\Question{The binary search tree (BST) is a special tree that the type A is comparable. For any none empty node $node(l, k, r)$ that, any elements in the left sub-tree $l$ is less than $K$, and any elements in the right sub-tree $r$ is greater than $k$. Define function $insert(x, t) : (A \times Tree A) \to Tree A$ that insert an element into the tree.}
+That is to say $g : (B \times B) \to B$ is a binary operation like add. Can we use this $foldt$ to define $mapt$?}
+\Question{The binary search tree (BST) is a special tree that the type A is comparable. For any none empty $node(l, k, r)$, all elements in the left sub-tree $l$ are less than $K$, and all elements in the right sub-tree $r$ are greater than $k$. Define function $insert(x, t) : (A \times Tree\ A) \to Tree\ A$ that inserts an element into the tree.}
 \Question{Can we define the mapping operation for multi-trees with folding? If not, how should we modify the folding operation?}
 \end{Exercise}
 
-\section{The recursive form and structure}
+\section{The recursive pattern and structure}
 
-The recursion exists both in the ancient Euclidean algorithm and in modern computer system. Its fascinating patterns and structure also appear in various of arts in human civilizations. We can see varies of recursive patterns in Islamic mosaic arts, like shown in figure \ref{fig:Ceramic-Tile-Tessellations-Marrakech} .
+Recursion exists both in the ancient Euclidean algorithm and in modern computer systems. The fascinating recursive pattern and structure also appear in various of arts in human civilizations. For example in Islamic mosaic arts, shown in figure \ref{fig:Ceramic-Tile-Tessellations-Marrakech}.
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
@@ -1142,7 +1142,7 @@ The recursion exists both in the ancient Euclidean algorithm and in modern compu
 \end{figure}
 %\end{wrapfigure}
 
-We can see the polygon patterns in the mosaic recursively contain smaller polygons. It demonstrates the beauty of recursive geometric patterns through the colorful tiles. The small patterns form big stripes, which brings the varies of effects. Figure \ref{fig:flower} is a sketch of the famous Renaissance artist Leonardo da Vinci. It's also a recursive pattern. Using the same radius, he drew six interlaced circles along the centered one. They form a six-lobed snowflake like figure. And they recursively form the same pattern in a bigger scope. The left figure shows a pile of Chinese hand-made katydid cage. It demonstrated the similar recursive pattern. The mesh of the cage is hexagonal. While the overall shape of the cage is also hexagonal when viewed from the axial direction.
+We can see the polygon patterns in the mosaic recursively contain smaller polygons. It demonstrates the beauty of recursive geometric patterns through the colorful tiles. The small patterns form big stripes, which brings the varies of effects. Figure \ref{fig:flower} is a sketch of the famous Renaissance artist Leonardo da Vinci. It's also a recursive pattern. Using the same radius, he drew six interlaced circles along the centered one. They form a six-lobed snowflake style figure. And they recursively form the same pattern in a bigger scope. The right figure shows a pile of Chinese hand-made katydid cages. It demonstrated the similar recursive pattern. The mesh of the cage is hexagonal. While the overall shape of the cage is also hexagonal when viewed from the axial direction.
 
 %\begin{wrapfigure}{R}{0.3\textwidth}
 \begin{figure}[htbp]
@@ -1155,7 +1155,7 @@ We can see the polygon patterns in the mosaic recursively contain smaller polygo
 \end{figure}
 %\end{wrapfigure}
 
-Not only in art, recursion also appears in music. For example, the polyphonic music Canon and Fugue can have recursive musical texture. Canon is a contrapuntal music that employs a melody with one or more imitations of the melody played after a given duration. The initial melody is called the leader, while the imitative melody, which is played in a different voice, is called the follower. The follower must imitate the leader, either as an exact replication of its rhythms and intervals or some transformation thereof. The weaving of the leader and followers, results in a continuous effect. Each part imitates the theme but contains various changes, such as raising or lowering the pitch, retrograde overlapping, faster (diminution) or slowing (augmentation), melody reflection, and so on.
+Not only in art, recursion also appears in music. For example, the polyphonic music canon and fugue can have recursive musical texture. Canon is a contrapuntal music that employs a melody with one or more imitations played after a given duration. The initial melody is called the leader, while the imitative melody, which is played in a different voice, is called the follower. The follower must imitate the leader, either as an exact replication of its rhythms and intervals or some transformation thereof. The weaving of the leader and followers, results in a continuous effect. Each part imitates the theme but contains various changes, such as raising or lowering the pitch, retrograde overlapping, faster (diminution) or slowing (augmentation), melody reflection, and so on.
 
 %\begin{wrapfigure}{L}{0.45\textwidth}
 \begin{figure}[htbp]
@@ -1167,17 +1167,17 @@ Not only in art, recursion also appears in music. For example, the polyphonic mu
 \end{figure}
 %\end{wrapfigure}
 
-\begin{wrapfigure}{L}{0.45\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.45\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Drawing-Hands-1948.eps}
  %\captionsetup{labelformat=empty}
  \caption{M.C. Escher, Drawing Hands, 1948}
  \label{fig:Drawing-Hands}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
-A fugue is like a canon, in that it is usually based on one theme which gets played in different voices and different keys, and occasionally at different speeds or upside down or backwards. However, the notion of fugue is much less rigid than that of canon, and consequently it allows for more emotional and artistic expression. The telltale sign of a fugue is the way it begins: with a single voice singing its theme. When it is done, then a second voice enters, either five scale-notes up, or four down. Meanwhile the first voice goes on, singing the "countersubject": a secondary theme, chosen to provide rhythmic, harmonic, and melodic contrasts to the subject. Each of the voices enters in turn, singing the theme, often to the accompaniment of the countersubject in some other voice, with the remaining voices doing whatever fanciful things entered the composer's mind. When all the voices have "arrived", then there are no rules. There are, to be sure, standard kinds of things to do-but not so standard that one can merely compose a fugue by formula. The two fugues in the Musical Offering are outstanding examples of fugues that could never have been "composed by formula". There is something much deeper in them than mere fugality\cite{GEB}.
+A fugue is like a canon, in that it is usually based on one theme which gets played in different voices and different keys, and occasionally at different speeds or upside down or backwards. However, the notion of fugue is much less rigid than that of canon, and consequently it allows for more emotional and artistic expression. The telltale sign of a fugue is the way it begins: with a single voice singing its theme. When it is done, then a second voice enters, either five scale-notes up, or four down. Meanwhile the first voice goes on, singing the ``countersubject'': a secondary theme, chosen to provide rhythmic, harmonic, and melodic contrasts to the subject. Each of the voices enters in turn, singing the theme, often to the accompaniment of the countersubject in some other voice, with the remaining voices doing whatever fanciful things entered the composer's mind. When all the voices have ``arrived'', then there are no rules. There are, to be sure, standard kinds of things to do-but not so standard that one can merely compose a fugue by formula. The two fugues in J.S. Bach's Musical Offering are outstanding examples of fugues that could never have been "composed by formula". There is something much deeper in them than mere fugality\cite{GEB}.
 
 Not only finite recursion, we can also find the infinite recursion in arts. Figure \ref{fig:Drawing-Hands}, Drawing Hands is a lithograph by the Dutch artist M. C. Escher first printed in January 1948. Two hands mutual recursively are drawing each other. It an example of infinite recursion. The upper hand is using a pencil drawing the lower hand, while the lower hand, at the same time, is drawing the upper hand. The recursion is embedded loop by loop endlessly.
 
@@ -1207,7 +1207,7 @@ We show another two fractal patterns as the close of this chapter. One is the fr
 
 \section{Further Reading}
 
-{\em Mathematics: The Loss of Certainty} by Morris Kline introduces the mathematics in ancient Greek. The {\em Elements} by Euclidean is the most famous classic book. It contains the Euclidean algorithm. {\em From Mathematics to Generic Programming}by Alexander Stepanov and Daniel E Ross gives varies of implementation of the Euclidean algorithm. As more and more main stream programming environments adopt lambda calculus, there are many materials about it. {\em The Implementation of Functional Programming Languages} by Simon Peyton Jones is a good book introduced lambda calculus in depth. {\em Gödel, Escher, Bach: An Eternal Golden Braid} by Douglas Hofstadter intensively presents the unbelievable ideas of recursion and self-reference. It won the Pulitzer Prize for general non-fiction and the National Book Award for Science.
+{\em Mathematics: The Loss of Certainty} by Morris Kline contains good introduction about mathematics in ancient Greek. The {\em Elements} by Euclidean is the most famous classic book. It contains the Euclidean algorithm. {\em From Mathematics to Generic Programming} by Alexander Stepanov and Daniel E Ross gives varies of implementation of the Euclidean algorithm. As more and more main stream programming environments adopt lambda calculus, there are many materials about it. {\em The Implementation of Functional Programming Languages} by Simon Peyton Jones is a good book introduced lambda calculus in depth. {\em Gödel, Escher, Bach: An Eternal Golden Braid} by Douglas Hofstadter intensively presents the unbelievable ideas of recursion and self-reference. It won the Pulitzer Prize for general non-fiction and the National Book Award for Science.
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
