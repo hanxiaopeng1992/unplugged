@@ -13,7 +13,7 @@ LATEX = latex
 DVIPDFM = dvipdfmx
 endif
 
-SRC = common unplugged
+SRC = unplugged
 SRC_EN = $(foreach file, $(SRC), $(file)-en.tex)
 SRC_CN = $(foreach file, $(SRC), $(file)-zh-cn.tex)
 CHAPTERS = nat/nat recursion/recursion algebra/algebra category-theory/category \
