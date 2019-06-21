@@ -1209,6 +1209,35 @@ We show another two fractal patterns as the close of this chapter. One is the fr
 
 {\em Mathematics: The Loss of Certainty} by Morris Kline contains good introduction about mathematics in ancient Greek. The {\em Elements} by Euclidean is the most famous classic book. It contains the Euclidean algorithm. {\em From Mathematics to Generic Programming} by Alexander Stepanov and Daniel E Ross gives varies of implementation of the Euclidean algorithm. As more and more main stream programming environments adopt lambda calculus, there are many materials about it. {\em The Implementation of Functional Programming Languages} by Simon Peyton Jones is a good book introduced lambda calculus in depth. {\em Gödel, Escher, Bach: An Eternal Golden Braid} by Douglas Hofstadter intensively presents the unbelievable ideas of recursion and self-reference. It won the Pulitzer Prize for general non-fiction and the National Book Award for Science.
 
+\section{Appendix: Example program for 2 water jars puzzle}
+
+求得两个瓶子倒水的次数后，就可以生成一系列倒水的步骤，将这些步骤像表(\ref{tab:designed-jugs-ops})一样输出。
+
+\lstset{frame=single}
+\begin{lstlisting}
+-- Populate the steps
+water a b c = if x > 0 then pour a x b y
+              else map swap $ pour b y a x
+  where
+    (x, y) = jars a b c
+
+-- Pour from a to b, fill a for x times, and empty b for y times.
+pour a x b y = steps x y [(0, 0)]
+  where
+    steps 0 0 ps = reverse ps
+    steps x y ps@((a', b'):_)
+      | a' == 0 = steps (x - 1) y ((a, b'):ps)  -- fill a
+      | b' == b = steps x (y + 1) ((a', 0):ps)  -- empty b
+      | otherwise = steps x y ((max (a' + b' - b) 0,
+                                min (a' + b') b):ps) -- a to b
+\end{lstlisting}
+
+运行这一程序，输入\texttt{water 9 4 6}就可以得到最佳的倒水步骤:
+
+\begin{verbatim}
+[(0,0),(9,0),(5,4),(5,0),(1,4),(1,0),(0,1),(9,1),(6,4),(6,0)]
+\end{verbatim}
+
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
 

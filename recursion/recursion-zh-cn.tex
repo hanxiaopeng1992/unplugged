@@ -1215,6 +1215,35 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
 
 韩雪涛的《数学悖论与三次数学危机》\cite{HanXueTao16}对古希腊数学的成就有生动的介绍。欧几里得的《几何原本》中译本\cite{Elements}是永远的经典。斯捷潘诺夫和罗斯的《数学与泛型编程》\cite{StepanovRose15}中有欧几里得算法算法的多种实现。随着各大主流编程环境引入lambda演算，这方面的介绍材料很多。佩顿琼斯的《函数式编程语言的实现》\cite{SPJ1987}讲解全面并且深入浅出。侯世达先生的《集异璧》\cite{GEB}中有大量关于递归的介绍和奇思妙想，曾获得普利策大奖。中译本秉着文化同构的精神进行了非凡的再创作。
 
+\section{附录：倒水趣题完整程序}
+
+求得两个瓶子倒水的次数后，就可以生成一系列倒水的步骤，将这些步骤像表(\ref{tab:designed-jugs-ops})一样输出。
+
+\lstset{frame=single}
+\begin{lstlisting}
+-- Populate the steps
+water a b c = if x > 0 then pour a x b y
+              else map swap $ pour b y a x
+  where
+    (x, y) = jars a b c
+
+-- Pour from a to b, fill a for x times, and empty b for y times.
+pour a x b y = steps x y [(0, 0)]
+  where
+    steps 0 0 ps = reverse ps
+    steps x y ps@((a', b'):_)
+      | a' == 0 = steps (x - 1) y ((a, b'):ps)  -- fill a
+      | b' == b = steps x (y + 1) ((a', 0):ps)  -- empty b
+      | otherwise = steps x y ((max (a' + b' - b) 0,
+                                min (a' + b') b):ps) -- a to b
+\end{lstlisting}
+
+运行这一程序，输入\texttt{water 9 4 6}就可以得到最佳的倒水步骤:
+
+\begin{verbatim}
+[(0,0),(9,0),(5,4),(5,0),(1,4),(1,0),(0,1),(9,1),(6,4),(6,0)]
+\end{verbatim}
+
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
 
