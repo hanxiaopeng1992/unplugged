@@ -13,7 +13,7 @@ Contents
 The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)).
 
 - Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
-- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-zh-cn.pdf), [CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-en.pdf))
+- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-en.pdf))
 - Chapter 3, Group, Ring, and Field. Galois Theory; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61802/algebra-zh-cn.pdf))
 - Chapter 4, Category theory and type system; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803/category-zh-cn.pdf))
 - Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618030/deduction-zh-cn.pdf))
