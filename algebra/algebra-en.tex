@@ -46,7 +46,7 @@ Humans gradually developed the habit of sorting things. The similar things are c
 
 We generalized the abstract `folding' operation from sum and factorial for numbers. We observed their similar structures, abstract zero in sum, and one in factorial to unit element; then abstract the add in sum, and the multiplication in factorial to binary operation. As the result, we found the fold operation for numbers in a higher level. With this powerful tool, we then further solved a large sort of problems that are isomorphic to natural number, such as the Fibonacci numbers.
 
-再举一个例子。我们在第一章中，还定义了列表上的抽象叠加操作$foldr$。可以利用这个抽象工具把一列数累加起来：$sum = foldr(0, +)$，也可以把一列数乘到一起：$product = foldr(1, \times)$。在计算机程序中，人们可以定义一种叫做“二叉搜索树”的数据结构。第二章中，我们曾经介绍过二叉树的定义。二叉搜索树是一种特殊的二叉树，它要求树中元素的类型是可以比较的\footnote{这里比较的含义是抽象的，例如可以比大小，也可以是比较单词在字典中的先后顺序}，并且对于任意分支节点，节点左侧子树中的所有元素都在此节点的元素之前，而右子树中的所有元素都在此元素之后。由于这种有序性，人们也把它叫作“排序二叉树”。对排序二叉树，我们可以定义一个插入操作：
+As another example, we also defined the abstract $foldr$ operation for list in chapter 1. With this tool, we can sum a list of numbers as $sum = foldr(0, +)$; we can also multiply them as $product = foldr(1, \times)$. In computer programming, there is a data structure called `binary search tree'. We introduced about binary tree in chapter 2. The binary search tree is a special binary tree that its elements are comparable\footnote{The meaning of comparable is abstract. If the elements are numbers, we can compare which one is bigger, if they are words, we can compare their lexicographical order.}. For any branch node, all elements in its left sub-trees are compared ahead of the element in this node; while all elements in its right sub-trees are compared behind it. Due to this kind of ordering, people also all it `sorted binary tree'. We can define insert operation for binary search tree as below:
 
 \[
 \begin{array}{rcl}
@@ -60,18 +60,18 @@ We generalized the abstract `folding' operation from sum and factorial for numbe
 \label{eq:BST-insert}
 \]
 
-根据这一定义，将一个元素$x$插入到二叉搜索树时，如果树为空，则结果为一个$node(nil, x, nil)$；否则，需要进一步比较$x$和分支节点中的元素$y$，如果$x$在前（用小于号代表），则递归地插入到左子树，否则递归地插入到右子树。联想累加和阶乘，插入操作和它们有什么相似之处呢？插入也是一个二元操作，而nil相当于单位元。这样我们就可以用抽象的叠加操作，将一列数字变成一棵搜索树：
+According to this definition, when insert element $x$ to binary search tree, if it is empty, the result is $node(nil, x, nil)$; otherwise, we need compare $x$ and the element $y$ in the branch node. If $x$ is ahead of $y$ (the `$<$' holds), then we recursively insert to the left sub-tree, else insert to the right sub-tree. Are there any similarity among the insert operation, sum, and factorial? Insertion is also binary operation, $nil$ can be considered as unit element. Then we can apply the abstract fold operation to turn a list of elements into a binary search tree:
 
 \[
 build = foldr(nil, insert)
 \]
 
-图\ref{fig:bst-example}展示了计算$build\ [4, 3, 1, 8, 2, 16, 10, 7, 14, 9]$产生的一棵二叉搜索树。
+Figure \ref{fig:bst-example} shows the binary search tree generated when compute $build\ [4, 3, 1, 8, 2, 16, 10, 7, 14, 9]$.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[scale=0.5]{img/bst-example.ps}
-  \caption{通过叠加产生的二叉搜索树}
+  \caption{The binary search tree generated from folding.}
   \label{fig:bst-example}
 \end{figure}
 
