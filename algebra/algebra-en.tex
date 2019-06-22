@@ -44,7 +44,7 @@
 
 Humans gradually developed the habit of sorting things. The similar things are classified together. The methods and properties those applies to the entire class are also valid for every thing in that class. In this way, we needn't repeately solve the concrete individual problems one by one, but solve the abstract problems for a whole class. It greatly improved our ability to understand and master the world.
 
-在第一章中，我们曾经从自然数的累加和阶乘中归纳抽象出“叠加”操作。我们观察它们相似的结构，将累加中的0和阶乘中的1抽象成单位元，将累加中的加法和阶乘中的乘法抽象成某种二元运算，这样就在更高的层次抽象出了自然数的叠加。进而可以用这一抽象的叠加解决诸如斐波那契数列这样的一大类和自然数同构的问题。
+We generalized the abstract `folding' operation from sum and factorial for numbers. We observed their similar structures, abstract zero in sum, and one in factorial to unit element; then abstract the add in sum, and the multiplication in factorial to binary operation. As the result, we found the fold operation for numbers in a higher level. With this powerful tool, we then further solved a large sort of problems that are isomorphic to natural number, such as the Fibonacci numbers.
 
 再举一个例子。我们在第一章中，还定义了列表上的抽象叠加操作$foldr$。可以利用这个抽象工具把一列数累加起来：$sum = foldr(0, +)$，也可以把一列数乘到一起：$product = foldr(1, \times)$。在计算机程序中，人们可以定义一种叫做“二叉搜索树”的数据结构。第二章中，我们曾经介绍过二叉树的定义。二叉搜索树是一种特殊的二叉树，它要求树中元素的类型是可以比较的\footnote{这里比较的含义是抽象的，例如可以比大小，也可以是比较单词在字典中的先后顺序}，并且对于任意分支节点，节点左侧子树中的所有元素都在此节点的元素之前，而右子树中的所有元素都在此元素之后。由于这种有序性，人们也把它叫作“排序二叉树”。对排序二叉树，我们可以定义一个插入操作：
 
