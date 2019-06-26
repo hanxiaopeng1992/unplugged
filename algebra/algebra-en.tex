@@ -90,7 +90,25 @@ We should always ask an important question when developing the abstract tools an
 
 Let $x = 1$, Grandi found the sum of the infinite series $1 - 1 + 1 - 1 + 1 - 1 + ...$ could be 1/3, 4/1, ... Even the great mathematician Leibniz thought the result could be 0 or 1 with the same probability, therefore the `true' value should be the average 1/2. Grandi offered a new explanation that in 1710. Two brothers inherit a priceless gem from their father, whose will forbids them to sell it, so they agree that it will reside in each other's museums on alternating years. If this agreement lasts for all eternity between the brother's descendants, then the two families will each have half possession of the gem, even though it changes hands infinitely often\cite{HanXueTao16}. People kept suffering from these strange puzzles until the French mathematician Cauchy introduced the convergence concept for infinite series.
 
-There are similar things in programming. When I implemented the natural merge sort algorithm \footnote{Natural merge sort is a sorting algorithm that permutes a list of elements in order. It firstly divides the elements into multiple groups, that every group contains the elements sorted. Then repeatedly merge these groups till all elements are ordered(\cite{LiuXinyu2017}, pp368).}, I need split the list into ordered groups, for example, split the list \texttt{[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} into groups of \texttt{[[15, 9, 0], [12, 11, 7], [10, 5], [6], [13, 1], [4], [8, 3], [14, 2]]}. I found there is a pre-defined abstract grouping function \texttt{groupBy} in the library. It groups list with a given condition. For example \texttt{groupBy (==) "Mississippi"} gives result \texttt{["M", "i", "ss", "i", "ss", "i", "pp", "i"]}. Thus the same elements are grouped together. However, when I passed the `greater or equal' as the group condition, it generated the unexpected result. \texttt{groupBy (>=) [15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} gives \texttt{[[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]]}. This is because \texttt{groupBy} is realized with \texttt{span} like below:
+There are similar things in programming. When I implemented the natural merge sort algorithm \footnote{Natural merge sort is a sorting algorithm that permutes a list of elements in order. It firstly divides the elements into multiple groups, that every group contains the elements sorted. Then repeatedly merge these groups till all elements are ordered(\cite{LiuXinyu2017}, pp368).}, I need split the list into ordered groups, for example, split the list \texttt{[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} into groups of \texttt{[[15, 9, 0], [12, 11, 7], [10, 5], [6], [13, 1], [4], [8, 3], [14, 2]]}. The elements in the grouped sub-list are in descending order such as $15 > 9 > 0$. Then we can merge every two groups to get
+
+\begin{verbatim}
+[[15, 12, 11, 9, 7, 0], [10, 6, 5], [13, 4, 1], [14, 8, 3, 2]]
+\end{verbatim}
+
+Apply merge to every two groups again gives the next result
+
+\begin{verbatim}
+[[15, 12, 11, 10, 9, 7, 6, 5, 0], [14, 13, 8, 4, 3, 2, 1]]
+\end{verbatim}
+
+Then finally we can merge these two groups to get the sorted list:
+
+\begin{verbatim}
+[15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 10]
+\end{verbatim}
+
+I found there is a pre-defined abstract grouping function \texttt{groupBy} in the library. It groups list with a given condition. For example \texttt{groupBy (==) "Mississippi"} gives result \texttt{["M", "i", "ss", "i", "ss", "i", "pp", "i"]}. Thus the same elements are grouped together. However, when I passed the `greater or equal' as the group condition, it generated the unexpected result. \texttt{groupBy (>=) [15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} gives \texttt{[[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]]}. This is because \texttt{groupBy} is realized with \texttt{span} like below:
 
 \lstset{language=Haskell, frame=single}
 \begin{lstlisting}
