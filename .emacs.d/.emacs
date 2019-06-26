@@ -78,6 +78,7 @@
         ("melpa-stable" . "http://stable.melpa.org/packages/")))
 (setq package-selected-packages
       '(flycheck
+        flyspell-popup
         haskell-mode))
 
 (package-initialize)
@@ -144,6 +145,11 @@
 ;;    ASpell
 (setq-default ispell-program-name "aspell")
 (setq ispell-list-command "list")
+
+;; ========================================
+;;    FlySpell
+(flyspell-mode +1)
+(define-key flyspell-mode-map (kbd "C-;") #'flyspell-popup-correct)
 
 ;; =======================================
 ;;      Syntax check
