@@ -130,32 +130,33 @@ For my example, \texttt{span} keeps checking if 15 is greater than the next elem
 \item transitivity. if $x = y$, and $y = z$, then $x = z$. If two elements are identical, and one element equals to another, then the three elements are equal.
 \end{itemize}
 
-当对列表“Mississippi”使用等号作为条件分组时，三个条件都被满足，产生了正确的结果。但当将大于等于号（$\geq$）作为“相等”条件传入时，就违反了自反性和对称性。这就是得到错误结果的原因。
+When use equality as condition to group the character list ``Mississippi'', all the three properties are satisfied, it generates the correct result. However, when pass the greater or equal ($geq$) as the abstract `equality' condition, it violates reflexivity and symmetry. That's the reason why it leads to the incorrect result.
 
-本章我们介绍一些抽象的代数结构，它们不仅仅是对数的抽象，而且是对事物的概念、性质和关系的抽象。是很多伟大的思想和心智的结晶。有些部分难度较大，挑战我们抽象思维的极限。因此我在其中穿插介绍了前辈数学家们是如何披荆斩棘、取得突破的故事。即使读完这一章没有能领会抽象的知识，我也希望这些令人感慨的故事能不断激励我们前行。
+This chapter introduces the basic abstract algebra structures. They are not only abstraction to numbers, but also the abstraction to concepts, properties, and relationships. They are the most valuable things from many great thoughts and minds. Some contents can challenge our limit of abstract thinking. It's quite common that you can't master them during the first time reading. I intended to add the stories about those great mathematicians, how they make breakthrough with unbelievable difficulties. I hope these interesting stories could encourage you keep going forward.
 
-\section{群}
+\section{Group}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.3]{img/Cardano.eps}
  \captionsetup{labelformat=empty}
- \caption{卡尔丹（Gerolamo Cardano, 1501-1576）}
+ \caption{Gerolamo Cardano, 1501-1576}
  \label{fig:Cardano}
 \end{wrapfigure}
 
-\index{卡尔丹（Gerolamo Cardano）}
-\index{高斯}
-\index{代数基本定理}
-提到群论（Group theory），就不得不提人类解方程的历史。方程是我们祖先发展出的一个强大工具。人们从古埃及的纸草书和古巴比伦的泥板书中发现，这些古代文明已经掌握了一元一次和二次方程的解法。但是一般三次方程的解法却一直没有进展。到了16世纪，经过意大利数学家们的努力，终于得到了一般三次方程和四次方程的根式解。最终卡尔丹在他的著作《大术》中总结人类历史上这千余年的结果。这些进展并不仅仅是未知数次数的提升，我们对数还有了全新的认识。早期二次方程的负根都被舍弃了，人们认为负数没有意义。不仅如此，人们认为方程的系数也必须是正数，在我们今天看来普通的方程$x^2 - 7x + 8 = 0$，必须用$x^2 + 8 = 7x$的形式来处理。在《大术》中，卡尔丹列出了20种不同类型的四次方程，他说还有67种其它类型的四次方程没有给出，原因仅仅是因为四次方程各项的系数可以为负数和零\cite{HanXueTao2012}。直到法国数学家韦达才将方程的形式统一。在解方程时，负数的根式一直被认为是无意义的。但是卡尔丹在解三次方程，例如$x^3 = 15x +4$时，他的公式给出了$\sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}$这样的中间结果。而我们知道这一方程有三个实根4, $-2 \pm \sqrt{3}$。这些问题拓展了我们对虚数的认识，并最终在高斯的手中，建立了代数基本定理\footnote{高斯一生多次证明了代数基本定理。1799年，22岁的高斯在其博士论文中证明了实系数一元$n$次方程至少有一个复数根。由此推出$n$次方程有且仅有$n$个复根（重根按重数计算）。高斯又在1815和1816年给出了另外两个证明。1849年，在庆祝取得博士学位50周年的纪念会上，高斯又发表了第四个证明，并把系数也推广到了复数。}。
+\index{Gerolamo Cardano}
+\index{Carl Friedrich Gauss}
+\index{Fundamental theorem of algebra}
+
+The group theory is originate from the history of equations. Equation is a powerful tool developed by ancient people. From the Rhind Mathematical Papyrus and Babylonian clay tablets, we know that the ancient Egyptians and ancient Babylonians mastered the method to solve the linear equation with one unknown and the quadratic equations. However, people didn't find the way to solve the generic cubic equations until the 16th Century. Several Italian mathematicians made great progress in solving cubic equations. Gerolamo Cardano finally published the radical solutions to generic cubic equation and quartic in his 1545 book {\em Ars Magna}. It does not only about to pursue higher and higher orders, but along with the totally new understanding about the numbers in the past thousand years. All the negative roots were discarded because we believed they were meaningless. People also thought the coefficients must be positive numbers. The equation $x^2 - 7x + 8 = 0$ is quite common today to us, but it had to be written in form of $x^2 + 8 = 7x$ to ensure the coefficients are positive. After Cardano list 20 different types of quartic equation in {\em Ars Magna}, he said there were another 67 types of quartic equation could not be given because the coefficient is either negative or zero\cite{HanXueTao2012}. It was the French mathematician François Viète who unified different forms of equations. Although most people thought the negative square root made no sense, Cardano found an interesting thing when solve the cubic equations like $x^3 = 15x +4$. His formula gives the intermediate result of $\sqrt[3]{2 + \sqrt{-121}} + \sqrt[3]{2 - \sqrt{-121}}$. Then it could next generate the three rational roots of 4, $-2 \pm \sqrt{3}$. Such problems expand our view to the irrational number, and finally, the great German mathematician Carl Friedrich Gauss developed the fundamental theorem of algebra\footnote{Gauss proved the fundamental theorem of algebra several times along his life. in 1799 at age of 22, he proved in his doctor thesis that every single-variable polynomial of degree $n$ with real coefficient has at least one complex root, thus deduced the single-variable equation of degree $n$ has and only has $n$ complex roots (counted with multiplicity for the same ones). Gauss gave another two different proofs in 1815 and 1816. In 1849, to celebrate the 50th anniversaries that Gauss received his doctor degree, he published the fourth proof and extend the coefficient to complex number.}.
 
 \begin{figure}[htbp]
 %\begin{wrapfigure}{R}{0.3\textwidth}
  \centering
  \includegraphics[scale=0.25]{img/Gaus.eps}
  \captionsetup{labelformat=empty}
- \caption{十马克上的高斯像。高斯（1777-1855）}
- \label{fig:Gaus}
+ \caption{Gauss (1777-1855) in 10 Mark}
+ \label{fig:Gauss}
 %\end{wrapfigure}
 \end{figure}
 
