@@ -35,38 +35,6 @@
 
 (defvar my-site-lisp "~/.emacs.d/site-lisp")
 
-;; ========================================
-;; el-get
-;; If the following run into any errors, manually download/open el-get-install.el
-;; M-x eval-buffer to install it.
-
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (url-retrieve
-   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
-
-(setq basic:packages
-      '(el-get
-        cl-lib
-        ;; color-theme
-        ;; color-theme-tango
-        graphviz-dot-mode
-        smart-tab
-        auto-complete
-        ;; haskell-mode    ;; error in el-get, need install with ELPA
-        ;; ggtags
-        ;; yasnippet
-        ))
-
-(el-get 'sync basic:packages)
-
 
 ;; ==========================================
 ;; ELPA and MELPA
@@ -76,25 +44,22 @@
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa-stable" . "http://stable.melpa.org/packages/")))
-(setq package-selected-packages
-      '(flycheck
-        flyspell-popup
-        haskell-mode))
-
-(package-initialize)
-
-
-;; ======================================
-;;   Look and Feel
-;;
-;; (load-theme 'tango-dark t) ;;solarize-dark  ;;zenburn-dark
 
 (custom-set-variables
  '(current-language-environment "UTF-8")
+ '(package-selected-packages
+   (quote
+    (auto-complete graphviz-dot-mode smart-tabs-mode flyspell-popup markdown-mode flycheck haskell-mode)))
  '(tab-stop-list
    (quote
     (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
  '(tool-bar-mode nil))
+
+(package-initialize)
+
+;; =====================================
+;;   Theme
+(load-theme 'tango-dark t) ;;solarize-dark  ;;zenburn-dark
 
 ;; =====================================
 ;;   Don't use tab for indent
@@ -192,16 +157,6 @@
 ;;               (ggtags-mode 1))))
 
 (global-set-key [(f5)] 'speedbar)
-
-;; ====================================================
-;; smart tab
-;;
-(require 'smart-tab)
-;; (add-to-list 'hippie-expand-try-functions-list
-;;              'yas/hippie-try-expand) ;put yasnippet in hippie-expansion list
-
-(setq smart-tab-using-hippie-expand t)
-(global-smart-tab-mode t)
 
 ;; =================================================
 ;; helper function for case insenstive sort lines
