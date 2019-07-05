@@ -1,7 +1,7 @@
 IMG_OBJECTS = Escher-Liberation-1955 Gaus Cardano galois \
 Rubik_cube_notation Rubik-cube-F lagrange Fermat Arithmetica \
 bracelet-rotate bracelet-identical euler Noether Soccer-ball \
-C3 A4 S3
+C3 A4 S3 GalSign
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
