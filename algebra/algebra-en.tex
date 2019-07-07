@@ -217,17 +217,18 @@ Chevalier and Galois' young brother published the testament in {\em Revue encycl
 
 In 1870, French mathematician Camille Jordan wrote the book {\em Traité des substitutions et des équations algébriques} based on Galois' theory\footnote{Galois' theory was notoriously difficult for his contemporaries to understand, especially to the level where they could expand on it. For example, in his 1846 commentary, Liouville completely missed the group-theoretic core of Galois' method. Joseph Alfred Serret who attended some of Liouville's talks, included Galois' theory in his 1866 (third edition) of his textbook Cours d'algèbre supérieure. Jordan was Serret's pupil. Outside France, Galois' theory remained more obscure for a longer period. It turned a century in Britain. In Germany, it was Dedekind lectured on Galois' theory at Göttingen in 1858, showing a very good understanding.}. Galois' most significant contribution to mathematics is his development of Galois theory. He realized that the algebraic solution to a polynomial equation is related to the structure of a group of permutations associated with the roots of the polynomial, the Galois group of the polynomial. It laid the foundation of group theory and lead to the development of abstract algebra and modern mathematics. As the ironic result ``Instead of the political revolution, what Galois actually triggered was the mathematics revolution\cite{StepanovRose15}.''
 
-\subsection{群的定义}
-\index{群的定义}
+\subsection{Group}
+\index{Group}
 
-下面我们来了解一下群的定义。
+Let us start the journey from groups to understand what Galois landed for abstract algebra.
 
-\begin{definition}群是一个集合$G$与其上定义的某种二元运算“$\cdot$”。它遵循四条公理：
+\begin{definition} A group is a set $G$ equipped with a binary operation ``$\cdot$'', which satisfied four axioms:
+
 \begin{enumerate}
-\item 封闭性公理：对任何$a, b \in G$，运算结果$a \cdot b \in G$；
-\item 结合性公理：对任何$a, b, c$，有$(a \cdot b) \cdot c = a \cdot (b \cdot c)$；
-\item 单位元公理：$G$中存在一个元素$e$，使得对任何$a \cdot e = e \cdot a = a$；
-\item 消去公理：对任何$a \in G$，都存在一个逆元$a^{-1}$使得$a \cdot a^{-1} = a^{-1} \cdot a = e$。
+\item \textbf{Closure}: For all $a, b \in G$, the result of the operation $a \cdot b \in G$;
+\item \textbf{Associativity}: For all $a, b, c$ in $G$, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$;
+\item \textbf{Identity element}: There exists an element $e$ in $G$ such that, for every element $a$ in G, the equation $a \cdot e = e \cdot a = a$ holds;
+\item \textbf{Inverse element}: For each element $a \in G$, there exists an element $a^{-1}$, such that $a \cdot a^{-1} = a^{-1} \cdot a = e$, where $e$ is the identity element.
 \end{enumerate}
 \end{definition}
 
