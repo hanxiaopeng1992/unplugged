@@ -239,24 +239,24 @@ The ``multiplication'' operation of the group may not be commutative like the no
 To help understanding the definition of group, let us see some examples.
 
 \begin{enumerate}
-\item 整数加法群：群元素是全体整数，二元运算是加法。简称为整数加群;
-\item 所有整数除以5的余数构成的集合，也就是$\{0, 1, 2, 3, 4\}$。二元运算是相加后再除以5取余数。例如$3 + 4 = 7 \bmod 5 = 2$。这样构成的群称为整数模5加法群，记为$Z_5$。通过取余数对整数进行分类叫做模$n$剩余类；
-\item 转动魔方所形成的群：群元素是各种魔方转动的方式\footnote{魔方的旋转方式共有18种。可以沿着正面、反面、顶面、底面、左面、右面旋转，分别用字母$F$、$B$、$T$、$D$、$L$、$R$代表，每面可以旋转90度、180度、-90度。例如左面旋转90度、180度、-90度分别可以记为：$L$、$L^2$、$L'$\cite{Wiki-Rubik-Cube-group}。再加上恒等变换，一共19个元素。}，二元运算是先进行某种转动后再进行另一种转动。这种运算常被称作转动的合成；
+\item Integers with addition. Elements are all integers, the binary operation is addition. This is one of the most familiar groups;
+\item The set of remainders of all integers divided by 5, that is $\{0, 1, 2, 3, 4\}$. The binary operation is addition then divided by 5, and take the remainder. For example $3 + 4 = 7 \bmod 5 = 2$. They form a group called addition group of integers modulo 5. Denoted as $Z_5$. We can consider it as classify the integers by taking the remainder. It is called \textbf{residue class} or residue modulo $n$;
+\item The rotations of Rubik cube form a group. The elements are all cube rotations\footnote{There are 18 Rubik cube rotations. A cube move rotates one of the 6 faces, front, back, top, bottom, left, right, 90\degree, 180\degree, or -90\degree. For example, rotating the left side 90\degree, 180\degree, -90\degree can be denoted as $L$、$L^2$、$L'$\cite{Wiki-Rubik-Cube-group}. Plus the identity transform, there are total 19 elements.}, the binary operation is the composition of cube rotates, corresponding to the result of performing one cube rotate after another.
 
 \begin{figure}[htbp]
 %\begin{wrapfigure}{L}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.8]{img/Rubik_cube_notation.eps}
  %\captionsetup{labelformat=empty}
- \caption{魔方六个面共有18种转动方式，再加上恒等变换。这些转动方式在合成下构成一个群。}
+ \caption{There are total 18 Rubik cube rotates for the 6 faces, plus the identity transformation. These moves together with the composition operation form a group.}
  \label{fig:Rubik-cube-notation}
 %\end{wrapfigure}
 \end{figure}
 
-\item 平面绕某点的所有旋转构成一个群。群元素是所有的旋转角度，二元运算是先旋转某一角度，然后再旋转另一角度。
+\item For a plane, all the rotations around a fixed point form a group. The group elements are all the degrees for rotation. The group binary operation is the composition, corresponding to the result of rotating a degree after another degree.
 \end{enumerate}
 
-而下面这些不是群：
+While the following examples are not groups:
 
 \begin{enumerate}
 \item 所有不等于零的整数和乘法不构成群，我们不能规定单位元为1，因为3没有逆元（1/3不是整数）；
