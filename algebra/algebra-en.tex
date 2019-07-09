@@ -259,8 +259,8 @@ To help understanding the definition of group, let us see some examples.
 While the following examples are not groups:
 
 \begin{enumerate}
-\item 所有不等于零的整数和乘法不构成群，我们不能规定单位元为1，因为3没有逆元（1/3不是整数）；
-\item 同理，模5的余数集合$\{0, 1, 2, 3, 4\}$和模5的乘法不构成一个群，但如果把5的整倍数去掉，则集合$\{1, 2, 3, 4\}$和模5的乘法构成一个群。可以从下面的“乘法表”看出来：
+\item All the integers except 0, together with multiplication don't form a group. We can't use 1 as the identity element, otherwise there will be no inverse element for 3 for example (1/3 is not integer);
+\item For the same reason, remainders of modulo 5 $\{0, 1, 2, 3, 4\}$, together with multiplication modulo 5 don't form a group. However, when exclude all multiples of 5, then the set $\{1, 2, 3, 4\}$ and multiplication modulo 5 form a group. We can see this fact from the following ``multiplication table'':
 
   \begin{tabular}{c|cccc}
     & 1 & 2 & 3 & 4 \\
@@ -271,7 +271,7 @@ While the following examples are not groups:
   4 & 4 & 3 & 2 & \textbf{1}
   \end{tabular}
 
-因此，单位元是1，它的逆元是其本身；2和3互为逆元，4的逆元还是4；
+Therefore, 1 is the identity element, it is also the inverse element of itself; 2 and 3 are inverse element for each other; the inverse element for 4 is 4 again;
 \item 虽然模5的非零余数在模乘法下构成一个群，但是模4的非零余数在模乘下却不构成群。观察模4的乘法表：
 
   \begin{tabular}{c|cccc}
