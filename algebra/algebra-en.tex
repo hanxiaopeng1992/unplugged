@@ -304,19 +304,20 @@ Note that $(2 \times 2) \bmod 4 = 0$, which is not in set $\{1, 2, 3\}$. This ne
 \Question{What is the identity element for Rubik cube group? What is the inverse element for $F$?}
 \end{Exercise}
 
-\subsection{幺半群与半群}
-群的限制条件比较严格，从上一节的反例中，我们看到有一些常用的代数结构无法满足群的全部条件。有时我们并不需要一定能够取逆元，如果放宽条件，就可以得到幺半群（monoid）这种结构。
+\subsection{Monoid and semi-group}
 
-\index{幺半群（monoid）}
+The criteria to be a group is a bit strict. From the negative examples in previous section, we see some common algebraic structure can't satisfy all the axioms of the group. Sometimes we needn't inverse element. If relax the limitation, we can get the \textbf{monoid} structure.
+
+\index{monoid}
 \begin{definition}
-\textbf{幺半群}是一个集合$S$和其上定义的二元运算$\cdot$，它们遵循两条公理：
+A \textbf{monoid} is a set $S$ together with a binary operation $\cdot$, which satisfy two axioms:
 \begin{enumerate}
-\item 结合性公理：$S$中和任何三个元素满足$(a \cdot b) \cdot c = a \cdot (b \cdot c)$；
-\item 单位元公理：$S$中存在一个元素$e$，使得对任何$a \cdot e = e \cdot a = e$。
+\item \textbf{Associativity}: For any three element in $S$, the equation $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ holds.
+\item \textbf{Identity element}: There exists an element $e$ in $S$, such that for every element $a$ in $S$, the equations $a \cdot e = e \cdot a = e$ hold.
 \end{enumerate}
 \end{definition}
 
-可以看到幺半群与群的定义类似，只是去掉了取逆运算的消去公理。可以立即看到，上一节群的反例中有不少是幺半群，例如整数乘法构成幺半群，单位元是1。幺半群在编程中很常见。我们在下一章介绍范畴论时还会再仔细介绍幺半群这一特别重要的结构。下面是一些幺半群的例子：
+The monoid definition is quite similar to group except there is no axiom about inverse element. There are many negative examples for group are monoids. For example, integers under multiplication form a monoid. The identity element is 1. Monoid often appears in computer programming. We'll revisit this important algebraic structure in next chapter about category theory. Here are some more examples about monoid:
 
 \begin{enumerate}
 \item 给定字符集后，长度有限的字符串在拼接操作下构成幺半群。幺半群的元素是字符串，二元运算是拼接操作。单位元是空串。
