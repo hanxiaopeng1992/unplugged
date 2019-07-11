@@ -320,8 +320,8 @@ A \textbf{monoid} is a set $S$ together with a binary operation $\cdot$, which s
 The monoid definition is quite similar to group except there is no axiom about inverse element. There are many negative examples for group are monoids. For example, integers under multiplication form a monoid. The identity element is 1. Monoid often appears in computer programming. We'll revisit this important algebraic structure in next chapter about category theory. Here are some more examples about monoid:
 
 \begin{enumerate}
-\item 给定字符集后，长度有限的字符串在拼接操作下构成幺半群。幺半群的元素是字符串，二元运算是拼接操作。单位元是空串。
-\item 由字符串推广到列表（List A），在连接操作下构成幺半群。幺半群的元素是列表，二元运算是连接操作（$\doubleplus$）。单位元是空列表nil。
+\item Given a character set, all finite strings with the concatenation operation form a monoid. The elements are strings; the binary operation is string concatenation; the identity element is the empty string.
+\item Expand from string to list of type $A$ (List A). All lists form a monoid under the concatenation operation. The monoid elements are lists; the binary operation is the list concatenation (denoted as $\doubleplus$); the identity element is the empty list nil.
 
 为此，我们可以写出以下的程序，用幺半群来定义字符串和列表的代数结构。
 
