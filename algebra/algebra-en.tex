@@ -323,7 +323,7 @@ The monoid definition is quite similar to group except there is no axiom about i
 \item Given a character set, all finite strings with the concatenation operation form a monoid. The elements are strings; the binary operation is string concatenation; the identity element is the empty string.
 \item Expand from string to list of type $A$ (List A). All lists form a monoid under the concatenation operation. The monoid elements are lists; the binary operation is the list concatenation (denoted as $\doubleplus$); the identity element is the empty list nil.
 
-为此，我们可以写出以下的程序，用幺半群来定义字符串和列表的代数结构。
+We can write an example program to abstract string and list to their algebraic structure, monoid.
 
 \begin{lstlisting}
 instance Monoid (List A) where
