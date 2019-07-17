@@ -341,15 +341,15 @@ We can concatenate list with this $concat$ operation like this:
 
 $concat\ [[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3], [1, 3, 2]]$ gives result: [1, 2, 3, 1, 2, 1, 3, 2, 3, 1, 2, 3, 1, 3, 2].
 
-\index{堆（heap）}
-\index{斜堆（skew heap）}
-\item 堆（heap）是编程中一种常见的数据结构，堆顶元素总是最小的堆称为最小堆（或小顶堆、小根堆）。有一种“斜堆”（skew heap）可以用上一章定义的二叉树来实现(\cite{LiuXinyu2017}第7.3节)：
+\index{heap}
+\index{skew heap}
+\item Heap is a common data structure in programming. If the top element in the heap is always the minimum one, it's call the min-heap; If the top element is always the maximum one, it's called max-heap. Skew heap is a type of heap that can be realized by binary tree (\cite{LiuXinyu2017}, section 7.3).
 
 \begin{lstlisting}
 data SHeap A = nil | node (SHeap A, A, SHeap A)
 \end{lstlisting}
 
-可以看出，除了名称，斜堆的定义和二叉树完全一样。非空堆的最小元素在树的根节点中。定义斜堆的“归并”（merge）运算如下：
+The definition is same as binary tree except for its name. The minimum element can be located at the root for the none empty heap. We define the merge operation for two heap as below:
 
 \[
 \begin{array}{rcl}
@@ -363,7 +363,7 @@ merge(h_1, h_2) & = &
 \end{array}
 \]
 
-如果其中任一堆为空，则归并结果为另一个堆。非空情况下，$h_1$和$h_2$分别可以表示为 $node(l_1, k_1, r_1)$ 和 $node(l_2, k_2, r_2)$。我们比较根节点，选择较小的作为新的根。然后把含有较大元素的树合并到某一子树上。最后再把左右子树交换。若$k_1 < k_2$，选择$k_1$作为新的根。我们既可以将$h_2$和$l_1$合并，也可以将$h_2$和$r_1$合并。不失一般性，我们合并到$r_1$上。然后交换左右子树，最后的结果为$(k_1, merge(r_1, h_2), l_1)$。注意这个归并的二元运算是递归的。这样所有斜堆组成的集合，在这一归并运算下构成一个幺半群。单位元是空堆nil。
+When merge two heaps, if one is empty, the result is the other one; if neither one is empty, we denote $h_1, h_2$ as $node(l_1, k_1, r_1)$ and $node(l_2, k_2, r_2)$ respectively. To merge them, we firstly compare their root, select the smaller one as the new root; then merge the other heap with the bigger element to one of it sub-tree. Finally, we exchange to left and right sub-trees. For example, if $k_1 < k_2$, we select $k_1$ as the new root. Then we can either merge $h_2$ to $l_1$, or merge $h_2$ to $r_1$. Without loss of generality, we merge to $r_1$. Then, we exchange the left and right sub-trees to get the final result $(k_1, merge(r_1, h_2), l_1)$. Note the binary merge operation is recursive. The set of all the skew heaps, together with the binary merge operation form a monoid. The identity element is the empty heap nil.
 
 \index{配对堆（pairing heap）}
 \item 堆也可以用上一章介绍的多叉树实现。有一种堆叫做配对堆（pairing heap）它的定义如下（\cite{LiuXinyu2017}第9.4节）：
