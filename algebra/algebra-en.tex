@@ -444,22 +444,23 @@ There is one and only one identity element for any group.
 \end{theorem}
 
 \begin{proof}
-假设存在另一单位元$e'$，使得对任意元素$a$满足$e'a = ae' = a$。我们有$e = ee'= e'$。这样就证明了单位元的唯一性。
+Suppose there is another identity element $e'$, for all element $a$, the equations $e'a = ae' = a$ hold. Substitute $a$ to $e$, we have $e = ee'= e'$. Thus proved the uniqueness of the identity element.
 \end{proof}
 
-不仅群的单位元是唯一存在的，而且每个元素的逆也是唯一存在的。我们有下面的定理。
+For any group, not only the identity element is unique, but the inverse element for every element is also unique.
 
 \begin{theorem}
-逆元唯一存在。对群中的任意元素$a$，都存在且仅存在一个$a^{-1}$使得$aa^{-1} = a^{-1}a = e$。我们称$a^{-1}$为$a$的逆元。
+The unique existence of inverse element. For all element $a$, there is one and only one $a^{-1}$ that satisfies $aa^{-1} = a^{-1}a = e$. We call $a^{-1}$ the inverse element of $a$.
 \end{theorem}
 
 \begin{proof}
-根据群的消去公理，我们知道逆元存在。所以我们只需要证明逆元唯一。假设存在另一元素$b$，也满足$ab = ba = e$，我们在等式右侧“乘以”$a^{-1}$得：
+We know the existence of inverse element from the group axiom of identity element. So we only need proof the uniqueness. Suppose there exists another element $b$, that also satisfies $ab = ba = e$. We multiply $a^{-1}$ to the equation from right to get:
+
 \[
 \begin{array}{rll}
 aba^{-1} & = baa^{-1} = ea^{-1} & \\
-& \Rightarrow be = a^{-1} & \text{对第二项用结合律} \\
-& \Rightarrow b = a^{-1} & \text{逆元唯一}
+& \Rightarrow be = a^{-1} & \text{Apply associative law to the 2nd term} \\
+& \Rightarrow b = a^{-1} & \text{Uniqueness of the inverse element}
 \end{array}
 \]
 \end{proof}
@@ -469,12 +470,12 @@ aba^{-1} & = baa^{-1} = ea^{-1} & \\
  \centering
  \includegraphics[scale=1.0]{img/Rubik-cube-F.eps}
  %\captionsetup{labelformat=empty}
- \caption{魔方的F变换，连续转动4次回到原位。}
+ \caption{The F move of Rubik cube, repeat rotating F 4 times returns to the original state.}
  \label{fig:Rubik-cube-F}
 %\end{wrapfigure}
 \end{figure}
 
-\index{群元素的阶}
+\index{The order of the group element}
 我们在前面定义了群的阶，群的元素也可以定义阶。对群中的一个元$a$，能够满足$a^m = e$的最小正整数$m$叫做$a$的阶。如果这样的$m$不存在，我们说$a$的阶是无限的。例如前面例子中魔方旋转群中，$F$旋转4次就回到了原位，所以$F$的阶是4，而$F'$旋转两次回到原位，所以它的阶是2。再比如整数模5的乘法群，除了1以外，其他元素的4次幂都模5余1，所以他们的阶都是4。我们有如下有趣的定理。
 
 \begin{theorem}
