@@ -476,22 +476,23 @@ aba^{-1} & = baa^{-1} = ea^{-1} & \\
 \end{figure}
 
 \index{The order of the group element}
-我们在前面定义了群的阶，群的元素也可以定义阶。对群中的一个元$a$，能够满足$a^m = e$的最小正整数$m$叫做$a$的阶。如果这样的$m$不存在，我们说$a$的阶是无限的。例如前面例子中魔方旋转群中，$F$旋转4次就回到了原位，所以$F$的阶是4，而$F'$旋转两次回到原位，所以它的阶是2。再比如整数模5的乘法群，除了1以外，其他元素的4次幂都模5余1，所以他们的阶都是4。我们有如下有趣的定理。
+We defined the order for group before. For group element, we can define order as well. For element $a$, the minimum positive integer $m$ that satisfies $a^m = e$ is called the order of $a$. If such $m$ does not exist, we say the order of $a$ is infinite. Using the Rubik cube group for example, if we repeat F rotation 4 times, the cube returns to its original state. Therefore, the order for F is 4. Because repeat $F'$ twice returns the original state, the order is 2. Another example is the integer multiplicative group modulo 5. All elements except 1, the power of 4 modulo 5 are 1, all their orders are 4. Actually, we have the following interesting theorem:
 
 \begin{theorem}
-有限群的每个元素都有有限的阶。
+For any finite group, all elements have finite order.
 \end{theorem}
 
 \begin{proof}
-如果有限群$G$的阶是$n$，对任意元素$a$，构造集合$\{a, a^2, ..., a^{n+1}\}$。这个集合有$n+1$个元，但是群的阶是$n$，所以根据鸽笼原理，一定有两个元素是相等的， 不妨记这两个元素为$a^i$和$a^j$，其中$0 < i < j \leq n + 1$。我们有：
+Denote the order for a given finite group $G$ as $n$. For any element $a$, we can construct a set $\{a, a^2, ..., a^{n+1}\}$. There are $n + 1$ elements in this set, however, the order of the group is $n$. According to the principle of pigeon hole. There are at least two equal elements. Denote such two equal elements as $a^i$ and $a^j$, where $0 < i < j \leq n + 1$ without loss of generality. We have:
+
 \[
 \begin{array}{rcll}
 a^ja^{-i} & = & a^{-i}a{i} & \text{由} a^i = a^j \\
-a^ja^{-i} & = & e & \text{$a^i$和$a^{-i}$互为逆元} \\
-a^{j-i} & = & e & a\text{的阶为} j - i
+a^ja^{-i} & = & e & \text{$a^i$ is inverse to $a^{-i}$} \\
+a^{j-i} & = & e & \text{the order of $a$ is}\ j - i
 \end{array}
 \]
-所以$a$的阶为$j-i$是有限的。
+Thus the order of $a$ $j - i$ is finite.
 \end{proof}
 
 在第一章，我们比较随意地使用了“同构”一词来形容具有相同内在结构的事物。现在我们可以给出同态和同构的概念了。假设存在从某个集合$A$到另一个集合$B$的映射$f$。$a$和$b$是$A$中的两个元，$f(a)$和$f(b)$是它们在$B$中的像。我们考虑$A$上的二元封闭运算产生的元$a \cdot b$，在映射下在$B$中的像$f(a \cdot b)$。如果对$B$上的二元封闭运算总有
