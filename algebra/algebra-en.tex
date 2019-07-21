@@ -349,7 +349,7 @@ $concat\ [[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3], [1, 3, 2]]$ gives re
 data SHeap A = nil | node (SHeap A, A, SHeap A)
 \end{lstlisting}
 
-The definition is same as binary tree except for its name. The minimum element can be located at the root for the none empty heap. We define the merge operation for two heap as below:
+The definition is as same as binary tree except for its name. The minimum element can be located at the root for the none empty heap. We define the merge operation for two heap as below:
 
 \[
 \begin{array}{rcl}
@@ -365,14 +365,14 @@ merge(h_1, h_2) & = &
 
 When merge two heaps, if one is empty, the result is the other one; if neither one is empty, we denote $h_1, h_2$ as $node(l_1, k_1, r_1)$ and $node(l_2, k_2, r_2)$ respectively. To merge them, we firstly compare their root, select the smaller one as the new root; then merge the other heap with the bigger element to one of it sub-tree. Finally, we exchange to left and right sub-trees. For example, if $k_1 < k_2$, we select $k_1$ as the new root. Then we can either merge $h_2$ to $l_1$, or merge $h_2$ to $r_1$. Without loss of generality, we merge to $r_1$. Then, we exchange the left and right sub-trees to get the final result $(k_1, merge(r_1, h_2), l_1)$. Note the binary merge operation is recursive. The set of all the skew heaps, together with the binary merge operation form a monoid. The identity element is the empty heap nil.
 
-\index{配对堆（pairing heap）}
-\item 堆也可以用上一章介绍的多叉树实现。有一种堆叫做配对堆（pairing heap）它的定义如下（\cite{LiuXinyu2017}第9.4节）：
+\index{pairing heap}
+\item Heap can also be realized in multi-trees as explained in previous chapter, for example pairing heap is defined as the following (\cite{LiuXinyu2017} section 9.4):
 
 \begin{lstlisting}
 data PHeap A = nil | node (A, List (PHeap A))
 \end{lstlisting}
 
-除了名称外，这个定义和上一章的多叉树的结构完全相同。这是一个递归定义，一个配对堆要么为空，要么是一棵多叉树，包含一个根节点和一组子树。非空堆的最小元素在多叉树的根节点中。我们可以定义配对堆的归并操作：
+The definition is as same as multi-tree except for its name. It is a recursive definition. A pairing heap is either empty; or a multi-tree with a root and a list of sub-trees. The minimum element is located at the root for a none empty heap. We define the merge operation for pairing heap as below:
 
 \[
 \begin{array}{rcl}
@@ -381,59 +381,61 @@ merge(h, nil) & = & h \\
 merge(h_1, h_2) & = &
   \begin{cases}
   k_1 < k_2 : & node(k_1, h_2 : ts_1)) \\
-  \text{否则} : & node(k_2, h_1 : ts_2)) \\
+  \text{otherwise} : & node(k_2, h_1 : ts_2)) \\
   \end{cases}
 \end{array}
 \]
 
-如果任一堆为空，则归并结果为另一个堆。非空情况下，两个堆$h_1$和$h_2$分别可以表示为 $node(k_1, ts_1)$ 和 $node(k_2, ts_2)$。我们比较两个堆的根节点元素，令根节点较大的一个作为另一个的新子树。这样所有的配对堆组成的集合，在归并操作下构成一个幺半群，单位元是空堆nil。
+If either heap is empty, then the merge result is the other heap. Otherwise if neither heap is empty, we represent the two heaps $h_1$, $h_2$ as $node(k_1, ts_1)$ and $node(k_2, ts_2)$ respectively. We compare the root elements, let the bigger one as another new sub-tree of the other. The set of all the pairing heaps form a monoid under the merge operation. The identity element is the empty heap nil.
 
 \end{enumerate}
 
-\index{半群（semigroup）}
-如果再进一步把单位元的限制也去掉，我们就得到了半群（semigroup）这种代数结构。
+\index{semigroup}
+
+If relax the limitation one more step, to remove the requirement of identity element, then we get another algebraic structure, semigroup.
 
 \begin{definition}
-半群是一个集合和定义在其上的可结合的二元运算。
+
+A semigroup is a set together with the associative binary operation.
 \end{definition}
 
-半群的二元运算是可结合的，所以满足结合律：半群中的任何三个元素$a$、$b$、$c$满足$(ab)c = a(bc)$。半群的条件更为宽松，下面是一些半群的例子：
+The binary operation for semigroup is associative. It means for any three elements$a$, $b$, and $c$ the equation $(ab)c = a(bc)$ holds. The constraints for semigroup is relaxed one more step. Here are some semigroup examples:
 
 \begin{enumerate}
-\item 全体正整数构成的加法半群、乘法半群；
-\item 全体偶数构成的加法半群、乘法半群。
+\item All the positive integers form a semigroup under addition, as well as under multiplication;
+\item All the even numbers together with addition form a semigroup, so as under multiplication.
 \end{enumerate}
 
-如前所述，人们常将定义在群、幺半群、半群上的二元运算叫做“乘法”，因此我们可以用“乘方”来表示连续的二元运算。如:$x \cdot x \cdot x = x^3$。一般地，群和幺半群的“幂”可以递归地定义如下：
+As we mentioned before, people often call the binary operation for group, monoid, and semigroup as `multiplication', therefore we use the term `power' to represent applying the binary operation multiple times, for example: $x \cdot x \cdot x = x^3$. Generally, the `power' of group and monoid is defined as below recursively:
 
 \[
 x^n = \left .
   \begin{cases}
   n = 0 : & e \\
-  \text{其它}: & x \cdot x^{n-1}
+  \text{otherwise}: & x \cdot x^{n-1}
   \end{cases}
 \right .
 \]
 
-但是半群没有单位元，所以$n$必须是非零正整数：
+For semigroup, as the identity element is not defined, $n$ must be none zero positive integer:
 
 \[
 x^n = \left .
   \begin{cases}
   n = 1 : & x \\
-  \text{其它}: & x \cdot x^{n-1}
+  \text{otherwise}: & x \cdot x^{n-1}
   \end{cases}
 \right .
 \]
 
 \begin{Exercise}
-\Question{布尔值构成的集合\{True, False\}，在“逻辑或”运算$\lor$下构成一个幺半群。称为任意（Any）逻辑幺半群。它的单位元是什么？}
-\Question{布尔值构成的集合\{True, False\}，在“逻辑与”运算$\land$下构成一个幺半群。称为全部（All）逻辑幺半群。它的单位元是什么？}
-\Question{对可比类型的元素进行比较时，会有三种结果，我们把它们抽象为$\{<, =, >\}$\footnote{一些编程语言，如C、C++、Java用负数、零、正数表示这三种关系。Haskell中用GT, EQ, LE表示。}，针对这个集合，定义一个二元运算使得它们构成一个幺半群。这个幺半群的单位元是什么？}
-\Question{证明群、幺半群、半群的幂满足交换律：$x^mx^n = x^nx^m$}
+\Question{The set of Boolean values \{True, False\} forms a monoid under the logic or operator $\lor$. It is called `Any' logic monoid. What is the identity element for this monoid?}
+\Question{The set of Boolean values \{True, False\} forms a monoid under the logic and operator $\land$. It is called `All' logic monoid. What is the identity element for this monoid?}
+\Question{For the comparable type, when compare two elements, there can be three different results. We abstract them as $\{<, =, >\}$\footnote{Some programming languages, such as C, C++, Java use negative number, zero, and positive number to represent these three results. In Haskell, they are GT, EQ, and LE respectively.}. For this set, we can define a binary operation to make it a monoid. What is the identity element for this monoid?}
+\Question{Prove that the power operation for group, monoid, and semigroup is commutative: $x^mx^n = x^nx^m$}
 \end{Exercise}
 
-\subsection{群的性质}
+\subsection{The properties of group}
 
 抽象代数最强大的思想在于我们可以不关心抽象概念所代表的实际物体的含义，而研究抽象结构间内在的规律。这些规律对所有被抽象的物体都适用。如果我们了解了一般群的内在规律，而群元素代表几何的点、线、面，则我们就获得了几何的规律；如果群元素是魔方的旋转，我们就获得了魔方变换的规律；如果群元素是编程中的某种数据结构，我们就得到了这种数据结构上的算法。我们这一节介绍一些群上的重要性质。
 
