@@ -492,10 +492,10 @@ a^ja^{-i} & = & e & \text{$a^i$ is inverse to $a^{-i}$} \\
 a^{j-i} & = & e & \text{the order of $a$ is}\ j - i
 \end{array}
 \]
-Thus the order of $a$ $j - i$ is finite.
+Thus the order of $a$, $j - i$ is finite.
 \end{proof}
 
-在第一章，我们比较随意地使用了“同构”一词来形容具有相同内在结构的事物。现在我们可以给出同态和同构的概念了。假设存在从某个集合$A$到另一个集合$B$的映射$f$。$a$和$b$是$A$中的两个元，$f(a)$和$f(b)$是它们在$B$中的像。我们考虑$A$上的二元封闭运算产生的元$a \cdot b$，在映射下在$B$中的像$f(a \cdot b)$。如果对$B$上的二元封闭运算总有
+We use the term `isomorphism' in chapter 1 to describe things that have the same inner structure. It's time to give the strict definition for homomorphism and isomorphism. Suppose there is a mapping (morphism) $f$ from set $A$ to set $B$. $a$ and $b$ are two elements in $A$, their images in $B$ are $f(a)$ and $f(b)$ respectively. Let's consider an element $a \cdot b$, which is result of the binary closed operation defined in $A$. Under the map (morphism) $f$, its image in $B$ is $f(a \cdot b)$. If for the binary closed operation defined in $B$, the following equation always holds:
 
 \[
 f(a) \cdot f(b) = f(a \cdot b)
@@ -506,8 +506,8 @@ f(a) \cdot f(b) = f(a \cdot b)
 \begin{tikzpicture}[scale=0.8]
 \draw (0, 0) circle[x radius=1cm, y radius=3cm]
       (5, 0) circle[x radius=1cm, y radius=3cm];
-\path (0, 3) node[above] {$A$：自然数乘法半群}
-      (5, 3) node[above] {$B$：平方数乘法半群};
+\path (0, 3) node[above] {$A$：Multiplicative semigroup for natural numbers}
+      (5, 3) node[above] {$B$：Multiplicative semigroup for squares};
 \path (0, 0) node (b) {}
       (5, 0) node (fb) {}
       (0, 1.5) node (a) {}
@@ -531,11 +531,13 @@ b = 3 & f(b) = 9 \\
 ab = 6 & f(ab) = f(a)f(b) = 36
 \end{array}
 \]
-\caption{同构}
+\caption{Isomorphism}
 \label{fig:isomorphism}
 \end{figure}
 
-\index{同态映射（homomorphism）}
+\index{homomorphism}
+We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, which means all elements $b$ in $B$, has the corresponding $a$ in A, that $f(a) = b$, then $f$ is called surjective homomorphism.
+
 我们就说$f$是从$A$到$B$的\textbf{同态映射}（homomorphism）。如果$f$是满射（surjection，即$B$中所有元素都在$A$中有原像），则称为同态满射。举一个例子，考虑一个奇偶判定函数$odd: Z \to Bool$，它接受一个整数，如果是奇数就返回真值True，否则返回假False。整数在加法下构成一个群。而布尔集合$\{True, False\}$在逻辑异或运算下也构成一个群。我们可以很容易验证：
 
 \begin{enumerate}
