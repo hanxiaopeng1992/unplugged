@@ -546,15 +546,15 @@ We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, k
 
 \index{isomorphism}
 \index{automorphism}
-如果$f$不仅是满射，还是单射（injection）。那么它就是一一映射。这种情况下，我们称$f$是从$A$到$B$的同构映射，简称\textbf{同构}（isomorphism）。记为$A \cong B$。同构是一种非常强大的关系，不仅两个群可以同构，半群、幺半群以及其他代数结构也可以同构，如图\ref{fig:isomorphism}所示。如果$A$和$B$同构，那么抽象地来看，它们没有什么区别，只有命名上的不同。如果$A$上有一个代数性质，那么在$B$上也有一个完全类似的性质\cite{ZhangHeRui1978}（25页）。另外，$A$与$A$之间的同构映射称为$A$的\textbf{自同构}（automorphism）。例如整数加群在取相反数下成为自同构。
+If $f$ is not only a surjection, but also a injection (there are no any two different elements map to the same image), then it's one-to-one mapping. We call $f$ is the \textbf{isomorphism} from $A$ to $B$. Denote as $A \cong B$. Isomorphism is a very powerful relationship. It does not only apply to two groups, but also applicable to semigroups, monoids and other algebraic structures. As shown in figure \ref{fig:isomorphism}. If $A$ is isomorphic to $B$, from abstracted view, they are essentially same things with different names. If there is a algebraic property in $A$, then there is exactly a same property in $B$ as well(\cite{ZhangHeRui1978} pp.25). The special isomorphism from $A$ to $A$ is called \textbf{automorphism} of $A$. For example, the group of integers with addition has a automorphism under the negate operation.
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}
-\path (0, 0) node[below] {猫}
-      (0, 2) node[above] {羊}
-      (-2, 2) node[above] {狗}
-      (-2, 0) node[below] {牛};
+\path (0, 0) node[below] {cat}
+      (0, 2) node[above] {sheep}
+      (-2, 2) node[above] {dog}
+      (-2, 0) node[below] {cow};
 \filldraw (0, 0) circle (4pt) node (cat) {} --
    (0, 2) circle (4pt) node (sheep) {} --
    (-2, 2) circle (4pt) node (dog) {} --
@@ -566,10 +566,10 @@ We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, k
     (5.6, 0) circle (4pt) node (bell) {} --
     (4.3, 2.3) circle (4pt) node (milk) {} -- (collar) --
     (4.3, 1) circle (4pt) node (wool) {} -- (bell);
-\path (3, 0) node[below] {项圈}
-      (5.6, 0) node[below] {铃铛}
-      (4.3, 2.3) node[above] {奶}
-      (4.3, 1) node[below] {毛};
+\path (3, 0) node[below] {collar}
+      (5.6, 0) node[below] {bell}
+      (4.3, 2.3) node[above] {milk}
+      (4.3, 1) node[below] {wool};
 
 \draw[dashed, ->] (dog) .. controls (-2.5, 1.5) .. (collar)
     (sheep) to[bend left] (wool)
@@ -578,11 +578,11 @@ We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, k
 \end{tikzpicture}
 \[
 \begin{array}{rl}
-f(狗) = 项圈 & f(猫) = 铃铛 \\
-f(羊) = 毛 & f(牛) = 奶
+f(dog) = collar & f(cat) = bell \\
+f(sheep) = wool & f(cow) = milk
 \end{array}
 \]
-\caption{图的同构（graph isomorphsim）具有不同的定义。它反映了看似不同的两个图，具有相同的结构。}
+\caption{The graph isomorphism has different meaning. The two different graph has the same structure.}
 \label{fig:graph-isomorphism}
 \end{figure}
 
