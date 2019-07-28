@@ -599,31 +599,31 @@ Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$.
 \end{array}
 \]
 
-其中变换$\tau_3$和$\tau_4$是一一变换。针对一个集合$A$，我们将它的全体变换放到一起构成一个新的集合：
+Among them, $\tau_3$ and $\tau_4$ are one-to-one transformations. For a given set $A$, all its transformations form a new set:
 
 \[
 S = \{\tau, \lambda, \mu, ...\}
 \]
 
-现在我们要规定一个S的二元代数运算，把它叫做乘法。为了方便起见，我们将$\tau(a)$用另一个符号表达：
+Let's next define a binary operation for $S$, and call it as multiplication. For convenient purpose, we express $\tau(a)$ as this way:
 
 \[
 \tau: a \to a^\tau = \tau(a)
 \]
 
-这里$a^\tau$不是$a$的$\tau$次方的意思，它只是一个符号记法，表示变换的意思。我们观察$S$的两个元$\tau$和$\lambda$，
+Note that $a^\tau$ does not mean the $\tau$ power of $a$. It is only a notation means transformation. Observe two elements $\tau$ and $\lambda$ in $S$.
 
 \[
 \tau: a \to a^\tau,  \lambda: a \to a^\lambda
 \]
 
-那么$a \to (a^\tau)^\lambda = \lambda(\tau(a))$显然也是$A$的一个变换，现在我们规定把这个变换叫做$\tau$和$\lambda$的乘积。
+We can find that $a \to (a^\tau)^\lambda = \lambda(\tau(a))$ is also a transformation for $A$. We define it is the product of $\tau$ and $\lambda$.
 
 \[
 \tau\lambda: a \to (a^\tau)^\lambda = a^{\tau\lambda}
 \]
 
-读着不妨从前面布尔变换的集合里取几个变换来计算它们的乘积，不难验证这一乘法适合结合律，因为：
+Please select some from the list of Boolean transformations to verify their product. The multiplication is actually associative, since:
 
 \[
 \begin{array}{rl}
@@ -632,7 +632,7 @@ S = \{\tau, \lambda, \mu, ...\}
 \end{array}
 \]
 
-现在不难看出当初我们选择乘方符号来表达变换的好处了。选择一套强大的符号系统是多年来数学发展的传统和法宝。欧拉、莱布尼茨都是选择和使用符号的大师。对这个乘法来说，$S$的单位元就是$A$的恒等变换$\epsilon: a \to a$。不难验证：
+We benefit from the power of power expression. We can't say too much about a powerful notation system in the history of math. Euler, Leibniz are all masters of inventing great symbols. For the above multiplication we defined, the identity element in $S$ is the identity transformation of $A$, which maps every element to itself, $\epsilon: a \to a$. We can verify that:
 
 \[
 \begin{array}{rl}
