@@ -586,7 +586,7 @@ f(sheep) = wool & f(cow) = milk
 \label{fig:graph-isomorphism}
 \end{figure}
 
-People often use the familiar concrete example to understand abstract algebraic structure. For groups, most time, we think about integers with addition, how those concepts, properties of group will be for integers? But such approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that can be commutative. We'll introduce an `exceptional' example, the transform group. On one hand, it is not abelian, the binary operation is not commutative; on the other hand, the its group elements are not numbers, but transformations.
+People often use the familiar concrete example to understand abstract algebraic structure. For groups, most time, we think about integers with addition, how those concepts, properties of group will be for integers? But such approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that can be commutative. We'll introduce an `exceptional' example, the transformation group. On one hand, it is not Abelian, the binary operation is not commutative; on the other hand, the its group elements are not numbers, but transformations.
 
 Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$. It maps element $a$ in $A$ to $\tau(a)$. That is $a \to \tau(a)$. There are varies transformations for a set. The following is all the transformations for Boolean set, we denote true as $T$, false as $F$.
 
@@ -641,12 +641,13 @@ We benefit from the power of power expression. We can't say too much about a pow
 \end{array}
 \]
 
-Therefore $\epsilon\tau = \tau\epsilon = \tau$. With this multiplication operation, set $S$ almost form a group. We say it `almost', it eventually can not form a group. This is because for a given transformation $\tau$, there is not necessarily an inverse element. For example the $\tau_1$ in the Boolean set, it transforms any Boolean value to true. None of the 4 transformation can change $\tau_1$ back. Thus there is no reverse element for $\tau_1$.
+Therefore $\epsilon\tau = \tau\epsilon = \tau$. With this multiplication operation, set $S$ almost form a group. We say it `almost', it eventually can not form a group. This is because for a given transformation $\tau$, there is not necessarily an inverse element. For example the $\tau_1$ in the Boolean set, it maps any Boolean value to true. None of the 4 transformations can change $\tau_1$ back. Thus there is no reverse element for $\tau_1$.
 
-虽然$S$无法构成群，但是峰回路转，是它的一个子集$G$却有可能构成群。事实上，如果$G$只包含$A$的一一变换，则它在这个乘法下构成群。
+Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact, as long as $G$ contains the one-to-one transformation of $A$, then it form a group under the multiplication operation.
 
-\index{变换群（transform group）}
-我们称，一个集合$A$的若干个一一变换对于上述规定的乘法所作成的群叫做$A$的一个\textbf{变换群}（transform group）。并且我们有以下重要的定理：
+\index{transformation group}
+
+我们称，一个集合$A$的若干个一一变换对于上述规定的乘法所作成的群叫做$A$的一个\textbf{变换群}（transformation group）。并且我们有以下重要的定理：
 
 \begin{theorem}
 一个集合$A$的所有一一变换构成一个变换群$G$。
