@@ -647,13 +647,13 @@ Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact,
 
 \index{transformation group}
 
-我们称，一个集合$A$的若干个一一变换对于上述规定的乘法所作成的群叫做$A$的一个\textbf{变换群}（transformation group）。并且我们有以下重要的定理：
+For set $A$, the set of one to one transformations of $A$ together with the multiplication operation defined above form a \textbf{transformation group} of $A$. We have the below important theorem:
 
 \begin{theorem}
-一个集合$A$的所有一一变换构成一个变换群$G$。
+All the one to one transformations of set $A$ form a transformation group $G$.
 \end{theorem}
 
-变换群一般不是交换群（阿贝尔群），我们可以很容易地找到反例。考虑$\tau_1$是平面上的平移，它把原点(0, 0)移动到(1, 0)，变换$\tau_2$是绕原点旋转$\pi/2$，但是：
+Transformation groups are not necessarily Abelian. It's easy to find negative examples. Consider the shift transformation $\tau_1$ which moves the origin from (0, 0) to (1, 0), and the rotation transformation $\tau_2$ which rotate around the origin by $\pi/2$. We have:
 
 \[
 \begin{array}{rl}
@@ -689,30 +689,28 @@ Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact,
 \draw[dashed, ->] (b1) -- (c1);
 \draw (5, 0) arc (0:-90:0.8);
 \end{tikzpicture}
-\caption{变换顺序不同，结果也不同的例子}
+\caption{The transform order matters. The results are different}
 \label{fig:transform-not-abelian}
 \end{figure}
 
-因此这一变换群不是阿贝尔群。变换群应用极广，十分重要，我们有一个很强的结论：
+Therefore, this transformation group is not Abelian. Transform groups are important and have wide applications. We have a strong fact:
 
 \begin{theorem}
-任何一个群都同一个变换群同构。
+Any group is isomorphic to a transformation group.
 \end{theorem}
 
 % TODO：附录
-我们这里略去了证明过程。这个定理告诉我们，任意一个抽象的群都能在变换群里找到一个具体的实例。换一句话说，我们不必害怕，将来会找到一个抽象群，这个群完全是我们脑子里造出来的空中楼阁\cite{ZhangHeRui1978}(49页)。
+We skip the proof. This theorem tells us, for any abstract group, we can find a concrete instance as a transformation group. In other words, we needn't concern about finding an abstract group in the future, which is totally a castle in the air(\cite{ZhangHeRui1978} pp49).
 
 \begin{Exercise}
-\Question{奇偶判断函数在整数加群$(Z，+)$和布尔逻辑与群$(Bool, \land)$下是否构成同态？去除0元素的整数乘法群呢？}
-\Question{假定两个群$G$和$G'$在映射下同态，群$G$中的元$a \to a'$，那么$a$和$a'$的阶是否相同？}
-\Question{证明一个变换群的单位元一定是恒等变换。}
+\Question{Is the odd even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
+\Question{Suppose two groups $G$ and $G'$ are homomorphic. In $G$, the element $a \to a'$. Is the order of $a$ same as the order of $a'$?}
+\Question{Prove that the identity element for transformation group must be identity transformation.}
 \end{Exercise}
 
-\subsection{置换群}
+\subsection{Permutation group}
 \label{permutation group}
 \label{symmetric group}
-\index{置换群（permutation group）}
-\index{对称群（symmetric group）}
 
 我们现在介绍伽罗瓦用来判定方程是不是有根式解的群——置换群。这种群是变换群的一种特例。我们首先定义置换的概念。一个有限集合的一一变换叫做一个\textbf{置换}。一个有限集合的若干个置换作成的一个群叫做一个\textbf{置换群}（permutation group，顾名思义，它相当于对集合的元素进行重新排列）。进一步，一个包含$n$个元素的集合的全体置换作成的群叫做$n$次\textbf{对称群}（symmetric group）。这个群用$S_n$来表示。
 
