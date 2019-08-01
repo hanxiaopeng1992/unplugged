@@ -599,7 +599,7 @@ Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$.
 \end{array}
 \]
 
-Among them, $\tau_3$ and $\tau_4$ are one-to-one transformations. For a given set $A$, all its transformations form a new set:
+Among them, $\tau_3$ and $\tau_4$ are one to one transformations. For a given set $A$, all its transformations form a new set:
 
 \[
 S = \{\tau, \lambda, \mu, ...\}
@@ -623,7 +623,7 @@ We can find that $a \to (a^\tau)^\lambda = \lambda(\tau(a))$ is also a transform
 \tau\lambda: a \to (a^\tau)^\lambda = a^{\tau\lambda}
 \]
 
-Please select some from the list of Boolean transformations to verify their product. The multiplication is actually associative, since:
+Such multiplication is actually composition operation of two transformations. Please select some from the list of Boolean transformations to verify their product. The multiplication is actually associative, since:
 
 \[
 \begin{array}{rl}
@@ -647,7 +647,7 @@ Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact,
 
 \index{transformation group}
 
-For set $A$, the set of one to one transformations of $A$ together with the multiplication operation defined above form a \textbf{transformation group} of $A$. We have the below important theorem:
+For set $A$, the set of one to one transformations of $A$ together with the composite operation (defined above as multiplication) form a \textbf{transformation group} of $A$. We have the below important theorem:
 
 \begin{theorem}
 All the one to one transformations of set $A$ form a transformation group $G$.
@@ -712,9 +712,9 @@ We skip the proof. This theorem tells us, for any abstract group, we can find a 
 \label{permutation group}
 \label{symmetric group}
 
-我们现在介绍伽罗瓦用来判定方程是不是有根式解的群——置换群。这种群是变换群的一种特例。我们首先定义置换的概念。一个有限集合的一一变换叫做一个\textbf{置换}。一个有限集合的若干个置换作成的一个群叫做一个\textbf{置换群}（permutation group，顾名思义，它相当于对集合的元素进行重新排列）。进一步，一个包含$n$个元素的集合的全体置换作成的群叫做$n$次\textbf{对称群}（symmetric group）。这个群用$S_n$来表示。
+In this section, we introduce permutation group. It is the permutation group that Galois used to determine if a given equation is solvable by radicals. Permutation group is a special transformation group. Let's first define what is permutation. A \textbf{permutation} is a one to one transformation for a finite set. The permutations of a finite set form a \textbf{permutation group} under the composite operation. As the name indicates, it permutes elements in the set. Further, the group of {\em all} permutations of a set of $n$ elements is the \textbf{symmetric group} of degree $n$, denoted as $S_n$.
 
-由高中的排列组合我们知道，$n$元的置换一共有$n!$个。所以$n$次对称群$S_n$的的阶是$n!$。一个置换把集合的元$a_i$映射为$a_{k_i}$，其中$i = 1, 2, ..., n$。所以这一置换完全可以由$(1, k_1), (2, k_2), ..., (n, k_n)$这$n$对数来确定。我们可以把这一置换写成：
+We know from the permutation theory learned in high school, there are $n!$ different permutations for $n$ elements. Therefore, the symmetric group of degree $n$ has the order of $n!$. A permutation maps element $a_i$ in the set to $a_{k_i}$, where $i = 1, 2, ..., n$. The permutation can be determined by $n$ pairs of $(1, k_1), (2, k_2), ..., (n, k_n)$. We can express the permutation as:
 
 \[
 \begin{pmatrix}
@@ -723,7 +723,7 @@ k_1 & k_2 & ... & k_n
 \end{pmatrix}
 \]
 
-例如
+For example
 
 \[
 \begin{pmatrix}
@@ -732,7 +732,7 @@ k_1 & k_2 & ... & k_n
 \end{pmatrix}
 \]
 
-就表示了一个置换。明显这样第一行总是$1, 2, ..., n$的形式，所以可以进一步将置换的记法简化为$(2, 5, 4, 3, 1)$，表示置换后，原来第2个元素变为新的第1个元素，原来第5个元素变为现在的第2个元素等等。我们可以按照这种方法列出3个元素集合的全部置换，也就是$S_3$群的元素：
+It represents a permutation. Since the first row is always in the form $1, 2, ..., n$, we can further simplify the permutation to $(2, 5, 4, 3, 1)$. It means this permutation change the 2nd element to the 1st; change the 5th element to the 2nd and so on. We can use this notation to list all permutations for a set contains 3 elements, which is the elements for group $S_3$:
 
 \[
 (1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)
