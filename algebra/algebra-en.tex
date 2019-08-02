@@ -738,7 +738,7 @@ It represents a permutation. Since the first row is always in the form $1, 2, ..
 (1, 2, 3), (1, 3, 2), (2, 1, 3), (2, 3, 1), (3, 1, 2), (3, 2, 1)
 \]
 
-计算乘法，也就是两个置换的复合时，我们可以这样确定每个位置上元素。针对第$i$个位置，我们先看在第一个置换上它被映射到几，例如$j$，然后再到第二个置换中看第$j$个位置被映射到哪里，例如$k$，这样乘法的结果中，第$i$个位置上的元素就是$k$。我们可以进一步取两个元素相乘，举例看一下$S_3$是否是阿贝尔群（交换群）：
+When do the multiplication, which is composition essentially, we can determine the element for every position as this. For the $i$-th position, first check what the new position should be in the first permutation, for example $j$; then check where $j$ should be mapped to in the second permutation, for example $k$. Therefore, the final position as the result of the multiplication is $k$. Let's pick two elements from group $S_3$, to examine if it is Abelian:
 
 \[
 \begin{array}{l}
@@ -747,7 +747,7 @@ It represents a permutation. Since the first row is always in the form $1, 2, ..
 \end{array}
 \]
 
-所以$S_3$不是阿贝尔群。它是一个最小的有限非阿贝尔群。一个有限非阿贝尔群至少要有6个元素。我们观察5个元素的一个置换$(2, 3, 1, 4, 5)$，发现只有前三个元素变化了，而后两个元素保持不变。而前三个元素的变化很有特点：$2 \to 1$、$3 \to 2$、$1 \to 3$，恰好是循环地画了个圈。
+They are different results, $S_3$ is not Abelian. Actually, it is the smallest finite none Abelian group. A finite none Abelian group contains at least 6 elements. Observe the permutation for 5 elements $(2, 3, 1, 4, 5)$, only the first three ones change, while the rest two keep same. The changes for the first three elements have a pattern: $2 \to 1$, $3 \to 2$, $1 \to 3$. They are cyclic.
 
 \begin{figure}[htbp]
 \centering
@@ -762,17 +762,17 @@ It represents a permutation. Since the first row is always in the form $1, 2, ..
       (2, -0.5) node[below] {3}
       (4, -0.5) node[below] {1};
 \end{tikzpicture}
-\caption{变换$(2\ 3\ 1)$是一个循环置换}
+\caption{Permutation $(2\ 3\ 1)$ is cyclic}
 \label{fig:cycle-permutation}
 \end{figure}
 
-为此我们可以把置换$(2, 3, 1, 4, 5)$进一步简写为$(2\ 3\ 1)$。注意这种写法元素间没有逗号，并且认为$(1\ 2\ 3)$、$(2\ 3\ 1)$、$(3\ 1\ 2)$都表示同一个3循环置换\footnote{也有用不带空格的$(231)$来表示的，但是如果元素个数超过10个，不带空格的表示会产生歧义。可以被理解为$(23\ 1)$}。一般地，我们定义$k$-循环置换$(i_{j_1} i_{j_2} ... i_{j_k})$，它将后一个元素映射到前一个的位置，第一个元素映射到最后。组成循环：
+With this pattern, we can simplify the permutation notation from $(2, 3, 1, 4, 5)$ to $(2\ 3\ 1)$. Note there is no comma between elements, and we treat $(1\ 2\ 3)$, $(2\ 3\ 1)$, and $(3\ 1\ 2)$ represent the same 3-cyclic permutation\footnote{There are people use $(231)$ notation without any spaces as deliminator. However, when there are over 10 elements, it cause ambiguity. As it can also be $(23\ 1)$.}. Formally, we define $k$-cyclic permutation $(i_{j_1} i_{j_2} ... i_{j_k})$. It maps the next element to its previous position, and send the first element to the last to form the cycle:
 
 \[
 i_{j_2} \to i_{j_1}, i_{j_3} \to i_{j_2}, ..., i_{j_1} \to i_{j_k}
 \]
 
-注意，$k$-循环的元素并不一定相邻，例如$(3\ 9\ 4)$，也不一定有固定的顺序，例如$(2\ 4\ 1\ 3)$。如果循环只有两个元素$(i\ j)$称其为对调（transposition）。有个特殊情况，就是恒等置换$(1, 2, 3, 4, 5)$，我们把它记为$\epsilon = (1)$。并且有：
+The elements in $k$-cyclic permutation are not necessary adjacent, for example $(3\ 9\ 4)$, nor in a fixed order, for example $(2\ 4\ 1\ 3)$. If there are only two element in the circle, like $(i\ j)$, we call it transposition. Identity transformation is the special case, for example $(1, 2, 3, 4, 5)$, we denote it as $\epsilon = (1)$, and define:
 
 \[
 \epsilon = (1) = (2) = ... = (n)
