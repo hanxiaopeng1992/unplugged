@@ -772,21 +772,21 @@ With this pattern, we can simplify the permutation notation from $(2, 3, 1, 4, 5
 i_{j_2} \to i_{j_1}, i_{j_3} \to i_{j_2}, ..., i_{j_1} \to i_{j_k}
 \]
 
-The elements in $k$-cyclic permutation are not necessary adjacent, for example $(3\ 9\ 4)$, nor in a fixed order, for example $(2\ 4\ 1\ 3)$. If there are only two element in the circle, like $(i\ j)$, we call it transposition. Identity transformation is the special case, for example $(1, 2, 3, 4, 5)$, we denote it as $\epsilon = (1)$, and define:
+The elements in $k$-cyclic permutation are not necessary adjacent, for example $(3\ 9\ 4)$, nor in a fixed order, for example $(2\ 4\ 1\ 3)$. If there are only two element in the circle, like $(i\ j)$, we call it transposition. Identity transformation is the special case, for example $(1, 2, 3, 4, 5)$, we denote it as $\epsilon = (1)$, and let:
 
 \[
 \epsilon = (1) = (2) = ... = (n)
 \]
 
-现在我们观察置换$(2, 1, 4, 5, 3)$，它有两个循环，一个是2循环置换$(1\ 2)$，另一个是3循环置换$(3\ 4\ 5)$。为此我们可以将它表示为两个置换的乘法：
+Observe the permutation $(2, 1, 4, 5, 3)$, it contains two cycles, one is the 2-cyclic permutation $(1\ 2)$, the other is 3-cyclic permutation $(3\ 4\ 5)$. We can use the permutation multiplication to express this fact:
 
 \[
 (2, 1, 4, 5, 3) = (1\ 2)(3\ 4\ 5)
 \]
 
-事实上，每一个$n$元的置换$\pi$都可以写成若干个互相没有共同数字的（不相连的）循环置换的乘积。采用这种方法的好处是，虽然一般的置换是不可交换的，但是由于这样的$k$-循环置换彼此没有共同数字，所以它们是可交换的。例如$(1\ 2)(3\ 4\ 5) = (3\ 4\ 5)(1\ 2)$。
+In fact, every permutation $\pi$ for $n$ elements can be expressed with some mutual exclusive (without any common numbers) cyclic permutations. This approach brings us a useful advantage, although permutations are not commutative in common case, as $k$-cyclic permutations don't share same numbers, they are commutative. For example $(1\ 2)(3\ 4\ 5) = (3\ 4\ 5)(1\ 2)$.
 
-下面是$S_3$的全体循环置换用这种记法的列表：
+The following list express all the permutations in $S_3$ in this way:
 
 \[
 (1),
