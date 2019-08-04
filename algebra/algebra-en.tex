@@ -972,28 +972,28 @@ Therefore, from the abstraction perspective, there is only one group that the or
 \subsection{Subgroup}
 \index{subgroup}
 
-我们接下来介绍子群的概念。它可以帮助我们通过一个群的子集来推测整个群的性质。
+The next important concept is subgroup. It can help us to understand the properties of a group through its subset.
 
 \begin{definition}
-一个群$G$的一个子集$H$叫做$G$的一个\textbf{子群}，如果$H$对于$G$的乘法也构成一个群。
+For a given group $G$, a subset $H$ of $G$ is called \textbf{subgroup} if $H$ forms a group under the multiplication of $G$.
 \end{definition}
 
-对于任何群$G$，至少有两个子群，一个是$G$本身，另外是只包含一个单位元的集合$\{e\}$。这两个子群称为平凡子群。对于整数加群来说，偶数加群构成一个子群，而奇数和加法不构成子群（为什么？）。我们再举一个例子，考虑上一节介绍的置换群$S_3$的子集$H = \{(1), (1\ 2)\}$，$H$在置换复合乘法下构成一个子群。我们下面来验证一下：
+For any group $G$, there are at least two subgroups. One is $G$ itself, the other is a singleton set only contains the identity element $\{e\}$. They are are called trivial subgroups. Taking the additive group of integers for example, all the even numbers under addition form a subgroup, while the odd numbers do not form a subgroup (do you know why?). Here is another example, for the permutation group $S_3$, consider its subset $H = \{(1), (1\ 2)\}$. $H$ form a subgroup under the composite operation. We can verify it as the following:
 
 \begin{enumerate}
-\item 乘法的封闭性。$(1)(1) = (1)$, $(1)(1\ 2) = (1\ 2)$, $(1\ 2)(1) = (1\ 2)$, $(1\ 2) (1\ 2) = (1)$；其中最后一个乘法表示头两个元素对调后再对调会相当于恒等置换。
-\item 结合律对$S_3$的所有元素都成立，故对$H$的元素也成立；
-\item 单位元$(1) \in H$；
-\item 每个元素的逆元都存在：$(1)(1) = (1)$、$(1\ 2) (1\ 2) = (1)$。
+\item Close under multiplication: $(1)(1) = (1)$, $(1)(1\ 2) = (1\ 2)$, $(1\ 2)(1) = (1\ 2)$, $(1\ 2) (1\ 2) = (1)$. The last equation means swap the first two elements, then swap again. It equals to identity transformation;
+\item The associative law applies to all elements in $S_3$, thus also applies to $H$;
+\item The identity element $(1) \in H$;
+\item All elements in $H$ has inverse: $(1)(1) = (1)$、$(1\ 2) (1\ 2) = (1)$。
 \end{enumerate}
 
-这样依次验证群的所有性质比较麻烦，我们有一个方便的工具：
+It's tedious to verify all these group properties for arbitrary subset. Fortunately, there is a powerful tool:
 
 \begin{theorem}
-一个群$G$的非空子集$H$构成子群的充分必要条件是：
+For any group $G$, a none empty subset $H$ forms a subgroup if and only if：
 \begin{enumerate}
-\item 若任意$a, b \in H$，则$ab \in H$；
-\item 任意元素$a \in H$，有$a^{-1} \in H$；
+\item For all $a, b \in H$, the product $ab \in H$;
+\item For all element $a \in H$, its reverse $a^{-1} \in H$.
 \end{enumerate}
 \label{theorem:subgroup}
 \end{theorem}
