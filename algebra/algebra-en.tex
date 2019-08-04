@@ -696,7 +696,7 @@ Transformation groups are not necessarily Abelian. It's easy to find negative ex
 Therefore, this transformation group is not Abelian. Transform groups are important and have wide applications. We have a strong fact:
 
 \begin{theorem}
-Any group is isomorphic to a transformation group.
+Every group is isomorphic to a transformation group.
 \end{theorem}
 
 % TODO：附录
@@ -835,23 +835,23 @@ def kcycles(a):
     return r if r != [] else [[1]]
 \end{lstlisting}
 
-由上一小节的定理，我们有
+From the theorem in previous section, we further have:
 
 \begin{theorem}
-每一个有限群都与一个置换群同构。
+Every finite group is isomorphic to a permutation group.
 \end{theorem}
 
-这样对于任何有限群，例如方程的根，我们都可以用置换群加以研究。而置换群又是一种比较容易计算的群，这正是伽罗瓦解决方程根式解问题的方法。
+For any finite group, like the solutions of a equation, we can study it with the permutation group, as the permutation group is easy to manipulate. This is exactly how Galois solve the problem to determine if the equation is solvable by radicals.
 
 \begin{Exercise}
-\Question{列出$S_4$的全体元素。}
-\Question{将$S_3$的所有元写成不相连的循环置换的乘积。}
-\Question{编程将$k$-循环的乘积转换回置换。}
+\Question{List all the elements in $S_4$.}
+\Question{Express all the elements in $S_3$ as the product of cyclic forms.}
+\Question{Write a program to convert the product of $k$-cycles back to permutation.}
 \end{Exercise}
 
-\subsection{循环群}
+\subsection{Cyclic group}
 
-\index{循环群（cyclic group）}
+\index{cyclic group}
 在各种群中，循环群（cyclic group）是最简单的。它是人们已经完全解决了的一类群。一个群$G$中的所有元素会不会都是某一个固定元素的乘方？这是有可能的。
 举一个例子，我们看去掉0元素的模5乘法群。它包含4个元素\{1, 2, 3, 4\}，其中2的各个乘方模5的结果如下：
 
