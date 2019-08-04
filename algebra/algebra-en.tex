@@ -852,7 +852,7 @@ For any finite group, like the solutions of a equation, we can study it with the
 \subsection{Cyclic group}
 
 \index{cyclic group}
-Among all the groups, the cyclic group is the easiest. It's the kind of groups that completely understood as of today. Is it possible that all the elements in a group $G$ are power of a given element? Such group does exist. Consider the multiplicative group modulo 5 without 0 for example. It contains 4 elements $\{1, 2, 3, 4\}$. If list all the powers of 2 modulo 5, we have the following result:
+Among all the groups, the cyclic group is the easiest. It's the kind of groups that completely understood as of today. Is it possible that all the elements in a group $G$ are power of a given element? Such group does exist. Consider the integer multiplicative group modulo 5 without 0 for example. It contains 4 elements $\{1, 2, 3, 4\}$. If list all the powers of 2 modulo 5, we have the following result:
 
 \[
 \begin{array}{l}
@@ -872,37 +872,37 @@ If all the elements in a group $G$ are the power of a fixed element $a$, we say 
 G = (a)
 \]
 
-We call $a$ the generator of the group $G$.
+We call $a$ the generator of group $G$.
 \end{definition}
 
-我们举两个循环群的重要例子：
+Let us see two important examples of cyclic group:
 
 \begin{example}
-整数加群中的全体整数都是1的“乘方”，这里的二元运算是加法，所以乘方就是不断进行相加。我们看任意正整数$m$：
+The additive group of integers. All integers are `power' of 1. Here the binary operation is addition, therefore, power means keep adding 1. For any positive integer $m$:
 
 \[
 \begin{array}{rcll}
-1^m & = & 1 \cdot 1 \cdot 1 \cdot ... \cdot 1 & \text{$m$次} \\
-    & = & 1 + 1 + ... + 1 & \text{整数加群中乘法为+} \\
+1^m & = & 1 \cdot 1 \cdot 1 \cdot ... \cdot 1 & \text{$m$ power of} \\
+    & = & 1 + 1 + ... + 1 & \text{+ is the multiplicative operation for $G(Z, +)$} \\
     & = & m &
 \end{array}
 \]
 
-在整数加群中，1的逆元是-1，这是因为1 + (-1) = 0，而0是单位元。所以对任意负整数$-m$有：
+In additive group of integers, the inverse element of 1 is -1. This is because 1 + (-1) = 0, and 0 is the identity element. For any negative integer $-m$:
 
 \[
 \begin{array}{rcll}
-1^{-m} & = (-1)^m & \text{逆元} & \\
+1^{-m} & = (-1)^m & \text{inverse element} & \\
 (-1)^m & = & (-1) \cdot (-1) \cdot (-1) \cdot ... \cdot (-1) & \text{$m$次} \\
-       & = & -1 + (-1) + ... + (-1) & \text{整数加群中乘法为+} \\
+       & = & -1 + (-1) + ... + (-1) & \text{+ is the multiplicative operation for $G(Z, +)$} \\
        & = & -m &
 \end{array}
 \]
 
-最后0是单位元，按照定义有$0 = 1^0$。综合上述三种情况，我们有$Z = (1)$。
+As 0 is the identity element, we define $0 = 1^0$. Summarize all these three cases, we have $Z = (1)$.
 \end{example}
 
-这是一个无限循环群的例子，我们再举一个有限循环群的例子。
+The additive group of integers is an example of infinite cyclic group. Let us see an example of finite cyclic group.
 
 \begin{example}
 我们看整数模$n$剩余类。我们用符号$[a]$表示整数$a$所在的剩余类。定义二元运算为模$n$的加法。
