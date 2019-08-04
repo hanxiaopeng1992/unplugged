@@ -998,17 +998,17 @@ For any group $G$, a none empty subset $H$ forms a subgroup if and only if：
 \label{theorem:subgroup}
 \end{theorem}
 
-我们把这一定理的证明留作练习。这个定理可以直接得到一个推论，如果$H$是$G$的子群，那么$H$的单位元就是$G$的单位元，$H$中任意元素$a$的逆元就是它在$G$中的逆元。上述定理中的两个条件也可以用一个合并的条件来代替：
+We left the proof of this theorem as the exercise to the readers. We can deduce a result from this theorem. If $H$ is a subgroup of $G$, then the identity element in $H$ is also the identity element in $G$, and for any element $a$ in $H$, its reverse element in $H$ is also the reverse element in $G$. We can combine the two conditions in the above theorem into one:
 
 \begin{theorem}
-一个群$G$的非空子集$H$构成子群的充分必要条件是。若任意$a, b \in H$，则$ab^{-1} \in H$。
+For any group $G$, a none empty subset $H$ forms a subgroup if and only if, for all $a, b \in H$, then $ab^{-1} \in H$ holds.
 \label{theorem:subgroup-2}
 \end{theorem}
 
 \begin{proof}
-首先证明充分性，设$a, b \in H$，由上一定理的条件2，有$b^{-1} \in H$。再由条件1，有$ab^{-1} \in H$；
+First prove the sufficiency. Let $a, b \in H$, from the second condition in above theorem, we have $b^{-1} \in H$. Then using the first condition, we get $ab^{-1} \in H$;
 
-现在反过来证明必要性。设$a \in H$，所以$aa^{-1} = e \in H$，于是$ea^{-1} = a^{-1} \in H$；这就是前面定理中的条件1；接下来若$a, b \in H$，由刚刚证明的结果，$b^{-1} \in H$。所以$a(b^{-1})^{-1} = ab \in H$。这就证明了前面定理中的条件2。
+Next prove the necessity. Let $a \in H$, according to the identity axiom, we have $aa^{-1} = e \in H$, therefore, $ea^{-1} = a^{-1} \in H$. This is the first condition in above theorem; Then for all $a, b \in H$, we also have $b^{-1} \in H$, therefore, $a(b^{-1})^{-1} = ab \in H$. Which proves the second condition in previous theorem.
 \end{proof}
 
 假如子集$H$是有限集，那么$H$构成子群的条件要更简单：
