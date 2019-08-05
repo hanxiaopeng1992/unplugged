@@ -1011,30 +1011,30 @@ First prove the sufficiency. Let $a, b \in H$, from the second condition in abov
 Next prove the necessity. Let $a \in H$, according to the identity axiom, we have $aa^{-1} = e \in H$, therefore, $ea^{-1} = a^{-1} \in H$. This is the first condition in above theorem; Then for all $a, b \in H$, we also have $b^{-1} \in H$, therefore, $a(b^{-1})^{-1} = ab \in H$. Which proves the second condition in previous theorem.
 \end{proof}
 
-假如子集$H$是有限集，那么$H$构成子群的条件要更简单：
+If the subset $H$ is finite, then the condition to form a subgroup can be further simplified:
 
 \begin{theorem}
-一个群$G$的非空有限子集$H$构成子群的充分必要条件是。若任意$a, b \in H$，则$ab \in H$。
+For any group $G$, the finite subset $H$ forms a subgroup if and only if for all $a, b \in H$, $ab \in H$ holds.
 \end{theorem}
 
-我们曾经利用一个整数$n$把全体整数分成模$n$的剩余类。我们可以把类似的思路扩展抽象到群上。我们把整数加群叫做$Z$，把所有包含$n$的倍数的集合叫做$H$，即$H = {kn}$，其中$k = 0, \pm 1, \pm 2, ...$。那么对于$H$的任意两个元$hn$和$kn$来说，$hn + (-k)n = (h - k)n \in H$。而$-kn$恰好是$kn$在$Z$中的逆元，并且$+$是整数加群上的二元运算。所以由上述定理\ref{theorem:subgroup-2}，$H$是$Z$的子群。
+With an integer $n$, we can classify all the integers into residues modulo $n$. Using the similar idea, we can classify the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
 
-当我们把整数划分成模$n$剩余类时，所利用的等价关系是这样规定的：
+When we classify integers into residues modulo $n$, we use the equivalent relationship as:
 
 \[
-a \equiv b \mod n, \text{当且仅当} n | (a - b)
+a \equiv b \mod n, \text{if and only if}\ n | (a - b)
 \]
 
-利用子群$H$，这一等价关系也可以这样定义：
+Using subgroup $H$, this equivalent relationship can also be defined as:
 
 \[
-a \equiv b \mod n, \text{当且仅当} (a - b) \in H
+a \equiv b \mod n, \text{if and only if}\ (a - b) \in H
 \]
 
-这样，我们就利用子群$H$实现了$Z$的剩余类划分。我们现在将这一情形推广到利用子群$H$对一个群$G$进行分类。为此，我们需要先用子群定义元素的一种等价关系$\sim$：
+Thus we use subgroup $H$ to classify $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ classify any group $G$. To do that, we need first define the equivalent relationship $\sim$ with subgroup $H$:
 
 \[
-a \sim b, \text{当且仅当} ab^{-1} \in H
+a \sim b, \text{if and only if}\ ab^{-1} \in H
 \]
 
 给了$a$和$b$，我们可以唯一确定$ab^{-1}$是不是属于$H$。为什么说$\sim$是一种等价关系呢？因为它满足等价关系的全部三条性质：
