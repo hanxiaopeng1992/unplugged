@@ -1037,15 +1037,15 @@ Thus we use subgroup $H$ to classify $Z$ into residues. Now let's expand this to
 a \sim b, \text{if and only if}\ ab^{-1} \in H
 \]
 
-给了$a$和$b$，我们可以唯一确定$ab^{-1}$是不是属于$H$。为什么说$\sim$是一种等价关系呢？因为它满足等价关系的全部三条性质：
+Given $a$ and $b$, we can strictly determine if $ab^{-1}$ belongs $H$. Why is $\sim$ an equivalent relationship? Because it satisfies all the three conditions for equivalence:
 
 \begin{enumerate}
-\item 因为$aa^{-1} = e \in H$，所以$a \sim a$。也就是自反性成立；
-\item 如果$ab^{-1} \in H$，则它的逆$(ab^{-1})^{-1}= ba^{-1} \in H$，所以$a \sim b \Rightarrow b \sim a$。也就是对称性成立；
-\item 若$ab^{-1} \in H, bc^{-1} \in H$，我们有$(ab^{-1})(bc^{-1}) = ac^{-1} \in H$，所以$a \sim b, b \sim c \Rightarrow a \sim c$。也就是传递性成立。
+\item As $aa^{-1} = e \in H$, we have $a \sim a$. It is reflexive;
+\item If $ab^{-1} \in H$, the its reverse $(ab^{-1})^{-1}= ba^{-1} \in H$. Therefore, $a \sim b \Rightarrow b \sim a$. It is symmetric;
+\item If $ab^{-1} \in H, bc^{-1} \in H$, we have $(ab^{-1})(bc^{-1}) = ac^{-1} \in H$. Therefore $a \sim b, b \sim c \Rightarrow a \sim c$. It is transitive.
 \end{enumerate}
 
-\index{右陪集（right coset}
+\index{right coset}
 \begin{definition}
 由这一等价关系$\sim$所决定的类叫做子群$H$的\textbf{右陪集}（right coset），包含元素$a$的右陪集用符号$Ha$来表示。
 \end{definition}
