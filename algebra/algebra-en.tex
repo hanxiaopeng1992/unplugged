@@ -241,7 +241,7 @@ To help understanding the definition of group, let us see some examples.
 \begin{enumerate}
 \item Integers with addition. Elements are all integers, the binary operation is addition. This is one of the most familiar groups;
 
-\item The set of remainders of all integers divided by 5, that is $\{0, 1, 2, 3, 4\}$. The binary operation is addition then divided by 5, and take the remainder. For example $3 + 4 = 7 \bmod 5 = 2$. They form a group called addition group of integers modulo 5. Denoted as $Z_5$. We can consider it as classify the integers by taking the remainder. It is called \textbf{residue class} or residue modulo $n$;
+\item The set of remainders of all integers divided by 5, that is $\{0, 1, 2, 3, 4\}$. The binary operation is addition then divided by 5, and take the remainder. For example $3 + 4 = 7 \bmod 5 = 2$. They form a group called addition group of integers modulo 5. Denoted as $Z_5$. We can consider it as partition the integers by taking the remainder. It is called \textbf{residue class} or residue modulo $n$;
 
 \item The rotations of Rubik cube form a group. The elements are all cube rotations\footnote{There are 18 Rubik cube rotations. A cube move rotates one of the 6 faces, front, back, top, bottom, left, right, 90\degree, 180\degree, or -90\degree. For example, rotating the left side 90\degree, 180\degree, -90\degree can be denoted as $L$、$L^2$、$L'$\cite{Wiki-Rubik-Cube-group}. Plus the identity transform, there are total 19 elements.}, the binary operation is the composition of cube rotates, corresponding to the result of performing one cube rotate after another.
 
@@ -905,7 +905,7 @@ As 0 is the identity element, we define $0 = 1^0$. Summarize all these three cas
 The additive group of integers is an example of infinite cyclic group. Let us see an example of finite cyclic group.
 
 \begin{example}
-Consider integers residue class modulo $n$. For integer $a$, we use notation $[a]$ to represent the residue class $a$ belongs to. Define the binary operation as the addition modulo $n$.
+Consider integers residue modulo $n$. For integer $a$, we use notation $[a]$ to represent the residue $a$ belongs to. Define the binary operation as the addition modulo $n$.
 
 \[
 [a] + [b] = [a + b]
@@ -1017,9 +1017,9 @@ If the subset $H$ is finite, then the condition to form a subgroup can be furthe
 For any group $G$, the finite subset $H$ forms a subgroup if and only if for all $a, b \in H$, $ab \in H$ holds.
 \end{theorem}
 
-With an integer $n$, we can classify all the integers into residues modulo $n$. Using the similar idea, we can classify the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
+With an integer $n$, we can partition all the integers into residues modulo $n$. Using the similar idea, we can partition the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
 
-When we classify integers into residues modulo $n$, we use the equivalent relationship as:
+When we partition integers into residues modulo $n$, we use the equivalent relationship as:
 
 \[
 a \equiv b \mod n, \text{if and only if}\ n | (a - b)
@@ -1031,7 +1031,7 @@ Using subgroup $H$, this equivalent relationship can also be defined as:
 a \equiv b \mod n, \text{if and only if}\ (a - b) \in H
 \]
 
-Thus we use subgroup $H$ to classify $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ classify any group $G$. To do that, we need first define the equivalent relationship $\sim$ with subgroup $H$:
+Thus we use subgroup $H$ to partition $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ partition any group $G$. To do that, we need first define the equivalent relationship $\sim$ with subgroup $H$:
 
 \[
 a \sim b, \text{if and only if}\ ab^{-1} \in H
@@ -1067,11 +1067,11 @@ Ha = \{ha | h \in H\}
           (H) edge (H1)
           (H) edge (H2);
 \end{tikzpicture}
-\caption{Right coset. For the additive group of integers, the subgroup $H$ contains all multiples of 3. Use 0, 1, 2 to add all these multiples, we get three non-overlapping sets. It is exactly one classification of integers.}
+\caption{Right coset. For the additive group of integers, the subgroup $H$ contains all multiples of 3. Use 0, 1, 2 to add all these multiples, we get three non-overlapping sets. It is exactly one partition of integers.}
 \label{fig:right-cosets-Z3}
 \end{figure}
 
-As shown in figure \ref{fig:right-cosets-Z3}, $Z$ is the additive group of integers. Set $H$ contains all multiples of 3, $0, \pm 3, \pm 6, ...$. It forms a subgroup under the addition. We use 0 in $Z$ to add from right\footnote{As the additive group of integers is Abelian, the addition is commutative, therefore, the left and right cosets are same.} to every element in $H$, which gives $H0$. Obviously, the result equals to $H$. It contains all the remainders of 0 modulo 3, denoted as [0]. Adding 1 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 1 modulo 3, denoted as [1]; Adding 2 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 2 modulo 3, denoted as [2]. If adding 3 to every elements in $H$, the result is as same as $H0$. In fact, whatever element $a$ we choose from $H0$ to generate a right coset $Ha$, it is always as same as $H0$; whatever element $b$ we choose from $H1$ to generate a right coset $Hb$, it is always as same as $H1$; whatever element $c$ we choose from $H2$ to generate a right coset $Hc$, it is always as same as $H2$. Put the three right cosets $H0$, $H1$, and $H2$ together, the result is exactly all the integers $Z$. It is a classification of $Z$: [0], [1], [3].
+As shown in figure \ref{fig:right-cosets-Z3}, $Z$ is the additive group of integers. Set $H$ contains all multiples of 3, $0, \pm 3, \pm 6, ...$. It forms a subgroup under the addition. We use 0 in $Z$ to add from right\footnote{As the additive group of integers is Abelian, the addition is commutative, therefore, the left and right cosets are same.} to every element in $H$, which gives $H0$. Obviously, the result equals to $H$. It contains all the remainders of 0 modulo 3, denoted as [0]. Adding 1 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 1 modulo 3, denoted as [1]; Adding 2 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 2 modulo 3, denoted as [2]. If adding 3 to every elements in $H$, the result is as same as $H0$. In fact, whatever element $a$ we choose from $H0$ to generate a right coset $Ha$, it is always as same as $H0$; whatever element $b$ we choose from $H1$ to generate a right coset $Hb$, it is always as same as $H1$; whatever element $c$ we choose from $H2$ to generate a right coset $Hc$, it is always as same as $H2$. Put the three right cosets $H0$, $H1$, and $H2$ together, the result is exactly all the integers $Z$. It is a partition of $Z$: [0], [1], [3].
 
 \begin{figure}[htbp]
 \centering
@@ -1088,11 +1088,11 @@ As shown in figure \ref{fig:right-cosets-Z3}, $Z$ is the additive group of integ
 \label{fig:right-cosets-S3}
 \end{figure}
 
-我们再看一个有限非阿贝尔群的例子。考虑3阶置换群
+Let's see another example about finite non-Abelian group. Consider a permutation group with degree 3.
 
 $G = S_3 = \{(1), (1\ 2), (1\ 3), (2\ 3), (1\ 2\ 3), (1\ 3\ 2)\}$，
 
-及其子群$H = \{(1), (1\ 2)\}$。我们用单位元恒等置换$(1)$，和另外两个置换$(1\ 3)$、$(2\ 3)$右乘$H$得到3个右陪集：
+It has a subgroup $H = \{(1), (1\ 2)\}$. We use the identity permutation $(1)$ and another two permutations $(1\ 3)$, $(2\ 3)$ to multiply $H$ from right. It gives 3 right cosets:
 
 \[
 \begin{array}{rcl}
@@ -1102,12 +1102,11 @@ H(2\ 3) & = & \{(2\ 3), (1\ 3\ 2)\}
 \end{array}
 \]
 
-我们也可以用另外三个元来作右陪集：
+We can use another three different elements to form the right cosets:
 
 $H(1\ 2)$、$H(1\ 2\ 3)$、$H(1\ 3\ 2)$
 
-同样由于
-$(1\ 2) \in H(1)$、$(1\ 2\ 3) \in H(1\ 3)$、$(1\ 3\ 2) \in H(2\ 3)$，所以一定有
+Because $(1\ 2) \in H(1)$, $(1\ 2\ 3) \in H(1\ 3)$, $(1\ 3\ 2) \in H(2\ 3)$, therefore we have:
 
 \[
 \begin{array}{l}
@@ -1117,19 +1116,19 @@ H(2\ 3) = H(1\ 3\ 2)
 \end{array}
 \]
 
-这样，子群$H$把整个群$G = S_3$分成$H(1)$、$H(1\ 3)$、$H(2\ 3)$三个不同的右陪集，这三个右陪集放在一起正是$G$，它们是$G$的一个分类。
+The subgroup $H$ partition the group $G = S_3$ into three disjoint right cosets $H(1)$、$H(1\ 3)$、$H(2\ 3)$. Putting these three right cosets together gets exactly $G$. They forms a partition of $G$.
 
-\index{左陪集}
-与右陪集对称，我们也可以定义左陪集。规定对称的等价关系$\sim'$：
+\index{left coset}
+Symmetric to right coset, we can also define left coset. Define the symmetric equivalent relationship $\sim'$ as:
 
 \[
-a \sim' b \text{当且仅当} b^{-1}a \in H
+a \sim' b \text{if and only if}\ b^{-1}a \in H
 \]
 
-这样，由等价关系$\sim'$所决定的类叫做子群$H$的左陪集。包含元素$a$的左陪集用符号$aH$来表示。它包含所有形如：$ah, h \in H$形式的$G$的元。因为一个群的乘法不一定满足交换律，所以一般来说$\sim$和$\sim'$两个等价关系并不相同，$H$的左右陪集也不相同。但是一个子群的左右陪集之间有一个共同点：
+The subset determined by equivalent relationship $\sim'$ is called left coset of subgroup $H$. The left coset respect to element $a$ is denoted as $aH$. It contains all the elements in form of $ah, h \in H$ in $G$. As the multiplication operation for group may not be necessarily commutative, $\sim$ is not identical to $\sim'$ typically, therefore the left and right cosets are not same as well. However, there is a common property for both left and right cosets:
 
 \begin{theorem}
-子群$H$的左右陪集个数相等，他们或者都是无限大，或者都有限并相等。
+For a given subgroup $H$, there are same numbers of left and right cosets. They are either infinity many, or the same finite numbers.
 \end{theorem}
 
 要想证明这一点，我们可以构造一个从$H$的右陪集到左陪集间的映射：$f: Ha \to a^{-1}H$。容易验证，这是一个一一映射。任意$Ha = Hb$，都有$ab^{-1} \in H$，所以$(ab^{-1})^{-1} = ba^{-1} \in H$。因此$a^{-1}H= b^{-1}H$。既然一一映射存在，自然左右陪集的个数是相等的。
