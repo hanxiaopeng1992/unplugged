@@ -1139,40 +1139,48 @@ In common cases, the right coset $Ha$ does not equal to the left coset $aH$. If 
 
 \index{normal subgroup} \index{invariant subgroup}
 \begin{definition}
-一个群$G$的子群$N$叫做一个\textbf{正规子群}（或者不变子群），加入对$G$的每个元$a$都有：
+For a group $G$, the subgroup $N$ is called \textbf{normal subgroup} (or invariant subgroup) if for every element $a$ in $G$, the equation:
+
 \[
 Na = aN
 \]
-一个正规子群的左（或右）陪集叫做$N$的\textbf{陪集}。
+
+holds. The left (or right) coset for a normal group is called \textbf{coset} of $N$.
 \label{normal-subgroup}
 \end{definition}
 
-由于其对称性，正规子集也叫做群的中心。判断一个群是否是正规子群，我们有以下两个定理：
+For the symmetric reason, a normal subgroup is also called the center of a group. We have two theorems to determine if a group is normal subgroup:
 
 \begin{theorem}
-一个群$G$的子群$N$是一个不变子群的充分必要条件是对$G$中的任何一个元$a$都有：
+For a group $G$, the subgroup $N$ is a normal subgroup (or invariant subgroup) if and only if for every element $a$ in $G$, equation:
+
 \[
 aNa^{-1} = N
 \]
+
+holds.
 \end{theorem}
 
 \begin{theorem}
-一个群$G$的子群$N$是一个不变子群的充分必要条件是对$G$中的任何一个元$a$，$N$中的任何一个元$n$都有：
+For a group $G$, the subgroup $N$ is a normal subgroup (or invariant subgroup) if and only if for every element $a$ in $G$, $n$ in $N$, equation:
+
 \[
 ana^{-1} \in N
 \]
+
+holds.
 \end{theorem}
 
-我们可以把正规子群$N$的所有陪集做成一个集合$\{aN, bN, cN, ...\}$，并且定义这个集合上的乘法为：
+For a normal subgroup $N$, all the cosets $\{aN, bN, cN, ...\}$ form a set. We define the multiplication for this set as:
 
 \[
 (xN)(yN) = (xy)N
 \]
 
-\index{商群}
-可以验证，正规子群的陪集在这个乘法下构成一个群，叫做\textbf{商群}，用$G/N$表示。在正规子群、商群和同态映射之间存在着重要的关系。首先一个群$G$同它的每个商群$G/N$同态。要证明这一点，我们可以构造一个映射$a \to aN, a \in G$。这显然是一个从$G$到商群的满射，对于$G$中任何两个元素$a, b$，都有$ab \to abN = (aN)(bN)$。所以它是一个同态满射。这样我们既可以通过正规子群，也可以通过商群推测群$G$的性质。为了做到这一点，我们定义一下“核”的概念。
+\index{quotient group}
+It easy to verify that, the set of cosets form a group under this multiplication operation. This group is called \textbf{quotient group}, denoted as $G/N$. There is important relations between the normal subgroup, quotient group, and homomorphism. First, there is a homomorphism between $G$ and every its quotient group $G/N$. To proof it, we can construct a map $a \to aN, a \in G$. It is obvious that this map is surjective. For all elements $a, b$ in $G$, we have $ab \to abN = (aN)(bN)$. Therefore, it is a surjective homomorphism. This fact tell us, we can either use the subgroup, or quotient group to understand the property of $G$. To do that, let us define the concept of `kernel'.
 
-\index{核}
+\index{kernel}
 \begin{definition}
 若$f$是群$G$到另一个群$G'$的同态满射，$G'$的单位元$e'$在映射$f$之下的逆像集合是$G$中的一个子集。这个子集叫做同态满射$f$的\textbf{核}。
 \end{definition}
