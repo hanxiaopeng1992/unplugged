@@ -1019,25 +1019,25 @@ For any group $G$, the finite subset $H$ forms a subgroup if and only if for all
 
 With an integer $n$, we can partition all the integers into residues modulo $n$. Using the similar idea, we can partition the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
 
-When we partition integers into residues modulo $n$, we use the equivalent relationship as:
+When we partition integers into residues modulo $n$, we use the equivalence relation as:
 
 \[
 a \equiv b \mod n, \text{if and only if}\ n | (a - b)
 \]
 
-Using subgroup $H$, this equivalent relationship can also be defined as:
+Using subgroup $H$, this equivalence relation can also be defined as:
 
 \[
 a \equiv b \mod n, \text{if and only if}\ (a - b) \in H
 \]
 
-Thus we use subgroup $H$ to partition $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ partition any group $G$. To do that, we need first define the equivalent relationship $\sim$ with subgroup $H$:
+Thus we use subgroup $H$ to partition $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ partition any group $G$. To do that, we need first define the equivalence relation $\sim$ with subgroup $H$:
 
 \[
 a \sim b, \text{if and only if}\ ab^{-1} \in H
 \]
 
-Given $a$ and $b$, we can strictly determine if $ab^{-1}$ belongs $H$. Why is $\sim$ an equivalent relationship? Because it satisfies all the three conditions for equivalence:
+Given $a$ and $b$, we can strictly determine if $ab^{-1}$ belongs $H$. Why is $\sim$ an equivalence relation? Because it satisfies all the three conditions for equivalence:
 
 \begin{enumerate}
 \item As $aa^{-1} = e \in H$, we have $a \sim a$. It is reflexive;
@@ -1047,7 +1047,7 @@ Given $a$ and $b$, we can strictly determine if $ab^{-1}$ belongs $H$. Why is $\
 
 \index{right coset}
 \begin{definition}
-The subset determined by the equivalent relationship $\sim$ is called the \textbf{right coset} of subgroup $H$. if $a$ is a group element, the right cost includes $a$ is denoted as $Ha$.
+The subset determined by the equivalence relation $\sim$ is called the \textbf{right coset} of subgroup $H$. if $a$ is a group element, the right cost includes $a$ is denoted as $Ha$.
 \end{definition}
 
 When use $a$ to multiply every element in $H$ from right, we get the coset that includes $a$. In other words, $Ha$ contains all the elements in $G$ that is in form of $ha$, where $h \in H$.
@@ -1119,13 +1119,13 @@ H(2\ 3) = H(1\ 3\ 2)
 The subgroup $H$ partition the group $G = S_3$ into three disjoint right cosets $H(1)$、$H(1\ 3)$、$H(2\ 3)$. Putting these three right cosets together gets exactly $G$. They forms a partition of $G$.
 
 \index{left coset}
-Symmetric to right coset, we can also define left coset. Define the symmetric equivalent relationship $\sim'$ as:
+Symmetric to right coset, we can also define left coset. Define the symmetric equivalence relation $\sim'$ as:
 
 \[
 a \sim' b \text{if and only if}\ b^{-1}a \in H
 \]
 
-The subset determined by equivalent relationship $\sim'$ is called left coset of subgroup $H$. The left coset respect to element $a$ is denoted as $aH$. It contains all the elements in form of $ah, h \in H$ in $G$. As the multiplication operation for group may not be necessarily commutative, $\sim$ is not identical to $\sim'$ typically, therefore the left and right cosets are not same as well. However, there is a common property for both left and right cosets:
+The subset determined by equivalence relation $\sim'$ is called left coset of subgroup $H$. The left coset respect to element $a$ is denoted as $aH$. It contains all the elements in form of $ah, h \in H$ in $G$. As the multiplication operation for group may not be necessarily commutative, $\sim$ is not identical to $\sim'$ typically, therefore the left and right cosets are not same as well. However, there is a common property for both left and right cosets:
 
 \begin{theorem}
 For a given subgroup $H$, there are same numbers of left and right cosets. They are either infinity many, or the same finite numbers.
@@ -1252,13 +1252,14 @@ From the existence of this one to one mapping, we know that for finite group $G$
 \end{theorem}
 
 \begin{proof}
-首先，我们知道$G$能够为$H$的陪集全部覆盖；并且由于陪集之上定义的等价关系，我们知道陪集之间是没有交集的。如果存在元素$c$既属于$Ha$，也属于$Hb$，那么$c \sim a$，$c \sim b$，所以$a \sim b$，所以$Ha = Hb$。再加上子群$H$与陪集存在一一映射的引理，我们知道每个陪集的大小都等于$H$的阶$|H|=n$，如果陪集的个数（也就是$H$的指数）等于$m$，一定有
+First, we know that $G$ can be fully partitioned by the cosets of $H$; From the equivalence relation defined for coset, we know there is no overlap among them. If element $c$ belongs to both $Ha$ and $Hb$, then $c \sim a$, and $c \sim b$, therefore, $a \sim b$. Equation $Ha = Hb$ holds. And with the one to one mapping between the subgroup $H$ and cosets, we know the order of every coset equals to the order of $H$, which is $|H| = n$. Given the number of cosets is $m$ (which equals to the index of $H$), we finally get the result:
+
 \[
 |G| = mn
 \]
 \end{proof}
 
-注意，拉格朗日定理的逆定理不一定成立。我们无法将群的阶做任意因子分解，然后对每个因子都找到子群和陪集。从拉格朗日定理，我们可以得到很多有用的推论。
+Note that there is a conversed question to Lagrange's theorem, whether every divisor of the order of a group is the order of some subgroup? This does not hold in general. Later we'll see such negative example in figure \ref{fig:group-graph} (c). The order of alternative group $A_4$ is 12, but it has no subgroup of order 6. We can deduce many interesting results from Lagrange's theorem.
 
 \begin{corollary}
 一个有限群$G$中的任意元素$a$的阶都能整除$G$的阶。
