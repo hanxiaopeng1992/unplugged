@@ -1285,39 +1285,54 @@ This is because the order $n$ of $a$ divides $G$, let $|G| = nk$, we have:
 a^{|G|} = a^{nk} = (a^n)^k = e^k = e
 \]
 
-Lagrange's theorem in group theory can be used to prove the Fermat's little theorem in number theory. The theorem is named after Pierre de Fermat, who found in 1636. In a letter he wrote to a friend\footnote{Friend and confidant, French mathematician Frénicle de Bessy.} in October 18, 1640, Fermat first stated this theorem. Euler provided the first published proof in 1736. But Leibniz had given virtually the same proof in an unpublished manuscript from sometime before 1683.
+Lagrange's theorem in group theory can be used to prove the Fermat's little theorem in number theory. The theorem is named after Pierre de Fermat, who found in 1636. In a letter he wrote to a friend\footnote{Friend and confidant, French mathematician Frénicle de Bessy.} in October 18, 1640, Fermat first stated this theorem. It is called the ``little theorem'' to distinguish it from Fermat's last theorem. Euler provided the first published proof in 1736. But Leibniz had given virtually the same proof in an unpublished manuscript from sometime before 1683.
 
 \index{Fermat's little theorem}
 \begin{theorem}
-\textbf{费马小定理}：若$p$是素数，对任何满足$0 < a < p$的整数$a$都有，$a^{p-1}-1$能被$p$整除。
+\textbf{Fermat's little theorem}: If $p$ is prime, for any integer $a$ that $0 < a < p$, then $p$ can divides $a^{p-1}-1$.
 \end{theorem}
 
 \begin{proof}
-考虑整数模$p$乘法群。这个群的元素由所有模$p$的非零余数构成，因为$p$是素数，所以群元素为1, 2, ..., $p-1$，单位元$e = 1$，群的阶为$p-1$。根据拉格朗日定理的推论\ref{corollary:Lagrange-elem-order}，有：
+Consider the multiplicative integer group modulo $p$. The group elements are all none zero residues modulo $p$. As $p$ is prime, therefore the group elements are 1, 2, ..., $p-1$. The identity element $e = 1$. The order of the group is thus $p-1$. According to the corollary \ref{corollary:Lagrange-elem-order} of Lagrange's theorem, we have:
+
 \[
 a^{p-1} = e
 \]
-因为单位元为1，所以上式可写为：
+
+Since the identity element is 1, this equation can be written as:
+
 \[
 a^{p-1} \equiv 1 \mod p
 \]
-故$p$整除$a^{p-1} - 1$。
+
+Therefore, $p$ divides $a^{p-1} - 1$.
 \end{proof}
 
-和这一证明对比，初等数论方法的证明要复杂得多（\cite{StepanovRose15}第5.2到5.4）。我们再介绍另一种有趣的“项链”证法\cite{Wiki-FLT-proof}，供读着参考。
+Compare to this proof, the way to prove Fermat's little theorem in elementary theory of number is much complex (for example, section 5.2 - 5.4 in \cite{StepanovRose15}). Here we give another interesting combinatorial method called proof by counting necklace\cite{Wiki-FLT-proof}.
 
 \begin{proof}
-考虑有$a$颗不同颜色的珍珠，我们要串一条长为$p$的珍珠串。其中$p$为素数。显然一共有$a^p$种不同的串，这是因为串中每个位置都可以在$a$颗珍珠中选择，共选$p$次。
+Consider there are pearls in $a$ different colors. we are going to make strings of length $p$, where $p$ is prime. Obviously there are total $a^p$ different strings, as every pearl can be chosen among $a$ colors, as we need make $p$ times selection.
 
-例如有两种颜色$A$、$B$的珍珠，要串长度为5的串。即$a = 2, p = 5$，一共有$2^5 = 32$种不同的串：
+For example there are pearls in two different colors $A$ red, and $B$ green. When make strings contain 5 pearls, that is $a = 2, p = 5$, there are total $2^5 = 32$ different strings:
 
 \begin{verbatim}
   AAAAA, AAAAB, AAABA, ..., BBBBA, BBBBB.
 \end{verbatim}
 
-我们要证明，在这$a^p$串珍珠中，如果去掉$a$个颜色完全相同的串（在上述例子中是串\texttt{AAAAA}和\texttt{BBBBB}），剩下的$a^p - a$串珍珠可以分成若干组，每个组恰好有$p$串珍珠。也就是说$p$整除$a^p - a$。
+Corresponding to
 
-如果把每串珍珠首尾连接起来做成项链。原来有些不同的串会变成相同的项链。如果一个串可以通过旋转变换成另一个，这两个串必然做成相同的项链。例如下面的5个串珍珠可以做成相同的项链：
+\begin{verbatim}
+  red-red-red-red-red,
+  red-red-red-red-green,
+  red-red-red-green-red,
+  ...,
+  green-green-green-green-red,
+  green-green-green-green-green.
+\end{verbatim}
+
+We are going to prove that, among these $a^p$ strings, if remove $a$ strings that are all in the same color (in the above example, they are strings of \texttt{AAAAA} and \texttt{BBBBB}), the rest $a^p - a$ strings can be divided in several groups. Each group has exactly $p$ strings, thus $p$ divides $a^p - a$.
+
+If we link the head and tail for every pearl string to make a necklace, some different strings will become same necklace. When a string can transform to the other by rotation, the two strings must form the same necklace. The following 5 strings form the same necklace for example:
 
 \begin{verbatim}
   AAAAB, AAABA, AABAA, ABAAA, BAAAA.
@@ -1325,13 +1340,13 @@ a^{p-1} \equiv 1 \mod p
 
 \begin{figure}[htbp]
   \centering
-  \subcaptionbox{一串项链代表7种不同的串：\texttt{ABCBAAC}, \texttt{BCBAACA}, \texttt{CBAACAB}, \texttt{BAACABC}, \texttt{AACABCB}, \texttt{ACABCBA}, \texttt{CABCBAA}}[0.45\linewidth]{\includegraphics[scale=0.2]{img/bracelet-rotate.eps}} \quad
-  \subcaptionbox{相同珍珠串成的项链只代表一种串：\texttt{AAAAAAA}}[0.45\linewidth]{\includegraphics[scale=0.2]{img/bracelet-identical.eps}}
-  \caption{通过项链对珍珠串进行分类}
+  \subcaptionbox{A necklace in 3 colors represents 7 different strings: \texttt{ABCBAAC}, \texttt{BCBAACA}, \texttt{CBAACAB}, \texttt{BAACABC}, \texttt{AACABCB}, \texttt{ACABCBA}, \texttt{CABCBAA}}[0.45\linewidth]{\includegraphics[scale=0.2]{img/bracelet-rotate.eps}} \quad
+  \subcaptionbox{The necklace in same color only represent one string: \texttt{AAAAAAA}}[0.45\linewidth]{\includegraphics[scale=0.2]{img/bracelet-identical.eps}}
+  \caption{Partition strings through necklace}
   \label{fig:bracelet}
 \end{figure}
 
-用这种方法，上面例子中的32串珍珠可以分成5种不同颜色的项链和2种同色的项链：
+By this means, the 32 pearl strings in above example, can be partitioned into 5 necklaces in different colors and 2 necklaces in the same color:
 
 \begin{verbatim}
   [AAABB, AABBA, ABBAA, BBAAA, BAAAB];
@@ -1343,7 +1358,7 @@ a^{p-1} \equiv 1 \mod p
   [BBBBB].
 \end{verbatim}
 
-一串项链可以代表多少种不同的串呢？如果一个串$S$由若干相同的子串$T$复制连接而成，而$T$无法再继续分拆成相同的子串，则由$S$构成的项链可代表$|T|$种不同的串，其中$|T|$表示串$T$的长度。例如串$S=$\texttt{ABBABBABBABB}，由相同的子串$T=$\texttt{ABB}复制多次而成，如果我们一次旋转一颗珍珠，一共可以得到3串不同的结果：
+How many strings can a necklace can represent? If a string $S$ can be split into several same sub-string $T$, while $T$ can't be split into the same sub-string any more, then the necklace $S$ represents $|T|$ different strings, where $|T|$ is the length of sub-string $T$. For example, string $S=$\texttt{ABBABBABBABB} can be split into sub-string $T=$\texttt{ABB}, while \texttt{ABB} can't be split any more. If we rotate a pearl per time, there are total 3 different results:
 
 \begin{verbatim}
   ABBABBABBABB,
@@ -1351,6 +1366,7 @@ a^{p-1} \equiv 1 \mod p
   BABBABBABBAB.
 \end{verbatim}
 
+There are not any other different strings besides these 3. Since the length of \texttt{ABB}
 除去这3种之外，不可能再有其它不同种类的串了。\texttt{ABB}的长度为3，再次旋转必然会循环得到相同的结果。这样，所有的$a^p$串珍珠可分成两类。一类是$a$串颜色相同的串；另一类颜色不同，但是由于这些串的长度$p$是素数，它绝不可能由若干子串复制连接出来。所以任何一个这样的串连成的项链，总共代表$p$种不同的串。而这样的串总共有$a^p - a$种，它们可以通过连成项链后分组，每组恰好$p$个串，代表一种不同的项链。因此$a^p-a = a^{p-1}$一定可以被$p$整除。
 \end{proof}
 
