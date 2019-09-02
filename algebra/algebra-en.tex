@@ -1472,7 +1472,7 @@ Let us see an example. Below is the multiplication table for all the none zero r
 \end{tabular}
 \vspace{5mm}
 
-任给一个整数$n$，如何求出其欧拉函数的值呢？因为任何大于1的整数都可以写成素数幂的乘积形式，我们首先来看，对于素数$p$的$m$次幂，$\upphi(p^m)$如何计算。也就是求出从1到$p^m-1$中，有多少个数和$p^m$互素。显然我们只要把$p$的倍数这些数除去即可。这些数分别是：$p, 2p, 3p, ..., p^m - p$，我们把它们分别除以$p$，就可以得到自然数序列：$1, 2, 3, ..., p^{m-1} - 1$。显然共有$p^{m-1} - 1$个。于是素数的整数次幂的欧拉函数值为：
+Given a integer $n$, how to evaluate Euler function? As any integer greater than 1 can be factored as power of prime numbers, let us first see how to evaluate $\upphi(p^m)$ for the $m$ power of a prime $p$. We are going to count how many numbers from 1 to $p^m - 1$ are coprime to $p^m$. We can easily do this by removing the multiples of $p$. These numbers are $p, 2p, 3p, ..., p^m - p$. Divide them by $p$, gives the nature number sequence $1, 2, 3, ..., p^{m-1} - 1$. We immediately know there are $p^{m-1} - 1$ numbers. On top of this, we deduce the value of Euler function for the power of prime number as:
 
 \[
 \begin{array}{rcl}
@@ -1482,7 +1482,7 @@ Let us see an example. Below is the multiplication table for all the none zero r
 \end{array}
 \]
 
-接下来我们考虑$n = p^uq^v$，也就是两个不同素数幂的积。我们首先从1到$n-1$中，减去$p$的所有倍数，然后再减去$q$的所有倍数，但是有些整数既是$p$的倍数，也是$q$的倍数，所以最后要把这些$pq$的倍数再加回来（组合中的容斥原理）。这样有：
+We next consider number in form of $n = p^uq^v$, which is product of power of different prime numbers. We need first remove all multiples of $p$, then remove all multiples of $q$. But there are numbers that are the multiples of both $p$ and $q$. They are removed twice. We need add these multiples of $pq$ back (Principle of inclusion and exclusion in combinatorics). Thus we have:
 
 \[
 \begin{array}{rcl}
@@ -1493,7 +1493,7 @@ Let us see an example. Below is the multiplication table for all the none zero r
 \end{array}
 \]
 
-特别地，当指数$u$, $v$都是1的时候，我们有$\upphi(pq) = \upphi(p)\upphi(q)$。并且我们可以把这个结果推广到多个素数幂的情况，如果$n = p_1^{k_1}, p_2^{k_2}...p_m^{k_m}$，则其欧拉函数的值为：
+Particularly when both $u$ and $v$ are 1, we have $\upphi(pq) = \upphi(p)\upphi(q)$. We can expand this result to multiple powers of prime numbers. Given $n = p_1^{k_1}, p_2^{k_2}...p_m^{k_m}$, the Euler function can be evaluated as:
 
 \[
 \begin{array}{rcl}
@@ -1502,11 +1502,12 @@ Let us see an example. Below is the multiplication table for all the none zero r
 \end{array}
 \]
 
-根据这一结论，我们可以找到快速求欧拉函数的方法，读着可以通过本节的习题实现这一算法。
+We can develop the fast evaluation algorithm from this result. We leave this as an exercise in this chapter.
 
 \vspace{5mm}
 
-\index{欧拉}
+\index{Euler}
+
 欧拉是伟大的瑞士数学家和自然科学家。人们一般把他与阿基米德、牛顿、高斯并列为数学史上最伟大的四位数学家。1707年4月15日欧拉出生于瑞士的巴塞尔。牧师家庭的父亲曾希望他学习神学。欧拉13岁考入巴塞尔大学神学院，主修哲学和法律。欧拉很快在数学方面表现出兴趣，每周六下午都和当时欧洲最优秀的数学家约翰$\cdot$伯努利学习数学。16岁时，欧拉取得了他的哲学硕士学位。之后，他遵从了父亲的意愿进入了神学系，并准备成为一名牧师。但最终约翰$\cdot$伯努利说服欧拉的父亲允许欧拉学习数学，并使他相信欧拉注定能成为一位伟大的数学家。
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
