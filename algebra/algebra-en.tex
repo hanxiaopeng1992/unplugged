@@ -1421,25 +1421,25 @@ The Euler theorem in theory of numbers, is more generic than Fermat's little the
 \textbf{Euler theorem}: If $0 < a < n$, $a$ and $n$ are coprime, then $n$ divides $a^{\upphi(n)} - 1$.
 \end{theorem}
 
-其中$\upphi(n)$是欧拉函数\footnote{也称为欧拉总计函数（Euler totient function）或者欧拉$\upphi$函数}，它的定义是所有小于$n$且与$n$互素的正整数个数。即：
+Where $\upphi(n)$ is Euler function\footnote{Also know as Euler totient function, or Euler $\upphi(n)$ function.}. It is defined as the number of all positive integers that less than $n$, and coprime to $n$.
 
 \[
-\upphi(n) = |\{i | 0 < i < n\ \text{且} gcd(i, n) = 1 \}|
+\upphi(n) = |\{i | 0 < i < n\ \text{and}\ gcd(i, n) = 1 \}|
 \]
 
-欧拉使用初等数论的方法证明了这一定理。我们展示如何利用群论和拉格朗日定理给出一个简洁的证明。
+Euler proved this theorem with the method in elementary theory of numbers. There is a elegant proof by using Lagrange's theorem in group theory.
 
 \begin{proof}
-考虑整数模$n$的非零余数。我们把模$n$乘法之下可以互逆的所有余数挑选出来。它们构成一个模$n$乘法群。按照欧拉$\upphi$函数的定义，$\upphi(n)$的值，是所有小于$n$且与$n$互素的正整数的个数。而这些正整数，恰好对应这个乘法群中的元素。所以这个群的阶就是$\upphi(n)$。根据拉格朗日定理的推论\ref{corollary:Lagrange-elem-order}，有：
+Consider the none zero residues modulo $n$. We pick out all the mutually inverse residues under the multiplication modulo $n$. They form a multiplicative group modulo $n$. From the definition of Euler $\upphi$ function, the value of $\upphi(n)$ is the number of all positive integers that less than $n$ and coprime to $n$. While these positive numbers are exactly the elements of the multiplicative group. Thus the order of this group is $\upphi(n)$. From the corollary \ref{corollary:Lagrange-elem-order} of Lagrange's theorem, we have:
 
 \[
 a^{\upphi(n)} = e
 \]
 
-故而$a^{\upphi(n)} \equiv 1 \mod n$，所以$n$一定整除$a^{\upphi(n)} - 1$。
+Therefore, $a^{\upphi(n)} \equiv 1 \mod n$, which immediately gives the result, $n$ divides $a^{\upphi(n)} - 1$.
 \end{proof}
 
-我们举个例子，下表是模10的非零余数的乘法表。我们可以从表中找到单位元1，用下划线标出。然后从其所对应的行列找到模乘的两个数，加粗标出。这些数都和10互素。反之，那些不和10互素的余数所在的行列中都有0元素，而0不是群中的元。可以看到和10互素的余数恰好是群中的元素1, 3, 7, 9。
+Let us see an example. Below is the multiplication table for all the none zero residues modulo 10. We can located the identity element 1, and mark the cells underline. Then from that cell, along with the row and column, we can find two numbers, marked in bold. Their modulo product is 1, and both are coprime to 10. On the other hand, for every residue number that is not coprime to 10, the row and column where it is also contain 0. But 0 is not group element. We can see that all the residues that are coprime to 10 are exactly the group elements 1, 3, 7, 9.
 
 \vspace{5mm}
 \definecolor{Gray}{gray}{0.9}
