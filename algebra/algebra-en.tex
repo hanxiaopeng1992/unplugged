@@ -1533,21 +1533,22 @@ On September 18, 1783, after a lunch with his family, Euler was discussing the n
 \vspace{5mm}
 
 \index{RSA cryptosystem}
-今天，费马小定理已经走进人们的日常生活中，不管是网络购物还是电子交易。1976年，美国斯坦福大学的教授马丁$\cdot$赫尔曼（Martin Hellman）和惠特菲尔德$\cdot$迪菲（Whitfield Diffie）提出了非对称公钥加密算法的思想。1977年美国麻省理工学院的罗纳德$\cdot$李维斯特（Ron Rivest）、阿迪$\cdot$萨莫尔（Adi Shamir）和伦纳德$\cdot$阿德曼（Len Adleman）提出了构造单向函数的数论方法，从而产生了以这三个人姓氏首字母命名的RSA算法。
 
-RSA算法的核心思想是人们可以容易地将两个大素数乘在一起得到一个合数，然而在不事先知道这两个素数的情况下，对这个合数做因数分解却非常困难。对于一个200位以上的的大数做因式分解，即使用强大的超级计算机，所耗费的时间也要超过宇宙的年龄。因此，如果能够迅速地找到大素数，就可以构造难以破解的密钥。但是素数的存在规律是神秘的，人们没有找到素数的“通项公式”。最原始的办法是挑选一个数$n$，然后逐一验证从1到$\sqrt{n}$之间的整数能否整除$n$。但这种方法非常低效，对大数进行素数检测，同样会超过宇宙年龄所需的时间。稍好的方法是埃拉托斯特尼筛法。列出从2开始到$n$之间的整数，然后从2开始，先筛除所有2的倍数，然后再筛除3的倍数，这样每次都从没有被筛除的第一个数开始重复这一步骤，直到把不大于$\sqrt{n}$的所有倍数都筛除为止。这样就可以获得$n$以内的所有素数。但这样方法同样只是对较小的整数$n$有效。无法达到大素数检测的目的。
+Fermat little theorem is widely used in our everyday life, from internet shopping to electronic payment. In 1976, professor Whitfield Diffie and Martin Hellman in Stanford University developed the concept of asymmetric public-private key cryptosystem. In 1977, Ron Rivest, Adi Shamir, and Leonard Adleman in Massachusetts Institute of Technology (MIT) developed a one-way function that was hard to invert based on theory of numbers. The algorithm is now known as RSA – the initials of their surnames in same order as their paper.
 
-费马小定理恰好给出了一种大素数检验的办法。对于一个大整数$n$，我们可以随机挑选一个小于$n$的正整数$a$，将其称为“证人”（witness），然后检查$a^{n-1}$模$n$的余数是否等于1，如果不是1，根据费马小定理，$n$一定不是素数。如果等于1，则$n$有可能是素数。
+The key asymmetry concept of RSA is based on the fact that we can easily create a composite numbers from two large prime numbers, while there is practical difficulty to factor them. This is known as the {\em factoring problem}. For a large number of over 200 digits, even the most powerful super computer will cost time longer than the age of universe. In order to construct a encrypt key hard to break, we need a method that can find the large prime numbers fast. However, people do not know the exact pattern about how prime numbers distributed in nature numbers. There is no formula to enumerate prime numbers. The brute force method is to randomly pick a number $n$, then examine from 1 to $\sqrt{n}$, check if all do not divide $n$. But this primality test method is very ineffective. The time will also exceed the age of universe. A better method is the Eratosthenes sieve algorithm. We first enumerate all numbers from 2 to $n$. Start from 2, removal all multiples of 2, then remove all multiples of 3... Repeat this every time from the next number that is not filtered out, till the number not greater than $\sqrt{n}$. This process gives all the prime numbers to $n$. However, it is still applicable for small $n$, but can't serve for the large number primality test.
 
-根据这一思想构造的“费马素数检测”算法如下：
+Interestingly, Fermat's little theorem provides a way for fast primality test. For a large number $n$, we can randomly select a positive integer $a$ less than it as a `witness'. Then check if the remainder of $a^{n-1}$ modulo $n$ is 1. If not 1, $n$ must not be prime number according to Fermat's little theorem. Otherwise if it is 1, then $n$ may be a prime number.
+
+The `Fermat primality test algorithm' based on this idea can be described as below:
 
 \begin{algorithmic}
 \Function{primality}{$n$}
-  \State 随机选择正整数$a < n$
+  \State Random select a positive integer $a < n$
   \If{$a^{n-1} \equiv 1 \mod n$}
-    \State \Return 素数
+    \State \Return prime number
   \Else
-    \State \Return 合数
+    \State \Return composite number
   \EndIf
 \EndFunction
 \end{algorithmic}
