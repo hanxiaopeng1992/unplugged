@@ -1553,18 +1553,18 @@ The `Fermat primality test algorithm' based on this idea can be described as bel
 \EndFunction
 \end{algorithmic}
 
-我们并不需要真的计算$a$的$n-1$次方然后再求除$n$的余数，而是通过模乘运算。并且还可以进一步利用中间的计算结果加速，例如当我们得到$b = a^2 \mod n$时，可以直接计算$b^2 \mod n$从而得到$a^4 \mod n$。假设要计算$a^{11} \mod n$，因为：
+We needn't compute the exact value of $n-1$ power of $a$, then divide $n$ to get the remainder. We can use modular arithmetic to speed up. The intermediate result can be largely re-used. After we calculate $b = a^2 \mod n$, we can next get $b^2 \mod n$, which equals to $a^4 \mod n$. For example, when evaluate $a^{11} \mod n$, since:
 
 \[
 a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \]
 
-所以我们真正需要计算的只有$a^2 \mod n$, $(a^2)^2 \mod n$, $((a^2)^2)^2 \mod n$。为此，我们可以把$n$表示为2进制，然后仅仅迭代计算数字为1所在位上的模乘结果，这是一个复杂度为$O(\lg n)$的算法。因此费马素数检测的速度很快。
+What have to calculated are only $a^2 \mod n$, $(a^2)^2 \mod n$, and $((a^2)^2)^2 \mod n$. Basically, we can express $n$ in binary format, and only iterate calculate the modular product for the digits of 1. This is a algorithm with complexity of $O(\lg n)$. Fermat primality test is very fast because of this.
 
-但某个数即使通过了费马素数检测，仍然不一定是素数，例如341 = 11 $\times$ 31，但是$2^{340} \equiv 1 \mod 341$。为了减少费马检验的“假阳性”，人们进行了一系列改进。首先是适当增加证人的数量。人们发现，如果一个数无法通过费马检验，那么至少存在一半小于$n$的数都无法通过费马检验\cite{Algorithms-DPV}（26页）。
+However, even a number passed Fermat primality test, it is not necessarily prime number. For example 341 = 11 $\times$ 31 is a composite number, but $2^{340} \equiv 1 \mod 341$ can pass the Fermat primality test. To reduce the possibility of such false positive case, people developed many improvements. The first improvement is to increase the number of witness. We can prove that, if a number does not pass Fermat primality test, then there exist at least half of $n$ numbers that can't pass too (\cite{Algorithms-DPV}, pp26).
 
 \begin{theorem}
-正整数$a$小于$n$，且和$n$互素，如果$a^{n-1} \not\equiv 1 \mod n$，则所有$a<n$的选择中，至少有一半也是这样。
+For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\equiv 1 \mod n$, then for all selected $a < n$, it also holds for at least half.
 \end{theorem}
 
 \begin{figure}[htbp]
@@ -1572,8 +1572,8 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \begin{tikzpicture}[scale=0.8]
 \draw (0, 0) circle[x radius=1cm, y radius=3cm]
       (5, 0) circle[x radius=1cm, y radius=3cm];
-\path (0, 3) node[above] {通过费马测试的数}
-      (5, 3) node[above] {未通过费马测试};
+\path (0, 3) node[above] {pass Fermat test}
+      (5, 3) node[above] {not pass Fermat test};
 \path (0, 0) node (b) {}
       (5, 0) node (fb) {}
       (0, 1.5) node (a) {}
@@ -1591,21 +1591,21 @@ a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
       (a) to [bend left] (fa)
       (c) to [bend right] (fc);
 \end{tikzpicture} \\
-集合$\{1, 2, ..., n-1\}$
-\caption{从通过费马测试的集合向未通过的集合做映射}
+Set $\{1, 2, ..., n-1\}$
+\caption{Map from the set that pass Fermat primality test to the set that does not}
 \label{fig:Fermat-test}
 \end{figure}
 
 \begin{proof}
-若某个$a$使得$a^{n-1} \not\equiv 1 \mod n$，对于任何可以同行过费马检测的证人$b$（即$b^{n-1} \equiv 1 \mod n$），都可以构造一个费马检测的反例$ab$
+If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $b$ that passes Fermat primality test (It means $b^{n-1} \equiv 1 \mod n$), we can create a negative case for Fermat test $ab$.
 
 \[
 (ab)^{n-1} \equiv a^{n-1}b^{n-1} \equiv a^{n-1}1 \not\equiv 1 \mod n
 \]
 
-并且，由于$i \neq j$，有$a \cdot i \not\equiv a \cdot j$，所以这些反例都是彼此不同的。
+And because $i \neq j$, we have $a \cdot i \not\equiv a \cdot j$, therefore, all these negative cases are not same.
 
-如图\ref{fig:Fermat-test}所示，如果存在不通过费马测试的整数，则这样的数至少和通过的一样多。
+As shown in figure \ref{fig:Fermat-test}, if there exists a number that can't pass Fermat test, then the positive cases are as same amount as the negative cases.
 \end{proof}
 
 为此，我们可以多次选取不同的证人$k$次执行费马检验，这样就可以把$n$不是素数的概率降低到$\dfrac{1}{2^k}$。但实际上存在这样的合数$n$，使得任何小于$n$且和$n$互素的数$a$都有$a^{n-1} \mod n$。也就是说无论选什么样的$a$，这样的合数都能通过费马检测。卡迈克尔（Carmichael ）在1910年发现了第一个这样的数561 = 3 $\times$ 11 $\times$ 17，这样的数现在被称为卡迈克尔数，或者费马伪素数\footnote{捷克数学家西摩尔卡（Václav Šimerka）在1885年发现了前7个费马伪素数：561 = 3 $\times$7 $\times$11, 1105 = 5 $\times$13 $\times$7, 1729 = 7 $\times$13 $\times$19, 2465 = 5 $\times$17 $\times$29, 2821 = 7 $\times$13 $\times$31, 6601 = 7 $\times$23 $\times$41, 8911 = 7 $\times$19 $\times$67。但是他的工作不为人知。}。埃尔德什曾经猜测有无穷多个卡迈克尔数，1994年人们证明了对足够大的$n$，在1到$n$之间至少存在$n^{2/7}$个卡迈克尔数。从而说明存在无穷多的卡迈克尔数\cite{Wiki-Carmichael-number}。
