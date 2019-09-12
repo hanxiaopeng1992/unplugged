@@ -1540,7 +1540,7 @@ The key asymmetry concept of RSA is based on the fact that we can easily create 
 
 Interestingly, Fermat's little theorem provides a way for fast primality test. For a large number $n$, we can randomly select a positive integer $a$ less than it as a `witness'. Then check if the remainder of $a^{n-1}$ modulo $n$ is 1. If not 1, $n$ must not be prime number according to Fermat's little theorem. Otherwise if it is 1, then $n$ may be a prime number.
 
-The `Fermat primality test algorithm' based on this idea can be described as below:
+The {\em Fermat's primality test} algorithm based on this idea can be described as below:
 
 \begin{algorithmic}
 \Function{primality}{$n$}
@@ -1559,9 +1559,9 @@ We needn't compute the exact value of $n-1$ power of $a$, then divide $n$ to get
 a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \]
 
-What have to calculated are only $a^2 \mod n$, $(a^2)^2 \mod n$, and $((a^2)^2)^2 \mod n$. Basically, we can express $n$ in binary format, and only iterate calculate the modular product for the digits of 1. This is a algorithm with complexity of $O(\lg n)$. Fermat primality test is very fast because of this.
+What have to calculated are only $a^2 \mod n$, $(a^2)^2 \mod n$, and $((a^2)^2)^2 \mod n$. Basically, we can express $n$ in binary format, and only iterate calculate the modular product for the digits of 1. This is a algorithm with complexity of $O(\lg n)$. Fermat's primality test is very fast because of this.
 
-However, even a number passed Fermat primality test, it is not necessarily prime number. For example 341 = 11 $\times$ 31 is a composite number, but $2^{340} \equiv 1 \mod 341$ can pass the Fermat primality test. To reduce the possibility of such false positive case, people developed many improvements. The first improvement is to increase the number of witness. We can prove that, if a number does not pass Fermat primality test, then there exist at least half of $n$ numbers that can't pass too (\cite{Algorithms-DPV}, pp26).
+However, even a number passed Fermat's primality test, it is not necessarily prime number. For example 341 = 11 $\times$ 31 is a composite number, but $2^{340} \equiv 1 \mod 341$ can pass the Fermat's primality test. To reduce the possibility of such false positive case, people developed many improvements. The first improvement is to increase the number of witness. We can prove that, if a number does not pass Fermat's primality test, then there exist at least half of $n$ numbers that can't pass too (\cite{Algorithms-DPV}, pp26).
 
 \begin{theorem}
 For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\equiv 1 \mod n$, then for all selected $a < n$, it also holds for at least half.
@@ -1572,8 +1572,8 @@ For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\e
 \begin{tikzpicture}[scale=0.8]
 \draw (0, 0) circle[x radius=1cm, y radius=3cm]
       (5, 0) circle[x radius=1cm, y radius=3cm];
-\path (0, 3) node[above] {pass Fermat test}
-      (5, 3) node[above] {not pass Fermat test};
+\path (0, 3) node[above] {pass Fermat's test}
+      (5, 3) node[above] {not pass Fermat's test};
 \path (0, 0) node (b) {}
       (5, 0) node (fb) {}
       (0, 1.5) node (a) {}
@@ -1592,12 +1592,12 @@ For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\e
       (c) to [bend right] (fc);
 \end{tikzpicture} \\
 Set $\{1, 2, ..., n-1\}$
-\caption{Map from the set that pass Fermat primality test to the set that does not}
+\caption{Map from the set that pass Fermat's primality test to the set that does not}
 \label{fig:Fermat-test}
 \end{figure}
 
 \begin{proof}
-If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $b$ that passes Fermat primality test (It means $b^{n-1} \equiv 1 \mod n$), we can create a negative case for Fermat test $ab$.
+If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $b$ that passes Fermat's primality test (It means $b^{n-1} \equiv 1 \mod n$), we can create a negative case for Fermat's test $ab$.
 
 \[
 (ab)^{n-1} \equiv a^{n-1}b^{n-1} \equiv a^{n-1}1 \not\equiv 1 \mod n
@@ -1605,30 +1605,31 @@ If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $
 
 And because $i \neq j$, we have $a \cdot i \not\equiv a \cdot j$, therefore, all these negative cases are not same.
 
-As shown in figure \ref{fig:Fermat-test}, if there exists a number that can't pass Fermat test, then the positive cases are as same amount as the negative cases.
+As shown in figure \ref{fig:Fermat-test}, if there exists a number that can't pass Fermat's test, then the positive cases are as same amount as the negative cases.
 \end{proof}
 
-If we select $k$ different witness and perform Fermat primality test, we can reduce the false positive possibility that $n$ is not prime number to $\dfrac{1}{2^k}$. However, there exist such composite number $n$, that for any $a$ less than $n$ and coprime to $n$, $a^{n-1} \mod n$. It means whatever $a$ we selected, such composite number can pass Fermat test. Carmichael found first such number in 1910, that 561 = 3 $\times$ 11 $\times$ 17. This kind of numbers is called Carmichael numbers or Fermat false prime numbers\footnote{The Czech mathematician Václav Šimerka found the first 7 Fermat false prime numbers: 561 = 3 $\times$7 $\times$11, 1105 = 5 $\times$13 $\times$7, 1729 = 7 $\times$13 $\times$19, 2465 = 5 $\times$17 $\times$29, 2821 = 7 $\times$13 $\times$31, 6601 = 7 $\times$23 $\times$41, 8911 = 7 $\times$19 $\times$67. However, his work was not well known to the people}. Erdős conjectured there are infinite many Carmichael numbers. In 1994, people proved for sufficient large $n$, there are at least $n^{2/7}$ Carmichael numbers from 1 to $n$. Thus explains Erdős' conjecture\cite{Wiki-Carmichael-number}.
+If we select $k$ different witness and perform Fermat's primality test, we can reduce the false positive possibility that $n$ is not prime number to $\dfrac{1}{2^k}$. However, there exist such composite number $n$, that for any $a$ less than $n$ and coprime to $n$, $a^{n-1} \equiv 1 \mod n$ holds. It means whatever $a$ we selected, such composite number can pass Fermat's test. Carmichael found first such number in 1910, that 561 = 3 $\times$ 11 $\times$ 17. This kind of numbers is called Carmichael numbers or Fermat false prime numbers\footnote{The Czech mathematician Václav Šimerka found the first 7 Fermat false prime numbers: 561 = 3 $\times$7 $\times$11, 1105 = 5 $\times$13 $\times$7, 1729 = 7 $\times$13 $\times$19, 2465 = 5 $\times$17 $\times$29, 2821 = 7 $\times$13 $\times$31, 6601 = 7 $\times$23 $\times$41, 8911 = 7 $\times$19 $\times$67. However, his work was not well known to the people}. Erdős conjectured there are infinite many Carmichael numbers. In 1994, people proved for sufficient large $n$, there are at least $n^{2/7}$ Carmichael numbers from 1 to $n$. Thus explains Erdős' conjecture\cite{Wiki-Carmichael-number}.
 
-实际的RSA算法采用“米勒——拉宾”进行素数测试。它也是一种概率算法\footnote{米勒——拉宾素数检验存在一个确定性算法的版本，但是其正确性依赖于黎曼假设（黎曼猜想）\cite{Wiki-Miller-Rabin}。}。根据上述定理，如果选择超过100个证人，错误率会低于$\frac{1}{2^{100}}$。高德纳说：“该测试的错误率要比计算机因为宇宙辐射而丢失某个二进制位的概率还要低。”
+The primality test algorithm in RSA is Miller-Rabin algorithm. It is also a possibility algorithm\footnote{There is a deterministic version of Miller-Rabin algorithm, but the correctness is on top of Riemann??? hypothesis \cite{Wiki-Miller-Rabin}.}. According to the above theorem, if select more than 100 witnesses, the false positive rate is expected less than $\frac{1}{2^{100}}$. Donald Knuth commented ``The false positive rate of this primality test is smaller than the possibility that a computer miss a bit due to the universe radiation.''???
+
 %读着可以参考本书的附录，了解RSA算法的详细原理和实现。
 
 \vspace{5mm}
 
-到目前为止，我们介绍过的群、半群、幺半群的关系总结如下。
+We summarized the relations for group, semigroup, monoid we introduced so far as the following diagram.
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.8]
-\draw (4, 2) node (abeliangroup) {阿贝尔群}
-      (2, 1) node (group) {群}
-      (0, 0) node (monoid) {幺半群}
-      (-2, -1) node (semigroup) {半群};
-\draw (-4, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (assoc) {结合性}
-      (0, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (binop) {二元运算}
-      (2, -1) circle[x radius = 1.5cm, y radius = 0.5cm] node (unit) {单位元}
-      (4, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (invert) {可逆性}
-      (6, 1) circle[x radius = 1.5cm, y radius = 0.5cm] node (community) {交换性};
+\draw (4, 2) node (abeliangroup) {Abelian group}
+      (2, 1) node (group) {group}
+      (0, 0) node (monoid) {monoid}
+      (-2, -1) node (semigroup) {semigroup};
+\draw (-4, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (assoc) {associativity}
+      (0, -2) circle[x radius = 1.5cm, y radius = 0.5cm] node (binop) {binary operation}
+      (2, -1) circle[x radius = 1.5cm, y radius = 0.5cm] node (unit) {identity element}
+      (4, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (invert) {inverse element}
+      (6, 1) circle[x radius = 1.5cm, y radius = 0.5cm] node (community) {community};
 \draw (abeliangroup) to (community)
       (abeliangroup) to (group)
       (group) to (invert)
@@ -1638,31 +1639,31 @@ If we select $k$ different witness and perform Fermat primality test, we can red
       (semigroup) to (binop)
       (semigroup) to (assoc);
 \end{tikzpicture}
-\caption{群、半群、幺半群}
+\caption{group, semigroup, monoid}
 \label{fig:groups}
 \end{figure}
 
 \begin{Exercise}
-\Question{今天是星期日，$2^{100}$天以后是星期几?}
-\Question{任给两个串（字符串或者列表），如何通过编程判断它们可以连成相同的项链？}
-\Question{编程实现埃拉托斯特尼筛法。}
-\Question{利用埃拉托斯特尼筛法的思想，编程产生2到100内正整数的欧拉$\upphi$函数表。}
-\Question{编程实现模乘的幂运算，并实现费马素数检测。}
+\Question{Today is Sunday, what day it will be after $2^{100}$ days?}
+\Question{Given tow strings (character string or list), write a program to test if they form the same necklace.}
+\Question{Write a program to realize Eratosthenes sieve algorithm.}
+\Question{Extend the idea of Eratosthenes sieve algorithm, write a program to generate Euler $\upphi$ function values for all numbers from 2 to 100.}
+\Question{Write a program to realize fast modular multiplication, and Fermat's primality test.}
 \end{Exercise}
 
-\section{环与域}
+\section{Ring and Field}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=1]{img/Noether.eps}
  \captionsetup{labelformat=empty}
- \caption{埃米$\cdot$诺特 1882-1935}
- \label{fig:Arithmetica}
+ \caption{Emmy Noether, 1882-1935}
+ \label{fig:Noether}
 %\end{figure}
 \end{wrapfigure}
 
-\index{诺特（Emmy Noether）}
+\index{Emmy Noether}
 现代抽象数学中环和域的概念是由德国女数学家埃米$\cdot$诺特所发展的。1882年3月23日，诺特生于德国大学城埃尔朗根的一个犹太人家庭。她的父亲是埃尔朗根大学的数学家。诺特本来打算将来教授法文和英文，但在父亲的影响下，她逐渐对数学产生了兴趣。1900年冬天，18岁的诺特考进了爱尔朗根大学。当时，大学里不允许女生注册，女生顶多只有自费旁听的资格。大学的几百名学生中只有两名女生，诺特大大方方地坐在教室前排，认真听课，刻苦学习，后来，她勤奋好学的精神感动了主讲教授，破例允许她与男生一样参加考试。1903年7月，诺特顺利通过了毕业考试，男生们都取得了文凭，而她却成了没有文凭的大学毕业生。诺特生活在公开歧视妇女发挥数学才能的制度下。毕业以后她在埃尔朗根数学研究院工作，长达7年却没有任何工资。1907年12月，她以优异的成绩通过了博士考试，成为第一位女数学博士。此后，她在著名的数学家高丹、费叶尔的指引下，在数学的不变式领域进行了深入的研究。1915年，应著名数学家希尔伯特和克莱因的邀请，诺特来到数学圣地哥廷根大学。不久，她就以希尔伯特教授的名义，在哥廷根大学讲授数学课程。希尔伯特十分欣赏诺特的才能，想帮她在哥廷根大学找一份正式的工作。当时的哥廷根大学没有专门的数学系，数学、语言学、历史学都划在哲学系里，聘请必须经过哲学教授会议批准。希尔伯特的努力遭到教授会议中语言学家和历史学家的极力反对，他们出于对妇女的传统偏见，连聘为“私人讲师”这样的请求也断然拒绝。希尔伯特屡次据理力争都没有结果，他在一次教授会上愤愤地说：“我简直无法想象候选人的性别竟成了反对她升任讲师的理由。先生们，别忘了这里是大学而不是洗澡堂！”
 
 在希尔伯特等人的影响下，不到两年时间，诺特就发表了两篇重要论文。诺特为爱因斯坦的广义相对论给出了一种纯数学的严格方法。并提出了现代物理学中称为“诺特定理”的观点。就这样，诺特以她出色的科学成就，迫使那些歧视妇女的人也不得不于 1919年准许她升任讲师。此后，诺特走上了完全独立的数学道路。1921年，她从不同领域的相似现象出发，把不同的对象加以抽象化、公理化，然后用统一的方法加以处理，完成了《环中的理想论》这篇重要论文。这是一项非常了不起的数学创造，它标志着抽象代数学真正成为一门数学分支，或者说标志着这门数学分支现代化的开端。诺特也因此获得了极大的声誉，被誉为是“现代数学代数化的伟大先行者”，“抽象代数之母”。1931年，她的学生荷兰数学家的范德瓦尔登系统总结了整个诺特学派的成就，出版了《近世代数》一书，影响了许多当时的青年数学家。1932年，诺特的科学声誉达到了顶点。在这一年于苏黎世举行的第9届国际数学家大会上，诺特作了长达1小时的大会发言，受到广泛的赞扬。
