@@ -1540,7 +1540,7 @@ The key asymmetry concept of RSA is based on the fact that we can easily create 
 
 Interestingly, Fermat's little theorem provides a way for fast primality test. For a large number $n$, we can randomly select a positive integer $a$ less than it as a `witness'. Then check if the remainder of $a^{n-1}$ modulo $n$ is 1. If not 1, $n$ must not be prime number according to Fermat's little theorem. Otherwise if it is 1, then $n$ may be a prime number.
 
-The {\em Fermat's primality test} algorithm based on this idea can be described as below:
+The {\em Fermat primality test} algorithm (also known as Fermat test) based on this idea can be described as below:
 
 \begin{algorithmic}
 \Function{primality}{$n$}
@@ -1559,9 +1559,9 @@ We needn't compute the exact value of $n-1$ power of $a$, then divide $n$ to get
 a^{11} = a^{8 + 2 + 1} = ((a^2)^2)^2a^2a \mod n
 \]
 
-What have to calculated are only $a^2 \mod n$, $(a^2)^2 \mod n$, and $((a^2)^2)^2 \mod n$. Basically, we can express $n$ in binary format, and only iterate calculate the modular product for the digits of 1. This is a algorithm with complexity of $O(\lg n)$. Fermat's primality test is very fast because of this.
+What have to calculated are only $a^2 \mod n$, $(a^2)^2 \mod n$, and $((a^2)^2)^2 \mod n$. Basically, we can express $n$ in binary format, and only iterate calculate the modular product for the digits of 1. This is a algorithm with complexity of $O(\lg n)$. Fermat test is very fast because of this.
 
-However, even a number passed Fermat's primality test, it is not necessarily prime number. For example 341 = 11 $\times$ 31 is a composite number, but $2^{340} \equiv 1 \mod 341$ can pass the Fermat's primality test. To reduce the possibility of such false positive case, people developed many improvements. The first improvement is to increase the number of witness. We can prove that, if a number does not pass Fermat's primality test, then there exist at least half of $n$ numbers that can't pass too (\cite{Algorithms-DPV}, pp26).
+However, even a number passed Fermat test, it is not necessarily prime number. For example 341 = 11 $\times$ 31 is a composite number, but $2^{340} \equiv 1 \mod 341$ can pass the Fermat test. To reduce the possibility of such false positive case, people developed many improvements. The first improvement is to increase the number of witness. We can prove that, if a number does not pass Fermat test, then there exist at least half of $n$ numbers that can't pass too (\cite{Algorithms-DPV}, pp26).
 
 \begin{theorem}
 For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\equiv 1 \mod n$, then for all selected $a < n$, it also holds for at least half.
@@ -1572,8 +1572,8 @@ For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\e
 \begin{tikzpicture}[scale=0.8]
 \draw (0, 0) circle[x radius=1cm, y radius=3cm]
       (5, 0) circle[x radius=1cm, y radius=3cm];
-\path (0, 3) node[above] {pass Fermat's test}
-      (5, 3) node[above] {not pass Fermat's test};
+\path (0, 3) node[above] {pass Fermat test}
+      (5, 3) node[above] {not pass Fermat test};
 \path (0, 0) node (b) {}
       (5, 0) node (fb) {}
       (0, 1.5) node (a) {}
@@ -1592,12 +1592,12 @@ For positive integer $a$ less than $n$, and coprime with $n$, if $a^{n-1} \not\e
       (c) to [bend right] (fc);
 \end{tikzpicture} \\
 Set $\{1, 2, ..., n-1\}$
-\caption{Map from the set that pass Fermat's primality test to the set that does not}
+\caption{Map from the set that pass Fermat test to the set that does not}
 \label{fig:Fermat-test}
 \end{figure}
 
 \begin{proof}
-If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $b$ that passes Fermat's primality test (It means $b^{n-1} \equiv 1 \mod n$), we can create a negative case for Fermat's test $ab$.
+If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $b$ that passes Fermat test (It means $b^{n-1} \equiv 1 \mod n$), we can create a negative case for Fermat test $ab$.
 
 \[
 (ab)^{n-1} \equiv a^{n-1}b^{n-1} \equiv a^{n-1}1 \not\equiv 1 \mod n
@@ -1605,14 +1605,14 @@ If for some $a$ that $a^{n-1} \not\equiv 1 \mod n$ holds, then for any witness $
 
 And because $i \neq j$, we have $a \cdot i \not\equiv a \cdot j$, therefore, all these negative cases are not same.
 
-As shown in figure \ref{fig:Fermat-test}, if there exists a number that can't pass Fermat's test, then the positive cases are as same amount as the negative cases.
+As shown in figure \ref{fig:Fermat-test}, if there exists a number that can't pass Fermat test, then the positive cases are as same amount as the negative cases.
 \end{proof}
 
-If we select $k$ different witness and perform Fermat's primality test, we can reduce the false positive possibility that $n$ is not prime number to $\dfrac{1}{2^k}$. However, there exist such composite number $n$, that for any $a$ less than $n$ and coprime to $n$, $a^{n-1} \equiv 1 \mod n$ holds. It means whatever $a$ we selected, such composite number can pass Fermat's test. Carmichael found first such number in 1910, that 561 = 3 $\times$ 11 $\times$ 17. This kind of numbers is called Carmichael numbers or Fermat false prime numbers\footnote{The Czech mathematician Václav Šimerka found the first 7 Fermat false prime numbers: 561 = 3 $\times$7 $\times$11, 1105 = 5 $\times$13 $\times$7, 1729 = 7 $\times$13 $\times$19, 2465 = 5 $\times$17 $\times$29, 2821 = 7 $\times$13 $\times$31, 6601 = 7 $\times$23 $\times$41, 8911 = 7 $\times$19 $\times$67. However, his work was not well known to the people}. Erdős conjectured there are infinite many Carmichael numbers. In 1994, people proved for sufficient large $n$, there are at least $n^{2/7}$ Carmichael numbers from 1 to $n$. Thus explains Erdős' conjecture\cite{Wiki-Carmichael-number}.
+If we select $k$ different witness and perform Fermat test, we can reduce the false positive possibility that $n$ is not prime number to $\dfrac{1}{2^k}$. However, there exist such composite number $n$, that for any $a$ less than $n$ and coprime to $n$, $a^{n-1} \equiv 1 \mod n$ holds. It means whatever $a$ we selected, such composite number can pass Fermat test. Carmichael found first such number in 1910, that 561 = 3 $\times$ 11 $\times$ 17. This kind of numbers is called Carmichael numbers or Fermat pseudoprime\footnote{The Czech mathematician Václav Šimerka found the first 7 Fermat pseudoprimes: 561 = 3 $\times$7 $\times$11, 1105 = 5 $\times$13 $\times$7, 1729 = 7 $\times$13 $\times$19, 2465 = 5 $\times$17 $\times$29, 2821 = 7 $\times$13 $\times$31, 6601 = 7 $\times$23 $\times$41, 8911 = 7 $\times$19 $\times$67. However, his work was not well known to the people}. Erdős conjectured there are infinite many Carmichael numbers. In 1994, people proved for sufficient large $n$, there are at least $n^{2/7}$ Carmichael numbers from 1 to $n$. Thus explains Erdős' conjecture\cite{Wiki-Carmichael-number}.
 
-The primality test algorithm in RSA is Miller-Rabin algorithm. It is also a possibility algorithm\footnote{There is a deterministic version of Miller-Rabin algorithm, but the correctness is on top of Riemann??? hypothesis \cite{Wiki-Miller-Rabin}.}. According to the above theorem, if select more than 100 witnesses, the false positive rate is expected less than $\frac{1}{2^{100}}$. Donald Knuth commented ``The false positive rate of this primality test is smaller than the possibility that a computer miss a bit due to the universe radiation.''???
+The primality test algorithm in RSA is Miller-Rabin algorithm. It is also a probabilistic algorithm\footnote{There is a deterministic version of Miller-Rabin algorithm, but the correctness is on top of the generalized Riemann hypothesis (GRH)\cite{Wiki-Miller-Rabin}.}. According to the above theorem, if select more than 100 witnesses, the false positive rate is expected less than $\frac{1}{2^{100}}$. Donald Knuth commented ``far less, for instance, than the probability that a random cosmic ray will sabotage the computer during the computation!''
 
-%读着可以参考本书的附录，了解RSA算法的详细原理和实现。
+%TODO: Add RSA implementation in Appendix.
 
 \vspace{5mm}
 
