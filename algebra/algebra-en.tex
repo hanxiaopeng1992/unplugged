@@ -1714,18 +1714,19 @@ a(b + c) = ab + ac \\
 \end{definition}
 
 \index{commutative ring}
-显然，全体整数对于普通加法和乘法构成一个环。另外多项式和矩阵对于加法和乘法也构成一个环。在环的定义中，我们只要求加法满足交换律，构成阿贝尔群。而对乘法没有要求。如果乘法也适合交换律，我们称这样的环为\textbf{交换环}。在一个交换环里，对于正整数$n$和任何两个元都有：
+Obviously, all integers form a ring under the addition and multiplication. Other examples are polynomials and matrix form ring under the addition and multiplication. The ring definition only requires the addition operation is commutative, thus the ring is an abelian group under addition. It does not have such requirement for multiplication. When the ring multiplication is also commutative, we call it \textbf{commutative ring}. In commutative ring, for positive integer $n$ and any two elements, the following equation holds:
 
 \[
 a^nb^n = (ab)^n
 \]
 
-在环的定义中，我们也没有要求环中的乘法一定要有单位元。如果$R$中存在一个元素$e$的，使得对任何元素都有：
+The ring definition does not require a identity element for the multiplication too. If there exists an element $e$ in $R$, it satisfies the below equations for all elements:
 
 \[
 ea = ae = a
 \]
 
+We call $e$ the identity element of the ring.
 则称$e$为环的单位元。一般来说，一个环未必有单位元。习惯上我们常用1来代表单位元，当然这只是一个符号，它并不是数字1。有了单位元，自然也可以规定逆元。如果$ab = ba = 1$，我们称$b$是$a$的逆元。从群的性质我们可以推知，如果一个环有单位元，这个单位元必然是唯一的。如果一个元素有逆元，这个逆元也必然是唯一的。但是并非任何元素都逆元，例如整数环有单位元，但除了$\pm 1$外，其它整数都没有逆元。
 
 由于环上有结合律，所以我们有：
