@@ -1728,17 +1728,17 @@ ea = ae = a
 
 We call $e$ the identity element of the ring. A ring may not necessarily have identity element. Traditionally, we use 1 to represent the identity element. It is just a symbol, but not means the actual number 1. With identity element, we can also define inverse element. If $ab = ba = 1$, we say $b$ is the inverse element of $a$. According to the group property, we know that if the ring has an identity element, it is unique. If an element has inverse, the inverse element is also unique. While not all elements have inverse, for example, the integer ring has identity element, but except for $\pm 1$, all other integers do not have reverse elements.
 
-由于环上有结合律，所以我们有：
+From the distributive axiom, we have:
 
 \[
 (a - a)a = aa - aa = 0
 \]
 
-也就是说，如果$a$或$b$中有一个是0，则$ab = 0$。但是这一结论的逆命题却不成立。也就是说，由$ab = 0$，并不能推知$a$或$b$中存在一个0。我们来看一个反例。考虑模$n$的剩余类，其中加法是模$n$的加法：$[a] + [b] = [a + b]$，即相加后对$n$取模，其构成一个交换加群。模$n$的乘法定义为：$[a][b] = [ab]$，即相乘后对$n$取模。容易验证这构成一个环，称为模$n$的剩余类环。
+It means, if either $a$ or $b$ is 0, then $ab = 0$. But the inverse proposition does not hold. We can not deduce from $ab =0$ to either $a$ or $b$ is 0. Let's see a negative example. Consider the residue class modulo $n$, where the addition operation is modulo addition: $[a] + [b] = [a + b]$, which takes modulo $n$ on top of the sum. It forms an abelian addition group. The multiplication modulo $n$ is defined as: $[a][b] = [ab]$, which takes modulo $n$ on top of the product. It's easy to verify that this is a ring, named as residue ring modulo $n$.
 
-如果$n$不是素数，例如10，我们发现两个非0元素$[5][2] = [5 \times 2] = [0]$。事实上，把$n$分解成两个因子，其模乘的结果必然是零。
+If $n$ is not prime, for example 10, we can multiply two none zero elements $[5][2] = [5 \times 2] = [0]$. In fact, any two factors of $n$, their modulo product must be zero.
 
-\index{零因子}
+\index{zero divisor}
 在一个环里，如果$a \neq 0, b \neq 0$，但却有$ab = 0$，我们说$a$是环的一个\textbf{左零因子}，$b$是环的一个\textbf{右零因子}。如果环是交换环，那么一个左零因子同时也是右零因子。当然，一个环可能没有零因子，例如整数环。只有在不存在零因子的环里，我们才能从$ab = 0$推知$a$或$b$等于0。并且我们有如下定理：
 
 \begin{theorem}
