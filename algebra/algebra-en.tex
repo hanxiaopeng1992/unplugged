@@ -1739,22 +1739,22 @@ It means, if either $a$ or $b$ is 0, then $ab = 0$. But the inverse proposition 
 If $n$ is not prime, for example 10, we can multiply two none zero elements $[5][2] = [5 \times 2] = [0]$. In fact, any two factors of $n$, their modulo product must be zero.
 
 \index{zero divisor}
-在一个环里，如果$a \neq 0, b \neq 0$，但却有$ab = 0$，我们说$a$是环的一个\textbf{左零因子}，$b$是环的一个\textbf{右零因子}。如果环是交换环，那么一个左零因子同时也是右零因子。当然，一个环可能没有零因子，例如整数环。只有在不存在零因子的环里，我们才能从$ab = 0$推知$a$或$b$等于0。并且我们有如下定理：
+In a ring, if there exists $a \neq 0, b \neq 0$, but $ab = 0$, we call $a$ is a \textbf{left zero divisor}, and $b$ is a \textbf{right zero divisor} of the ring. For the commutative ring, a left zero divisor is also a right zero divisor. Of course, it's possible there is no zero divisor, for example the integer ring. For $ab = 0$, we can deduce either $a$ or $b$ is 0 only if there is no zero divisor in the ring. And we have the following theorem:
 
 \begin{theorem}
-一个没有零因子的环里，以下两个消去律都成立：
+For a ring without zero divisor, the following two cancellation rules hold.
 \begin{itemize}
-\item 若$a \neq 0$，$ab = ac$，则$b = c$；
-\item 若$a \neq 0$，$ba = ca$，则$b = c$；
+\item If $a \neq 0$, and $ab = ac$, then $b = c$;
+\item If $a \neq 0$, and $ba = ca$, then $b = c$;
 \end{itemize}
 \end{theorem}
 
-反之，如果一个环里任一个消去律成立，则另一个也必然成立，并且环中没有零因子。
+Conversely, if one cancellation rule hold in a ring, then the other cancellation rule also hold, and there is no zero divisor in this ring.
 
-\index{整环}
-这样，我们认识了一个环的三种附加条件：一是乘法满足交换律；二是单位元存在；三是不存在零因子。同时满足这三个附加条件的环有一个特殊名称，叫做\textbf{整环}（integral domain）。整数环显然是一个整环。
+\index{integral domain}
+So far, we introduced three additional conditions: (1) The multiplication is commutative; (2) There exists identity element; (3) No zero divisor. A ring that satisfies these three additional constraints is called \textbf{integral domain} (nonzero commutative ring). It's obvious that integer ring is an integral domain.
 
-\index{半环}
+\index{semiring}
 有些情况下，环的条件太强了。我们并不需要加法一定存在逆元（即加法取反，additive inverse）。如果放宽条件，我们就得到\textbf{半环}这种代数结构。
 
 \begin{definition}
