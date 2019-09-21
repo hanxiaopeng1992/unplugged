@@ -1804,25 +1804,25 @@ According to this definition, all rational numbers form a field. Similarly, all 
 a^{-1}ab = b = 0
 \]
 
-这样必然有$b$等于零，所以除环不含有零因子。第二个性质是，一个除环中的所有非零元，对于乘法构成一个群$R*$，我们称$R*$叫做除环$R$的乘群。这样一个除环是由两个群：加群与乘群组合而成的；分配率好像是一座桥梁，使得两个群发生联系。到目前为止，我们介绍过的环、半环、整环、除环和域的关系总结如图\ref{fig:ring}。
+Thus $b$ must be zero, therefore, division ring is a nonzero ring (does not contain zero divisor). The other property is that, all non-zero elements in division ring $R$ form a group under multiplication, denoted as $R*$. We call $R*$ the multiplicative group of division ring $R$. A division ring consists of two groups: addition group and multiplication group. The distributive axiom bridges the two groups together. We summarized the ring, semiring, integral domain, division ring, and field as figure \ref{fig:ring}.
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.8]
-\draw (0, 1) node (semiring) {半环}
-      (0, 0) node (ring) {环}
-      (-4, -1) node (commu-ring) {交换环}
-      (0, -1) node (unit) {有单位元}
-      (3, -1) node (zero-factor) {无零因子}
-      (-3, -3) node (integral-domain) {整环}
-      (3, -3) node (division-ring) {除环}
-      (0, -4) node (field) {域};
-\draw (0, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (add-monoid) {加法幺半群}
-      (4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-monoid) {乘法幺半群}
-      (-4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (distribution-law) {分配律}
-      (4, 0.5) circle[x radius = 1.5cm, y radius = 0.5cm] node (negate) {加法可求反}
-      (-5, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-commu) {乘法可交换}
-      (0, -3) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-invert) {乘法可求逆};
+\draw (0, 1) node (semiring) {semiring}
+      (0, 0) node (ring) {ring}
+      (-4, -1) node (commu-ring) {commutative ring}
+      (0, -1) node (unit) {unit}
+      (3, -1) node (zero-factor) {nonzero}
+      (-3, -3) node (integral-domain) {integral domain}
+      (3, -3) node (division-ring) {division ring}
+      (0, -4) node (field) {field};
+\draw (0, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (add-monoid) {addition monoid}
+      (4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-monoid) {multiplication monoid}
+      (-4, 2) circle[x radius = 1.5cm, y radius = 0.5cm] node (distribution-law) {distributive}
+      (4, 0.5) circle[x radius = 1.5cm, y radius = 0.5cm] node (negate) {addition invertible}
+      (-5, 0) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-commu) {multiplication commutative}
+      (0, -3) circle[x radius = 1.5cm, y radius = 0.5cm] node (mul-invert) {multiplication invertible};
 \draw (distribution-law) to (semiring)
       (add-monoid) to (semiring)
       (mul-monoid) to (semiring)
@@ -1841,13 +1841,13 @@ a^{-1}ab = b = 0
       (division-ring) to (field)
       (mul-invert) to (division-ring);
 \end{tikzpicture}
-\caption{半环、环、整环和域}
+\caption{semiring, ring, integral domain, and field}
 \label{fig:ring}
 \end{figure}
 
-还有一些重要的概念，如子环、理想、主理想环与欧几里得环限于篇幅我们不在这里介绍了。
+We omitted some important algebraic structure like subring, ideal, principal ideal domain, and Euclidean domain.
 
-\section{伽罗瓦理论}
+\section{Galois theory}
 我们分别介绍了域和群，而伽罗瓦理论像是一座桥梁把它们连接到了一起。域里面有加减乘除四种运算和无穷多个元素，是很复杂的对象。而伽罗瓦理论可以把域中的一些问题化简到只有一种运算的有限群里去。整个伽罗瓦理论的核心思想就是这一点。
 
 伽罗瓦理论无疑是相当艰深难懂的。今天我们读到的伽罗瓦理论不再模糊费解，而是经过不下二十位大师的发展和处理的。其中最主要的贡献当属若当、戴德金和阿廷。若当和戴德金分别在法国和德国最早系统地整理伽罗瓦理论。今天使用的伽罗瓦群的定义是由戴德金给出的。阿廷使得伽罗瓦理论取得了现代的形式\cite{ZhangPu2013}。为了在这么短的一个章节介绍伽罗瓦理论，我采用了对初学者比较容易理解的一种解释\cite{Stillwell1994}。对于一般的读者，可能仍然无法一遍就弄懂它。开卷有益，生活不是线性发展的。我建议大家不断回过头去重温此前介绍的一些概念，并阅读那些名著。每次也许有不同的体会，让我们一起享受那种一览众山小的感觉。
