@@ -1700,7 +1700,7 @@ Let us see how ring is defined in mathematics.
 \begin{definition}
 A ring is a set $R$ that satisfies below \textbf{ring axioms}:
 \begin{enumerate}
-\item $R$ is a additive group, it means $R$ forms an Abelian group under the addition operation defined on it;
+\item $R$ is a additive group, it means $R$ forms an abelian group under the addition operation defined on it;
 \item There is multiplication defined for $R$, and $R$ is close under this multiplication operation;
 \item The multiplication is associative. For all $a, b, c$, equation $(ab)c = a(bc)$ holds;
 \item Multiplication is distributive with respect to addition, meaning that, for all $a, b, c$, we have:
@@ -1726,7 +1726,7 @@ The ring definition does not require a identity element for the multiplication t
 ea = ae = a
 \]
 
-We call $e$ the identity element of the ring. A ring may not necessarily have identity element. Traditionally, we use 1 to represent the identity element. It is just a symbol, but not means the actual number 1. With identity element, we can also define inverse element. If $ab = ba = 1$, we say $b$ is the inverse element of $a$. According to the group property, we know that if the ring has an identity element, it is unique. If an element has inverse, the inverse element is also unique. While not all elements have inverse, for example, the integer ring has identity element, but except for $\pm 1$, all other integers do not have reverse elements.
+We call $e$ the unity (multiplicative identity element) of the ring. A ring may not necessarily have unity. Traditionally, we use 1 to represent the unity. It is just a symbol, but not means the actual number 1. With unity, we can also define inverse element. If $ab = ba = 1$, we say $b$ is the inverse element of $a$. According to the group property, we know that if the ring has an identity element for multiplication, it is unique. If an element is invertible, the inverse element is also unique. While not all elements are invertible, for example, the integer ring has unity, but except for $\pm 1$, all other integers are not invertible. We call the invertible element a unit.
 
 From the distributive axiom, we have:
 
@@ -1752,7 +1752,7 @@ For a ring without zero divisor, the following two cancellation rules hold.
 Conversely, if one cancellation rule hold in a ring, then the other cancellation rule also hold, and there is no zero divisor in this ring.
 
 \index{integral domain}
-So far, we introduced three additional conditions: (1) The multiplication is commutative; (2) There exists identity element; (3) No zero divisor. A ring that satisfies these three additional constraints is called \textbf{integral domain} (nonzero commutative ring). It's obvious that integer ring is an integral domain.
+So far, we introduced three additional conditions: (1) The multiplication is commutative; (2) There exists unity; (3) No zero divisor. A ring that satisfies these three additional constraints is called \textbf{integral domain} (nonzero commutative ring). It's obvious that integer ring is an integral domain.
 
 \index{semiring}
 The ring constraints are strong. Sometimes, we needn't the additive inverse. By weakening the limitation, we obtain the \textbf{semiring}.
@@ -1761,7 +1761,7 @@ The ring constraints are strong. Sometimes, we needn't the additive inverse. By 
 A set $R$ under the addition and multiplication forms a semiring if it satisfies the following axioms:
 \begin{enumerate}
 \item $R$ forms a commutative monoid under addition, and there exists the identity element 0;
-\item $R$ forms a monoid under multiplication, and there exists the identity element 1;
+\item $R$ forms a monoid under multiplication, and there exists the identity element 1 (unity);
 \item Multiplication is distributive with respect to addition. For any $a, b, c$:
 \[
 \begin{array}{l}
@@ -1779,23 +1779,23 @@ All natural numbers $N$ is an example of semiring. The Boolean operations form a
 \Question{Prove that, all real numbers in the form of $a + b \sqrt{2}$, where $a, b$ are integers form a integral domain under the normal addition and multiplication.}
 \end{Exercise}
 
-\subsection{除环和域}
+\subsection{Division ring and field}
 
-我们知道一个环里不一定所有的元素都有逆元。如果某个环中所有的元素都有逆元，就构成一种特殊的环。例如全体有理数对于普通加法和乘法来说显然是一个环，这个环中任意不等于零的元$a$都有逆元$\frac{1}{a}$。
+We know that not all elements have inverse element in a ring. If every non-zero element has its inverse, then it forms a special ring. For example all rational numbers for a ring under the normal addition and multiplication. In this ring, every non-zero element $a$ has its inverse $\frac{1}{a}$.
 
-\index{除环}
+\index{division ring}
 \begin{definition}
-一个环$R$如果满足以下条件，则叫做\textbf{除环}：
+A ring $R$ is a \textbf{division ring} if it satisfies the following conditions:
 \begin{enumerate}
-\item $R$至少包含一个不等于零的元；
-\item $R$有一个单位元；
-\item $R$的每个不等于零的元都有一个逆元。
+\item $R$ contains at least one non-zero element;
+\item $R$ has unity;
+\item Every non-zero element in $R$ in invertible (unit).
 \end{enumerate}
 \end{definition}
 
-\index{域}
+\index{field}
 \begin{definition}
-一个交换除环叫做一个\textbf{域}。
+A commutative division ring is a \textbf{field域}.
 \end{definition}
 
 按照这一定义，全体有理数构成一个域。同样，全体实数或者全体复数的集合对于普通加法和乘法也各自构成一个域\footnote{我们在后面章节会看到，有理数域是可数的，而实数、复数域是不可数的}。除环和域有一些有趣的性质。一个除环没有零因子。这是因为，如果$a \neq 0$，并且$ab = 0$。我们在两边左乘$a$的逆元：
