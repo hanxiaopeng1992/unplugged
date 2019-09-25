@@ -1881,20 +1881,21 @@ F_2 & = F_1[\sqrt{\beta}] \\
 \end{array}
 \]
 
-即所有形如$a + b \sqrt{\beta}$的数，其中$a, b \in F_1$的数构成了更高层次的扩域。这样我们就可以从有理数域开始，得到一个扩域系列：$Q \subset F_1 \subset F_2 ... \subset F_n$。
+All numbers like $a + b \sqrt{\beta}$ where $a, b \in F_1$ form a higher level field extension. Starting from rational numbers, we can obtain a series of field extensions $Q \subset F_1 \subset F_2 ... \subset F_n$.
 
-扩域有何意义呢？举个例子，方程$x^2 - 2 = 0$在有理数域上无解，但是它在有理数域的扩域$Q[\sqrt{2}]$上有一对解（$x = \pm \sqrt{2}$）。我们进一步再看一个例子，方程$x^4 - 5x^2 + 6 = 0$在有理数域上无解，在扩域$Q[\sqrt{2}]$上有两个解$\pm \sqrt{2}$，在扩域$Q[\sqrt{2}, \sqrt{3}]$上有全部四个解$\pm \sqrt{2}, \pm \sqrt{3}$。于是就自然引出了根域的重要概念：
+Why does field extension matter? For example, equation $x^2 - 2 = 0$ can not be solved in the field of rational number (there are not any rational numbers satisfy this equation), however, if we extend from the rational number field, there are pair of solutions in the $Q[\sqrt{2}]$, which are $x = \pm \sqrt{2}$. Here is another example, for equation $x^4 - 5x^2 + 6 = 0$, there is no rational number solution, but there two solutions in field extension $Q[\sqrt{2}]$, which are $\pm \sqrt{2}$; if we extent the field one more step to $Q[\sqrt{2}, \sqrt{3}]$, we obtain the complete four solutions: $\pm \sqrt{2}$, and $\pm \sqrt{3}$. It leads to the important concept of \textbf{splitting field}.
 
-\index{分裂域} \index{根域}
+\index{splitting field} \index{root field}
 \begin{definition}
-包含方程$p(x) = 0$全部根的最小扩域叫做$p(x)$的\textbf{分裂域}。也称为根域。
+For equation $p(x) = 0$, the smallest field extension that contains all the roots is called the \textbf{splitting} field of $p(x)$. It's also called as root field.
 \end{definition}
 
-这样方程$x^2 -2 = 0$的分裂域就是$Q[\sqrt{2}]$。为什么叫做“分裂”呢？多项式$x^2-2$在有理数域$Q$上是不可约的，但是在扩域$Q[\sqrt{2}]$上可以“分裂”成：
+Thus the splitting field of equation $x^2 -2 = 0$ is $Q[\sqrt{2}]$. Why is it named as `splitting'? The polynomial $x^2-2$ can be decomposed in rational number field $Q$, however, in field extension $Q[\sqrt{2}]$ it can be {\em splits} to:
 \[
 (x + \sqrt{2}) (x - \sqrt{2})
 \]
-对于某一多项式方程，如果我们能够从基本域有理数域开始，通过一系列上述的扩域，最终到达分裂域，那么自然这个方程是可以用根式解的。
+
+For a given polynomial equation, if we can start from the basic rational number field, with a series of field extension, reach to its splitting field, then this equation is radical solvable.
 
 我们给出了平方根的例子，显然还有更加复杂的情况。3次方程可能要开3次方根，有些方程甚至还需要虚数单位$i$。从高中数学我们知道，最简单的方程$x^p-1=0$含有$p$个根$1, \zeta, \zeta^2, ..., \zeta^{p-1}$，其中$\zeta \neq 1$是单位圆上的一个复根。为了涵盖这些情况，我们需要更加严格地描述扩域。
 
