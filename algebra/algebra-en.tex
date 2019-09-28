@@ -1952,17 +1952,17 @@ Let us summarize the result we obtained so far with the example $p(x) = x^2 - 2$
 \item The $Q$-automorphism defines the symmetry of the roots of $p(x)$. It contains two functions: $f(a + b\sqrt{2}) = a - b\sqrt{2}$, and $g(x) = x$.
 \end{enumerate}
 
-但是仅仅扩展到分裂域并不能保证对所有的根完全对称。例如$x^4 - 5x + 6 = 0$的分裂域是$Q[\sqrt{2}, \sqrt{3}]$，虽然我们有能够调换$\pm \sqrt{2}$的自同构$f$，但是不存在能够调换$\sqrt{2}$和$\sqrt{3}$的自同构。否则根据自同构的定义$f(x) = x$，如果$f(\sqrt{2}) = \sqrt{3}$，则$f(\sqrt{2})^2 = \sqrt{3}^2$，即$\sqrt{2} = \sqrt{3}$。这显然是错误的。另外，考虑根式扩域$Q[x_1, ..., x_n, \sqrt{x_1}]$，它包含$x_1$的平方根，但是不含$x_2$的平方根。因此不存在能够调换$x_1$和$x_2$的自同构。为了恢复对称性，我们可以继续把$\sqrt{x_2}, ..., \sqrt{x_n}$扩展到域里。
+However, we can't ensure the symmetry to all roots if only extend to the splitting field. For example, the splitting field of equation $x^4 - 5x + 6 = 0$ is $Q[\sqrt{2}, \sqrt{3}]$. Although there is automorphism $f$ that swaps (permute) $\pm \sqrt{2}$, there does not exist automorphism permutes $\sqrt{2}$ and $\sqrt{3}$. Otherwise, according to the $F$-automorphism definition $f(x) = x$, we should have $f(\sqrt{2}) = \sqrt{3}$, then $f(\sqrt{2})^2 = \sqrt{3}^2$, which means $\sqrt{2} = \sqrt{3}$. It is definitely wrong. Besides that, consider field extension $Q[x_1, ..., x_n, \sqrt{x_1}]$, it contains the square root of $x_1$, but does not contain the square root of $x_2$. Therefore, there is not automorphism that permutes $x_1$ and $x_2$. In order to obtain the complete symmetry, we need keep extending the field with $\sqrt{x_2}, ..., \sqrt{x_n}$.
 
 \begin{theorem}
-对于每个$Q[x_1, ..., x_n]$的根式扩域$E$，都存在一个更大的根式扩域$E \subseteq \overline{E}$，使得所有$x_1, ..., x_n$的置换都有自同构$\sigma$。
+For each radical extension $E$ of $Q[x_1, ..., x_n]$, there exists a bigger radical extension $E \subseteq \overline{E}$ with automorphisms $\sigma$ extending all permutations of $x_1, ..., x_n$.
 \end{theorem}
 
-至此，我们已经把扩域和自同构联系了起来。如果把所有的自同构做成一个集合，这些自同构间的二元运算是复合（composite）变换，恒等变换是单位元，我们就得到了一个群。这个群被称作伽罗瓦群。
+With this, we connected the field extension with automorphism. If we put all the automorphisms together as a set, using composition as the binary operation, and let the identity function be the identity element, we obtain a group, named Galois group.
 
-\index{伽罗瓦群}
+\index{Galois group}
 \begin{definition}
-\textbf{伽罗瓦群}：对于$F$的扩域$E$，我们有一组$E$的$F$-自同构的集合$G$。对任意$G$中的两个$F$-自同构$f, g$，定义二元运算$(f \cdot g)(x) = f(g(x))$。我们称$G$为扩域$E/F$的伽罗瓦群。记为$Gal(E/F)$。
+\textbf{Galois group}: For field extension $E$ from $F$, there is a set $G$ contains all the $F$-automorphisms of $E$. For any two $F$-automorphisms $f$ and $g$ in $G$, define the binary operation as $(f \cdot g)(x) = f(g(x))$. We call $G$ is the Galois group of field extension $E/F$. Denoted as $Gal(E/F)$.
 \end{definition}
 
 我们还是用$p(x) = x^2 - 2$举例。伽罗瓦群$G = Gal(p) = \{f, g\}$，包含两个元素，一个是$f(a + b\sqrt{2}) = a - b\sqrt{2}$，另一个是$g(x) = x$。其中单位元是$g$。我们来验证是否有$f \cdot f = g$：
