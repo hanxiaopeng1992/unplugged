@@ -1982,21 +1982,21 @@ We do see that $G$ is a group. It's isomorphic (identical) to a 2-cycle cyclic g
 \Question{Prove that, for any polynomial $p(x)$, with rational coefficients, $E/Q$ is the field extension, $f$ is the $Q$-automorphism of $E$, then equation $f(p(x)) = p(f(x))$ holds.}
 \Question{Taking the complex number into account, what is the splitting field for polynomial $p(x) = x^4-1$? What are the functions in its $Q$-automorphism?}
 \Question{What's the Galois group for quadratic equation $x^2 - bx + c = 0$?}
-\Question{Prove that, if $p$ is prime number, then the Galois group for equation $x^p - 1$ is $q-1$-cycle cyclic group $C_{q-1}$.}
+\Question{Prove that, if $p$ is prime number, then Galois group for equation $x^p - 1$ is $q-1$-cycle cyclic group $C_{q-1}$.}
 \end{Exercise}
 
 \subsection{Fundamental theorem of Galois theory}
 \index{Fundamental theorem of Galois theory}
 
-现在我们进入了伽罗瓦理论的核心部分了。从方程系数所在的域$F$开始，我们可以进行一系列扩域一直到达分裂域$F \subset F_1 \subset F_2 ... \subset E$。对应的伽罗瓦群为$Gal(E/F)$。伽罗瓦发现，这个群的所有子群和这些中间域$F_1, F_2, ...$之间存在着反序的一一对应。
+We come to the center of Galois theory. Starting from the equation coefficient field $F$, we keep extending the fields to the splitting field $F \subset F_1 \subset F_2 ... \subset E$. The corresponding Galois group is $Gal(E/F)$. Galois found, there was one to one correspondence between the subgroups of the Galois group and its intermediate fields $F_1, F_2, ...$ in the reversed order.
 
 \begin{theorem}
-\textbf{伽罗瓦基本定理}：令$E/F$为扩域\footnote{严格说，要求是伽罗瓦扩张，我们这里略去了伽罗瓦扩张的定义。}，$G$是对应的伽罗瓦群。这个群的子群和中间域之间存在一一对应。若$F \subset L \subset E$，有$Gal(E/L) = H$，则$H$是$Gal(E/F)$的子群。
+\textbf{Fundamental theorem of Galois theory}: Let $E/F$ is field extension\footnote{Strictly speaking, it should be Galois extension, we skipped the definition of Galois extension here.}, $G$ is the corresponding Galois group. There is one to one correspondence between subgroups of $G$ and intermediate fields. If $F \subset L \subset E$, and $Gal(E/L) = H$, then $H$ is the subgroup of $Gal(E/F)$.
 \end{theorem}
 
-之所以说是反序，是因为，随着域的扩张，对应的群是减小的。扩张的起点是域$F$，此时对应的群是完整的伽罗瓦群$G = Gal(E/F)$；扩张的终点是分裂域$E$，此时的群只有一个元素，就是恒等变换$\{1\}$。扩张的中间域$L$，对应的群是$H = Gal(E/L)$，它是子群，有$Gal(E/L) \subset Gal(E/F)$。并且如果$H$是正规子群（如果记不清了，可回去看一下\ref{normal-subgroup}），则它的商群$G/H = Gal(L/F)$。
+The reason why it's in reversed order is because the group gets smaller when extend the field. The starting point of field extension is $F$, the corresponding Galois group is $G = Gal(E/F)$; the end point is the splitting field $E$, while the corresponding group only contains one element, which is the identity permutation $\{1\}$. For the intermediate field $L$, the corresponding group is $H = Gal(E/L)$. It's a subgroup, $Gal(E/L) \subset Gal(E/F)$. If $H$ is a normal subgroup (refer to previous section \ref{normal-subgroup}), then its quotient group is $G/H = Gal(L/F)$.
 
-我们举一个具体的例子\cite{MArtin}（490页）。考虑方程$x^4 - 8x^2 + 15 = 0$，它也可以表示成$(x^2 - 3)(x^2 - 5) = 0$。它的系数域是有理数域$Q$，方程的分裂域是$E = Q[\sqrt{3}, \sqrt{5}]$。它的伽罗瓦群$Gal(E/Q)$的阶是4，同构于一个4阶循环群。可以找到3个中间扩域分别是$Q[\sqrt{3}]$, $Q[\sqrt{5}]$和$Q[\sqrt{15}]$，这3个中间扩域对应的子群的阶都是2。而方程的伽罗瓦群，也就是4阶循环群只有一个2阶子群。除此之外，它不再有其它非平凡子群了。根据伽罗瓦基本定理，我们知道，除了那3个中间扩域之外，再也没有其它中间扩域了。换个角度看，分裂域上的任何元素都可以表示为$\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$，其中$a, b, c, d$是有理数；对于3个中间扩域上的任何元素，$b, c, d$中至少有两个为0。
+Let us see a concrete example\cite{MArtin} (pp. 490). Consider equation $x^4 - 8x^2 + 15 = 0$, it can be factored as $(x^2 - 3)(x^2 - 5) = 0$. The coefficients are in rational number field $Q$, the splitting field is $E = Q[\sqrt{3}, \sqrt{5}]$. The order of its Galois group $Gal(E/Q)$ is 4. It is isomorphic to a 4-cycle cyclic group. We can find 3 intermediate field extensions: $Q[\sqrt{3}]$, $Q[\sqrt{5}]$, and $Q[\sqrt{15}]$. The Galois subgroup orders corresponding to all these 3 intermediate fields are 2. While the Galois group of the equation, which is the 4-cycle cyclic group only has one subgroup of order 2. Besides that, it hasn't any other non-trivial subgroups. According to the fundamental theorem of Galois theory, we know there is no other field extension besides those 3 intermediate field extensions. We can consider it from another view point. All elements in the splitting field are in the form of $\alpha = a + b\sqrt{3} + c\sqrt{5} + d\sqrt{15}$, where $a, b, c, d$ are rational numbers. For any elements in the 3 intermediate field extensions, among $b, c, d$, there are at least two are 0.
 
 \begin{figure}[htbp]
 \centering
@@ -2011,26 +2011,26 @@ We do see that $G$ is a group. It's isomorphic (identical) to a 2-cycle cyclic g
       (3, 0) node (G15) {$\{1, (f \cdot g)\}$}
       (5, 0) node (G5) {$\{1, g\}$}
       (3, -3) node (G) {$\{1, f, g, (f \cdot g)\}$};
-\draw[->] (Q3-5) edge node[midway, above] {伽罗瓦群} (G1)
-      (G) edge node[midway, above] {对应到扩域} (Q)
-      (Q3) edge node[midway] {扩域} (Q3-5)
+\draw[->] (Q3-5) edge node[midway, above] {Galois group} (G1)
+      (G) edge node[midway, above] {field extension correspondence} (Q)
+      (Q3) edge node[midway] {field extensions} (Q3-5)
       (Q15) edge (Q3-5)
       (Q5) edge (Q3-5)
       (Q) edge (Q3)
       (Q) edge (Q15)
       (Q) edge (Q5)
-      (G1) edge node[midway] {子群} (G3)
+      (G1) edge node[midway] {subgroups} (G3)
       (G1) edge (G15)
       (G1) edge (G5)
       (G3) edge (G)
       (G15) edge (G)
       (G5) edge (G);
 \end{tikzpicture}
-\caption{伽罗瓦对应}
+\caption{Galois correspondence}
 \label{fig:Galois-Correspondence}
 \end{figure}
 
-如图\ref{fig:Galois-Correspondence}所示，分裂域上的任意元可以写成如下形式：
+As shown in figure \ref{fig:Galois-Correspondence}, any element in the splitting field can be written in form:
 
 \[
 \begin{array}{rl}
@@ -2039,9 +2039,9 @@ We do see that $G$ is a group. It's isomorphic (identical) to a 2-cycle cyclic g
 \end{array}
 \]
 
-其中$a, b, c, d$都是有理数。我们定义如下自同构：
+Where $a, b, c, d$ are rational numbers. We define the following automorphisms:
 
-变换$f$将$\sqrt{3}$反号：
+Morphism $f$ negates $\sqrt{3}$:
 
 \[
 \begin{array}{rl}
@@ -2050,7 +2050,7 @@ f((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a - b\sqrt{3}) + (c - d\sqrt{
 \end{array}
 \]
 
-变换$g$将$\sqrt{5}$反号
+Morphism $g$ negates $\sqrt{5}$:
 
 \[
 \begin{array}{rl}
@@ -2059,7 +2059,7 @@ g((a + b\sqrt{3}) + (c + d\sqrt{3}) \sqrt {5} & = (a + b\sqrt{3}) - (c + d\sqrt{
 \end{array}
 \]
 
-复合变换$f \cdot g$同时将$\sqrt{3}$和$\sqrt{5}$反号
+The composite morphism $f \cdot g$ negates $\sqrt{3}$ and $\sqrt{5}$ at the same time:
 
 \[
 \begin{array}{rl}
