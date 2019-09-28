@@ -1965,18 +1965,18 @@ With this, we connected the field extension with automorphism. If we put all the
 \textbf{Galois group}: For field extension $E$ from $F$, there is a set $G$ contains all the $F$-automorphisms of $E$. For any two $F$-automorphisms $f$ and $g$ in $G$, define the binary operation as $(f \cdot g)(x) = f(g(x))$. We call $G$ is the Galois group of field extension $E/F$. Denoted as $Gal(E/F)$.
 \end{definition}
 
-我们还是用$p(x) = x^2 - 2$举例。伽罗瓦群$G = Gal(p) = \{f, g\}$，包含两个元素，一个是$f(a + b\sqrt{2}) = a - b\sqrt{2}$，另一个是$g(x) = x$。其中单位元是$g$。我们来验证是否有$f \cdot f = g$：
+We still use $p(x) = x^2 - 2$ for example. Galois group $G = Gal(p) = \{f, g\}$, contains two elements, one is $f(a + b\sqrt{2}) = a - b\sqrt{2}$, the other is $g(x) = x$. Where the identity element is $g$. Let's verify if $f \cdot f = g$:
 
 \[
 \begin{array}{rll}
-(f \cdot f)(a + b\sqrt{2}) & = f(f(a + b\sqrt{2})) & \text{群运算的定义} \\
-  & = f(a - b\sqrt{2}) & \text{对内层括号用$f$的定义} \\
-  & = a + b\sqrt{2} & \text{再次用$f$的定义} \\
-  & = g(a + b\sqrt{2}) & \text{恒等变换$g$的定义}
+(f \cdot f)(a + b\sqrt{2}) & = f(f(a + b\sqrt{2})) & \text{Composition} \\
+  & = f(a - b\sqrt{2}) & \text{Definition of $f$ for inner parenthesis} \\
+  & = a + b\sqrt{2} & \text{Definition of $f$ again} \\
+  & = g(a + b\sqrt{2}) & \text{Definition of identity function $g$}
 \end{array}
 \]
 
-这说明$G$的确是一个群，并且在同构的意义下等同于二阶循环群，它也同构于二阶对称群$S_2$。这个群可以写成$\{f, f^2\}$，这是因为$f^2 = f \cdot f = 1$，是群的单位元。也可写成置换群的形式$\{(1), (1\ 2)\}$，其中(1)是保持两个根不变，(1 2)是对调两个根。
+We do see that $G$ is a group. It's isomorphic (identical) to a 2-cycle cyclic group, and is also isomorphic to the degree 2 symmetric group $S-2$. This group can be written as $\{f, f^2\}$, since $f^2 = f \cdot f = 1$ is the identity element. It can also be written as the permutation group $\{(1), (1\ 2)\}$, where (1) keeps the two roots unchanged, and (1 2) swaps the two roots.
 
 \begin{Exercise}
 \Question{试证明：对于有理数系数的任何多项式$p(x)$，若$E/Q$是扩域，$f$是$E$上的$Q$-自同构，则有$f(p(x)) = p(f(x))$。}
