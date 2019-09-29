@@ -2084,18 +2084,18 @@ The composite morphism $f \cdot g$ negates $\sqrt{3}$ and $\sqrt{5}$ at the same
 In addition to the identity morphism 1, for the base field $Q$, there are four elements in its Galois group: $G = \{1, f, g, (f \cdot g)\}$. This group is isomorphic to Klein four group, while the Klein group is the product of two 2-cycle cyclic groups. It has 5 subgroups, each is corresponding to a field extension:
 
 \begin{itemize}
-\item 只含有单位元$\{1\}$的子群，对应于分裂域$Q[\sqrt{3}, \sqrt{5}]$；
-\item $G$自身，对应于有理数域$Q$；
-\item 二阶子群$\{1, f\}$，对应于扩域$Q[\sqrt{5}]$，$f$只反转$\sqrt{3}$而固定$\sqrt{5}$不变；
-\item 二阶子群$\{1, g\}$，对应于扩域$Q[\sqrt{3}]$，$f$只反转$\sqrt{5}$而固定$\sqrt{3}$不变；
-\item 二阶子群$\{1, (f \cdot g)\}$，对应于扩域$Q[\sqrt{15}]$，$(f \cdot g)$同时反转$\sqrt{5}$和$\sqrt{3}$，而固定$\sqrt{15}$不变。
+\item The subgroup only contains the identity element $\{1\}$, it corresponds to the splitting field $Q[\sqrt{3}, \sqrt{5}]$;
+\item $G$ itself, corresponds to the rational number field $Q$;
+\item Order 2 subgroup $\{1, f\}$, corresponds to field extension $Q[\sqrt{5}]$. $f$ only negates $\sqrt{3}$ and leaves $\sqrt{5}$ unchanged;
+\item Order 2 subgroup $\{1, g\}$, corresponds to field extension $Q[\sqrt{3}]$. $g$ only negates $\sqrt{5}$ and leaves $\sqrt{3}$ unchanged;
+\item Order 2 subgroup $\{1, (f \cdot g)\}$, corresponds to field extension $Q[\sqrt{15}]$. $(f \cdot g)$ negates $\sqrt{5}$ and $\sqrt{3}$ at the same time, and leaves $\sqrt{15}$ unchanged.
 \end{itemize}
 
-我们也可以把这个方程的伽罗瓦群写成置换群的形式：$\{(1), (1 2), (3 4), (1 2)(3 4)\}$。其中置换(1)表示保持4个根都不变；(1 2)表示交换$\pm \sqrt{3}$这两个根；(3 4)表示交换$\pm \sqrt{5}$这两个根；(1 2)(3 4)表示同时交换这两对根。
+We can also write the Galois group of this equation in the form of permutation group $\{(1), (1 2), (3 4), (1 2)(3 4)\}$. Where (1) keeps all the 4 roots unchanged; (1 2) swaps $\pm \sqrt{3}$; (3 4) swaps $\pm \sqrt{5}$; while (1 2)(3 4) swaps these two pairs at the same time.
 
-通过伽罗瓦基本定理，我们已经成功地将方程在域上的问题，转换为对称群的问题了。接下来要做的就是最后一击，通过群揭示可解性的本质。
+Through the fundamental theorem of Galois theory, we managed to convert the equation problem in field to an equivalent problem about permutation group. The last attack is to reveal the solvability essence with group.
 
-\subsection{可解性}
+\subsection{Solvability}
 
 通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，若扩域$F[\alpha_1, ..., \alpha_{i-1}]$中不含有$p$次单位根，我们可以认为$F[\alpha_1, ..., \alpha_i]$中也不含有$p$次单位根。除非$\alpha_i$本身就是$p$次单位根。举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了所有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
 
