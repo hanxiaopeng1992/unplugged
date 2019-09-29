@@ -2097,7 +2097,10 @@ Through the fundamental theorem of Galois theory, we managed to convert the equa
 
 \subsection{Solvability}
 
-通过伽罗瓦对应，我们将根式扩域的结构和群的结构联系起来了。为了简化问题，我们增加一些额外的限制。首先，我们假设每次根式扩域$F[\alpha_i]$中加入的$\alpha_i$都是素数次方根。例如对$\sqrt[6]{\alpha}$，我们把它拆成$\sqrt{\alpha} = \beta$和$\sqrt[3]{\beta}$，然后分两次进行根式扩域。其次，如果$\alpha_i$是$p$次方根，若扩域$F[\alpha_1, ..., \alpha_{i-1}]$中不含有$p$次单位根，我们可以认为$F[\alpha_1, ..., \alpha_i]$中也不含有$p$次单位根。除非$\alpha_i$本身就是$p$次单位根。举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了所有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
+Through Galois correspondence, we connect the radical extension with group structure. To simplify the problem, we add some extra conditions. First, for every radical extension $F[\alpha_i]$, we assume the $\alpha_i$ being extended is a $p$-th root for some prime $p$. For example, we will factor $\sqrt[6]{\alpha}$ to $\sqrt{\alpha} = \beta$ and $\sqrt[3]{\beta}$. Then extend the field two times with them one by one. Second, if $\alpha_i$ is $p$-th root, and the radical extension $F[\alpha_1, ..., \alpha_{i-1}]$ does not contain $p$-th root of unity, we can assume the next radical extension $F[\alpha_1, ..., \alpha_i]$ does not contain $p$-th root of unity too, unless $\alpha_i$ itself is a $p$-th root of unity. For example, when we want to extend the field with root $\alpha = \sqrt[3]{2}$, if the field $F$ does not contain $\zeta = \dfrac{-1 + i\sqrt{3}}{2}$ as shown in figure \ref{fig:root-of-unity}, we can assume the radical extension $F[\sqrt[3]{2}]$ does not contain $\zeta$ too.
+
+
+举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了所有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
 
 这样，任何根式扩域$F[\alpha_1, ..., \alpha_k]$都组成一系列递增的链条：
 
