@@ -2168,52 +2168,52 @@ Since $\zeta \in B$, therefore $\zeta$ is fixed under the automorphism. Hence in
 \end{proof}
 \end{mdframed}
 
-这样回过头来看伽罗瓦群的子群链：
+When observe the chain of Galois subgroups:
 
 \[
 Gal(F[\alpha_1, ..., \alpha_k]/F) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 \]
 
-如果这链条中，每个群$G_i$都是上一个群$G_{i-1}$的正规子群，并且每个商群$G_{i-1}/G_i$都是可交换的，我们称伽罗瓦群$Gal(F[\alpha_1, ..., \alpha_k]/F)$是\textbf{可解的}。
+Along this chain, if every group $G_i$ is the normal subgroup of the previous group $G_{i-1}$, and every quotient group $G_{i-1}/G_i$ is abelian, then we say the Galois group $Gal(F[\alpha_1, ..., \alpha_k]/F)$ is \textbf{solvable}.
 
-现在我们来看一般的$n$次方程。
+Now let us see the general $n$-th degree equation:
 
 \[
 x^n - a_1x^{n-1} + a_2x^{n-2}... \pm a_n = 0
 \]
 
-包含系数的基本域为$Q[a_1, ..., a_n]$。如果它的$n$个根（不一定为根式）是$x_1, ..., x_n$，即
+The base field contains coefficients is $Q[a_1, ..., a_n]$. Let its $n$ roots (not necessarily be radical) be $x_1, ..., x_n$, which means:
 
 \[
 (x - x_1)...(x - x_n) = x^n - a_1x^{n-1} ... \pm a_n
 \]
 
-方程的根域为$Q[x_1, ..., x_n]$。如果无论怎样对基本域做根式扩域，都无法包含方程的根域，我们就说方程是无法用根式求解的。
+The splitting field of the equation is $Q[x_1, ..., x_n]$. If whatever radical extension we obtain, it can't contain the splitting field, then the equation is not radical solvable.
 
 \begin{theorem}
-当$n \geq 5$时，$Q[a_1, ..., a_n]$的根式扩域不包含根域$Q[x_1, ..., x_n]$。
+When $n \geq 5$, any radical extension of $Q[a_1, ..., a_n]$ does not contain the splitting field $Q[x_1, ..., x_n]$.
 \end{theorem}
 
 \begin{proof}
-我们用反证法，假设某个根式扩域$E$包含根域$Q[x_1, ..., x_n]$，根据此前的定理，还存在更大个根式扩域$\overline{E} \supseteq E$，使得对应的伽罗瓦群$G_0 = Gal(\overline{E}/Q[a_1, ..., a_n])$包括所有根的置换的自同构。这样我们就可以构造一个子群的链条：
+We use the reduction to absurdity method. Suppose some radical extension $E$ contains the splitting field $Q[x_1, ..., x_n]$. According to the theorem we proved previously, there exits a bigger radical extension $\overline{E} \supseteq E$, such that the corresponding Galois group $G_0 = Gal(\overline{E}/Q[a_1, ..., a_n])$ includes automorphisms of permutations of all roots. Hence we can construct a chain of Galois subgroups:
 
 \[
 G_0 \supseteq G_1 \supseteq ... \supseteq G_k = \{1\}
 \]
 
-每个$G_i$都是上一个群$G_{i-1}$的正规子群，并且商群$G_{i-1}/G_i$是可交换的。我们要证明这是不可能的。正规子群$G_i$是同态映射下$G_{i-1}$中的核，所以任意$G_{i-1}$中的两个自同构$\sigma, \tau$都有：
+Where each $G_i$ is the normal subgroup of the previous group $G_{i-1}$, and the quotient group $G_{i-1}/G_i$ is abelian. We now show that this is impossible. Since the normal subgroup $G_i$ is the kernel of the homomorphism of $G_{i-1}$, for any two automorphisms $\sigma, \tau$ in $G_{i-1}$, we have:
 
 \[
 \sigma^{-1}\tau^{-1}\sigma\tau \in G_{i}
 \]
 
-当$n$大于等于5时，$G_0$包含所有根的置换，同构于对称群$S_n$，它必然包含3循环的置换$(a\ b\ c)$。假设$G_{i-1}$中也包含3循环置换，我们有：
+When $n \geq 5$, $G_0$ contains the permutations of all roots. It is isomorphic to symmetric group $S_n$, it must include 3-cycle permutation $(a\ b\ c)$. Suppose $G_{i-1}$ also include 3-cycle permutation, we have:
 
 \[
 (a\ b\ c) = (d\ a\ c)^{-1}(c\ e\ b)^{-1}(d\ a\ c)(c\ e\ b) \in G_i
 \]
 
-这说明$G_i$也包含3循环置换。根据数学归纳法，子群链条中所有的群都包含3循环置换。但这是不可能的，因为最后一个群是$\{1\}$，它不含3循环置换。
+Where $a, b, c, d, e$ are distinct. It means $G_i$ includes 3-cycle permutation as well. According to mathematical induction, all groups in the chain include 3-cycle permutation. But this is impossible, because the last group in this chain is $\{1\}$, it does not include 3-cycle permutation.
 \end{proof}
 
 \begin{figure}[htbp]
