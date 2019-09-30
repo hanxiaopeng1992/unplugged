@@ -2097,35 +2097,34 @@ Through the fundamental theorem of Galois theory, we managed to convert the equa
 
 \subsection{Solvability}
 
-Through Galois correspondence, we connect the radical extension with group structure. To simplify the problem, we add some extra conditions. First, for every radical extension $F[\alpha_i]$, we assume the $\alpha_i$ being extended is a $p$-th root for some prime $p$. For example, we will factor $\sqrt[6]{\alpha}$ to $\sqrt{\alpha} = \beta$ and $\sqrt[3]{\beta}$. Then extend the field two times with them one by one. Second, if $\alpha_i$ is $p$-th root, and the radical extension $F[\alpha_1, ..., \alpha_{i-1}]$ does not contain $p$-th root of unity, we can assume the next radical extension $F[\alpha_1, ..., \alpha_i]$ does not contain $p$-th root of unity too, unless $\alpha_i$ itself is a $p$-th root of unity. For example, when we want to extend the field with root $\alpha = \sqrt[3]{2}$, if the field $F$ does not contain $\zeta = \dfrac{-1 + i\sqrt{3}}{2}$ as shown in figure \ref{fig:root-of-unity}, we can assume the radical extension $F[\sqrt[3]{2}]$ does not contain $\zeta$ too.
+Through Galois correspondence, we connect the radical extension with group structure. To simplify the problem, we add some extra conditions. First, for every radical extension $F[\alpha_i]$, we assume the $\alpha_i$ being extended is a $p$-th root for some prime $p$. For example, we will factor $\sqrt[6]{\alpha}$ to $\sqrt{\alpha} = \beta$ and $\sqrt[3]{\beta}$. Then extend the field two times with them one by one. Second, if $\alpha_i$ is $p$-th root, and the radical extension $F[\alpha_1, ..., \alpha_{i-1}]$ does not contain $p$-th root of unity, we can assume the next radical extension $F[\alpha_1, ..., \alpha_i]$ does not contain $p$-th root of unity too, unless $\alpha_i$ itself is a $p$-th root of unity. For example, when we want to extend the field with root $\alpha = \sqrt[3]{2}$, if the field $F$ does not contain $\zeta = \dfrac{-1 + i\sqrt{3}}{2}$ as shown in figure \ref{fig:root-of-unity}, we can assume the radical extension $F[\sqrt[3]{2}]$ does not contain $\zeta$ too, unless $\alpha^3 = 1$, which means $\alpha$ itself equals $\zeta$. If it isn't the case, we can adjoin $\zeta$ before $\alpha_i$, then the radical extension $F[\alpha_1, ..., \alpha_{i-1}, \zeta]$ contains all the $p$-th root of unity: $1, \zeta, \zeta^2, ..., \zeta^{p-1}$. With both these modifications, the final field $F[\alpha_1, ..., \alpha_k]$ is the same, and it remains the same if the newly adjoined root $\zeta$ are included in the list $\alpha_1, ..., \alpha_k$.
 
-
-举个例子，假设要加入$\alpha = \sqrt[3]{2}$进行根式扩域，如果上一个域$F$中不含有如图\ref{fig:root-of-unity}中的$\zeta = \dfrac{-1 + i\sqrt{3}}{2}$，我们可以认为扩域$F[\sqrt[3]{2}]$中也不含有$\zeta$。除非$\alpha^3 = 1$即$\alpha$本身就等于$\zeta$。如果这一点不成立，我们可以在加入$\alpha_i$之前先用$\zeta$进行扩域，这样域$F[\alpha_1, ..., \alpha_{i-1}, \zeta]$中就包含了所有$p$次单位根：$1, \zeta, \zeta^2, ..., \zeta^{p-1}$。以上这两个对根式扩域的修改并不会改变最终扩域的结果$F[\alpha_1, ..., \alpha_k]$。
-
-这样，任何根式扩域$F[\alpha_1, ..., \alpha_k]$都组成一系列递增的链条：
+Hence any radical extension $F[\alpha_1, ..., \alpha_k]$ is a chain of ascending fields:
 
 \[
 F = F_0 \subseteq F_1 \subseteq F_2 \subseteq ... \subseteq F_k = F[\alpha_1, ..., \alpha_k]
 \]
 
-其中每个$F_i = F_{i-1}[\alpha_i]$，而$\alpha_i$是$F_{i-1}$中某个元素的素数次方根。并且满足上面关于单位根的条件。和这一系列扩域链对应的，是一系列递减的子群链：
+Where every $F_i = F_{i-1}[\alpha_i]$. $\alpha_i$ is the $p$-th root of some element in $F_{i-1}$, where $p$ is prime. They satisfy the condition about root of unity above. Corresponding to this chain of radical extensions, we have a chain of descending groups:
 
 \[
 Gal(F_k/F_0) = G_0 \supseteq G_1 \supseteq ... \supseteq G_k = Gal(F_k/F_k) = \{1\}
 \]
 
-其中$G_i = Gal(F_k/F_i) = Gal(F_k/F_{i-1}[\alpha_i])$。每一步从$G_{i-1}$前进到它的子群$G_i$，都反应了向域$F$中扩张素数次方根$\alpha_i$。用群论的术语说，$G_i$是前一个群$G_{i-1}$的正规子群，而商群$G_{i-1}/G_i$是阿贝尔群（可交换的）。我们下面来证明这点。
+Where $G_i = Gal(F_k/F_i) = Gal(F_k/F_{i-1}[\alpha_i])$. Every step moves from $G_{i-1}$ to its subgroup $G_i$, corresponding to adjoin $p$-th root $\alpha_i$ to field $F$, where $p$ is prime. Using the terms in group theory, $G_i$ is the normal subgroup of the previous group $G_{i-1}$, while the quotient group $G_{i-1}/G_i$ is abelian (commutative). We have the following theorem reflects this fact:
 
 \begin{theorem}
-如果扩域$B \subseteq B[\alpha] \subseteq E$中，$\alpha^p \in B$，$p$是素数。并且满足上面的单位根的条件，则$Gal(E/B[\alpha])$是群$Gal(E/B)$的正规子群，并且商群
+In field extension $B \subseteq B[\alpha] \subseteq E$, $\alpha^p \in B$ for some prime $p$, if $B[\alpha]$ contains no $p$-th roots of unity not in $B$ unless $\alpha$ itself is a $p$-th root of unity, then $Gal(E/B[\alpha])$ is a normal subgroup of $Gal(E/B)$, and the quotient group
+
 \[
 Gal(E/B) / Gal(E/B[\alpha])
 \]
-是阿贝尔群。
+is abelian.
+
 \end{theorem}
 
 \begin{mdframed}
-这一段的证明较难，一般的读者可以跳过框中的内容
+The proof is a bit complex, reader can skip it in the this frame
 \begin{proof}
 我们要利用在\ref{normal-subgroup}中介绍的群同态定理来完成这一证明。我们要找到一个$Gal(E/B)$上的同态映射，它的核是$Gal(E/B[\alpha])$，它映射到一个阿贝尔群上。以$Gal(E/B[\alpha])$为核的映射显然限制在域$B[\alpha]$上，我们将这一映射记为$|_{B[\alpha]}$，根据伽罗瓦群的元素是自同构的定义：
 
