@@ -489,7 +489,7 @@ Denote the order of a given finite group $G$ as $n$. For any element $a$, we can
 
 \[
 \begin{array}{rcll}
-a^ja^{-i} & = & a^{i}a^{-i} & \text{由} a^i = a^j \\
+a^ja^{-i} & = & a^{i}a^{-i} & \text{since}\ a^i = a^j \\
 a^ja^{-i} & = & e & \text{$a^i$ is inverse to $a^{-i}$} \\
 a^{j-i} & = & e & \text{the order of $a$ is}\ j - i
 \end{array}
@@ -497,7 +497,7 @@ a^{j-i} & = & e & \text{the order of $a$ is}\ j - i
 Thus the order of $a$, $j - i$ is finite.
 \end{proof}
 
-We use the term `isomorphism' in chapter 1 to describe things that have the same inner structure. It's time to give the strict definition for homomorphism and isomorphism. Suppose there is a mapping (morphism) $f$ from set $A$ to set $B$. $a$ and $b$ are two elements in $A$, their images in $B$ are $f(a)$ and $f(b)$ respectively. Let's consider an element $a \cdot b$, which is result of the binary closed operation defined in $A$. Under the map (morphism) $f$, its image in $B$ is $f(a \cdot b)$. If for the binary closed operation defined in $B$, the following equation always holds:
+We use the term `isomorphism' in chapter 1 to describe things that have the same inner structure. It's time to give the strict definition for homomorphism and isomorphism. Suppose there is a mapping (morphism) $f$ from set $A$ to set $B$. $a$ and $b$ are two elements in $A$, their images in $B$ are $f(a)$ and $f(b)$ respectively. Let's consider the element $a \cdot b$, which is result of the binary closed operation defined in $A$. Under the map (morphism) $f$, its image in $B$ is $f(a \cdot b)$. If for the binary closed operation defined in $B$, the following equation always holds:
 
 \[
 f(a) \cdot f(b) = f(a \cdot b)
@@ -538,7 +538,7 @@ ab = 6 & f(ab) = f(a)f(b) = 36
 \end{figure}
 
 \index{homomorphism}
-We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, known as `onto', which means all elements $b$ in $B$, has the corresponding $a$ in A, that $f(a) = b$, then $f$ is called surjective homomorphism. For example, consider a test function $odd: Z \to Bool$, it accepts a integer number, if the number is odd, then it returns True, otherwise returns False. All integers form a group under addition, while the Boolean value set $\{True, False\}$ also forms a group under logic exclusive or operation. We can verify that:
+We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, known as `onto', which means every element $b$ in $B$, has the corresponding $a$ in A, that $f(a) = b$, then $f$ is called surjective homomorphism. For example, consider a test function $odd: Z \to Bool$, it accepts an integer number, if the number is odd, then it returns True, otherwise returns False. All integers form a group under addition, while the Boolean value set $\{True, False\}$ also forms a group under logic exclusive or operation. We can verify that:
 
 \begin{enumerate}
 \item Both $a$ and $b$ are odd numbers. $odd(a)$ and $odd(b)$ are both True. Their sum is even, $odd(a+b)$ is False. Equation $odd(a) \oplus odd(b) = odd(a+b)$ holds;
@@ -548,7 +548,7 @@ We say $f$ is a \textbf{homomorphism} from $A$ to $B$. If $f$ is a surjection, k
 
 \index{isomorphism}
 \index{automorphism}
-If $f$ is not only a surjection, but also a injection (there are no any two different elements map to the same image), then it's one-to-one mapping. We call $f$ is the \textbf{isomorphism} from $A$ to $B$. Denote as $A \cong B$. Isomorphism is a very powerful relationship. It does not only apply to two groups, but also applicable to semigroups, monoids and other algebraic structures. As shown in figure \ref{fig:isomorphism}. If $A$ is isomorphic to $B$, from abstracted view, they are essentially same things with different names. If there is a algebraic property in $A$, then there is exactly a same property in $B$ as well(\cite{ZhangHeRui1978} pp.25). The special isomorphism from $A$ to $A$ is called \textbf{automorphism} of $A$. For example, the group of integers with addition has a automorphism under the negate operation.
+If $f$ is not only a surjection, but also a injection (there are no any two different elements map to the same image), then it's one-to-one mapping. We call $f$ is the \textbf{isomorphism} from $A$ to $B$. Denote as $A \cong B$. Isomorphism is a very powerful relationship. Besides group, isomorphism is also applicable to semigroups, monoids and other algebraic structures. As shown in figure \ref{fig:isomorphism}. If $A$ is isomorphic to $B$, from the abstracted view, they are essentially the same thing with different names. If there is a algebraic property in $A$, then there is exactly a same property in $B$ (\cite{ZhangHeRui1978} pp.25). The special isomorphism from $A$ to $A$ is called \textbf{automorphism} of $A$. For example, the group of integers with addition has a automorphism under the negate operation.
 
 \begin{figure}[htbp]
 \centering
@@ -584,11 +584,11 @@ f(dog) = collar & f(cat) = bell \\
 f(sheep) = wool & f(cow) = milk
 \end{array}
 \]
-\caption{The graph isomorphism has different meaning. The two different graph has the same structure.}
+\caption{Graph isomorphism. The two different graphs have the same structure.}
 \label{fig:graph-isomorphism}
 \end{figure}
 
-People often use the familiar concrete example to understand abstract algebraic structure. For groups, most time, we think about integers with addition, how those concepts, properties of group will be for integers? But such approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that can be commutative. We'll introduce an `exceptional' example, the transformation group. On one hand, it is not Abelian, the binary operation is not commutative; on the other hand, the its group elements are not numbers, but transformations.
+People often use the familiar concrete, example to help understanding abstract algebraic structure. For groups, most time, we think about integers with addition. How those concepts, properties of group will be for integers? But this approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that is commutative. We'll introduce an `exceptional' example, the transformation group. On one hand, it is not Abelian, the binary operation is not commutative; on the other hand, its group elements are not numbers, but transformations.
 
 Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$. It maps element $a$ in $A$ to $\tau(a)$. That is $a \to \tau(a)$. There are varies transformations for a set. The following is all the transformations for Boolean set, we denote true as $T$, false as $F$.
 
