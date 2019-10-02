@@ -588,9 +588,9 @@ f(sheep) = wool & f(cow) = milk
 \label{fig:graph-isomorphism}
 \end{figure}
 
-People often use the familiar concrete, example to help understanding abstract algebraic structure. For groups, most time, we think about integers with addition. How those concepts, properties of group will be for integers? But this approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that is commutative. We'll introduce an `exceptional' example, the transformation group. On one hand, it is not Abelian, the binary operation is not commutative; on the other hand, its group elements are not numbers, but transformations.
+People often use the familiar concrete, example to help understanding abstract algebraic structure. For groups, most time, we think about integers with addition. How those concepts, properties of group will be for integers? But this approach may give us illusion that the element of group is kind of entity, like numbers; and the binary operation is more like the common addition or multiplication that is commutative. We'll introduce an `exceptional' example, the transformation group. On one hand, it is not abelian, the binary operation is not commutative; on the other hand, its group elements are not numbers, but transformations.
 
-Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$. It maps element $a$ in $A$ to $\tau(a)$. That is $a \to \tau(a)$. There are varies transformations for a set. The following is all the transformations for Boolean set, we denote true as $T$, false as $F$.
+Transformation is a map from set $A$ to $A$ itself. Denoted as $\tau : A \to A$. It maps element $a$ in $A$ to $\tau(a)$. That is $a \to \tau(a)$. There are varies transformations for a set. The following are all the transformations for Boolean set, we denote true as $T$, false as $F$.
 
 \[
 \begin{array}{rll}
@@ -619,13 +619,13 @@ Note that $a^\tau$ does not mean the $\tau$ power of $a$. It is only a notation 
 \tau: a \to a^\tau,  \lambda: a \to a^\lambda
 \]
 
-We can find that $a \to (a^\tau)^\lambda = \lambda(\tau(a))$ is also a transformation for $A$. We define it is the product of $\tau$ and $\lambda$.
+It's obvious that $a \to (a^\tau)^\lambda = \lambda(\tau(a))$ is also a transformation for $A$. We define it as the product of $\tau$ and $\lambda$.
 
 \[
 \tau\lambda: a \to (a^\tau)^\lambda = a^{\tau\lambda}
 \]
 
-Such multiplication is actually composition operation of two transformations. Please select some from the list of Boolean transformations to verify their product. The multiplication is actually associative, since:
+Such multiplication is actually composition operation of two transformations. You can choose some Boolean transformations to verify their products. The multiplication is actually associative, since:
 
 \[
 \begin{array}{rl}
@@ -634,7 +634,7 @@ Such multiplication is actually composition operation of two transformations. Pl
 \end{array}
 \]
 
-We benefit from the power of power expression. We can't say too much about a powerful notation system in the history of math. Euler, Leibniz are all masters of inventing great symbols. For the above multiplication we defined, the identity element in $S$ is the identity transformation of $A$, which maps every element to itself, $\epsilon: a \to a$. We can verify that:
+We benefit from the power expression. We can't say too much about a powerful notation system in the history of math. Euler, Leibniz were all masters invented many great symbols. For the above multiplication we defined, the identity element in $S$ is the identity transformation of $A$, which maps every element to itself, $\epsilon: a \to a$. We can verify that:
 
 \[
 \begin{array}{rl}
@@ -643,9 +643,9 @@ We benefit from the power of power expression. We can't say too much about a pow
 \end{array}
 \]
 
-Therefore $\epsilon\tau = \tau\epsilon = \tau$. With this multiplication operation, set $S$ almost form a group. We say it `almost', it eventually can not form a group. This is because for a given transformation $\tau$, there is not necessarily an inverse element. For example the $\tau_1$ in the Boolean set, it maps any Boolean value to true. None of the 4 transformations can change $\tau_1$ back. Thus there is no reverse element for $\tau_1$.
+Therefore $\epsilon\tau = \tau\epsilon = \tau$. With this multiplication operation, set $S$ almost forms a group. Although we say it `almost', it eventually can not form a group. This is because for a given transformation $\tau$, there is not necessarily an inverse element. For example the $\tau_1$ in the Boolean set, it maps any Boolean value to true. None of the 4 transformations can change $\tau_1$ back. Thus there is no reverse element for $\tau_1$.
 
-Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact, as long as $G$ contains the one-to-one transformation of $A$, then it form a group under the multiplication operation.
+Although $S$ can not form a group, interestingly, its subgroup $G$ can. In fact, as long as $G$ only contains the one-to-one transformations of $A$, then it form a group under the multiplication operation.
 
 \index{transformation group}
 
@@ -655,7 +655,7 @@ For set $A$, the set of one to one transformations of $A$ together with the comp
 All the one to one transformations of set $A$ form a transformation group $G$.
 \end{theorem}
 
-Transformation groups are not necessarily Abelian. It's easy to find negative examples. Consider the shift transformation $\tau_1$ which moves the origin from (0, 0) to (1, 0), and the rotation transformation $\tau_2$ which rotate around the origin by $\pi/2$. We have:
+Transformation groups are not necessarily abelian. It's easy to find negative examples. Consider the shift transformation $\tau_1$ which moves the origin point from (0, 0) to (1, 0) in the plane, and the rotation transformation $\tau_2$ which rotate around the origin by $\pi/2$. We have:
 
 \[
 \begin{array}{rl}
@@ -691,11 +691,11 @@ Transformation groups are not necessarily Abelian. It's easy to find negative ex
 \draw[dashed, ->] (b1) -- (c1);
 \draw (5, 0) arc (0:-90:0.8);
 \end{tikzpicture}
-\caption{The transform order matters. The results are different}
+\caption{The transform order matters, and cause different results.}
 \label{fig:transform-not-abelian}
 \end{figure}
 
-Therefore, this transformation group is not Abelian. Transform groups are important and have wide applications. We have a strong fact:
+Therefore, this transformation group is not abelian. Transform groups are important and have wide applications. We have a strong fact:
 
 \begin{theorem}
 Every group is isomorphic to a transformation group.
@@ -705,7 +705,7 @@ Every group is isomorphic to a transformation group.
 We skip the proof. This theorem tells us, for any abstract group, we can find a concrete instance as a transformation group. In other words, we needn't concern about finding an abstract group in the future, which is totally a castle in the air(\cite{ZhangHeRui1978} pp49).
 
 \begin{Exercise}
-\Question{Is the odd even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
+\Question{Is the odd even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic-and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
 \Question{Suppose two groups $G$ and $G'$ are homomorphic. In $G$, the element $a \to a'$. Is the order of $a$ same as the order of $a'$?}
 \Question{Prove that the identity element for transformation group must be identity transformation.}
 \end{Exercise}
