@@ -485,11 +485,11 @@ For any finite group, all elements have finite order.
 \end{theorem}
 
 \begin{proof}
-Denote the order for a given finite group $G$ as $n$. For any element $a$, we can construct a set $\{a, a^2, ..., a^{n+1}\}$. There are $n + 1$ elements in this set, however, the order of the group is $n$. According to the principle of pigeon hole. There are at least two equal elements. Denote such two equal elements as $a^i$ and $a^j$, where $0 < i < j \leq n + 1$ without loss of generality. We have:
+Denote the order of a given finite group $G$ as $n$. For any element $a$, we can construct a set $\{a, a^2, ..., a^{n+1}\}$. There are $n + 1$ elements in this set, however, the order of the group is $n$. According to the principle of pigeon hole, there are at least two equal elements. Denote such two equal elements as $a^i$ and $a^j$, where $0 < i < j \leq n + 1$ without loss of generality. We have:
 
 \[
 \begin{array}{rcll}
-a^ja^{-i} & = & a^{-i}a{i} & \text{由} a^i = a^j \\
+a^ja^{-i} & = & a^{i}a^{-i} & \text{由} a^i = a^j \\
 a^ja^{-i} & = & e & \text{$a^i$ is inverse to $a^{-i}$} \\
 a^{j-i} & = & e & \text{the order of $a$ is}\ j - i
 \end{array}
