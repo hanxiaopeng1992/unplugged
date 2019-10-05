@@ -854,7 +854,7 @@ For any finite group, like the solutions of a equation, we can study it with the
 \subsection{Cyclic group}
 
 \index{cyclic group}
-Among all the groups, the cyclic group is the easiest. It's the kind of groups that completely understood as of today. Is it possible that all the elements in a group $G$ are power of a given element? Such group does exist. Consider the integer multiplicative group modulo 5 without 0 for example. It contains 4 elements $\{1, 2, 3, 4\}$. If list all the powers of 2 modulo 5, we have the following result:
+Among all the groups, the cyclic group is the easiest. It's the groups we completely understand as of today. Is it possible that all the elements in a group $G$ are power of a given element? Such group does exist. Consider the integer multiplicative group modulo 5 without 0 for example. It contains 4 elements $\{1, 2, 3, 4\}$. If list all the powers of 2 modulo 5, we have the following result:
 
 \[
 \begin{array}{l}
@@ -895,7 +895,7 @@ In additive group of integers, the inverse element of 1 is -1. This is because 1
 \[
 \begin{array}{rcll}
 1^{-m} & = (-1)^m & \text{inverse element} & \\
-(-1)^m & = & (-1) \cdot (-1) \cdot (-1) \cdot ... \cdot (-1) & \text{$m$次} \\
+(-1)^m & = & (-1) \cdot (-1) \cdot (-1) \cdot ... \cdot (-1) & \text{$m$ times} \\
        & = & -1 + (-1) + ... + (-1) & \text{+ is the multiplicative operation for $G(Z, +)$} \\
        & = & -m &
 \end{array}
@@ -913,7 +913,7 @@ Consider integers residue modulo $n$. For integer $a$, we use notation $[a]$ to 
 [a] + [b] = [a + b]
 \]
 
-For instance, when compute $[3] + [4]$ modulo 5, the result is $7 \bmod 5 = [2]$. It's easy to verify this binary operation satisfies the associative law. The identity element is [0], and all elements have inverse. We cal l this group additive group of integer residues modulo $n$. The group elements are [0], [1], ..., [$n$-1]. It is a cyclic group because every element [$i$] can be expressed as $i$ power of [1].
+For instance, when compute $[3] + [4]$ modulo 5, the result is $7 \bmod 5 = [2]$. It's easy to verify this binary operation satisfies the associative axiom. The identity element is [0], and all elements have inverse. We call this group additive group of integer residues modulo $n$. The group elements are [0], [1], ..., [$n$-1]. It is a cyclic group because every element [$i$] can be expressed as $i$ power of [1].
 
 \[
 [i] = [1] + [1] + ... + [1] \quad \text{Total $i$ times}
@@ -952,7 +952,7 @@ a^ha^k = a^{h + k} \to [h + k] = [h] + [k]
 \]
 \end{proof}
 
-Therefore, from the abstraction perspective, there is only one group that the order of generator is infinite, and there is only one group that the order of generator is a given positive integer. We clearly understand the algebraic structure of these cyclic groups:
+Therefore, from the abstract perspective, there is only one group that the order of generator is infinite, and there is only one group that the order of generator is a given positive integer. We clearly understand the algebraic structure of these cyclic groups:
 
 \begin{itemize}
 \item The order of $a$ is infinite
@@ -968,25 +968,25 @@ Therefore, from the abstraction perspective, there is only one group that the or
 \end{itemize}
 
 \begin{Exercise}
-\Question{Proof that cyclic groups are Abelian.}
+\Question{Proof that cyclic groups are abelian.}
 \end{Exercise}
 
 \subsection{Subgroup}
 \index{subgroup}
 
-The next important concept is subgroup. It can help us to understand the properties of a group through its subset.
+The next important concept is subgroup. It helps us to understand a group through its subset.
 
 \begin{definition}
 For a given group $G$, a subset $H$ of $G$ is called \textbf{subgroup} if $H$ forms a group under the multiplication of $G$.
 \end{definition}
 
-For any group $G$, there are at least two subgroups. One is $G$ itself, the other is a singleton set only contains the identity element $\{e\}$. They are are called trivial subgroups. Taking the additive group of integers for example, all the even numbers under addition form a subgroup, while the odd numbers do not form a subgroup (do you know why?). Here is another example, for the permutation group $S_3$, consider its subset $H = \{(1), (1\ 2)\}$. $H$ form a subgroup under the composite operation. We can verify it as the following:
+For any group $G$, there are at least two subgroups. One is $G$ itself, the other is the singleton set only contains the identity element $\{e\}$. They are called trivial subgroups. Taking the additive group of integers for example, all the even numbers under addition form a subgroup, while the odd numbers do not form a subgroup (do you know why?). Here is another example, for the permutation group $S_3$, consider its subset $H = \{(1), (1\ 2)\}$. $H$ form a subgroup under the composite operation. We can verify it as the following:
 
 \begin{enumerate}
-\item Close under multiplication: $(1)(1) = (1)$, $(1)(1\ 2) = (1\ 2)$, $(1\ 2)(1) = (1\ 2)$, $(1\ 2) (1\ 2) = (1)$. The last equation means swap the first two elements, then swap again. It equals to identity transformation;
+\item Close under multiplication: $(1)(1) = (1)$, $(1)(1\ 2) = (1\ 2)$, $(1\ 2)(1) = (1\ 2)$, $(1\ 2) (1\ 2) = (1)$. The last equation means to swap the first two elements, then swap again. It equals to identity transformation;
 \item The associative law applies to all elements in $S_3$, thus also applies to $H$;
 \item The identity element $(1) \in H$;
-\item All elements in $H$ has inverse: $(1)(1) = (1)$、$(1\ 2) (1\ 2) = (1)$。
+\item All elements in $H$ have inverse: $(1)(1) = (1)$、$(1\ 2) (1\ 2) = (1)$。
 \end{enumerate}
 
 It's tedious to verify all these group properties for arbitrary subset. Fortunately, there is a powerful tool:
@@ -1000,7 +1000,7 @@ For any group $G$, a none empty subset $H$ forms a subgroup if and only if：
 \label{theorem:subgroup}
 \end{theorem}
 
-We left the proof of this theorem as the exercise to the readers. We can deduce a result from this theorem. If $H$ is a subgroup of $G$, then the identity element in $H$ is also the identity element in $G$, and for any element $a$ in $H$, its reverse element in $H$ is also the reverse element in $G$. We can combine the two conditions in the above theorem into one:
+We leave the proof to this theorem as exercise. From this theorem, we can deduce that, if $H$ is a subgroup of $G$, then the identity element in $H$ is also the identity element in $G$, and for any element $a$ in $H$, its reverse element in $H$ is also the reverse element in $G$. We can combine the two conditions in this theorem into one:
 
 \begin{theorem}
 For any group $G$, a none empty subset $H$ forms a subgroup if and only if, for all $a, b \in H$, then $ab^{-1} \in H$ holds.
@@ -1008,9 +1008,9 @@ For any group $G$, a none empty subset $H$ forms a subgroup if and only if, for 
 \end{theorem}
 
 \begin{proof}
-First prove the sufficiency. Let $a, b \in H$, from the second condition in above theorem, we have $b^{-1} \in H$. Then using the first condition, we get $ab^{-1} \in H$;
+First prove the sufficiency. Let $a, b \in H$, from the second condition in theorem \ref{theorem:subgroup}, we have $b^{-1} \in H$. Then using the first condition, we get $ab^{-1} \in H$;
 
-Next prove the necessity. Let $a \in H$, according to the identity axiom, we have $aa^{-1} = e \in H$, therefore, $ea^{-1} = a^{-1} \in H$. This is the first condition in above theorem; Then for all $a, b \in H$, we also have $b^{-1} \in H$, therefore, $a(b^{-1})^{-1} = ab \in H$. Which proves the second condition in previous theorem.
+Next prove the necessity. Let $a \in H$, according to the identity axiom, we have $aa^{-1} = e \in H$. Since $e, a \in H$, therefore, $ea^{-1} = a^{-1} \in H$. This is the second condition in theorem \ref{theorem:subgroup}; For all $a, b \in H$, we just proved $b^{-1} \in H$. Therefore, $a(b^{-1})^{-1} = ab \in H$. This is the first condition in theorem \ref{theorem:subgroup}.
 \end{proof}
 
 If the subset $H$ is finite, then the condition to form a subgroup can be further simplified:
