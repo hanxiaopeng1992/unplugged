@@ -1019,7 +1019,7 @@ If the subset $H$ is finite, then the condition to form a subgroup can be furthe
 For any group $G$, the finite subset $H$ forms a subgroup if and only if for all $a, b \in H$, $ab \in H$ holds.
 \end{theorem}
 
-With an integer $n$, we can partition all the integers into residues modulo $n$. Using the similar idea, we can partition the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
+With integer $n$, we can partition all the integers into residues modulo $n$. Using the similar idea, we can partition the elements in a group. Consider the additive group of integers $Z$, let $H$ be the subset of all multiples of $n$, i.e. $H = \{ kn \}$ where $k = 0, \pm 1, \pm 2, ...$. For any two elements $hn$ and $kn$, $hn + (-k)n = (h - k)n \in H$. While $-kn$ is exactly the inverse of $kn$ in $Z$, and $+$ is the binary operation in additive group of integers. According to the theorem \ref{theorem:subgroup-2}, $H$ is the subgroup of $Z$.
 
 When we partition integers into residues modulo $n$, we use the equivalence relation as:
 
@@ -1033,7 +1033,7 @@ Using subgroup $H$, this equivalence relation can also be defined as:
 a \equiv b \mod n, \text{if and only if}\ (a - b) \in H
 \]
 
-Thus we use subgroup $H$ to partition $Z$ into residues. Now let's expand this to more generic case, to use subgroup $H$ partition any group $G$. To do that, we need first define the equivalence relation $\sim$ with subgroup $H$:
+Thus we use subgroup $H$ to partition $Z$ into residues. Now let's expand this to more generic case, to partition any group $G$ with subgroup $H$. To do that, we need define the equivalence relation $\sim$ with subgroup $H$ first:
 
 \[
 a \sim b, \text{if and only if}\ ab^{-1} \in H
@@ -1043,16 +1043,16 @@ Given $a$ and $b$, we can strictly determine if $ab^{-1}$ belongs $H$. Why is $\
 
 \begin{enumerate}
 \item As $aa^{-1} = e \in H$, we have $a \sim a$. It is reflexive;
-\item If $ab^{-1} \in H$, the its reverse $(ab^{-1})^{-1}= ba^{-1} \in H$. Therefore, $a \sim b \Rightarrow b \sim a$. It is symmetric;
+\item If $ab^{-1} \in H$, then its reverse $(ab^{-1})^{-1}= ba^{-1} \in H$. Therefore, $a \sim b \Rightarrow b \sim a$. It is symmetric;
 \item If $ab^{-1} \in H, bc^{-1} \in H$, we have $(ab^{-1})(bc^{-1}) = ac^{-1} \in H$. Therefore $a \sim b, b \sim c \Rightarrow a \sim c$. It is transitive.
 \end{enumerate}
 
 \index{right coset}
 \begin{definition}
-The subset determined by the equivalence relation $\sim$ is called the \textbf{right coset} of subgroup $H$. if $a$ is a group element, the right cost includes $a$ is denoted as $Ha$.
+The subset determined by the equivalence relation $\sim$ is called the \textbf{right coset} of subgroup $H$. if $a$ is a group element, the right coset that includes $a$ is denoted as $Ha$.
 \end{definition}
 
-When use $a$ to multiply every element in $H$ from right, we get the coset that includes $a$. In other words, $Ha$ contains all the elements in $G$ that is in form of $ha$, where $h \in H$.
+When using $a$ to multiply every element in $H$ from right, we get the coset that includes $a$. In other words, $Ha$ contains all the elements in $G$ with the form $ha$, where $h \in H$.
 
 \[
 Ha = \{ha | h \in H\}
@@ -1069,11 +1069,11 @@ Ha = \{ha | h \in H\}
           (H) edge (H1)
           (H) edge (H2);
 \end{tikzpicture}
-\caption{Right coset. For the additive group of integers, the subgroup $H$ contains all multiples of 3. Use 0, 1, 2 to add all these multiples, we get three non-overlapping sets. It is exactly one partition of integers.}
+\caption{Right coset. For the additive group of integers, the subgroup $H$ contains all multiples of 3. Using 0, 1, 2 add to all these multiples, we get three non-overlapping sets. It is exactly a partition of integers.}
 \label{fig:right-cosets-Z3}
 \end{figure}
 
-As shown in figure \ref{fig:right-cosets-Z3}, $Z$ is the additive group of integers. Set $H$ contains all multiples of 3, $0, \pm 3, \pm 6, ...$. It forms a subgroup under the addition. We use 0 in $Z$ to add from right\footnote{As the additive group of integers is Abelian, the addition is commutative, therefore, the left and right cosets are same.} to every element in $H$, which gives $H0$. Obviously, the result equals to $H$. It contains all the remainders of 0 modulo 3, denoted as [0]. Adding 1 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 1 modulo 3, denoted as [1]; Adding 2 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 2 modulo 3, denoted as [2]. If adding 3 to every elements in $H$, the result is as same as $H0$. In fact, whatever element $a$ we choose from $H0$ to generate a right coset $Ha$, it is always as same as $H0$; whatever element $b$ we choose from $H1$ to generate a right coset $Hb$, it is always as same as $H1$; whatever element $c$ we choose from $H2$ to generate a right coset $Hc$, it is always as same as $H2$. Put the three right cosets $H0$, $H1$, and $H2$ together, the result is exactly all the integers $Z$. It is a partition of $Z$: [0], [1], [3].
+As shown in figure \ref{fig:right-cosets-Z3}, $Z$ is the additive group of integers. Set $H$ contains all multiples of 3, includes $0, \pm 3, \pm 6, ...$. It forms a subgroup under the addition. We add 0 in $Z$ from right\footnote{As the additive group of integers is Abelian, the addition is commutative, therefore, the left and right cosets are same.} to every element in $H$, which gives $H0$. Obviously, $H0$ equals to $H$. It contains all the remainders of 0 modulo 3, denoted as [0]. Adding 1 in $Z$ from right to every element in $H$ gives $H1$. It contains all remainders of 1 modulo 3, denoted as [1]; Adding 2 in $Z$ from right to every element in $H$ gives $H2$. It contains all remainders of 2 modulo 3, denoted as [2]. If add 3 to every element in $H$, the result is as same as $H0$. In fact, whatever element $a$ we choose from $H0$ to generate a right coset $Ha$, it is always as same as $H0$; whatever element $b$ we choose from $H1$ to generate a right coset $Hb$, it is always as same as $H1$; whatever element $c$ we choose from $H2$ to generate a right coset $Hc$, it is always as same as $H2$. Put the three right cosets $H0$, $H1$, and $H2$ together, the result is exactly all the integers $Z$. It is a partition of $Z$: [0], [1], [2].
 
 \begin{figure}[htbp]
 \centering
