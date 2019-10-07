@@ -1427,33 +1427,28 @@ a^{\upphi(n)} = e
 
 任给一个整数$n$，如何求出其欧拉函数的值呢？因为任何大于1的整数都可以写成素数幂的乘积形式，我们首先来看，对于素数$p$的$m$次幂，$\upphi(p^m)$如何计算。也就是求出从1到$p^m-1$中，有多少个数和$p^m$互素。显然我们只要把$p$的倍数这些数除去即可。这些数分别是：$p, 2p, 3p, ..., p^m - p$，我们把它们分别除以$p$，就可以得到自然数序列：$1, 2, 3, ..., p^{m-1} - 1$。显然共有$p^{m-1} - 1$个。于是素数的整数次幂的欧拉函数值为：
 
-\[
-\begin{array}{rcl}
-\upphi(p^m) & = & (p^m - 1) - (p^{m-1} - 1) \\
-            & = & p^m - p^{m-1} \\
-            & = & p^m(1-\dfrac{1}{p})
-\end{array}
-\]
+\begin{align*}
+\upphi(p^m) &= (p^m - 1) - (p^{m-1} - 1) \\
+            &= p^m - p^{m-1} \\
+            &= p^m(1-\dfrac{1}{p})
+\end{align*}
 
 接下来我们考虑$n = p^uq^v$，也就是两个不同素数幂的积。我们首先从1到$n-1$中，减去$p$的所有倍数，然后再减去$q$的所有倍数，但是有些整数既是$p$的倍数，也是$q$的倍数，所以最后要把这些$pq$的倍数再加回来（组合中的容斥原理）。这样有：
 
-\[
-\begin{array}{rcl}
-\upphi(p^uq^v) & = & (n - 1) - (\dfrac{n}{p} - 1) - (\dfrac{n}{q} - 1) + (\dfrac{n}{pq} - 1) \\
-          & = & n(1 - \dfrac{1}{p})(1 - \dfrac{1}{q}) \\
-          & = & p^u(1 - \dfrac{1}{p})q^v(1 - \dfrac{1}{q}) \\
-          & = & \upphi(p^u)\upphi(p^v)
-\end{array}
-\]
+\begin{align*}
+\upphi(p^uq^v) &=  (n - 1) - (\dfrac{n}{p} - 1) - (\dfrac{n}{q} - 1) + (\dfrac{n}{pq} - 1) \\
+          &=  n(1 - \dfrac{1}{p})(1 - \dfrac{1}{q}) \\[5pt]
+          &=  p^u(1 - \dfrac{1}{p})q^v(1 - \dfrac{1}{q}) \\[5pt]
+          &=  \upphi(p^u)\upphi(p^v)
+\end{align*}
 
 特别地，当指数$u$, $v$都是1的时候，我们有$\upphi(pq) = \upphi(p)\upphi(q)$。并且我们可以把这个结果推广到多个素数幂的情况，如果$n = p_1^{k_1}, p_2^{k_2}...p_m^{k_m}$，则其欧拉函数的值为：
 
-\[
-\begin{array}{rcl}
-\upphi(n) & = & n(1-\dfrac{1}{p_1})(1-\dfrac{1}{p_2})...(1-\dfrac{1}{p_m}) \\
-    & = & \upphi(p_1^{k_1})\upphi(p_2^{k_2})...\upphi(p_m^{k_m})
-\end{array}
-\]
+\begin{align*}
+\upphi(n) &= n(1-\dfrac{1}{p_1})(1-\dfrac{1}{p_2})...(1-\dfrac{1}{p_m}) \\[5pt]
+    &= \upphi(p_1^{k_1})\upphi(p_2^{k_2})...\upphi(p_m^{k_m})
+%\end{array}
+\end{align*}
 
 根据这一结论，我们可以找到快速求欧拉函数的方法，读着可以通过本节的习题实现这一算法。
 

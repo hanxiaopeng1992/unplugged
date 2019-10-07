@@ -1478,33 +1478,28 @@ Let us see an example. Below is the multiplication table for all the none zero r
 
 Given integer $n$, how to evaluate Euler function? As any integer greater than 1 can be factored as power of prime numbers, let us first see how to evaluate $\upphi(p^m)$ for the $m$ power of prime $p$. We are going to count how many numbers from 1 to $p^m - 1$ are coprime to $p^m$. We can easily do this by removing the multiples of $p$. These numbers are $p, 2p, 3p, ..., p^m - p$. Divide them by $p$, gives the nature number sequence $1, 2, 3, ..., p^{m-1} - 1$. We immediately know there are $p^{m-1} - 1$ numbers. On top of this, we deduce the value of Euler function for the power of prime as:
 
-\[
-\begin{array}{rcl}
-\upphi(p^m) & = & (p^m - 1) - (p^{m-1} - 1) \\
-            & = & p^m - p^{m-1} \\
-            & = & p^m(1-\dfrac{1}{p})
-\end{array}
-\]
+\begin{align*}
+\upphi(p^m) &= (p^m - 1) - (p^{m-1} - 1) \\
+            &= p^m - p^{m-1} \\
+            &= p^m(1-\dfrac{1}{p})
+\end{align*}
 
 We next consider number in form of $n = p^uq^v$, which is product of power of different prime numbers. We need first remove all multiples of $p$, then remove all multiples of $q$. But there are numbers that are the multiples of both $p$ and $q$. They are removed twice. We need add these multiples of $pq$ back (Principle of inclusion and exclusion in combinatorics). Thus we have:
 
-\[
-\begin{array}{rcl}
-\upphi(p^uq^v) & = & (n - 1) - (\dfrac{n}{p} - 1) - (\dfrac{n}{q} - 1) + (\dfrac{n}{pq} - 1) \\
-          & = & n(1 - \dfrac{1}{p})(1 - \dfrac{1}{q}) \\
-          & = & p^u(1 - \dfrac{1}{p})q^v(1 - \dfrac{1}{q}) \\
-          & = & \upphi(p^u)\upphi(p^v)
-\end{array}
-\]
+\begin{align*}
+\upphi(p^uq^v) &=  (n - 1) - (\dfrac{n}{p} - 1) - (\dfrac{n}{q} - 1) + (\dfrac{n}{pq} - 1) \\
+          &=  n(1 - \dfrac{1}{p})(1 - \dfrac{1}{q}) \\[5pt]
+          &=  p^u(1 - \dfrac{1}{p})q^v(1 - \dfrac{1}{q}) \\[5pt]
+          &=  \upphi(p^u)\upphi(p^v)
+\end{align*}
 
 Particularly when both $u$ and $v$ are 1, we have $\upphi(pq) = \upphi(p)\upphi(q)$. We can expand this result to multiple powers of prime numbers. Given $n = p_1^{k_1}, p_2^{k_2}...p_m^{k_m}$, the Euler function can be evaluated as:
 
-\[
-\begin{array}{rcl}
-\upphi(n) & = & n(1-\dfrac{1}{p_1})(1-\dfrac{1}{p_2})...(1-\dfrac{1}{p_m}) \\
-    & = & \upphi(p_1^{k_1})\upphi(p_2^{k_2})...\upphi(p_m^{k_m})
-\end{array}
-\]
+\begin{align*}
+\upphi(n) &= n(1-\dfrac{1}{p_1})(1-\dfrac{1}{p_2})...(1-\dfrac{1}{p_m}) \\[5pt]
+    &= \upphi(p_1^{k_1})\upphi(p_2^{k_2})...\upphi(p_m^{k_m})
+%\end{array}
+\end{align*}
 
 We can develop the fast evaluation algorithm from this result. We leave this as an exercise in this chapter.
 
