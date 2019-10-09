@@ -1848,21 +1848,19 @@ We skipped some important algebraic structure here like subring, ideal, principa
 
 \section{Galois theory}
 
-Galois theory provides connection between group and field. Using Galois theory, certain problems in field theory can be reduced to group theory, which is in some sense simpler and better understood. A field can contain infinite many elements with adding, subtracting, multiplying, and dividing. It's a complex mathematical object. Galois theory can simplify the problems in field to a corresponding problem in finite group with only one operation. This is the key idea of Galois theory.
+Galois theory provides connection between group and field. Using Galois theory, certain problems in field theory can be reduced to group theory, which is in some sense simpler and easier to understand. A field can contain infinite many elements with adding, subtracting, multiplying, and dividing. It's a complex mathematical object. Galois theory can simplify the problems in field to a corresponding problem in finite group with only one operation. This is the key idea of Galois theory.
 
-Galois theory is famous for its difficulty and hard to understand. Compare to its original form, the modern Galois theory is no longer ambiguous, and much clearer and elegant. This is because more than two dozens of masters greatly developed and improved it in the past. The most important contributors are Jordan, Dedekind, and Emil Artin. Jordan and Dedekind first systematically developed Galois theory in France and Germany. The definition of Galois group we are using today was given by Dedekind. The modern form of Galois theory is made by Artin\cite{ZhangPu2013}. We adopted a gentle explanation that is friendly to new beginners\cite{Stillwell1994} in this short section. It's quite common that we can't understand it in the first time reading. It's always helpful to read the masters. Our life is not linear. I recommend way to revisit what we learned before, find more great books to read. Our understanding changes along the time, and there must be aha moment in the future.
+Galois theory is famous for its difficulty and hard to understand. Compare to its original form, the modern Galois theory is no longer ambiguous, and much clearer and elegant. This is because more than two dozens of masters greatly developed and improved it in the past. The most important contributors are Jordan, Dedekind, and Emil Artin. Jordan and Dedekind first systematically developed Galois theory in France and Germany. The definition of Galois group we are using today was given by Dedekind. The modern form of Galois theory is made by Artin\cite{ZhangPu2013}. We adopted a gentle explanation that is friendly to beginners\cite{Stillwell1994} in this short section. It's quite common that we can't understand it in the first time reading. It's always helpful to read the masters. Our life is not linear. I recommend the way to revisit what we learned before, find more great books to read. Our understanding changes along the time, and there must be aha moment in the future.
 
 \subsection{Field extension}
 \index{field extension}
 
-From the definition of field, we know that all rational numbers form a field $Q$. Let us consider a set of all the numbers in the form of $a + b\sqrt{2}$, where $a$ and $b$ are rational numbers\cite{Goodman2011}. Obviously, the set of rational numbers is a subset of it (just let $b = 0$). It's easy to verify that, for any two such numbers, the result of add, subtract, multiply, and divide is still in the form of $a + b \sqrt{2}$. Among them, divide takes more steps to verify. Given $x = \dfrac{1}{a + b\sqrt{2}}$, we can multiply both nominator and denominator by $a - b \sqrt{2}$ to have:
+From the definition of field, we know that all rational numbers form a field $Q$. Let us consider a set of all the numbers in the form of $a + b\sqrt{2}$, where $a$ and $b$ are rational numbers\cite{Goodman2011}. Obviously, the set of rational numbers is a subset of it (just let $b = 0$). It's easy to verify that, for any two such numbers, the result of add, subtract, multiply, and divide are still in the form of $a + b \sqrt{2}$. Among them, divide takes more steps to verify. Given $x = \dfrac{1}{a + b\sqrt{2}}$, we can multiply both nominator and denominator by $a - b \sqrt{2}$ to get:
 
-\[
-\begin{array}{rl}
-x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\[2ex]
+\begin{align*}
+x & = \dfrac{a - b \sqrt{2}}{(a + b \sqrt{2})(a - b \sqrt{2})} \\[3pt]
   & = \dfrac{a - b \sqrt{2}}{a^2 - 2b^2}
-\end{array}
-\]
+\end{align*}
 
 Let $p = a^2 - 2b^2$, then $x$ can be expressed as $(a/p) -(b/p)\sqrt{2}$. Thus we verified for divide operation as well. This set is really a field. We denote it as $Q[\sqrt{2}]$. Similarly, $Q[\sqrt{3}]$ is also a field. They are both example of field extension concept.
 
