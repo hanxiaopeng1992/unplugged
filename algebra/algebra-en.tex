@@ -1694,12 +1694,12 @@ Noether is best remembered for her contributions to abstract algebra. Nathan Jac
 
 \subsection{Ring}
 \index{ring}
-Let us see how ring is defined in mathematics.
+Let us see how ring is defined.
 
 \begin{definition}
 A ring is a set $R$ that satisfies below \textbf{ring axioms}:
 \begin{enumerate}
-\item $R$ is a additive group, it means $R$ forms an abelian group under the addition operation defined on it;
+\item $R$ is an additive group, it means $R$ forms an abelian group under the addition operation defined on it;
 \item There is multiplication defined for $R$, and $R$ is close under this multiplication operation;
 \item The multiplication is associative. For all $a, b, c$, equation $(ab)c = a(bc)$ holds;
 \item Multiplication is distributive with respect to addition, meaning that, for all $a, b, c$, we have:
@@ -1719,13 +1719,13 @@ Obviously, all integers form a ring under the addition and multiplication. Other
 a^nb^n = (ab)^n
 \]
 
-The ring definition does not require a identity element for the multiplication too. If there exists an element $e$ in $R$, it satisfies the below equations for all elements:
+The ring definition does not require an identity element for the multiplication too. If there exists an element $e$ in $R$, it satisfies the below equation for all elements:
 
 \[
 ea = ae = a
 \]
 
-We call $e$ the \textbf{unity} (multiplicative identity element) of the ring. A ring may not necessarily have unity. Traditionally, we use 1 to represent the unity. It is just a symbol, but not means the actual number 1. With unity, we can also define inverse element. If $ab = ba = 1$, we say $b$ is the inverse element of $a$. According to the group property, we know that if the ring has an identity element for multiplication, it is unique. If an element is invertible, the inverse element is also unique. While not all elements are invertible, for example, the integer ring has unity, but except for $\pm 1$, all other integers are not invertible. We call the invertible element a \textbf{unit}.
+We call $e$ the \textbf{unity} (multiplicative identity element) of the ring. A ring may not necessarily have unity. Traditionally, we use 1 to represent the unity. It is just a symbol, but not means the actual number 1. With unity, we can also define inverse element. If $ab = ba = 1$, we say $b$ is the inverse element of $a$. According to the group property, we know that if the ring has an identity element for multiplication, it is unique. If an element is invertible, the inverse element is also unique. While it is not necessary that all elements are invertible. For example, the integer ring has unity, but except for $\pm 1$, all other integers are not invertible. We call the invertible element a \textbf{unit}.
 
 From the distributive axiom, we have:
 
@@ -1735,23 +1735,23 @@ From the distributive axiom, we have:
 
 It means, if either $a$ or $b$ is 0, then $ab = 0$. But the inverse proposition does not hold. We can not deduce from $ab =0$ to either $a$ or $b$ is 0. Let's see a negative example. Consider the residue class modulo $n$, where the addition operation is modulo addition: $[a] + [b] = [a + b]$, which takes modulo $n$ on top of the sum. It forms an abelian addition group. The multiplication modulo $n$ is defined as: $[a][b] = [ab]$, which takes modulo $n$ on top of the product. It's easy to verify that this is a ring, named as residue ring modulo $n$.
 
-If $n$ is not prime, for example 10, we can multiply two none zero elements $[5][2] = [5 \times 2] = [0]$. In fact, any two factors of $n$, their modulo product must be zero.
+If $n$ is not prime, for example 10, we can multiply two none zero elements $[5][2] = [5 \times 2] = [0]$. In fact, for any two factors of $n$, their modulo product must be zero.
 
 \index{zero divisor}
-In a ring, if there exists $a \neq 0, b \neq 0$, but $ab = 0$, we call $a$ is a \textbf{left zero divisor}, and $b$ is a \textbf{right zero divisor} of the ring. For the commutative ring, a left zero divisor is also a right zero divisor. Of course, it's possible there is no zero divisor, for example the integer ring. For $ab = 0$, we can deduce either $a$ or $b$ is 0 only if there is no zero divisor in the ring. And we have the following theorem:
+In a ring, if there exists $a \neq 0, b \neq 0$, but $ab = 0$, we call $a$ is a \textbf{left zero divisor}, and $b$ is a \textbf{right zero divisor} of the ring. For the commutative ring, a left zero divisor is also right zero divisor. Of course, it's possible there is no zero divisor, for example the integer ring. For $ab = 0$, we can deduce either $a$ or $b$ is 0 only if there is no zero divisor in the ring. And we have the following theorem:
 
 \begin{theorem}
 For a ring without zero divisor, the following two cancellation rules hold.
 \begin{itemize}
 \item If $a \neq 0$, and $ab = ac$, then $b = c$;
-\item If $a \neq 0$, and $ba = ca$, then $b = c$;
+\item If $a \neq 0$, and $ba = ca$, then $b = c$.
 \end{itemize}
 \end{theorem}
 
-Conversely, if one cancellation rule hold in a ring, then the other cancellation rule also hold, and there is no zero divisor in this ring.
+Conversely, if one cancellation rule holds in a ring, then the other cancellation rule also holds, and there is no zero divisor in this ring.
 
 \index{integral domain}
-So far, we introduced three additional conditions: (1) The multiplication is commutative; (2) There exists unity; (3) No zero divisor. A ring that satisfies these three additional constraints is called \textbf{integral domain} (nonzero commutative ring). It's obvious that integer ring is an integral domain.
+So far, we introduced three additional conditions: (1) Multiplication is commutative; (2) There exists unity; (3) No zero divisor. A ring that satisfies these three additional constraints is called \textbf{integral domain} (nonzero commutative ring). It's obvious that integer ring is an integral domain.
 
 \index{semiring}
 The ring constraints are strong. Sometimes, we needn't the additive inverse. By weakening the limitation, we obtain the \textbf{semiring}.
@@ -1771,7 +1771,7 @@ a(b + c) = ab + ac \\
 \item Any element multiplies 0 gives 0, meaning that: $a0 = 0a = 0$.
 \end{enumerate}
 \end{definition}
-All natural numbers $N$ is an example of semiring. The Boolean operations form a semiring with two elements.
+Natural numbers $N$ is an example of semiring. The Boolean operations form a semiring with two elements.
 
 \begin{Exercise}
 \Question{Prove the theorem that the two cancellation rules hold in a nonzero ring (ring without zero divisor).}
@@ -1780,7 +1780,7 @@ All natural numbers $N$ is an example of semiring. The Boolean operations form a
 
 \subsection{Division ring and field}
 
-We know that not all elements have inverse element in a ring. If every non-zero element has its inverse, then it forms a special ring. For example all rational numbers for a ring under the normal addition and multiplication. In this ring, every non-zero element $a$ has its inverse $\frac{1}{a}$.
+We know that not all elements have inverse element in a ring. If every non-zero element has its inverse, then it forms a special ring. For example all rational numbers form a ring under the normal addition and multiplication. In this ring, every non-zero element $a$ has its inverse $\dfrac{1}{a}$.
 
 \index{division ring}
 \begin{definition}
@@ -1788,7 +1788,7 @@ A ring $R$ is a \textbf{division ring} if it satisfies the following conditions:
 \begin{enumerate}
 \item $R$ contains at least one non-zero element;
 \item $R$ has unity;
-\item Every non-zero element in $R$ in invertible (unit).
+\item Every non-zero element in $R$ is invertible (unit).
 \end{enumerate}
 \end{definition}
 
@@ -1844,7 +1844,7 @@ Thus $b$ must be zero, therefore, division ring is a nonzero ring (does not cont
 \label{fig:ring}
 \end{figure}
 
-We omitted some important algebraic structure like subring, ideal, principal ideal domain, and Euclidean domain.
+We skipped some important algebraic structure here like subring, ideal, principal ideal domain, and Euclidean domain.
 
 \section{Galois theory}
 
