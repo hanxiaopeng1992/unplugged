@@ -3284,22 +3284,22 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 
 \section{小节}
 
-本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
+本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读一段Haskell标准库中关于叠加的代码\cite{Haskell-foldable}。通常我们认为列表的叠加操作可以这样写：
+
+\lstset{language=Haskell, frame=single}
+ \begin{lstlisting}
+foldr f z [] = z
+foldr f z (x:xs) = f x (foldr f z xs)
+\end{lstlisting}
+
+但实际上，今天的标准库用范畴的语言这样写：
 
 \lstset{frame=single}
 \begin{lstlisting}
 foldr f z t = appEndo (foldMap (Endo . f) t) z
 \end{lstlisting}
 
-所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表，在任何可叠加的结构上进行运算。我们先看看传统的列表叠加定义：
-
-\begin{lstlisting}
-foldr :: (a -> b -> b) -> b -> [a] -> b
-foldr f z [] = z
-foldr f z (x:xs) = f x (foldr f z xs)
-\end{lstlisting}
-
-其中$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$,根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
+所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表。在传统的列表叠加定义中，$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$,根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
 
 \[
 a \oplus (b \oplus (c \oplus e))
@@ -3408,7 +3408,7 @@ foldr\ f\ z\ xs
 \end{array}
 \]
 
-这就是我们在本章开头给出的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
+这就是我们看到的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
 
 \section{扩展阅读}
 
