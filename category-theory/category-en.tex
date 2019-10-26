@@ -51,7 +51,7 @@ What is category? Why does it matter? Any relationship between category and prog
 \texttt{foldr f z (x:xs) = f x (foldr f z xs)} \\
 is written in category language as: \texttt{foldr f z t = appEndo (foldMap (Endo . f) t) z} We'll explain it later in this chapter.}.
 
-更重要的是：我们需要抽象。赫尔曼$\cdot$外尔说现代数学在过去几十年不断沉湎在抽象和形式化上。编程领域何尝不是如此呢？现代计算机科学解决的问题空前复杂，大数据量、分布式、高并发、还要保证数据和计算的安全。仅仅靠着前几十年的传统方法——暴力求解、务实的工程实践再加上一点聪明的头脑已经不够了。这逼迫着我们去吸取其它科学和数学中的新方法和新工具。
+The most important thing is abstraction. Hermann Weyl said ``"Our mathematics of the last few decades has wallowed in generalities and formalizations." The samething happens in programming. The problems in modern computer scients are challenging us with the complexicty we never seen before. Big-data, distributed, high concurrency, as well as the reuirement to consistency, security, and integrity. We can't catch them up in the traditional way, i.e. brute-force exhaustive search, pragmatic engineering practice, a smart idea plus some luck. It forces us to learn the new methods and tools from other sciences and mathematics.
 
 正如迪厄多内所说：“这种抽象绝不是来自数学家的反常意愿，似乎他们想通过使用深奥莫测的语言来把自己与其他人隔开。数学家是被经典对象和关系的本质特性逼着去锻造新的抽象工具，来解决过去看来是不可攻克的问题。”\cite{Dieudonne1987}（中文版第2页，英文版第9页）
 
