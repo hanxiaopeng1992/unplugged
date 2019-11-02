@@ -115,6 +115,8 @@
 ;;    FlySpell
 (flyspell-mode +1)
 (define-key flyspell-mode-map (kbd "C-;") #'flyspell-popup-correct)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; =======================================
 ;;      Syntax check

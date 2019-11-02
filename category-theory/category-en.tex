@@ -44,7 +44,7 @@
  \label{fig:Escher-Dewdrop-1948}
 \end{wrapfigure}
 
-Welcome to the world of category! We just see the wounderful scence about abstract algebra in previous chapter. Congratulation to enter the door to the new kingdom of abstraction. The road to this kingdom is developed by may talent minds. In the first stage, people abstracted the concept of number and shape from the concrete things; in the second stage, we removed the meaning of numbers, shapes, and concreate arithmatics, abstract them to algebraic structures (for example group) and relations (for example isomorphism); category theory can be considered as the third stage.
+Welcome to the world of category! We just see the wounderful scence about abstract algebra in previous chapter. Congratulation to enter the door to the new kingdom of abstraction. The road to this kingdom is developed by may talent minds. In the first stage, people abstracted the concept of number and shape from the concrete things; in the second stage, we removed the meaning of numbers, shapes, and concrete arithmatics, abstract them to algebraic structures (for example group) and relations (for example isomorphism); category theory can be considered as the third stage.
 
 What is category? Why does it matter? Any relationship between category and programming? Category theory was a `side product' when mathematicians studied homological algebra in 1940s. In recent decades, category theory has been widely used in varies of areas. Because of the powerful abstraction capability, it is applicable to many problem. It may also be used as an axiomatic foundation for mathematics, as an alternative to set theory and other proposed foundations. Category theory has practical applications in programming language theory. More and ore main stream programming laugnages adopted lambda calculus and closure. The usage of monads is relized in more than 20 languages\cite{Monad-Haskell-Wiki}. Speaking in the category language, a monad is a monoid in the category of endofunctors. Most of the foundamental computations have been abstracted in this way nowadays\footnote{For example, the traditional generic folding from right: \\
 \texttt{foldr \_ z {[} {]} = z} \\
@@ -91,28 +91,28 @@ Mac Lann's early work was in field theory and valuation theory. In 1941, while g
 
 Mac Lane died on April 14th, 2005 in San Francisco, California, USA.
 
-\section{范畴}
+\section{Category}
 
-让我们用非洲大草原来了解范畴。在大草原这个范畴中，有很多种动植物。狮子、鬣狗、猎豹、羚羊、水牛、斑马、秃鹫、蜥蜴、眼镜蛇、蚂蚁……我们管这些动物叫做对象\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，每种动物和植物都是一个对象。这些动植物之间会产生联系，例如狮子会吃羚羊，羚羊吃掉草。我们很容易构造一个食物链。可以从羚羊画一个箭头指向狮子，从草画一个箭头指向羚羊来表示这样的关系。这样对象加上箭头就构成了一个有结构的，彼此联系在一起的系统。
+Let's use an example of ecosystem to understand category. There are varies of living species in African grassland, like lion, hyena, cheetah, antelope, buffalo, zebra, vulture, lizard, cobra, ant, ... We call these animals objects. Every type of animals and plants is an object. There are relation among these living things, for example, lion eats antelope, antelope eats grass. We can easily form a food chain by drawing an arrow from antelope to lion, and another arrow from grass to antelope. Hence these objects together with the arrows form a structured and connected system.
 
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/food-chain.eps}
  %\captionsetup{labelformat=empty}
- \caption{动植物对象与食物关系箭头组成了一个有结构的系统}
+ \caption{Living objects and food chain arrows for a structured system}
  \label{fig:powerset}
 \end{figure}
 
-这样的系统要想成为范畴，还必须满足两点。第一点是每个对象都有指向自己的箭头。这种特殊的箭头称为恒等箭头。对于草原上的动植物，从羚羊到狮子箭头说明羚羊在狮子食物链的下游。我们可以认为每种动植物都处于自己物种食物链的下游（别误会，并不是指吃同类，而是指不吃同类）。这样每个物种就都有自指的箭头了。第二点是箭头之间是可组合的。什么叫做组合呢？草有一个指向羚羊的箭头$f$，羚羊有一个指向狮子的箭头$g$。我们即可以把这两个箭头组合起来成为$g \circ f$，表示草处于狮子食物链的下游。进一步，把两个箭头组合起来后，还可以和第三个箭头再次组合。例如狮子死后会被秃鹫吃掉，这样我们可以从狮子画一个指向秃鹫的箭头$h$。组合在一起就是$h \circ (g \circ f)$。这个箭头的含义表示草处于秃鹫食物链的下游，它等价与$(h \circ g) \circ f$。也就是说，食物链的上下游关系是满足结合性的。
+To become a category, this system has to satisfy two constraints. First, every object must have an arrow to itself. Such special arrow is called identity arrow. For the animals and plants in grassland, the arrow from lion to anteplope means the antelope is downstream to the lion in the foodchain. We can define that every species is downstream to itself along the foodchain (it does not mean one eat itself, but means one does not eat itself), hence every species has arrow points to itself. Second, arrows need be composible. What does composable mean? There is an arrow $f$ from grass to antelope, an arrow $g$ from antelope to lion. We can compose them to $g \circ f$, which means grass is downstream to lion along the food chain. This composed arrow can be further composed with the third one. For example, vulture eats the dead lion, thus we can draw an arrow $h$ from the lion to the volture. Composing them together gives $h \circ (g \circ f)$. This arrow means grass is downstream to vulture along the food chain. It is identical to the arrow $(h \circ g) \circ f$. Hence the upstream, downstream relations is associative.
 
-在组合的基础上，还有一个叫作“可交换”的概念。例如下面图中，
+Besides composable, there is another concept called commutative. As shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=4em, minimum width=2em]{
-     & \text{羚羊} & \\
-     \text{草} & & \text{狮子} \\};
+     & \text{Antelope} & \\
+     \text{Grass} & & \text{Lion} \\};
   \path[-stealth]
     (m-2-1) edge node [above] {$f$} (m-1-2)
     (m-1-2) edge node [above] {$g$} (m-2-3)
