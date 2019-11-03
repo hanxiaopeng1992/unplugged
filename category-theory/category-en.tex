@@ -120,34 +120,37 @@ Besides composable, there is another concept called commutative. As shown in bel
 \end{tikzpicture}
 \end{center}
 
-可以沿着两条通路从草到达狮子，一条是箭头组合$g \circ f$，表示草在羚羊的下游，羚羊又在狮子的下游；另一条是箭头$h$，表示草在狮子的下游。这样我们就相当于得到了一对平行的箭头：
+There are two paths from grass to lion. One is the composite arrow $g \circ f$, which means grass is downstream to antelope, and antelope is downstream to lion; the other is arrow $h$, which means grass is downstream to lion. Hence we obtain a pair of parallel arrows:
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=3em, column sep=4em, minimum width=2em]{
-     \text{草} & \text{狮子} \\};
+     \text{Grass} & \text{Lion} \\};
   \path[-stealth]
     (m-1-1.north east) edge node [above] {$g \circ f$} (m-1-2.north west)
     (m-1-1.south east) edge node [below] {$h$} (m-1-2.south west);
 \end{tikzpicture}
 \end{center}
 
-如果这两个平行的箭头是等效的，我们称它们是可交换的。用符号表示就是：
+These two arrow may or may note be the same, when they are, we say they are commutative:
 
 \[
 h = g \circ f
 \]
 
-这样，我们说草原上的动植物，在食物链关系这个箭头下，构成了一个范畴。现在我们给出较为正式的范畴的定义。
+And the grass, antelope, lion triangle commutes. We say the living things in the grassland form a category under the food chain arrows. It's time to give the formal definition for category.
 
-\index{范畴} \index{箭头}
+\index{category} \index{arrow}
 \begin{definition}
-一个范畴$\pmb{C}$包括一组对象（Object）\footnote{和编程中的“面向对象”无关。这里指抽象事物。}，记为$A, B, C, ...$，和一组箭头（Arrow），记为$f, g, h, ...$。它们之上定义了以下四种操作：
+A category $\pmb{C}$ consists of a collection of objects\footnote{It has nothing related to the object oriented programming. Here the object means abstract thing.}, denoted as $A, B, C, ...$, and a collection of arrows, denoted as $f, g, h, ...$. There are four operations defined on top of them:
 \begin{itemize}
-\item 两个全操作\footnote{全操作（total operation）是指对于所有的对象，无一例外都存在这一操作。与之相对的是部分操作（partial operation），对于某些对象，这一操作没有定义。例如对于全体整数的集合，取相反数$x \mapsto -x$是全操作，而取倒数$x \mapsto 1/x$由于对0没有定义，所以是部分操作。}，称为源（source）和目标（target）\footnote{不应把源和目标理解为名词，而应理解为动词。表示“指定源为……”，“指定目标为……”}，这两个操作都将对象指定到箭头上，记为$A \arrowto{f} B$，表示箭头$f$的源是$A$，目标是$B$；
-\item 第三个全操作叫恒等箭头\footnote{同样这里恒等箭头（identity arrow）应理解为动词，表示“为……指定恒等箭头”。}，对于任何对象$A$，恒等箭头都指向$A$自己。记为：$A \arrowto{id_A} A$；
-\item 第四个操作是一个部分操作，称为组合。它将两个箭头组合起来。如果有箭头$B \arrowto{f} C$和$A \arrowto{g} B$，则$f$和$g$的组合为$f \circ g$，读作“$g$然后$f$”。它表示$A \arrowto{f \circ g} C$。
+\item Two total operations\footnote{Total operation is defined for every object without exception. its counterpart is partial operation, which is not defined from some objects. For example, the negate $x \mapsto -x$ is total operation for natural numbers, while the inverse operation $x \mapsto 1/x$ is not defined for 0, hence it is a partial operation.}, called source and target\footnote{They should be treated as verb, which means assign source object as... and assign target object as ...}. They assign source and target object to an arrow. Denoted as $A \arrowto{f} B$. It means the source of arrow $f$ is $A$, and the target is $B$;
+
+\item The third total operation is called identity arrow\footnote{Similarly, identity arrow should be treated as verb, which means assign the identity arrow as...}. For every object $A$, the identity arrow points to $A$ itself. Denoted as $A \arrowto{id_A} A$;
+
+\item The fourth operation is a partial operation, called composition. It composes two arrows. Given arrows $B \arrowto{f} C$ and $A \arrowto{g} B$, the composite of $f$ and $g$ is $f \circ g$, read as `$f$ after $g$'. It means $A \arrowto{f \circ g} C$.
+
 \end{itemize}
 
 除此之外，范畴还必须满足以下两条公理：
