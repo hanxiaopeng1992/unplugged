@@ -242,9 +242,9 @@ It means first add prefix `hi', then add prefix `hello'. It easy to verify that,
 \end{figure}
 
 \index{Monoid category}
-同样是幺半群，我们既看到了包含宇宙中全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界，一花一叶一如来。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$A$，定义集合$hom(A, A)$为所有从$A$指向$A$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
+For monoid, we see both the category $\pmb{Mon}$, that contains all the monoids in the universe, and the category with only one monoid. It is like a hidden world in a piece of sand. What's more interesting, for any object $A$ in a category $\pmb{C}$, define set $hom(A, A)$ as all the arrows from $A$ to $A$ itself. Then this set of arrows for a monoid under composite operation, where the identity element is the identity arrow. Such symmetry emerges surprisingly.
 
-\index{集合全函数范畴}
+\index{Category of sets under total functions}
 我们举的第二个例子是集合。我们让每个集合都成为一个对象\footnote{一旦开始考虑全部集合的集合，就会对导致“全部不包括自身的集合”这样的矛盾，称之为罗素悖论。我们将在第7章详细讲述罗素悖论。}，而箭头是从一个集合$A$到另一个集合$B$的函数（或映射）。我们称$A$为函数的定义域，$B$为值域\footnote{确切地说是全函数，即定义域中的每个元素都可以应用的函数}。组合运算就是函数的组合。即$y = f(x)$与$z = g(y)$的组合为$z = (g \circ f)(x) = g(f(x))$。不难验证，函数的组合满足结合律，单位元是恒等函数$id(x) = x$。这样我们就获得了全体集合和函数组成的范畴$\pmb{Set}$。
 
 \index{偏序集} \index{预序集}
