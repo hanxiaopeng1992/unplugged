@@ -221,13 +221,13 @@ and
 
 Obviously, the composite result ``count $\circ$ chars'' is also a transform. It means we first collect the unique characters from English strings, then count the number of characters. Hence we obtain the \text{monoid category} $\pmb{Mon}$. The objects are varies of monoids, arrows are the transforms among them, called morphisms in mathematics. The identity arrow is from a monoid to itself.
 
-这是一个非常巨大的范畴，它包含宇宙中\textbf{所有}的幺半群\footnote{你可能想到了罗素悖论。确切地说，$\pmb{Mon}$包含了宇宙中所有“小”的幺半群}。另一方面，范畴也可以很小，我们接下来看的例子只含有一个幺半群。考虑英文词句这个幺半群，它只有一个对象，就是全体英文的集合（请原谅，这看起来也不怎么小）。对于任何一个英文词句，例如hello，我们都可以定义一个前缀操作，把hello添加到任何其它英文词句前面。我们管这个操作叫“加前缀hello”。例如：“加前缀hello”作用到单词Alice上就变成了helloAlice；类似地还可以定义“加前缀hi”，把它作用到Alice上就得到了hiAlice。如果认为这是两个不同的箭头，则它们的组合就是：
+This is a very big category. It contains {\em all} the monoids in the universe\footnote{You may think about the Russel's paradox. Strictly speaking, $\pmb{Mon}$ contains all `small' monoid in the universe}. On the other hand, category can also be small. Let's see another example, a category that only contains only one monoid. Consider the monoid of English strings. There is only one object, which is the set of all English strings (I am sorry that this set does not look small). For any English string, for example `hello', we can define a prefix operation, that prepand `hello' to any other English strings. We call this operation as `prefix hello'. Apply `prefix hello' to word `Alice' gives result `helloAlice'; Similarly, we can define `prefix hi', when applied to `Alice' gives `hiAlice'. If we define them as two different arrows, then their composite arrow is:
 
 \begin{center}
-加前缀hello $\circ$ 加前缀hi = 加前缀hellohi
+prefix hello $\circ$ prefix hi = prefix hellohi
 \end{center}
 
-表示先增加前缀hi，然后再增加前缀hello。不难验证，任意三个这样的箭头满足结合律。接下来我们还需要检查一下单位元，也就是空词句“”。以空词句作为前缀等于没有变化，也就是恒等变换。这样我们就得到了只有一个对象的幺半群范畴，如图\ref{fig:monoid-as-category}所示。
+It means first add prefix `hi', then add prefix `hello'. It easy to verify that, any three such arrows are associative. For the identity element, any string does not change when adding empty string as prefix, hence it is the identity arrow. Now we have a monoid category with only one object, as shown in figure \ref{fig:monoid-as-category}.
 
 \begin{figure}[htbp]
 \centering
@@ -237,11 +237,11 @@ Obviously, the composite result ``count $\circ$ chars'' is also a transform. It 
 \draw[->] (-0.4, 0) arc[radius=10mm, start angle=225, end angle=-45] node[pos=0.5, above]{$g$};
 \draw[->] (-0.6, 0) arc[radius=15mm, start angle=225, end angle=-45] node[pos=0.5, above]{$f \circ g$};
 \end{tikzpicture}
-\caption{只有一个对象的幺半群范畴}
+\caption{The monoid category with only one object}
 \label{fig:monoid-as-category}
 \end{figure}
 
-\index{幺半群范畴}
+\index{Monoid category}
 同样是幺半群，我们既看到了包含宇宙中全部幺半群的范畴$\pmb{Mon}$，也看到了只包含一个幺半群的范畴。可谓一沙一世界，一花一叶一如来。更有意思的是，对于任何范畴$\pmb{C}$，和其中任何的对象$A$，定义集合$hom(A, A)$为所有从$A$指向$A$的箭头。则这一箭头的集合在组合运算下又构成一个幺半群，其中单位元是恒等箭头。这种对偶值得我们仔细体会。
 
 \index{集合全函数范畴}
