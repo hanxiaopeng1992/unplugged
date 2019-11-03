@@ -247,21 +247,22 @@ For monoid, we see both the category $\pmb{Mon}$, that contains all the monoids 
 \index{Category of sets under total functions}
 Our second example is set. Let every set be an object\footnote{Whenever consider the set of all sets, it ends up of Russel's paradox `the set all sets that does not contain itself'. We'll revisit Russel's paradox in chapter 7.}, the arrow is a function (or map) from one set $A$ to another set $B$. We call $A$ the domain of definition, and $B$ is the domain of the function value\footnote{It is total function, which can be applied to every elements in domain $A$.}. The composition is function composite. For functions $y = f(x)$ and $z = g(y)$, their composition is $z = (g \circ f)(x) = g(f(x))$. It's easy to verify that function composition is associative. The identity element is the identity function $id(x) = x$. Hence we obtain the category $\pmb{Set}$ of all sets and functions.
 
-\index{偏序集} \index{预序集}
-我们举的第三个例子包括一对概念。分别叫做\textbf{偏序集}和\textbf{预序集}。给定一个集合，所谓预序（pre-order），是说集合中的两个元素之间可以进行比较。我们用二元关系符号$\leq$来表示，这个符号不一定是大于小于关系，它可能表示一个集合是另一个集合的子集，一个词句是另一个词句的后缀，一个人是另一个人的后代等等。如果关系$\leq$满足以下两条性质，我们说这是一个预序关系：
+\index{partial order set} \index{poset}
+\index{pre-order set} \index{preset}
+Our third example contains a pair of concepts. {\em partial order set} and {\em pre-order set}. Given a set, pre-order means we can compare every two elements in it. We often use the symbol $\leq$ to represent this binary relation. It is not necessarily means less or greater than like numbers, it can mean one set is subset of the other, one string is post-fix of the other, one person is descendant of the other etc. If the relation $\leq$ satisfy the following conditions, we call it a pre-order:
 
 \begin{itemize}
-\item \textbf{自反性}：任何集合中的元素$a$都有$a \leq a$；
-\item \textbf{传递性}：若$a \leq b$且$b \leq c$，则$a \leq c$；
+\item \textbf{reflexive}: For every element $a$ in the set, we have $a \leq a$;
+\item \textbf{transitive}: If $a \leq b$ and $b \leq c$, then $a \leq c$;
 \end{itemize}
 
-如果在此基础上还满足反对称性，则这一关系叫做偏序（partial order）:
+On top of these two, if the relation is also anti-symmetric, we call it partial order:
 
 \begin{itemize}
-\item \textbf{反对称性}：若$a \leq b$且$b \leq a$，则$a = b$；
+\item \textbf{anti-symmetric}: if $a \leq b$ and $b \leq a$, then $a = b$;
 \end{itemize}
 
-我们称满足预序关系的集合叫做预序集，满足偏序关系的集合叫做偏序集，分别记作：
+We define the set satisfies pre-oder preset, and the set satisfies partial order poset:
 
 \[
 preset \quad \quad \quad poset
