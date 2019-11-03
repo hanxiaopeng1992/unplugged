@@ -153,25 +153,25 @@ A category $\pmb{C}$ consists of a collection of objects\footnote{It has nothing
 
 \end{itemize}
 
-除此之外，范畴还必须满足以下两条公理：
+Besides these four operations, category satisfies the following two axioms:
 
 \begin{itemize}
-\item \textbf{结合性公理}：箭头组合是可结合的。对任何三个可组合的箭头$f, g, h$都有：
+\item \textbf{Associativity}: Arrows are associative. For every three composable arrows $f, g, h$, the equation:
 \[
 f \circ (g \circ h) = (f \circ g) \circ h
 \]
-我们可以将其写为$f g h$。
-\item \textbf{单位元公理}：恒等箭头对于组合运算来说相当于单位元。
-对于任何箭头$A \arrowto{f} B$来说，都有：
+holds. We can write it as $f\ g\ h$.
+\item \textbf{Identity element}: The identity arrow is the identity element for the composition. For every arrow $A \arrowto{f} B$, equations:
 \[
 f \circ id_A = f = id_B \circ f
 \]
+hold.
 \end{itemize}
 \end{definition}
 
-和大草原上的食物链比起来，范畴和箭头的定义是很抽象的。我们可以通过一些较为具体的例子，来加深对这个定义的理解。
+Categories and arrows are abstract compare to the food chain in grassland. Let's use some concrete examples to learn this definition.
 
-\subsection{范畴的例子}
+\subsection{Examples of categories}
 
 在数学上，如果一个集合带有特殊的单位元，元素间定义了可结合的二元运算。我们说这样的集合构成一个幺半群。例如全体整数中，令0是单位元，二元运算是加法，则构成了整数加法幺半群。
 
