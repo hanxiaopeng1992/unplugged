@@ -173,20 +173,21 @@ Categories and arrows are abstract compare to the food chain in grassland. Let's
 
 \subsection{Examples of categories}
 
-在数学上，如果一个集合带有特殊的单位元，元素间定义了可结合的二元运算。我们说这样的集合构成一个幺半群。例如全体整数中，令0是单位元，二元运算是加法，则构成了整数加法幺半群。
+In mathematics, a set is called a monoid if it is defined with a special identity element, and associative binary operation. The integers for example, with 0 as the identity element, and plus as the binary operation, form a monoid called integer additive monoid.
 
-幺半群的集合不仅可以包含数，也可以是其它东西。例如英文的词语和句子（在编程中称为字符串）构成一个集合。如果我们把两个英文词句连在一起称为二元运算，例如“red ” $\doubleplus$ “apple” = “red apple”，则这些英文词句构成一个幺半群。其中单位元是空词句“”。不难验证它满足幺半群的条件：
+A monoid can contains other things besides numbers. Consider the set of English words and sentences (called strings in programming). We can define the binary operation that concatenates two English strings. For example ``red'' $\doubleplus$ ``apple'' = ``red apple''. These English strings form a monoid, where the identity element is the empty string ``''. It's easy to verify the monoid constraints:
 
 \[
 red \doubleplus (apple \doubleplus tree) = (red \doubleplus apple) \doubleplus tree
 \]
-词句连接满足结合律。
+
+The string concatenation is associative.
 
 \[
 \texttt{""} \doubleplus apple = apple = apple \doubleplus \texttt{""}
 \]
 
-任何词句连接上空词句（单位元）都仍然等于它本身。
+Concatenating any strings with empty string (identity element) gives itself.
 
 把词句幺半群放在一边，再考虑另一个幺半群。群元素是字母组成的集合（在编程中称为字符集），二元操作是集合的并，单位元是空集。将两个字母集合并在一起可以获得一个更大的集合，例如：
 
