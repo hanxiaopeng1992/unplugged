@@ -307,16 +307,16 @@ As shown in \ref{fig:powerset}, for a given set $\{x, y, z\}$, all its subsets f
  \label{fig:powerset}
 \end{figure}
 
-\index{偏序集范畴} \index{预序集范畴}
-一般来说，任何一个偏序集都是一个预序集，但是反过来却不一定成立。一个预序集不一定是一个偏序集。高中时我们都学过单调函数，就是那种只增不减的函数，如果$x \leq y$，则$f(x) \leq f(y)$。把这种单调函数组合起来用到偏序集和预序集上，我们就获得了一对范畴
+\index{category of partial order set} \index{category of pre-order set}
+In general any partial order set is a pre-order set, but the reverse is not necessarily true. A pre-order set may not be partial order set. We learn monotone function in high school math. Monotone function never decreases, if $x \leq y$, then $f(x) \leq f(y)$. By composing monotone functions on top of partial order set or pre-order set, we obtain a pair of categories.
 
 \[
 \pmb{Pre} \quad \quad \quad \pmb{Pos}
 \]
 
-它们的对象分别是所有的$preset$和$poset$，两个范畴中的箭头都是单调映射。由于恒等映射也是单调映射，所以范畴中的恒等箭头为恒等映射。
+The objects are all $presets$ and $posets$, the arrows are monotone maps. As the identity map is also monotone, it is the identity arrow in the category.
 
-幺半群范畴和预序集范畴这两个例子不是随便挑选的，我们有着特殊的用意。这两个范畴可以说是最简单的例子。通过幺半群范畴，我们可以学习组合；通过预序集范畴，我们可以学习比较。对数学结构的组合与比较是整个范畴论的核心。在这一意义上，任何范畴都是幺半群与预序集的某种混合形式（\cite{Simmons2011}第13页）。
+We intended choose categories of monoids and pre-set as two examples. They are the two most simple categories. The study of monoids is the study of composition in the miniature. The study of presets is the study of comparison in the miniature. It is the core of the entire category to study the composition and comparison of mathematical structures. In a sense every category is an amalgam of certain monoids and presets(\cite{Simmons2011}, p13).
 
 $\pmb{Pre}$是包含所有预序集的巨大范畴。另一方面预序集范畴也可以很小。小到只含有一个预序集。考虑一个集合，对象是集合中的元素$i, j, k, ...$。如果$i, j$，可比较并且$i \leq j$，我们就定义箭头
 
