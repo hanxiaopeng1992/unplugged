@@ -327,21 +327,23 @@ i \longrightarrow j
 Hence for every tow objects, either there is no arrow between them, which means they are not comparable; or there exists one, which means there is $\leq$ relationship. In summary, there is at most one arrow between any two objects. We can verify that such arrows are composable, and for every element $i$, relation $i \leq i$ holds, hence there exists self-pointed arrow. Such preset itself forms a category. Again, we see the symmetry between preset and monoid categories. Monoid category contains only one object, but has many arrows; while preset category contains many objects, but has at most one arrow between objects.
 
 \begin{Exercise}
-\Question{验证幺半群$(S, \cup, \varnothing)$（群元素是集合，二元运算是集合的并，单位元是空集）和$(N, +, 0)$（群元素是自然数，二元运算是加法，单位元是零）都是只含有一个对象的范畴。}
-\Question{第一章中我们介绍了自然数的皮亚诺公理，并且介绍了和皮亚诺算术同构的其它结构，例如链表等。这些完全可以用范畴来解释。这一结论是德国数学家戴德金发现的，尽管当时还没有范畴论。我们今天将这一范畴命名为皮亚诺范畴$\pmb{Pno}$。范畴中的对象为$(A, f, z)$，其中$A$为元素的集合，对于自然数来说这个集合是全体自然数$N$；$f: A \to A$是后继函数，对于自然数来说，就是$succ$；$z \in A$是起始元素，对于自然数来说是0。任给两个皮亚诺对象$(A, f, z)$和$(B, g, c)$，现在定义从$A$到$B$的态射
+\Question{Verify the monoid $(S, \cup, \varnothing)$ (the elements are sets, the binary operation is set union, the identity element is empty set) and $(N, +, 0)$ (elements are natural numbers, the binary operation is add, the identity element is zero) are all categories that contain only one object.}
+\Question{We introduced Piano's axioms for natural numbers in chapter 1, as well as the isomorphic structures to Piano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Piano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Piano object $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
+
 \[
 A \arrowto{\phi} B
 \]
-它满足
+
+It satisfies:
 
 \[
-\phi \circ f = g \circ \phi \quad \text{且} \quad \phi(z) = c
+\phi \circ f = g \circ \phi \quad \text{and} \quad \phi(z) = c
 \]
 
-试验证$\pmb{Pno}$的确是一个范畴。}
+Verify that $\pmb{Pno}$ is a category.}
 \end{Exercise}
 
-\subsection{箭头$\neq$函数}
+\subsection{Arrow $\neq$ function}
 
 在此前的例子中，箭头要么是一般意义上的函数，要么是类似函数意义的映射和态射。这容易造成一种错觉，认为箭头等同于函数。我们接下来看的例子有助于打破这种错觉。有一种名叫关系的范畴。范畴中的对象是集合。从集合$A$到$B$的箭头$A \arrowto{R} B$的定义为：
 
