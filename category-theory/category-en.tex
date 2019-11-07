@@ -275,7 +275,7 @@ preset \quad \quad \quad poset
                row sep=1em, column sep=1em, minimum width=2em]{
      % 4 row x 6 column
      & \shortstack{Old ``Scotty'' \\ McDuck} & & & \shortstack{Grandma \\ Duck} & \\
-     \shortstack{Scrooge \\ McDuck} & \shortstack{Matilda \\ Duck} & \shortstack{Goosetail \\ Gander} & \shortstack{Hortense \\ McDuck} & \shortstack{Quackmore \\ Duck} & \shortstack{Daphne \\ Duck} \\
+     \shortstack{Scrooge \\ McDuck} & \shortstack{Matilda \\ McDuck} & \shortstack{Goosetail \\ Gander} & \shortstack{Hortense \\ McDuck} & \shortstack{Quackmore \\ Duck} & \shortstack{Daphne \\ Duck} \\
      & & \shortstack{Gladstone \\ Gander} & \shortstack{Donald \\ Duck} & \shortstack{Thelma \\ Duck} & \\
      & & & \text{Huey} & \text{Dewey} & \text{Louie} \\};
   \path[<-]
@@ -357,9 +357,9 @@ Let's see what does it mean. Set $B \times A$ represents all element combination
 B \times A = \{(b, a) | b \in B, a \in A\}
 \]
 
-我们以红楼梦人物为例，集合$A =$ \{贾蓉, 贾惜春, 贾琏\}，集合$B =$ \{秦可卿, 王熙凤\}，则$B \times A$的积为\{(秦可卿, 贾蓉), (秦可卿, 贾惜春), (秦可卿, 贾琏), (王熙凤, 贾蓉), (王熙凤, 贾惜春), (王熙凤, 贾琏)\}。集合$R$是$B \times A$的子集，它可以看作$A$与$B$的某种关系。如果$A$中的元素$a$和$B$中的元素$b$满足关系$R$，则有$(b, a) \in R$，我们将其记为$bRa$。具体到这个例子，我们令$R=$\{(秦可卿, 贾蓉), (王熙凤, 贾琏)\}，则$R$代表婚姻关系。
+Use the Donald Duck family for example, set $A =$ \{ Scrooge McDuck, Matilda McDuck, Hortense McDuck\} contains three members in McDuck family, set $B = $ \{Goosetail Gander, Quackmore Duck\} contains two external members, then the product of $B \times A$ is \{(Goosetail Gander, Scrooge McDuck),(Goosetail Gander, Matilda McDuck), (Goosetail Gander, Hortense McDuck), (Quackmore Duck, Scrooge McDuck), (Quackmore Duck, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}. Set $R$ is a subset of $B \times A$, it represents some relation between $A$ and $B$. If element $a$ in $A$, and element $b$ in $B$ satisfy relation $R$, then $(b, a) \in R$, we denote it as $bRa$. For this example, we can let $R=$ \{(Goosetail Gander, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}, then $R$ means they are couples (In the Donald Duck story, Goosetail married Matilda, they adopted Gladstone as their child; Quackmore married Hortense, they are parent of Donald).
 
-这样从对象$A$到$B$的\textbf{所有}箭头构成的集合就代表了从$A$到$B$的各种可能的关系。现在我们考虑箭头的组合
+Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relations from $A$ to $B$. Let's consider the arrow composition:
 
 \[
 A \to B \to C
