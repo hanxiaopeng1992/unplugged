@@ -365,11 +365,11 @@ Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relati
 A \to B \to C
 \]
 
-如果存在某个中间集合中的元素$b$，同时使得两个关系$bRa$，$cSb$都成立，我们就说存在箭头间的组合。具体到红楼梦的例子，令集合$C=$\{王夫人, 薛姨妈, 邢夫人\}，关系$S=$\{(王夫人, 王熙凤), (薛姨妈, 王熙凤)\}表示姑妈关系。这样组合箭头$S \circ R$的结果是：\{(王夫人, 贾琏), (薛姨妈, 贾琏)\}，表示$c$的侄女嫁给了$b$的关系。也就是说王夫人、薛姨妈和贾琏都通过王熙凤使得两个关系同时成立。恒等箭头的定义很简单，所有元素都和自己产生恒等关系。
+If there exists an element $b$ in some intermediate set, that both relations $bRa$ and $cSb$ hold, we say there is composition between arrows. Use the Donald Duck family for example. Let set $C=$ = \{Gladstone, Donald, Thelma\}. Relation $S=$ \{(Donald, Quackmore), (Thelma, Quackmore)\} means son and father. Thus the composite arrow $S \circ R$ gives result \{(Donald, Hortense), (Thelma, Hortense)\}, it means the relation $c$ is son of mother $a$. Hence the both relations are satisfied through Quackmore, so that Donald, Thelma are sons of their mother Hortense. The definition of identity arrow is simple, every element has a identical relation to itself.
 
-我们还可以从任何已知的范畴产生新的范畴，例如把一个范畴$\pmb{C}$中的所有箭头反向就得到了一个对偶的范畴$\pmb{C}^{op}$。这样我们了解了一个范畴，就同时了解了它的对偶范畴。
+We can generate a new category from any existing category, for example, by reversing the arrows in category $\pmb{C}$, we obtained a dual {\em opposite} category $\pmb{C}^{op}$. Hence when we understand a category, we understand its dual category as well.
 
-\section{函子}
+\section{Functors}
 我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间架设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
 
 \subsection{函子的定义}
