@@ -357,7 +357,7 @@ Let's see what does it mean. Set $B \times A$ represents all element combination
 B \times A = \{(b, a) | b \in B, a \in A\}
 \]
 
-Use the Donald Duck family for example, set $A =$ \{ Scrooge McDuck, Matilda McDuck, Hortense McDuck\} contains three members in McDuck family, set $B = $ \{Goosetail Gander, Quackmore Duck\} contains two external members, then the product of $B \times A$ is \{(Goosetail Gander, Scrooge McDuck),(Goosetail Gander, Matilda McDuck), (Goosetail Gander, Hortense McDuck), (Quackmore Duck, Scrooge McDuck), (Quackmore Duck, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}. Set $R$ is a subset of $B \times A$, it represents some relation between $A$ and $B$. If element $a$ in $A$, and element $b$ in $B$ satisfy relation $R$, then $(b, a) \in R$, we denote it as $bRa$. For this example, we can let $R=$ \{(Goosetail Gander, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}, then $R$ means they are couples (In the Donald Duck story, Goosetail married Matilda, they adopted Gladstone as their child; Quackmore married Hortense, they are parent of Donald).
+Use the Donald Duck family for example, set $A =$ \{ Scrooge McDuck, Matilda McDuck, Hortense McDuck\} contains three members in McDuck family, set $B = $ \{Goosetail Gander, Quackmore Duck\} contains two external members, then the product of $B \times A$ is \{(Goosetail Gander, Scrooge McDuck),(Goosetail Gander, Matilda McDuck), (Goosetail Gander, Hortense McDuck), (Quackmore Duck, Scrooge McDuck), (Quackmore Duck, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}. Set $R$ is a subset of $B \times A$, it represents some relation between $A$ and $B$. If element $a$ in $A$, and element $b$ in $B$ satisfy relation $R$, then $(b, a) \in R$, we denote it as $bRa$. For this example, we can let $R=$ \{(Goosetail Gander, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}, then $R$ means they are couples (In Donald Duck story, Goosetail married Matilda, they adopted Gladstone as their child; Quackmore married Hortense, they are parent of Donald).
 
 Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relations from $A$ to $B$. Let's consider the arrow composition:
 
@@ -365,14 +365,15 @@ Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relati
 A \to B \to C
 \]
 
-If there exists an element $b$ in some intermediate set, that both relations $bRa$ and $cSb$ hold, we say there is composition between arrows. Use the Donald Duck family for example. Let set $C=$ = \{Gladstone, Donald, Thelma\}. Relation $S=$ \{(Donald, Quackmore), (Thelma, Quackmore)\} means son and father. Thus the composite arrow $S \circ R$ gives result \{(Donald, Hortense), (Thelma, Hortense)\}, it means the relation $c$ is son of mother $a$. Hence the both relations are satisfied through Quackmore, so that Donald, Thelma are sons of their mother Hortense. The definition of identity arrow is simple, every element has a identical relation to itself.
+If there exists an element $b$ in some intermediate set, that both relations $bRa$ and $cSb$ hold, we say there is composition between arrows. Use the Donald Duck family for example. Let set $C=$ = \{Gladstone, Donald, Thelma\}. Relation $S=$ \{(Donald, Quackmore), (Thelma, Quackmore)\} means son and father. Thus the composite arrow $S \circ R$ gives result \{(Donald, Hortense), (Thelma, Hortense)\}, it means the relation $c$ is son of mother $a$. Hence both relations are satisfied through Quackmore, so that Donald and Thelma are sons of their mother Hortense. The definition of identity arrow is simple, every element has a identical relation to itself.
 
 We can generate a new category from any existing category, for example, by reversing the arrows in category $\pmb{C}$, we obtained a dual {\em opposite} category $\pmb{C}^{op}$. Hence when we understand a category, we understand its dual category as well.
 
 \section{Functors}
-我们说范畴论是对抽象代数结构的“二次抽象”。上一节我们看到如何把所有的集合和映射、群和态射、偏序集和单调函数等抽象成范畴。接下来的问题是，如何在这些范畴之间架设桥梁、进行比较？函子\footnote{C++语言的一些资料中，用英文functor来命名函数对象，即function object。这与范畴论中的函子完全无关。}（functor）就是用来对范畴及其内在的关系（对象和箭头）进行比较的。
 
-\subsection{函子的定义}
+We mentioned category theory is the `second' level abstraction on top of algebraic structure. We've seen how to abstract all sets and maps, groups and morphisms, posets and monotone functions into categories. The next question is how to bridge these categories and compare them? Functor\footnote{Some C++ programming language materials use functor to name function object. It has nothing related to category theory.} is used to compare categories and their inner relations (objects and arrows).
+
+\subsection{Definition of functor}
 \index{函子}
 在某种意义上说，函子好比是范畴之间的变换关系（态射）。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
 
