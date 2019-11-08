@@ -657,11 +657,11 @@ From programming perspective, this defines the linked-list data structure. The e
 \end{tikzpicture}
 \end{center}
 
-图中左侧的对象$A, B$是数据类型，例如整型、布尔型甚至是$\mathbf{Maybe}\ Char$这样的复杂类型。而右侧的对象，是通过列表函子映射成的类型，如果$A$为整形$Int$，则右侧对应$\mathbf{List}\ Int$，如果$B$代表$Char$，则右侧对应的是$\mathbf{List}\ Char$，也就是$String$。
+Objects $A, B$ on the left side are data types, like integer, Boolean, or even complex types such as $\mathbf{Maybe}\ Char$. Objects on the right side, are types mapped by list functor. If $A$ is integer type $Int$, then the right side corresponds to $\mathbf{List}\ Int$; if $B$ is character type $Char$, then the right side corresponds to $\mathbf{List}\ Char$, which is $String$ essentially.
 
-请再次注意这里的对象是类型，而不是值，$A$可以是$Int$，但不是具体的值5。因此$\mathbf{List}\ A$对应整形列表，是一个类型，而不是一个具体的值，如：[1, 1, 2, 3, 5]。那么如何产生具体的列表值呢？那要靠$Nil$和$Cons$两个具体的函数来产生空值或者诸如$List(1, List(1, List(2, Nil)))$这样的具体列表。
+We highlight again that here the object is type, but not value. $A$ can be $Int$, but can not be 5, a particular value. Hence $\mathbf{List}\ A$ corresponds to list of integers, but not a particular list, like [1, 1, 2, 3, 5]. How to generate list values? Function $Nil$ and $Cons$ are used to generate empty list or list like $List(1, List(1, List(2, Nil)))$.
 
-以上是列表函子在对象映射时的行为，那么它是如何对箭头进行映射的呢？也就是说，给定一个函数$f: A \to B$，如何通过列表函子得到另一个函数$g: \mathbf{List}\ A \to \mathbf{List}\ B$呢？与可能函子$\mathbf{Maybe}$类似，我们可以定义一个$fmap$实现从箭头$f$到箭头$g$的映射，对于列表函子它的类型为：
+Now we know how list functor maps objects, how does it map arrows? Given a function $f: A \to B$, how to obtain another function $g: \mathbf{List}\ A \to \mathbf{List}\ B$ through list functor? Similar to maybe functor, we can realize $fmap$ to map arrow $f$ to arrow $g$. The type signature for list functor is:
 
 \[
 fmap: (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B)
