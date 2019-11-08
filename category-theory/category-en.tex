@@ -375,26 +375,26 @@ We mentioned category theory is the `second' level abstraction on top of algebra
 
 \subsection{Definition of functor}
 \index{函子}
-在某种意义上说，函子好比是范畴之间的变换关系（态射）。但是它不仅把一个范畴中的对象映射为另一范畴中的对象，它还将一个范畴中的箭头映射到另一个范畴中。这一点是和普通的态射（例如群之间的态射）不同的。
+In some sense, functor can be considered as the transform (morphism) between categories. However, it does not only map the object from one category to the other, but also maps the arrow. This makes functor different from the normal morphism (between groups for example).
 
-函子通常用符号$\mathbf{F}$表示。既然说函子好比是范畴间的态射，那么函子必须能够忠实保持范畴间的结构和关系，这是如何做到的呢？为此函子必须满足两条性质。
+We often use $\mathbf{F}$ to denote functor. Since functor likes the morphisms for category, it must faithfully preserve the structure and relations between categories. In order to achieve this, a functor need satisfy two conditions:
 
 \begin{itemize}
-\item 第一条性质，是函子必须保持恒等箭头仍然变换为恒等箭头。用图来表示就是：
+\item The first condition. Any identity arrow in one category is transformed to identity arrow in another category. As shown in below figure:
 
 \[
 A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \]
 
-\index{协变} \index{反变}
-\item 第二条性质，函子必须能够保持箭头的组合仍然变换为箭头的组合\footnote{实际存在两种变换方式，一种叫做协变，一种叫做反变。这里仅考虑了协变。}。
+\index{covariance} \index{contravariance}
+\item The second condition. Any composition of arrows in one category is transformed to composition in another category\footnote{There are two different types of transformation, one is called covariance, the other is contravariance. The two terms are also used in programming language type system. We only considered covariance in this book}.
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
                row sep=2em, column sep=2.5em, minimum width=2em]{
        & B &   & \longmapsto &             & \mathbf{F}B & \\
-     A &   & C & \text{协变} & \mathbf{F}A &  & \mathbf{F}C\\};
+     A &   & C & \text{covariance} & \mathbf{F}A &  & \mathbf{F}C\\};
   \path[-stealth]
     (m-2-1) edge node [above] {$f$} (m-1-2)
     (m-1-2) edge node [above] {$g$} (m-2-3)
@@ -409,6 +409,8 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \mathbf{F}(g \circ f) = \mathbf{F}(g) \circ \mathbf{F}(f)
 \]
 \end{itemize}
+
+In summary, functor preserve identity morphisms and composition of morphisms.
 
 函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。
 
