@@ -410,29 +410,27 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \]
 \end{itemize}
 
-In summary, functor preserve identity morphisms and composition of morphisms.
+In summary, functor preserve identity morphisms and composition of morphisms. Functors can also be composited, for example functor $(\mathbf{F} \mathbf{G})(f)$ means first apply $\mathbf{G}$ on arrow $f$, then apply $mathbf{F}$ on top of the arrow in the new category.
 
-函子之间也可以进行组合，例如函子$(\mathbf{F} \mathbf{G})(f)$表示先用函子$\mathbf{G}$对箭头$f$进行变换，然后再用$\mathbf{F}$对这一新范畴中的箭头进行变换。
-
-\subsection{函子的例子}
+\subsection{Functor examples}
 \label{sec:functor:examples}
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
  \includegraphics[scale=0.3]{img/blackhole.eps}
  \captionsetup{labelformat=empty}
- \caption{常数函子的行为像一个黑洞}
+ \caption{Constant functor acts like a blackhole.}
  \label{fig:blackhole}
 \end{wrapfigure}
 
-\index{函子!恒等函子} \index{函子!id函子}
-让我们用具体的例子来更好地理解函子的概念。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
+\index{functor!identity functor} \index{functor!id functor}
+Let's use some examples to understand functor. If a functor maps a category to itself, it is called {\em endo-functor}\footnote{Similar to the automorphism in abstract algebra, which we introduced in previous chapter.}. The most simple functor is the identity functor, which is an endo-functor, denoted as $id: \pmb{C} \to \pmb{C}$. It can be applied to any category, maps object $A$ to $A$, and maps arrow $f$ to $f$.
 
-\index{函子!常函子}
-其次简单的函子叫做“常函子”，它的行为像一个黑洞，我们可以把它记作$\mathbf{K}_B : \pmb{C} \to \pmb{B}$。它可以作用到任何范畴上，把所有的对象都映射为黑洞中的对象$B$，把所有的箭头都映射为黑洞中的恒等箭头$id_B$。黑洞范畴中只有一个恒等箭头，它显然也满足箭头组合的性质：$id_B \circ id_B = id_B$。
+\index{functor!constant functor}
+The second simple functor is the constant functor. It acts like a blackhole. We denote it as $\mathbf{K}_B : \pmb{C} \to \pmb{B}$. It can be applied to any category, maps all objects to the blackhole object $B$, and maps all arrows to the identity arrow in the blackhole $id_B$. The blackhole category has only one identity arrow, it also satisfy the arrow composition condition: $id_B \circ id_B = id_B$.
 
 \begin{example}
-\index{函子!可能函子} \index{函子!Maybe函子}
+\index{functor!Maybe functor}
 我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔\footnote{英文是Hoare，不是美国物理学家霍尔（Hall）。}曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
