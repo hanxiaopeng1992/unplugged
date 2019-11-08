@@ -467,18 +467,18 @@ Below diagram illustrates how $\mathbf{Maybe}$ behaves.
 \end{tikzpicture}
 \end{center}
 
-图中左侧的对象$A, B$是一些数据类型，比如整形，布尔型。而右侧的对象，是通过函子$\mathbf{Maybe}$映射成的类型。如果$A$代表$Int$，则右侧对应是$\mathbf{Maybe}\ Int$，$B$如果代表$Bool$，则右侧对应的是$\mathbf{Maybe}\ Bool$。可能函子是怎样完成对象的映射呢？它的对象映射部分是这样定义的:
+The left side objects $A$ and $B$ can be data types, like integer, Boolean. While the right side objects are mapped types through functor $\mathbf{Maybe}$. If $A$ represents $Int$, then the right side corresponds to $\mathbf{Maybe}\ Int$, if $B$ represents $Bool$, then the right side corresponds to $\mathbf{Maybe}\ Bool$. How does the maybe functor maps objects? that part is defined as this:
 
 \lstset{frame=none}
 \begin{lstlisting}
 data Maybe A = Nothing | Just A
 \end{lstlisting}
 
-也就是说，若对象是类型$A$，则映射到的对象是类型$\mathbf{Maybe}\ A$。注意，这里的对象是类型，而不是值。而类型$\mathbf{Maybe}\ A$的值要么是一个空值$Nothing$，要么是一个用$Just$构造的值。
+It means, if the object is type $A$, then the mapped object is type $\mathbf{Maybe}\ A$. Note the object is type, but not value. The value of $\mathbf{Maybe}\ A$ is either empty, denoted as $Nothing$, or a value constructed by $Just$.
 
-例如，对象是类型$Int$，可能函子映射后对象是类型$\mathbf{Maybe}\ Int$，它的值可能是$Nothing$或者$Just\ 5$。
+Use type $Int$ for example, through the maybe functor, it is mapped to $\mathbf{Maybe}\ Int$. The value could be $Nothing$ or $Just\ 5$ for instance.
 
-例如有一个元素类型为$A$的二叉搜索树，在其中搜索一个值时，可能会搜不到。所以搜索的结果类型是$\mathbf{Maybe}\ A$\footnote{完整的代码见本章附录}。
+Consider a binary search tree, that contains elements of type $A$. When search a value in the tree, it may not be found, therefore the type of search result is $\mathbf{Maybe}\ A$\footnote{The complete example program can be found in the appendix of this chapter}.
 
 \[
 \begin{array}{rcl}
@@ -491,7 +491,7 @@ lookup\ (Br\ l\ k\ r)\ x & = & \begin{cases}
 \end{array}
 \]
 
-在处理$\mathbf{Maybe}$数据类型时，必须处理可能的两种值，例如：
+For $\mathbf{Maybe}$ type data, we must handle two different possible values, for example:
 
 \[
 \begin{array}{lcl}
@@ -500,7 +500,7 @@ elem\ (Just\ x) & = & True
 \end{array}
 \]
 
-函子既映射对象，也映射箭头。以上我们看到了$\mathbf{Maybe}$如何映射对象，那么它是如何映射箭头的呢？上面图中的左侧从上到下有一个箭头$A \arrowto{f} B$，而右侧也有一个箭头$\mathbf{Maybe}\ A \arrowto{\mathbf{Maybe}(f)} \mathbf{Maybe}\ B$。我们不妨把右侧的箭头叫做$f'$。假设我们知道左侧箭头$f$的行为，那么右侧箭头的行为是什么呢？我们说过处理$\mathbf{Maybe}$类型的数据，必须处理两种可能的值，所以$f'$的行为应该是这样的：
+Functor maps object, and also maps arrow. We see how $\mathbf{Maybe}$ functor maps object. How does it map arrow? On the left side in above diagram, there is an up-down arrow $A \arrowto{f} B$, and there is also an arrow $\mathbf{Maybe}\ A \arrowto{\mathbf{Maybe}(f)} \mathbf{Maybe}\ B$ on the right side. Let's name the right side arrow $f'$. If we know the behavior of the left side arrow $f$, then what does the right side arrow behave? We mentioned for $\mathbf{Maybe}$ type data, we must handle two different possible values, hence $f'$ should behave like this:
 
 \[
 \begin{array}{lcl}
@@ -510,13 +510,13 @@ f'\ (Just\ x) & = & Just\ (f\ x)
 \]
 
 \index{fmap}
-这种给定$f$，映射成$f'$的行为恰好就是$\mathbf{Maybe}$函子对箭头进行的映射。实际的编程环境中，通常使用$fmap$来定义函子对箭头的映射。我们可以定义所有函子$\mathbf{F}$满足：
+For given $f$, maps to $f'$, it is exactly what $\mathbf{Maybe}$ functor does for an arrow. In programming environment, we often use $fmap$ to define the map for arrow. We can define every functor $\mathbf{F}$ satisfies:
 
 \[
 fmap : (A \to B) \to (\mathbf{F} A \to \mathbf{F} B)
 \]
 
-也就是说，如果$\mathbf{F}$是一个函子，它把从$A$到$B$的箭头映射成从$\mathbf{F} A$到$\mathbf{F} B$的箭头。因此对于$\mathbf{Maybe}$函子，相应的$fmap$定义如下：
+For functor $\mathbf{F}$, it maps the arrow from $A$ to $B$ to the arrow from $\mathbf{F} A$ to $\mathbf{F} B$. Hence for $\mathbf{Maybe}$ functor, the corresponding $fmap$ is defined as below:
 
 \[
 \begin{array}{l}
@@ -526,16 +526,16 @@ fmap : (A \to B) \to (\mathbf{F} A \to \mathbf{F} B)
 \end{array}
 \]
 
-回到前面二叉搜索树的例子，假如树中元素的类型是自然数，我们在树中搜索一个值，如果搜到，就将这个值转换成二进制，否则返回$Nothing$。如果我们以前已经写过一个将十进制自然数转换成二进制的函数：
+Back to the binary search tree example, if the elements in the tree are integers, we want to search a value, and convert it to binary format if find; otherwise return $Nothing$. Suppose there has already existed a function that converts a decimal number to its binary format:
 
 \[
 binary(n) = \begin{cases}
 n < 2: & [n] \\
-\text{否则}: & binary(\lfloor\dfrac{n}{2}\rfloor)\doubleplus[n \bmod 2]
+\text{Otherwise}: & binary(\lfloor\dfrac{n}{2}\rfloor)\doubleplus[n \bmod 2]
 \end{cases}
 \]
 
-下面是一个相应的Haskell代码实现。为了提高性能，这个实现使用了尾递归。
+Here is the corresponding example Haskell program. It uses tail recursion for performance purpose.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -545,7 +545,7 @@ binary = bin [] where
    bin xs n = bin ((n `mod` 2) : xs) (n `div` 2)
 \end{lstlisting}
 
-有了函子，就可以直接将这个函数箭头“举”到上面去，如下图所示：
+With functor, we can `lift' this function arrow up as shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -561,7 +561,7 @@ binary = bin [] where
 \end{tikzpicture}
 \end{center}
 
-这样，我们就可以直接利用Maybe函子和$binary$箭头操作二叉树搜索的结果：
+Hence, we directly use maybe functor and $binary$ arrow to manipulate the search result from the tree:
 
 \[
 fmap\ binary\ (lookup\ t\ x)
