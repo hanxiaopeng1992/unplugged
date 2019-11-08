@@ -431,7 +431,7 @@ The second simple functor is the constant functor. It acts like a blackhole. We 
 
 \begin{example}
 \normalfont
-\index{functor!Maybe functor}
+\index{functor!maybe functor}
 The next example is the maybe functor. Computer scientist, Tony Hoare (Sir Charles Antony Richard Hoare), who developed the quicksort algorithm, and awarded ACM Turing award in 1980, had an interesting speaking apologised for inventing the null reference\footnote{At a software conference called QCon London in 2009}.
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
@@ -449,9 +449,9 @@ The next example is the maybe functor. Computer scientist, Tony Hoare (Sir Charl
 I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years\cite{Wiki-Hoare}.
 \end{quotation}
 
-2015年后主流的编程环境都纷纷将Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
+After 2015, the main stream programming environments gradually adopted the maybe concept to replace the error prone null\footnote{For example the \texttt{Optional<T>} in Java and C++}.
 
-下图描述了$\mathbf{Maybe}$函子的行为。
+Below diagram illustrates how $\mathbf{Maybe}$ behaves.
 
 \begin{center}
 \begin{tikzpicture}
