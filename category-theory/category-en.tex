@@ -667,19 +667,19 @@ Now we know how list functor maps objects, how does it map arrows? Given a funct
 fmap: (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B)
 \]
 
-接下来需要仔细分析$g$的行为。首先考虑最简单的情况，不管箭头$f$的定义如何，如果$\mathbf{List}\ A$是个空列表$Nil$，则应用$g$后的结果也必然是空列表。所以有：
+Let's consider what $g$ behaves. For the simplest case, no matter what $f$ is defined, if the value of $\mathbf{List}\ A$ is an empty list $Nil$, they applying $g$ on it gives empty list anyway. Therefore:
 
 \[
 fmap\ f\ Nil = Nil
 \]
 
-接下来考虑递归的情况$Cons(x, xs)$，其中$x$是类型为$A$的某个值，而$xs$是类型为$\mathbf{List}\ A$的子列表。如果$f(x) = y$，将类型$A$的值$x$映射为类型$B$的值$y$，那么我们就将$f$应用到$x$上，然后在将其递归地应用到子列表$xs$上从而得到一个元素类型为$B$的子列表$ys$，最后再将$y$和$ys$链接起来得到最终的结果：
+For the recursive case $Cons(x, xs)$, where $x$ is some value of type $A$, and $xs$ is a sub-list of type $\mathbf{List}\ A$. If $f(x) = y$, which maps $x$ of type $A$ to $y$ of type $B$, then we first apply $f$ to $x$, then recursively apply it to the sub-list $xs$ to obtain a new sub-list $ys$ with the element type of $B$. Finally, we concatenate $y$ and $ys$ as the result:
 
 \[
 fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \]
 
-综上，我们得到了$fmap$的完整定义：
+Summarize them together, we have the complete definition of $fmap$:
 
 \[
 \begin{array}{l}
@@ -689,7 +689,7 @@ fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \end{array}
 \]
 
-如果使用第一章介绍的简记法，用冒号“:”表示$Cons$，用中括号表示列表，用“[]”表示$Nil$，则列表函子的箭头部分映射可以简写为：
+In chapter 1, we introduced the simplified notation, using the infix `:' for $Cons$, and using `[]' for $Nil$, then the definition of list functor that maps arrows can be simplified as:
 
 \[
 \begin{array}{l}
@@ -699,7 +699,7 @@ fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \end{array}
 \]
 
-仔细观察这个定义，再和第一章中列表的“逐一映射”定义对比，会发现它们除了名字之外完全一样，因此我们可以复用列表的“逐一映射”来定义列表函子，例如Haskell中列表函子的定义就是通过复用\texttt{map}实现的。
+Observer this definition, and compare it with the list mapping definition in chapter 1, we can find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in Haskell, which re-uses \texttt{map} for list functor.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -707,7 +707,7 @@ instance Functor [] where
     fmap = map
 \end{lstlisting}
 
-作为本例的结尾，我们来验证一下列表函子的箭头映射部分是否满足组合和恒等的两条性质。\textbf{一般的读者可以跳过这一证明部分}。
+At the end of this example, let's verify the arrow mapping for list functor preserve identity and composition. \textbf{Readers can skip the proof in this box}.
 
 \begin{mdframed}
 \[
@@ -718,51 +718,51 @@ fmap\ (f \circ g) = fmap\ f \circ fmap\ g
 \]
 
 \begin{proof}
-我们用数学归纳法来验证恒等性质，首先针对空列表的情况：
+We use mathematical induction to verify the identity condition. First for empty list:
 
 \[
 \begin{array}{rcll}
-fmap\ id\ Nil & = & Nil & \text{$fmap$的定义} \\
-              & = & id\ Nil & \text{反向用$id$的定义} \\
+fmap\ id\ Nil & = & Nil & \text{definition of $fmap$} \\
+              & = & id\ Nil & \text{reverse of $id$} \\
 \end{array}
 \]
 
-针对$(x:xs)$的递归情况，令递归假设为$fmap\ id\ xs = id\ xs$，我们有：
+For the recursive case of $(x:xs)$, assume $fmap\ id\ xs = id\ xs$ holds, we have:
 
 \[
 \begin{array}{rcll}
-fmap\ id\ (x:xs) & = & (id\ x):(fmap\ id\ xs) & \text{$fmap$的定义} \\
-                 & = & (id\ x):(id\ xs) & \text{递归假设} \\
-                 & = & x:xs & \text{$id$的定义} \\
-                 & = & id\ (x:xs) & \text{反向用$id$的定义}
+fmap\ id\ (x:xs) & = & (id\ x):(fmap\ id\ xs) & \text{definition of $fmap$} \\
+                 & = & (id\ x):(id\ xs) & \text{induction assumption} \\
+                 & = & x:xs & \text{definition of $id$} \\
+                 & = & id\ (x:xs) & \text{reverse of $id$}
 \end{array}
 \]
 
-同样，我们用数学归纳法来验证组合性质，对于空列表，我们有：
+Again, we use mathematical induction to verify composition condition. For empty list, we have:
 
 \[
 \begin{array}{rcll}
-fmap\ (f \circ g)\ Nil & = & Nil & \text{$fmap$的定义} \\
-           & = & fmap\ f\ Nil & \text{反向使用$fmap$的定义} \\
-           & = & fmap\ f\ (fmap\ g\ Nil) & \text{反向使用$fmap$的定义} \\
-           & = & (fmap\ f\ \circ fmap\ g)\ Nil & \text{反向用函数组合的定义}
+fmap\ (f \circ g)\ Nil & = & Nil & \text{definition of $fmap$} \\
+           & = & fmap\ f\ Nil & \text{reverse of $fmap$} \\
+           & = & fmap\ f\ (fmap\ g\ Nil) & \text{reverse of $fmap$} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ Nil & \text{reverse of function composition}
 \end{array}
 \]
 
-针对$(x:xs)$的递归情况，令递归假设为$fmap\ (f \circ g)\ xs = (fmap\ f \circ fmap\ g)\ xs$，我们有：
+For the recursive case of $(x:xs)$, assume $fmap\ (f \circ g)\ xs = (fmap\ f \circ fmap\ g)\ xs$ holds, we have:
 
 \[
 \begin{array}{rcll}
-fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text{$fmap$的定义} \\
-  & = & ((f \circ g)\ x):((fmap\ f \circ fmap\ g)\ xs) & \text{递归假设} \\
-  & = & (f(g\ x)):(fmap\ f\ (fmap\ g\ xs)) & \text{函数组合的定义} \\
-  & = & fmap\ f\ ((g\ x):(fmap\ g\ xs)) & \text{反向使用$fmap$的定义} \\
-  & = & fmap\ f\ (fmap\ g\ (x:xs)) & \text{再次反向使用$fmap$的定义} \\
-  & = & (fmap\ f\ \circ fmap\ g)\ (x:xs) & \text{反向用函数组合的定义}
+fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text{definition of $fmap$} \\
+  & = & ((f \circ g)\ x):((fmap\ f \circ fmap\ g)\ xs) & \text{induction assumption} \\
+  & = & (f(g\ x)):(fmap\ f\ (fmap\ g\ xs)) & \text{function composition} \\
+  & = & fmap\ f\ ((g\ x):(fmap\ g\ xs)) & \text{reverse of $fmap$} \\
+  & = & fmap\ f\ (fmap\ g\ (x:xs)) & \text{reverse of $fmap$ again} \\
+  & = & (fmap\ f\ \circ fmap\ g)\ (x:xs) & \text{reverse of function composition}
 \end{array}
 \]
 
-这就验证了$\mathbf{List}$的确是一个函子。
+Thus we verified $\mathbf{List}$ is really a functor.
 \end{proof}
 \end{mdframed}
 \end{example}
