@@ -569,7 +569,7 @@ fmap\ binary\ (lookup\ t\ x)
 
 \begin{mdframed}
 \begin{proof}
-\textbf{一般的读者可以跳过这个框中的内容。}为了验证Maybe的确是一个函子，我们还需要验证箭头映射的两条性质：
+\textbf{Readers can skip the contents in this box} To verify Maybe is a functor, we need check the two conditions about arrow mapping:
 
 \[
 \begin{array}{l}
@@ -578,60 +578,62 @@ fmap\ (f \circ g) = fmap\ f \circ fmap\ g
 \end{array}
 \]
 
-首先验证第一条性质。$id$的定义为：
+For the first condition, the definition of $id$ is:
+
 \[
 id\ x = x
 \]
 
-因此：
+Therefore:
 
 \[
 \begin{array}{rcll}
-fmap\ id\ Nothing & = & Nothing & \text{$fmap$的定义} \\
-                  & = & id\ Nothing & \text{反向用$id$的定义} \\
+fmap\ id\ Nothing & = & Nothing & \text{definition of $fmap$} \\
+                  & = & id\ Nothing & \text{reverse of $id$} \\
 \end{array}
 \]
 
-并且
+And
 
 \[
 \begin{array}{rcll}
-fmap\ id\ (Just\ x) & = & Just\ (id\ x) & \text{$fmap$的定义} \\
-                    & = & Just\ x & \text{$id$的定义} \\
-                    & = & id\ (Just\ x) & \text{反向用$id$的定义}
+fmap\ id\ (Just\ x) & = & Just\ (id\ x) & \text{definition of $fmap$} \\
+                    & = & Just\ x & \text{definition of $id$} \\
+                    & = & id\ (Just\ x) & \text{reverse of $id$}
 \end{array}
 \]
 
-接下来验证第二条性质：
+For the second condition:
 
 \[
 \begin{array}{rcll}
-fmap\ (f \circ g)\ Nothing & = & Nothing & \text{$fmap$的定义} \\
-           & = & fmap\ f\ Nothing & \text{反向使用$fmap$的定义} \\
-           & = & fmap\ f\ (fmap\ g\ Nothing) & \text{反向使用$fmap$的定义} \\
-           & = & (fmap\ f\ \circ fmap\ g)\ Nothing & \text{反向用函数组合的定义}
+fmap\ (f \circ g)\ Nothing & = & Nothing & \text{definition of $fmap$} \\
+           & = & fmap\ f\ Nothing & \text{reverse of $fmap$} \\
+           & = & fmap\ f\ (fmap\ g\ Nothing) & \text{reverse of $fmap$} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ Nothing & \text{reverse of function composition}
 \end{array}
 \]
 
-并且
+And
 
 \[
 \begin{array}{rcll}
-fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定义} \\
-           & = & Just\ (f\ (g\ x)) & \text{函数组合的定义} \\
-           & = & fmap\ f\ (Just\ (g\ x)) & \text{反向使用$fmap$的定义} \\
-           & = & fmap\ f\ (fmap\ g\ (Just\ x)) & \text{反向使用$fmap$的定义} \\
-           & = & (fmap\ f\ \circ fmap\ g)\ (Just\ x) & \text{反向用函数组合的定义}
+fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{definition of $fmap$} \\
+           & = & Just\ (f\ (g\ x)) & \text{function composition} \\
+           & = & fmap\ f\ (Just\ (g\ x)) & \text{reverse of $fmap$} \\
+           & = & fmap\ f\ (fmap\ g\ (Just\ x)) & \text{reverse of $fmap$} \\
+           & = & (fmap\ f\ \circ fmap\ g)\ (Just\ x) & \text{reverse of function composition}
 \end{array}
 \]
 
-因此Maybe的确是一个函子。
+Therefore, Maybe is really a functor.
 \end{proof}
 \end{mdframed}
 \end{example}
 
 \begin{example}
-\index{函子!列表函子}
+\normalfont
+\index{functor!list functor}
 接下来介绍的例子是列表函子。在第一章中我们介绍了列表的定义：
 
 \lstset{frame=none}
