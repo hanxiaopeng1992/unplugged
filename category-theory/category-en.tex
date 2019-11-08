@@ -432,7 +432,7 @@ The second simple functor is the constant functor. It acts like a blackhole. We 
 \begin{example}
 \normalfont
 \index{functor!maybe functor}
-The next example is the maybe functor. Computer scientist, Tony Hoare (Sir Charles Antony Richard Hoare), who developed the quicksort algorithm, and awarded ACM Turing award in 1980, had an interesting speaking apologised for inventing the null reference\footnote{At a software conference called QCon London in 2009}.
+Maybe functor. Computer scientist, Tony Hoare (Sir Charles Antony Richard Hoare), who developed the quicksort algorithm, and awarded ACM Turing award in 1980, had an interesting speaking apologised for inventing the null reference\footnote{At a software conference called QCon London in 2009}.
 
 %\begin{wrapfigure}{L}{0.25\textwidth}
 \begin{figure}[htbp]
@@ -634,14 +634,14 @@ Therefore, Maybe is really a functor.
 \begin{example}
 \normalfont
 \index{functor!list functor}
-接下来介绍的例子是列表函子。在第一章中我们介绍了列表的定义：
+List functor. We introduced the definition of list in chapter 1 as:
 
 \lstset{frame=none}
 \begin{lstlisting}
 data List A = Nil | Cons(A, List A)
 \end{lstlisting}
 
-从编程的观点看，这定义了“单向链表”的数据结构，链表中元素的类型是$A$，这样的链表称为类型为$A$的列表。从范畴的观点来看，一个列表函子要分别定义对象和箭头的映射。在这里，对象是类型，箭头是全函数。下图描述了列表函子的行为：
+From programming perspective, this defines the linked-list data structure. The elements stored in it are of type $A$. We call it link-list of type $A$. From category perspective, a list functor need define maps for both object and arrow. Here objects are types, arrows are total functions. Below diagram illustrates how list functor behaves.
 
 \begin{center}
 \begin{tikzpicture}
