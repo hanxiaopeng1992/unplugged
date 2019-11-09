@@ -789,7 +789,7 @@ For example, the product of finite sets $\{1, 2, 3\}$ and $\{a, b\}$ is:
 \{(1, a), (2, a), (3, a), (1, b), (2, b), (3, b)\}
 \]
 
-If set $A$ and $B$ are same algebraic structure, like group, ring etc., then we can define objects and arrows as shown in below diagram:
+If set $A$ and $B$ are the same algebraic structures, like group, ring etc., then we can define objects and arrows as shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -839,19 +839,19 @@ Descartes left the best known philosophical statement `` think, therefore I am''
 
 \vspace{5mm}
 
-相对于集合的笛卡尔积，还有一种对偶的构造。我们可以从两个集合$A, B$产生一个不相交的并集（disjoint union，也称为和）$A + B$。为了分清和中的每个元素究竟是来自$A$还是$B$，可以给元素增加一个标记（tag）：
+Symmetric to the Cartesian product of sets, there is a dual construct. From two sets $A$ and $B$, we can generate a disjoint union set (sum) $A + B$. For the element in the sum, in order to know which set $A$ or $B$ it comes from, we can add a tag:
 
 \[
 A + B = (A \times \{0\}) \cup (B \times \{1\})
 \]
 
-当从$A+B$中取出一个元素$(x, tag)$，如果$tag$为0，我们就知道$x$本来属于$A$，如果$tag$为1，就知道$x$本来属于$B$。这样有限集合$\{1, 2, 3\}$和$\{a, b\}$的和就是
+For every element $(x, tag)$ in $A + B$, if the $tag$ is 0, we know that $x$ comes from $A$, else if the $tag$ is 1, then $x$ comes from $B$. Hence the sum of finite set $\{1, 2, 3\}$ and $\{a, b\}$ is
 
 \[
 \{(1, 0), (2, 0), (3, 0), (a, 1), (b, 1)\}
 \]
 
-$A + B$也可以用程序等价地这样定义：
+When programming, $A + B$ can be defined as:
 
 \begin{mdframed}
 \[
@@ -859,8 +859,7 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \]
 \end{mdframed}
 
-
-当$A, B$是同类的代数结构时，我们可以定义如下的对象和箭头：
+If set $A$ and $B$ are the same algebraic structures, we can define the below objects and arrows:
 
 \begin{center}
 \begin{tikzpicture}
