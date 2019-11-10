@@ -878,26 +878,28 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
 \end{center}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.06]{img/hands.eps}
  \captionsetup{labelformat=empty}
  \caption{}
  \label{fig:hands}
+%\end{figure}
 \end{wrapfigure}
 
-对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。我们后面会发现，这种现象在范畴的相关概念中很常见。甚至我们的宇宙中也充满了对称。这样当我们了解了一个事物，就对偶地了解了另一个事物。
+The two constructions are symmetric. If rotate the two diagrams by 90 degree, laying $A$ on top of $B$, then the two problems appear left and right. They are symmetric like our two hands. We can find a lot of such symmetric concepts in category theory. Our world is full of symmetric things. When we understand one, we understand the dual one at the same time.
 
-\subsection{积和余积的定义}
-\index{积} \index{余积}
+\subsection{Definition of product and coproduct}
+\index{product} \index{coproduct}
 \begin{definition}
-对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
+For a pair of objects $A$ and $B$ in category $\pmb{C}$, a {\em wedge}
 
 \[
-\text{指向$A, B$的} \quad \quad \quad \text{从$A, B$出发的}
+\text{to} \quad \quad \quad \text{from}
 \]
 
-\index{楔形（wedge）}
-\textbf{楔形}（wedge）是范畴$\pmb{C}$中的一个对象$X$和一对箭头：
+\index{wedge}
+the pair $A, B$ is an object $X$ together with a pair of arrows
 
 \begin{center}
 \begin{tikzpicture}
@@ -913,18 +915,20 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
     (m-3-4) edge (m-2-5);
 \end{tikzpicture}
 \end{center}
+
+in the parent category $\pmb{C}$.
 \end{definition}
 
-给定范畴中的一对对象$A$和$B$，可能有不止一个向左的或者向右的楔形。我们关心那个“最好”的楔形，它距离两个对象“最近”。本质上，我们在寻找一个泛性的（universal）楔形。这就引出了下面的（一对）定义：
+For a given pair of objects $A, B$ in the category, there may be many wedges o one side or the other. We look for the `best possible' wedge, one that is as `near' the pair as possible. Technically, we look for a universal wedge. It leads to the below (pair of) definitions:
 
 \begin{definition}
-对于范畴$\pmb{C}$中的一对对象$A$和$B$，一个
+Given a pair object $A, B$ of a category $\pmb{C}$, a
 
 \[
-\text{积（product）} \quad \quad \quad \text{余积（coproduct）}
+\text{product} \quad \quad \quad \text{coproduct}
 \]
 
-是一个特殊的楔形：
+of the pair is a wedge:
 
 \begin{center}
 \begin{tikzpicture}
@@ -941,7 +945,7 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
 \end{tikzpicture}
 \end{center}
 
-这个楔形满足如下泛性性质：对于任意楔形，
+with the following universal property. For each wedge
 
 \begin{center}
 \begin{tikzpicture}
@@ -958,13 +962,13 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
 \end{tikzpicture}
 \end{center}
 
-都存在相应唯一的箭头：
+there is a unique arrow:
 
 \[
  X \arrowto{m} S \quad \quad \quad S \arrowto{m} X
 \]
 
-使得下面图中的箭头可交换。
+such that,
 
 \begin{center}
 \begin{tikzpicture}
@@ -990,7 +994,7 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
 \end{center}
 
 \index{媒介箭头}
-其中箭头$m$叫做楔形$X$的媒介箭头（mediating arrow或者mediator）
+commutes. This arrow $m$ is the {\em mediating arrow} (or mediator) for the wedge on $X$.
 \end{definition}
 
 在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。其次，对于任意给定的$X$，媒介箭头$m$都是唯一的。所谓箭头可交换，我们用左侧的积来举例，是说箭头间的关系满足：
