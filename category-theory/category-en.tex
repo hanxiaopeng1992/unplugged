@@ -997,7 +997,7 @@ such that,
 commutes. This arrow $m$ is the {\em mediating arrow} (or mediator) for the wedge on $X$.
 \end{definition}
 
-在这一定义中，积或者余积并不仅仅是一个对象$S$，而是一个对象加上一对箭头。其次，对于任意给定的$X$，媒介箭头$m$都是唯一的。所谓箭头可交换，我们用左侧的积来举例，是说箭头间的关系满足：
+In this definition, the product or coproduct is not just an object $S$, but an object together with a pair of arrows. For any given $X$, the mediating arrow $m$ is unique. We say the diagram commutes, it means the arrows satisfy the following equations:
 
 \[
 \begin{array}{l}
@@ -1006,13 +1006,13 @@ f_B = p_B \circ m
 \end{array}
 \]
 
-这立刻告诉我们，下面的特例一定成立：如果$X$等于$S$，$m$是一个自指箭头（endo-arrow）
+It immediately leads to this special case: If $X$ equals to $S$, then $m$ is an endo-arrow (points to itself).
 
 \[
 S \arrowto{m} S
 \]
 
-则$m$一定是恒等箭头。此时的范畴图简化为：
+Hence $m$ must be identity arrow. The diagram then simplifies to:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1037,23 +1037,25 @@ S \arrowto{m} S
 \end{tikzpicture}
 \end{center}
 
-在众多的楔形中，积和余积是特殊的——它们是泛性的，是“最接近”或者说是“最好”的一个楔形。并且可以证明（见书后附录）积和余积是唯一的。但是积和余积并不总是同时存在，甚至有可能都不存在。现在我们回过头来再看一下集合的情形。
+Among the many wedges, the product and product are special, they are universal solutions. In other words, they are the `closest' or the `best' wedge. We can prove that product and coproduct are unique (see the appendix of this book). However, product and coproduct may not exist at the same time, it's also possible that neither does exist. Let's see what product and coproduct mean to set.
 
 \begin{lemma}
-若$A, B$是两个集合，则它们的
+Let $A$, $B$ be a pair of sets. Then the
 
 \begin{center}
-笛卡尔积$A \times B$ \quad \quad \quad 不相交并集$A + B$
+Cartesian product $A \times B$ \quad \quad \quad disjoint union $A + B$
 \end{center}
 
-在范畴$\pmb{Set}$中构成
+furnished with canonical functions form the
 
 \begin{center}
-积 \quad \quad \quad 余积
+product \quad \quad \quad coproduct
 \end{center}
+
+of the pair in the category $\pmb{Set}$.
 \end{lemma}
 
-详细的证明过程可以参考本书后面的附录。在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
+The detailed proof can be found in the appendix of this book. In some program environment, like Haskell, product is realized with paired tuple $(a, b)$ and functions $fst, snd$. However, coproduct is realized with a dedicated data type.
 
 \lstset{frame = single}
 \begin{lstlisting}
