@@ -535,7 +535,7 @@ n < 2: & [n] \\
 \end{cases}
 \]
 
-Here is the corresponding example Haskell program. It uses tail recursion for performance purpose.
+Here is the corresponding example program. It uses tail recursion for performance purpose.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -699,7 +699,7 @@ In chapter 1, we introduced the simplified notation, using the infix `:' for $Co
 \end{array}
 \]
 
-Observer this definition, and compare it with the list mapping definition in chapter 1, we can find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in Haskell, which re-uses \texttt{map} for list functor.
+Observer this definition, and compare it with the list mapping definition in chapter 1, we can find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in some programming environment, which re-uses \texttt{map} for list functor.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -1055,14 +1055,14 @@ product \quad \quad \quad coproduct
 of the pair in the category $\pmb{Set}$.
 \end{lemma}
 
-The detailed proof can be found in the appendix of this book. In some program environment, like Haskell, product is realized with paired tuple $(a, b)$ and functions $fst, snd$. However, coproduct is realized with a dedicated data type.
+The detailed proof can be found in the appendix of this book. In program environment, product is often realized with paired tuple $(a, b)$ and functions $fst, snd$. However, coproduct is sometimes realized with a dedicated data type.
 
 \lstset{frame = single}
 \begin{lstlisting}
 data Either a b = Left a | Right b
 \end{lstlisting}
 
-这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的Haskell例子代码使用模式匹配来决定如何处理余积的元素：
+The advantage is that we needn't the 0, 1 tags to mark if an element $x$ of type \texttt{Either a b} comes from \texttt{a} or \texttt{b}. The below example program handles the coproduct value through pattern matching:
 
 \begin{lstlisting}
 either :: (a -> c) -> (b -> c) -> Either a b -> c
