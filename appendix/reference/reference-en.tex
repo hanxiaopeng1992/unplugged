@@ -1,8 +1,15 @@
 \ifx\wholebook\relax \else
 
-\documentclass[UTF8]{article}
+\documentclass{article}
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
 
-\usepackage[cn]{../../prelude}
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
+
+\usepackage[en]{../../prelude}
 
 \setcounter{page}{1}
 
@@ -10,118 +17,117 @@
 
 \fi
 
-\markboth{参考文献}{编程中的数学}
+\markboth{Reference}{Mathematics of Programming}
 
 \begin{thebibliography}{99}
 
-% 自然数
+% Natural numbers
 % =====================================
 
 \bibitem{wiki-number}
-Wikipedia. ``古代计数系统的历史''. \url{https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems}
+Wikipedia. ``History of ancient numeral systems''. \url{https://en.wikipedia.org/wiki/History_of_ancient_numeral_systems}
 
 \bibitem{trip-to-number-kindom}
-[美]卡尔文$\cdot$C$\cdot$克劳森. ``数学旅行家：漫游数王国''. 袁向东、袁钧译，上海教育出版社。ISBN: 7-5320-7883-3/G $cdot$ 7972
+Calvin C Clawson. ``The Mathematical Traveler, Exploring the Grand History of Numbers''. Plenum Press. ISBN: 978-0738208350
 
 \bibitem{wiki-babylonian-num}
-Wikipedia. ``古巴比伦数字''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
+Wikipedia. ``Babylonian numerals''. \url{https://en.wikipedia.org/wiki/Babylonian_numerals}
 
 \bibitem{M-Kline-2007}
-[美] M$\cdot$克莱因 著 李宏魁 译 ``数学：确定性的丧失'' 湖南科学技术出版社，2007年4月 ISBN: 978-7-5357-1857-0
-% Morris Kline ``Mathematics: The Loss of Certainty''. Oxford University Press, 1980.
+Morris Kline ``Mathematics: The Loss of Certainty''. Oxford University Press, 1980. 0-19-502754-X.
 
 \bibitem{GEB}
-[美]候世达 ``哥德尔、埃舍尔、巴赫——集异壁之大成''. 商务印书馆 1996. ISBN: 978-7-100-01323-9
+Douglas R. Hofstadter ``Gödel, Escher, Bach: An Eternal Golden Braid''. Basic Books; Anniversary edition (February 5, 1999). ISBN: 978-0465026562
 
 \bibitem{Bird97}
 Richard Bird, Oege de Moor. ``Algebra of Programming''. University of Oxford, Prentice Hall Europe. 1997. ISBN: 0-13-507245-X.
 
 \bibitem{Gusen2014}
-顾森 ``浴缸里的惊叹''. 人民邮电出版社. 2014, ISBN: 9787115355744
+{\fontspec{\cnmainft}顾森 《浴缸里的惊叹》} People's postal Press. 2014, ISBN: 9787115355744
 
-% 自然数——附录
-% ==============================
-
-\bibitem{Stepanov}
-Stepanov and Rose. ``数学与泛型编程''. 爱飞翔译，机械工业出版社。ISBN: 978-7-111-57658-7. 2017. pp147 - 148.
-
-% 递归
+% recursion
 % ==============================
 
 \bibitem{HanXueTao16}
-韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社. 2016, ISBN: 9787115430434
-
-\bibitem{StepanovRose15}
-[美] 亚历山大 A$\cdot$斯捷潘诺夫，丹尼尔 E$\cdot$罗斯著，爱飞翔译. ``数学与泛型编程：高效编程的奥秘''. 机械工业出版社. 2017, ISBN: 9787111576587
+{\fontspec{\cnmainft}韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社. 2016, ISBN: 9787115430434}
 
 \bibitem{MKlein1972}
-[美] 莫里斯$\cdot$克莱因 张理京等译 ``古今数学思想，第一册''. 上海科学技术出版社. 2014, ISBN: 9787547817179
+Morris Klein. ``Mathematical thought from Ancient to Modern Times, Vol. 1''. Oxford University Press; 1972. ISBN: 9780195061352
+
+\bibitem{StepanovRose15}
+Alexander A. Stepanov, Daniel E. Rose ``From Mathematics to Generic Programming''. Addison-Wesley Professional; 1 edition (November 17, 2014) ISBN-13: 978-0321942043
 
 \bibitem{Elements}
-[古希腊] 欧几里得 著，兰纪正 朱恩宽 译，梁宗巨 张毓新 徐伯谦 校订 ``几何原本''. 译林出版社. 2014, ISBN: 9787544750066
+Euclid, Thomas Heath (Translator) ``Euclid's Elements (The Thirteen Books) ''. Digireads.com Publishing (December 26, 2017). ISBN-13: 978-1420956474
 
 \bibitem{HanXueTao2009}
-韩雪涛 ``好的数学——“下金蛋”的数学问题''. 湖南科学技术出版社. 2009, ISBN: 9787535756725
+{\fontspec{\cnmainft}韩雪涛 ``好的数学——“下金蛋”的数学问题''. 湖南科学技术出版社. 2009, ISBN: 9787535756725}
 
 \bibitem{Bezout-Identity}
-Wikipedia ``贝祖等式'' \url{https://en.wikipedia.org/wiki/Bézout's_identity}
+Wikipedia ``Bézout's identity'' \url{https://en.wikipedia.org/wiki/Bézout's_identity}
 
 \bibitem{LiuXinyu2017}
-刘新宇 ``算法新解'' 人民邮电出版社. 2017, ISBN: 9787115440358
+{\fontspec{\cnmainft}刘新宇 ``算法新解'' 人民邮电出版社. 2017, ISBN: 9787115440358}
 
 \bibitem{wiki-Turing}
-Wikipedia ``艾伦$\cdot$图灵'' \url{https://en.wikipedia.org/wiki/Alan_Turing}
+Wikipedia ``Alan Turing'' \url{https://en.wikipedia.org/wiki/Alan_Turing}
 
 \bibitem{Dowek2011}
-[法] 吉尔$\cdot$多维克 著，劳佳 译 ``计算进化史：改变数学的命运''. 人民邮电出版社. 2017, ISBN: 9787115447579
+by Serge Abiteboul (Author), Gilles Dowek (Author), K-Rae Nelson (Translator) ``The Age of Algorithms''. Cambridge University Press (December 31, 2019) ISBN-13: 978-1108745420
 
 \bibitem{SPJ1987}
 Simon L. Peyton Jones. ``The implementation of functional programming language''. Prentice Hall. 1987, ISBN: 013453333X
 
-% 抽象代数：群、环、域、伽罗瓦理论
+% Abstract algebra
 % ==================================
 
 \bibitem{HanXueTao2012}
-韩雪涛 ``好的数学——方程的故事''. 湖南科学技术出版社. 2012, ISBN: 9787535770066
+{\fontspec{\cnmainft}韩雪涛 ``好的数学——方程的故事''. 湖南科学技术出版社.} 2012, ISBN: 9787535770066
 
 \bibitem{Wiki-Galois-theory}
-Wikipedia ``伽罗瓦理论''. \url{https://en.wikipedia.org/wiki/Galois_theory}
+Wikipedia ``Galois theory''. \url{https://en.wikipedia.org/wiki/Galois_theory}
 
 \bibitem{Wiki-Galois}
-Wikipedia ``埃瓦里斯特$\cdot$伽罗瓦''. \url{https://en.wikipedia.org/wiki/Évariste_Galois}
+Wikipedia ``Évariste Galois''. \url{https://en.wikipedia.org/wiki/Évariste_Galois}
+
+\bibitem{Galois-1832}
+Anita R Singh. ``The Last Mathematical Testament of Galois'' Resonance Oct 1999. pp93-100.
+
+\bibitem{Liouville-1846}
+Sawilowsky, Shlomo S. and Cuzzocrea, John L. (2005) ``Joseph Liouville’s `Mathematical Works Of Évariste Galois','' Journal of Modern Applied Statistical Methods: Vol. 5 : Iss. 2 , Article 32. DOI: 10.22237/jmasm/1162355460
 
 \bibitem{Wiki-Rubik-Cube-group}
-Wikipedia ``魔方群''. \url{https://en.wikipedia.org/wiki/Rubik's_Cube_group}
+Wikipedia ``Rubik's Cube group''. \url{https://en.wikipedia.org/wiki/Rubik's_Cube_group}
 
 \bibitem{ZhangHeRui1978}
-张禾瑞 ``近世代数基础''. 高等教育出版社. 1978, ISBN: 9787040012224
+{\fontspec{\cnmainft}张禾瑞 ``近世代数基础''. 高等教育出版社.} 1978, ISBN: 9787040012224
 
 \bibitem{Armstrong1988}
-M.A. Armstrong ``群与对称（影印版）''. Springer. 1988. ISBN: 0387966757.
+M.A. Armstrong ``Groups and Symmetry''. Springer. 1988. ISBN: 0387966757.
 
 \bibitem{Wiki-Lagrange}
-Wikipedia ``约瑟夫$\cdot$拉格朗日''. \url{https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange}
+Wikipedia ``Joseph-Louis Lagrange''. \url{https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange}
 
 \bibitem{Wiki-FLT-proof}
-Wikipedia ``费马小定理的证明''. \url{https://en.wikipedia.org/wiki/Proofs_of_Fermat's_little_theorem}
+Wikipedia ``Proofs of Fermat's little theorem''. \url{https://en.wikipedia.org/wiki/Proofs_of_Fermat's_little_theorem}
 
 \bibitem{Wiki-Euler}
-Wikipedia ``莱昂哈德$\cdot$欧拉''. \url{https://en.wikipedia.org/wiki/Leonhard_Euler}
+Wikipedia ``Leonhard Euler''. \url{https://en.wikipedia.org/wiki/Leonhard_Euler}
 
 \bibitem{Wiki-Carmichael-number}
-Wikipedia ``卡米歇尔数''. \url{https://en.wikipedia.org/wiki/Carmichael_number}
+Wikipedia ``Carmichaeal number''. \url{https://en.wikipedia.org/wiki/Carmichael_number}
 
 \bibitem{Algorithms-DPV}
-Sanjoy Dsgupta, Christos Papadimitriou, Umesh Vazirani. 钱枫 邹恒明 注释. ``算法概论（注释版）''. 机械工业出版社. 2009年1月. ISBN: 9787111253617
+Sanjoy Dsgupta, Christos Papadimitriou, Umesh Vazirani. ``Algorithms''. McGraw-Hill Education. Sept. 2006. ISBN: 9780073523408
 
 \bibitem{Wiki-Miller-Rabin}
-Wikipedia ``米勒——拉宾素数检验''. \url{https://en.wikipedia.org/wiki/Miller-Rabin_primality_test}
+Wikipedia ``Miller-Rabin primality test''. \url{https://en.wikipedia.org/wiki/Miller-Rabin_primality_test}
 
 \bibitem{Wiki-Noether}
-Wikipedia ``埃米$\cdot$诺特''. \url{https://en.wikipedia.org/wiki/Emmy_Noether}
+Wikipedia ``Emmy Noether''. \url{https://en.wikipedia.org/wiki/Emmy_Noether}
 
 \bibitem{ZhangPu2013}
-章璞. ``伽罗瓦理论：天才的激情''. 高等教育出版社. 2013年5月. ISBN: 9787040372526
+{\fontspec{\cnmainft}章璞. ``伽罗瓦理论：天才的激情''. 高等教育出版社.} 2013年5月. ISBN: 9787040372526
 
 \bibitem{Stillwell1994}
 John Stillwell. ``Galois Theory for Beginners''. The American Mathematical Monthly, Vol. 101, No. 1 (Jan., 1994), pp. 22-2
@@ -130,9 +136,9 @@ John Stillwell. ``Galois Theory for Beginners''. The American Mathematical Month
 Dan Goodman. ``An Introduction to Galois Theory''. \url{https://nrich.maths.org/1422}
 
 \bibitem{MArtin}
-Michael Artin. ``代数（英文版，第二版）''. 机械工业出版社. 2011年12月. ISBN: 9787111367017
+Michael Artin. ``Algebra (Second Edition)''. Pearson. Feb. 2017. ISBN: 9780134689609
 
-% 范畴论
+% Category theory
 % =========================================
 
 \bibitem{Dieudonne1987}
