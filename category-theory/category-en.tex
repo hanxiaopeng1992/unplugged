@@ -1043,7 +1043,10 @@ Among the many wedges, the product and product are special, they are universal s
 Let $A$, $B$ be a pair of sets. Then the
 
 \begin{center}
-Cartesian product $A \times B$ \quad \quad \quad disjoint union $A + B$
+\begin{tabular}{ccc}
+Cartesian product & \quad \quad \quad & disjoint union \\
+$A \times B$ & \quad \quad \quad & $A + B$ \\
+\end{tabular}
 \end{center}
 
 furnished with canonical functions form the
@@ -1077,11 +1080,11 @@ Thus \texttt{either length (*2) s} will count the length of string ``hello'' whi
 
 \subsection{The properties of product and coproduct}
 
-在积和余积的定义中，对于任意的$X$和箭头组成的楔形，媒介箭头$m$是唯一确定的。媒介箭头在集合范畴$\pmb{Set}$中可以这样定义：
+According to the definition of product and coproduct, for any wedge consist of $X$ and arrows, the mediator arrow $m$ is uniquely determined. In category $\pmb{Set}$, the mediator arrow can be defined as the following:
 
 \[
 \begin{array}{ccc}
-\text{积} & & \text{余积} \\
+\text{product} & & \text{coproduct} \\
 m(x) = (a, b) & \quad \quad &
 \begin{cases}
 m (a, 0) = p(a) \\
@@ -1090,7 +1093,7 @@ m (b, 1) = q(b)
 \end{array}
 \]
 
-在更一般的范畴中更，媒介箭头如何定义呢？为此我们引入两个特殊的箭头运算符号。任意给定楔形：
+For a generic category, how to define the mediator arrow? To do that, we introduce two dedicated symbols for arrow operation. Given any wedge:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1107,13 +1110,13 @@ m (b, 1) = q(b)
 \end{tikzpicture}
 \end{center}
 
-分别定义
+Define
 
 \[
 m = \langle f, g \rangle \quad \quad \quad m =[f, g]
 \]
 
-使得它们满足：
+which satisfy:
 
 \[
 \begin{array}{rcl}
@@ -1129,7 +1132,7 @@ m \circ right = g
 \end{array}
 \]
 
-这样，下面范畴图中的箭头是可交换的：
+Hence the following diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1154,7 +1157,7 @@ m \circ right = g
 \end{tikzpicture}
 \end{center}
 
-\index{消去律}
+\index{Cancellation law}
 通过这对范畴图，我们立即可以得到一些积和余积的性质。首先是\textbf{消去律}：
 
 \[
