@@ -1198,18 +1198,18 @@ If there exists another wedge $Y$ and arrows $h$ and $g$, together with $f, g$ t
 \end{array}
 \]
 
-我们用
+For
 
 \[
 \langle h, k \rangle \circ \phi \quad \quad \quad \phi \circ [h, k]
 \]
 
-\index{融合律}
-代入$m$，并使用消去律，这样就得到了\textbf{融合律}（fusion law）：
+\index{fusion law}
+Substitute $m$, and apply cancellation law, then we obtain the {\em fusion law}:
 
 \[
 \begin{array}{ccc}
-  \text{积} & & \text{余积} \\
+  \text{product} & & \text{coproduct} \\
   \begin{cases}
   h \circ \phi = f \\
   k \circ \phi = g
@@ -1224,7 +1224,7 @@ If there exists another wedge $Y$ and arrows $h$ and $g$, together with $f, g$ t
 \end{array}
 \]
 
-也就是说：
+It means:
 
 \[
 \langle h, k \rangle \circ \phi = \langle h \circ \phi, k \circ \phi \rangle
@@ -1232,11 +1232,11 @@ If there exists another wedge $Y$ and arrows $h$ and $g$, together with $f, g$ t
 \phi \circ [h, k] = [\phi \circ h, \phi \circ k]
 \]
 
-我们在下一章将看到，这些性质和定律对于我们进行算法推导、程序化简、性能优化会起很重要的作用。
+We'll see later, these laws play important roles during algorithm reasoning, simplification, and optimization.
 
-\subsection{积和余积作为函子}
-\index{二元函子}
-了解了范畴的积，就自然引出了\textbf{二元函子}（bifunctor或binary functor）的概念。我们此前介绍的函子，将一个范畴中的对象转换成另一个范畴中的对象，同时将一个范畴中箭头转成另一个范畴中的箭头。所谓二元函子，它作用于两个范畴$\pmb{C}$和$\pmb{D}$的积，也就是说它的源是$\pmb{C} \times \pmb{D}$。所以对于对象部分，二元函子的转换关系为：
+\subsection{Functors from products and coproducts}
+\index{bifunctor} \index{binary functor}
+With product in category theory, we can introduce the concept of {\em bifunctor} (also known as binary functor). The functors we've seen so far transform the objects from one category to the objects in another category; and also transforms arrows from one category to the other. The bifunctor applies to the product of two categories $\pmb{C}$ and $\pmb{D}$. In other words, the source is $\pmb{C} \times \pmb{D}$. Bifunctor transforms objects as the following:
 
 \[
 \begin{array}{rcl}
@@ -1245,7 +1245,7 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 \end{array}
 \]
 
-但是函子除了作用于对象之外，也作用于箭头，对于范畴$\pmb{C}$中的箭头$f$，和$\pmb{D}$中的箭头$g$，二元函子是怎样对应的呢？我们观察下面的范畴图：
+Besides objects, functor must transform arrows as well. For the arrow $f$ in category $\pmb{C}$, and the arrow $g$ in category $\pmb{D}$, what the bifunctor behaves? Observe the below diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1273,13 +1273,13 @@ A \times B & \longmapsto & \mathbf{F}(A \times B) \\
 \end{tikzpicture}
 \end{center}
 
-这个范畴图告诉我们，箭头$A \arrowto{f} C$和$B \arrowto{g} D$被函子$\mathbf{F}$对应到范畴$\pmb{E}$中的新箭头，它的源是对象$\mathbf{F}(A \times B)$，目标是对象$\mathbf{F}(C \times D)$。为此我们可以先定义两个箭头$f, g$的积，它作用于$A$和$B$的积，对于任意$(a, b) \in A \times B$，它的行为如下：
+From this diagram, the arrow $A \arrowto{f} C$ and $B \arrowto{g} D$ are sent to the new arrow in category $\pmb{E}$ through the functor $\mathbf{F}$. The source object is $\mathbf{F}(A \times B)$, and the target object is $\mathbf{F}(C \times D)$. To do that, we first define the product of two arrows $f$ and $g$, it applies to the product of $A$ and $B$. For every $(a, b) \in A \times B$, it behaves as below:
 
 \[
 (f \times g)(a, b) = (f\ a\ , g\ b)
 \]
 
-然后二元函子$F$作用于这两个箭头的积$f \times g$，将其对应到新的箭头$\mathbf{F}(f \times g)$上。于是最终的二元函子的定义如下：
+The bifunctor $F$ applies to this product of arrows $f \times g$, sends it to the new arrow 头$\mathbf{F}(f \times g)$. Hence the final definition for bifunctor is as below:
 
 \[
 \begin{array}{rcl}
