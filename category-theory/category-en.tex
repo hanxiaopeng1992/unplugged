@@ -1290,7 +1290,7 @@ f \times g & \longmapsto & \mathbf{F}(f \times g) \\
 \]
 
 \begin{mdframed}
-既然是函子，我们还必须验证这个定义满足函子的两条性质：恒等性质和组合性质。\textbf{一般的读者可以略过框中的内容}。
+We need verify the bifunctor satisfies the two conditions as a functor: the identity condition and the composition condition. \textbf{Readers can skip the proof in this box}.
 
 \[
 \begin{array}{l}
@@ -1300,7 +1300,7 @@ f \times g & \longmapsto & \mathbf{F}(f \times g) \\
 \]
 
 \begin{proof}
-我们将积看作一个对象，这样只要等价地证明下面的两条性质，再用一元函子的已知结论就可以证明二元函子的情形了：
+We treat the product as an object. If we prove the following two conditions essentially, then the proof for the bifunctor can be deduced from it through the known result of normal functors.
 
 \[
 \begin{array}{l}
@@ -1309,29 +1309,29 @@ id \times id = id \\
 \end{array}
 \]
 
-我们先证明恒等性质。对于任意$(a, b) \in A \times B$，有：
+We start from proving the identity condition. For all $(a, b) \in A \times B$, we have:
 
 \[
 \begin{array}{rcll}
-(id \times id)(a, b) & = & (id(a), id(b)) & \text{箭头积的定义} \\
-                     & = & (a, b) & \text{$id$的定义} \\
-                     & = & id(a, b) & \text{反向用$id$的定义} \\
+(id \times id)(a, b) & = & (id(a), id(b)) & \text{product of arrows} \\
+                     & = & (a, b) & \text{definition of $id$} \\
+                     & = & id(a, b) & \text{reverse of $id$} \\
 \end{array}
 \]
 
-接着证明组合性质。
+Next we prove the composition condition.
 
 \[
 \begin{array}{rcll}
-((f \circ f') \times (g \circ g'))(a, b) & = & ((f \circ f')\ a, (g \circ g')\ b) & \text{箭头积的定义} \\
-    & = & (f(f'(a)), g(g'(b))) & \text{箭头组合的定义} \\
-    & = & (f \times g)(f'(a), g'(b)) & \text{反向用箭头积的定义} \\
-    & = & (f \times g)((f' \times g')(a, b)) & \text{反向用箭头积的定义} \\
+((f \circ f') \times (g \circ g'))(a, b) & = & ((f \circ f')\ a, (g \circ g')\ b) & \text{product of arrows} \\
+    & = & (f(f'(a)), g(g'(b))) & \text{arrow composition} \\
+    & = & (f \times g)(f'(a), g'(b)) & \text{reverse of arrows product} \\
+    & = & (f \times g)((f' \times g')(a, b)) & \text{reverse of arrows product} \\
     & = & ((f \times g) \circ (f' \times g'))(a, b)
 \end{array}
 \]
 
-这样就证明了二元函子满足所有函子的性质。
+Hence proved the bifunctor satisfies both functor conditions.
 \end{proof}
 \end{mdframed}
 
