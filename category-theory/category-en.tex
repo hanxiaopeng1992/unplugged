@@ -1352,7 +1352,7 @@ With the concept of bifunctor, we can define product and coproduct functors. We'
 \end{tabular}
 \end{center}
 
-对于两个对象，积函子将其映射为对象的积；余积函子将其映射为对象的余积。对于箭头，定义：
+Given two objects, the product functor maps them to their product; while the coproduct functor maps them to their coproduct. For arrows, define:
 
 \[
 f \times g = \langle f \circ fst, g \circ snd \rangle
@@ -1361,50 +1361,50 @@ f + g = [left \circ f, right \circ g]
 \]
 
 \begin{mdframed}
-接下来需要验证函子的两条性质，\textbf{一般的读者可以略过框中的内容}。首先是恒等性质。将$f, g$都用$id$代入：
+We need verify the two functor conditions, \textbf{Readers can skip the proof in this box}. For the identity condition. Substitute $f, g$ with $id$:
 
 \[
 \begin{array}{lr}
   \begin{array}{cll}
     & id \times id & \\
-  = & \langle id \circ fst, id \circ snd \rangle & \text{$\times$的定义} \\
-  = & \langle fst, snd \rangle & \text{$id$的性质} \\
-  = & id & \text{积的反射律} \\
+  = & \langle id \circ fst, id \circ snd \rangle & \text{Definition of $\times$} \\
+  = & \langle fst, snd \rangle & \text{Definition of $id$} \\
+  = & id & \text{Reflection law for product} \\
   \end{array}
   &
   \begin{array}{cll}
     & id + id & \\
-  = & [ left \circ id, right \circ id ] & \text{$+$的定义} \\
-  = & [ left, right] & \text{$id$的性质} \\
-  = & id & \text{余积的反射律} \\
+  = & [ left \circ id, right \circ id ] & \text{Definition of $+$} \\
+  = & [ left, right] & \text{Definition of $id$} \\
+  = & id & \text{Reflection law for coproduct} \\
   \end{array}
 \end{array}
 \]
 
-其次验证组合性质。
+Next we need verify the composition condition:
 
 \[
 \begin{array}{ccc}
-\text{积} & \quad \quad & \text{余积} \\
+\text{product} & \quad \quad & \text{coproduct} \\
  (f \times g) \circ (f' \times g') = f \circ f' \times g \circ g'
  & \quad \quad &
  (f + g) \circ (f' + g') = f \circ f' + g \circ g'
 \end{array}
 \]
 
-\index{吸收律}
-为此，我们先证明积和余积的\textbf{吸收律}（absorption law）：
+\index{absorption law}
+In order to prove it, we will first prove the {\em absorption law} for
 
 \[
 \begin{array}{ccc}
-  \text{积的吸收律} & \quad \quad & \text{余积的吸收律} \\
+  \text{product} & \quad \quad & \text{coproduct} \\
   (f \times g) \circ \langle p, q \rangle = \langle f \circ p, g \circ q \rangle
   & \quad \quad &
   [p, q] \circ (f + g) = [p \circ f, q \circ g]
 \end{array}
 \]
 
-我们只给出左手边积的情况，余积的情况与此对称，我们将其留作练习。
+We only give the proof for the product on the left. the coproduct side can be proved similarly. We leave it as the exercise.
 
 \[
 \begin{array}{cll}
