@@ -1335,18 +1335,21 @@ Hence proved the bifunctor satisfies both functor conditions.
 \end{proof}
 \end{mdframed}
 
-与$fmap$类似，在一些编程环境中，无法用同一个符号既做对象的映射，也做箭头的映射。为此可以专门为二元函子定义一个$bimap$。我们要求所有的二元函子$\mathbf{F}$满足：
+Similar to $fmap$, some programming environments have limitation to use the same symbol for both object and arrow mapping. To solve that, we can define a dedicated $bimap$ for bifunctor arrow mapping. We need every bifunctor $\mathbf{F}$ satisfy:
 
 \[
 bimap : (A \to C) \to (B \to D) \to (\mathbf{F}\ A \times B \to \mathbf{F}\ C \times D)
 \]
 
-也就是说，如果$\mathbf{F}$是一个二元函子，它把两个箭头$A \arrowto{g} C$、$B \arrowto{h} D$映射为从$\mathbf{F}\ A \times B$到$\mathbf{F}\ C \times D$的箭头。
+It means, if $\mathbf{F}$ is a bifunctor, then it send the two arrows $A \arrowto{g} C$ and $B \arrowto{h} D$ to an arrow that maps from $\mathbf{F}\ A \times B$ to $\mathbf{F}\ C \times D$.
 
-有了二元函子的概念，就可以定义积函子和余积函子了。我们用中缀的形式，将
+With the concept of bifunctor, we can define product and coproduct functors. We'll use the infix notation. Denote:
 
 \begin{center}
-积函子记为“$\times$” \quad \quad \quad 余积函子记为“$+$”
+\begin{tabular}{ccc}
+ product functor as & \quad \quad \quad & coproduct functor as \\
+ $\times$  & \quad \quad \quad & $+$ \\
+\end{tabular}
 \end{center}
 
 对于两个对象，积函子将其映射为对象的积；余积函子将其映射为对象的余积。对于箭头，定义：
