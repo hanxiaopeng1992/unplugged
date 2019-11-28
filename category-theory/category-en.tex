@@ -1409,23 +1409,23 @@ We only give the proof for the product on the left. the coproduct side can be pr
 \[
 \begin{array}{cll}
    & (f \times g) \circ \langle p, q \rangle & \\
- = & \langle f \circ fst, g \circ snd \rangle \circ \langle p, q \rangle & \text{$\times$的定义} \\
- = & \langle f \circ fst \circ \langle p, q \rangle, g \circ snd \circ \langle p, q \rangle \rangle & \text{积的融合律} \\
- = & \langle f \circ p, g \circ q \rangle & \text{积的消去律} \\
+ = & \langle f \circ fst, g \circ snd \rangle \circ \langle p, q \rangle & \text{Definition of $\times$} \\
+ = & \langle f \circ fst \circ \langle p, q \rangle, g \circ snd \circ \langle p, q \rangle \rangle & \text{Fusion law} \\
+ = & \langle f \circ p, g \circ q \rangle & \text{Cancellation law} \\
 \end{array}
 \]
 
-使用吸收律，令$p = f' \circ fst, q = g' \circ snd$，就可以验证组合性质：
+Using the absorption law, let $p = f' \circ fst, q = g' \circ snd$, we can verify the composition condition:
 
 \[
 \begin{array}{cll}
   & (f \times g) \circ (f' \times g') & \\
-= & (f \times g) \circ \langle f' \circ fst, g' \circ snd \rangle & \text{对第二项用$\times$的定义} \\
-= & (f \times g) \circ \langle p, q \rangle & \text{用$p, q$代换} \\
-= & \langle f \circ p, g \circ q \rangle & \text{吸收率} \\
-= & \langle f \circ f' \circ fst, g \circ g' \circ snd \rangle & \text{把$p, q$代换回} \\
-= & \langle (f \circ f') \circ fst, (g \circ g') \circ snd \rangle & \text{结合律} \\
-= & (f \circ f') \times (g \circ g') & \text{反向用$\times$的定义} \\
+= & (f \times g) \circ \langle f' \circ fst, g' \circ snd \rangle & \text{Definition of $\times$ for the 2nd term} \\
+= & (f \times g) \circ \langle p, q \rangle & \text{Substitute with $p, q$} \\
+= & \langle f \circ p, g \circ q \rangle & \text{absorption law} \\
+= & \langle f \circ f' \circ fst, g \circ g' \circ snd \rangle & \text{Substitute back $p, q$} \\
+= & \langle (f \circ f') \circ fst, (g \circ g') \circ snd \rangle & \text{association law} \\
+= & (f \circ f') \times (g \circ g') & \text{Reverse of $\times$} \\
 \end{array}
 \]
 
