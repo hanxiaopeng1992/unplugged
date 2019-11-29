@@ -1432,7 +1432,7 @@ Using the absorption law, let $p = f' \circ fst, q = g' \circ snd$, we can verif
 \end{mdframed}
 
 \index{bimap}
-积函子是二元函子的一个特例。我们可以为积函子定义$bimap$如下：
+Product functor is an instance of bifunctor. We can define it as $bimap$ like below:
 
 \[
 \begin{array}{l}
@@ -1441,7 +1441,7 @@ bimap\ f\ g\ (x, y) = (f\ x,\ g\ y)
 \end{array}
 \]
 
-如果使用\texttt{Either}类型实现余积函子，则相应的$bimap$可以定义如下：
+With the \texttt{Either} type to realize the coproduct functor, the corresponding $bimap$ can be defined like this:
 
 \[
 \begin{array}{l}
@@ -1452,18 +1452,16 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 \]
 
 \begin{Exercise}
-\Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
+\Question{For any two objects in a poset, what is their product? what is their coproduct?}
 %\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
-\Question{证明余积的吸收率，并验证余积函子的组合性质。}
+\Question{Prove the absorption law for coproduct, and verify the coproduct functor satisfies composition condition.}
 \end{Exercise}
 
-\section{自然变换}
+\section{Natural transformation}
 
-% natural transformation
+Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
 
 艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明它们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
-
-% Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
 
 考虑下面的两个函子：
 
