@@ -877,15 +877,15 @@ If set $A$ and $B$ are the same algebraic structures, we can define the below ob
 \end{tikzpicture}
 \end{center}
 
-\begin{wrapfigure}{R}{0.4\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.06]{img/hands.eps}
  \captionsetup{labelformat=empty}
  \caption{}
  \label{fig:hands}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 The two constructions are symmetric. If rotate the two diagrams by 90 degree, laying $A$ on top of $B$, then the two problems appear left and right. They are symmetric like our two hands. We can find a lot of such symmetric concepts in category theory. Our world is full of symmetric things. When we understand one, we understand the dual one at the same time.
 
@@ -1459,20 +1459,20 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \section{Natural transformation}
 
-Saunders Mac Lane, one of the founders of category theory, is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations."
+When Eilenberg and Mac Lane developed category theory in the early 1940s, they wanted to explain why certain ‘natural’ construction are natural, and other constructions are not. As the result, categories were invented to support functors, and these were invented to support natural transformations. Mac Lane is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations." We've introduced categories and functors, in category theory, arrows are used to compare objects, functors are used to compare categories. What will be used to compare functors? It is natural transformation that serves this purpose.
 
-艾伦伯格和麦克兰恩在1940年代发展范畴论时，他们想解释为何某些构造是“自然”的，而某些不是。现在这一术语被命名为“自然变换”。麦克兰恩曾说：“我并非为了研究函子而发明了范畴，我发明它们是为了研究自然变换。”通过前面介绍的范畴和函子，我们可以说在范畴论中，箭头用于比较对象，而函子用于比较范畴。那么我们用什么比较函子呢？自然变换正是用于比较函子的工具。
-
-考虑下面的两个函子：
+Consider the following two functors:
 
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
-     \pmb{Src} & \pmb{Trg} \\};
+               row sep=0.1em, column sep=4em, minimum width=2em]{
+          \text{ }    &  \text{ }  \\
+     \pmb{Src} & \pmb{Trg} \\
+          \text{ }    &  \text{ }  \\};
   \path[-stealth]
-    (m-1-1.north east) edge node [above] {$\mathbf{F}$} (m-1-2.north west)
-    (m-1-1.south east) edge node [below] {$\mathbf{G}$} (m-1-2.south west);
+    (m-1-1) edge node [above] {$\mathbf{F}$} (m-1-2)
+    (m-3-1) edge node [below] {$\mathbf{G}$} (m-3-2);
 \end{tikzpicture}
 \end{center}
 

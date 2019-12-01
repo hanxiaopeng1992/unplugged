@@ -871,13 +871,15 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 \end{tikzpicture}
 \end{center}
 
-\begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.06]{img/hands.eps}
  \captionsetup{labelformat=empty}
  \caption{}
  \label{fig:hands}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 对比这两种构造我们发现它们是对偶的。如果把两张图旋转90度，把$A$画在上面，$B$画在下面，这样两个问题一个在左侧，一个在右侧。如同双手一样对称。我们后面会发现，这种现象在范畴的相关概念中很常见。甚至我们的宇宙中也充满了对称。这样当我们了解了一个事物，就对偶地了解了另一个事物。
 
@@ -1452,11 +1454,13 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,
-               row sep=3em, column sep=4em, minimum width=2em]{
-     \pmb{Src} & \pmb{Trg} \\};
+               row sep=0.1em, column sep=4em, minimum width=2em]{
+          \text{ }    &  \text{ }  \\
+     \pmb{Src} & \pmb{Trg} \\
+          \text{ }    &  \text{ }  \\};
   \path[-stealth]
-    (m-1-1.north east) edge node [above] {$\mathbf{F}$} (m-1-2.north west)
-    (m-1-1.south east) edge node [below] {$\mathbf{G}$} (m-1-2.south west);
+    (m-1-1) edge node [above] {$\mathbf{F}$} (m-1-2)
+    (m-3-1) edge node [below] {$\mathbf{G}$} (m-3-2);
 \end{tikzpicture}
 \end{center}
 
