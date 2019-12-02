@@ -1476,15 +1476,15 @@ Consider the following two functors:
 \end{tikzpicture}
 \end{center}
 
-它们联系两个同样的范畴，或者都是协变的，或者都是反变的。我们怎样比较它们呢？由于函子既映射对象，又映射箭头，所以我们也得既比较函子映射后的对象，也比较函子映射后的箭头。考虑$\pmb{Src}$中的任意对象$A$，它被两个函子映射成$\pmb{Trg}$中的两个对象$\mathbf{F}A$和$\mathbf{G}A$。我们要研究的是从$\mathbf{F}A$到$\mathbf{G}A$之间的箭头
+They connect two categories. Both are covariant or contravariant. How to compare them? Since functors map both objects and arrows, we need compare the mapped objects and mapped arrows. Consider an object $A$ in category $\pmb{Src}$, it is mapped to two objects $\mathbf{F}A$ and $\mathbf{G}A$ in category $\pmb{Trg}$. We care about the arrow from $\mathbf{F}A$ to $\mathbf{G}A$.
 
 \[
 \mathbf{F}A \arrowto{\phi_A} \mathbf{G}A
 \]
 
-并且除了$A$外，我们对$\pmb{Src}$中的所有对象做同样的研究。
+Besides $A$, we do the similar study to all the objects in category $\pmb{Src}$.
 
-\index{自然变换}
+\index{natural transformation}
 \begin{definition}
 任给如上图所示的一对函子$\mathbf{F}, \mathbf{G}$，一个自然变换
 
