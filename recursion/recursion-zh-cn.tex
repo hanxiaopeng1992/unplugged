@@ -621,25 +621,16 @@ jars a b c = (x, y) where
 %\begin{wrapfigure}{L}{0.35\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.2]{img/Turing.eps}
+ \subcaptionbox{艾伦$\cdot$图灵（Alan Mathison Turing，1912 - 1954）}[0.45\linewidth]{\includegraphics[scale=0.2]{img/Turing.eps}} \quad
+ \subcaptionbox{阿隆佐$\cdot$丘奇（Alonzo Church, 1903 - 1995）}[0.45\linewidth]{\includegraphics[scale=0.65]{img/Church.eps}}
  \captionsetup{labelformat=empty}
- \caption{艾伦$\cdot$图灵（Alan Mathison Turing，1912 - 1954）}
  \label{fig:Turing}
+ \label{fig:Church}
 \end{figure}
 %\end{wrapfigure}
 
 \index{图灵}
 图灵是英国数学家、逻辑学家，深刻地影响了计算机科学的理论发展，他提出使用图灵机来形式化算法和计算的概念，是现代通用计算机的模型。图灵因此被称为计算机科学之父和人工智能之父\cite{wiki-Turing}。第二次世界大战期间，图灵参加了盟军位于布莱切利公园的密码破译中心。他设计了很多技术用以快速破解纳粹德国的密码。图灵研制了一台绰号为“炸弹”（Bombe）的电子机器，使用战前波兰发现的方法，可以在一小时内找到德军恩尼格玛（Enigma）密码机的密钥。密码的成功破译是盟国获胜的一个关键因素，许多历史学家认为缩短了战争达2年之多，并且挽救了成千上万的生命。战争结束后，图灵开始从事“自动计算机”(ACE)的逻辑设计和具体研制工作。在图灵的设计思想指导下，1950年制出了ACE样机，1958年制成大型ACE机。人们认为，通用计算机的概念就是图灵提出来的。1950年，图灵开始考虑机器思维的问题并在论文《计算机与智能》中提出了著名的“图灵测试”。这一划时代的作品，使图灵赢得了“人工智能之父”的桂冠。1951年，由于在可计算数学方面所取得的成就，图灵成为英国皇家学会会员，时年39岁。为了纪念他对计算机科学的巨大贡献，由美国计算机协会（ACM）于1966年设立一年一度的图灵奖，以表彰在计算机科学中做出突出贡献的人，图灵奖被喻为“计算机界的诺贝尔奖”。
-
-\begin{wrapfigure}{R}{0.3\textwidth}
-%\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.6]{img/Church.eps}
- \captionsetup{labelformat=empty}
- \caption{阿隆佐$\cdot$丘奇（Alonzo Church, 1903 - 1995）}
- \label{fig:Church}
-%\end{figure}
-\end{wrapfigure}
 
 \index{lambda演算}
 对计算本身进行形式化，被称为“元数学”。这一试图重新为计算树立数学地位的尝试产生了一个杰作——$\lambda$演算。$\lambda$演算名字的由来还有一则有趣的故事。在研究计算本身时，人们意识到应该区分函数和函数的值，例如我们说“如果$x$是奇数那么$x \times x$也是奇数”，这时我们指的是函数的值，而如果我们说“$x \times x$是递增的”，那说的就是这个函数本身。为了区别这两个概念，我们会把函数写成$x \mapsto x \times x$而不单是$x \times x$。
