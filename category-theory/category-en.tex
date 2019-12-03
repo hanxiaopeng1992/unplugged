@@ -1486,19 +1486,19 @@ Besides $A$, we do the similar study to all the objects in category $\pmb{Src}$.
 
 \index{natural transformation}
 \begin{definition}
-任给如上图所示的一对函子$\mathbf{F}, \mathbf{G}$，一个自然变换
+Given a parallel pair of functors $\mathbf{F}, \mathbf{G}$ of the same variance as shown in above figure, a natural transformation
 
 \[
 F \arrowto{\phi} G
 \]
 
-是由$A$索引的在$\pmb{Trg}$中的一族箭头
+is a family of arrows of $\pmb{Trg}$ indexed by the object $A$ of $\pmb{Src}$.
 
 \[
 \mathbf{F}A \arrowto{\phi_A} \mathbf{G}A
 \]
 
-并且对$\pmb{Src}$中的任意箭头$A \arrowto{f} B$，下面的方形都是可交换的。
+and such that for each arrow $A \arrowto{f} B$ of $\pmb{Src}$, the appropriate square in $\pmb{Trg}$ commutes
 
 \begin{center}
 \begin{tikzpicture}
@@ -1521,7 +1521,7 @@ F \arrowto{\phi} G
     (m-2-5) edge node [right] {$\mathbf{G}(f)$} (m-1-5);
 \end{tikzpicture}
 
-\text{协变} \quad \quad \quad \text{反变}
+\text{covariant} \quad \quad \quad \text{contravariant}
 \end{center}
 \end{definition}
 
