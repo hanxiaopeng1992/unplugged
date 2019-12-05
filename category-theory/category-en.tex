@@ -1525,18 +1525,19 @@ and such that for each arrow $A \arrowto{f} B$ of $\pmb{Src}$, the appropriate s
 \end{center}
 \end{definition}
 
-从自然变换的范畴图中，我们看到任何一个箭头$f$，都对应一个可交换的方形。对于协变的情况，可交换意味着对于任何箭头$f$，下面的关系成立：
+From the diagram of natural transformation, we see for every arrow $f$, there is a corresponding square commutes. For covariant case, commutativity means for all arrow $f$, the following equation holds:
 
 \[
 \mathbf{G}(f) \circ \phi_A= \phi_B \circ \mathbf{F}(f)
 \]
 
-\subsection{自然变换的例子}
+\subsection{Examples of natural transformation}
 
-自然变换是在范畴、箭头、函子之上的又一层抽象。我们举一些具体的例子来帮助理解这一重要的概念。
+Natural transformation is a higher level of abstraction on top of category, arrow, and functor. Let's see some examples to help understand this concept.
 
 \begin{example}
-第一个例子是前缀枚举函数$inits$。任给一个字符串或者列表，$inits$可以枚举出所有的前缀，例如：
+\normalfont
+The first example is the $inits$ function, it enumerates all the prefixes of a given string or list. For instances:
 
 \lstset{frame=none}
 \begin{lstlisting}
@@ -1546,21 +1547,21 @@ inits "Mississippi" = ["","M","Mi","Mis","Miss","Missi","Missis",
 inits [1, 2, 3, 4] = [[],[1],[1,2],[1,2,3],[1,2,3,4]]
 \end{lstlisting}
 
-概括来说，$inits$的行为如下：
+The behavior of $inits$ function can be summarized as this:
 
 \[
 inits [a_1, a_2, ..., a_n] = [[], [a_1], [a_1, a_2], ..., [a_1, a_2, ..., a_n]]
 \]
 
-考虑集合范畴$\pmb{Set}$，对于任何对象，也就是集合$A$（或者说是类型$A$），都存在被$A$索引的$inits$箭头：
+Consider the category $\pmb{Set}$, for every object, a set $A$ (or type $A$), there exists $inits$ arrow indexed by $A$:
 
 \[
 inits_A : \mathbf{List} A \to \mathbf{List}(\mathbf{List} A)
 \]
 
-其中一个函子是列表函子$\mathbf{List}$，另一个函子是嵌套列表函子$\mathbf{List}\ \mathbf{List}$。
+There is a list functor $\mathbf{List}$, and another embedded list functor $\mathbf{List}\ \mathbf{List}$.
 
-如果我们用“[]”简记法，这个箭头也可以表示为：
+With the simplified `[]' notation, this arrow can also be written as:
 
 \[
 [A] \arrowto{inits_A} [[A]]
