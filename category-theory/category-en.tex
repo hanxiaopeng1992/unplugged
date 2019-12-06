@@ -1567,13 +1567,13 @@ With the simplified `[]' notation, this arrow can also be written as:
 [A] \arrowto{inits_A} [[A]]
 \]
 
-我们接下来要验证，对任何函数$A \arrowto{f} B$，有：
+Next, we need verify that for any function $A \arrowto{f} B$, the equation
 
 \[
 \mathbf{List}(\mathbf{List}(f)) \circ inits_A = inits_B \circ \mathbf{List}(f)
 \]
 
-也就是说，要验证如下的方形范畴图是可交换的。
+holds, it means the below square diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1592,27 +1592,27 @@ With the simplified `[]' notation, this arrow can also be written as:
 \end{center}
 
 \begin{proof}
-我们利用前面小节中针对列表函子定义的$fmap$来证明可交换性。对任意$A$中的$n$个元素$a_1, a_2, ..., a_n$，令$B$中的$n$个元素$b_1, b_2, ..., b_n$满足：$f(a_1) = b_1, f(a_2) = b_2, ..., f(a_n) = b_n$。我们有：
+We'll prove the community with the $fmap$ defined in previous section. For $n$ elements of any type $A$: $a_1, a_2, ..., a_n$, the $n$ elements $b_1, b_2, ..., b_n$ of type $B$ are their corresponding mapped value: $f(a_1) = b_1, f(a_2) = b_2, ..., f(a_n) = b_n$. We have:
 
 \[
 \begin{array}{cll}
   & \mathbf{List}(\mathbf{List}(f)) \circ init_A [a_1, ..., a_n] & \\
-= & fmap_{[[]]}(f) \circ init_A [a_1, ..., a_n] & \text{使用$fmap$} \\
-= & fmap_{[[]]}(f) [[], [a_1], ..., [a_1, a_2, ..., a_n]] & \text{$inits$的定义} \\
-= & map(map\ f) [[], [a_1], ..., [a_1, a_2, ..., a_n]] & \text{列表函子的$fmap$等价于$map$} \\
-= & [map\ f\ [], map\ f\ [a_1], ..., map\ f\ [a_1, a_2, ..., a_n]] & \text{$map$的定义} \\
-= & [[], [f(a_1)], ..., [f(a_1), f(a_2), ..., f(a_n)]] & \text{对每个子列表应用$map\ f$} \\
-= & [[], [b_1], ..., [b_1, b_2, ..., b_n]] & \text{$f$的定义} \\
-= & init_B\ [b_1, b_2, ..., b_n] & \text{反向用$init$的定义} \\
-= & init_B\ [f(a_1), f(a_2), ..., f(a_n)] & \text{反向用$f$的定义} \\
-= & init_B \circ map(f)\ [a_1, a_2, ..., a_n] & \text{反向用$map\ f$} \\
-= & init_B \circ fmap_{[]}(f) [a_1, ..., a_n] & \text{列表函子的$fmap$等价于$map$} \\
+= & fmap_{[[]]}(f) \circ init_A [a_1, ..., a_n] & \text{definition of $fmap$} \\
+= & fmap_{[[]]}(f) [[], [a_1], ..., [a_1, a_2, ..., a_n]] & \text{definition of $inits$} \\
+= & map(map\ f) [[], [a_1], ..., [a_1, a_2, ..., a_n]] & \text{$fmap$ is defined as $map$ for list functor} \\
+= & [map\ f\ [], map\ f\ [a_1], ..., map\ f\ [a_1, a_2, ..., a_n]] & \text{definition of $map$} \\
+= & [[], [f(a_1)], ..., [f(a_1), f(a_2), ..., f(a_n)]] & \text{apply $map\ f$ to every sub-list} \\
+= & [[], [b_1], ..., [b_1, b_2, ..., b_n]] & \text{definition of $f$} \\
+= & init_B\ [b_1, b_2, ..., b_n] & \text{reverse of $init$} \\
+= & init_B\ [f(a_1), f(a_2), ..., f(a_n)] & \text{reverse of $f$} \\
+= & init_B \circ map(f)\ [a_1, a_2, ..., a_n] & \text{reverse of $map\ f$} \\
+= & init_B \circ fmap_{[]}(f) [a_1, ..., a_n] & \text{$fmap$ is defined as $map$ for list functor} \\
 = & init_B \circ \mathbf{List}(f) [a_1, ..., a_n] & \\
 \end{array}
 \]
 \end{proof}
 
-所以$inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$的确是一个自然变换。
+Therefor, $inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$ is a natural transformation.
 \end{example}
 
 \begin{example}
