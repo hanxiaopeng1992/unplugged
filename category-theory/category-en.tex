@@ -1685,19 +1685,19 @@ Summarize both cases, hence proved that $safeHead : \mathbf{List} \to \mathbf{Ma
 \end{proof}
 \end{example}
 
-我们总结一下这两个自然变换的例子。从范畴中的任意对象$A$开始（对于集合范畴，相当于一个集合$A$；对于编程，相当于一个类型$A$），通过一个函子$\mathbf{F}$，将其映射为对象$\mathbf{F}A$（对于集合范畴，$\mathbf{F}A$是另一个集合；对于编程，$\mathbf{F}A$是另一个类型），而另一函子$\mathbf{G}$将以映射为$\mathbf{G}A$。自然变换$\phi$经由$A$索引的箭头（在集合范畴中是一个映射；在编程中是一个函数）\footnote{也称在$A$上的部分（The component at $A$）}，形如：
+From the two examples, we can make some summarize. From any object $A$ of the category (For set category, it is a set $A$; in programming, it is a type $A$), we send it through functor $\mathbf{F}$ to another object $\mathbf{F}A$ (For set category, $\mathbf{F}A$ is another set; in programming, $\mathbf{F}A$ is another type), while the other functor $\mathbf{G}$ send the object to $\mathbf{G}A$. Natural transformation $\phi$ indexed by $A$ (For set category, it is a map; in programming, it's a function)\footnote{also called as the component at $A$} is in the form:
 
 \[
 \phi_A : \mathbf{F} A \to \mathbf{G} A
 \]
 
-现在，我们说不仅对$A$，而是对\textbf{所有}对象进行抽象，这样就得到了一族箭头（在编程中，就是一个\textbf{多态函数}\footnote{我们可以联想到面向对象编程中的多态函数和泛型编程中的模板函数。}）：
+Not only for $A$, now let's abstract {\em all} the objects, hence we obtain a family of arrows (in programming, it is a {\em polymorphic function}\footnote{Think about the polymorphic function in object oriented programming, and the template function in generic programming.}):
 
 \[
 \phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
 \]
 
-例如在Haskell中，可以这样写\footnote{Haskell中有一个ExplicitForAll的选项，我们在下一章介绍构造——叠加融合律（build/fold fusion law）时会再次遇到它。}：
+In some programming environment, like Haskell for example, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
 
 \lstset{frame=single}
 \begin{lstlisting}

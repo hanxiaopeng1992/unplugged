@@ -1672,7 +1672,7 @@ safeHead\ (x:xs) = Just\ x
 \end{proof}
 \end{example}
 
-我们总结一下这两个自然变换的例子。从范畴中的任意对象$A$开始（对于集合范畴，相当于一个集合$A$；对于编程，相当于一个类型$A$），通过一个函子$\mathbf{F}$，将其映射为对象$\mathbf{F}A$（对于集合范畴，$\mathbf{F}A$是另一个集合；对于编程，$\mathbf{F}A$是另一个类型），而另一函子$\mathbf{G}$将以映射为$\mathbf{G}A$。自然变换$\phi$经由$A$索引的箭头（在集合范畴中是一个映射；在编程中是一个函数）\footnote{也称在$A$上的部分（The component at $A$）}，形如：
+我们总结一下这两个自然变换的例子。从范畴中的任意对象$A$开始（对于集合范畴，相当于一个集合$A$；对于编程，相当于一个类型$A$），通过一个函子$\mathbf{F}$，将其映射为对象$\mathbf{F}A$（对于集合范畴，$\mathbf{F}A$是另一个集合；对于编程，$\mathbf{F}A$是另一个类型），而另一函子$\mathbf{G}$将其映射为$\mathbf{G}A$。自然变换$\phi$经由$A$索引的箭头（在集合范畴中是一个映射；在编程中是一个函数）\footnote{也称在$A$上的部分（The component at $A$）}，形如：
 
 \[
 \phi_A : \mathbf{F} A \to \mathbf{G} A
