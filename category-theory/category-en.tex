@@ -1616,7 +1616,7 @@ Therefor, $inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$ is a nat
 \end{example}
 
 \begin{example}
-我们举的第二个例子叫做$safeHead$，它的行为是安全地获取列表中的第一个元素。所谓“安全”，就是说它能够处理空列表Nil的情况。为此我们可以使用前面介绍过的可能函子$\mathbf{Maybe}$。它的定义如下：
+The next example is called $safeHead$, it can safely access the first element from a list. Here `safe' means it can handle the empty list (Nil) case without exception. To do that, we will utilize the maybe functor defined previously. $safeHead$ is defined as the following:
 
 \[
 \begin{array}{l}
@@ -1626,13 +1626,13 @@ safeHead\ (x:xs) = Just\ x
 \end{array}
 \]
 
-同样在集合范畴，任何类型$A$是一个对象，它索引的箭头$safeHead$为：
+In the category of set, every type $A$, which is an object, indexes the corresponding arrow $safeHead$ as:
 
 \[
 [A] \arrowto{safeHead_A} \mathbf{Maybe}\ A
 \]
 
-这里的两个函子分别是列表函子和可能函子。我们接下来要验证，对于任何箭头（函数）$A \arrowto{f} B$，下面的方形范畴图是可交换的：
+The two functors involved here are the list functor and maybe functor. We need next verify that, for every arrow (function) $A \arrowto{f} B$, the below square diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1650,38 +1650,38 @@ safeHead\ (x:xs) = Just\ x
 \end{tikzpicture}
 \end{center}
 
-也就是要证明：
+That is to prove:
 
 \[
   \mathbf{Maybe}(f) \circ safeHead_A = safeHead_B \circ \mathbf{List}(f)
 \]
 
 \begin{proof}
-我们分两种情况证明。第一种情况是空列表：
+We prove it for two cases. The first case is the empty list:
 
 \[
 \begin{array}{cll}
   & \mathbf{Maybe}(f) \circ safeHead_A\ [] & \\
-= & \mathbf{Maybe}(f)\ Nothing & \text{$safeHead$的定义} \\
-= & Nothing & \text{$fmap\ f\ Nothing$的定义} \\
-= & safeHead_B\ [] & \text{反向用$safeHead$的定义} \\
-= & safeHead_B \circ \mathbf{List}(f)\ [] & \text{反向用$fmap\ f\ []$的定义} \\
+= & \mathbf{Maybe}(f)\ Nothing & \text{definition of $safeHead$} \\
+= & Nothing & \text{definition of $fmap\ f\ Nothing$} \\
+= & safeHead_B\ [] & \text{reverse of $safeHead$} \\
+= & safeHead_B \circ \mathbf{List}(f)\ [] & \text{reverse of $fmap\ f\ []$} \\
 \end{array}
 \]
 
-第二种情况是非空列表$(x:xs)$：
+The second case the non-empty list $(x:xs)$:
 
 \[
 \begin{array}{cll}
   & \mathbf{Maybe}(f) \circ safeHead_A\ (x:xs) & \\
-= & \mathbf{Maybe}(f)\ (Just\ x) & \text{$safeHead$的定义} \\
-= & Just\ f(x) & \text{$fmap\ f\ Just\ x$的定义} \\
-= & safeHead_B\ (f(x) : fmap\ f\ xs) & \text{反向用$safeHead$的定义} \\
-= & safeHead_B \circ \mathbf{List}(f)\ (x:xs) & \text{反向用$fmap\ f\ (x:xs)$的定义} \\
+= & \mathbf{Maybe}(f)\ (Just\ x) & \text{definition of $safeHead$} \\
+= & Just\ f(x) & \text{definition of $fmap\ f\ Just\ x$} \\
+= & safeHead_B\ (f(x) : fmap\ f\ xs) & \text{reverse of $safeHead$} \\
+= & safeHead_B \circ \mathbf{List}(f)\ (x:xs) & \text{reverse of $fmap\ f\ (x:xs)$} \\
 \end{array}
 \]
 
-综合这两种情况，就证明了$safeHead : \mathbf{List} \to \mathbf{Maybe}$的确是自然变换。
+Summarize both cases, hence proved that $safeHead : \mathbf{List} \to \mathbf{Maybe}$ is natural transformation.
 \end{proof}
 \end{example}
 
