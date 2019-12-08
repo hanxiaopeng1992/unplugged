@@ -1704,13 +1704,13 @@ In some programming environment, like Haskell for example, natural transformatio
 phi :: forall a . F a -> G a
 \end{lstlisting}
 
-通常我们不需要明确标明\texttt{forall a}，这样自然变换就可以写为：
+When we needn't explicitly call out \texttt{forall a}, natural transformation can be simplified as:
 
 \begin{lstlisting}
 phi : F a -> G a
 \end{lstlisting}
 
-回顾此前的两个例子，我们可以知道$inits$和$safeHead$的类型分别为：
+For the two examples above, the type of $inits$ and $safeHead$ are:
 
 \begin{lstlisting}
 inits :: [a] -> [[a]]
@@ -1718,14 +1718,14 @@ inits :: [a] -> [[a]]
 safeHead :: [a] -> Maybe a
 \end{lstlisting}
 
-它们仅仅是把\texttt{phi}换成了各自的名字，把$F, G$换成了各自的函子。
+It only substitutes the name \texttt{phi} to their names respectively, and replace $F$ and $G$ to their own functors.
 
-\subsection{自然同构}
+\subsection{Natural isomorphism}
 
-我们说自然变换是用来比较函子的。仿照抽象代数中同构的含义，我们需要定义什么情况下认为两个函子是“等价”的。
+We said natural transformation was developed to compare functors. Similar to the isomorphism concept in abstract algebra, we need define when two functors are considered `equal'.
 
 % natural isomorphism
-\index{自然同构}
+\index{natural isomorphism}
 \begin{definition}
 我们称两个函子$\mathbf{F}$和$\mathbf{G}$间的\textbf{自然同构}是一个自然变换：
 
