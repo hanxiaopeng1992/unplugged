@@ -1743,9 +1743,9 @@ such that for each source arrow $A$, the selected arrow
 is an isomorphism in the target category.
 \end{definition}
 
-有时我们也说自然同构的两个函子是自然等价的。 % naturally equivalent
+Sometimes two functors that are naturally isomorphic are said to be {\em naturally equivalent}.
 
-我们举一个极端的例子$swap$。对于任意两个对象的积$A \times B$，$swap$将其对换为$B \times A$：
+For the simplest example, let us check the $swap$ example. For the product of any two objects $A \times B$, $swap$ turns it into $B \times A$:
 
 \[
 \begin{array}{l}
@@ -1754,9 +1754,9 @@ swap\ (a, b) = (b, a)
 \end{array}
 \]
 
-$swap$是一个自然变换，它作用于两个二元函子，恰巧这两个二元函子都是积函子，即：$\mathbf{F} = \mathbf{G} = \times$
+$swap$ is a natural transformation. It applies to two bifunctors, and both bifunctors happen to be product functors: $\mathbf{F} = \mathbf{G} = \times$.
 
-由于是二元函子，所以对任意两个箭头$A \arrowto{f} C$和$B \arrowto{g} D$，我们需要下面的自然条件使得范畴图可交换：
+Since they are bifunctors, for every two arrows $A \arrowto{f} C$ and $B \arrowto{g} D$, we need the following natural condition so that the diagram commutes:
 
 % natural condition
 
@@ -1782,15 +1782,15 @@ $swap$是一个自然变换，它作用于两个二元函子，恰巧这两个�
 \end{tikzpicture}
 \end{center}
 
-证明这一点很简单，只要任选两个对象的积$(a, b)$和$(c, d)$分别代入自然条件的左右两侧即可。我们把它留给读者作为练习。
+It's easy to prove this. We can chose any two products $(a, b)$ and $(c, d)$, substitute them into both sides of the natural condition. We leave this as an exercise to the readers.
 
-虽然两个函子都是积函子，我们还是来证明一下它们是自然同构的。对于任何两个对象的积$A \times B$，注意到：
+Although both are product functors, let's take some time to prove they are natural isomorphism. For the product of every two objects $A \times B$, as:
 
 \[
 swap_{A \times B} \circ swap_{B \times A} = id
 \]
 
-也就是说$swap$是一个一一映射，因此它在目标范畴中是同构的。这样就证明了自然同构。
+It tells us that $swap$ is an one to one mapping. It is isomorphic in the target category, hence proved the natural isomorphism.
 
 以上的三个例子$inits, safeHead, swap$都是多态函数，它们也都是自然变换。这不是一个巧合。在函数式编程中，所有的多态函数都是自然映射\cite{Wadler-1989}。
 
