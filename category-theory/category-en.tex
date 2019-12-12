@@ -1845,9 +1845,9 @@ Traditionally, people use 0 to represent initial object, and use 1 for final obj
   0 \longrightarrow A \quad \quad \quad A \longrightarrow 1
 \]
 
-为什么说起始对象和终止对象是对偶的呢？如果$S$是范畴$\pmb{C}$中的起始对象，我们只要把所有的箭头都反向，则$S$就成了范畴$\pmb{C}^{op}$中的终止对象。一个范畴可能没有起始对象或终止对象，或者两个都没有，但如果有的话，起始对象或者终止对象在同构的意义下是唯一的。
+Why are the initial and final objects symmetric? Suppose $S$ is the initial object of category $\pmb{C}$, by reversing the direction for all the arrows, then $S$ becomes the final object of category $\pmb{C}^{op}$. There may or may not be initial or final object in a category. A category can have one without the other, or have both. If it has both then these objects may or may not be the same. Any two initial objects (or final objects) of a category are uniquely isomorphic.
 
-我们只证明起始对象的同构唯一性，终止对象可以通过对偶性得到证明。
+We only prove the isomorphic uniqueness for initial objects, the proof for final objects can be obtained through the symmetry.
 
 \begin{proof}
 假设除0外还存在另一个起始对象0'。考虑起始对象0，根据定义一定存在从0指向0'的箭头$f$；反过来，当考虑起始对象0'的时候，也一定存在从0'指向0的箭头$g$。但是根据范畴公理，一定也有从0指向自己的箭头$id_0$和从0'指向自己的箭头$id_0'$。根据起始对象定义中箭头的唯一性，一定有：
