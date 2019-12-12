@@ -1813,29 +1813,33 @@ length\ (x:xs) = 1 + length\ xs
 With the basic concepts in category theory, including category, functor, and natural transformation, let us see how to use them to realize the complex data types.
 
 \subsection{Initial object and terminal object}
-We start from the two simplest data types, {\em initial object} and {\em terminal object}. They are symmetric like left and right hands. They are simple, but not easy.
+We start from the two simplest data types, {\em initial object} and {\em final object}. They are symmetric like left and right hands. They are simple, but not easy.
 
 \index{initial object} \index{terminal object}
 \begin{definition}
-在任意范畴$\pmb{C}$中，如果有一个特殊的对象$S$，使得范畴中的每个对象$A$都有一个唯一的箭头
+\normalfont
+In category $\pmb{C}$, if there is a special object $S$, such that for every object $A$, there is a unique arrow
 
 \[
   S \longrightarrow A \quad \quad \quad A \longrightarrow S
 \]
 
-也就是说$S$存在
+In other words, $S$ has unique arrow that
 
 \begin{center}
-  指向所有其它对象  \quad \quad \quad 从所有其它对象指向自己
+  points to every other object  \quad \quad \quad pointed from every other object
 \end{center}
-的唯一箭头，我们称这个对象$S$为
+
+We call this special object $S$
 
 \begin{center}
-  起始对象 \quad \quad \quad 终止对象
+  initial object \quad \quad \quad final object
 \end{center}
+
+Sometimes, a final object is said to be {\em terminal}.
 \end{definition}
 
-习惯上，我们用0表示起始对象，1表示终止对象。所以对任何对象$A$有：
+Traditionally, people use 0 to represent initial object, and use 1 for final object. We can also write that, for every object $A$, there is a unique arrow:
 
 \[
   0 \longrightarrow A \quad \quad \quad A \longrightarrow 1
