@@ -1792,11 +1792,11 @@ swap_{A \times B} \circ swap_{B \times A} = id
 
 It tells us that $swap$ is an one to one mapping. It is isomorphic in the target category, hence proved the natural isomorphism.
 
-以上的三个例子$inits, safeHead, swap$都是多态函数，它们也都是自然变换。这不是一个巧合。在函数式编程中，所有的多态函数都是自然映射\cite{Wadler-1989}。
+All the above three examples $inits$, $safeHead$, and $swap$ are both polymorphic function and natural transformation. This is not a coincidence. In fact, all polymorphic functions are natural transformations in functional programming\cite{Wadler-1989}.
 
 \begin{Exercise}
-\Question{证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
-\Question{证明多态函数$length$是一个自然变换，其定义如下：
+\Question{Prove that $swap$ satisfy the natural transformation condition $(g \times f) \circ swap = swap \circ (f \times g)$}
+\Question{Prove that the polymorphic function $length$ is a natural transformation. It is defined as the following:
 \[
 \begin{array}{l}
 length : [A] \to Int \\
@@ -1805,7 +1805,7 @@ length\ (x:xs) = 1 + length\ xs
 \end{array}
 \]
 }
-\Question{自然变换也可以进行组合，考虑两个自然变换$\mathbf{F} \arrowto{\phi} \mathbf{G}$}和$\mathbf{G} \arrowto{\psi} \mathbf{H}$，对于任意箭头$A \arrowto{f} B$，试画出自然变换组合$\phi \circ \psi$的范畴图，并列出可交换性的条件。
+\Question{We can compose natural transformations. Consider two natural transformations $\mathbf{F} \arrowto{\phi} \mathbf{G}$ and $\mathbf{G} \arrowto{\psi} \mathbf{H}$, for any arrow $A \arrowto{f} B$, draw the diagram for their composition, and list the commutative condition.}
 \end{Exercise}
 
 \section{数据类型}
