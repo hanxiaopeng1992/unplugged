@@ -1808,14 +1808,14 @@ length\ (x:xs) = 1 + length\ xs
 \Question{We can compose natural transformations. Consider two natural transformations $\mathbf{F} \arrowto{\phi} \mathbf{G}$ and $\mathbf{G} \arrowto{\psi} \mathbf{H}$, for any arrow $A \arrowto{f} B$, draw the diagram for their composition, and list the commutative condition.}
 \end{Exercise}
 
-\section{数据类型}
+\section{Data types}
 
-我们已经简单介绍了范畴论中的最基本概念，包括范畴、函子、自然变换。接下来我们了解一下如何通过这些基本组件实现较复杂的数据类型。
+With the basic concepts in category theory, including category, functor, and natural transformation, let us see how to use them to realize the complex data types.
 
-\subsection{起始对象和终止对象}
-让我们先认识两个最简单的数据类型，起始对象（initial object）和终止对象（terminal object或final object）。这两个对象也像左右手一样是对偶的，它们虽然简单，可是并不容易理解。
+\subsection{Initial object and terminal object}
+We start from the two simplest data types, {\em initial object} and {\em terminal object}. They are symmetric like left and right hands. They are simple, but not easy.
 
-\index{起始对象} \index{终止对象}
+\index{initial object} \index{terminal object}
 \begin{definition}
 在任意范畴$\pmb{C}$中，如果有一个特殊的对象$S$，使得范畴中的每个对象$A$都有一个唯一的箭头
 
