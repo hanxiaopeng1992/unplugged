@@ -1919,18 +1919,18 @@ The composition results a zero arrow, it connects the three groups $G$, $\{e\}$,
  \label{fig:zero-obj}
 \end{figure}
 
-It does not matter what we call the only element in the trivial group. It can be $e$, can be 1 (the trivial subgroup of the multiplicative integer group for example), can be 0 (the trivial subgroup of the additive integer group for example), can be $I$ (the identity matrix of the multiplicative square matrix group for example), can be (1) (the identity transformation of the permutation group for example), can be $id$ ... They are all isomorphic equivalence.
+It does not matter what we call the only element in the trivial group. It can be $e$, can be 1 (the trivial subgroup of the multiplicative integer group for example), can be 0 (the trivial subgroup of the additive integer group for example), can be $I$ (the identity matrix of the multiplicative square matrix group for example), can be (1) (the identity transformation of the permutation group for example), can be $id$ ... They are all isomorphic equivalent.
 \end{example}
 
 \begin{example}
 \normalfont
-现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这个唯一的元素上去：$\forall x \in S, x \mapsto \bigstar$。显然这个箭头是唯一的。
+Let's see a little bit more difficult example, the category of all sets $\pmb{Set}$, with the total functions as arrows. It's easy to find the final object, which is the singleton set (the set that contains only one object) $\{ \bigstar \}$. Similar to the example of groups, for any set $S$, we can send all elements of it to the only element in the singleton set: $\forall x \in S, x \mapsto \bigstar$. Obviously, the arrow is unique.
 
 \[
   S \longrightarrow \{ \bigstar \}
 \]
 
-但是问题来了，空集$\varnothing$怎样映射到$\{ \bigstar \}$上？事实上，空集是集合范畴中的起始对象。对于任何集合$S$，我们都可以定义箭头
+However, here comes the problem: How to map the empty set $\varnothing$ to $\{ \bigstar \}$? In fact, the empty set\footnote{The great french mathematician in the 20th Centry, André Weil said he was responsible for the null set symbol $\varnothing$, and that it came from the Norwegian alphabet, which he alone among the Bourbaki group was familiar with.} is the initial object in the category of set. As for any set $S$, we can define arrow
 
 \[
   \varnothing \arrowto{f} S
