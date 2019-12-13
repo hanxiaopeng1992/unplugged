@@ -1884,10 +1884,12 @@ Specially, if the initial object is also the final object, we call it {\em zero 
 We'll next use some examples to understand what data types the initial and final objects correspond to.
 
 \begin{example}
-考虑一个偏序集，箭头为序关系。如果一个偏序集存在最小值，则这个最小值就是起始对象；类似地，如果存在最大值，则最大值就是终止对象。例如《红楼梦》人物的有限集合\{贾宝玉、贾政、贾代善、贾源\}中，序关系为祖先关系。这样贾宝玉就是起始对象，贾源就是终止对象。而斐波那契数列组成的集合\{1, 1, 2, 3, 5, 8, ...\}，序关系为小于等于。1是最小值，是起始对象；但是没有终止对象。注意斐波那契数列中有两个1，但是它们在小于等于关系下是同构的。考虑全体实数$R$构成的偏序集，序关系为小于等于。它既没有最小值也没有最大值，所以既没有起始对象也没有终止对象。考虑图\ref{fig:genealogical-tree}中《红楼梦》家族树中所有人物组成的偏序集，序关系仍然是祖先关系。由于没有公共祖先，这样就即不存在起始对象也不存在终止对象。
+\normalfont
+Consider a partial order set. The arrow is the ordering relation. If there is a minimum element, then it is the initial object. Similarly, if there is a maximum element, then it is the final object. Use finite figures in the duck family for example, in poset \{Huey, Thelma Duck, Quackmore Duck, Grandma Duck\}, with the ancestral ordering, Donald's nephew Huey is the initial object, and Grandma Duck is the final object. While for the Fibonacci numbers \{1, 1, 2, 3, 5, 8, ...\}, the ordering is less than or equal. 1 is the minimum number, hence it is the initial object; but there is no final object. Note that, there are two 1s in Fibonacci numbers, however, they are isomorphic under the less than or equal ordering. Consider the poset of real numbers $R$. The ordering is still less than or equal. There is neither the minimum nor the maximum number, hence there is not initial or final object. Consider the poset of all the figures in the duck family tree shown in figure \ref{fig:genealogical-tree}, again, with the ancestral ordering. As there is no common ancestor, so it has not initial or final object.
 \end{example}
 
 \begin{example}
+\normalfont
 考虑所有群构成的范畴$\pmb{Grp}$。所谓平凡群就是只含有单位元的群$\{e\}$（见上一章中的定义）。群间的箭头为态射。任何态射都把单位元映射为另一个群中的单位元。所以从$\{e\}$出发，到任何群$G$都有：$e \mapsto e_G$，其中$e_G$是$G$中的单位元。因此从$\{e\}$出发到任何群都有唯一的箭头。
 
 \[
@@ -1920,6 +1922,7 @@ G \longrightarrow \{e\}
 \end{example}
 
 \begin{example}
+\normalfont
 现在我们把难度增加一点，考虑全体集合的范畴$\pmb{Set}$，箭头是全函数。终止对象相对容易找到，就是只含有一个元素的集合（singleton）$\{ \bigstar \}$。仿照群的例子，对于任何集合$S$，我们让集合中所有的元素都映射到这个唯一的元素上去：$\forall x \in S, x \mapsto \bigstar$。显然这个箭头是唯一的。
 
 \[
@@ -1951,6 +1954,7 @@ G \longrightarrow \{e\}
 \end{example}
 
 \begin{example}
+\normalfont
 在最后一个例子中，我们来到编程领域。编程环境的类型系统本质上是集合范畴$\pmb{Set}$。一个集合相当于是一个数据类型。例如整形$Int$是所有整数的集合；布尔型是两个元素$\{True, False\}$组成的集合。既然集合范畴的终止对象是$\{ \bigstar \}$，那么什么数据类型是编程中的终止对象呢？由于终止对象在同构的意义下是唯一的，所以任何只含有一个值的数据类型都是编程中的终止对象。
 
 例如在Haskell中，特别定义了一个数据类型叫做“()”，它只含有一个元素，也叫做“()”。
