@@ -1850,13 +1850,13 @@ Why are the initial and final objects symmetric? Suppose $S$ is the initial obje
 We only prove the isomorphic uniqueness for initial objects, the proof for final objects can be obtained through the symmetry.
 
 \begin{proof}
-假设除0外还存在另一个起始对象0'。考虑起始对象0，根据定义一定存在从0指向0'的箭头$f$；反过来，当考虑起始对象0'的时候，也一定存在从0'指向0的箭头$g$。但是根据范畴公理，一定也有从0指向自己的箭头$id_0$和从0'指向自己的箭头$id_0'$。根据起始对象定义中箭头的唯一性，一定有：
+Beside the initial object 0, suppose there is another initial object 0'. For the initial object 0, there must exist an arrow $f$ from 0 to 0' according to the definition of initial object; on the other hand, for the initial object 0', there must also exist an arrow $g$ from 0' to 0. According to the category axiom, there must be an identity arrow $id_0$ self-pointed to 0 (also called endo-arrow), and also an identity arrow $id_{0'}$ self-pointed to 0'. Since the identity arrow is unique, we have:
 
 \[
-  id_0 = f \circ g \quad \text{和} \quad id_{0'} = g \circ f
+  id_0 = f \circ g \quad \text{and} \quad id_{0'} = g \circ f
 \]
 
-这一关系可从下面的范畴图看出。
+This relation is illustrated in the below diagram.
 
 \begin{center}
 \begin{tikzpicture}
@@ -1873,13 +1873,15 @@ We only prove the isomorphic uniqueness for initial objects, the proof for final
 \end{tikzpicture}
 \end{center}
 
-这就证明了0和0'是同构的。换言之，在同构的意义下，起始对象是唯一的。
+Thus proved 0 is isomorphic to 0'. In other words, the initial object is isomorphic unique.
 \end{proof}
 
-\index{零对象}
-特别地，如果一个对象既是起始对象，又是终止对象，我们称之为零对象（zero object或null object）。一个范畴并不一定有零对象。
+This is the reason we usually use the word {\em the} initial object rather than an initial object. In the same way that two final objects are uniquely isomorphic, and we usually use the word {\em the} final object.
 
-接下来我们通过一些例子，由简到难说明起始对象和终止对象对应着什么样的数据类型。
+\index{zero object}
+Specially, if the initial object is also the final object, we call it {\em zero object} or {\em null object}. A category may not necessarily have the zero object.
+
+We'll next use some examples to understand what data types the initial and final objects correspond to.
 
 \begin{example}
 考虑一个偏序集，箭头为序关系。如果一个偏序集存在最小值，则这个最小值就是起始对象；类似地，如果存在最大值，则最大值就是终止对象。例如《红楼梦》人物的有限集合\{贾宝玉、贾政、贾代善、贾源\}中，序关系为祖先关系。这样贾宝玉就是起始对象，贾源就是终止对象。而斐波那契数列组成的集合\{1, 1, 2, 3, 5, 8, ...\}，序关系为小于等于。1是最小值，是起始对象；但是没有终止对象。注意斐波那契数列中有两个1，但是它们在小于等于关系下是同构的。考虑全体实数$R$构成的偏序集，序关系为小于等于。它既没有最小值也没有最大值，所以既没有起始对象也没有终止对象。考虑图\ref{fig:genealogical-tree}中《红楼梦》家族树中所有人物组成的偏序集，序关系仍然是祖先关系。由于没有公共祖先，这样就即不存在起始对象也不存在终止对象。
