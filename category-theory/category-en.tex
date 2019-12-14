@@ -329,7 +329,7 @@ Hence for every tow objects, either there is no arrow between them, which means 
 \begin{Exercise}
 \Question{Prove that the identity arrow is unique (hint: refer to the uniqueness of identity element for groups in the previous chapter).}
 \Question{Verify the monoid $(S, \cup, \varnothing)$ (the elements are sets, the binary operation is set union, the identity element is empty set) and $(N, +, 0)$ (elements are natural numbers, the binary operation is add, the identity element is zero) are all categories that contain only one object.}
-\Question{We introduced Piano's axioms for natural numbers in chapter 1, as well as the isomorphic structures to Piano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Piano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Piano object $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
+\Question{We introduced Peano's axioms for natural numbers in chapter 1, as well as the isomorphic structures to Piano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Piano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Piano object $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
 
 \[
 A \arrowto{\phi} B
@@ -1959,21 +1959,20 @@ also has particular meaning. It means we can select an element from the set $S$,
 
 As the last example, we think about programming. The type system in programming environment is the category of set $\pmb{Set}$ essentially. A data type is a set. For example, $Int$ type is the set of all integers; Boolean type is the set with two elements $\{True, False\}$. Since the final object is $\{ \bigstar \}$ in the category of sets, what data type is corresponding to the final objects? Since the final object is isomorphic unique, therefore, any data type with only one value is the final object in programming.
 
-
-例如在Haskell中，特别定义了一个数据类型叫做“()”，它只含有一个元素，也叫做“()”。
+We can define a dedicated data type, named as ``()'', with only one element, also named as ``()''.
 
 \begin{lstlisting}
 data  ()  =  ()
 \end{lstlisting}
 
-在同构的意义下$\{ \bigstar \} = \{()\}$，我们稍后会看到用“()”的好处。可以这样定义所有类型（集合）到这个终止对象的箭头（全函数）：
+It is isomorphic equivalent to any singleton set, hence $\{ \bigstar \} = \{()\}$. We will see the advantage of choosing the ``()'' symbol later. We can define the arrow (total function) from any data type (set) to this final object as below:
 
 \begin{lstlisting}
 unit :: a -> ()
 unit _ = ()
 \end{lstlisting}
 
-我们也可以自己定义终止对象——任何只有一个值的数据类型，在同构的意义上它和()是等价的\footnote{在其它编程环境，例如C++, Java，Scala中，可以定义“单子”（Single）对象，如果把强制类型转换作为箭头，则这也构成了终止对象。}。
+We can also define the final object with any singleton data type, since it is isomorphic equivalent to ()\footnote{Many programming environments, like C++, Java, Scala, etc. support defining singleton object. We can also treat the force type casting as an arrow, then it also forms the final object.}.
 
 \begin{lstlisting}
 data Singleton = S
@@ -1982,7 +1981,7 @@ proj :: a -> Singleton
 proj _ = S
 \end{lstlisting}
 
-看起来这像一个常函数，把任何值都映射到一个常数的值，但是并非所有常函数都指向终止对象，例如下面两个常函数：
+It looks like a constant function, which maps any value to a constant. However, not all constant functions point to the final object. For example the following two constant functions:
 
 \begin{lstlisting}
 yes :: a -> Bool
@@ -1992,31 +1991,31 @@ no :: a -> Bool
 no _ = False
 \end{lstlisting}
 
-因为数据类型$Bool$包含两个元素，所以任何其他数据类型都有$yes, no$两个箭头指向$Bool$，这样就不满足终止对象箭头的唯一性要求。
+As the $Bool$ data type contains two values, any other data type has two arrows $yes$, and $no$ point to $Bool$, hence it does not satisfy the uniqueness condition for the arrow to the final object.
 
-在集合范畴中，起始对象是空集$\varnothing$，那么在编程中它对应着什么数据类型呢？既然数据类型本质上是集合，那么空集就相当于没有任何值的数据类型。在编程中，相当于我们声明了一个数据类型，但是却没有对它进行定义。
+In the category of sets, the initial object is the empty set $\varnothing$. What is the corresponded data type in programming? Since the data type is essentially set, the empty set means a data type without any values. In programming, it means we declare a data type without defining it.
 
-例如在Haskell中，声明了一个类型\texttt{Void}，但是却没有为它定义任何值：
+For example, we can declare a data type \texttt{Void}, but leave it without any values:
 
 \begin{lstlisting}
 data Void
 \end{lstlisting}
 
-这样\texttt{Void}就表示一个空集。但是起始对象必须有到所有其它对象的唯一箭头。这就要求我们必须定义从\texttt{Void}到所有其他类型的函数。
+Thus \texttt{Void} represents an empty set. However, the initial object must have a unique arrow to any other object. It requires us to define a function from \texttt{Void} to all other data types.
 
 \begin{lstlisting}
 absurd :: Void -> a
 absurd _ = undefined
 \end{lstlisting}
 
-函数的具体实现并不重要，因为根本不存在一个实际的参数来调用这个函数。因此在Haskell标准库的某个版本中还有这样的实现：
+The implementation does not matters here, because there does not exist a real argument to call this function. It is quite OK to implement it as this:
 
 \begin{lstlisting}
 absurd :: Void -> a
 absurd a = case a of {}
 \end{lstlisting}
 
-我们也可以自己定义起始对象，只要在同构的意义上是等价的就可以。方法就是只声明类型，不定义任何值。例如：
+We can also define the initial object by other means as far as they are isomorphic equivalent. The method is to only declare the type without define any values. For example:
 
 \begin{lstlisting}
 data Empty
@@ -2031,9 +2030,9 @@ iso' :: Empty -> Void
 iso' _ = undefined
 \end{lstlisting}
 
-我们明确定义了$iso$和$iso'$，使得\texttt{Empty}和$\texttt{Void}$是同构的。并且容易验证\texttt{iso . iso' = id}。
+Here we explicitly define $iso$ and $iso'$ to form the isomorphism between \texttt{Empty} and $\texttt{Void}$. It is easy to verify that \texttt{iso . iso' = id}.
 
-集合范畴的例子中，我们说从终止对象到任何集合的箭头叫做选择箭头，它在编程中意味着什么呢？集合对应着类型，它表示我们可以从任何类型中选出特定的值。例如下面的函数从$Int$中分别选出0和1：
+In the category of sets, we say the arrow from the final object to any set selection arrow. What does it mean in programming? Set corresponds to type. It means we can select a specific value from any type. The below example select 0 and 1 from $Int$ type respectively:
 
 \begin{lstlisting}
 zero :: () -> Int
@@ -2043,12 +2042,12 @@ one :: () -> Int
 one () = 1
 \end{lstlisting}
 
-现在我们看到用“()”的好处了，调用的时候，就像传入0个参数的函数那样：$zero\ ()$返回0，$one\ ()$返回1。
+Now we see the advantage of choosing the ``()'' symbol. When call the function, it looks like we pass 0 argument to it: $zero\ ()$ returns 0, and $one\ ()$ returns 1.
 \end{example}
 
 \begin{Exercise}
-\Question{在本节的例子中，我们说在一个偏序集中，如果存在最小值（或最大值），则最小值（或最大值）就是起始对象（或终止对象）。考虑全体偏序集构成的范畴$\pmb{Poset}$，如果存在起始对象，它是什么？如果存在终止对象，它是什么？}
-\Question{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
+\Question{In the poset example, we say there exists the minimum (or the maximum) element, then the minimum (or the maximum) is the initial object (or the final object). Consider the category of all posets $\pmb{Poset}$, if there exists the initial object, what is it? If there exists the final object, what is it?}
+\Question{In the Peano category $\pmb{Pno}$ (see the question 2 in exercise of section 1), what object in the form of $(A, f, z)$ is the initial object? What is the final object?}
 \end{Exercise}
 
 \subsection{幂}
