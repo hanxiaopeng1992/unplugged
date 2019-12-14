@@ -1938,20 +1938,20 @@ However, here comes the problem: How to map the empty set $\varnothing$ to $\{ \
 
 Please take a while to think about this point. Let's consider the identity arrow $id$ of the empty set, $\varnothing \arrowto{id_{\varnothing}} \varnothing$. According to the category axiom, every object has $id$ arrow. The empty set is the object that has unique arrow to every set (include the empty set itself). The only special thing is that, the total function as the arrow has not any arguments. It can not be written as $f(x): x \mapsto y$.
 
-回答刚才的问题，由于空集到任何集合都有唯一的箭头，所以空集到$\{ \bigstar \}$也有唯一的箭头。这样从任何集合（包括空集）都存在到$\{ \bigstar \}$的唯一箭头，因此$\{ \bigstar \}$的确是集合范畴中的终止对象。
+To answer the above question, since there is unique arrow from the empty set to any set, there is also unique arrow from empty set to $\{ \bigstar \}$. Hence there is unique arrow from every set (includes the empty set) to $\{ \bigstar \}$. Therefore, $\{ \bigstar \}$ is the final object in the category of set.
 
-为什么不能像群一样，让只含有一个元素的集合$\{ \bigstar \}$成为起始对象呢？原因是，从$\{ \bigstar \}$到任意集合$S$的箭头可能不唯一。考虑有若干元素的集合$S = \{x, y, z, ...\}$，我们可以定义箭头（全函数）$\{ \bigstar \} \arrowto{\vec{x}} S$，将唯一元素映射到$x$上，也可以定义箭头$\{ \bigstar \} \arrowto{\vec{y}} S$和$\{ \bigstar \} \arrowto{\vec{z}} S$，将其映射到其它元素上。
+Why can't we let the singleton set $\{ \bigstar \}$ be the initial object like what we do for groups? The reason is because the arrow from $\{ \bigstar \}$ to any set $S$ may not be unique. Consider a set of multiple elements $S = \{x, y, z, ...\}$, we can define the arrow (total function) $\{ \bigstar \} \arrowto{\vec{x}} S$, that sends the only element to $x$; we can also define the arrow $\{ \bigstar \} \arrowto{\vec{y}} S$ or $\{ \bigstar \} \arrowto{\vec{z}} S$ to send it to other elements.
 
-我们选择符号$\{ \bigstar \}$的用意是说，元素是什么不重要，只要它是只含有一个元素的集合（singleton set），在同构意义上就是等价的。
+We intend to choose the symbol $\{ \bigstar \}$ to emphasize that, it does not matter what the element is, as far as it is a singleton set. Because all singleton sets are isomorphic equivalent.
 
-\label{sec:selection-arrow} \index{选择箭头}
-从终止对象$\{ \bigstar \}$到某一集合$S$的箭头
+\label{sec:selection-arrow} \index{selection arrow}
+The arrow from the final object $\{ \bigstar \}$ to a set $S$
 
 \[
   \{ \bigstar \} \longrightarrow S
 \]
 
-也有着特定的含义。它表明我们可以从集合$S$中选出一个元素，例如上述的箭头$\vec{x}$，从集合中选出元素$x$。我们把这样的箭头叫做\textbf{选择箭头}。
+also has particular meaning. It means we can select an element from the set $S$, like the arrow $\vec{x}$ we defined above. It selects $x$ from $S$. For this reason, we call it {\em selection arrow}.
 \end{example}
 
 \begin{example}
