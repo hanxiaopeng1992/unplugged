@@ -2105,7 +2105,8 @@ And the index set $\mathbf{2} = \{0, 1\}$ is isomorphic to $Bool$ (under the fun
 \end{example}
 
 \begin{example}
-再举一个例子，考虑所有从字符$Char$到布尔值$Bool$的函数（箭头）集合$Char \to Bool$。这个集合里有很多函数，例如$isDigit(c)$可以判断传入的字符是否是数字。它可以实现为：
+\normalfont
+Let's see another example. Consider the set of all the arrows (functions) $Char \to Bool$ from characters $Char$ to the Boolean values $Bool$. There are many functions in this set. For example $isDigit(c)$ check whether the passed in character is digit or not. One implementation can like this (not practical but possible):
 
 \lstset{frame=none}
 \begin{lstlisting}[style=Haskell]
@@ -2120,7 +2121,7 @@ isDigit 'b' = False
 ...
 \end{lstlisting}
 
-虽然这个实现比较的笨拙，但是它反映了一个事实：如果$Char$中有256个不同的字符（例如英语ASCII码），则函数$isDigit$的结果本质上和一个256元组(False, ..., True, True, ... True, False, ...)同构。这个元组中对应数字字符的位置是True，其余是False。在$Char \to Bool$中的众多函数中，$isUpper$，$isLower$，$isWhitespace$等等分别对应一个特定的元组。例如$isUpper$对应的元组中，大写字符所在的位置上为True，其余为False。这样尽管有无穷多种方式来定义一个从$Char$到$Bool$的函数，但从结果上看，本质上只有$2^{256}$个不同的函数。也就是说$Char \to Bool$和256元组的布尔值集合$Bool^{Char}$同构。
+Although this is a naive implementation, it reflects such fact: If there are 256 different chars (ASCII code of English for example), then the result of $isDigit$ function is isomorphic to a 256-tuple, values of (False, ..., True, True, ... True, False, ...), where the positions corresponding to digit characters are Ture, the rest are False. Among the varies of functions with type of $Char \to Bool$, like $isUpper$, $isLower$, $isWhitespace$ etc. everyone corresponds to a specific tuple. For example in the tuple corresponding to $isUpper$, the positions for the upper case characters are Ture, the rest are False. Although there are infinite many ways to define a function from $Char$ to $Bool$, from the result perspective, there are only $2^{256}$ different functions essentially. It means $Char \to Bool$ is isomorphic to $Bool^{Char}$, which is the set of 256-tuple Boolean values.
 \end{example}
 
 现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
