@@ -533,7 +533,7 @@ n < 2: & [n] \\
 \end{cases}
 \]
 
-下面是一个相应的Haskell代码实现。为了提高性能，这个实现使用了尾递归。
+下面是一个相应的例子代码实现。为了提高性能，这个实现使用了尾递归。
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -695,7 +695,7 @@ fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \end{array}
 \]
 
-仔细观察这个定义，再和第一章中列表的“逐一映射”定义对比，会发现它们除了名字之外完全一样，因此我们可以复用列表的“逐一映射”来定义列表函子，例如Haskell中列表函子的定义就是通过复用\texttt{map}实现的。
+仔细观察这个定义，再和第一章中列表的“逐一映射”定义对比，会发现它们除了名字之外完全一样，因此我们可以复用列表的“逐一映射”来定义列表函子，在一些编程环境中，列表函子的定义就是通过复用\texttt{map}实现的。
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -1046,14 +1046,14 @@ S \arrowto{m} S
 \end{center}
 \end{lemma}
 
-详细的证明过程可以参考本书后面的附录。在一些编程环境，例如Haskell中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
+详细的证明过程可以参考本书后面的附录。在一些编程环境中，积的确是通过二元组$(a, b)$以及函数$fst$和$snd$来实现的。但是，余积却是以单独的数据类型来实现的。
 
 \lstset{frame = single}
 \begin{lstlisting}
 data Either a b = Left a | Right b
 \end{lstlisting}
 
-这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的Haskell例子代码使用模式匹配来决定如何处理余积的元素：
+这样的好处是，我们不需要再通过0, 1这样的标记（tag）来了解一个\texttt{Either a b}的元素$x$究竟是来自\texttt{a}还是\texttt{b}。例如下面的例子代码使用模式匹配来决定如何处理余积的元素：
 
 \begin{lstlisting}
 either :: (a -> c) -> (b -> c) -> Either a b -> c
@@ -1685,7 +1685,7 @@ safeHead\ (x:xs) = Just\ x
 \phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
 \]
 
-例如在Haskell中，可以这样写\footnote{Haskell中有一个ExplicitForAll的选项，我们在下一章介绍构造——叠加融合律（build/fold fusion law）时会再次遇到它。}：
+在某些编程环境中，可以这样写\footnote{Haskell中有一个ExplicitForAll的选项，我们在下一章介绍构造——叠加融合律（build/fold fusion law）时会再次遇到它。}：
 
 \lstset{frame=single}
 \begin{lstlisting}

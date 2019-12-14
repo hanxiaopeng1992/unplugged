@@ -1698,7 +1698,7 @@ Not only for $A$, now let's abstract {\em all} the objects, hence we obtain a fa
 \phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
 \]
 
-In some programming environment, like Haskell for example, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
+In some programming environment, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -1956,7 +1956,9 @@ also has particular meaning. It means we can select an element from the set $S$,
 
 \begin{example}
 \normalfont
-在最后一个例子中，我们来到编程领域。编程环境的类型系统本质上是集合范畴$\pmb{Set}$。一个集合相当于是一个数据类型。例如整形$Int$是所有整数的集合；布尔型是两个元素$\{True, False\}$组成的集合。既然集合范畴的终止对象是$\{ \bigstar \}$，那么什么数据类型是编程中的终止对象呢？由于终止对象在同构的意义下是唯一的，所以任何只含有一个值的数据类型都是编程中的终止对象。
+
+As the last example, we think about programming. The type system in programming environment is the category of set $\pmb{Set}$ essentially. A data type is a set. For example, $Int$ type is the set of all integers; Boolean type is the set with two elements $\{True, False\}$. Since the final object is $\{ \bigstar \}$ in the category of sets, what data type is corresponding to the final objects? Since the final object is isomorphic unique, therefore, any data type with only one value is the final object in programming.
+
 
 例如在Haskell中，特别定义了一个数据类型叫做“()”，它只含有一个元素，也叫做“()”。
 
