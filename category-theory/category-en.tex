@@ -2053,7 +2053,7 @@ Now we see the advantage of choosing the ``()'' symbol. When call the function, 
 \subsection{Exponentials}
 \index{exponential}
 
-The initial and final objects are similar to 0 and 1, the product and coproduct are similar to $\times$ and $+$, if we can find something similar to exponentials, then we will obtain the basic arithmetic in the abstract category world. Further, we can even develop something `isomorphic' to polynomials.
+The initial and final objects are similar to 0 and 1, the product and coproduct are similar to $\times$ and $+$, if we can find something similar to exponentials, then we will be empowered with the basic arithmetic in the abstract category world. Further, we can even develop something `isomorphic' to polynomials.
 
 Observe a binary function $f(x, y) = z$ defined for natural numbers, for example $f(x, y) = x^2 + 2y + 1$. Its type is $f: N \times N \to N$. It's natural to think about writing the type as:
 
@@ -2061,10 +2061,11 @@ Observe a binary function $f(x, y) = z$ defined for natural numbers, for example
 f : N^2 \to N
 \]
 
-对于函数$f$，我们能否把$N^2$看成一个对象，而不是两个参数呢？也就是说，看成$f\ (x, y)$，而不是$f(x, y)$。如果把参数看成一个“洞”，则前者是$f\ \bullet$，然后把一个对$(x, y)$填入洞中；而后者是$f(\bullet, \bullet)$，然后分别把$x, y$填入到两个洞中。另一方面，在第二章我们介绍了克里化，可以把$f$看成$f: N \to (N \to N)$，也就是传入$x$后，$f\ x$会返回另一个函数，这个新函数把一个自然数映射到另一个自然数。但使用克里化，我们反而得不到幂的概念了。峰回路转，如果我们把克里化后返回的东西，也就是$N \to N$看成一个事物，比方叫做“函数对象”会怎样呢？$N$是一个无穷集，想起来比较困难。我们后退一步，构造一个简单点的例子——只有两个元素的有限集$Bool$——来分析一下。
+For function $f$, can we take $N^2$ as a whole object, but not two arguments? i.e. treat it as $f\ (x, y)$ but not $f(x, y)$. If we consider the argument as a `hole', then the former is $f\ \bullet$, then put a pair $(x, y)$ into that hole; while the latter is $f(\bullet, \bullet)$, then we put $x$ and $y$ to the two holes respectively. On the other hand, we introduced Currying in chapter 2, we can consider $f$ as $f: N \to (N \to N)$. After passing $x$ to it, $f\ x$ returns another function. This new function sends one natural number to another number. It seems we can't get the exponential concept with Currying directly. However, what if we consider the Curried result, which is $N \to N$, as a whole thing? we can name it as the `function object'. It's still a bit complex since $N$ is a infinite set. Let's go back a step and restart with a simpler example, the $Bool$ set with only two elements:
 
 \begin{example}
-存在无穷多个从$Bool$到$Int$的函数（箭头）组成的集合$\{Bool \arrowto{f} Int\}$，我们从这个集合中挑选一个元素，也就是一个例子函数来看看：
+\normalfont
+There are infinite many arrows (function) from $Bool$ to $Int$. They form a set $\{Bool \arrowto{f} Int\}$. Let us select an element, which is an example function from it.
 
 \[
 \begin{array}{l}
@@ -2074,7 +2075,7 @@ ord\ True = 1 \\
 \end{array}
 \]
 
-它的结果是一对整数$(0, 1)$，这是一个代表，我们可以把所有上述箭头集合中的元素写成这样的形式：
+The result is a pair of numbers $(0, 1)$. It is an instance. We can write all the arrows in above set in this way:
 
 \[
 \begin{array}{l}
@@ -2084,7 +2085,7 @@ f\ True = ... \\
 \end{array}
 \]
 
-不管$f$怎样千变万化，结果总是一对整数$(a, b)$。我们可以说箭头$f$的集合，同构于一对整数$(a, b)$的集合，即：
+No matter how $f$ varies, the result is always a pair of numbers $(a, b)$. We say the set of arrow $f$ is isomorphic to the set of integer pair $(a, b)$. That is to say:
 
 \[
 \begin{array}{rcl}
@@ -2094,13 +2095,13 @@ f\ True = ... \\
 \end{array}
 \]
 
-这告诉我们，箭头的集合，也就是箭头的类型\footnote{严格来说，我们应该去掉上面箭头两侧的大括号，增加大括号是为了容易理解}：$Bool \to Int$，相当于一个幂$Int^{Bool}$。也就是说$Bool \to Int = Int^{Bool}$。为什么在上面的推理中，我们可以用$Bool$替换$2$，从而把$Int^2$变成$Int^{Bool}$呢？原因是同构，上述的等号的真正含义是同构，所以严格来说，应该用“$\cong$”符号，而不是“=”。$Int^2$，是两个整数积的自然记法，也就是一对$Int$值的集合。一对$Int$值的集合可以看成是从一个名叫\textbf{2}的，拥有2个元素的索引集合$\{0, 1\}$到$Int$的映射。
+It tells us that, the set of arrows, which is the type of the arrow\footnote{Strictly speaking, we should remove the pair of curly brackets of the arrow. We add the curly brackets only for understanding easily.}: $Bool \to Int$, corresponds to a exponential $Int^{Bool}$. Which means $Bool \to Int = Int^{Bool}$. Why can we use 2 to substitute $Bool$ in the above reasoning, to convert $Int^2$ to $Int^{Bool}$? The reason is isomorphism. The equal symbol actually means isomorphism. Strictly speaking, we should use the ``$\cong$'' symbol, but not ``=''. $Int^2$ represents the product of two integers, which is the set of $Int$ pairs. The set of $Int$ pairs can be considered as a map. The map is from a set named as \textbf{2} with 2 elements of index $\{0, 1\}$ to $Int$.
 
 \[
 \{0, 1\} \arrowto{f} Int = \{(f(0), f(1))\} = Int^2
 \]
 
-而索引集合$\mathbf{2} = \{0, 1\}$正是$Bool$的同构（例如在$ord$函数下）。
+And the index set $\mathbf{2} = \{0, 1\}$ is isomorphic to $Bool$ (under the function $ord$ for example).
 \end{example}
 
 \begin{example}
