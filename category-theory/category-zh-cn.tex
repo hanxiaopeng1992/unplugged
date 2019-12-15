@@ -2183,7 +2183,7 @@ curry\ g = \lambda g
 
 并且我们还能说明为什么幂转换箭头是唯一的，假设还存在另外的箭头$A \arrowto{h} C^B$，使得$apply \circ (h \times id) = g$，根据上述泛性性质，我们立刻得到$h = curry\ g$。
 
-我们还可以从范畴的角度来理解幂对象，在范畴$\pmb{C}$中，如果固定对象$B, C$，我们可以构造一个名叫$\pmb{Exp}$的范畴，这个范畴中的对象是$A \times B \to C$这样的箭头，范畴中的箭头是这样定义的。
+我们还可以从范畴的角度来理解幂对象，在范畴$\pmb{C}$中，如果固定对象$B, C$，我们可以构造一个名叫$\pmb{Exp}$的范畴，这个范畴中的对象是$A \times B \to C$这样的箭头，范畴中的箭头是这样定义的：
 
 \begin{center}
 \begin{tikzpicture}

@@ -2211,7 +2211,7 @@ In other words, we obtain such a universal property:
 
 And we can also see why the exponential transpose arrow is unique. Suppose there exists another arrow $A \arrowto{h} C^B$, such that $apply \circ (h \times id) = g$. According to the above universal property, we immediately get $h = curry\ g$.
 
-我们还可以从范畴的角度来理解幂对象，在范畴$\pmb{C}$中，如果固定对象$B, C$，我们可以构造一个名叫$\pmb{Exp}$的范畴，这个范畴中的对象是$A \times B \to C$这样的箭头，范畴中的箭头是这样定义的。
+We can also consider the exponentials as a category. Given a category $\pmb{C}$, when fix object $B, C$, we can form a category $\pmb{Exp}$. In this category,all objects are arrows in the form of $A \times B \to C$, and the arrows are defined as:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2225,7 +2225,7 @@ And we can also see why the exponential transpose arrow is unique. Suppose there
 \end{tikzpicture}
 \end{center}
 
-如果在$\pmb{C}$中存在$A \arrowto{f} D$的箭头，则$\pmb{Exp}$中的箭头为$h \arrowto{j} k$。当且仅当把上面范畴图中右侧的$C$合并时，箭头之间可交换：
+If there is arrow $A \arrowto{f} D$ in category $\pmb{C}$, then the arrow in $\pmb{Exp}$ is $h \arrowto{j} k$. The arrows commute if and only if when we combine the $C$ on the right in above diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2241,23 +2241,23 @@ And we can also see why the exponential transpose arrow is unique. Suppose there
 \end{tikzpicture}
 \end{center}
 
-即：$k \circ (f \times id_B) = h$。在这个范畴$\pmb{Exp}$中，存在一个终止对象，它恰好是$C^B \times B \arrowto{apply} C$。我们现在来验证一下，根据幂对象的定义，从任何其它对象$A \times B \arrowto{g} C$，都有到$apply$的箭头$\lambda g = curry\ g$。另外根据终止对象的性质，从终止对象到自己的箭头一定是$id$，所以我们有\textbf{反射律}：
+The diagram commutes when $k \circ (f \times id_B) = h$. There exists the final object in category $\pmb{Exp}$, which exactly is $C^B \times B \arrowto{apply} C$. Let's verify it. From the definition of exponential, from any object $A \times B \arrowto{g} C$, there is $apply$ arrow $\lambda g = curry\ g$. On the other hand, the endo arrow to the final object must be $id$, hence we obtain the {\em reflection law}:
 
 \[
 curry\ apply = id
 \]
 
 \begin{Exercise}
-\Question{验证$\pmb{Exp}$的确是一个范畴，指出$id$箭头和箭头的组合。}
-\Question{反射律$curray\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
-\Question{我们称下面的等式
+\Question{Verify that $\pmb{Exp}$ is a category. What is the $id$ arrow and arrow composition in it?}
+\Question{In the reflection law $curray\ apply = id$, what is the subscript of the $id$ arrow? Please prove it with another method.}
+\Question{We define the equation
 \[
 (curry\ f) \circ g = curry(f \circ (g \times id))
 \]
-为克里化的融合律。请画出它的范畴图并证明它。}
+as the fusion law for Currying. Draw the diagram and prove it.}
 \end{Exercise}
 
-\subsection{笛卡尔闭和对象算术}
+\subsection{Cartesian closed and object arithmetic}
 
 有了起始对象0，终止对象1，余积代表的加法，积代表的乘法，再加上幂对象代表的指数幂，我们终于拥有了在范畴上进行运算甚至构造抽象多项式的能力。但是且慢，让我们停下来看一下这样能跑多远。正如第三章开头我们讲到的，必须时刻关注一个问题：“某一种抽象的适用范围有多大？什么情况下这一抽象会失效？”
 
