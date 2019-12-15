@@ -2124,30 +2124,29 @@ isDigit 'b' = False
 Although this is a naive implementation, it reflects such fact: If there are 256 different chars (ASCII code of English for example), then the result of $isDigit$ function is isomorphic to a 256-tuple, values of (False, ..., True, True, ... True, False, ...), where the positions corresponding to digit characters are Ture, the rest are False. Among the varies of functions with type of $Char \to Bool$, like $isUpper$, $isLower$, $isWhitespace$ etc. everyone corresponds to a specific tuple. For example in the tuple corresponding to $isUpper$, the positions for the upper case characters are Ture, the rest are False. Although there are infinite many ways to define a function from $Char$ to $Bool$, from the result perspective, there are only $2^{256}$ different functions essentially. It means $Char \to Bool$ is isomorphic to $Bool^{Char}$, which is the set of 256-tuple Boolean values.
 \end{example}
 
-现在我们把例子中的集合推进到无限集。在这一节的开头，我们说克里化后的函数$f: N \to (N \to N)$，是从自然数$N$到“函数对象”的函数。我们把函数对象记为$(\Rightarrow)$，则$f$的类型为$N \arrowto{f} (\Rightarrow)$。也就是从索引集$\{0, 1, ...\}$到$(\Rightarrow)$的映射，它是一个无穷长元组的集合，元组的每个值都是一个函数对象。记为$(\Rightarrow)^N$。
+Next, we expand from the examples to the infinite set. We mentioned the Curried function $f: N \to (N \to N)$ maps from the natural numbers $N$ to `function objects'. Denote the function object as $(\Rightarrow)$, then the type of $f$ is $N \arrowto{f} (\Rightarrow)$. It maps from the index set $\{0, 1, ...\}$ to $(\Rightarrow)$, which forms a set of infinite long tuples. Every value in the tuple is a function object. We denote it as $(\Rightarrow)^N$.
 
 \index{apply}
-一般来说，我们把函数的集合$f : B \to C$记为$C^B$。从这个集合中取出一个函数$f \in C^B$，然后在从集合$B$中取出一个值$b \in B$，我们可以用一个名叫$apply$的函数将$f$应用到$b$上，从而得到一个$C$中的值$c = f(b)$。即\footnote{有些文献，例如\cite{PeterSmith2018}第111-112页, \cite{Wiki-Exponentials}使用$eval$，也就是求值（evaluation）作为名称，这里采用和\cite{Bird97}（第72页）一致的命名。这样和Lisp中的命名传统一致。}：
+In general, we denote the set of function $f : B \to C$ in exponential form $C^B$. Select a function $f \in C^B$, and an element $b \in B$, then we can use a special $apply$ function that applies $f$ to $b$, that gives a value $c = f(b)$ in $C$. As this\footnote{Some materials, like \cite{PeterSmith2018} pp. 111 - 112, and \cite{Wiki-Exponentials} use $eval$ to highlight this evaluation process. We adopt the name in \cite{Bird97} pp. 72 to follow the tradition in Lisp.}:
 
 \[
 apply(f, b) = f(b)
 \]
 
-聪明的读者可能会问：符号$A$哪里去了？因为$A$还有别的用处。我们还要把克里化考虑进来。对于二元函数$g: A \times B \to C$，传入一个$A$中的值$a$后，就得到了一个克里化的函数$g(a, \bullet) : B \to C$。它是一个函数对象，属于$C^B$。这样，对于任何二元函数$A \times B \arrowto{g} C$，都存在唯一的一元函数$A \arrowto{\lambda g} C^B$，将$a \in A$送入$g(a, \bullet) : B \to C$中。我们称$\lambda g$为$g$的幂转换（exponential transpose）\footnote{有的文献中用$\bar{g}$来表示，根据第二章中对$\lambda$的介绍，以及关于丘奇出版商的小插曲，我认为用$\lambda g$更为传神，它表示$a \mapsto \lambda \bullet \cdot g(a, \bullet)$。}。并且，有这样的关系：
-
+Readers may ask: where is symbol $A$? We actually need $A$ for other purpose when taking Currying into account. For the binary function $g: A \times B \to C$, when passing an element $a$ in $A$, we obtained a Curried function $g(a, \bullet) : B \to C$, which is a function object belongs $C^B$. Hence for every binary function $A \times B \arrowto{g} C$, there is a unique unary function $A \arrowto{\lambda g} C^B$ sends $a \in A$ to $g(a, \bullet) : B \to C$. We call $\lambda g$ is the exponential transpose of $g$\footnote{Some materials use $\bar{g}$ for exponential transpose. From the introduction about $\lambda$ in chapter 2, especially the interesting story about Church and his publisher, $\lamba g$ looks vivid. It means $a \mapsto \lambda \bullet \cdot g(a, \bullet)$.}. And the following equation holds:
 
 \[
 apply(\lambda g(a), b) = g(a, b)
 \]
 
-也就是说，$apply$把一个类型为$C^B$的函数对象$\lambda g(a)$与类型为$B$的参数$b$组合在一起，最终得到类型为$C$的结果$c$。所以箭头$apply$的类型为：
+That is to say, $apply$ combines a function object $\lambda g(a)$ of type $C^B$ and an argument $b$ of type $B$ together, and gives the result $c$ of type $C$. Therefore, the type of $apply$ is:
 
 \[
 C^B \times B \arrowto{apply} C
 \]
 
-\index{幂对象（Expenentials或Expenential object）}
-现在，我们终于可以给出完整的幂对象（Expenentials或Expenential object）定义了。
+\index{exponentials} \index{exponential object）}
+Now we can give the complete definition of exponentials (or exponential objects).
 
 \begin{definition}
 如果范畴$\pmb{C}$中存在终止对象和积，则一个\textbf{幂对象}是一对对象和箭头
