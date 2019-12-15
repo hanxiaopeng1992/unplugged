@@ -2149,19 +2149,20 @@ C^B \times B \arrowto{apply} C
 Now we can give the complete definition of exponentials (or exponential objects).
 
 \begin{definition}
-如果范畴$\pmb{C}$中存在终止对象和积，则一个\textbf{幂对象}是一对对象和箭头
+\normalfont
+If a category $\pmb{C}$ has final object and supports product, then an {\em exponential object} is a pair of object and arrow
 
 \[
 (C^B, apply)
 \]
 
-它们满足对于任何的对象$A$和箭头$A \times B \arrowto{g} C$，都存在唯一的转换箭头
+For any object $A$ and arrow $A \times B \arrowto{g} C$, there is a unique transpose arrow
 
 \[
  A \arrowto{\lambda g} C^B
 \]
 
-使得下面的范畴图可交换
+such that the below diagram commutes
 
 \begin{center}
 \begin{tikzpicture}
@@ -2177,7 +2178,7 @@ Now we can give the complete definition of exponentials (or exponential objects)
 \end{tikzpicture}
 \end{center}
 
-即：
+That is:
 
 \[
   apply \circ (\lambda g \times id_B) = g
@@ -2185,8 +2186,9 @@ Now we can give the complete definition of exponentials (or exponential objects)
 
 \end{definition}
 
-\index{克里化}
-第二章中我们没有给出克里化的完整定义，现在利用幂对象，我们可以给出$curry$的定义了：
+\index{Currying}
+
+We didn't provide the complete definition of Currying in chapter 2. We are able to define $curry$ with the help of exponentials:
 
 \[
 \begin{array}{l}
@@ -2195,19 +2197,19 @@ curry\ g = \lambda g
 \end{array}
 \]
 
-因此，$curry\ g$就是$g$的幂转换。把这一关系代入上面的范畴图，我们有：
+Therefore, $curry\ g$ is the exponential transpose of $g$. Substitute this definition into the above diagram, we have:
 
 \[
   apply \circ (curry\ g \times id) = g
 \]
 
-换言之，我们就得到了这样的泛性性质：
+In other words, we obtain such a universal property:
 
 \[
   f = curry\ g \quad \equiv \quad apply \circ (f \times id) = g
 \]
 
-并且我们还能说明为什么幂转换箭头是唯一的，假设还存在另外的箭头$A \arrowto{h} C^B$，使得$apply \circ (h \times id) = g$，根据上述泛性性质，我们立刻得到$h = curry\ g$。
+And we can also see why the exponential transpose arrow is unique. Suppose there exists another arrow $A \arrowto{h} C^B$, such that $apply \circ (h \times id) = g$. According to the above universal property, we immediately get $h = curry\ g$.
 
 我们还可以从范畴的角度来理解幂对象，在范畴$\pmb{C}$中，如果固定对象$B, C$，我们可以构造一个名叫$\pmb{Exp}$的范畴，这个范畴中的对象是$A \times B \to C$这样的箭头，范畴中的箭头是这样定义的。
 
