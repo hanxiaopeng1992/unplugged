@@ -2266,20 +2266,21 @@ Not all categories have the initial or final object, and do not necessary have e
 
 \begin{enumerate}
 \item A final object (1);
-\item Every pair of objects have product ($\times$);
-\item Every pair of objects have exponential ($A^B$).
+\item Every two objects have product ($\times$);
+\item Every two objects have exponential ($A^B$).
 \end{enumerate}
 
 We can either consider the final object 1 as the 0th power of an object $A^0 = 1$, or the product of zero objects. Fortunately, the category of programming, with sets and total functions, is Cartesian closed. A Cartesian closed category can model the simply typed $\lambda$ calculus (see chapter 2), hence serves as the foundation of all the programming languages with types(\cite{Milewski2018} pp. 148).
 
 \index{Bicartesian closed}
-如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
+If a Cartesian closed category also supports the dual of the final object, which the initial object; the dual of product, which is the coproduct; and also supports the distribution law of product over coproduct, then it is {\em Bicartesian closed}.
 
+A Bicartesian closed category satisfies the following conditions in additional:
 \begin{enumerate}
   \setcounter{enumi}{4}
-  \item 一个起始对象（0）；
-  \item 任何一对对象都有余积（$+$）；
-  \item 积可以从左右两侧分配到余积上：
+  \item The initial object (0);
+  \item Every two objects have coproduct ($+$);
+  \item Product can be distributed from both sides to coproduct:
   \[
   \begin{array}{l}
   A \times (B + C) = A \times B + A \times C \\
@@ -2288,10 +2289,10 @@ We can either consider the final object 1 as the 0th power of an object $A^0 = 1
   \]
 \end{enumerate}
 
-\index{对象算术}
-现在我们可以看看基本算术运算在一个笛卡尔闭的范畴上，特别是编程中都意味着什么了。这一理论称为对象算术理论（Equational theory）。
+\index{Object arithmetic} \index{equational theory}
+Now we are ready to explain what the basic arithmetic operations mean in programming, which is a Cartesian closed category. It is called equational theory.
 
-\subsubsection{0次幂}
+\subsubsection{0th Power}
 
 \[
   A^0 = 1
