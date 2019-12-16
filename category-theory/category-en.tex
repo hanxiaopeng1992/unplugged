@@ -2259,20 +2259,20 @@ as the fusion law for Currying. Draw the diagram and prove it.}
 
 \subsection{Cartesian closed and object arithmetic}
 
-有了起始对象0，终止对象1，余积代表的加法，积代表的乘法，再加上幂对象代表的指数幂，我们终于拥有了在范畴上进行运算甚至构造抽象多项式的能力。但是且慢，让我们停下来看一下这样能跑多远。正如第三章开头我们讲到的，必须时刻关注一个问题：“某一种抽象的适用范围有多大？什么情况下这一抽象会失效？”
+With the initial object as 0, the final object as 1, coproduct as add, product as multiplication, exponentials as powers, we are capable to do arithmetic or even form polynomials for categories. But let us hold on. As we warned at the beginning of chapter 3, we should always ask ourselves what is the applicable scope for the abstraction? when will the abstraction be invalid?
 
-\index{笛卡尔闭}
-并非所有的范畴都有起始或终止对象，也并非所有的范畴都有幂对象。如果一个范畴存在有限积、对于任何对象$A$和$B$都存在幂$A^B$，我们称这样的范畴为\textbf{笛卡尔闭}的（Cartesian closed）。一个笛卡尔闭范畴必须包含：
+\index{Cartesian closed}
+Not all categories have the initial or final object, and do not necessary have exponentials. If a category has finite product, for any object $A$ and $B$, there is $A^B$, it is called {\em Cartesian closed}. A Cartesian closed category must has:
 
 \begin{enumerate}
-\item 一个终止对象（1）；
-\item 任何一对对象都有积（$\times$）；
-\item 任何一对对象都有幂（$A^B$）
+\item A final object (1);
+\item Every pair of objects have product ($\times$);
+\item Every pair of objects have exponential ($A^B$).
 \end{enumerate}
 
-我们既可以把终止对象1，想象成一个对象的零次幂：$A^0 = 1$，也可以把它想象成零个对象的积。非常幸运的是，编程时我们所在的范畴——集合和全函数组成的范畴是笛卡尔闭的。一个笛卡尔闭范畴可以作为简单类型$\lambda$-演算（simply typed lambda calculus）的数学模型（见第二章），从而成为所有带有类型的编程语言的基础(\cite{Milewski2018}第148页)。
+We can either consider the final object 1 as the 0th power of an object $A^0 = 1$, or the product of zero objects. Fortunately, the category of programming, with sets and total functions, is Cartesian closed. A Cartesian closed category can model the simply typed $\lambda$ calculus (see chapter 2), hence serves as the foundation of all the programming languages with types(\cite{Milewski2018} pp. 148).
 
-\index{双笛卡尔闭（Bicartesian closed）}
+\index{Bicartesian closed}
 如果一个笛卡尔闭的范畴还同时支持终止对象的对偶——起始对象，和积的对偶——余积。并且支持积和余积的分配律，我们称其为\textbf{双笛卡尔闭}范畴（Bicartesian closed）：
 
 \begin{enumerate}
