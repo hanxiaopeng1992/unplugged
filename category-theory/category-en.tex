@@ -2298,19 +2298,19 @@ Now we are ready to explain what the basic arithmetic operations mean in program
   A^0 = 1
 \]
 
-0代表了起始对象，1代表了终止对象，$A$的0次幂可以解读为类型为$0 \to A$的所有箭头的集合。但既然0是起始对象，所以它到任何对象只有唯一的箭头。因此集合$\{ 0 \to A \}$仅仅含有一个元素（singleton），而仅有一个元素的集合$\{ \bigstar \}$恰巧是（集合范畴的）终止对象1。下面的推导中等号应理解为同构。
+0 represents the initial object, 1 represents the final object. The 0th power of $A$ represents a set of all arrows $0 \to A$. Since 0 is the initial object, it has the unique (only one) arrow to any object. Therefore, set $\{ 0 \to A \}$ contains only one object. It is a singleton. While the singleton set $\{ \bigstar \}$ is exactly the final object 1 in the category of sets. The equal symbol used in the below reasoning should be thought as isomorphism.
 
 \[
 \begin{array}{rcll}
-A^0 & = & \{ 0 \to A \} & \text{幂对象的定义} \\
-    & = & \{ \bigstar \} & \text{起始对象到任何对象的箭头唯一} \\
-    & = & 1 & \{ \bigstar \}\text{是终止对象} \\
+A^0 & = & \{ 0 \to A \} & \text{Definition of exponential} \\
+    & = & \{ \bigstar \} & \text{Uniqueness of arrow from initial object} \\
+    & = & 1 & \{ \bigstar \}\ \text{is the final object} \\
 \end{array}
 \]
 
-这样，算术中的任何数的0次幂等于1在范畴中也得到了解读。
+Our common sense in number arithmetic that the 0th power of any number is 1 reflects same in categories.
 
-\subsubsection{1的幂}
+\subsubsection{Powers of 1}
 
 \[
   1^A = 1
