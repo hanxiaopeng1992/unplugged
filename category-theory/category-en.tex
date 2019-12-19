@@ -2400,21 +2400,21 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{Definition of expone
 \end{array}
 \]
 
-\subsubsection{积的幂}
+\subsubsection{Exponentials over products}
 
 \[
   (A \times B)^C = A^C \times B^C
 \]
 
-幂对象$(A \times B)^C$是箭头$C \to A \times B$的集合，它可以认为是返回一对值的函数集合$\{ c \mapsto (a, b)\}$，其中$c \in C, a \in A, b \in B$。它显然同构于$\{(c \mapsto a, c \mapsto b)\}$，而这恰恰是箭头$C \to A$和$C \to B$的积。最后再分别将$C \to A$和$C \to B$表示为幂对象就得到了幂的积。
+The exponential $(A \times B)^C$ is the set of arrows of $C \to A \times B$. It equivalent to the set of functions that returns a pair of values $\{ c \mapsto (a, b)\}$, where $c \in C, a \in A, b \in B$. It is obviously isomorphic to $\{(c \mapsto a, c \mapsto b)\}$, which is exactly the product of arrows $C \to A$ and $C \to B$. We then write the two arrows in exponentials and obtain the product of exponentials.
 
 \[
 \begin{array}{rcll}
-(A \times B)^C & = & \{C \to A \times B \}  & \text{幂对象的定义} \\
-    & = & \{ c \mapsto (a, b) | a \in A, b \in B, c \in C\} & \text{箭头的集合} \\
-    & = & \{ (c \mapsto a, c \mapsto b) \} & \text{箭头对} \\
-    & = & \{C \to A\} \times \{C \to B\} & \text{笛卡尔积} \\
-    & = & A^C \times B^C & \text{幂对象} \\
+(A \times B)^C & = & \{C \to A \times B \}  & \text{Definition of exponential} \\
+    & = & \{ c \mapsto (a, b) | a \in A, b \in B, c \in C\} & \text{Set of arrows} \\
+    & = & \{ (c \mapsto a, c \mapsto b) \} & \text{Pair of arrows} \\
+    & = & \{C \to A\} \times \{C \to B\} & \text{Cartesian product} \\
+    & = & A^C \times B^C & \text{Reverse of exponentials} \\
 \end{array}
 \]
 
