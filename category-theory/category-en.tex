@@ -2372,31 +2372,31 @@ f\ right\ c = ... \\
 \end{array}
 \]
 
-也就是说，任何这样的函数，都可以看作一对映射$(b \mapsto a_1, c \mapsto a_2)$，而$\{(b \mapsto a_1, c \mapsto a_2)\}$恰好是$B \to A$和$C \to A$的积。因此$\{B + C \to A\} = \{B \to A\} \times \{C \to A\}$。另一方面，根据$\{B \to A\}$可以表示为幂对象$A^B$，同样$\{C \to A\}$可以表示为$A^C$。这样就解读了幂的和：
+It means all such functions can be considered as a pair of maps $(b \mapsto a_1, c \mapsto a_2)$, and it is exactly the product of $B \to A$ and $C \to A$. Therefore, $\{B + C \to A\} = \{B \to A\} \times \{C \to A\}$. On the other hand, since the exponential of $\{B \to A\}$ is $A^B$, and the exponential of $\{C \to A\}$ is $A^C$, it explains the exponentials of sum:
 
 \[
 \begin{array}{rcll}
-A^{B + C} & = & \{ B + C \to A \} & \text{幂对象的定义} \\
-    & = & \{ (b \mapsto a_1,  c \mapsto a_2) | a_1, a_2 \in A, b \in B, c \in C\} & \text{$B$和$C$到$A$的箭头对} \\
-    & = & \{ B \to A \} \times \{ C \to A \} & \text{笛卡尔积} \\
-    & = & A^B \times A^C & \text{幂对象} \\
+A^{B + C} & = & \{ B + C \to A \} & \text{Definition of exponentials} \\
+    & = & \{ (b \mapsto a_1,  c \mapsto a_2) | a_1, a_2 \in A, b \in B, c \in C\} & \text{Pair of arrows from $B$ and $C$ to $A$} \\
+    & = & \{ B \to A \} \times \{ C \to A \} & \text{Cartesian product} \\
+    & = & A^B \times A^C & \text{Reverse of exponentials} \\
 \end{array}
 \]
 
-\subsubsection{幂的幂}
+\subsubsection{Exponentials of exponentials}
 
 \[
   (A^B)^C = A^{B \times C}
 \]
 
-先看右侧，幂对象$A^{B \times C}$实际就是二元函数$B \times C \arrowto{g} A$的集合。交换积的次序$C \times B \arrowto{g \circ swap} A$，显然是一个自然同构（参见自然同构一节的$swap$自然变换）。如果克里化，就是$\{curry(g \circ swap)\} = \{C \to A^B\}$，再一次用幂对象表示就是$(A^B)^C$。
+On the right side of the equation, the exponential $A^{B \times C}$ is actually the set of all binary functions of $B \times C \arrowto{g} A$. It is obviously a natural isomorphism when swap the product to $C \times B \arrowto{g \circ swap} A$ (refer to the $swap$ in the section of natural transformation). The Curried form is $\{curry(g \circ swap)\} = \{C \to A^B\}$. Then represent it with exponentials, and we obtain $(A^B)^C$.
 
 \[
 \begin{array}{rcll}
-A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{幂对象的定义} \\
-    & = & \{ C \times B \arrowto{g \circ swap} A \} & \text{自然同构} \\
-    & = & \{ C \arrowto{curry(g \circ swap)} A^B \} & \text{克里化后仍然同构} \\
-    & = & (A^B)^C & \text{幂对象} \\
+A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{Definition of exponentials} \\
+    & = & \{ C \times B \arrowto{g \circ swap} A \} & \text{Natural isomorphism} \\
+    & = & \{ C \arrowto{curry(g \circ swap)} A^B \} & \text{Currying is isomorphic} \\
+    & = & (A^B)^C & \text{Reverse of exponentials} \\
 \end{array}
 \]
 
