@@ -2348,13 +2348,13 @@ A^1 & = & \{ 1 \to A \} & \text{Definition of exponential} \\
 \end{array}
 \]
 
-\subsubsection{幂的和}
+\subsubsection{Exponentials of sums}
 
 \[
   A^{B + C} = A^B \times A^C
 \]
 
-幂对象$A^{B + C}$表示从余积$B + C$到$A$的箭头的集合$\{B + C \to A\}$。我们借助$\mathbf{Either}\ B\ C$来帮助我们思考\footnote{也可以用标记(tag)来推理：
+The exponential $A^{B+C}$ represents the set of arrows from the coproduct $B+C$ to $A$, which is $\{B + C \to A\}$. Let's explain it through $\mathbf{Either}\ B\ C$ we introduced above\footnote{Alternatively, we can reason it with tags:
 \[
 \begin{array}{l}
 f : B + C \to A \\
@@ -2362,7 +2362,7 @@ f (b, 0) = ... \\
 f (c, 1) = ...
 \end{array}
 \]
-}，当我们实现任何$\mathbf{Either}\ B\ C \to A$函数时，都可以写成这样的形式：
+}. For any function of type $\mathbf{Either}\ B\ C \to A$, we can implement it in the form:
 
 \[
 \begin{array}{l}
