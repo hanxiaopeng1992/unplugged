@@ -2508,19 +2508,19 @@ In the second step, we remove all the concrete elements like $x$, $y$, $z$, and 
 \end{cases}
 \]
 
-这两条公理意味着下面的两个范畴图中的箭头可交换：
+These two axioms indicate the following two diagrams commute.
 
 \begin{figure}[htbp]
 \centering
-\subcaptionbox{结合性公理}{\subimport{img/}{monoid-assoc.tex}}
+\subcaptionbox{Associativity}{\subimport{img/}{monoid-assoc.tex}}
 \quad
-\subcaptionbox{单位元公理}{\subimport{img/}{monoid-e.tex}}
-\caption{幺半群公理对应的范畴图}
+\subcaptionbox{Identity element}{\subimport{img/}{monoid-e.tex}}
+\caption{The diagrams for monoid axioms}
 \end{figure}
 
-现在可以说，任何幺半群都可以用一个三元组$(M, m, e)$来表示了。其中$M$是集合，$m$是二元运算函数，$e$是单位元选择函数。
+We can say any monoid can be represented with a tuple $(M, m , e)$, where $M$ is the set, $m$ is the binary operation function, and $e$ is the identity element selection function.
 
-第三步，$(M, m, e)$不仅规定了幺半群的集合，还规定了在此集合上的二元运算和单位元，因此整个幺半群的代数结构就都确定了。组成幺半群的所有箭头，也就是代表所有可能的$m$和$e$的箭头集合，是两种幂对象的积
+We come to the third step. $(M, m, e)$ does not only specify the set of the monoid, but also specifies the binary operation and identity element on top of this set. It completely defines the algebraic structure of monoid. All the possible arrow combinations of $m$ and $e$ that form the monoid are products of two exponentials:
 
 \[
 M^{M \times M} \times M^1 = M^{M \times M + 1}
