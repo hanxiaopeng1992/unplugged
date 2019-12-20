@@ -2452,17 +2452,18 @@ Where $A$ is some fixed object. Then functor $\mathbf{F}$ is a polynomial functo
 
 \subsection{F-algebra}
 
-为了构造复杂的带有递归结构的代数数据类型，我们还需要最后一块砖石。这就是F-代数（F-algebras）。观察抽象代数中的概念，如幺半群、群、环、域，它们不仅仅是抽象的对象，而且带有结构。正是这些结构之间的关系，使得它们区别于过去那些具体的对象，例如数、点、线、面。如果关系和结构研究清楚了，不仅仅是数、点、线、面，所有具有同样关系和结构的对象（用希尔伯特的比喻，连同桌子、椅子、啤酒杯）就都尽在掌握了。
+In order to construct complex algebraic data type that support recursive structure, we need the last corner stone, the F-algebra. Observe the concepts in abstract algebra, like monoid, group, ring, field, etc., they are not only abstract objects, but also have structures. It is the relation among the structures, makes them different from the traditional concrete things, like numbers, points, lines, and planes. When we know the structures and their relations well, we actually understand all the things of the same structure and relations. Not only for numbers, points, lines, and planes, but also for `tables, chairs, and beer mugs' as Hilbert said.
 
 \begin{example}
-我们从比较简单的幺半群作为开始的例子，一步一步导出F-代数的概念。一个幺半群是一个集合$M$，并且在集合上定义了可结合的二元运算和单位元。
+\normalfont
+Start from the simple example of monoid, we are going to introduce the F-algebra step by step. A monoid is a set $M$, defined with the identity element and the associative binary operation.
 
-如果用$\oplus$表示二元运算，$1_M$表示单位元，则幺半群的两条公理可以描述如下：
+Denote the binary operation as $\oplus$, the identity element as $1_M$, we can list the two monoid axioms as the following:
 
 \[
 \begin{cases}
-\text{结合性公理：} & (x \oplus y) \oplus z = x \oplus (y \oplus z), \forall x, y, z \in M \\
-\text{单位元公理：} & x \oplus 1_M = 1_M \oplus x = x, \forall x \in M \\
+\text{Associativity:}\ & (x \oplus y) \oplus z = x \oplus (y \oplus z), \forall x, y, z \in M \\
+\text{Identity element:}\ & x \oplus 1_M = 1_M \oplus x = x, \forall x \in M \\
 \end{cases}
 \]
 
