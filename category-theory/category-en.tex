@@ -2462,12 +2462,12 @@ Denote the binary operation as $\oplus$, the identity element as $1_M$, we can l
 
 \[
 \begin{cases}
-\text{Associativity:}\ & (x \oplus y) \oplus z = x \oplus (y \oplus z), \forall x, y, z \in M \\
-\text{Identity element:}\ & x \oplus 1_M = 1_M \oplus x = x, \forall x \in M \\
+\text{Associativity:} & (x \oplus y) \oplus z = x \oplus (y \oplus z), \forall x, y, z \in M \\
+\text{Identity element:} & x \oplus 1_M = 1_M \oplus x = x, \forall x \in M \\
 \end{cases}
 \]
 
-第一步，我们将二元运算$\oplus$表示为函数，将$1_M$表示为选择函数，定义：
+As the first step, we represent the binary operation $\oplus$ as a binary function, represent $1_M$ as a selection function. Define:
 
 \[
 \begin{cases}
@@ -2476,35 +2476,35 @@ e () = 1_M
 \end{cases}
 \]
 
-这两种箭头的类型分别为：
+The types of these two arrows are:
 
 \[
 \left \{
 \begin{array}{lll}
- & \text{类型} & \text{幂对象} \\
-\text{二元运算：} & M \times M \to M & M^{M \times M}\\
-\text{选择运算：} & 1 \to M & M^1 \\
+ & \text{type} & \text{exponential} \\
+\text{binary operation:} & M \times M \to M & M^{M \times M}\\
+\text{selection:} & 1 \to M & M^1 \\
 \end{array}
 \right .
 \]
 
-第一种箭头是说，两个幺半群的元素进行二元运算，其结果仍是这个幺半群中的元素（二元运算是封闭的）；第二种箭头是“选择函数”，1是终止对象\footnote{我们借鉴Haskell中的符号，特意用“()”表示终止对象，在同构的意义下$1 = \{ \bigstar \} = \{ () \}$。这样的好处是，$e()$看起来像是个无参数的函数调用，实际接受了终止对象中的唯一元素()作为参数。}。
+The first arrow means, applying the binary operation to any two elements in the monoid, the result is still an element of the monoid, hence the binary operation is closed; the second arrow is the selection function. 1 is the final object\footnote{We intend to use `()' for the final object, as $1 = \{ \bigstar \} = \{ () \}$ in terms of isomorphism. The advantage is that, $e()$ looks like a function call without any arguments, in fact, it accepts the singleton element of the final object as the argument.}.
 
-现在我们就可以用函数$m$和$e$来替换幺半群公理了：
+Now we can substitute the monoid axioms with function $m$ and $e$:
 
 \[
 \begin{cases}
-\text{结合性公理：} & m(m(x, y), z) = m(x, m(y, z)), \forall x, y, z \in M \\
-\text{单位元公理：} & m(x, e()) = m(e(), x) = x, \forall x \in M \\
+\text{Associativity:} & m(m(x, y), z) = m(x, m(y, z)), \forall x, y, z \in M \\
+\text{Identity element:} & m(x, e()) = m(e(), x) = x, \forall x \in M \\
 \end{cases}
 \]
 
-第二步，把所有的$x, y, z$等具体的元素和对象$M$都去掉。这样就得到了纯用函数（箭头)表示的幺半群公理：
+In the second step, we remove all the concrete elements like $x$, $y$, $z$, and object $M$. Then we obtain the monoid axioms purely in function (arrow) form:
 
 \[
 \begin{cases}
-\text{结合性公理：} & m \circ (m, id) = m \circ (id, m) \\
-\text{单位元公理：} & m \circ (id, e) = m \circ (e, id) = id \\
+\text{Associativity:} & m \circ (m, id) = m \circ (id, m) \\
+\text{Identity element:：} & m \circ (id, e) = m \circ (e, id) = id \\
 \end{cases}
 \]
 
