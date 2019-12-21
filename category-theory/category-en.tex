@@ -2520,48 +2520,47 @@ These two axioms indicate the following two diagrams commute.
 
 We can say any monoid can be represented with a tuple $(M, m , e)$, where $M$ is the set, $m$ is the binary operation function, and $e$ is the identity element selection function.
 
-We come to the third step. $(M, m, e)$ does not only specify the set of the monoid, but also specifies the binary operation and identity element on top of this set. It completely defines the algebraic structure of monoid. All the possible arrow combinations of $m$ and $e$ that form the monoid are products of two exponentials:
+We come to the third step. $(M, m, e)$ does not only specify the set of the monoid, but also specifies the binary operation and identity element on top of this set. It completely defines the algebraic structure of monoid. All the possible combinations of arrow $m$ and $e$ that form the monoid are products of two exponentials:
 
 \[
 M^{M \times M} \times M^1 = M^{M \times M + 1}
 \]
 
-我们再把右侧从幂对象写回箭头的形式，这样集合$M$上定义的幺半群代数运算一定是下面的形式：
+Next, we turn the right side exponentials to the arrow form. For all the monoids defined on top of set $M$, the algebraic operations must be one of the following:
 
 \[
 \begin{array}{rcll}
-\alpha : 1 + M \times M & \longrightarrow & M & \text{和（余积）}\\
-1 & \longmapsto & 1 & \text{单位元}  \\
-(x, y) & \longmapsto & x \oplus y & \text{二元运算}
+\alpha : 1 + M \times M & \longrightarrow & M & \text{sum (coproduct)}\\
+1 & \longmapsto & 1 & \text{identity element}  \\
+(x, y) & \longmapsto & x \oplus y & \text{binary operation}
 \end{array}
 \]
 
-通过余积用和来表示这种关系就是$\alpha = e + m$，用多项式函子来表示就是$\mathbf{F} M = 1 + M \times M$
+This relation can be represented as the sum through coproduct $\alpha = e + m$, which is the polynomial functor $\mathbf{F} M = 1 + M \times M$.
 
-总结一下，对于幺半群这个例子，幺半群上的代数结构由三部分组成：
+As a summary, for the monoid example, the algebraic structure is consist of three parts:
 
 \begin{enumerate}
-  \item 对象$M$，就是用于携带幺半群上代数结构的集合，叫做\textbf{携带对象}（carrier object）；
-  \item 函子$\mathbf{F}$，定义了幺半群上的代数运算。是一个多项式函子$\mathbf{F} M = 1 + M \times M$；
-  \item 箭头$\mathbf{F} M \arrowto{\alpha} M$，它是单位元箭头$e$和二元运算箭头$m$的和（余积），$\alpha = e + m$。
+  \item Object $M$ is the set that carries the algebraic structure for the monoid. It is called {\em carrier object};
+  \item Functor $\mathbf{F}$ defines the algebraic operations. It is a polynomial functor $\mathbf{F} M = 1 + M \times M$;
+  \item Arrow $\mathbf{F} M \arrowto{\alpha} M$. It is the sum (coproduct) of the identity arrow $e$ and the binary operation arrow $m$, i.e. $\alpha = e + m$.
 \end{enumerate}
 
-我们称这样定义了一个幺半群的$F$-代数$(M, \alpha)$。
+We say it defines the $F$-algebra $(M \alpha)$ of the monoid.
 
-例如在Haskell中，可以这样定义一个F-代数箭头的类型：
+For programming, we can define the type of the F-algebra arrow:
 
 \begin{lstlisting}
 type Algebra f a = f a -> a
 \end{lstlisting}
 
-这本质上是给箭头$\mathbf{F}A \to A$起了一个别名（alias），名叫\texttt{Algebra} $\mathbf{F}, A$。对于幺半群，还需要定义一个函子\footnote{
-Haskell中有一个对幺半群的标准定义（见本章附录）。但这是一个幺半群代数结构的定义，而不是幺半群函子。}：
+It gives an alias to the arrow $\mathbf{F}A \to A$ essentially, named as \texttt{Algebra} $\mathbf{F}, A$. For the monoid, we also need define a functor\footnote{There is a definition of monoid in Haskell standard library (see the appendix of this chapter). However, it is the definition of the monoid algebraic structure, but not the definition of the monoid functor}:
 
 \begin{lstlisting}
 data MonoidF a = MEmptyF | MAppendF a a
 \end{lstlisting}
 
-当\texttt{a}是字符串时，我们可以这样定义一个F-代数\texttt{(String, evals)}的箭头实现：
+When \texttt{a} is string for example, we can implement the arrow of the F-algebra \texttt{(String, evals)} as below:
 
 \begin{lstlisting}
 evals :: Algebra MonoidF String
@@ -2575,7 +2574,7 @@ m :: String -> String -> String
 m = (++)
 \end{lstlisting}
 
-当然，也可将\texttt{e}和\texttt{m}内嵌到\texttt{evals}中简化实现为：
+We can further simplify it by embedding \texttt{e} and \texttt{m} in \texttt{evals}:
 
 \begin{lstlisting}
 evals :: Algebra MonoidF String
@@ -2583,10 +2582,11 @@ evals MEmpty = ""
 evals (MAppendF s1 s2) = s1 ++ s2
 \end{lstlisting}
 
-\texttt{evals}是箭头$\alpha : \mathbf{F}A \to A$的一种实现，其中$\mathbf{F}$为\texttt{MonoidF}，$A$为\texttt{String}。当然还可以有别的实现，只要它能够满足幺半群的单位元公理和结合性公理。
+\texttt{evals} is one implementation to the arrow $\alpha : \mathbf{F}A \to A$, where $\mathbf{F}$ is \texttt{MonoidF}, and $A$ is \texttt{String}. There can be other implementations as far as they satisfy the monoid axioms.
 \end{example}
 
 \begin{example}
+\normalfont
 在幺半群之上，增加一条可逆性公理，就得到了群。我们仍然分步骤引出群的F-代数。首先列出群元素集合$G$上的三条公理，我们用$1_G$表示单位元，点号表示二元运算，$()^{-1}$表示求逆元：
 
 \[
