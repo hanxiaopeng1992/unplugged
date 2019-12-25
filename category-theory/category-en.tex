@@ -2587,19 +2587,17 @@ evals (MAppendF s1 s2) = s1 ++ s2
 
 \begin{example}
 \normalfont
-Compare to monoid, group need an additional inverse element axiom. Similar to the previous example, we will develop the F-algebra for groups step by step.
-
-在幺半群之上，增加一条可逆性公理，就得到了群。我们仍然分步骤引出群的F-代数。首先列出群元素集合$G$上的三条公理，我们用$1_G$表示单位元，点号表示二元运算，$()^{-1}$表示求逆元：
+Compare to monoid, group need an additional inverse element axiom. Similar to the previous example, we will develop the F-algebra for groups step by step. First, we list the three axioms for group $G$. Denote the identity element as $1_G$, use the point symbol for binary operator, and use $()^{-1}$ for the inverse element:
 
 \[
 \begin{cases}
-\text{结合性公理：} & (x \cdot y) \cdot z = x \cdot (y \cdot z), \forall x, y, z \in G \\
-\text{单位元公理：} & x \cdot 1_G = 1_G \cdot x = x, \forall x \in G \\
-\text{可逆性公理：} & x \cdot x^{-1} = x^{-1} \cdot x = 1_G, \forall x \in G
+\text{Associativity:} & (x \cdot y) \cdot z = x \cdot (y \cdot z), \forall x, y, z \in G \\
+\text{Identity element:} & x \cdot 1_G = 1_G \cdot x = x, \forall x \in G \\
+\text{Inverse element:} & x \cdot x^{-1} = x^{-1} \cdot x = 1_G, \forall x \in G
 \end{cases}
 \]
 
-第一步，将二元运算，求单位元、求逆元都表示为函数。定义：
+As the first step, we represent the binary operation, the identity element, and the reverse operation as function. Define:
 
 \[
 \begin{cases}
@@ -2609,35 +2607,35 @@ i (x) = x^{-1}
 \end{cases}
 \]
 
-这三种函数的类型和幂对象分别为：
+The corresponding function type and exponentials are:
 
 \[
   \left \{
     \begin{array}{lll}
-      \text{二元运算：} & G \times G \to G & G^{G \times G}\\
-      \text{选择运算：} & 1 \to G & G^1 \\
-      \text{求逆运算：} & G \times G & G^G \\
+      \text{binary operation:} & G \times G \to G & G^{G \times G}\\
+      \text{selection:} & 1 \to G & G^1 \\
+      \text{reverse:} & G \times G & G^G \\
     \end{array}
   \right . \\
 \]
 
-前两个箭头和幺半群一样，第三个箭头是说群元素的逆元仍是群中的元素。现在就可以用$e, m ,i$替换群公理中的$1_G$，点号和逆元符号了。
+The first two arrows are same as monoid. The third arrow tells that the reverse element still belongs to the group. Now we can substitute the $1_G$, the point, and the reverse symbols in the group axioms with $e$, $m$, and $i$.
 
 \[
 \begin{cases}
-\text{结合性公理：} & m(m(x, y), z) = m(x, m(y, z)), \forall x, y, z \in G \\
-\text{单位元公理：} & m(x, e()) = m(e(), x) = x, \forall x \in G \\
-\text{可逆性公理：} & m(x, i(x)) = m(i(x), x) = e(), \forall x \in G \\
+\text{Associativity:} & m(m(x, y), z) = m(x, m(y, z)), \forall x, y, z \in G \\
+\text{Identity element:} & m(x, e()) = m(e(), x) = x, \forall x \in G \\
+\text{Reverse element:} & m(x, i(x)) = m(i(x), x) = e(), \forall x \in G \\
 \end{cases}
 \]
 
-第二步，把所有的具体元素$x, y, z$和群元素集合$G$去掉。得到纯用箭头表示的群公理：
+In the second step, we remove the concrete element $x$, $y$, $z$, and the group set $G$ to represent the group axioms purely in arrows:
 
 \[
 \begin{cases}
-\text{结合性公理：} & m \circ (m, id) = m \circ (id, m) \\
-\text{单位元公理：} & m \circ (id, e) = m \circ (e, id) = id \\
-\text{可逆性公理：} & m \circ (id, i) = m \circ (i, id) = e \\
+\text{Associativity:} & m \circ (m, id) = m \circ (id, m) \\
+\text{Identity element:} & m \circ (id, e) = m \circ (e, id) = id \\
+\text{Reverse element:} & m \circ (id, i) = m \circ (i, id) = e \\
 \end{cases}
 \]
 
