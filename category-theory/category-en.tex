@@ -2650,19 +2650,19 @@ x & \longmapsto & x^{-1} & \text{reverse element} \\
 \end{array}
 \]
 
-所以，群上的代数结构由三部分组成：
+Therefore, the algebraic structure of group is consist of three parts:
 
 \begin{enumerate}
-  \item 携带对象$G$，用于携带群上代数结构的集合；
-  \item 多项式函子$\mathbf{F} A = 1 + A + A \times A$，定义了群上的代数运算；
-  \item 箭头$\mathbf{F} A \arrowto{\alpha = e + m + i} A$，它是单位元箭头$e$、二元运算箭头$m$、逆元箭头$i$的和。
+  \item The carrier object $G$, which is the set furnitured with the algebraic structure;
+  \item Polynomial functor $\mathbf{F} A = 1 + A + A \times A$, which defined the algebraic operations on the group;
+  \item Arrow $\mathbf{F} A \arrowto{\alpha = e + m + i} A$. It is the sum of the identity element arrow $e$, the binary operation arrow $m$, and the reverse element arrow $i$.
 \end{enumerate}
 
-我们称这样定义了一个群上的F-代数$(G, \alpha)$。
+We say it defines the F-algebra $(G \alpha)$ for group.
 \end{example}
 
-\index{F-代数} \index{F-余代数}
-现在我们可以给出F-代数的定义了。在范畴论中，许多概念是对偶的，成对出现的。这就像是买一送一，我们定义了F-代数，就同时得到了F-余代数（F-coalgebra）\footnote{也译作上代数和共代数。}。关于F-余代数，我们暂时只给出定义。稍后将在第6章介绍无穷的概念时，再给出相应的例子。
+\index{F-algebra} \index{F-coalgebra}
+It's ready to give the definition of F-algebra. There are many dual concepts appear in pairs. We benefit from them like buy one, get one. When define F-algebra, we obtain F-coalgebra at the same time. We will post-pone the examples of F-coalgebra in chapter 6 when introduce about the infinity.
 
 \begin{definition}
 如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
