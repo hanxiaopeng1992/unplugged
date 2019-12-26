@@ -2639,16 +2639,14 @@ In the second step, we remove the concrete element $x$, $y$, $z$, and the group 
 \end{cases}
 \]
 
-这样，任何群都可以用一个四元组$(G, m, e, i)$表示。
-
-第三步，利用余积求$m, e, i$的和$\alpha = e + m + i$，通过多项式函子$\mathbf{F} A = 1 + A + A \times A$，并令$A = G$，描述群$G$上的代数运算。
+It means every group can be represented in a tuple $(G, m, e, i)$. In the third step, we use the coproduct $m, e, i$ for the sum $\alpha = e + m + i$, then through the polynomial functor $\mathbf{F} A = 1 + A + A \times A$, and let $A = G$ to describe the algebraic operations on $G$.
 
 \[
 \begin{array}{rcll}
-\alpha : 1 + A + A \times A & \longrightarrow & A & \text{和（余积）}\\
-1 & \longmapsto & 1 & \text{单位元}  \\
-x & \longmapsto & x^{-1} & \text{逆元} \\
-(x, y) & \longmapsto & x \cdot y & \text{二元运算} \\
+\alpha : 1 + A + A \times A & \longrightarrow & A & \text{sum (coproduct)}\\
+1 & \longmapsto & 1 & \text{identity element}  \\
+x & \longmapsto & x^{-1} & \text{reverse element} \\
+(x, y) & \longmapsto & x \cdot y & \text{binary operation} \\
 \end{array}
 \]
 
