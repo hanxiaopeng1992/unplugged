@@ -2682,23 +2682,22 @@ Form a pair $(A, \alpha)$. It is called
 Where $A$ is called the carrier object.
 \end{definition}
 
-我们可以把
+We can treat
 
 \begin{center}
-  F-代数$(A, \alpha)$ \quad \quad \quad F-余代数$(A, \alpha)$
+  F-algebra $(A, \alpha)$ \quad \quad \quad F-coalgebra $(A, \alpha)$
 \end{center}
 
-本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。
-两个对象间的箭头定义如下：
+as object. When the context is clear, we denote the object as a pair $(A, \alpha)$. The arrows between such objects are defined as the following:
 
 \begin{definition}
-F-态射是F-代数或F-余代数对象间的箭头：
+F-morphism is the arrow between F-algebra or F-coalgebra objects:
 
 \[
   (A, \alpha) \longrightarrow (B, \beta)
 \]
 
-如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
+If the arrow $A \arrowto{f} B$ between the carrier objects make the below diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2720,7 +2719,7 @@ F-态射是F-代数或F-余代数对象间的箭头：
 \end{tikzpicture}
 \end{center}
 
-即：
+Which means:
 
 \[
   f \circ \alpha = \beta \circ \mathbf{F}(f)
@@ -2729,21 +2728,23 @@ F-态射是F-代数或F-余代数对象间的箭头：
 \]
 \end{definition}
 
-F-代数和F-态射，F-余代数和F-态射分别构成了
+F-algebra and F-morphism, F-coalgebra and F-morphism form
 
 \begin{center}
-  F-代数范畴$\pmb{Alg}(\mathbf{F})$ \quad \quad \quad
-  F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$
+  F-algebra category $\pmb{Alg}(\mathbf{F})$ \quad \quad \quad
+  F-coalgebra category $\pmb{CoAlg}(\mathbf{F})$
 \end{center}
 
+respectively.
+
 \begin{Exercise}
-\Question{画出群的可逆性公理的范畴图。}
-\Question{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
-\Question{参考上一章环的定义，定义环的F-代数。}
-\Question{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
+\Question{Draw the diagram to illustrate the reverse element axiom for group.}
+\Question{Let $p$ is a prime. Use the F-algebra to define the $\alpha$ arrow for the multiplicative group for integers modulo $p$ (refer to the previous chapter for its definition).}
+\Question{Define F-algebra for ring (refer to the previous chapter for definition of ring).}
+\Question{What is the $id$ arrow for F-algebra category? What is the arrow composition?}
 \end{Exercise}
 
-\subsubsection{递归和不动点}
+\subsubsection{Recursion and fixed point}
 
 在第一章中，我们介绍了自然数和皮亚诺公理。并且介绍了和自然数同构的事物。实际上，我们可以把所有类似自然数的东西都用F-代数描述。
 
