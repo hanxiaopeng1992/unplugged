@@ -2748,27 +2748,27 @@ respectively.
 
 We introduced Peano axioms for natural numbers and things that are isomorphic to natural numbers in chapter 1. In fact, we can use F-algebra to describe all natural number like things.
 
-假设有一个集合$A$，具有自然数的代数结构。例如第一章中介绍过的斐波那契数列，其中$A$是数对$(Int, Int)$。起始对象是$(1, 1)$，后继函数是$h(m, n) = (n, m + n)$。
+Consider a set $A$ furnitured with algebraic structure. Use the Fibonacci numbers introduced in chapter 1 for instance, where $A$ is the set of pairs $(Int, Int)$, the initial pair is $(1, 1)$, the successor function is $h(m, n) = (n, m + n)$.
 
-为了用F-代数描述这一\textbf{类}代数结构，我们需要三样东西：函子，携带对象和$\alpha$箭头。根据皮亚诺公理，自然数的函子应当这样定义：
+In order to model this {\em kind} of algebraic structure in F-algebra, we need three things: functor, carrier object, and the $\alpha$ arrow. From the Peano axiom, natural number functor should be defined as below:
 
 \lstset{frame=none}
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-这个函子是一个多项式函子$\mathbf{NatF} A = 1 + A$。现在我们提出一个问题。如果令$A’ = \mathbf{NatF} A$，将其代入$\mathbf{NatF}$函子，那么$\mathbf{NatF} A'$是什么？应该是两重函子$\mathbf{NatF}(\mathbf{NatF} A)$。我们还可以重复这一过程得到三重的$\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$。我们可以重复无穷多次，现在我们给重复无穷多次后产生类型$\mathbf{NatF}(\mathbf{NatF}(...))$起名为$\mathbf{Nat}$，即：
+This is a polynomial functor $\mathbf{NatF} A = 1 + A$. Here is an interesting question: let $A’ = \mathbf{NatF} A$, substitute it into functor $\mathbf{NatF}$, then what will the $\mathbf{NatF} A'$ look like? It will look like applying the functor twice $\mathbf{NatF}(\mathbf{NatF} A)$. We can repeat this process to apply the functor three times as $\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$. Actually, we can repeat infinite many times, and name the type $\mathbf{NatF}(\mathbf{NatF}(...))$ as $\mathbf{Nat}$.
 
 \[
 \begin{array}{rcll}
-\texttt{data}\ \mathbf{Nat} & = & \mathbf{NatF}(\mathbf{NatF}(...)) & \text{无穷重} \\
-         & = & ZeroF\ |\ SuccF\ (SuccF (...)) & \text{无穷重}SuccF \\
-         & = & ZeroF\ |\ SuccF\ \mathbf{Nat} & \text{无穷重}SuccF\text{的类型是}\mathbf{Nat} \\
-         & = & Zero\ |\ Succ\ \mathbf{Nat} & \text{重命名}
+\texttt{data}\ \mathbf{Nat} & = & \mathbf{NatF}(\mathbf{NatF}(...)) & \text{Infinite many times} \\
+         & = & ZeroF\ |\ SuccF\ (SuccF (...)) & \text{Infinite many times of}\ SuccF \\
+         & = & ZeroF\ |\ SuccF\ \mathbf{Nat} & \text{Infinite many times of }\ SuccF \text{, named as }\mathbf{Nat} \\
+         & = & Zero\ |\ Succ\ \mathbf{Nat} & \text{Rename}
 \end{array}
 \]
 
-这恰恰是我们在第一章定义的自然数类型。我们把\texttt{Nat}和\texttt{Nat A}并列写在一起：
+It is exactly the type of natural numbers we defined in chapter 1. Let us list \texttt{Nat} and \texttt{Nat A} together:
 
 \begin{lstlisting}
 data Nat = Zero | Succ Nat
@@ -2776,13 +2776,13 @@ data Nat = Zero | Succ Nat
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-这是函子层面的递归，在第二章中，我们曾经遇到过类似的概念。将自函子应用到自身无穷次产生了\textbf{不动点}：
+This is recursive functor. We've already met the similar concept in chapter 2. Applying the endo-functor to itself infinite many times gives the {\em fixed point}:
 
 \[
 \mathbf{Fix}\ \mathbf{F} = \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F})
 \]
 
-自函子$\mathbf{F}$的不动点是$\mathbf{Fix}\ \mathbf{F}$，将$\mathbf{F}$应用到不动点上，得到的仍然是不动点。因此，$\mathbf{Nat}$是函子$\mathbf{NatF}$的不动点。也就是说$\mathbf{Nat} = \mathbf{Fix}\ \mathbf{NatF}$。
+The fixed point of endo-functor $\mathbf{F}$ is $\mathbf{Fix}\ \mathbf{F}$. When applying $\mathbf{F}$ to the fixed point, still gives the fixed point. Hence $\mathbf{Nat}$ is the fixed point of the functor $\mathbf{NatF}$. Which means $\mathbf{Nat} = \mathbf{Fix}\ \mathbf{NatF}$.
 
 %% \[
 %% \begin{array}{l}
@@ -2795,12 +2795,12 @@ data NatF A = ZeroF | SuccF A
 %% \]
 
 \begin{Exercise}
-\Question{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
+\Question{Someone write the natural number like functor as the below recursive form. What do you think about it?
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF (NatF A)
 \end{lstlisting}
 }
-\Question{我们可以为$\mathbf{NatF} Int \to Int$定义一个$\alpha$箭头，名叫$eval$：
+\Question{We can define an $\alpha$ arrow for $\mathbf{NatF} Int \to Int$, named $eval$:
 \[
 \begin{array}{l}
 eval : \mathbf{NatF} Int \to Int \\
@@ -2808,7 +2808,7 @@ eval\ ZeroF = 0 \\
 eval\ (SuccF\ n) = n + 1 \\
 \end{array}
 \]
-如果迭代地将$A' = \mathbf{NatF} A$代入$\mathbf{NatF}$函子$n$次。我们把这样得到的函子记为$\mathbf{NatF}^n A$。试思考能否定义下面的$\alpha$箭头：
+We can recursively substitute $A' = \mathbf{NatF} A$ to functor $\mathbf{NatF}$ by $n$ times. We denote the functor obtained as $\mathbf{NatF}^n A$. Can we define the following $\alpha$ arrow?
 \[
 \begin{array}{l}
 eval : \mathbf{NatF}^n Int \to Int \\
@@ -2817,7 +2817,7 @@ eval : \mathbf{NatF}^n Int \to Int \\
 }
 \end{Exercise}
 
-\subsubsection{初始代数和向下态射}
+\subsubsection{Initial algebra and catamorphism}
 
 在F-代数组成范畴$\pmb{Alg}(F)$中，如果存在初始对象，它会有什么特殊的性质呢？初始对象到其它对象的唯一箭头表示什么样的关系呢？F-代数范畴中的所有对象可表示为二元组$(A, \alpha)$，我们用类自然数的F-代数来举例。在$\pmb{Alg}(\mathbf{NatF})$中，所有的对象都表示为$(A, \alpha)$。其中$\mathbf{NatF}$的定义如同上小节；携带对象是$A$，箭头是$\mathbf{NatF} A \arrowto{\alpha} A$。
 
