@@ -2892,13 +2892,13 @@ With the above three properties, we can denote the recursive F-algebra as $(\mat
 \end{tikzpicture}
 \end{center}
 
-现在我们考虑沿着$\mathbf{NatF}$递归路径上的两个箭头：
+Observe the two arrows along the path of the recursive functor $\mathbf{NatF}$
 
 \[
   \mathbf{NatF}(\mathbf{NatF}I) \arrowto{\mathbf{NatF}(i)} \mathbf{NatF} I \arrowto{i} I
 \]
 
-为了明显，我们把它画成弯的：
+To make it obvious, we draw the second section in top-down direction:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2912,35 +2912,35 @@ With the above three properties, we can denote the recursive F-algebra as $(\mat
 \end{tikzpicture}
 \end{center}
 
-和上面的范畴图对比，我们发现$i$和$j$的方向相反。如果把它们两个组合起来，就得到了一个从$I$出发指回自己的箭头。并且由于起始对象到自己的唯一箭头就是$id$，所以：
+Compare with the above diagram, we find the directions of $i$ and $j$ are reversed. Composite the two together, we obtain an endo-arrow from $I$ to itself. As the only endo-arrow of the initial object is $id$, therefore:
 
 \[
 i \circ j = id
 \]
 
-同样的分析对$\mathbf{NatF}I$也成立，因为起始对象到递归对象的箭头也是唯一的。所以从$\mathbf{NatF}I$出发到$I$的箭头$i$，然后再从箭头$j$返回$\mathbf{NatF}I$必然也是$id$：
+We can use the similar analysis for $\mathbf{NatF}I$. Since the arrow from the initial object to the recursive object is unique, the arrow $i$ from $\mathbf{NatF}I$ to $I$, connected with the arrow $j$ back to $\mathbf{NatF}I$ must also be $id$
 
 \[
 j \circ i = id_{\mathbf{NatF}I}
 \]
 
-这说明$\mathbf{NatF}I$和$I$是同构的。即：
+It means $\mathbf{NatF}I$ is isomorphic to $I$.
 
 \[
   \mathbf{NatF} I = I
 \]
 
-这恰好是上一小节介绍的不动点概念。这说明$I$是$\mathbf{NatF}$的不动点。并且我们在上一小节已经知道$\mathbf{NatF}$的不动点就是$\mathbf{Nat}$。所以：
+This is exactly the concept of fixed point introduced above. From the previous section, we know that the fixed point of $\mathbf{NatF}$ is $\mathbf{Nat}$, hence
 
 \[
   \mathbf{NatF}\ \mathbf{Nat} = \mathbf{Nat}
 \]
 
-这一结论，和1889年皮亚诺给出算术公理时的结论完全一样，任何满足皮亚诺公理的结构$(A, [c, f])$，都存在从自然数$(N, [zero, succ])$到这一结构的唯一同构。它将自然数$n$映射到$f^n(c) = f(f(...f(c))..)$上。现在，我们可以给出\textbf{初始代数}（initial algebra）的定义了。
+This result is as same as the arithmetic axioms given by Peano in 1889. For any algebraic structure $(A, [c, f])$ that satisfies Peano axioms, there exists a unique isomorphism from natural numbers $(N, [zero, succ])$, which sends number $n$ to $f^n(c) = f(f(...f(c))..)$. We can give the definition of {\em initial algebra} now:
 
-\index{初始代数}
+\index{initial algebra}
 \begin{definition}
-F-代数范畴$\pmb{Alg}(F)$中，如果存在初始对象，则这一初始对象叫做初始代数。
+If there exists the initial object in the category of F-algebra $\pmb{Alg}(F)$, then the initial object is called the initial algebra.
 \end{definition}
 
 在集合全函数范畴中，许多函子，包括多态函子都存在初始代数。我们略去了初始代数的存在性证明，读者可以参考\cite{Manes-Arbib-1986}。给定函子$\mathbf{F}$我们可以通过它的不动点得到这一F-代数中的初始对象。
