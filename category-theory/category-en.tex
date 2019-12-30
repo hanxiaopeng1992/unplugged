@@ -2943,7 +2943,7 @@ This result is as same as the arithmetic axioms given by Peano in 1889. For any 
 If there exists the initial object in the category of F-algebra $\pmb{Alg}(F)$, then the initial object is called the initial algebra.
 \end{definition}
 
-在集合全函数范畴中，许多函子，包括多态函子都存在初始代数。我们略去了初始代数的存在性证明，读者可以参考\cite{Manes-Arbib-1986}。给定函子$\mathbf{F}$我们可以通过它的不动点得到这一F-代数中的初始对象。
+In the category of set furnitured with total functions, many functors, including polymorphic functors have the initial algebra. We skipped the proof for existence of initial algebra, readers can refer to \cite{Manes-Arbib-1986}. Given a functor $\mathbf{F}$, we can obtain the initial object of the F-algebra through its fixed point.
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
 %\begin{wrapfigure}{R}{0.35\textwidth}
@@ -2951,15 +2951,15 @@ If there exists the initial object in the category of F-algebra $\pmb{Alg}(F)$, 
  \centering
  \includegraphics[scale=0.4]{img/Lambek.eps}
  \captionsetup{labelformat=empty}
- \caption{兰贝克（Joachim Lambek） 1922 - 2014}
+ \caption{Joachim Lambek, 1922 - 2014}
  \label{fig:Lambek}
 \end{figure}
 %\end{wrapfigure}
 
-\index{兰贝克定理}
-1968年，兰贝克（Lambek）最早指出$i$是一个同构映射，并且称初始代数$(I, i)$是函子$\mathbf{F}$的不动点\cite{Lambek-1968}。现在这一事实被称作\textbf{兰贝克定理}。
+\index{Lambek theorem}
+Lambek, in 1968, pointed out $i$ is an isomorphism, and named the initial algebra $(I, i)$ the fixed point of functor $\mathbf{F}$. This result is called {\em Lambek theorem} nowadays\cite{Lambek-1968}.
 
-F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)$的唯一态射。我们把从$I$到$A$的态射记为$\lbb f \rbb$，使得下面的范畴图可交换：
+If there exists the initial algebra $(I, i)$ in F-algebra, then there is unique morphism to any other algebra $(A, f)$. Denote the morphism from $I$ to $A$ as $\lbb f \rbb$, which makes the below diagram commute:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2976,15 +2976,15 @@ F-代数中若存在初始代数$(I, i)$，则存在到任何其它代数$(A, f)
 \end{center}
 
 \[
-  \text{若} h = \lbb f \rbb \text{，当且仅当} h \circ i = f \circ \mathbf{F}(h)
+  h = \lbb f \rbb \text{, if and only if}\ h \circ i = f \circ \mathbf{F}(h)
 \]
 
-\index{向下态射（catamorphism）}
-我们称箭头$\lbb f \rbb$为\textbf{向下态射}(catamorphism，来自希腊语$\kappa \alpha \kappa \alpha$，意思是向下)。它两侧的括号“$\lbb \rbb$”像一对香蕉，因此被称为“香蕉括号”。
+\index{catamorphism}
+We call the arrow $\lbb f \rbb$ the {\em catamorphism}. It comes from Greek word $\kappa \alpha \kappa \alpha$, means downward. The brackets `$\lbb \rbb$' look like a pair of bananas, therefore, people call them `banana brackets'.
 
-向下态射的强大之处在于，它那能把一个非递归结构上的函数$f$，转换为在递归结构上的函数$\lbb f \rbb$。从而构造复杂的递归计算。我们仍然用自然数来举例子。
+Catamorphism is powerful, it can convert the function $f$ on a non-recursive structure, to $\lbb f \rbb$ for recursive structure. Hence build the complex recursive computation. Let us see how it works with the example of natural numbers.
 
-自然数函子$\mathbf{NatF}$是非递归的，而其起始代数自然数$\mathbf{Nat}$的定义是递归的：
+The natural number functor $\mathbf{NatF}$ is not recursive, while the initial algebra for natural number $\mathbf{Nat}$ is recursive:
 
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF A
@@ -2992,13 +2992,13 @@ data NatF A = ZeroF | SuccF A
 data Nat = Zero | Succ Nat
 \end{lstlisting}
 
-所以箭头$\mathbf{NatF} A \arrowto{f} A$是非递归的。一个$cata$（向下态射）能够从$f$构造出在递归的$\mathbf{Nat}$上进行计算的箭头$\mathbf{Nat} \to A$。所以$cata$的类型应为：
+Although the arrow $\mathbf{NatF} A \arrowto{f} A$ is not recursive, the catamorphism $cata$ builds the arrow $\mathbf{Nat} \to A$ from $f$, which can apply computation to the recursive $\mathbf{Nat}$. The type of $cata$ is as below:
 
 \[
 (\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (\mathbf{Nat} \to A)
 \]
 
-所以（克里化的）$cata(f)$应该能够作用于$\mathbf{Nat}$的两种值$Zero$或者$Succ\ n$。我们可以根据这点定义出$cata$函数：
+The Curried $cata(f)$ should be able to apply to the both value of $\mathbf{Nat}$, $Zero$ and $Succ\ n$. We can define $cata$ from this fact:
 
 \[
 \begin{array}{l}
@@ -3007,7 +3007,7 @@ cata\ f\ (Succ\ n) = f (SuccF\ (cata\ f\ n)) \\
 \end{array}
 \]
 
-这一定义的第一行处理递归的边界情况。针对$\mathbf{Nat}$的零值$Zero$，我们转而用$f$对$\mathbf{NatF}A$的零值$Zero$求值；对于递归情况，也就是$\mathbf{Nat}$的值$Succ\ n$，我们先递归地用$cata\ f\ n$求出类型为$A$的值$a$，然后用$SuccF\ a$将其转化为$\mathbf{NatF}A$类型的值，最后再把$f$作用于其上。这个自然数的向下态射对于任何携带对象$A$都成立，它是非常通用的。我们进一步举两个具体的例子。第一个例子是将任何$\mathbf{Nat}$的值转换回$Int$。
+The first clause handles the edge condition for the recursion. For the $Zero$ value of $\mathbf{Nat}$, it applies $f$ to it; for the recursive case, which is $Succ\ n$, it first recursively evaluates $cata\ f\ n$ to get a value $a$ of type $A$; then uses $SuccF\ a$ to convert it to a value of type $\mathbf{NatF}A$; finally applies $f$ on top of it. This natural number catamorphism is generic as it is applicable to any carrier object $A$. Let's further see two concrete examples. The first one converts any value of $\mathbf{Nat}$ back to $Int$.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
