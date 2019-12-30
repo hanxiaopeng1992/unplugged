@@ -2998,7 +2998,7 @@ fromInt 0 = Zero
 fromInt n = Succ (fromInt (n-1))
 \end{lstlisting}
 
-于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
+对于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
 
 \begin{lstlisting}[style=Haskell]
 toFib :: Nat -> (Integer, Integer)

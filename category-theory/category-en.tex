@@ -3018,7 +3018,7 @@ toInt = cata eval where
   eval (SuccF x) = x + 1
 \end{lstlisting}
 
-这样$toInt\ Zero$会得到0，而$toInt\ (Succ\ (Succ\ (Succ\ Zero)))$会得到3。为了方便验证，可以再定义一个辅助函数：
+With this definition, $toInt\ Zero$ gives 0, and $toInt\ (Succ\ (Succ\ (Succ\ Zero)))$ gives 3. We can define a helper function to make the verification easy:
 
 \begin{lstlisting}[style=Haskell]
 fromInt :: Int -> Nat
@@ -3026,7 +3026,7 @@ fromInt 0 = Zero
 fromInt n = Succ (fromInt (n-1))
 \end{lstlisting}
 
-于任何整数$n$，有$n = (toInt \circ fromInt)\ n$。这个例子看起来很平常，我们来看第二个关于斐波那契数列的例子。
+For any integer $n$, $n = (toInt \circ fromInt)\ n$ holds. This example looks trivial. Let us see the second example about Fibonacci numbers.
 
 \begin{lstlisting}[style=Haskell]
 toFib :: Nat -> (Integer, Integer)
@@ -3036,7 +3036,7 @@ toFib = cata fibAlg where
   fibAlg (SuccF (m, n)) = (n, m + n)
 \end{lstlisting}
 
-我们特意将此前定义的函数$fib$改名为$fibAlg$，意思是说，从斐波那契的代数关系（非递归的），我们通过向下态射获得了递归计算斐波那契数列的能力。这样$toFib\ Zero$会得到数对$(1, 1)$，而$toFib\ (Succ\ (Succ\ (Succ\ Zero)))$会得到数对$(3, 5)$。下面的辅助函数，可以计算第$n$个斐波那契数。
+We intentionally rename the previous function from $fib$ to $fibAlg$ to call out our purpose. From the algebraic relation of Fibonacci numbers (non-recursive), we make it capable to recursively calculate the Fibonacci sequence with catamorphism. $toFib\ Zero$ gives pair $(1, 1)$, and $toFib\ (Succ\ (Succ\ (Succ\ Zero)))$ gives pair $(3, 5)$. The following helper function calculates the $n$-th Fibonacci number.
 
 \[
 fibAt = fst \circ toFib \circ fromInt
