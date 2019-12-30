@@ -3042,7 +3042,7 @@ We intentionally rename the previous function from $fib$ to $fibAlg$ to call out
 fibAt = fst \circ toFib \circ fromInt
 \]
 
-事实上，对于任何满足皮亚诺公理的类自然数代数结构$(A, c + f)$，我们都可以利用向下态射和初始代数$(\mathbf{Nat}, zero + succ)$，得到能够进行递归计算的$\lbb c + f \rbb$\footnote{我们用符号$\lbb c + f \rbb$是因为$\lbb [c, f] \rbb$看起来有太多重括号了。}。我们接下来证明这一点。考虑下面的范畴图。
+In fact, for any natural number like algebraic structure $(A, c + f)$ that satisfies Peano axioms, we can use the catamorphism and the initial algebra $(\mathbf{Nat}, zero + succ)$ to build the recursive computation tool $\lbb c + f \rbb$\footnote{We simplified to symbol $\lbb c + f \rbb$ because there are too many levels of brackets in $\lbb [c, f] \rbb$.}. Let's prove this fact. Observe the below diagram.
 
 \begin{center}
 \begin{tikzpicture}
@@ -3058,14 +3058,14 @@ fibAt = fst \circ toFib \circ fromInt
 \end{tikzpicture}
 \end{center}
 
-由于向下态射使得这个范畴图可交换。
+The catamorphism make this diagram commute.
 
 \[
 \begin{array}{rll}
-            & h \circ [zero, succ] = [c, f] \circ \mathbf{NatF}(h) & \text{可交换} \\
-\Rightarrow & h \circ [zero, succ] = [c, f] \circ (id + h) & \text{多项式函子} \\
-\Rightarrow & h \circ [zero, succ] = [c \circ id, f \circ h] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ zero, h \circ succ] = [c, f \circ h] & \text{左侧用余积的融合律} \\
+            & h \circ [zero, succ] = [c, f] \circ \mathbf{NatF}(h) & \text{Commute} \\
+\Rightarrow & h \circ [zero, succ] = [c, f] \circ (id + h) & \text{Polynomial functor} \\
+\Rightarrow & h \circ [zero, succ] = [c \circ id, f \circ h] & \text{Absorption law for coproduct on the right} \\
+\Rightarrow & [h \circ zero, h \circ succ] = [c, f \circ h] & \text{Fusion law of coproduct on the left} \\
 \Rightarrow &
   \begin{cases}
     h \circ zero = c \\
@@ -3084,21 +3084,21 @@ fibAt = fst \circ toFib \circ fromInt
 \end{array}
 \]
 
-这恰恰是自然数叠加的定义:
+This is exactly the folding definition of natural numbers:
 
 \[
   h = foldn(c, f)
 \]
 
-也就是说，自然数上的向下态射$\lbb c + f \rbb = foldn(c, f)$。因此，对于斐波那契数列，我们可以用
+It tells us, the catamorphism of natural numbers $\lbb c + f \rbb = foldn(c, f)$. For Fibonacci numbers, we can use
 
 \[
 \lbb fibAlg \rbb = \lbb start + next \rbb = foldn(start, next)
 \]
 
-来进行代数计算。读到这里，大家会有一种转了一大圈又回到了第一章的感觉。这是一种认知的螺旋上升。第一章中，我们是用归纳和抽象的方法得到了这个结论，现在，我们从更高的层面，把抽象的规律应用到具体的问题上得到了同样的结论。
+to calculate. It seems we go back to the first chapter after a long journey. It's actually a spiral of understanding. In chapter 1, we obtained this result from induction and abstraction; Here we reach to a higher level, by applying the abstract pattern to the concrete problem, we obtain the same result.
 
-\subsubsection{代数数据类型}
+\subsubsection{Algebraic data structure}
 
 使用初始F-代数，我们可以定义更多的代数数据类型。本小节我们介绍列表和二叉树的例子。
 
