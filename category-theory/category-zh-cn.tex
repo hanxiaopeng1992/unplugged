@@ -3095,7 +3095,7 @@ data ListF A B = NilF | ConsF A B
 \mathbf{Fix}\ (\mathbf{ListF}\ A)
 & = & \mathbf{ListF}\ A (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{不动点的定义} \\
 & = & \mathbf{ListF}\ A\ (\mathbf{ListF}\ A\ (...)) & \text{展开} \\
-& = & NilF\ |\ ConsF\ A\ (\mathbf{ListF}\ A\ (...)) & \mathbf{ListF}\ A\ \text{的定义} \\
+& = & NilF\ |\ ConsF\ A\ (\mathbf{ListF}\ A\ (...)) & \mathbf{ListF}\ A \text{的定义} \\
 & = & NilF\ |\ ConsF\ A\ (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{反向用不动点} \\
 \end{array}
 \]

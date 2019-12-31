@@ -3129,19 +3129,19 @@ Actually, $\mathbf{List}$ is the fixed point of functor $\mathbf{ListF}$. To ver
 \end{array}
 \]
 
-和$\mathbf{List}\ A$的定义对比，我们有：
+Compare with the definition of $\mathbf{List}\ A$, we have:
 
 \[
 \mathbf{List}\ A = \mathbf{Fix}\ (\mathbf{ListF}\ A)
 \]
 
-在$\mathbf{ListF}$这个函子下，固定$A$，对于任何携带对象$B$可以定义箭头
+Fixing $A$ in functor $\mathbf{ListF}$, for any carrier object $B$, define arrow
 
 \[
 \mathbf{ListF}\ A\ B \arrowto{f} B
 \]
 
-这样就构成了列表的F-代数。并且我们知道初始代数就是$(List, [nil, cons])$。所以就会有向下态射。
+It forms F-algebra for list. We know that the initial algebra is $(List, [nil, cons])$, hence the catamorphism is:
 
 \begin{center}
 \begin{tikzpicture}
@@ -3157,7 +3157,7 @@ Actually, $\mathbf{List}$ is the fixed point of functor $\mathbf{ListF}$. To ver
 \end{tikzpicture}
 \end{center}
 
-如果我们有一个非递归的计算$f$，就可以利用向下态射构成针对递归列表的计算。
+Given a non-recursive computation $f$, we can build from it through the catamorphism that can be applied to recursive list.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3166,7 +3166,7 @@ cata f Nil = f NilF
 cata f (Cons x xs) = f (ConsF x (cata f xs))
 \end{lstlisting}
 
-例如，可以定义计算列表长度的代数规则：
+For example, we define the algebraic rules to calculate the length of list:
 
 \begin{lstlisting}[style=Haskell]
 len :: (List a) -> Int
@@ -3176,7 +3176,7 @@ len = cata lenAlg where
   lenAlg (ConsF _ n) = n + 1
 \end{lstlisting}
 
-这样$len\ Zero$会得到0，而$len\ (Cons\ 1\ (Cons\ 1\ Zero))$则得到2。可以定义一个辅助函数从中括弧简记法转换为$List$：
+Hence $len\ Zero$ gives 0, and $len\ (Cons\ 1\ (Cons\ 1\ Zero))$ gives 2. We can define a helper function to convert the list in bracket symbol to $List$.
 
 \begin{lstlisting}
 fromList :: [a] -> List a
@@ -3184,9 +3184,9 @@ fromList [] = Nil
 fromList (x:xs) = Cons x (fromList xs)
 \end{lstlisting}
 
-这样就可以通过$len (fromList [1, 1, 2, 3, 5, 8])$计算列表的长度。
+We can chain them together, for example as $len (fromList [1, 1, 2, 3, 5, 8])$ to calculate the length of a list.
 
-通过改变代数规则$f$，还可以得到其它针对列表的计算。下面的例子把列表中所有的元素累加起来：
+Different algebraic rule $f$ gives different computation on list. Below example sums up the elements in a list:
 
 \begin{lstlisting}
 sum :: (Num a) => (List a) -> a
@@ -3196,15 +3196,14 @@ sum = cata sumAlg where
   sumAlg (ConsF x y) = x + y
 \end{lstlisting}
 
-我们接下来利用列表的范畴图证明，列表的向下态射本质上就是叠加计算$foldr$。
-列表函子本质上是多项式函子$\mathbf{ListF}\ A\ B = 1 + A \times B$。由于范畴图可交换，所以：
+Next we use list diagram to prove, the catamorphism on list is the folding computation $foldr$ essentially. List functor is a polynomial functor $\mathbf{ListF}\ A\ B = 1 + A \times B$. As the diagram commutes, we have:
 
 \[
 \begin{array}{rll}
-            & h \circ [nil, cons] = [c, f] \circ (\mathbf{ListF}\ A)(h) & \text{可交换} \\
-\Rightarrow & h \circ [nil, cons] = [c, f] \circ (id + (id \times h)) & \text{多项式函子} \\
-\Rightarrow & h \circ [nil, cons] = [c \circ id, f \circ (id \times h)] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ nil, h \circ cons] = [c, f \circ (id \times h)] & \text{左侧用余积的融合律} \\
+            & h \circ [nil, cons] = [c, f] \circ (\mathbf{ListF}\ A)(h) & \text{Commute} \\
+\Rightarrow & h \circ [nil, cons] = [c, f] \circ (id + (id \times h)) & \text{Polynomial functor} \\
+\Rightarrow & h \circ [nil, cons] = [c \circ id, f \circ (id \times h)] & \text{Absorption law of coproduct on the right} \\
+\Rightarrow & [h \circ nil, h \circ cons] = [c, f \circ (id \times h)] & \text{Fusion law of coproduct on the left} \\
 \Rightarrow &
   \begin{cases}
     h \circ nil = c \\
@@ -3218,17 +3217,17 @@ sum = cata sumAlg where
 \end{array}
 \]
 
-这恰恰是列表叠加的定义:
+This is exactly the definition of list folding:
 
 \[
   h = foldr(c, f)
 \]
 
-也就是说，列表F-代数的向下态射$\lbb c + f \rbb = foldr(c, f)$。因此，求长度的
-运算是$foldr(0, (a, b) \mapsto b + 1)$，累加的运算是$foldr(0, +)$。
+It tells us, the catamorphism of list F-algebra $\lbb c + f \rbb = foldr(c, f)$. Hence $foldr(0, (a, b) \mapsto b + 1)$ computes the length of a list, and $foldr(0, +)$ sums up the elements of a list.
 \end{example}
 
 \begin{example}
+\normalfont
 在第二章中，我们定义了二叉树的类型为：
 
 \lstset{frame=none}
