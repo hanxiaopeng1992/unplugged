@@ -3196,7 +3196,7 @@ sum = cata sumAlg where
   sumAlg (ConsF x y) = x + y
 \end{lstlisting}
 
-Next we use list diagram to prove, the catamorphism on list is the folding computation $foldr$ essentially. List functor is a polynomial functor $\mathbf{ListF}\ A\ B = 1 + A \times B$. As the diagram commutes, we have:
+Next we use list diagram to prove, the catamorphism on list is the folding computation $foldr$ essentially. List functor is a polynomial functor. When fix $A$, for carrier object $B$, it sends to $\mathbf{ListF}\ A\ B = 1 + A \times B$; for arrow $h$, it sends to $(\mathbf{ListF}\ A)(h) = id + (id \times h)$. As the diagram commutes, we have:
 
 \[
 \begin{array}{rll}
@@ -3228,20 +3228,20 @@ It tells us, the catamorphism of list F-algebra $\lbb c + f \rbb = foldr(c, f)$.
 
 \begin{example}
 \normalfont
-在第二章中，我们定义了二叉树的类型为：
+In chapter 2, we defined binary tree as below:
 
 \lstset{frame=none}
 \begin{lstlisting}
 data Tree A = Nil | Br A (Tree A) (Tree A)
 \end{lstlisting}
 
-所有类似二叉树的结构也可以通过F-代数来描述。首先定义函子：
+All the binary tree like structure can be described with F-algebra. First, we need define the binary tree functor:
 
 \begin{lstlisting}
 data TreeF A B = NilF | BrF A B B
 \end{lstlisting}
 
-携带对象是$B$，而初始代数是$(\mathbf{Tree}\ A, [nil, branch])$。我们把证明作为本小节的练习。这样二叉树的向下态射表示为如下范畴图：
+$B$ is the carrier object, the initial algebra is $(\mathbf{Tree}\ A, [nil, branch])$. We leave the proof of this fact as exercise of this section. Below diagram illustrates the catamorphism of binary tree:
 
 \begin{center}
 \begin{tikzpicture}
@@ -3257,7 +3257,7 @@ data TreeF A B = NilF | BrF A B B
 \end{tikzpicture}
 \end{center}
 
-我们可以定义二叉树的向下态射函数。它接受一个F-代数的箭头$\mathbf{TreeF}\ A\ B \arrowto{f} B$，返回一个从$\mathbf{Tree}\ A \to B$的函数：
+The catamorphism of binary tree accepts an arrow of F-algebra $\mathbf{TreeF}\ A\ B \arrowto{f} B$, and returns a function of $\mathbf{Tree}\ A \to B$:
 
 \[
 \begin{array}{l}
@@ -3267,7 +3267,7 @@ cata\ f\ (Br\ k\ l\ r) =f\ (BrF\ k\ (cata\ f\ l)\ (cata\ f\ r)) \\
 \end{array}
 \]
 
-如果定义了一个将二叉树中元素累加起来的代数运算，就可以利用向下态射递归地应用到任意二叉树上：
+Below example defines the algebra to sum the elements in the binary tree, then it applies the catamorphism to recursively sum along any binary tree:
 
 \[
 \begin{array}{l}
@@ -3282,16 +3282,16 @@ sum = cata \circ sumAlg \\
 \end{array}
 \]
 
-接下来，我们证明二叉树的向下态射就相当于二叉树的叠加操作$foldt$。固定对象$A$，二叉树的函子$\mathbf{TreeF}\ A\ B$是携带对象$B$的一个多项式函子。即：$\mathbf{TreeF}\ A\ B = 1 + (A \times B \times B)$，对于箭头$h$，为：$(\mathbf{TreeF}\ A)(h) = id + (id_A \times h \times h)$。
+Next, we prove the catamorphism is the essentially the folding operation $foldt$ for binary tree. Fix object $A$, the binary tree functor $\mathbf{TreeF}\ A\ B$ is a polynomial functor. For a given carrier object $B$, it sends to $\mathbf{TreeF}\ A\ B = 1 + (A \times B \times B)$; for arrow $h$, it sends to $(\mathbf{TreeF}\ A)(h) = id + (id_A \times h \times h)$.
 
-由于上面的范畴图可交换，所以有：
+Since the diagram commutes, we have:
 
 \[
 \begin{array}{rll}
-            & h \circ [nil, branch] = [c, f] \circ (\mathbf{TreeF}\ A)(h) & \text{可交换} \\
-\Rightarrow & h \circ [nil, branch] = [c, f] \circ (id + (id_A \times h \times h)) & \text{多项式函子} \\
-\Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h)] & \text{左侧用余积的融合律} \\
+            & h \circ [nil, branch] = [c, f] \circ (\mathbf{TreeF}\ A)(h) & \text{Commute} \\
+\Rightarrow & h \circ [nil, branch] = [c, f] \circ (id + (id_A \times h \times h)) & \text{Polynomial functor} \\
+\Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{Absorption law of coproduct on the right} \\
+\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h \times h)] & \text{Fusion law of coproduct on the left} \\
 \Rightarrow &
   \begin{cases}
     h \circ nil = c \\
@@ -3305,7 +3305,7 @@ sum = cata \circ sumAlg \\
 \end{array}
 \]
 
-这恰恰是二叉树叠加的定义$h = foldt(c, f)$，其中：
+It is exactly the definition of folding on binary tree $h = foldt(c, f)$, where:
 
 \[
 \begin{cases}
@@ -3314,14 +3314,14 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 \end{cases}
 \]
 
-因此，累加二叉树中元素的运算可以用叠加表示为$foldt(0_B, (\bullet + \bullet + \bullet))$。
+Therefore, the computation to sum all the elements in a binary tree can be represented by folding as $foldt(0_B, (\bullet + \bullet + \bullet))$.
 \end{example}
 
 \begin{Exercise}
-\Question{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
+\Question{For the binary tree functor $\mathbf{TreeF}\ A\ B$, fix $A$, use the fixed point to prove that $(\mathbf{Tree}\ A, [nil, branch])$ is the initial algebra}
 \end{Exercise}
 
-\section{小节}
+\section{Summary}
 
 本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
 

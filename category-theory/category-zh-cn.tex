@@ -3168,7 +3168,7 @@ sum = cata sumAlg where
 \end{lstlisting}
 
 我们接下来利用列表的范畴图证明，列表的向下态射本质上就是叠加计算$foldr$。
-列表函子本质上是多项式函子$\mathbf{ListF}\ A\ B = 1 + A \times B$。由于范畴图可交换，所以：
+列表函子本质上是多项式函子。固定$A$，它将携带对象$B$映射为$\mathbf{ListF}\ A\ B = 1 + A \times B$；将箭头$h$映射为$(\mathbf{ListF}\ A)(h) = id + (id \times h)$。由于范畴图可交换，所以：
 
 \[
 \begin{array}{rll}
@@ -3263,7 +3263,7 @@ sum = cata \circ sumAlg \\
             & h \circ [nil, branch] = [c, f] \circ (\mathbf{TreeF}\ A)(h) & \text{可交换} \\
 \Rightarrow & h \circ [nil, branch] = [c, f] \circ (id + (id_A \times h \times h)) & \text{多项式函子} \\
 \Rightarrow & h \circ [nil, branch] = [c \circ id, f \circ (id_A \times h \times h)] & \text{右侧用余积的吸收律} \\
-\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h)] & \text{左侧用余积的融合律} \\
+\Rightarrow & [h \circ nil, h \circ branch] = [c, f \circ (id_A \times h \times h)] & \text{左侧用余积的融合律} \\
 \Rightarrow &
   \begin{cases}
     h \circ nil = c \\
