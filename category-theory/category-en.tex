@@ -3098,33 +3098,34 @@ It tells us, the catamorphism of natural numbers $\lbb c + f \rbb = foldn(c, f)$
 
 to calculate. It seems we go back to the first chapter after a long journey. It's actually a spiral of understanding. In chapter 1, we obtained this result from induction and abstraction; Here we reach to a higher level, by applying the abstract pattern to the concrete problem, we obtain the same result.
 
-\subsubsection{Algebraic data structure}
+\subsubsection{Algebraic data type}
 
-使用初始F-代数，我们可以定义更多的代数数据类型。本小节我们介绍列表和二叉树的例子。
+We can define more algebraic data types with initial F-algebra, like list and binary tree.
 
 \begin{example}
-在第一章中，我们给出的列表定义为：
+\normalfont
+The definition of list given in chapter 1 is as below.
 
 \lstset{frame=none}
 \begin{lstlisting}
 data List A = Nil | Cons A (List A)
 \end{lstlisting}
 
-而相应的非递归函子为：
+The corresponding non-recursive functor is:
 
 \begin{lstlisting}
 data ListF A B = NilF | ConsF A B
 \end{lstlisting}
 
-实际上$\mathbf{List}$是函子$\mathbf{ListF}$的不动点。我们可以这样验证。令$B' = \mathbf{ListF}\ A\ B$，然后递归地应用到自己上无穷多次。把这个结果叫做$\mathbf{Fix}\ (\mathbf{ListF}\ A)$：
+Actually, $\mathbf{List}$ is the fixed point of functor $\mathbf{ListF}$. To verify it, let $B' = \mathbf{ListF}\ A\ B$, then recursively apply to itself infinite many times. Denote the result of it as $\mathbf{Fix}\ (\mathbf{ListF}\ A)$.
 
 \[
 \begin{array}{rcll}
 \mathbf{Fix}\ (\mathbf{ListF}\ A)
-& = & \mathbf{ListF}\ A (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{不动点的定义} \\
-& = & \mathbf{ListF}\ A\ (\mathbf{ListF}\ A\ (...)) & \text{展开} \\
-& = & NilF\ |\ ConsF\ A\ (ConsF\ A\ (...)) & \text{定义} \\
-& = & NilF\ |\ ConsF\ A\ (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{反向用不动点} \\
+& = & \mathbf{ListF}\ A (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{Definition of fixed point} \\
+& = & \mathbf{ListF}\ A\ (\mathbf{ListF}\ A\ (...)) & \text{Expand} \\
+& = & NilF\ |\ ConsF\ A\ (\mathbf{ListF}\ A\ (...)) & \text{Definition of}\ \mathbf{ListF}\ A \\
+& = & NilF\ |\ ConsF\ A\ (\mathbf{Fix}\ (\mathbf{ListF}\ A)) & \text{Reverse of fixed point} \\
 \end{array}
 \]
 
