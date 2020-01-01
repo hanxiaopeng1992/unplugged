@@ -3295,7 +3295,7 @@ foldt\ c\ h\ (Br\ k\ l\ r) = h(k, foldt\ c\ h\ l, foldt\ c\ h\ r) \\
 
 \section{小节}
 
-本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读一段Haskell标准库中关于叠加的代码\cite{Haskell-foldable}。通常我们认为列表的叠加操作可以这样写：
+本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读一段用范畴语言实现的通用叠加操作\cite{Haskell-foldable}。通常我们认为列表的叠加操作可以这样写：
 
 \lstset{language=Haskell, frame=single}
  \begin{lstlisting}
@@ -3303,20 +3303,20 @@ foldr f z [] = z
 foldr f z (x:xs) = f x (foldr f z xs)
 \end{lstlisting}
 
-但实际上，今天的标准库用范畴的语言这样写：
+但实际上，利用范畴语言可以这样写：
 
 \lstset{frame=single}
 \begin{lstlisting}
 foldr f z t = appEndo (foldMap (Endo . f) t) z
 \end{lstlisting}
 
-所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表。在传统的列表叠加定义中，$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$,根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
+所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表。在传统的列表叠加定义中，$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$，根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
 
 \[
 a \oplus (b \oplus (c \oplus e))
 \]
 
-这让我们联想到幺半群，$foldr$相当于在幺半群上重复进行二元操作。在Haskell的抽象幺半群定义中，除了单位元和二元操作外，还定义了将一列元素“累加”的操作。用我们的$\oplus$和$e$符号，这个定义相当于：
+这让我们联想到幺半群，$foldr$相当于在幺半群上重复进行二元操作。在抽象幺半群定义中，除了单位元和二元操作外，我们还可以定义将一列元素“累加”起来的操作。用$\oplus$和$e$符号，这个定义相当于：
 
 \[
 \begin{array}{l}
@@ -3325,7 +3325,7 @@ concat_M = foldr\ (\oplus)\ e \\
 \end{array}
 \]
 
-在Haskell中这个函数的名字叫做\texttt{mconcat}。它的意思是说，对于任何幺半群$M$，$concat$可以将一个$M$中元素的列表，通过二元运算和单位元叠加计算到一起。例如字符串可以看作是幺半群，单位元是空串，而二元运算是连接。所以$concat_M$ \texttt{["Hello", "String" "Monoid"]}就得到：
+在某些编程环境中，这个函数的名字叫做\texttt{mconcat}。它的意思是说，对于任何幺半群$M$，$concat$可以将一个$M$中元素的列表，通过二元运算和单位元叠加计算到一起。例如字符串可以看作是幺半群，单位元是空串，而二元运算是连接。所以$concat_M$ \texttt{["Hello", "String" "Monoid"]}就得到：
 
 \begin{verbatim}
 "Hello" ++ ("String" ++ ("Monoid" ++ "")) = "HelloStringMonoid"
@@ -3368,7 +3368,7 @@ newtype Endo B = Endo (B -> B)
 appEndo(Endo\ a) = a
 \]
 
-然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。在Haskell中，这相当于以下代码：
+然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。这相当于以下定义：
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3419,7 +3419,7 @@ foldr\ f\ z\ xs
 \end{array}
 \]
 
-这就是我们看到的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
+这就是在范畴语言中$foldr$的定义。此外，我们还可以专门定义类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
 
 \section{扩展阅读}
 

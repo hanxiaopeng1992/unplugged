@@ -3323,14 +3323,14 @@ Therefore, the computation to sum all the elements in a binary tree can be repre
 
 \section{Summary}
 
-本章介绍了范畴论中最基本的概念，包括范畴、函子、自然变换。并且还介绍了积和余积、起始对象和终止对象、幂以及F-代数这些工具来构造较为复杂的代数结构。作为本章的结尾，我们来解读最开始那段关于叠加的代码\cite{Haskell-foldable}：
+In this chapter, we introduced the basic concepts in category theory, including category, functor, natural transformation, product and coproduct, initial object and final object, exponentials, and F-algebra. They can construct complex algebraic structures. Before end of this chapter, let us see how the generic folding operation is realized in the language of category theory\cite{Haskell-foldable}:
 
 \lstset{frame=single}
 \begin{lstlisting}
 foldr f z t = appEndo (foldMap (Endo . f) t) z
 \end{lstlisting}
 
-所有的这一切的背后都是为了抽象，为了使得$foldr$能跳出列表，在任何可叠加的结构上进行运算。我们先看看传统的列表叠加定义：
+The reason why it is defined like this is abstraction, to make $foldr$ not only limit to list, but also expand to any foldable structures. It's common to define the folding operation for list as below:
 
 \begin{lstlisting}
 foldr :: (a -> b -> b) -> b -> [a] -> b
@@ -3338,13 +3338,13 @@ foldr f z [] = z
 foldr f z (x:xs) = f x (foldr f z xs)
 \end{lstlisting}
 
-其中$f$是一个二元操作，如果我们把它改写为$\oplus$，把$z$改写为单位元$e$,根据这个定义，$foldr\ (\oplus)\ e\ [a, b, c]$就可以展开成为：
+Where $f$ is a binary operation, we can denote it as $\oplus$, and explicitly denote $z$ as the identity element $e$. According to this definition, $foldr\ (\oplus)\ e\ [a, b, c]$ can be expanded as:
 
 \[
 a \oplus (b \oplus (c \oplus e))
 \]
 
-这让我们联想到幺半群，$foldr$相当于在幺半群上重复进行二元操作。在Haskell的抽象幺半群定义中，除了单位元和二元操作外，还定义了将一列元素“累加”的操作。用我们的$\oplus$和$e$符号，这个定义相当于：
+It reminds us monoid, $foldr$ essentially repeats the binary operation on top of monoid. In the monoid definition, besides the identity element and binary operation, we can add an additional operation to `sum up' a list of elements with the $\oplus$ and $e$ symbols:
 
 \[
 \begin{array}{l}
@@ -3353,13 +3353,13 @@ concat_M = foldr\ (\oplus)\ e \\
 \end{array}
 \]
 
-在Haskell中这个函数的名字叫做\texttt{mconcat}。它的意思是说，对于任何幺半群$M$，$concat$可以将一个$M$中元素的列表，通过二元运算和单位元叠加计算到一起。例如字符串可以看作是幺半群，单位元是空串，而二元运算是连接。所以$concat_M$ \texttt{["Hello", "String" "Monoid"]}就得到：
+It is named as \texttt{mconcat} in some programming environment. For any monoid $M$, function $concat$ processes a list of elements of $M$, fold them together trough the binary operation and the identity element. For example, string is an instance of monoid, the identity element is the empty string, and the binary operation is string concatenation. Hence $concat_M$ \texttt{["Hello", "String" "Monoid"]} gives the following result.
 
 \begin{verbatim}
 "Hello" ++ ("String" ++ ("Monoid" ++ "")) = "HelloStringMonoid"
 \end{verbatim}
 
-现在我们可以对任何幺半群元素进行累加了。但能否让它变得更通用呢？如果有一列元素，它们虽然不是幺半群中的元素，但是如果我们能将它们转换为幺半群，就仍然可以进行累加。将某一类型的列表映射为幺半群列表恰巧就是函子的行为，确切地说我们把箭头$A \arrowto{g} M$，通过列表函子“举”到$\mathbf{List}(g)$。然后再执行累加：
+We are able to sum up any monoid elements. Can we make it more generic? Consider there is a list of elements that don't belong to monoid. We can still sum them if there is a way to convert them to monoid elements. List functor behaves exactly as we expect, to convert a list of some types to a list of monoids. In other words, we can use the list functor to `lift' the arrow $A \arrowto{g} M$ to $\mathbf{List}(g)$ for sum.
 
 \begin{center}
 \begin{tikzpicture}
@@ -3449,13 +3449,13 @@ foldr\ f\ z\ xs
 
 这就是我们在本章开头给出的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
 
-\section{扩展阅读}
+\section{Further reading}
 
 限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（junction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》\cite{Milewski2018}是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍了编程中的范畴原理。
 
 % limits/colimits, 伴随，米田定理
 
-\section{附录：例子代码}
+\section{Appendix - example programs}
 
 函子的定义：
 
