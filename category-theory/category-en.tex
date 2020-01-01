@@ -3396,7 +3396,7 @@ We name it as `endo' functor as it point to $B$ from $B$ itself. Besides, we als
 appEndo(Endo\ a) = a
 \]
 
-Now we can declare $\mathbf{Endo}$ is a monoid, with the identity element as $id$, the binary operation as composition.
+Now we can declare $\mathbf{Endo}$ is a monoid, with $id$ arrow as the identity element, and function composition as the binary operation.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3405,7 +3405,7 @@ instance Monoid Endo where
     Endo f `mappend` Endo g = Endo (f . g)
 \end{lstlisting}
 
-现在任给一个二元组合函数$f$，我们都可以把它利用$foldMap$叠加到$Endo$幺半群上去了：
+Given any binary function $f$, we can use $foldMap$ to fold on $Endo$ monoid:
 
 \[
 \begin{array}{l}
@@ -3414,7 +3414,7 @@ foldCompose\ f = foldMap\ (Endo . f)
 \end{array}
 \]
 
-这样如果计算$foldCompose\ f\ [a, b, c]$则展开为：
+When compute $foldCompose\ f\ [a, b, c]$, it will be expanded as the following:
 
 \[
 \begin{array}{cl}
@@ -3423,7 +3423,7 @@ foldCompose\ f = foldMap\ (Endo . f)
 \end{array}
 \]
 
-下面是一个具体的例子
+Here is a more concrete example
 
 \[
 \begin{array}{cl}
@@ -3437,7 +3437,7 @@ foldCompose\ f = foldMap\ (Endo . f)
 \end{array}
 \]
 
-所以，最后一步我们要把$Endo$中的结果取回。具体到这个例子，就是用$appEndo$把$(+6)$拿出，然后把它应用到传入$foldr$的初始值$z$上：
+As the last step, we need extract the result from the $Endo$ object. For this example, we use $appEndo$ to extract $(+6)$, then apply it to the initial value $z$ passed to $foldr$:
 
 \[
 \begin{array}{rcll}
@@ -3447,7 +3447,7 @@ foldr\ f\ z\ xs
 \end{array}
 \]
 
-这就是我们在本章开头给出的$foldr$定义。在Haskell中，还专门定义了类型$Foldable$，对任意数据结构，使用者可以选择实现$foldMap$或者$foldr$。具体请参见本章附录。
+This is the complete definition of $foldr$ in the language of categories. We can further define a dedicated type $Foldable$, such that for any data structure, user can either realize $foldMap$ or $foldr$. See the appendix of this chapter for detail.
 
 \section{Further reading}
 
