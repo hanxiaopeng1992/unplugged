@@ -3383,14 +3383,14 @@ foldMap\ g = concat_M \circ fmap\ g
 \end{array}
 \]
 
-However, there is still limitation. For the binary operation $f : A \to B \to B$ passed to $foldr$, if $B$ is not monoid, we can't do folding. To solve it, consider the Curried $f$ of $f : A \to (B \to B)$. When we treat the arrow $B \to B$ as object, they can form a monoid. Where the identity element is the $id$ arrow, and the binary operation is arrow composition. To make it clear, we wrap the $B \to B$ arrow as a type (set) through functor:
+However, there is still limitation. For the binary operation $f : A \to B \to B$ passed to $foldr$, if $B$ is not monoid, we can't do folding. To solve it, consider the Curried $f$ of $f : A \to (B \to B)$. When we treat the arrow $B \to B$ as object, they can form a monoid. Where the identity element is the $id$ arrow, and the binary operation is arrow composition. To make it clear, we wrap the $B \to B$ arrow as a type (set) through a functor:
 
 \lstset{frame=none}
 \begin{lstlisting}[style=Haskell]
 newtype Endo B = Endo (B -> B)
 \end{lstlisting}
 
-And also define a function of $\mathbf{Endo}B \arrowto{appEndo} B$:
+We name it as `endo' functor as it point to $B$ from $B$ itself. Besides, we also define a function of $\mathbf{Endo}B \arrowto{appEndo} B$:
 
 \[
 appEndo(Endo\ a) = a

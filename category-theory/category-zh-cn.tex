@@ -3362,7 +3362,7 @@ foldMap\ g = concat_M \circ fmap\ g
 newtype Endo B = Endo (B -> B)
 \end{lstlisting}
 
-并且定义一个函数，从$\mathbf{Endo}B \arrowto{appEndo} B$：
+我们给它起名叫“自函子”（endo），这是因为它从$B$出发指向$B$自身。此外，我们定义一个函数，从$\mathbf{Endo}B \arrowto{appEndo} B$：
 
 \[
 appEndo(Endo\ a) = a
