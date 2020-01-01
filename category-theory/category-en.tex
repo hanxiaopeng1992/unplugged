@@ -3383,20 +3383,20 @@ foldMap\ g = concat_M \circ fmap\ g
 \end{array}
 \]
 
-可是美中不足的是，对于任何传入$foldr$的二元组合函数$f : A \to B \to B$，如果$B$不是幺半群，我们仍然无法进行叠加。现在考虑$f$的克里化形式$f : A \to (B \to B)$，我们发现以箭头$B \to B$为对象，可以组成一个幺半群。其中单位元是恒等箭头$id$，而二元运算是函数组合。为此，我们把这种$B \to B$的箭头通过函子封装成一个类型（集合）：
+However, there is still limitation. For the binary operation $f : A \to B \to B$ passed to $foldr$, if $B$ is not monoid, we can't do folding. To solve it, consider the Curried $f$ of $f : A \to (B \to B)$. When we treat the arrow $B \to B$ as object, they can form a monoid. Where the identity element is the $id$ arrow, and the binary operation is arrow composition. To make it clear, we wrap the $B \to B$ arrow as a type (set) through functor:
 
 \lstset{frame=none}
 \begin{lstlisting}[style=Haskell]
 newtype Endo B = Endo (B -> B)
 \end{lstlisting}
 
-并且定义一个函数，从$\mathbf{Endo}B \arrowto{appEndo} B$：
+And also define a function of $\mathbf{Endo}B \arrowto{appEndo} B$:
 
 \[
 appEndo(Endo\ a) = a
 \]
 
-然后我们规定$\mathbf{Endo}$是一个幺半群，单位元是$id$，二元运算是函数组合。在Haskell中，这相当于以下代码：
+Now we can declare $\mathbf{Endo}$ is a monoid, with the identity element as $id$, the binary operation as composition.
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
