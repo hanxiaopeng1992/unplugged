@@ -3484,14 +3484,14 @@ lookup (Node l k r) x | x < k = lookup l x
 lookupBin = (fmap binary) . lookup
 \end{lstlisting}
 
-二元函子的定义：
+Definition of bifunctor:
 
 \begin{lstlisting}
 class Bifunctor f where
   bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
 \end{lstlisting}
 
-积函子和余积函子的定义：
+Definition of product and coproduct functors:
 
 \begin{lstlisting}
 instance Bifunctor (,) where
@@ -3502,7 +3502,7 @@ instance Bifunctor Either where
   bimap _ g (Right b) = Right (g b)
 \end{lstlisting}
 
-$curry$及其反向变换$uncurry$的定义：
+Definition of $curry$ and its reverse $uncurry$:
 
 \begin{lstlisting}
 curry       :: ((a, b) -> c) -> a -> b -> c
@@ -3512,7 +3512,7 @@ uncurry     :: (a -> b -> c) -> ((a, b) -> c)
 uncurry f (x, y) =  f x y
 \end{lstlisting}
 
-幺半群的定义：
+Definition of monoid:
 
 \begin{lstlisting}
 class Semigroup a => Monoid a where
@@ -3525,7 +3525,7 @@ class Semigroup a => Monoid a where
     mconcat = foldr mappend mempty
 \end{lstlisting}
 
-可叠加类型（Foldable）的定义：
+Definition of foldable:
 
 \begin{lstlisting}
 newtype Endo a = Endo { appEndo :: a -> a }
@@ -3548,10 +3548,10 @@ Jean Dieudonne. ``Mathematics — The Music of Reason''. Springer Science and Bu
 Haskell Wiki. ``Monad''. \url{https://wiki.haskell.org/Monad}
 
 \bibitem{Wiki-Eilenberg}
-Wikipedia. ``塞缪尔$\cdot$艾伦伯格''. \url{https://en.wikipedia.org/wiki/Samuel_Eilenberg}
+Wikipedia. ``Samuel Eilenberg''. \url{https://en.wikipedia.org/wiki/Samuel_Eilenberg}
 
 \bibitem{Wiki-Mac-Lane}
-Wikipedia. ``桑德斯$\cdot$麦克兰恩''. \url{https://en.wikipedia.org/wiki/Saunders_Mac_Lane}
+Wikipedia. ``Saunders Mac Lane''. \url{https://en.wikipedia.org/wiki/Saunders_Mac_Lane}
 
 \bibitem{Simmons2011}
 Harold Simmons. ``An introduction to Category Theory''.  Cambridge University Press; 1 edition, 2011. ISBN: 9780521283045
