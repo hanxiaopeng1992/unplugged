@@ -3451,13 +3451,13 @@ This is the complete definition of $foldr$ in the language of categories. We can
 
 \section{Further reading}
 
-限于篇幅，我们不可能仅仅在一章中完成范畴论的介绍。本章的内容不过是冰山的一个小角。范畴论的核心精神是抽象。初始对象和终止对象，积和余积这些对偶的概念，它们本质上可以进一步抽象到更高层次的对偶——极限（limits）和余极限（colimits）。我们没能介绍伴随（junction）的概念，没能介绍米田定理（Yoneda lemma），也没有能够解读单子。我希望这一章能够起到抛砖引玉的作用，引导读者去阅读和了解更多的内容。范畴论的创始人之一麦克兰恩的编写的教材\cite{Mac-Lane-1998}是这个领域的经典。其目标读者是数学家，普通读者读起来有些艰深。西蒙森的《范畴论引论》\cite{Simmons2011}和史密斯的\cite{PeterSmith2018}更适合初学者。对于有编程背景的读者，迈尔维斯基的《程序员的范畴论》\cite{Milewski2018}是本不错的参考书。里面配有很多Haskell示例代码和一些C++的类比实现。但是这本书仅仅在集合全函数范畴（确切地说是Hask范畴）内讨论。伯德的《编程中的代数》\cite{Bird97}更加全面地介绍了编程中的范畴原理。
+We can not introduce the category theory in depth just in one chapter. We only scratch the surface of the iceberg. The key idea is abstraction in category theory. The dual concepts like initial and final objects, product and coproduct, can be further abstracted to the higher level dual things, limits and colimits. We did not introduce the junctions, nor Yoneda lemma. We did not explain about the increasingly popular monad concept in programming. We hope this chapter could help the reader to find the door to the category world. Here are some good materials for further reading: Mac Lane, who developed category theory, wrote a classic textbook\cite{Mac-Lane-1998} targeted to working mathematicians. It's a bit hard for the new comers. {\em An introduction to category theory} by Simons\cite{Simmons2011} and {\em Category Theory - A Gentle Introduction} by Smith are more suitable at the begining. For readers with programming background, {\em Category Theory for Programmers} by Milewski\cite{Milewski2018} is a good book with many example programs in Haskell, and their corresponding implementations in C++. However, this book limits to the set category on total functions (the Hask category to be accurate). {\em Algebra of programming} by Bird\cite{Bird97} introduced category framework for programming in depth.
 
 % limits/colimits, 伴随，米田定理
 
 \section{Appendix - example programs}
 
-函子的定义：
+Definition of functors:
 
 \lstset{frame=single}
 \begin{lstlisting}[style=Haskell]
@@ -3465,7 +3465,7 @@ class  Functor f  where
     fmap        :: (a -> b) -> f a -> f b
 \end{lstlisting}
 
-Maybe函子的定义：
+The Maybe functor:
 
 \begin{lstlisting}
 instance  Functor Maybe  where
@@ -3473,7 +3473,7 @@ instance  Functor Maybe  where
     fmap f (Just a)      = Just (f a)
 \end{lstlisting}
 
-使用Maybe搜索二叉搜索树，并将结果转换成二进制：
+Look up in binary search tree with Maybe functor, and convert the result to binary format:
 
 \begin{lstlisting}[style=Haskell]
 lookup Nil _ = Nothing
