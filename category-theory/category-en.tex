@@ -66,7 +66,7 @@ Category theory was developed by mathematician Samuel Eilenberg and Sauders Mac 
 \end{wrapfigure}
 
 \index{Samuel Eilenberg}
-Samuel Eilenberg born in Warsaw, Kingdom of Poland to a Jewish family. His father is a brewer. Eilenberg studied at the University of Warsaw. A remarkable collection of mathematicians were on the staff there. He earned his Ph.D. from University of Warsaw in 1936. The second mathematical centre in Poland at that time was Lvov. It was there that Eilenberg met Banach, who led the Lvov mathematicians. He joined the community of mathematicians working and drinking in the Scottish Café and he contributed problems to the Scottish Book, the famous book in which the mathematicians working in the Café entered unsolved problems. In 1939 Eilenberg's father convinced him that the right course of action was to emigrate to the United States. Once there he went to Princeton. This was not too long in coming and, in 1940, he was appointed as an instructor at the University of Michigan. In 1949 André Weil was working at the University of Chicago and he contacted Eilenberg to ask him to collaborate on writing about homotopy groups and fibre spaces as part of the Bourbaki project. Eilenberg became a member of the Bourbaki team. He wrote the 1956 book {\em Homological Algebra} with Henri Cartan. Eilenberg mainly studied algebriac topology. He worked on the axiomatic treatment of homology theory with Norman Steenrod, and on homological algebra with Saunders Mac Lane. In the process, Eilenberg and Mac Lane created category theory. Eilenberg spent much of his career as a professor at Columbia University. Later in life he worked mainly in pure category theory, being one of the founders of the field. He was awarded Walf prize in 1987 for his fundamental work in algebraic topology and homological algebra. Eilenberg died in New York City during January 1998.
+Samuel Eilenberg born in Warsaw, Kingdom of Poland to a Jewish family. His father is a brewer. Eilenberg studied at the University of Warsaw. A remarkable collection of mathematicians were on the staff there. He earned his Ph.D. from University of Warsaw in 1936. The second mathematical centre in Poland at that time was Lvov. It was there that Eilenberg met Banach, who led the Lvov mathematicians. He joined the community of mathematicians working and drinking in the Scottish Café and he contributed problems to the Scottish Book, the famous book in which the mathematicians working in the Café entered unsolved problems. In 1939 Eilenberg's father convinced him that the right course of action was to emigrate to the United States. Once there he went to Princeton. This was not too long in coming and, in 1940, he was appointed as an instructor at the University of Michigan. In 1949 André Weil was working at the University of Chicago and he contacted Eilenberg to ask him to collaborate on writing about homotopy groups and fibre spaces as part of the Bourbaki project. Eilenberg became a member of the Bourbaki team. He wrote the 1956 book {\em Homological Algebra} with Henri Cartan. Eilenberg mainly studied algebriac topology. He worked on the axiomatic treatment of homology theory with Norman Steenrod, and on homological algebra with Saunders Mac Lane. In the process, Eilenberg and Mac Lane created category theory. Eilenberg spent much of his career as a professor at Columbia University. Later in life he worked mainly in pure category theory, being one of the founders of the field. He was awarded Wolf prize in 1987 for his fundamental work in algebraic topology and homological algebra. Eilenberg died in New York City during January 1998.
 
 Eilenberg was also a prominent collector of Asian art. His collection mainly consisted of small sculptures and other artifacts from India, Indonesia, Nepal, Thailand, Cambodia, Sri Lanka and Central Asia. He donated more than 400 items to the Metropolitan Museum of Art in 1992\cite{Wiki-Eilenberg}.
 
@@ -93,7 +93,7 @@ Mac Lane died on April 14th, 2005 in San Francisco, California, USA.
 
 \section{Category}
 
-Let's use an example of ecosystem to understand category. There are varies of living species in African grassland, like lion, hyena, cheetah, antelope, buffalo, zebra, vulture, lizard, cobra, ant, ... We call these animals objects. Every type of animals and plants is an object. There are relation among these living things, for example, lion eats antelope, antelope eats grass. We can easily form a food chain by drawing an arrow from antelope to lion, and another arrow from grass to antelope. Hence these objects together with the arrows form a structured and connected system.
+Let's use an example of ecosystem to understand category. There are varies of living species on African grassland, like lion, hyena, cheetah, antelope, buffalo, zebra, vulture, lizard, cobra, ant, ... We call these animals objects. Every type of animals and plants is an object. There are relation among these living things, for example, lion eats antelope, antelope eats grass. We can easily form a food chain by drawing an arrow from antelope to lion, and another arrow from grass to antelope. Hence these objects together with the arrows form a structured and connected system.
 
 \begin{figure}[htbp]
  \centering
@@ -103,7 +103,7 @@ Let's use an example of ecosystem to understand category. There are varies of li
  \label{fig:powerset}
 \end{figure}
 
-To become a category, this system has to satisfy two constraints. First, every object must have an arrow to itself. Such special arrow is called identity arrow. For the animals and plants in grassland, the arrow from lion to anteplope means the antelope is downstream to the lion in the foodchain. We can define that every species is downstream to itself along the foodchain (it does not mean one eat itself, but means one does not eat itself), hence every species has arrow points to itself. Second, arrows need be composible. What does composable mean? There is an arrow $f$ from grass to antelope, an arrow $g$ from antelope to lion. We can compose them to $g \circ f$, which means grass is downstream to lion along the food chain. This composed arrow can be further composed with the third one. For example, vulture eats the dead lion, thus we can draw an arrow $h$ from the lion to the volture. Composing them together gives $h \circ (g \circ f)$. This arrow means grass is downstream to vulture along the food chain. It is identical to the arrow $(h \circ g) \circ f$. Hence the upstream, downstream relations is associative.
+To become a category, this system has to satisfy two conditions. First, every object must have an arrow to itself. Such special arrow is called the identity arrow. For the animals and plants on grassland, the arrow from lion to anteplope means the antelope is downstream to the lion along the foodchain. We can define that every species is downstream to itself along the foodchain (it does not mean one eats itself, but means one does not eat itself), hence every species has an arrow points to itself. Second, arrows need be composible. What does composable mean? There is an arrow $f$ from grass to antelope, an arrow $g$ from antelope to lion. We can compose them to $g \circ f$ (read as $g$ after $f$), which means grass is downstream to lion along the food chain. This composed arrow can be further composed with the third one. For example, vulture eats the dead lion, thus we can draw an arrow $h$ from the lion to the volture. Composing them together gives $h \circ (g \circ f)$. This arrow means grass is downstream to vulture along the food chain. It is identical to the arrow $(h \circ g) \circ f$. Hence the upstream, downstream relations are associative.
 
 Besides composable, there is another concept called commutative. As shown in below diagram:
 
@@ -133,19 +133,20 @@ There are two paths from grass to lion. One is the composite arrow $g \circ f$, 
 \end{tikzpicture}
 \end{center}
 
-These two arrow may or may note be the same, when they are, we say they are commutative:
+These two arrows may or may note be the same, when they are, we say they are commutative:
 
 \[
 h = g \circ f
 \]
 
-And the grass, antelope, lion triangle commutes. We say the living things in the grassland form a category under the food chain arrows. It's time to give the formal definition for category.
+and the grass, antelope, lion triangle commutes. We say the living things in the grassland form a category under the food chain arrows. From this example, we can  give the formal definition of category.
 
 \index{category} \index{arrow}
 \begin{definition}
+\normalfont
 A category $\pmb{C}$ consists of a collection of objects\footnote{It has nothing related to the object oriented programming. Here the object means abstract thing.}, denoted as $A, B, C, ...$, and a collection of arrows, denoted as $f, g, h, ...$. There are four operations defined on top of them:
 \begin{itemize}
-\item Two total operations\footnote{Total operation is defined for every object without exception. its counterpart is partial operation, which is not defined from some objects. For example, the negate $x \mapsto -x$ is total operation for natural numbers, while the inverse operation $x \mapsto 1/x$ is not defined for 0, hence it is a partial operation.}, called source and target\footnote{They should be treated as verb, which means assign source object as... and assign target object as ...}. They assign source and target object to an arrow. Denoted as $A \arrowto{f} B$. It means the source of arrow $f$ is $A$, and the target is $B$;
+\item Two total operations\footnote{Total operation is defined for every object without exception. Its counterpart is partial operation, which is not defined from some objects. For example, the negate $x \mapsto -x$ is total operation for natural numbers, while the inverse operation $x \mapsto 1/x$ is not defined for 0, hence it is a partial operation.}, called source and target\footnote{They should be treated as verb, which means assign source object as... and assign target object as...}. They assign source and target objects to an arrow. Denoted as $A \arrowto{f} B$. It means the source of arrow $f$ is $A$, and the target is $B$;
 
 \item The third total operation is called identity arrow\footnote{Similarly, identity arrow should be treated as verb, which means assign the identity arrow as...}. For every object $A$, the identity arrow points to $A$ itself. Denoted as $A \arrowto{id_A} A$;
 
@@ -169,13 +170,13 @@ hold.
 \end{itemize}
 \end{definition}
 
-Categories and arrows are abstract compare to the food chain in grassland. Let's use some concrete examples to learn this definition.
+Categories and arrows are abstract compare to the foodchain system on the grassland. Let's use some concrete examples to understand this definition.
 
 \subsection{Examples of categories}
 
 In mathematics, a set is called a monoid if it is defined with a special identity element, and associative binary operation. The integers for example, with 0 as the identity element, and plus as the binary operation, form a monoid called integer additive monoid.
 
-A monoid can contains other things besides numbers. Consider the set of English words and sentences (called strings in programming). We can define the binary operation that concatenates two English strings. For example ``red'' $\doubleplus$ ``apple'' = ``red apple''. These English strings form a monoid, where the identity element is the empty string ``''. It's easy to verify the monoid constraints:
+A monoid can contain other things besides numbers. Consider the set of English words and sentences (called strings in programming). We can define the binary operation that concatenates two English strings. For example ``red'' $\doubleplus$ ``apple'' = ``red apple''. These English strings form a monoid, where the identity element is the empty string ``''. It's easy to verify the monoid conditions:
 
 \[
 red \doubleplus (apple \doubleplus tree) = (red \doubleplus apple) \doubleplus tree
@@ -187,7 +188,7 @@ The string concatenation is associative.
 \texttt{""} \doubleplus apple = apple = apple \doubleplus \texttt{""}
 \]
 
-Concatenating any strings with empty string (identity element) gives itself.
+Concatenating any string with empty string (identity element) gives itself.
 
 Put the monoid of strings aside, let's consider another monoid. The elements are sets of characters. The binary operation is the set union; the identity element is the empty set. Union of two character sets gives a bigger set, for example:
 
@@ -195,7 +196,7 @@ Put the monoid of strings aside, let's consider another monoid. The elements are
 \{a, b, c, 1, 2\} \cup \{X, Y, Z, 0, 1\} = \{a, b, c, X, Y, Z, 0, 1, 2\}
 \]
 
-Plus the first example, the integer additive monoid, we have three monoids on hand. Let us setup the transforms among them\footnote{The transform is often called morphism in mathematics}. First is the map from monoid of English strings to monoid of character sets. For any given English word or sentence, we can collect all the unique characters used in it to form a set. Let's call this operation ``chars''. We can verify this operation satisfies the following:
+Together with the first example, the integer additive monoid, we have three monoids on hand. Let us setup the transforms among them\footnote{The transform is often called morphism in mathematics}. First is the map from monoid of English strings to monoid of character sets. For any given English word or sentence, we can collect all the unique characters used in it to form a set. Let's call this operation ``chars''. We can verify this operation satisfies the following:
 
 \[
 \begin{array}{rcl}
@@ -203,9 +204,9 @@ Plus the first example, the integer additive monoid, we have three monoids on ha
 \end{array}
 \]
 
-It means, the unique characters used in a concatenated English strings are same as the union result of the character sets for each one; empty string does not contain any characters (thus is an empty set).
+It means, the unique characters used in a concatenated English string are same as the union result of the character sets for each one; empty string does not contain any characters (thus is an empty set).
 
-Next, we define a transform from the monoid of character sets to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We can this operation ``count''
+Next, we define a transform from the character sets monoid to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We name this operation ``count''
 
 So far, we defined two transforms: ``chars'' and ``count'', let see how they composites:
 
