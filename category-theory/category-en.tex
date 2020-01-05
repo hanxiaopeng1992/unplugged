@@ -347,7 +347,7 @@ Verify that $\pmb{Pno}$ is a category.}
 
 \subsection{Arrow $\neq$ function}
 
-In most examples so far, arrows are either functions, or function like things, such as maps or morphisms. It gives us an illusion that arrow means function like things. The next example helps us to realize such deception. There is a relation category. The objects are sets. The arrow from set $A$ to set $B$, $A \arrowto{R} B$ is defined as:
+In most examples so far, arrows are either functions, or function like things, such as maps or morphisms. It gives us an illusion that arrows mean function like things. The next example helps us to realize such deception. There is a relation category. The objects are sets. The arrow from set $A$ to set $B$, $A \arrowto{R} B$ is defined as:
 
 \[
 R \subseteq B \times A
@@ -359,7 +359,7 @@ Let's see what does it mean. Set $B \times A$ represents all element combination
 B \times A = \{(b, a) | b \in B, a \in A\}
 \]
 
-Use the Donald Duck family for example, set $A =$ \{ Scrooge McDuck, Matilda McDuck, Hortense McDuck\} contains three members in McDuck family, set $B = $ \{Goosetail Gander, Quackmore Duck\} contains two external members, then the product of $B \times A$ is \{(Goosetail Gander, Scrooge McDuck),(Goosetail Gander, Matilda McDuck), (Goosetail Gander, Hortense McDuck), (Quackmore Duck, Scrooge McDuck), (Quackmore Duck, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}. Set $R$ is a subset of $B \times A$, it represents some relation between $A$ and $B$. If element $a$ in $A$, and element $b$ in $B$ satisfy relation $R$, then $(b, a) \in R$, we denote it as $bRa$. For this example, we can let $R=$ \{(Goosetail Gander, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}, then $R$ means they are couples (In Donald Duck story, Goosetail married Matilda, they adopted Gladstone as their child; Quackmore married Hortense, they are parent of Donald).
+Use the Donald Duck family for example, set $A =$ \{ Scrooge McDuck, Matilda McDuck, Hortense McDuck\} contains three members in McDuck family, set $B = $ \{Goosetail Gander, Quackmore Duck\} contains two external members, then the product of $B \times A$ is \{(Goosetail Gander, Scrooge McDuck),(Goosetail Gander, Matilda McDuck), (Goosetail Gander, Hortense McDuck), (Quackmore Duck, Scrooge McDuck), (Quackmore Duck, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}. Set $R$ is a subset of $B \times A$, it represents some relation between $A$ and $B$. If element $a$ in $A$, and element $b$ in $B$ satisfy relation $R$, then $(b, a) \in R$, we denote it as $bRa$. For this example, we can let $R=$ \{(Goosetail Gander, Matilda McDuck), (Quackmore Duck, Hortense MuDuck)\}, then $R$ means they are couples (In Donald Duck story, Goosetail married Matilda, they adopted Gladstone as their child; Quackmore married Hortense, they are parents of Donald).
 
 Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relations from $A$ to $B$. Let's consider the arrow composition:
 
@@ -367,7 +367,7 @@ Hence the set of {\em all} arrows from $A$ to $B$ represents all possible relati
 A \to B \to C
 \]
 
-If there exists an element $b$ in some intermediate set, that both relations $bRa$ and $cSb$ hold, we say there is composition between arrows. Use the Donald Duck family for example. Let set $C=$ = \{Gladstone, Donald, Thelma\}. Relation $S=$ \{(Donald, Quackmore), (Thelma, Quackmore)\} means son and father. Thus the composite arrow $S \circ R$ gives result \{(Donald, Hortense), (Thelma, Hortense)\}, it means the relation $c$ is son of mother $a$. Hence both relations are satisfied through Quackmore, so that Donald and Thelma are sons of their mother Hortense. The definition of identity arrow is simple, every element has a identical relation to itself.
+If there exists an element $b$ in some intermediate set, that both relations $bRa$ and $cSb$ hold, we say there is composition between arrows. Use the Donald Duck family for example. Let set $C=$ = \{Gladstone, Donald, Thelma\}. Relation $S=$ \{(Donald, Quackmore), (Thelma, Quackmore)\} means son and father. Thus the composite arrow $S \circ R$ gives result \{(Donald, Hortense), (Thelma, Hortense)\}, it means the relation that $c$ is the son of mother $a$. Hence both relations are satisfied through Quackmore, so that Donald and Thelma are sons of their mother Hortense. The definition of identity arrow is simple, every element has an identical relation to itself.
 
 We can generate a new category from any existing category, for example, by reversing the arrows in category $\pmb{C}$, we obtained a dual {\em opposite} category $\pmb{C}^{op}$. Hence when we understand a category, we understand its dual category as well.
 
@@ -379,17 +379,17 @@ We mentioned category theory is the `second' level abstraction on top of algebra
 \index{函子}
 In some sense, functor can be considered as the transform (morphism) between categories. However, it does not only map the object from one category to the other, but also maps the arrow. This makes functor different from the normal morphism (between groups for example).
 
-We often use $\mathbf{F}$ to denote functor. Since functor likes the morphisms for category, it must faithfully preserve the structure and relations between categories. In order to achieve this, a functor need satisfy two conditions:
+We often use $\mathbf{F}$ to denote functor. Since functor likes the morphism for category, it must faithfully preserve the structure and relations between categories. In order to achieve this, a functor need satisfy two conditions:
 
-\begin{itemize}
-\item The first condition. Any identity arrow in one category is transformed to identity arrow in another category. As shown in below figure:
+\begin{enumerate}
+\item Any identity arrow in one category is transformed to identity arrow in another category. As shown in below figure:
 
 \[
 A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \]
 
 \index{covariance} \index{contravariance}
-\item The second condition. Any composition of arrows in one category is transformed to composition in another category\footnote{There are two different types of transformation, one is called covariance, the other is contravariance. The two terms are also used in programming language type system. We only considered covariance in this book}.
+\item Any composition of arrows in one category is transformed to composition in another category\footnote{There are two different types of transformation, one is called covariance, the other is contravariance. The two terms are also used in programming language type system. We only consider covariance in this book}.
 
 \begin{center}
 \begin{tikzpicture}
@@ -410,9 +410,9 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \[
 \mathbf{F}(g \circ f) = \mathbf{F}(g) \circ \mathbf{F}(f)
 \]
-\end{itemize}
+\end{enumerate}
 
-In summary, functor preserve identity morphisms and composition of morphisms. Functors can also be composited, for example functor $(\mathbf{F} \mathbf{G})(f)$ means first apply $\mathbf{G}$ on arrow $f$, then apply $mathbf{F}$ on top of the arrow in the new category.
+In summary, functor preserves identity morphisms and composition of morphisms. Functors can also be composited, for example functor $(\mathbf{F} \mathbf{G})(f)$ means first apply $\mathbf{G}$ on arrow $f$, then apply $\mathbf{F}$ on top of the arrow in the new category.
 
 \subsection{Functor examples}
 \label{sec:functor:examples}
