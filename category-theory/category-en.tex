@@ -206,9 +206,9 @@ Together with the first example, the integer additive monoid, we have three mono
 
 It means, the unique characters used in a concatenated English string are same as the union result of the character sets for each one; empty string does not contain any characters (thus is an empty set).
 
-Next, we define a transform from the character sets monoid to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We name this operation ``count''
+Next, we define a transform from the character sets monoid to integer additive monoid. For every given character set, we can count how many characters there are. Empty set contains 0 character. We name this operation ``count''.
 
-So far, we defined two transforms: ``chars'' and ``count'', let see how they composites:
+So far, we defined two transforms: ``chars'' and ``count'', let us see how they composite:
 
 \[
 \text{String} \arrowto{\text{chars}} \text{Character set} \arrowto{\text{count}} \text{Integer}
@@ -220,15 +220,15 @@ and
 \text{String} \arrowto{\text{count} \circ \text{chars}} \text{Integer}
 \]
 
-Obviously, the composite result ``count $\circ$ chars'' is also a transform. It means we first collect the unique characters from English strings, then count the number of characters. Hence we obtain the \text{monoid category} $\pmb{Mon}$. The objects are varies of monoids, arrows are the transforms among them, called morphisms in mathematics. The identity arrow is from a monoid to itself.
+Obviously, the composite result ``count $\circ$ chars'' is also a transform. It means we first collect the unique characters from English string, then count the number of characters. We obtain the {\em monoid category} $\pmb{Mon}$. The objects are varies of monoids, arrows are the transforms among them. The identity arrow is from a monoid to itself.
 
-This is a very big category. It contains {\em all} the monoids in the universe\footnote{You may think about the Russel's paradox. Strictly speaking, $\pmb{Mon}$ contains all `small' monoid in the universe}. On the other hand, category can also be small. Let's see another example, a category that only contains only one monoid. Consider the monoid of English strings. There is only one object, which is the set of all English strings (I am sorry that this set does not look small). For any English string, for example `hello', we can define a prefix operation, that prepand `hello' to any other English strings. We call this operation as `prefix hello'. Apply `prefix hello' to word `Alice' gives result `helloAlice'; Similarly, we can define `prefix hi', when applied to `Alice' gives `hiAlice'. If we define them as two different arrows, then their composite arrow is:
+This is a very big category. It contains {\em all} the monoids in the universe\footnote{You may think about the Russel's paradox. Strictly speaking, $\pmb{Mon}$ contains all `small' monoids in the universe}. On the other hand, category can also be small. Let's see another example, a category that contains only one monoid. Consider the monoid of English strings. There is only one object, which is the set of all English strings (I am sorry that this set does not look small). For any English string, for example `hello', we can define a prefix operation, that prepand `hello' to any other English strings. We call this operation as `prefix hello'. Apply `prefix hello' to word `Alice' gives result `helloAlice'; Similarly, we can define `prefix hi', when applies to `Alice' gives `hiAlice'. If we define them as two different arrows, then their composition is:
 
 \begin{center}
 prefix hello $\circ$ prefix hi = prefix hellohi
 \end{center}
 
-It means first add prefix `hi', then add prefix `hello'. It easy to verify that, any three such arrows are associative. For the identity element, any string does not change when adding empty string as prefix, hence it is the identity arrow. Now we have a monoid category with only one object, as shown in figure \ref{fig:monoid-as-category}.
+It means first prepend prefix `hi', then prepend prefix `hello'. It's easy to verify that, any three such arrows are associative. For the identity element, any string keeps same when prepended with empty string as prefix, hence it is the identity arrow. Now we have a monoid category with only one object, as shown in figure \ref{fig:monoid-as-category}.
 
 \begin{figure}[htbp]
 \centering
@@ -243,14 +243,14 @@ It means first add prefix `hi', then add prefix `hello'. It easy to verify that,
 \end{figure}
 
 \index{Monoid category}
-For monoid, we see both the category $\pmb{Mon}$, that contains all the monoids in the universe, and the category with only one monoid. It is like a hidden world in a piece of sand. What's more interesting, for any object $A$ in a category $\pmb{C}$, define set $hom(A, A)$ as all the arrows from $A$ to $A$ itself. Then this set of arrows for a monoid under composite operation, where the identity element is the identity arrow. Such symmetry emerges surprisingly.
+For monoid, we see both the category $\pmb{Mon}$, that contains all the monoids in the universe, and the category with only one monoid. It is like a hidden world in a piece of sand. What's more interesting, for any object $A$ in a category $\pmb{C}$, define set $hom(A, A)$ as all the arrows from $A$ to $A$ itself. Then this set of arrows forms a monoid under composite operation, where the identity element is the identity arrow. Such symmetry emerges surprisingly.
 
 \index{Category of sets under total functions}
 Our second example is set. Let every set be an object\footnote{Whenever consider the set of all sets, it ends up of Russel's paradox `the set all sets that does not contain itself'. We'll revisit Russel's paradox in chapter 7.}, the arrow is a function (or map) from one set $A$ to another set $B$. We call $A$ the domain of definition, and $B$ is the domain of the function value\footnote{It is total function, which can be applied to every elements in domain $A$.}. The composition is function composite. For functions $y = f(x)$ and $z = g(y)$, their composition is $z = (g \circ f)(x) = g(f(x))$. It's easy to verify that function composition is associative. The identity element is the identity function $id(x) = x$. Hence we obtain the category $\pmb{Set}$ of all sets and functions.
 
 \index{partial order set} \index{poset}
 \index{pre-order set} \index{preset}
-Our third example contains a pair of concepts. {\em partial order set} and {\em pre-order set}. Given a set, pre-order means we can compare every two elements in it. We often use the symbol $\leq$ to represent this binary relation. It is not necessarily means less or greater than like numbers, it can mean one set is subset of the other, one string is post-fix of the other, one person is descendant of the other etc. If the relation $\leq$ satisfy the following conditions, we call it a pre-order:
+Our third example contains a pair of concepts. {\em partial order set} and {\em pre-order set}. Given a set, pre-order means we can compare every two elements in it. We often use the symbol $\leq$ to represent this binary relation. It does not necessarily mean less than or equal relation between numbers, it can mean one set is subset of the other, one string is post-fix of the other, one person is descendant of the other etc. If the relation $\leq$ satisfies the following conditions, we call it a pre-order:
 
 \begin{itemize}
 \item \textbf{reflexive}: For every element $a$ in the set, we have $a \leq a$;
@@ -263,7 +263,7 @@ On top of these two, if the relation is also anti-symmetric, we call it partial 
 \item \textbf{anti-symmetric}: if $a \leq b$ and $b \leq a$, then $a = b$;
 \end{itemize}
 
-We define the set satisfies pre-oder preset, and the set satisfies partial order poset:
+We define the set satisfies pre-oder, and the set satisfies partial order as:
 
 \[
 preset \quad \quad \quad poset
@@ -296,7 +296,7 @@ preset \quad \quad \quad poset
 \label{fig:genealogical-tree}
 \end{figure}
 
-Not every two elements are comparable in partial order set. The figures in Duck Donald family form a partial order set under the descendant relations, as shown in figure \ref{fig:genealogical-tree}. We can see Donald$\leq$Quackmore, but there is no $\leq$ relation between Huey and Donald, or between Donald and Scrooge. Although every one has its ancestor in this family tree (The figures at the root can be considered as the ancestor of themselves according to reflexive rule), but the figures at the same level or in different branches are not comparable.
+Not every two elements are comparable in partial order set. The figures in Duck Donald family form a partial order set under the descendant relation, as shown in figure \ref{fig:genealogical-tree}. We can see Donald$\leq$Quackmore, but there is no $\leq$ relation between Huey and Donald, or between Donald and Scrooge. Although every one has its ancestor in this family tree (The figures at the root can be considered as the ancestor of themselves according to reflexive rule), but the figures at the same level or in different branches are not comparable.
 
 As shown in \ref{fig:powerset}, for a given set $\{x, y, z\}$, all its subsets form a partial order set under the inclusion relationship. Although every element (a subset) has a subset, elements at the same level are not comparable. Besides that there are also non-comparable elements, like $\{x\}$ and $\{y, z\}$ for example.
 
@@ -304,12 +304,12 @@ As shown in \ref{fig:powerset}, for a given set $\{x, y, z\}$, all its subsets f
  \centering
  \includegraphics[scale=0.4]{img/powerset.eps}
  %\captionsetup{labelformat=empty}
- \caption{All subsets form a partial order set under inclusion relationship}
+ \caption{All subsets form a partial order set under inclusion relationship.}
  \label{fig:powerset}
 \end{figure}
 
 \index{category of partial order set} \index{category of pre-order set}
-In general any partial order set is a pre-order set, but the reverse is not necessarily true. A pre-order set may not be partial order set. We learn monotone function in high school math. Monotone function never decreases, if $x \leq y$, then $f(x) \leq f(y)$. By composing monotone functions on top of partial order set or pre-order set, we obtain a pair of categories.
+In general, any partial order set is a pre-order set, but the reverse is not necessarily true. A pre-order set may not be partial order set. We learn monotone function in high school math. Monotone function never decreases, if $x \leq y$, then $f(x) \leq f(y)$. By composing monotone functions on top of partial order set or pre-order set, we obtain a pair of categories.
 
 \[
 \pmb{Pre} \quad \quad \quad \pmb{Pos}
@@ -317,7 +317,7 @@ In general any partial order set is a pre-order set, but the reverse is not nece
 
 The objects are all $presets$ and $posets$, the arrows are monotone maps. As the identity map is also monotone, it is the identity arrow in the category.
 
-We intended choose categories of monoids and pre-set as two examples. They are the two most simple categories. The study of monoids is the study of composition in the miniature. The study of presets is the study of comparison in the miniature. It is the core of the entire category to study the composition and comparison of mathematical structures. In a sense every category is an amalgam of certain monoids and presets(\cite{Simmons2011}, p13).
+We intend to choose categories of monoids and pre-set as two examples. They are the two most simple categories. The study of monoids is the study of composition in the miniature. The study of presets is the study of comparison in the miniature. It is the core of the entire category to study the composition and comparison of mathematical structures. In a sense every category is an amalgam of certain monoids and presets(\cite{Simmons2011}, p13).
 
 $\pmb{Pre}$ is a big category that contains all the pre-order sets in the world. On the other hand, preset category can also be very small, that only contains one pre-order set. Consider the set of elements $i, j, k, ...$, if $i$ and $j$ are comparable, and $i \leq j$, we define
 
@@ -325,12 +325,12 @@ $\pmb{Pre}$ is a big category that contains all the pre-order sets in the world.
 i \longrightarrow j
 \]
 
-Hence for every tow objects, either there is no arrow between them, which means they are not comparable; or there exists one, which means there is $\leq$ relationship. In summary, there is at most one arrow between any two objects. We can verify that such arrows are composable, and for every element $i$, relation $i \leq i$ holds, hence there exists self-pointed arrow. Such preset itself forms a category. Again, we see the symmetry between preset and monoid categories. Monoid category contains only one object, but has many arrows; while preset category contains many objects, but has at most one arrow between objects.
+Hence for every two objects, either there is no arrow between them, which means they are not comparable; or there exists one, which means there is $\leq$ relationship. In summary, there is at most one arrow between any two objects. We can verify that such arrows are composable, and for every element $i$, relation $i \leq i$ holds, hence there exists self-pointed arrow. Such preset itself forms a category. Again, we see the symmetry between preset and monoid categories. Monoid category contains only one object, but has many arrows; while preset category contains many objects, but has at most one arrow between objects.
 
 \begin{Exercise}
 \Question{Prove that the identity arrow is unique (hint: refer to the uniqueness of identity element for groups in the previous chapter).}
 \Question{Verify the monoid $(S, \cup, \varnothing)$ (the elements are sets, the binary operation is set union, the identity element is empty set) and $(N, +, 0)$ (elements are natural numbers, the binary operation is add, the identity element is zero) are all categories that contain only one object.}
-\Question{We introduced Peano's axioms for natural numbers in chapter 1, as well as the isomorphic structures to Piano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Piano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Piano object $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
+\Question{In chapter 1, we introduced Peano's axioms for natural numbers as well as the isomorphic structures to Peano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Peano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Peano objects $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
 
 \[
 A \arrowto{\phi} B
