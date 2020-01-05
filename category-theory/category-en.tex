@@ -426,10 +426,10 @@ In summary, functor preserves identity morphisms and composition of morphisms. F
 \end{wrapfigure}
 
 \index{functor!identity functor} \index{functor!id functor}
-Let's use some examples to understand functor. If a functor maps a category to itself, it is called {\em endo-functor}\footnote{Similar to the automorphism in abstract algebra, which we introduced in previous chapter.}. The most simple functor is the identity functor, which is an endo-functor, denoted as $id: \pmb{C} \to \pmb{C}$. It can be applied to any category, maps object $A$ to $A$, and maps arrow $f$ to $f$.
+Let's use some examples to understand functor. If a functor maps a category to itself, it is called {\em endo-functor}\footnote{Similar to the automorphism in abstract algebra, which we introduced in previous chapter.}. The simplest functor is the identity functor, which is an endo-functor, denoted as $id: \pmb{C} \to \pmb{C}$. It can be applied to any category, maps object $A$ to $A$, and maps arrow $f$ to $f$.
 
 \index{functor!constant functor}
-The second simple functor is the constant functor. It acts like a blackhole. We denote it as $\mathbf{K}_B : \pmb{C} \to \pmb{B}$. It can be applied to any category, maps all objects to the blackhole object $B$, and maps all arrows to the identity arrow in the blackhole $id_B$. The blackhole category has only one identity arrow, it also satisfy the arrow composition condition: $id_B \circ id_B = id_B$.
+The second simplest functor is the constant functor. It acts like a blackhole. We denote it as $\mathbf{K}_B : \pmb{C} \to \pmb{B}$. It can be applied to any category, maps all objects to the blackhole object $B$, and maps all arrows to the identity arrow in the blackhole $id_B$. The blackhole category has only one identity arrow, it also satisfy the arrow composition condition: $id_B \circ id_B = id_B$.
 
 \begin{example}
 \normalfont
@@ -451,7 +451,7 @@ Maybe functor. Computer scientist, Tony Hoare (Sir Charles Antony Richard Hoare)
 I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years\cite{Wiki-Hoare}.
 \end{quotation}
 
-After 2015, the main stream programming environments gradually adopted the maybe concept to replace the error prone null\footnote{For example the \texttt{Optional<T>} in Java and C++}.
+After 2015, the mainstream programming environments gradually adopted the maybe concept to replace the error prone null\footnote{For example the \texttt{Optional<T>} in Java and C++}.
 
 Below diagram illustrates how $\mathbf{Maybe}$ behaves.
 
@@ -469,7 +469,7 @@ Below diagram illustrates how $\mathbf{Maybe}$ behaves.
 \end{tikzpicture}
 \end{center}
 
-The left side objects $A$ and $B$ can be data types, like integer, Boolean. While the right side objects are mapped types through functor $\mathbf{Maybe}$. If $A$ represents $Int$, then the right side corresponds to $\mathbf{Maybe}\ Int$, if $B$ represents $Bool$, then the right side corresponds to $\mathbf{Maybe}\ Bool$. How does the maybe functor maps objects? that part is defined as this:
+The left side objects $A$ and $B$ can be data types, like integer, Boolean. While the right side objects are mapped types through functor $\mathbf{Maybe}$. If $A$ represents $Int$, then the right side corresponds to $\mathbf{Maybe}\ Int$, if $B$ represents $Bool$, then the right side corresponds to $\mathbf{Maybe}\ Bool$. How does the maybe functor map objects? that part is defined as:
 
 \lstset{frame=none}
 \begin{lstlisting}
@@ -643,7 +643,7 @@ List functor. We introduced the definition of list in chapter 1 as:
 data List A = Nil | Cons(A, List A)
 \end{lstlisting}
 
-From programming perspective, this defines the linked-list data structure. The elements stored in it are of type $A$. We call it link-list of type $A$. From category perspective, a list functor need define maps for both object and arrow. Here objects are types, arrows are total functions. Below diagram illustrates how list functor behaves.
+From programming perspective, it defines the linked-list data structure. The elements stored are of type $A$. We call it link-list of type $A$. From category perspective, a list functor need define maps for both object and arrow. Here objects are types, arrows are total functions. Below diagram illustrates how list functor behaves.
 
 \begin{center}
 \begin{tikzpicture}
@@ -663,25 +663,25 @@ Objects $A, B$ on the left side are data types, like integer, Boolean, or even c
 
 We highlight again that here the object is type, but not value. $A$ can be $Int$, but can not be 5, a particular value. Hence $\mathbf{List}\ A$ corresponds to list of integers, but not a particular list, like [1, 1, 2, 3, 5]. How to generate list values? Function $Nil$ and $Cons$ are used to generate empty list or list like $List(1, List(1, List(2, Nil)))$.
 
-Now we know how list functor maps objects, how does it map arrows? Given a function $f: A \to B$, how to obtain another function $g: \mathbf{List}\ A \to \mathbf{List}\ B$ through list functor? Similar to maybe functor, we can realize $fmap$ to map arrow $f$ to arrow $g$. The type signature for list functor is:
+Now we know how list functor maps objects. But how does it map arrows? Given a function $f: A \to B$, how to obtain another function $g: \mathbf{List}\ A \to \mathbf{List}\ B$ through list functor? Similar to maybe functor, we can realize $fmap$ to map arrow $f$ to arrow $g$. The type signature for list functor is:
 
 \[
 fmap: (A \to B) \to (\mathbf{List}\ A \to \mathbf{List}\ B)
 \]
 
-Let's consider what $g$ behaves. For the simplest case, no matter what $f$ is defined, if the value of $\mathbf{List}\ A$ is an empty list $Nil$, they applying $g$ on it gives empty list anyway. Therefore:
+Let's consider how $g$ behaves. For the simplest case, no matter how $f$ is defined, if the value of $\mathbf{List}\ A$ is an empty list $Nil$, then applying $g$ on it gives empty list anyway. Therefore:
 
 \[
 fmap\ f\ Nil = Nil
 \]
 
-For the recursive case $Cons(x, xs)$, where $x$ is some value of type $A$, and $xs$ is a sub-list of type $\mathbf{List}\ A$. If $f(x) = y$, which maps $x$ of type $A$ to $y$ of type $B$, then we first apply $f$ to $x$, then recursively apply it to the sub-list $xs$ to obtain a new sub-list $ys$ with the element type of $B$. Finally, we concatenate $y$ and $ys$ as the result:
+For the recursive case $Cons(x, xs)$, where $x$ is some value of type $A$, and $xs$ is a sub-list of type $\mathbf{List}\ A$. If $f(x) = y$, which maps $x$ of type $A$ to $y$ of type $B$, then we first apply $f$ to $x$, next recursively apply it to the sub-list $xs$ to obtain a new sub-list $ys$ with the element type of $B$. Finally, we concatenate $y$ and $ys$ as the result:
 
 \[
 fmap\ f\ Cons(x, xs) = Cons(f\ x, fmap\ f\ xs)
 \]
 
-Summarize them together, we have the complete definition of $fmap$:
+Summarize them together, we have the complete definition of $fmap$ for list:
 
 \[
 \begin{array}{l}
@@ -691,7 +691,7 @@ Summarize them together, we have the complete definition of $fmap$:
 \end{array}
 \]
 
-In chapter 1, we introduced the simplified notation, using the infix `:' for $Cons$, and using `[]' for $Nil$, then the definition of list functor that maps arrows can be simplified as:
+In chapter 1, we introduced the simplified notation, using the infix `:' for $Cons$, and `[]' for $Nil$, then the definition of list functor that maps arrows can be simplified as:
 
 \[
 \begin{array}{l}
@@ -701,7 +701,7 @@ In chapter 1, we introduced the simplified notation, using the infix `:' for $Co
 \end{array}
 \]
 
-Observer this definition, and compare it with the list mapping definition in chapter 1, we can find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in some programming environment, which re-uses \texttt{map} for list functor.
+Compare this definition with the list mapping definition in chapter 1, we find they are exactly same except for the name. It means we can re-use the list mapping to define list functor. This is the case in some programming environment, which re-uses \texttt{map} for list functor.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -709,9 +709,9 @@ instance Functor [] where
     fmap = map
 \end{lstlisting}
 
+\begin{mdframed}
 At the end of this example, let's verify the arrow mapping for list functor preserve identity and composition. \textbf{Readers can skip the proof in this box}.
 
-\begin{mdframed}
 \[
 \begin{array}{l}
 fmap\ id = id \\
@@ -774,12 +774,12 @@ Thus we verified $\mathbf{List}$ is really a functor.
 \Question{Verify that the composition of maybe functor and list functor $\mathbf{Maybe} \circ \mathbf{List}$ and $\mathbf{List} \circ \mathbf{Maybe}$ are all functors.}
 \Question{Proof that the composition for any functors $\mathbf{G} \circ \mathbf{F}$ is still a functor.}
 \Question{Give an example functor for preset.}
-\Question{For the binary tree defined in chapter 2, define a functor for it.}
+\Question{For the binary tree defined in chapter 2, define the functor for it.}
 \end{Exercise}
 
 \section{Products and coproducts}
 
-Before we introduce more complex categories and functors, let see what product and coproduct are. We start from the product of sets. Given two set $A$ and $B$, their Cartesian product $A \times B$ is the set of all ordered pairs $(a, b)$, where $a \in A$ and $b \in B$:
+Before we introduce more complex categories and functors, let us see what product and coproduct are. We start from the product of sets. Given two set $A$ and $B$, their Cartesian product $A \times B$ is the set of all ordered pairs $(a, b)$, where $a \in A$ and $b \in B$:
 
 \[
 \{(a, b) | a \in A, b \in B\}
@@ -837,7 +837,7 @@ In {\em Geometry}, Descartes exploited the discoveries he made with Pierre de Fe
 
 In 1649 Queen Christina of Sweden persuaded Descartes to go to Stockholm. However the Queen wanted to draw tangents at 5 a.m. and Descartes broke the habit of his lifetime of getting up at 11 o'clock. After only a few months in the cold northern climate, walking to the palace for 5 o'clock every morning, he died of pneumonia February 1650 at the age of 54.
 
-Descartes left the best known philosophical statement `` think, therefore I am'' (French: Je pense, donc je suis; Latin: cogito, ergo sum). Descartes laid the foundation for 17th-century continental rationalism. He was well-versed in mathematics as well as philosophy, and contributed greatly to science as well. He is credited as the father of analytical geometry, the bridge between algebra and geometry—used in the discovery of infinitesimal calculus and analysis. Descartes was also one of the key figures in the Scientific Revolution.
+Descartes left the best known philosophical statement ``I think, therefore I am'' (French: Je pense, donc je suis; Latin: cogito, ergo sum). Descartes laid the foundation for 17th-century continental rationalism. He was well-versed in mathematics as well as philosophy, and contributed greatly to science as well. He is credited as the father of analytical geometry, the bridge between algebra and geometry—used in the discovery of infinitesimal calculus and analysis. Descartes was also one of the key figures in the Scientific Revolution.
 
 \vspace{5mm}
 
@@ -894,6 +894,7 @@ The two constructions are symmetric. If rotate the two diagrams by 90 degree, la
 \subsection{Definition of product and coproduct}
 \index{product} \index{coproduct}
 \begin{definition}
+\normalfont
 For a pair of objects $A$ and $B$ in category $\pmb{C}$, a {\em wedge}
 
 \[
@@ -921,9 +922,10 @@ the pair $A, B$ is an object $X$ together with a pair of arrows
 in the parent category $\pmb{C}$.
 \end{definition}
 
-For a given pair of objects $A, B$ in the category, there may be many wedges o one side or the other. We look for the `best possible' wedge, one that is as `near' the pair as possible. Technically, we look for a universal wedge. It leads to the below (pair of) definitions:
+For a given pair of objects $A, B$ in the category, there may be many wedges on one side or the other. We look for the `best possible' wedge, the one that is as `near' the pair as possible. Technically, we look for a universal wedge. It leads to the below (pair of) definitions:
 
 \begin{definition}
+\normalfont
 Given a pair object $A, B$ of a category $\pmb{C}$, a
 
 \[
@@ -1042,6 +1044,7 @@ Hence $m$ must be identity arrow. The diagram then simplifies to:
 Among the many wedges, the product and product are special, they are universal solutions. In other words, they are the `closest' or the `best' wedge. We can prove that product and coproduct are unique (see the appendix of this book). However, product and coproduct may not exist at the same time, it's also possible that neither does exist. Let's see what product and coproduct mean to set.
 
 \begin{lemma}
+\normalfont
 Let $A$, $B$ be a pair of sets. Then the
 
 \begin{center}
@@ -2654,7 +2657,7 @@ x & \longmapsto & x^{-1} & \text{reverse element} \\
 Therefore, the algebraic structure of group is consist of three parts:
 
 \begin{enumerate}
-  \item The carrier object $G$, which is the set furnitured with the algebraic structure;
+  \item The carrier object $G$, which is the set furnished with the algebraic structure;
   \item Polynomial functor $\mathbf{F} A = 1 + A + A \times A$, which defined the algebraic operations on the group;
   \item Arrow $\mathbf{F} A \arrowto{\alpha = e + m + i} A$. It is the sum of the identity element arrow $e$, the binary operation arrow $m$, and the reverse element arrow $i$.
 \end{enumerate}
@@ -2749,7 +2752,7 @@ respectively.
 
 We introduced Peano axioms for natural numbers and things that are isomorphic to natural numbers in chapter 1. In fact, we can use F-algebra to describe all natural number like things.
 
-Consider a set $A$ furnitured with algebraic structure. Use the Fibonacci numbers introduced in chapter 1 for instance, where $A$ is the set of pairs $(Int, Int)$, the initial pair is $(1, 1)$, the successor function is $h(m, n) = (n, m + n)$.
+Consider a set $A$ furnished with algebraic structure. Use the Fibonacci numbers introduced in chapter 1 for instance, where $A$ is the set of pairs $(Int, Int)$, the initial pair is $(1, 1)$, the successor function is $h(m, n) = (n, m + n)$.
 
 In order to model this {\em kind} of algebraic structure in F-algebra, we need three things: functor, carrier object, and the $\alpha$ arrow. From the Peano axiom, natural number functor should be defined as below:
 
@@ -2869,7 +2872,7 @@ We denote the initial object 0 of category $\pmb{NatF}$ as a pair $(I, i)$. Ther
 \end{tikzpicture}
 \end{center}
 
-Since there is unique arrow from the initial object to {\em every} object, hence for the object formed by recursively applying the functor $\mathbf{NatF}(\mathbf{NatF}I)$, there must be the unique arrow as well. The recursive F-algebra is furnitured with three properties:
+Since there is unique arrow from the initial object to {\em every} object, hence for the object formed by recursively applying the functor $\mathbf{NatF}(\mathbf{NatF}I)$, there must be the unique arrow as well. The recursive F-algebra is furnished with three properties:
 
 \begin{enumerate}
 \item The common functor $\mathbf{NatF}$；
@@ -2944,7 +2947,7 @@ This result is as same as the arithmetic axioms given by Peano in 1889. For any 
 If there exists the initial object in the category of F-algebra $\pmb{Alg}(F)$, then the initial object is called the initial algebra.
 \end{definition}
 
-In the category of set furnitured with total functions, many functors, including polymorphic functors have the initial algebra. We skipped the proof for existence of initial algebra, readers can refer to \cite{Manes-Arbib-1986}. Given a functor $\mathbf{F}$, we can obtain the initial object of the F-algebra through its fixed point.
+In the category of set furnished with total functions, many functors, including polymorphic functors have the initial algebra. We skipped the proof for existence of initial algebra, readers can refer to \cite{Manes-Arbib-1986}. Given a functor $\mathbf{F}$, we can obtain the initial object of the F-algebra through its fixed point.
 
 % https://en.wikipedia.org/wiki/Joachim_Lambek
 %\begin{wrapfigure}{R}{0.35\textwidth}
