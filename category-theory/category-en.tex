@@ -1186,7 +1186,7 @@ For product, if arrow $f$ equals to $fst$, and arrow $g$ equals to $snd$, then w
 id = \langle fst, snd \rangle \quad \quad \quad id = [left, right]
 \]
 
-If there exists another wedge $Y$ and arrows $h$ and $g$, together with $f, g$ they satisfy the following conditions:
+If there exists another wedge $Y$ and arrows $h$ and $k$, together with $f, g$ they satisfy the following conditions:
 
 \[
 \begin{array}{ccc}
@@ -1278,7 +1278,7 @@ Besides objects, functor must transform arrows as well. For the arrow $f$ in cat
 \end{tikzpicture}
 \end{center}
 
-From this diagram, the arrow $A \arrowto{f} C$ and $B \arrowto{g} D$ are sent to the new arrow in category $\pmb{E}$ through the functor $\mathbf{F}$. The source object is $\mathbf{F}(A \times B)$, and the target object is $\mathbf{F}(C \times D)$. To do that, we first define the product of two arrows $f$ and $g$, it applies to the product of $A$ and $B$. For every $(a, b) \in A \times B$, it behaves as below:
+From this diagram, the arrow $A \arrowto{f} C$ and $B \arrowto{g} D$ are sent to the new arrows in category $\pmb{E}$ through the functor $\mathbf{F}$. The source object is $\mathbf{F}(A \times B)$, and the target object is $\mathbf{F}(C \times D)$. To do that, we first define the product of two arrows $f$ and $g$, it applies to the product of $A$ and $B$. For every $(a, b) \in A \times B$, it behaves as below:
 
 \[
 (f \times g)(a, b) = (f\ a\ , g\ b)
@@ -1409,7 +1409,7 @@ In order to prove it, we will first prove the {\em absorption law} for
 \end{array}
 \]
 
-We only give the proof for the product on the left. the coproduct side can be proved similarly. We leave it as the exercise.
+We only give the proof for the product on the left. the coproduct side can be proved similarly. We leave it as exercise.
 
 \[
 \begin{array}{cll}
@@ -1464,7 +1464,7 @@ bimap\ f\ g\ (right\ y) = right\ (g\ y)
 
 \section{Natural transformation}
 
-When Eilenberg and Mac Lane developed category theory in the early 1940s, they wanted to explain why certain ‘natural’ construction are natural, and other constructions are not. As the result, categories were invented to support functors, and these were invented to support natural transformations. Mac Lane is said to have remarked, "I didn't invent categories to study functors; I invented them to study natural transformations." We've introduced categories and functors, in category theory, arrows are used to compare objects, functors are used to compare categories. What will be used to compare functors? It is natural transformation that serves this purpose.
+When Eilenberg and Mac Lane developed category theory in the early 1940s, they wanted to explain why certain ‘natural’ construction are natural, and other constructions are not. As the result, categories were invented to support functors, and these were invented to support natural transformations. Mac Lane is said to have remarked, ``I didn't invent categories to study functors; I invented them to study natural transformations.'' We've introduced categories and functors. In category theory, arrows are used to compare objects, functors are used to compare categories. What will be used to compare functors? It is natural transformation that serves this purpose.
 
 Consider the following two functors:
 
@@ -1491,6 +1491,7 @@ Besides $A$, we do the similar study to all the objects in category $\pmb{Src}$.
 
 \index{natural transformation}
 \begin{definition}
+\normalfont
 Given a parallel pair of functors $\mathbf{F}, \mathbf{G}$ of the same variance as shown in above figure, a natural transformation
 
 \[
@@ -1538,11 +1539,11 @@ From the diagram of natural transformation, we see for every arrow $f$, there is
 
 \subsection{Examples of natural transformation}
 
-Natural transformation is a higher level of abstraction on top of category, arrow, and functor. Let's see some examples to help understand this concept.
+Natural transformation is a higher level of abstraction on top of categories, arrows, and functors. Let's see some examples to help understand this concept.
 
 \begin{example}
 \normalfont
-The first example is the $inits$ function, it enumerates all the prefixes of a given string or list. For instances:
+The first example is the $inits$ function. It enumerates all the prefixes of a given string or list. For instances:
 
 \lstset{frame=none}
 \begin{lstlisting}
@@ -1578,7 +1579,7 @@ Next, we need verify that for any function $A \arrowto{f} B$, the equation
 \mathbf{List}(\mathbf{List}(f)) \circ inits_A = inits_B \circ \mathbf{List}(f)
 \]
 
-holds, it means the below square diagram commutes:
+holds. It means the below square diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1621,6 +1622,7 @@ Therefor, $inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$ is a nat
 \end{example}
 
 \begin{example}
+\normalfont
 The next example is called $safeHead$, it can safely access the first element from a list. Here `safe' means it can handle the empty list (Nil) case without exception. To do that, we will utilize the maybe functor defined previously. $safeHead$ is defined as the following:
 
 \[
