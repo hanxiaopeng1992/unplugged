@@ -1623,7 +1623,7 @@ Therefor, $inits : \mathbf{List} \to \mathbf{List} \circ \mathbf{List}$ is a nat
 
 \begin{example}
 \normalfont
-The next example is called $safeHead$, it can safely access the first element from a list. Here `safe' means it can handle the empty list (Nil) case without exception. To do that, we will utilize the maybe functor defined previously. $safeHead$ is defined as the following:
+The next example is called $safeHead$, it can safely access the first element of the list. Here `safe' means it can handle the empty list (Nil) case without exception. To do that, we will utilize the maybe functor defined previously. $safeHead$ is defined as the following:
 
 \[
 \begin{array}{l}
@@ -1676,7 +1676,7 @@ We prove it for two cases. The first case is the empty list:
 \end{array}
 \]
 
-The second case the non-empty list $(x:xs)$:
+The second case is the non-empty list $(x:xs)$:
 
 \[
 \begin{array}{cll}
@@ -1688,7 +1688,7 @@ The second case the non-empty list $(x:xs)$:
 \end{array}
 \]
 
-Summarize both cases, hence proved that $safeHead : \mathbf{List} \to \mathbf{Maybe}$ is natural transformation.
+Summarize both cases, hence proved that $safeHead : \mathbf{List} \to \mathbf{Maybe}$ is a natural transformation.
 \end{proof}
 \end{example}
 
