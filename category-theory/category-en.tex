@@ -1692,19 +1692,19 @@ Summarize both cases, hence proved that $safeHead : \mathbf{List} \to \mathbf{Ma
 \end{proof}
 \end{example}
 
-From the two examples, we can make some summarize. From any object $A$ of the category (For set category, it is a set $A$; in programming, it is a type $A$), we send it through functor $\mathbf{F}$ to another object $\mathbf{F}A$ (For set category, $\mathbf{F}A$ is another set; in programming, $\mathbf{F}A$ is another type), while the other functor $\mathbf{G}$ send the object to $\mathbf{G}A$. Natural transformation $\phi$ indexed by $A$ (For set category, it is a map; in programming, it's a function)\footnote{also called as the component at $A$} is in the form:
+From the two examples, we summarize that, for any object $A$ of the category (For set category, it is a set $A$; in programming, it is a type $A$), functor $\mathbf{F}$ sends it to another object $\mathbf{F}A$ (For set category, $\mathbf{F}A$ is another set; in programming, $\mathbf{F}A$ is another type), while the other functor $\mathbf{G}$ sends the object to $\mathbf{G}A$. Natural transformation $\phi$ indexed by $A$ (For set category, it is a map; in programming, it's a function)\footnote{also called as the component at $A$} is in the form:
 
 \[
 \phi_A : \mathbf{F} A \to \mathbf{G} A
 \]
 
-Not only for $A$, now let's abstract {\em all} the objects, hence we obtain a family of arrows (in programming, it is a {\em polymorphic function}\footnote{Think about the polymorphic function in object oriented programming, and the template function in generic programming.}):
+Not only for $A$, when abstract {\em all} objects, we obtain a family of arrows (in programming, it is a {\em polymorphic function}\footnote{Think about the polymorphic function in object oriented programming, and the template function in generic programming.}):
 
 \[
 \phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
 \]
 
-In some programming environment, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
+In some programming environments, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
 
 \lstset{frame=single}
 \begin{lstlisting}
