@@ -1704,7 +1704,7 @@ Not only for $A$, when abstract {\em all} objects, we obtain a family of arrows 
 \phi : \forall A \cdot \mathbf{F} A \to \mathbf{G} A
 \]
 
-In some programming environments, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/fold fusion law.}:
+In some programming environments, natural transformation can be written as\footnote{There is an \texttt{ExplicitForAll} option in Haskell, we'll see it again in the next chapter about build/foldr fusion law.}:
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -1729,7 +1729,7 @@ It only substitutes the name \texttt{phi} to their names respectively, and repla
 
 \subsection{Natural isomorphism}
 
-We said natural transformation was developed to compare functors. Similar to the isomorphism concept in abstract algebra, we need define when two functors are considered `equal'.
+Natural transformation was developed to compare functors. Similar to the isomorphism concept in abstract algebra, we need define when two functors are considered `equal'.
 
 % natural isomorphism
 \index{natural isomorphism}
@@ -1750,9 +1750,9 @@ such that for each source arrow $A$, the selected arrow
 is an isomorphism in the target category.
 \end{definition}
 
-Sometimes two functors that are naturally isomorphic are said to be {\em naturally equivalent}.
+Two functors that are naturally isomorphic are also said to be {\em naturally equivalent}.
 
-For the simplest example, let us check the $swap$ example. For the product of any two objects $A \times B$, $swap$ turns it into $B \times A$:
+The simplest natural isomorphism example is $swap$. For the product of any two objects $A \times B$, $swap$ turns it into $B \times A$:
 
 \[
 \begin{array}{l}
@@ -1761,7 +1761,7 @@ swap\ (a, b) = (b, a)
 \end{array}
 \]
 
-$swap$ is a natural transformation. It applies to two bifunctors, and both bifunctors happen to be product functors: $\mathbf{F} = \mathbf{G} = \times$.
+$swap$ is a natural transformation. It transforms one bifunctor to another. Both bifunctors happen to be product functors: $\mathbf{F} = \mathbf{G} = \times$.
 
 Since they are bifunctors, for every two arrows $A \arrowto{f} C$ and $B \arrowto{g} D$, we need the following natural condition so that the diagram commutes:
 
@@ -1789,9 +1789,9 @@ Since they are bifunctors, for every two arrows $A \arrowto{f} C$ and $B \arrowt
 \end{tikzpicture}
 \end{center}
 
-It's easy to prove this. We can chose any two products $(a, b)$ and $(c, d)$, substitute them into both sides of the natural condition. We leave this as an exercise to the readers.
+It's easy to prove this. We can chose any two products $(a, b)$ and $(c, d)$, substitute them into both sides of the natural condition. We leave the proof as an exercise of this section.
 
-Although both are product functors, let's take some time to prove they are natural isomorphism. For the product of every two objects $A \times B$, as:
+Although both are product functors, let's take some time to prove they are natural isomorphic. For the product of any two objects $A \times B$, as:
 
 \[
 swap_{A \times B} \circ swap_{B \times A} = id
@@ -1799,10 +1799,10 @@ swap_{A \times B} \circ swap_{B \times A} = id
 
 It tells us that $swap$ is an one to one mapping. It is isomorphic in the target category, hence proved the natural isomorphism.
 
-All the above three examples $inits$, $safeHead$, and $swap$ are both polymorphic function and natural transformation. This is not a coincidence. In fact, all polymorphic functions are natural transformations in functional programming\cite{Wadler-1989}.
+All the above three examples $inits$, $safeHead$, and $swap$ are both polymorphic functions and natural transformations. This is not a coincidence. In fact, all polymorphic functions are natural transformations in functional programming\cite{Wadler-1989}.
 
 \begin{Exercise}
-\Question{Prove that $swap$ satisfy the natural transformation condition $(g \times f) \circ swap = swap \circ (f \times g)$}
+\Question{Prove that $swap$ satisfies the natural transformation condition $(g \times f) \circ swap = swap \circ (f \times g)$}
 \Question{Prove that the polymorphic function $length$ is a natural transformation. It is defined as the following:
 \[
 \begin{array}{l}
@@ -1812,7 +1812,7 @@ length\ (x:xs) = 1 + length\ xs
 \end{array}
 \]
 }
-\Question{We can compose natural transformations. Consider two natural transformations $\mathbf{F} \arrowto{\phi} \mathbf{G}$ and $\mathbf{G} \arrowto{\psi} \mathbf{H}$, for any arrow $A \arrowto{f} B$, draw the diagram for their composition, and list the commutative condition.}
+\Question{Natural transformation is composable. Consider two natural transformations $\mathbf{F} \arrowto{\phi} \mathbf{G}$ and $\mathbf{G} \arrowto{\psi} \mathbf{H}$. For any arrow $A \arrowto{f} B$, draw the diagram for their composition, and list the commutative condition.}
 \end{Exercise}
 
 \section{Data types}
