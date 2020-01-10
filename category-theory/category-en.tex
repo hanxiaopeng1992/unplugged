@@ -2265,10 +2265,10 @@ as the fusion law for Currying. Draw the diagram and prove it.}
 
 \subsection{Cartesian closed and object arithmetic}
 
-With the initial object as 0, the final object as 1, coproduct as add, product as multiplication, exponentials as powers, we are capable to do arithmetic or even form polynomials for categories. But let us hold on. As we warned at the beginning of chapter 3, we should always ask ourselves what is the applicable scope for the abstraction? when will the abstraction be invalid?
+With the initial object as 0, the final object as 1, coproduct as add, product as multiplication, exponentials as powers, we are capable to do arithmetic or even form polynomials for categories. But hold on. As we warned at the beginning of chapter 3, we should always ask ourselves what the applicable scope for the abstraction is, when the abstraction will be invalid.
 
 \index{Cartesian closed}
-Not all categories have the initial or final object, and do not necessary have exponentials. If a category has finite product, for any object $A$ and $B$, there is $A^B$, it is called {\em Cartesian closed}. A Cartesian closed category must has:
+Not all categories have the initial or final object, and do not necessary have exponentials. If a category has finite product, for any object $A$ and $B$, there is $A^B$, it is called {\em Cartesian closed}. A Cartesian closed category must have:
 
 \begin{enumerate}
 \item A final object (1);
@@ -2283,7 +2283,7 @@ If a Cartesian closed category also supports the dual of the final object, which
 
 A Bicartesian closed category satisfies the following conditions in additional:
 \begin{enumerate}
-  \setcounter{enumi}{4}
+  \setcounter{enumi}{3}
   \item The initial object (0);
   \item Every two objects have coproduct ($+$);
   \item Product can be distributed from both sides to coproduct:
@@ -2412,7 +2412,7 @@ A^{B \times C} & = & \{B \times C \arrowto{g} A \}  & \text{Definition of expone
   (A \times B)^C = A^C \times B^C
 \]
 
-The exponential $(A \times B)^C$ is the set of arrows of $C \to A \times B$. It equivalent to the set of functions that returns a pair of values $\{ c \mapsto (a, b)\}$, where $c \in C, a \in A, b \in B$. It is obviously isomorphic to $\{(c \mapsto a, c \mapsto b)\}$, which is exactly the product of arrows $C \to A$ and $C \to B$. We then write the two arrows in exponentials and obtain the product of exponentials.
+The exponential $(A \times B)^C$ is the set of arrows of $C \to A \times B$. It is equivalent to the set of functions that returns a pair of values $\{ c \mapsto (a, b)\}$, where $c \in C, a \in A, b \in B$. It is obviously isomorphic to $\{(c \mapsto a, c \mapsto b)\}$, which is exactly the product of arrows $C \to A$ and $C \to B$. We then write the two arrows in exponentials thus obtain the product of exponentials.
 
 \[
 \begin{array}{rcll}
@@ -2428,7 +2428,7 @@ The exponential $(A \times B)^C$ is the set of arrows of $C \to A \times B$. It 
 \label{sec:polynomial-functors}
 \index{polynomial functors}
 
-The arithmetic we introduced applies to objects in Cartesian closed categories. What if we take the functor into consideration? As functors apply to both objects and arrows, it leads to the concept of polynomial functors. A polynomial functor is built from constant functors (refer to \hyperref[sec:functor:examples]{The `black hole' functor example}), product functors, and coproduct functors recursively.
+The arithmetic we introduced applies to objects in Cartesian closed categories. What if we take functors into consideration? As functors apply to both objects and arrows, it leads to the concept of polynomial functors. A polynomial functor is built from constant functors (refer to \hyperref[sec:functor:examples]{The `black hole' functor example}), product functors, and coproduct functors recursively.
 
 \begin{itemize}
   \item The identity functor $id$, and constant functor $\mathbf{K}_A$ are polynomial functors;
@@ -2458,11 +2458,11 @@ Where $A$ is some fixed object. Then functor $\mathbf{F}$ is a polynomial functo
 
 \subsection{F-algebra}
 
-In order to construct complex algebraic data type that support recursive structure, we need the last corner stone, the F-algebra. Observe the concepts in abstract algebra, like monoid, group, ring, field, etc., they are not only abstract objects, but also have structures. It is the relation among the structures, makes them different from the traditional concrete things, like numbers, points, lines, and planes. When we know the structures and their relations well, we actually understand all the things of the same structure and relations. Not only for numbers, points, lines, and planes, but also for `tables, chairs, and beer mugs' as Hilbert said.
+In order to construct complex algebraic data types that support recursive structure, we need the last corner stone, the F-algebra. Think about the concepts in abstract algebra, like monoid, group, ring, field, etc., they are not only abstract objects, but also have structures. It is the relation among the structures, makes them different from the traditional concrete things, like numbers, points, lines, and planes. When we understand the structures and their relations well, we actually understand all the things of the same structure and relations. Not only for numbers, points, lines, and planes, but also for `tables, chairs, and beer mugs' as Hilbert said.
 
 \begin{example}
 \normalfont
-Start from the simple example of monoid, we are going to introduce the F-algebra step by step. A monoid is a set $M$, defined with the identity element and the associative binary operation.
+Start from the simple example of monoid, we introduce the F-algebra step by step. A monoid is a set $M$, defined with the identity element and the associative binary operation.
 
 Denote the binary operation as $\oplus$, the identity element as $1_M$, we can list the two monoid axioms as the following:
 
@@ -2473,7 +2473,7 @@ Denote the binary operation as $\oplus$, the identity element as $1_M$, we can l
 \end{cases}
 \]
 
-As the first step, we represent the binary operation $\oplus$ as a binary function, represent $1_M$ as a selection function. Define:
+In the first step, we represent the binary operation $\oplus$ as a binary function, represent $1_M$ as a selection function. Define:
 
 \[
 \begin{cases}
@@ -2524,7 +2524,7 @@ These two axioms indicate the following two diagrams commute.
 \caption{The diagrams for monoid axioms}
 \end{figure}
 
-We can say any monoid can be represented with a tuple $(M, m , e)$, where $M$ is the set, $m$ is the binary operation function, and $e$ is the identity element selection function.
+Therefore, any monoid can be represented with a tuple $(M, m , e)$, where $M$ is the set, $m$ is the binary operation function, and $e$ is the identity element selection function.
 
 We come to the third step. $(M, m, e)$ does not only specify the set of the monoid, but also specifies the binary operation and identity element on top of this set. It completely defines the algebraic structure of monoid. All the possible combinations of arrow $m$ and $e$ that form the monoid are products of two exponentials:
 
@@ -2544,7 +2544,7 @@ Next, we turn the right side exponentials to the arrow form. For all the monoids
 
 This relation can be represented as the sum through coproduct $\alpha = e + m$, which is the polynomial functor $\mathbf{F} M = 1 + M \times M$.
 
-As a summary, for the monoid example, the algebraic structure is consist of three parts:
+In summary, for the monoid example, the algebraic structure is consist of three parts:
 
 \begin{enumerate}
   \item Object $M$ is the set that carries the algebraic structure for the monoid. It is called {\em carrier object};
@@ -2603,7 +2603,7 @@ Compare to monoid, group need an additional inverse element axiom. Similar to th
 \end{cases}
 \]
 
-As the first step, we represent the binary operation, the identity element, and the reverse operation as function. Define:
+In the first step, we represent the binary operation, the identity element, and the reverse operation as function. Define:
 
 \[
 \begin{cases}
