@@ -2067,11 +2067,11 @@ Observe a binary function $f(x, y) = z$ defined for natural numbers, for example
 f : N^2 \to N
 \]
 
-For function $f$, can we take $N^2$ as a whole object, but not two arguments? i.e. treat it as $f\ (x, y)$ but not $f(x, y)$. If we consider the argument as a `hole', then the former is $f\ \bullet$, then put a pair $(x, y)$ into that hole; while the latter is $f(\bullet, \bullet)$, then we put $x$ and $y$ to the two holes respectively. On the other hand, we introduced Currying in chapter 2, we can consider $f$ as $f: N \to (N \to N)$. After passing $x$ to it, $f\ x$ returns another function. This new function sends one natural number to another number. It seems we can't get the exponential concept with Currying directly. However, what if we consider the Curried result, which is $N \to N$, as a whole thing? we can name it as the `function object'. It's still a bit complex since $N$ is a infinite set. Let's go back a step and restart with a simpler example, the $Bool$ set with only two elements:
+For function $f$, can we take $N^2$ as a whole object, but not two arguments? i.e. treat it as $f\ (x, y)$ but not $f(x, y)$. If we consider the argument as a `hole', then the former is $f\ \bullet$, then put a pair $(x, y)$ into that hole; while the latter is $f(\bullet, \bullet)$, then we put $x$ and $y$ to the two holes respectively. On the other hand, we introduced Currying in chapter 2. We can consider $f$ as $f: N \to (N \to N)$. After passing $x$ to it, $f\ x$ returns another function. This new function sends one natural number to another number. It seems we can't get the exponential concept with Currying directly. However, what if we consider the Curried result, which is $N \to N$, as a whole thing? we can name it as the `function object'. It's still a bit complex since $N$ is a infinite set. Let's go back a step and restart with a simpler example, the $Bool$ set with only two elements:
 
 \begin{example}
 \normalfont
-There are infinite many arrows (function) from $Bool$ to $Int$. They form a set $\{Bool \arrowto{f} Int\}$. Let us select an element, which is an example function from it.
+There are infinite many arrows (functions) from $Bool$ to $Int$. They form a set $\{Bool \arrowto{f} Int\}$. Let us select an element, an example function from it.
 
 \[
 \begin{array}{l}
@@ -2081,7 +2081,7 @@ ord\ True = 1 \\
 \end{array}
 \]
 
-The result is a pair of numbers $(0, 1)$. It is an instance. We can write all the arrows in above set in this way:
+The result is a pair of numbers $(0, 1)$. Similar to this instance, we can write all the arrows in above set in this way:
 
 \[
 \begin{array}{l}
@@ -2101,7 +2101,7 @@ No matter how $f$ varies, the result is always a pair of numbers $(a, b)$. We sa
 \end{array}
 \]
 
-It tells us that, the set of arrows, which is the type of the arrow\footnote{Strictly speaking, we should remove the pair of curly brackets of the arrow. We add the curly brackets only for understanding easily.}: $Bool \to Int$, corresponds to a exponential $Int^{Bool}$. Which means $Bool \to Int = Int^{Bool}$. Why can we use 2 to substitute $Bool$ in the above reasoning, to convert $Int^2$ to $Int^{Bool}$? The reason is isomorphism. The equal symbol actually means isomorphism. Strictly speaking, we should use the ``$\cong$'' symbol, but not ``=''. $Int^2$ represents the product of two integers, which is the set of $Int$ pairs. The set of $Int$ pairs can be considered as a map. The map is from a set named as \textbf{2} with 2 elements of index $\{0, 1\}$ to $Int$.
+The set (type) of arrows \footnote{Strictly speaking, we should remove the pair of curly brackets of the arrow. We add the them only to make it easy to understand.}: $Bool \to Int$, corresponds to an exponential $Int^{Bool}$. It means $Bool \to Int = Int^{Bool}$. Why can we use 2 to substitute $Bool$ in the above reasoning to convert $Int^2$ to $Int^{Bool}$? The reason is isomorphism. The equal symbol actually means isomorphic equivalence. Strictly speaking, we should use the ``$\cong$'' symbol, but not ``=''. $Int^2$ represents the product of two integers, which is the set of $Int$ pairs. The set of $Int$ pairs can be considered as a map. The map is from a set named as \textbf{2} with 2 elements of index $\{0, 1\}$ to $Int$.
 
 \[
 \{0, 1\} \arrowto{f} Int = \{(f(0), f(1))\} = Int^2
@@ -2112,7 +2112,7 @@ And the index set $\mathbf{2} = \{0, 1\}$ is isomorphic to $Bool$ (under the fun
 
 \begin{example}
 \normalfont
-Let's see another example. Consider the set of all the arrows (functions) $Char \to Bool$ from characters $Char$ to the Boolean values $Bool$. There are many functions in this set. For example $isDigit(c)$ check whether the passed in character is digit or not. One implementation can like this (not practical but possible):
+Let's see another example. Consider the set of all the arrows (functions) $Char \to Bool$ from characters $Char$ to the Boolean values $Bool$. There are many functions in this set. For example $isDigit(c)$ check whether the passed in character is digit or not. One implementation can be this (not practical but possible):
 
 \lstset{frame=none}
 \begin{lstlisting}[style=Haskell]
@@ -2127,10 +2127,10 @@ isDigit 'b' = False
 ...
 \end{lstlisting}
 
-Although this is a naive implementation, it reflects such fact: If there are 256 different chars (ASCII code of English for example), then the result of $isDigit$ function is isomorphic to a 256-tuple, values of (False, ..., True, True, ... True, False, ...), where the positions corresponding to digit characters are Ture, the rest are False. Among the varies of functions with type of $Char \to Bool$, like $isUpper$, $isLower$, $isWhitespace$ etc. everyone corresponds to a specific tuple. For example in the tuple corresponding to $isUpper$, the positions for the upper case characters are Ture, the rest are False. Although there are infinite many ways to define a function from $Char$ to $Bool$, from the result perspective, there are only $2^{256}$ different functions essentially. It means $Char \to Bool$ is isomorphic to $Bool^{Char}$, which is the set of 256-tuple Boolean values.
+Although this is a naive implementation, it reflects such fact: If there are 256 different chars (ASCII code of English for example), then the result of $isDigit$ function is isomorphic to a 256-tuple, values of (False, ..., True, True, ... True, False, ...), where the positions corresponding to digit characters are Ture, the rest are False. Among the varies of functions of type $Char \to Bool$, like $isUpper$, $isLower$, $isWhitespace$ etc. everyone corresponds to a specific tuple. For example in the tuple corresponding to $isUpper$, the positions for the upper case characters are Ture, the rest are False. Although there are infinite many ways to define a function from $Char$ to $Bool$, from the result perspective, there are only $2^{256}$ different functions essentially. It means $Char \to Bool$ is isomorphic to $Bool^{Char}$, which is the set of 256-tuple Boolean values.
 \end{example}
 
-Next, we expand from the examples to the infinite set. We mentioned the Curried function $f: N \to (N \to N)$ maps from the natural numbers $N$ to `function objects'. Denote the function object as $(\Rightarrow)$, then the type of $f$ is $N \arrowto{f} (\Rightarrow)$. It maps from the index set $\{0, 1, ...\}$ to $(\Rightarrow)$, which forms a set of infinite long tuples. Every value in the tuple is a function object. We denote it as $(\Rightarrow)^N$.
+Next, we expand the examples to the infinite set. We mentioned the Curried function $f: N \to (N \to N)$ maps from the natural numbers $N$ to `function objects'. Denote the function object as $(\Rightarrow)$, then the type of $f$ is $N \arrowto{f} (\Rightarrow)$. It maps from the index set $\{0, 1, ...\}$ to $(\Rightarrow)$, which forms a set of infinite long tuples. Every value in the tuple is a function object. We denote it as $(\Rightarrow)^N$.
 
 \index{apply}
 In general, we denote the set of function $f : B \to C$ in exponential form $C^B$. Select a function $f \in C^B$, and an element $b \in B$, then we can use a special $apply$ function that applies $f$ to $b$, that gives a value $c = f(b)$ in $C$. As this\footnote{Some materials, like \cite{PeterSmith2018} pp. 111 - 112, and \cite{Wiki-Exponentials} use $eval$ to highlight this evaluation process. We adopt the name in \cite{Bird97} pp. 72 to follow the tradition in Lisp.}:
@@ -2139,7 +2139,7 @@ In general, we denote the set of function $f : B \to C$ in exponential form $C^B
 apply(f, b) = f(b)
 \]
 
-Readers may ask: where is symbol $A$? We actually need $A$ for other purpose when taking Currying into account. For the binary function $g: A \times B \to C$, when passing an element $a$ in $A$, we obtained a Curried function $g(a, \bullet) : B \to C$, which is a function object belongs $C^B$. Hence for every binary function $A \times B \arrowto{g} C$, there is a unique unary function $A \arrowto{\lambda g} C^B$ sends $a \in A$ to $g(a, \bullet) : B \to C$. We call $\lambda g$ is the exponential transpose of $g$\footnote{Some materials use $\bar{g}$ for exponential transpose. From the introduction about $\lambda$ in chapter 2, especially the interesting story about Church and his publisher, $\lambda g$ looks vivid. It means $a \mapsto \lambda \bullet \cdot g(a, \bullet)$.}. And the following equation holds:
+Readers may ask: where is symbol $A$? We actually need $A$ for other purpose when taking Currying into account. For the binary function $g: A \times B \to C$, when passing an element $a$ in $A$, we obtained a Curried function $g(a, \bullet) : B \to C$, which is a function object belongs $C^B$. Hence for every binary function $A \times B \arrowto{g} C$, there is a unique unary function $A \arrowto{\lambda g} C^B$ sends $a \in A$ to $g(a, \bullet) : B \to C$. We call $\lambda g$ the exponential transpose of $g$\footnote{Some materials use $\bar{g}$ for exponential transpose. From the introduction about $\lambda$ in chapter 2, especially the interesting story about Church and his publisher, $\lambda g$ looks vivid. It means $a \mapsto \lambda \bullet \cdot g(a, \bullet)$.}. And the following equation holds:
 
 \[
 apply(\lambda g(a), b) = g(a, b)
@@ -2217,7 +2217,7 @@ In other words, we obtain such a universal property:
 
 And we can also see why the exponential transpose arrow is unique. Suppose there exists another arrow $A \arrowto{h} C^B$, such that $apply \circ (h \times id) = g$. According to the above universal property, we immediately get $h = curry\ g$.
 
-We can also consider the exponentials as a category. Given a category $\pmb{C}$, when fix object $B, C$, we can form a category $\pmb{Exp}$. In this category,all objects are arrows in the form of $A \times B \to C$, and the arrows are defined as:
+We can also consider the exponentials as a category. Given a category $\pmb{C}$, when fix object $B, C$, we can form a category $\pmb{Exp}$. In this category, all objects are arrows in the form of $A \times B \to C$, and the arrows are defined as:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2247,7 +2247,7 @@ If there is arrow $A \arrowto{f} D$ in category $\pmb{C}$, then the arrow in $\p
 \end{tikzpicture}
 \end{center}
 
-The diagram commutes when $k \circ (f \times id_B) = h$. There exists the final object in category $\pmb{Exp}$, which exactly is $C^B \times B \arrowto{apply} C$. Let's verify it. From the definition of exponential, from any object $A \times B \arrowto{g} C$, there is $apply$ arrow $\lambda g = curry\ g$. On the other hand, the endo arrow to the final object must be $id$, hence we obtain the {\em reflection law}:
+The diagram commutes when $k \circ (f \times id_B) = h$. There exists the final object in category $\pmb{Exp}$, which exactly is $C^B \times B \arrowto{apply} C$. Let's verify it. According to the definition of exponential, from any object $A \times B \arrowto{g} C$, there is $apply$ arrow $\lambda g = curry\ g$. On the other hand, the endo arrow to the final object must be $id$, hence we obtain the {\em reflection law}:
 
 \[
 curry\ apply = id
