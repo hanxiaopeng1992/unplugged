@@ -1897,13 +1897,13 @@ Consider a partial order set. The arrow is the ordering relation. If there is a 
 
 \begin{example}
 \normalfont
-Consider the category of all groups $\pmb{Grp}$. The trivial group $\{e\}$ only contains the identity element (see the previous chapter). The arrow is the morphism of groups. Any morphism sends the identity element in one group to the identity element in another group. Hence from $\{e\}$ to any group $G$, $e \mapsto e_G$ holds, where $e_G$ is the identity element of $G$. Therefore, there is unique arrow from $\{e\}$ to any group.
+Consider the category of all groups $\pmb{Grp}$. The trivial group $\{e\}$ only contains the identity element (see the previous chapter). The arrow is the morphism of groups. Any morphism sends the identity element in one group to the identity element in another group. Hence from $\{e\}$ to any group $G$, $e \mapsto e_G$ holds, where $e_G$ is the identity element of $G$. There is a unique arrow from $\{e\}$ to any group.
 
 \[
 \{e\} \longrightarrow G
 \]
 
-On the other hand, from any group $G$, there exists a unique morphism, that sends every element to $e$, i.e. $\forall x \in G, x \mapsto e$. Hence there is unique arrow from any group $G$ to $\{e\}$.
+On the other hand, from any group $G$, there exists a unique morphism, that sends every element to $e$, i.e. $\forall x \in G, x \mapsto e$. Hence there is a unique arrow from any group $G$ to $\{e\}$.
 
 \[
 G \longrightarrow \{e\}
@@ -1930,7 +1930,7 @@ It does not matter what we call the only element in the trivial group. It can be
 
 \begin{example}
 \normalfont
-Let's see a little bit more difficult example, the category of all sets $\pmb{Set}$, with the total functions as arrows. It's easy to find the final object, which is the singleton set (the set that contains only one object) $\{ \bigstar \}$. Similar to the example of groups, for any set $S$, we can send all elements of it to the only element in the singleton set: $\forall x \in S, x \mapsto \bigstar$. Obviously, the arrow is unique.
+Let's see a little bit more difficult example, the category of all sets $\pmb{Set}$, with the total functions as arrows. It's easy to find the final object, which is the singleton set (the set that contains only one object) $\{ \bigstar \}$. Similar to the example of groups, for any set $S$, we can send all elements to the only element in the singleton set: $\forall x \in S, x \mapsto \bigstar$. Obviously, the arrow is unique.
 
 \[
   S \longrightarrow \{ \bigstar \}
@@ -1946,7 +1946,7 @@ Please take a while to think about this point. Let's consider the identity arrow
 
 To answer the above question, since there is unique arrow from the empty set to any set, there is also unique arrow from empty set to $\{ \bigstar \}$. Hence there is unique arrow from every set (includes the empty set) to $\{ \bigstar \}$. Therefore, $\{ \bigstar \}$ is the final object in the category of set.
 
-Why can't we let the singleton set $\{ \bigstar \}$ be the initial object like what we do for groups? The reason is because the arrow from $\{ \bigstar \}$ to any set $S$ may not be unique. Consider a set of multiple elements $S = \{x, y, z, ...\}$, we can define the arrow (total function) $\{ \bigstar \} \arrowto{\vec{x}} S$, that sends the only element to $x$; we can also define the arrow $\{ \bigstar \} \arrowto{\vec{y}} S$ or $\{ \bigstar \} \arrowto{\vec{z}} S$ to send it to other elements.
+Why can't we let the singleton set $\{ \bigstar \}$ be the initial object like what we do for groups? The reason is because the arrow from $\{ \bigstar \}$ to set $S$ may not be unique. Consider a set $S = \{x, y, z, ...\}$, we can define the arrow (total function) $\{ \bigstar \} \arrowto{\vec{x}} S$, that sends the only element to $x$; we can also define the arrow $\{ \bigstar \} \arrowto{\vec{y}} S$ or $\{ \bigstar \} \arrowto{\vec{z}} S$ to send it to other elements.
 
 We intend to choose the symbol $\{ \bigstar \}$ to emphasize that, it does not matter what the element is, as far as it is a singleton set. Because all singleton sets are isomorphic equivalent.
 
@@ -1963,7 +1963,7 @@ also has particular meaning. It means we can select an element from the set $S$,
 \begin{example}
 \normalfont
 
-As the last example, we think about programming. The type system in programming environment is the category of set $\pmb{Set}$ essentially. A data type is a set. For example, $Int$ type is the set of all integers; Boolean type is the set with two elements $\{True, False\}$. Since the final object is $\{ \bigstar \}$ in the category of sets, what data type is corresponding to the final objects? Since the final object is isomorphic unique, therefore, any data type with only one value is the final object in programming.
+The type system in programming environment is the category of set $\pmb{Set}$ essentially. A data type is a set. For example, $Int$ type is the set of all integers; Boolean type is the set with two elements $\{True, False\}$. We know that the final object is $\{ \bigstar \}$ in the category of sets. What data type is corresponding to the final object? Since the final object is isomorphic unique, therefore, any data type with only one value is the final object in programming.
 
 We can define a dedicated data type, named as ``()'', with only one element, also named as ``()''.
 
@@ -2036,9 +2036,9 @@ iso' :: Empty -> Void
 iso' _ = undefined
 \end{lstlisting}
 
-Here we explicitly define $iso$ and $iso'$ to form the isomorphism between \texttt{Empty} and $\texttt{Void}$. It is easy to verify that \texttt{iso . iso' = id}.
+Here we explicitly define $iso$ and $iso'$ to form the isomorphism between \texttt{Empty} and $\texttt{Void}$. It is easy to verify that $iso \cdot iso' = id$.
 
-In the category of sets, we say the arrow from the final object to any set selection arrow. What does it mean in programming? Set corresponds to type. It means we can select a specific value from any type. The below example select 0 and 1 from $Int$ type respectively:
+In the category of sets, we define the arrow from the final object to any set as the selection arrow. What does it mean in programming? Set corresponds to type. It means we can select a specific value from any type. The below example selects 0 and 1 from $Int$ type respectively:
 
 \begin{lstlisting}
 zero :: () -> Int
@@ -2048,11 +2048,11 @@ one :: () -> Int
 one () = 1
 \end{lstlisting}
 
-Now we see the advantage of choosing the ``()'' symbol. When call the function, it looks like we pass 0 argument to it: $zero\ ()$ returns 0, and $one\ ()$ returns 1.
+We see the advantage of choosing the ``()'' symbol. When call the function, it looks like we pass null argument to it: $zero\ ()$ returns 0, and $one\ ()$ returns 1.
 \end{example}
 
 \begin{Exercise}
-\Question{In the poset example, we say there exists the minimum (or the maximum) element, then the minimum (or the maximum) is the initial object (or the final object). Consider the category of all posets $\pmb{Poset}$, if there exists the initial object, what is it? If there exists the final object, what is it?}
+\Question{In the poset example, we say if there exists the minimum (or the maximum) element, then the minimum (or the maximum) is the initial object (or the final object). Consider the category of all posets $\pmb{Poset}$, if there exists the initial object, what is it? If there exists the final object, what is it?}
 \Question{In the Peano category $\pmb{Pno}$ (see the question 2 in exercise of section 1), what object in the form of $(A, f, z)$ is the initial object? What is the final object?}
 \end{Exercise}
 
