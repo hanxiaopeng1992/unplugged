@@ -2552,7 +2552,7 @@ In summary, for the monoid example, the algebraic structure is consist of three 
   \item Arrow $\mathbf{F} M \arrowto{\alpha} M$. It is the sum (coproduct) of the identity arrow $e$ and the binary operation arrow $m$, i.e. $\alpha = e + m$.
 \end{enumerate}
 
-We say it defines the $F$-algebra $(M \alpha)$ of the monoid.
+We say it defines the $F$-algebra $(M, \alpha)$ of the monoid.
 
 For programming, we can define the type of the F-algebra arrow:
 
@@ -2603,7 +2603,7 @@ Compare to monoid, group need an additional inverse element axiom. Similar to th
 \end{cases}
 \]
 
-In the first step, we represent the binary operation, the identity element, and the reverse operation as function. Define:
+In the first step, we represent the binary operation, the identity element, and the reverse operation as functions. Define:
 
 \[
 \begin{cases}
@@ -2625,7 +2625,7 @@ The corresponding function type and exponentials are:
   \right . \\
 \]
 
-The first two arrows are same as monoid. The third arrow tells that the reverse element still belongs to the group. Now we can substitute the $1_G$, the point, and the reverse symbols in the group axioms with $e$, $m$, and $i$.
+The first two arrows are same as monoid. The third one tells that the reverse element still belongs to the group. Next we substitute the $1_G$, the point, and the reverse symbols in the group axioms with $e$, $m$, and $i$.
 
 \[
 \begin{cases}
@@ -2635,7 +2635,7 @@ The first two arrows are same as monoid. The third arrow tells that the reverse 
 \end{cases}
 \]
 
-In the second step, we remove the concrete element $x$, $y$, $z$, and the group set $G$ to represent the group axioms purely in arrows:
+In the second step, we remove the concrete elements $x$, $y$, $z$, and set $G$ to represent the group axioms purely in arrows:
 
 \[
 \begin{cases}
@@ -2645,7 +2645,7 @@ In the second step, we remove the concrete element $x$, $y$, $z$, and the group 
 \end{cases}
 \]
 
-It means every group can be represented in a tuple $(G, m, e, i)$. In the third step, we use the coproduct $m, e, i$ for the sum $\alpha = e + m + i$, then through the polynomial functor $\mathbf{F} A = 1 + A + A \times A$, and let $A = G$ to describe the algebraic operations on $G$.
+It means every group can be represented in a tuple $(G, m, e, i)$. In the third step, we use the coproduct of $m, e, i$ for the sum $\alpha = e + m + i$, then through the polynomial functor $\mathbf{F} A = 1 + A + A \times A$, and let $A = G$ to describe the algebraic operations on $G$.
 
 \[
 \begin{array}{rcll}
@@ -2664,13 +2664,14 @@ Therefore, the algebraic structure of group is consist of three parts:
   \item Arrow $\mathbf{F} A \arrowto{\alpha = e + m + i} A$. It is the sum of the identity element arrow $e$, the binary operation arrow $m$, and the reverse element arrow $i$.
 \end{enumerate}
 
-We say it defines the F-algebra $(G \alpha)$ for group.
+We say it defines the F-algebra $(G, \alpha)$ for group.
 \end{example}
 
 \index{F-algebra} \index{F-coalgebra}
 It's ready to give the definition of F-algebra. There are many dual concepts appear in pairs. We benefit from them like buy one, get one. When define F-algebra, we obtain F-coalgebra at the same time. We will post-pone the examples of F-coalgebra in chapter 6 when introduce about the infinity.
 
 \begin{definition}
+\normalfont
 Let $\pmb{C}$ be a category, $\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$ is an endo-functor of category $\pmb{C}$. For the object $A$ and morphism $\alpha$ in this category:
 
 \[
@@ -2685,7 +2686,7 @@ Form a pair $(A, \alpha)$. It is called
   F-algebra \quad \quad \quad F-coalgebra
 \end{center}
 
-Where $A$ is called the carrier object.
+Where $A$ is the carrier object.
 \end{definition}
 
 We can treat
@@ -2697,6 +2698,7 @@ We can treat
 as object. When the context is clear, we denote the object as a pair $(A, \alpha)$. The arrows between such objects are defined as the following:
 
 \begin{definition}
+\normalfont
 F-morphism is the arrow between F-algebra or F-coalgebra objects:
 
 \[
@@ -2745,7 +2747,7 @@ respectively.
 
 \begin{Exercise}
 \Question{Draw the diagram to illustrate the reverse element axiom for group.}
-\Question{Let $p$ is a prime. Use the F-algebra to define the $\alpha$ arrow for the multiplicative group for integers modulo $p$ (refer to the previous chapter for its definition).}
+\Question{Let $p$ be a prime. Use the F-algebra to define the $\alpha$ arrow for the multiplicative group for integers modulo $p$ (refer to the previous chapter for the definition of this group).}
 \Question{Define F-algebra for ring (refer to the previous chapter for definition of ring).}
 \Question{What is the $id$ arrow for F-algebra category? What is the arrow composition?}
 \end{Exercise}
@@ -2763,7 +2765,7 @@ In order to model this {\em kind} of algebraic structure in F-algebra, we need t
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-This is a polynomial functor $\mathbf{NatF} A = 1 + A$. Here is an interesting question: let $A’ = \mathbf{NatF} A$, substitute it into functor $\mathbf{NatF}$, then what will the $\mathbf{NatF} A'$ look like? It will look like applying the functor twice $\mathbf{NatF}(\mathbf{NatF} A)$. We can repeat this process to apply the functor three times as $\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$. Actually, we can repeat infinite many times, and name the type $\mathbf{NatF}(\mathbf{NatF}(...))$ as $\mathbf{Nat}$.
+This is a polynomial functor $\mathbf{NatF} A = 1 + A$. Here is an interesting question: let $A' = \mathbf{NatF} A$, substitute it into functor $\mathbf{NatF}$, then what will the $\mathbf{NatF} A'$ look like? It will look like applying the functor twice $\mathbf{NatF}(\mathbf{NatF} A)$. We can repeat this process to apply the functor three times as $\mathbf{NatF}(\mathbf{NatF}(\mathbf{NatF} A))$. Actually, we can repeat infinite many times, and name the type $\mathbf{NatF}(\mathbf{NatF}(...))$ as $\mathbf{Nat}$.
 
 \[
 \begin{array}{rcll}
@@ -2774,7 +2776,7 @@ This is a polynomial functor $\mathbf{NatF} A = 1 + A$. Here is an interesting q
 \end{array}
 \]
 
-It is exactly the type of natural numbers we defined in chapter 1. Let us list \texttt{Nat} and \texttt{Nat A} together:
+It is exactly the type of natural numbers we defined in chapter 1. Let us list \texttt{Nat} and \texttt{NatF A} together:
 
 \begin{lstlisting}
 data Nat = Zero | Succ Nat
@@ -2782,7 +2784,7 @@ data Nat = Zero | Succ Nat
 data NatF A = ZeroF | SuccF A
 \end{lstlisting}
 
-This is recursive functor. We've already met the similar concept in chapter 2. Applying the endo-functor to itself infinite many times gives the {\em fixed point}:
+This is a recursive functor. We've already met the similar concept in chapter 2. Applying the endo-functor to itself infinite many times gives the {\em fixed point}:
 
 \[
 \mathbf{Fix}\ \mathbf{F} = \mathbf{F}\ (\mathbf{Fix}\ \mathbf{F})
@@ -2825,7 +2827,7 @@ eval : \mathbf{NatF}^n Int \to Int \\
 
 \subsubsection{Initial algebra and catamorphism}
 
-If there exists initial object in the category of F-algebra $\pmb{Alg}(F)$, what are the properties for it? There must be unique arrow from the initial object to other object, what kind of relationship does it represent? All the objects of the F-algebra category can be written as pair $(A, \alpha)$. Using the F-algebra for natural number like things for example, in category $\pmb{Alg}(\mathbf{NatF})$, all objects can be written as $(A, \alpha)$, where $\mathbf{NatF}$ is defined as above section; $A$ is the carrier object, $\mathbf{NatF} A \arrowto{\alpha} A$ is the arrow.
+If there exists initial object in the category of F-algebra $\pmb{Alg}(F)$, what are the properties for it? There must be unique arrow from the initial object to other objects, what kind of relationship does it represent? All the objects of the F-algebra category can be written as pair $(A, \alpha)$. Using the F-algebra for natural number like things for example, in category $\pmb{Alg}(\mathbf{NatF})$, all objects can be written as $(A, \alpha)$, where $\mathbf{NatF}$ is defined as above section; $A$ is the carrier object, $\mathbf{NatF} A \arrowto{\alpha} A$ is the arrow.
 
 %% 例如$\mathbf{NatF}-alg(N, [zero, succ])$是一个F-代数对象，其中$zero, succ$的定义为：
 
@@ -2946,6 +2948,7 @@ This result is as same as the arithmetic axioms given by Peano in 1889. For any 
 
 \index{initial algebra}
 \begin{definition}
+\normalfont
 If there exists the initial object in the category of F-algebra $\pmb{Alg}(F)$, then the initial object is called the initial algebra.
 \end{definition}
 
@@ -3004,7 +3007,7 @@ Although the arrow $\mathbf{NatF} A \arrowto{f} A$ is not recursive, the catamor
 (\mathbf{NatF} A \arrowto{f} A) \arrowto{cata} (\mathbf{Nat} \to A)
 \]
 
-The Curried $cata(f)$ should be able to apply to the both value of $\mathbf{Nat}$, $Zero$ and $Succ\ n$. We can define $cata$ from this fact:
+The Curried $cata(f)$ should be able to apply to the both values of $\mathbf{Nat}$, $Zero$ and $Succ\ n$. We can define $cata$ from this fact:
 
 \[
 \begin{array}{l}
@@ -3067,6 +3070,7 @@ In fact, for any natural number like algebraic structure $(A, c + f)$ that satis
 The catamorphism make this diagram commute.
 
 \[
+%\def\arraystretch{2.2}
 \begin{array}{rll}
             & h \circ [zero, succ] = [c, f] \circ \mathbf{NatF}(h) & \text{Commute} \\
 \Rightarrow & h \circ [zero, succ] = [c, f] \circ (id + h) & \text{Polynomial functor} \\
@@ -3077,11 +3081,13 @@ The catamorphism make this diagram commute.
     h \circ zero = c \\
     h \circ succ = f \circ h \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Zero = c \\
     h\ (Succ\ n) = f(h(n))
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h(0) = c \\
@@ -3215,6 +3221,7 @@ Next we use list diagram to prove, the catamorphism on list is the folding compu
     h \circ nil = c \\
     h \circ cons = f \circ (id \times h) \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Nil = c \\
@@ -3303,6 +3310,7 @@ Since the diagram commutes, we have:
     h \circ nil = c \\
     h \circ branch = f \circ (id_A \times h \times h) \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Nil = c \\
@@ -3329,7 +3337,7 @@ Therefore, the computation to sum all the elements in a binary tree can be repre
 
 \section{Summary}
 
-In this chapter, we introduced the basic concepts in category theory, including category, functor, natural transformation, product and coproduct, initial object and final object, exponentials, and F-algebra. They can construct complex algebraic structures. Before end of this chapter, let us see how the generic folding operation is realized in the language of category theory\cite{Haskell-foldable}:
+In this chapter, we introduced the basic concepts in category theory, including category, functor, natural transformation, product and coproduct, initial object and final object, exponentials, and F-algebra. They can construct complex algebraic structures. Before the end of this chapter, let us see how the generic folding operation is realized in the language of category theory\cite{Haskell-foldable}:
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -3359,7 +3367,7 @@ concat_M = foldr\ (\oplus)\ e \\
 \end{array}
 \]
 
-It is named as \texttt{mconcat} in some programming environment. For any monoid $M$, function $concat$ processes a list of elements of $M$, fold them together trough the binary operation and the identity element. For example, string is an instance of monoid, the identity element is the empty string, and the binary operation is string concatenation. Hence $concat_M$ \texttt{["Hello", "String" "Monoid"]} gives the following result.
+It is named as \texttt{mconcat} in some programming environment. For any monoid $M$, function $concat$ processes a list of elements of $M$, fold them together through the binary operation and the identity element. For example, string is an instance of monoid, the identity element is the empty string, and the binary operation is string concatenation. Hence $concat_M$ \texttt{["Hello", "String" "Monoid"]} gives the following result.
 
 \begin{verbatim}
 "Hello" ++ ("String" ++ ("Monoid" ++ "")) = "HelloStringMonoid"
@@ -3416,7 +3424,7 @@ Given any binary function $f$, we can use $foldMap$ to fold on $Endo$ monoid:
 \[
 \begin{array}{l}
 foldCompose : (A \to (B \to B)) \to [A] \to \mathbf{Endo}B \\
-foldCompose\ f = foldMap\ (Endo . f)
+foldCompose\ f = foldMap\ (Endo \circ f)
 \end{array}
 \]
 
@@ -3435,8 +3443,8 @@ Here is a more concrete example
 \begin{array}{cl}
             & foldCompose\ (+)\ [1, 2, 3] \\
 \Rightarrow & foldMap\ (Endo \circ (+))\ [1, 2, 3] \\
-\Rightarrow & concat_M\ (fmap (Endo \circ (+)))\ [1, 2, 3] \\
-\Rightarrow & concat_M\ (fmap Endo\ [(+1), (+2), (+3)]) \\
+\Rightarrow & concat_M\ (fmap\ (Endo \circ (+)))\ [1, 2, 3] \\
+\Rightarrow & concat_M\ (fmap\ Endo\ [(+1), (+2), (+3)]) \\
 \Rightarrow & concat_M\ [Endo\ (+1), Endo\ (+2), Endo\ (+3)] \\
 \Rightarrow & Endo\ ((+1) \circ (+2) \circ (+3)) \\
 \Rightarrow & Endo\ (+6) \\

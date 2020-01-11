@@ -2740,7 +2740,7 @@ data NatF A = ZeroF | SuccF A
 \end{array}
 \]
 
-这恰恰是我们在第一章定义的自然数类型。我们把\texttt{Nat}和\texttt{Nat A}并列写在一起：
+这恰恰是我们在第一章定义的自然数类型。我们把\texttt{Nat}和\texttt{NatF A}并列写在一起：
 
 \begin{lstlisting}
 data Nat = Zero | Succ Nat
@@ -3043,11 +3043,13 @@ fibAt = fst \circ toFib \circ fromInt
     h \circ zero = c \\
     h \circ succ = f \circ h \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Zero = c \\
     h\ (Succ\ n) = f(h(n))
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h(0) = c \\
@@ -3181,6 +3183,7 @@ sum = cata sumAlg where
     h \circ nil = c \\
     h \circ cons = f \circ (id \times h) \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Nil = c \\
@@ -3269,6 +3272,7 @@ sum = cata \circ sumAlg \\
     h \circ nil = c \\
     h \circ branch = f \circ (id_A \times h \times h) \\
   \end{cases} & \\
+\\
 \Rightarrow &
   \begin{cases}
     h\ Nil = c \\
@@ -3382,7 +3386,7 @@ instance Monoid Endo where
 \[
 \begin{array}{l}
 foldCompose : (A \to (B \to B)) \to [A] \to \mathbf{Endo}B \\
-foldCompose\ f = foldMap\ (Endo . f)
+foldCompose\ f = foldMap\ (Endo \circ f)
 \end{array}
 \]
 
@@ -3401,8 +3405,8 @@ foldCompose\ f = foldMap\ (Endo . f)
 \begin{array}{cl}
             & foldCompose\ (+)\ [1, 2, 3] \\
 \Rightarrow & foldMap\ (Endo \circ (+))\ [1, 2, 3] \\
-\Rightarrow & concat_M\ (fmap (Endo \circ (+)))\ [1, 2, 3] \\
-\Rightarrow & concat_M\ (fmap Endo\ [(+1), (+2), (+3)]) \\
+\Rightarrow & concat_M\ (fmap\ (Endo \circ (+)))\ [1, 2, 3] \\
+\Rightarrow & concat_M\ (fmap\ Endo\ [(+1), (+2), (+3)]) \\
 \Rightarrow & concat_M\ [Endo\ (+1), Endo\ (+2), Endo\ (+3)] \\
 \Rightarrow & Endo\ ((+1) \circ (+2) \circ (+3)) \\
 \Rightarrow & Endo\ (+6) \\
