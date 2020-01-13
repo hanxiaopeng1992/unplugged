@@ -85,13 +85,15 @@ We use two examples in this chapter to demonstrate how to do deduction in progra
 
 \section{foldr/build fusion}
 
-我们要举的第一个例子是叠加——构建的融合（foldr/build fusion law）。2015年Java在其1.8版本中加入了lambda表达式并且提供了一系列支持函数式编程的工具。但是有人很快发现，尽管一连串地函数调用表达能力很强，简洁优雅，但是性能会下降很多。原因之一就是这些串起来函数调用产生了大量中间结果。这些中间结果往往不是一两个简单的数值，而通常是列表、容器这样规模很大的结构。这些结构被下一个函数消费使用，然后就丢弃了。但是接下来会产生另一个同等规模的结构。这种产生——一次性消费——丢弃——再产生的过程，沿着函数调用链一环一环地重复，造成了计算的负担。
+The first example is the foldr/build fusion law. In 2015, a main stream programming language Java adopted lambda expression and a set of functional tools in its 1.8 version. However, some programmer soon found the chained function calls brought elegance and expressiveness at the penalty of performance if using carelessly. One reason is the chained functions may generate excessive intermediate results. While these intermediate results are not necessary simple values, but the complete list, container, or collection of complex structures. They are thrown away after consumed by the next functions. However, the same level of new result will be generated step by step. Such produce, one time consume, thrown away, then produce again pattern happens along the function chain repeatedly, which causes computation overhead.
 
-例如\cite{GLPJ-1993}，我们想判断一个列表中的每个元素是否都满足某个条件。可以这样进行定义：
+For example, we can define below function to examine if every element in a list satisfies a given prediction\cite{GLPJ-1993}.
 
 \[
 all(p, xs) = and(map(p, xs))
 \]
+
+Such that $all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$ tells if all numbers in the list are primes.
 
 传入$all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$就可以判断是否列表中都是素数。但是这个实现的效率却不高。首先$map(prime, xs)$会产生一个和$xs$同样长度的列表，列表中的每个元素是一个布尔值[True, True, ...]，每个布尔值表示对应的元素是不是素数。然后这个布尔值列表传入$and$函数，检查是否存在False。最后$xs$和布尔值列表都被丢弃，而仅仅返回一个布尔值作为最终结果。
 
