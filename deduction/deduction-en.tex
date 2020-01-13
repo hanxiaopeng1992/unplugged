@@ -33,23 +33,21 @@
 \numberwithin{Exercise}{chapter}
 \fi
 
-\epigraph{3表示2+1，4表示3+1。所以接下来（虽然证明很长），4等于2+2。因此, 数学知识不再是神秘的。}{——罗素}
-
-% ... mathematical knowledge ... is, in fact, merely verbal knowledge. "3" means "2+1", and "4" means "3+1". Hence it follows (though the proof is long) that "4" means the same as "2+2". Thus mathematical knowledge ceases to be mysterious.  -- Bertrand Russell
+\epigraph{... mathematical knowledge ... is, in fact, merely verbal knowledge. ``3'' means ``2+1'', and ``4'' means ``3+1''. Hence it follows (though the proof is long) that ``4'' means the same as ``2+2''. Thus mathematical knowledge ceases to be mysterious.}{-- Bertrand Russell}
 
 \begin{wrapfigure}{R}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.5]{img/penrose-triangle.eps}
  \captionsetup{labelformat=empty}
- \caption{彭罗斯三角形}
+ \caption{Penrose triangle}
  \label{fig:Penrose-triangle}
 \end{wrapfigure}
 
-记得在中学数学课上，老师会在黑板上写一个有很多字母的式子，然后让同学们化简。有人会自告奋勇站到讲台上，拿起粉笔在黑板上推导。合并同类项、因式分解……各种办法都可以用。这个过程就像是变魔术，最后往往得到意想不到的简单结果。当然也有卡住或者绕圈子的时候，老师总是耐心地提示，引导我们找到思路。
+I still remember the mathematics class in high school. My teacher often wrote down a complex formula with many alphabetic symbols in the blackboard, then asked us to simplify it. Some student stood up, volunteered to do it in front of the class. Combining like terms, factorization, ... all means were attempted. It liked a magic process often led to unbelievable simple result. Of course sometimes the guy was stuck or trapped in loops, and finally saved by our teacher.
 
-这样的经历好像就发生在眼前，一方面，满手的粉笔灰让同学们体会到老师的不易，另一方面，那种推理的神秘强力量让我感到它的强大。我总是希望知道更多的公式，这样就能在化简或者推导时派上用场。
+Chalk and blackboard, Such experience was unforgettable, just like happened yesterday. I was so impressive to the mythical power of reasoning. I always wanted to know more formulas, that could help me to deduce the result.
 
-这种推导的神奇之处在于，我们不用特别关心这些公式或者定理在当时场景下的具体含义。就像摆弄积木一样，从散落的各种零件，最后搭建起一个有趣玩具。这些公式和定理相互组装到一起，最后引向一个有趣的结果。看到$a^2 + 2ab + b^2$就会把它变换为$(a+b)^2$，就像把两块积木插到一起那样自然，我们不用在推导时强迫自己回想这个公式的几何意义。
+The magic is that, we even needn't care about the concrete meanings when doing the deduction. It likes building bricks, from different parts, we finally build an interesting toy. These formulas and theorems can also be combined together, and finally build an interesting result. When meet $a^2 + 2ab + b^2$, then turn it into $(a+b)^2$, just like mating two bricks. We needn't force ourselves to remind the geometric meanings for this formula when deducing it.
 
 \begin{figure}[htbp]
 \centering
@@ -71,7 +69,7 @@
 \draw[->] (m) -- (l);
 \draw[->] (m) -- (r);
 \end{tikzpicture}
-\caption{$(a + b)^2 = a^2 + 2ab + b^2$的几何意义}
+\caption{Geometric illustration for $(a + b)^2 = a^2 + 2ab + b^2$}
 \end{figure}
 
 本章中，我们用两个例子说明如何进行编程中的推导。每个例子都既用直观的方法给出分析和解释，也用推导的方式给出解法。这就像$(a+b)^2$的情形。一方面我们可以用几何的直观，将其理解为一大一小两个小正方形和两个相等的矩形的面积；另一方面，我们也可以用纯推导一步一步得出同样的结果。
