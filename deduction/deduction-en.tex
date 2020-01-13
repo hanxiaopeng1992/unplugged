@@ -72,18 +72,18 @@ The magic is that, we even needn't care about the concrete meanings when doing t
 \caption{Geometric illustration for $(a + b)^2 = a^2 + 2ab + b^2$}
 \end{figure}
 
-本章中，我们用两个例子说明如何进行编程中的推导。每个例子都既用直观的方法给出分析和解释，也用推导的方式给出解法。这就像$(a+b)^2$的情形。一方面我们可以用几何的直观，将其理解为一大一小两个小正方形和两个相等的矩形的面积；另一方面，我们也可以用纯推导一步一步得出同样的结果。
+We use two examples in this chapter to demonstrate how to do deduction in programming. For every example, we'll both explain the intuitive concrete meanings, and give the purely formal deduction process. Just like the $(a+b)^2$ case, on one hand, we can explain it as the total area from two different squares and two equal rectangles; on the other hand, we can also deduce the same result step by step.
 
 \[
 \begin{array}{rcll}
-(a + b)^2 & = & (a + b)(a + b) & \text{二次方的定义} \\
-          & = & a(a + b) + b(a + b) & \text{乘法分配律} \\
-          & = & a^2 + ab + ba + b^2 & \text{再次用分配律} \\
-          & = & a^2 + 2ab + b^2 & \text{合并同类项$ab$和$ba$}
+(a + b)^2 & = & (a + b)(a + b) & \text{Definition of square} \\
+          & = & a(a + b) + b(a + b) & \text{Distribution law for multiplication} \\
+          & = & a^2 + ab + ba + b^2 & \text{Distribution law again} \\
+          & = & a^2 + 2ab + b^2 & \text{Combined $ab$ and $ba$}
 \end{array}
 \]
 
-\section{叠加——构建的融合}
+\section{foldr/build fusion}
 
 我们要举的第一个例子是叠加——构建的融合（foldr/build fusion law）。2015年Java在其1.8版本中加入了lambda表达式并且提供了一系列支持函数式编程的工具。但是有人很快发现，尽管一连串地函数调用表达能力很强，简洁优雅，但是性能会下降很多。原因之一就是这些串起来函数调用产生了大量中间结果。这些中间结果往往不是一两个简单的数值，而通常是列表、容器这样规模很大的结构。这些结构被下一个函数消费使用，然后就丢弃了。但是接下来会产生另一个同等规模的结构。这种产生——一次性消费——丢弃——再产生的过程，沿着函数调用链一环一环地重复，造成了计算的负担。
 
