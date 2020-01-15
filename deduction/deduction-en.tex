@@ -93,11 +93,9 @@ For example, we can define below function to examine if every element in a list 
 all(p, xs) = and(map(p, xs))
 \]
 
-Such that $all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$ tells if all numbers in the list are primes.
+Such that $all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$ tells if all numbers in the list are primes. However, the performance of this realization is poor. Firstly, $map(prime, xs)$ generates a list of the same length as $xs$, every element is a Boolean value [True, True, ...], indicating the corresponding number is prime or not. Then the list of Boolean values is passed to $and$ function, examine if there exists False value. Finally, both $xs$ and the Boolean list are thrown away, only one Boolean value is returned as the result.
 
-传入$all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$就可以判断是否列表中都是素数。但是这个实现的效率却不高。首先$map(prime, xs)$会产生一个和$xs$同样长度的列表，列表中的每个元素是一个布尔值[True, True, ...]，每个布尔值表示对应的元素是不是素数。然后这个布尔值列表传入$and$函数，检查是否存在False。最后$xs$和布尔值列表都被丢弃，而仅仅返回一个布尔值作为最终结果。
-
-下面是另一种定义，它能够避免产生中间的布尔值列表：
+Below is an alternative definition. It can avoid generate the intermediate Boolean list.
 
 \[
 \begin{array}{l}
