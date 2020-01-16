@@ -107,23 +107,23 @@ all(p, xs) = h(xs) \\
 \end{array}
 \]
 
-虽然这个实现不产生中间结果，可是和前面的$and(map(p, xs)$比起来，既冗长又不直观。有没有什么办法，鱼和熊掌兼得，即不丧失直观性，又能避免低效的实现呢？我们发现有些变换满足这一要求。例如：
+Although this realization does not generate intermediate result, it is neither intuitive nor elegant compare to $and(map(p, xs)$. Are there any way that has the advantage of both methods? We found some transformations satisfy such requirements, for example:
 
 \[
 map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs) xs
 \]
 
-先把列表中每个元素取绝对值构成一列新数，然后再把这列数中的每个开方。这和把列表中每个数先取绝对值然后再立即开方后构成一列新数等价。由此我们可以得到一个转换规则：
+First generate a list of absolute values, then evaluate square root for every number. It is equivalent to take absolute value first, then evaluate the square root for every number in that list. Hence we have the following rule:
 
 \be
 map\ f\ (map\ g\ xs) = map\ (f \circ g)\ xs
 \ee
 
-但是这样的规则太多了，我们无法全部把它们列出。并且在千变万化的程序中，我们无法一眼就看出应该用哪一条规则优化。吉尔（Gill)、朗奇布瑞（Launchbury）、佩顿$\cdot$琼斯(Peyton Jones)在1993年提出了一个方法，他们从列表最本质的构造和叠加操作入手，找到了优化的规律。
+However, there are too many rules, we can't list them all. It's not practical to apply them on a complex program. Gill, Launchbury, and Peyton Jones developed a method in 1993, starting from the basic build and folding operation, they found the pattern to optimize the chained function.
 
-\subsection{列表的叠加操作}
+\subsection{Folding from right for list}
 
-我们在第一章就给出过列表的叠加操作，它的定义为：
+We defined the fold from right operation for list in chapter 1 as below:
 
 \[
 \begin{array}{l}
@@ -132,40 +132,40 @@ foldr\ \oplus\ z\ (x:xs) = x\ \oplus\ (foldr\ \oplus\ z\ xs) \\
 \end{array}
 \]
 
-展开就是：
+It can be expanded as:
 
 \be
 foldr\ \oplus\ z\ [x_1, x_2, ..., x_n] = x_1 \oplus (x_2 \oplus (...(x_n \oplus z))...)
 \ee
 
-许多列表相关的操作都可以用叠加来定义。我们接下来给出一些典型的例子:
+Many list operations can be realized by folding, for example:
 
 \begin{enumerate}
-\item 累加：
+\item Sum:
 
 \[
 sum = foldr\ +\ 0
 \]
 
-\item 前面提到的$and$函数，计算一个布尔值列表中的所有元素的逻辑与：
+\item The $and$ function, that applies logic and for all Boolean values in a list:
 
 \[
 and = foldr\ \land\ True
 \]
 
-这是因为：
+This is because:
 
 \[
 and\ [x_1, x_2, ..., x_n] = x_1 \land (x_2 \land (...(x_n \land True))...)
 \]
 
-\item 在一个列表中查找某一个元素是否存在：
+\item Test if a given element belongs to a list:
 
 \[
 elem\ x\ xs\ = foldr\ (a\ b \mapsto (a = x) \lor b)\ False\ xs
 \]
 
-\item 逐一映射：
+\item Map:
 
 \[
 \begin{array}{rcl}
@@ -174,7 +174,7 @@ map\ f\ xs & = & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs \\
 \end{array}
 \]
 
-\item 用某一条件过滤列表中的元素：
+\item Filter the elements with a given prediction:
 
 \[
 \begin{array}{rl}
@@ -186,20 +186,20 @@ filter\ f\ xs = foldr\ (x\ ys \mapsto
 \end{array}
 \]
 
-\item 两个列表连接：
+\item Concatenate two lists:
 
 \[
 xs \doubleplus ys = foldr\ (:)\ ys\ xs
 \label{eq:binary-concat}
 \]
 
-这是因为:
+This is because:
 
 \[
 [x_1, x_2, ..., x_n] \doubleplus ys = x_1 : (x_2 : (...(x_n : ys))...)
 \]
 
-\item 多个列表连接：
+\item Concatenate multiple lists:
 
 \[
 concat\ xss = foldr\ \doubleplus\ []\ xss
@@ -207,7 +207,7 @@ concat\ xss = foldr\ \doubleplus\ []\ xss
 
 \end{enumerate}
 
-叠加操作是如此基本，如果我们能把列表的叠加操作的化简规律找到，就找到了几乎所有列表操作的化简规律。
+Actually all list operations can be realized by folding (We proved it in the F-algebra section in previous chapter), if we can simplify folding, we then can simplify all list operations.
 
 \subsection{叠加——构建融合律}
 现在我们考虑，如果把空列表[]（即Nil）和连接操作“:”（即Cons）进行叠加会产生什么结果。
