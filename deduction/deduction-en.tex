@@ -240,69 +240,69 @@ Written in pointless format (without parentheses and named arguments) is:
 \index{foldr/build fusion law}
 We named this formula {\em fuldr/build fusion law}.
 
-在继续深入介绍前，让我们先看一些具体的例子。考虑如何计算从$a$到$b$间的整数和$sum([a, a+1, ..., b-1, b])$。为此我们可以先产生从$a$到$b$之间的所有整数$a, a+1, a+2, ..., b-1, b$，例如使用下面的方法：
+Let us start from an example. Consider how to sum up all the integers from $a$ to $b$, which is $sum([a, a+1, ..., b-1, b])$. First, we need generate all the integers from $a$ to $b$. Below definition enumerates $a, a+1, a+2, ..., b-1, b$.
 
 \[
 range(a, b) =
 \begin{cases}
 a > b: & [] \\
-\text{否则}: & a : range(a+1, b) \\
+\text{otherwise}: & a : range(a+1, b) \\
 \end{cases}
 \]
 
-这样$range(1, 5)$就产生列表[1, 2, 3, 4, 5]。现在我们只要把这个列表中的元素累加起来就得到答案了：
+Such that $range(1, 5)$ builds the list [1, 2, 3, 4, 5]. Sum up the enumerated list gives the answer.
 
 \[
 sum(range(a, b))
 \]
 
-接下来关键的一步，我们把$range$中的起始值[]和二元组合运算(:)抽出成为参数：
+Next, we extract the start value [] and the binary operation (:) out as parameters:
 
 \[
 range'(a, b, \oplus, z) =
   \begin{cases}
   a > b: & z \\
-  \text{否则}: & a \oplus range'(a+1, b, \oplus, z) \\
+  \text{otherwise}: & a \oplus range'(a+1, b, \oplus, z) \\
   \end{cases}
 \]
 
-我们甚至可以把$range'$的后两个参数克里化：
+We can further Curry the last two arguments of $range'$.
 
 \[
 range'\ a\ b = f\ c \mapsto
   \begin{cases}
   a > b: & c \\
-  \text{否则}: & f\ a\ (range' (a+1)\ b\ f\ c) \\
+  \text{otherwise}: & f\ a\ (range' (a+1)\ b\ f\ c) \\
   \end{cases}
 \]
 
-这样原来的$range$就可以用$range'$和$build$表示了：
+Now we can redefine $range$ with $range'$ and $build$:
 
 \[
 range(a, b) = build(range'(a, b))
 \]
 
-写下来我们用融合律化简累加和的计算：
+Next, we simplify the sum with the fusion law.
 
 \[
 \begin{array}{rcll}
-sum(range(a, b)) & = & sum(build(range'(a, b))) & \text{代入} \\
-  & = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (range'\ a\ b)) & \text{用叠加表示累加} \\
-  & = & range'\ a\ b\ (+)\ 0 & \text{使用融合律} \\
+sum(range(a, b)) & = & sum(build(range'(a, b))) & \text{substitute} \\
+  & = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (range'\ a\ b)) & \text{define sum with foldr} \\
+  & = & range'\ a\ b\ (+)\ 0 & \text{fusion law} \\
 \end{array}
 \]
 
-这样就完成了化简，避免产生了中间列表。优化了算法。我们可以看一下最后算法的效果：
+It gives the simplified result, which avoid generating the intermediate list, hence optimize the algorithm. Let's see how this result expands:
 
 \[
 range'\ a\ b\ (+)\ 0 =
   \begin{cases}
   a > b: & 0 \\
-  \text{否则}: & a + range'(a+1, b, (+), 0) \\
+  \text{otherwise}: & a + range'(a+1, b, (+), 0) \\
   \end{cases}
 \]
 
-\subsection{列表的构建形式}
+\subsection{build form for lists}
 
 为了方便使用融合律，我们可以把常见的能够产生新列表操作都写为$build...foldr$的形式。这样当用叠加操作和这种形式的操作组合起来时，$\pmb{foldr}...(\pmb{build}...foldr)$，就可以使用融合律化简。
 
