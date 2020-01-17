@@ -348,6 +348,8 @@ x : xs = build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))
 xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
 \]
 
+证明如下：
+
 \begin{proof}
 \blre
   & build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys) xs) & \\

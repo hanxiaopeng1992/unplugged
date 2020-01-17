@@ -302,45 +302,45 @@ range'\ a\ b\ (+)\ 0 =
   \end{cases}
 \]
 
-\subsection{build form for lists}
+\subsection{build forms for list}
 
-为了方便使用融合律，我们可以把常见的能够产生新列表操作都写为$build...foldr$的形式。这样当用叠加操作和这种形式的操作组合起来时，$\pmb{foldr}...(\pmb{build}...foldr)$，就可以使用融合律化简。
+To leverage fusion law conveniently, we can rewrite the common functions that generate list in the form of $build...foldr$. Such that when composite with folding, we can simplify $\pmb{foldr}...(\pmb{build}...foldr)$ with fusion law.
 
 \begin{enumerate}
-\item 首先是最简单的操作——构造空列表：
+\item The simplest one is to generate an empty list.
 
 \[
 [] = build\ (f\ z \mapsto z)
 \]
 
-我们可以代入$build$的定义(\ref{eq:build-definition})来验证这个定义：
+We can substitute it with the definition (\ref{eq:build-definition}) of $build$ to proof this result.
 
 \begin{proof}
 \bre
-build\ (f\ z \mapsto z) & = & (f\ z \mapsto z)\ (:)\ [] & build\text{的定义} \\
-  & = & (:)\ [] \mapsto [] & \beta-\text{规约，参见第二章} \\
+build\ (f\ z \mapsto z) & = & (f\ z \mapsto z)\ (:)\ [] & \text{definition of } build \\
+  & = & (:)\ [] \mapsto [] & \beta-\text{reduction, see chapter 2} \\
   & = & [] & \\
 \ere
 \end{proof}
 
-\item 接下来是列表的链接（Cons）操作：
+\item The next one is $cons$ operation, which links an element to a list.
 
 \[
 x : xs = build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))
 \]
 
-我们来验证一下：
+Let us verify it.
 
 \begin{proof}
 \blre
   & build\ (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs)) & \\
-= & (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))\ (:)\ [] & build\text{的定义} \\
-= & x : (foldr\ (:)\ []\ xs) & \beta-\text{规约} \\
-= & x : xs & \text{由(\ref{eq:foldr-fixed-point})，叠加的不动点} \\
+= & (f\ z \mapsto f\ x\ (foldr\ f\ z\ xs))\ (:)\ [] & \text{definition of } build \\
+= & x : (foldr\ (:)\ []\ xs) & \beta-\text{reduction} \\
+= & x : xs & \text{By (\ref{eq:foldr-fixed-point}), the fixed point of folding} \\
 \elre
 \end{proof}
 
-\item 然后是列表的连接：
+\item List concatenation:
 
 \[
 xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
@@ -358,22 +358,22 @@ xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
 
 \end{enumerate}
 
-以下操作我们只列出结果，而把它们的证明作为本小节的练习。
+For the rest examples, we only give the final result and leave the proof as exercises.
 
 \begin{enumerate}
 \setcounter{enumi}{3}
-\item 多个列表的连接：
+\item Concatenate multiple lists.
 \[
 concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss)
 \]
 
-\item 一一映射产生新列表：
+\item Map.
 
 \[
 map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)
 \]
 
-\item 过滤元素产生新列表：
+\item Filter.
 
 \[
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
@@ -383,7 +383,7 @@ filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \end{cases})\ z\ xs) \\
 \]
 
-\item 重复产生同一元素的（无穷）列表：
+\item Generate an infinite long list of the same element.
 
 \[
 repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
@@ -391,7 +391,7 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)
 
 \end{enumerate}
 
-\subsection{使用融合律化简}
+\subsection{Reduction with the fusion law}
 
 接下来我们使用刚刚打造好的融合律来化简计算。首先是本节开始时举过的例子：$all(p, xs) = and(map(p, xs))$
 
