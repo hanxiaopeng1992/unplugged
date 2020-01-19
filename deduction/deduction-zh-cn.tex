@@ -496,7 +496,7 @@ join\ (w:ws) = h\ w \\
 \]
 
 \index{concatMap} \index{flatMap}
-由于$concat \circ map(f)$十分常见，很多编程环境的标准库已经提供了这样的优化实现。例如Haskell中的\texttt{concatMap}，Java和Scala中的\texttt{flatMap}。
+由于$concat \circ map(f)$十分常见，很多编程环境的标准库已经提供了这样的优化实现。\footnote{例如Haskell中的\texttt{concatMap}，Java和Scala中的\texttt{flatMap}。}
 \end{example}
 
 第二个例子虽然展示了融合律的强大，但是也暴露出了一个问题。推导过程机械繁琐、容易出错。这恰恰是机器，而非人类擅长的事情。有些编程环境，例如Haskell已经把融合律实现在编译器内部\cite{GLPJ-1993}。这样只要我们把列表的常见操作用构建——叠加形式定义好，机器就可以替代我们利用融合律进行上述化简，从而得到优化的程序，避免中间结果和多余的递归\footnote{例如Haskell标准库已经用构建——叠加形式实现了大多数列表操作。}。随着时间的推移，更多的编译器会逐渐支持这一优化工具。
