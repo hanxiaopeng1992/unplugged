@@ -534,10 +534,10 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 Because there are two polymorphic types $A$ and $B$, it is called rank-2 type polymorphic.
 
 \subsection{Fusion law in category theory}
-\index{短路融合（shortcut fusion}
-叠加——构建融合律可以用范畴理论推导出来并进行扩展。一旦把范畴论作为理论工具，人们就发现叠加——构建融合仅仅是众多种融合规则中的一个。现在这些规则统一被称为“短路融合”（shortcut fusion）。它们在编译器优化，程序库优化中发挥了重要的作用。我们无法在这一章中对它们做全面的介绍。读者可以参考\cite{Hinze-Harper-James-2010}深入了解短路融合的理论和实践方法。
+\index{shortcut fusion}
+foldr/build fusion law can be deduced and extended from the category theory. Foldr/build fusion law is one of the varies of fusion laws in category theory. They are named as {\em shortcut fusion} nowadays, and play important roles in compiler, and program optimization. We can't cover all of them in a chapter. Readers can refer to \cite{Hinze-Harper-James-2010} to understand shortcut fusion theory and practice in depth.
 
-在上一章中，我们介绍了F-代数，特别是初始代数和向下态射。由于初始代数是起始对象，所以它到任何其他代数都有唯一的箭头。如下图所示：
+We introduced F-algebra, initial algebra, and catamorphism in previous chapter. Because initial algebra is the initial object, it has unique arrow to every other algebra, as shown in below diagram.
 
 \begin{center}
 \begin{tikzpicture}
@@ -553,7 +553,7 @@ Because there are two polymorphic types $A$ and $B$, it is called rank-2 type po
 \end{tikzpicture}
 \end{center}
 
-从初始代数$(I, i)$到另一代数$(A, a)$的箭头可以通过向下态射$\lbb a \rbb$来表示。如果还存在一个不同的F-代数$(B, b)$对象，并且有从$A$到$B$的箭头$A \arrowto{h} B$，就可以在上面的范畴图下方把$(B, b)$也画出：
+The arrow from the initial algebra $(I, i)$ to algebra $(A, a)$ can be defined with catamorphism $\lbb a \rbb$. If there exists another F-algebra $(B, b)$, and the is arrow from $A$ to $B$ as $A \arrowto{h} B$, then we can also draw $(B, b)$ at the bottom:
 
 \begin{center}
 \begin{tikzpicture}
@@ -573,7 +573,7 @@ Because there are two polymorphic types $A$ and $B$, it is called rank-2 type po
 \end{tikzpicture}
 \end{center}
 
-但由于$(I, i)$是起始对象，所以它到$(B, b)$也必然存在唯一的箭头。由此可知，必然存在从$I$到$B$的箭头，可以用向下态射$\lbb b \rbb$表示出来。如下图：
+Since $(I, i)$ is the initial algebra, it must have the unique arrow to $(B, b)$. Hence there must be arrow from $I$ to $B$, which can be represented as catamorphism $\lbb b \rbb$, as shown in below diagram.
 
 \begin{center}
 \begin{tikzpicture}
@@ -595,7 +595,7 @@ Because there are two polymorphic types $A$ and $B$, it is called rank-2 type po
 \end{tikzpicture}
 \end{center}
 
-从这个范畴图可以看出，如果存在$h$，则下面那个小正方形可交换。这等价于说从$I$经由$A$到$B$相当于从$I$直接到$B$。这就是初始代数的融合律。记为：
+From this diagram we can find that, if and only if there is $h$, such that the square at the bottom commutes. Then the path from $I$ through $A$ to $B$ and the path directly from $I$ to $B$ also commutes. It is called the fusion law of initial algebra, denote as:
 
 \be
 \begin{array}{rcl}
@@ -605,51 +605,51 @@ h \circ a = b \circ \mathbf{F}(h) \\
 \end{array}
 \ee
 
-初始代数的融合律意味这什么呢？在上一章中，我们发现向下态射可以将非递归的计算，转换成在递归结构上的叠加计算。例如，当函子$\mathbf{F}$是$\mathbf{ListF}A$（其中$A$是给定的对象）时，箭头$a = f + z$（加号表示余积），而初始箭头$i = (:) + []$，向下态射$\lbb a \rbb = foldr(f, z)$。如果记$b = c + n$，则融合律可以写成：
+What does the fusion law for initial algebra mean? In previous chapter, we explained that catamorphism can turn the non-recursive computation to folding on recursive structures. For example, when the functor $\mathbf{F}$ is $\mathbf{ListF}A$, where $A$ is given object, the arrow $a = f + z$ (coproduct of $f$ and $z$), the initial arrow is $i = (:) + []$, and the catamorphism is $\lbb a \rbb = foldr(f, z)$. If denote $b = c + n$, then the fusion law can be written as:
 
 \[
 h \circ foldr(f, z) = foldr(c, n)
 \]
 
-它说明叠加之后再进行变换可以化简为单一的叠加。1995年，高野秋彦和梅耶（Meijer）进一步将向下态射$\lbb a \rbb$抽象成从$a$构造某种代数结构$g\ a$，这样融合律就可以推广为\cite{Takano-Meijer-1995}：
+It means the transformation after folding can be simplified to only folding. Takano and Meijer in 1995 further abstracted the catamorphism $\lbb a \rbb$ to building some abstract algebra structure $g\ a$ from $a$, such that the fusion law can be extended to\cite{Takano-Meijer-1995}:
 
 \be
 A \arrowto{h} B \quad \Rightarrow \quad h \circ g\ a = g\ b
 \ee
 
-\index{酸雨定律} \index{砍伐定律（deforestation）}
-这一推广的融合律被称为“酸雨定律”\footnote{由于融合律能够消除不必要的中间结果，所以最早被称为“砍伐定律”（deforestation）。而推广的融合律被幽默地称为酸雨定律（acid rain law）。}。另一方面，由于存在从初始代数$I$到$A$的箭头：$I \arrowto{\lbb a \rbb} A$，所以将$\lbb a \rbb$代入酸雨定律左侧的$h$，并且用$i$替换酸雨定律中的$a$，用$a$替换酸雨定律中的$b$，我们有：
+\index{acid rain law} \index{deforestation}
+This extended fusion law is called {\em acid rain law}\footnote{Because fusion law can help to eliminate intermediate results, it was named as {\em deforestation} before.}. On the other hand, from the initial algebra $I$ to $A$, there exits arrow $I \arrowto{\lbb a \rbb} A$, hence substitute $h$ on the left hand of acid rain law with $\lbb a \rbb$, substitute $a$ with $i$, and substitute $b$ with $a$, we obtain:
 
 \be
 I \arrowto{\lbb a \rbb} A \quad \Rightarrow \quad \lbb a \rbb \circ g\ i = g\ a
 \ee
 
-具体到列表的例子，把$\lbb a \rbb$代换为$foldr(f, z)$；把初始代数$i$代换为列表的初始代数$(:) + []$；定义$build(g) = g\ (:)\ []$，并代入酸雨定律左侧，就得到了列表的叠加——构建融合律：
+For the list example, the catamorphism $\lbb a \rbb$ is $foldr(f, z)$; the initial algebra $i$ for list is $(:) + []$; define $build(g) = g\ (:)\ []$, and substitute it into the left side of acid rain law, we obtain the foldr/build fusion law:
 
 \blre
-& \lbb a \rbb \circ g\ i = g\ a & \text{酸雨定律} \\
+& \lbb a \rbb \circ g\ i = g\ a & \text{acid rain law} \\
 
 \Rightarrow &
-foldr\ f\ z\ (g\ i) = g\ a & \text{列表的向下态射是叠加} \\
+foldr\ f\ z\ (g\ i) = g\ a & \text{foldr is catamorphism for list} \\
 
 \Rightarrow &
-foldr\ f\ z\ (g\ (:)\ []) = g\ a & \text{列表的初始代数$i$是$(:), []$} \\
+foldr\ f\ z\ (g\ (:)\ []) = g\ a & \text{the initial algebra $i$ for list is $(:), []$} \\
 
 \Rightarrow &
-foldr\ f\ z\ (g\ (:)\ []) = g\ f\ z & \text{用$f, z$替换$a$} \\
+foldr\ f\ z\ (g\ (:)\ []) = g\ f\ z & \text{substitute $a$ with $f, z$} \\
 
 \Rightarrow &
-\pmb{foldr}\ f\ z\ (\pmb{build}\ g) = g\ f\ z & \text{反向用$build$的定义} \\
+\pmb{foldr}\ f\ z\ (\pmb{build}\ g) = g\ f\ z & \text{reverse of $build$} \\
 \elre
 
-这样我们就用范畴论证明了叠加——构建融合律\cite{Hinze-Harper-James-2010}。
+Hence we proved foldr/build fusion law for list with category theory\cite{Hinze-Harper-James-2010}.
 
 \begin{Exercise}
-\Question{验证从左侧叠加也可以表示为$foldr$:
+\Question{Verify that the folding from left can also be defined with $foldr$:
 \[
 foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \]}
-\Question{证明以下列表的构建——叠加形式：
+\Question{Prove the below build...foldr forms hold:
 \[
 \begin{array}{l}
 concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss) \\
@@ -657,23 +657,23 @@ map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ 
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
      f(x): & x \oplus xs' \\
-    \text{否则}: & xs' \\
+    \text{otherwise}: & xs' \\
   \end{cases})\ z\ xs) \\
 repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \end{array}
 \]
 }
-\Question{利用融合律化简快速排序算法：
+\Question{Simplify the quick sort algorithm with the fusion law.
 \[
 \begin{cases}
 qsort\ [] = [] \\
 qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsort\ [a | a \in xs, x < a] \\
 \end{cases}\]
-提示：将ZF表达式\footnote{全称为“策梅罗——弗兰克尔表达式”。指集合论中$\{f(x) | x \in X, p(x), q(x), ...\}$这样的集合构建表达式。我们在下一章介绍无穷和集合论时会再次遇到它。}转换为$filter$。}
-\Question{利用范畴论验证融合律的类型限制。提示：考虑向下态射的类型。}
+Hint: turn the ZF-expression\footnote{Known as Zermelo-Fraenkel expression in set theory. In the form $\{f(x) | x \in X, p(x), q(x), ...\}$ to build set. We'll meet it again in the next chapter about infinity and set theory.} into $filter$.}
+\Question{Verify the type constraint with category theory. Hint: consider the type of the catamorphism.}
 \end{Exercise}
 
-\section{巧算100}
+\section{Make a Century}
 
 我们举的第二个例子来自伯德的《函数式算法珠玑》中的第6章\cite{Bird-2010}。高德纳在《计算机程序设计的艺术》卷4中给出了一道练习题\cite{Knuth-TAOCP-2006}：把1到9这九个数字写成一行：1 2 3 4 5 6 7 8 9。只允许在这些数字之间添上加号和乘号，不许用括弧。如何使得最后的得数恰好是100？
 

@@ -536,7 +536,7 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 由于里面有两个多态的类型$A$和$B$，因此它被称为二阶多态函数（rank-2 type polymorphic）。
 
 \subsection{用范畴论推导融合律}
-\index{短路融合（shortcut fusion}
+\index{短路融合（shortcut fusion）}
 叠加——构建融合律可以用范畴理论推导出来并进行扩展。一旦把范畴论作为理论工具，人们就发现叠加——构建融合仅仅是众多种融合规则中的一个。现在这些规则统一被称为“短路融合”（shortcut fusion）。它们在编译器优化，程序库优化中发挥了重要的作用。我们无法在这一章中对它们做全面的介绍。读者可以参考\cite{Hinze-Harper-James-2010}深入了解短路融合的理论和实践方法。
 
 在上一章中，我们介绍了F-代数，特别是初始代数和向下态射。由于初始代数是起始对象，所以它到任何其他代数都有唯一的箭头。如下图所示：
