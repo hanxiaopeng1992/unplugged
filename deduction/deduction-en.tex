@@ -497,43 +497,43 @@ join\ (w:ws) = h\ w \\
 Because $concat \circ map(f)$ is very common, many programming environments provide it in the optimized way as we deduced\footnote{For example, \texttt{concatMap} in Haskell, and \texttt{flatMap} in Java and Scala.}.
 \end{example}
 
-第二个例子虽然展示了融合律的强大，但是也暴露出了一个问题。推导过程机械繁琐、容易出错。这恰恰是机器，而非人类擅长的事情。有些编程环境，例如Haskell已经把融合律实现在编译器内部\cite{GLPJ-1993}。这样只要我们把列表的常见操作用构建——叠加形式定义好，机器就可以替代我们利用融合律进行上述化简，从而得到优化的程序，避免中间结果和多余的递归\footnote{例如Haskell标准库已经用构建——叠加形式实现了大多数列表操作。}。随着时间的推移，更多的编译器会逐渐支持这一优化工具。
+Although the second example demonstrates the power of fusion law, it also exposes a problem. The reduction process is complex and error prone, with plenty of repeated similar steps. It is exactly a typical case that machine performs better than human beings. Some programming environments have the fusion law built in the compiler\cite{GLPJ-1993}. What we need is to define the common list operations in the build...foldr form, then the rest boring work can be handled by machine. The compiler will help us reducing to optimized program, that avoid thrown away intermediate results and redundant recursions\footnote{Haskell standard library for example, provides most list functions in build...foldr form.}. As time goes on, more and more compilers will support this optimization tool.
 
-\subsection{类型限制}
+\subsection{Type constraint}
 
-每当我们打造出抽象的工具，就要思考它的适用范围，了解它什么情况下会失效。对于融合律也是如此。考虑下面的矛盾结果：
+Whenever we develop an abstraction tool, we should consider its application scope, understand when it will be invalid. For the fusion law, consider the below contradict results:
 
 \blre
   & \pmb{foldr}\ f\ z\ (\pmb{build}\ (c\ n \mapsto [0])) & \\
-= & (c\ n \mapsto [0])\ f\ z & \text{融合律} \\
-= & [0] & \beta-\text{规约} \\
+= & (c\ n \mapsto [0])\ f\ z & \text{fusion law} \\
+= & [0] & \beta-\text{reduction} \\
 \elre
 
-另一方面：
+On the other hand:
 
 \blre
   & foldr\ f\ z\ (build\ (c\ n \mapsto [0])) & \\
-= & foldr\ f\ z\ ((c\ n \mapsto [0])\ (:)\ []) & build\text{的定义} \\
-= & foldr\ f\ z\ [0] & \beta-\text{规约} \\
-= & f(0, z) & \text{叠加展开} \\
+= & foldr\ f\ z\ ((c\ n \mapsto [0])\ (:)\ []) & \text{definition of } build \\
+= & foldr\ f\ z\ [0] & \beta-\text{reduction} \\
+= & f(0, z) & \text{expand foldr} \\
 \elre
 
-显然$f(0, z)$不等于$[0]$，连它们两个的类型都不同\footnote{除非极特殊情况$f = (:), z = []$。}。造成这一矛盾结果的原因是$(c\ n \mapsto [0])$不是一个真正用$c$和$n$构造结果的函数。为此我们需要对融合律$foldr\ f\ z\ (build\ g) = g\ f\ z$中$g$的类型做出限制。它的第一个参数既可以接受$c$，也可以接受$f$，换言之，它接受一个多态的二元运算$\forall A. \forall B.\ A \times B \to B$；同理它的第二个参数也是一个多态类型$B$的起始值，并产生一个类型为$B$的结果。我们把二元运算写为克里化的形式就得到：
+Obviously that $f(0, z)$ is not identical to $[0]$, even their types are not same\footnote{Unless the extreme case that $f = (:), z = []$.}. The reason that leads to this contradiction is because $(c\ n \mapsto [0])$ is not a function that builds result of $c$ and $n$. It tells us, the fusion law $foldr\ f\ z\ (build\ g) = g\ f\ z$, has type constraint for $g$. Its first argument can be $c$ or $f$, actually, it accepts a polymorphic binary operation $\forall A. \forall B.\ A \times B \to B$; The second argument is the start value of a polymorphic type $B$, the result type is also $B$. Write the binary operation in Curried form, we obtain the following type constraint for $g$.
 
 \[
 g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 \]
 
-容易看出，上面反例中的类型是：$\forall A. (\forall B. (A \to B \to B) \to B \to [Int])$。不满足我们的类型限制。与此对应，构建函数$build$的类型为：
+In the above example that causes contradict results, the type is $\forall A. (\forall B. (A \to B \to B) \to B \to [Int])$. It does not satisfy the constraint. The corresponding result constraint for $build$ is:
 
 \[
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 \]
 
-\index{二阶多态函数}
-由于里面有两个多态的类型$A$和$B$，因此它被称为二阶多态函数（rank-2 type polymorphic）。
+\index{rank-2 type polymorphic}
+Because there are two polymorphic types $A$ and $B$, it is called rank-2 type polymorphic.
 
-\subsection{用范畴论推导融合律}
+\subsection{Fusion law in category theory}
 \index{短路融合（shortcut fusion}
 叠加——构建融合律可以用范畴理论推导出来并进行扩展。一旦把范畴论作为理论工具，人们就发现叠加——构建融合仅仅是众多种融合规则中的一个。现在这些规则统一被称为“短路融合”（shortcut fusion）。它们在编译器优化，程序库优化中发挥了重要的作用。我们无法在这一章中对它们做全面的介绍。读者可以参考\cite{Hinze-Harper-James-2010}深入了解短路融合的理论和实践方法。
 
