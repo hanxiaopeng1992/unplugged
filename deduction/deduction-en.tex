@@ -675,44 +675,44 @@ Hint: turn the ZF-expression\footnote{Known as Zermelo-Fraenkel expression in se
 
 \section{Make a Century}
 
-我们举的第二个例子来自伯德的《函数式算法珠玑》中的第6章\cite{Bird-2010}。高德纳在《计算机程序设计的艺术》卷4中给出了一道练习题\cite{Knuth-TAOCP-2006}：把1到9这九个数字写成一行：1 2 3 4 5 6 7 8 9。只允许在这些数字之间添上加号和乘号，不许用括弧。如何使得最后的得数恰好是100？
+Our second example is from Bird's {\em Pearls of Functional Algorithm Design} (\cite{Bird-2010}, chapter 6). Knuth leaves an exercise in his {\em The Art of Computer Programming} (\cite{Knuth-TAOCP-2006}, Vol 4). Write down 1 2 3 4 5 6 7 8 9 in a row, only allow to insert + and $\times$ symbol between these numbers, parentheses are not allowed. How to make the final calculation result be 100?
 
-例如：
+For instance:
 
 \[
 12 + 34 + 5 \times 6 + 7 + 8 + 9 = 100
 \]
 
-这看起来像是一道小学生的数学竞赛题目。如果要求找到所有可能的解法，就是一道编程趣题。最简单直接的方法，就是利用计算机进行穷举，每两个数字间一共有三种选择：1）什么都不插入；2）插入加号；3）插入乘号。由于九个数字间一共有8个空，所以共有$3^8 = 6561$种方法。我们只要让计算机逐一检查这6561种方案，看看哪些最终得100就可以了。
+It looks like a mathematics puzzle for primary school students. It is also a good programming exercise if requests to find all the possible solutions. The straightforward way is to brute-force exhaustive search by machine. For every position between two digits, there are 3 possible options: (1) insert nothing; (2) insert +; or (3) insert $\times$. Since there are 8 spaces among 9 digits, there are $3^8 = 6561$ possible options in total. It's a piece of cake for modern computer to calculate these 6561 results, and figure out which are 100.
 
-\subsection{穷举法}
+\subsection{Exhaustive search}
 
-我们先把一个由数字、加法、乘法组成的式子定义出来。考虑刚才的算式：
+Let's first model the calculation consist of digits, +, and $\times$. Consider the example:
 
 \[
 12 + 34 + 5 \times 6 + 7 + 8 + 9
 \]
 
-由于先乘除后加减，我们可以把它看作由加号分割的若干子算式。所以上述算式等价于：
+As multiplication is prior to addition, we can treat it as a list of sub-calculations separated by +. Hence the above example is identical to:
 
 \[
 sum [12, 34, 5 \times 6, 7, 8, 9]
 \]
 
-这样我们定义一个算式是由加号分割的若干子算式$t_1 + t_2 + ... + t_n$。即$expr = [t_1, t_2, ..., t_n]$：
+In summary, we define an expression as one or multiple sub-expressions separated by + in form of $t_1 + t_2 + ... + t_n$. Or in list form of $expr = [t_1, t_2, ..., t_n]$. The formal definition is:
 
 \lstset{frame = none}
 \begin{lstlisting}
 type Expr = [Term]
 \end{lstlisting}
 
-具体到每个子算式，我们可以把它看作由乘号分割的若干因子，例如$5 \times 6 = product [5, 6]$。如果是单一的数，例如$34$，我们仍然可以把它看作$34 = product [34]$。这样我们就可以定义由因子组成的子算式$f_1 \times f_2 \times ... \times f_m$。即$term = [f_1, f_2, ..., f_m]$：
+For every sub-expression, we treat it as one or multiple factors separated by $\times$. For example, $5 \times 6 = product [5, 6]$. This definition is also applicable for a single number, like $34$. It can be treated as $34 = product [34]$. Hence we can define sub-expression as the product of factors $f_1 \times f_2 \times ... \times f_m$, or in list form: $term = [f_1, f_2, ..., f_m]$:
 
 \begin{lstlisting}
 type Term = [Factor]
 \end{lstlisting}
 
-最终，每个因子都可以看作若干数字组成的整数，例如由两个数字组成的34，或仅有一个数字的5。也就是说$factor = [d_1, d_2, ..., d_k]$：
+Every factor is consist of digits. For example, 34 has two digits, while 5 has only 1. In summary $factor = [d_1, d_2, ..., d_k]$.
 
 \begin{lstlisting}
 type Factor = [Int]
