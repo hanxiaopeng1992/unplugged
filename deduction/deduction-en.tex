@@ -745,13 +745,13 @@ eval (t:ts) = product\ (map\ dec\ t) + eval(ts) \\
 \end{cases}
 \]
 
-根据这一定义，如果算式为空，则其值为0；否则我们取出第一个子算式，将其中的每个因子求出并乘到一起。然后再加上剩余子算式的求值结果。这样在使用穷举法时，对每个可能的算式，我们都用$eval$求值。留下所有等于100的算式。即：
+According to this definition, the result is 0 if the expression is empty; otherwise, we take the first sub-expression, evaluate all its factors, and multiply them together. Then add it to the result of the rest sub-expressions. We repeatedly call $eval$ for all possible expressions, and filter the candidates unless they evaluate to 100.
 
 \[
 filter\ (e \mapsto eval(e) == 100)\ es
 \]
 
-其中$es$是所有从1到9能够组成的算式的集合。如何产生这个集合呢？我们从空集合开始，然后每次从1到9中取出一个数字，看看能扩展出哪些合法的算式。首先，从空集合和唯一的数字$d$只能构造出一个算式：$[[[d]]]$。最内层是由数字$d$构成的唯一因子$fact = [d]$；然后是由这个因子构成的子算式$term = [fact] = [[d]]$，这个唯一的子算式构成的完整算式是$[term] = [[fact]] = [[[d]]]$。我们可以把这一构造过程定义为：
+Where $es$ is the set contains all the possible expressions of 1 to 9. How to generate this set? Starting from empty set, every time, we pick a number from 1 to 9 to expand the expressions. First, from the empty set and a given number $d$, we can only build one expression, $[[[d]]]$. The inner most is the singleton factor consist of $d$, hence $fact = [d]$; then there is the sub-expression consist of this factor $term = [fact] = [[d]]$; this only sub-expression forms the final expression $[term] = [[fact]] = [[[d]]]$. We define this expression building process as:
 
 \[
 expr(d) = [[[d]]]
