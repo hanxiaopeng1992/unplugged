@@ -718,7 +718,7 @@ Every factor is consist of digits. For example, 34 has two digits, while 5 has o
 type Factor = [Int]
 \end{lstlisting}
 
-从若干数字求得整数是一个叠加的过程，例如$[1, 2, 3] \Rightarrow (((1 \times 10) + 2) \times 10) + 3$。我们可以将其定义为一个函数：
+It's a folding process to evaluate the decimal value from a list of digits. For example, $[1, 2, 3] \Rightarrow (((1 \times 10) + 2) \times 10) + 3$. We can define it as a function.
 
 \[
 dec = foldl\ (n\ d \mapsto n \times 10 + d)\ 0
