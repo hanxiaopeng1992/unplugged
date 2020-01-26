@@ -738,7 +738,7 @@ eval = sum \circ map\ (product \circ (map\ dec))
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork(dec, id))\ 1\ t) + ts)\ 0
 \]
 
-从这一结果可以写出一个可读性与性能都更好的定义：
+其中$fork(f, g)\ x = (f\ x, g\ x)$，它将两个函数分别应用到一个变量上，然后将结果组成一对值。从这一结果可以写出一个可读性与性能都更好的定义：
 
 \[
 \begin{cases}

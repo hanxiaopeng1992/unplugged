@@ -724,19 +724,19 @@ It's a folding process to evaluate the decimal value from a list of digits. For 
 dec = foldl\ (n\ d \mapsto n \times 10 + d)\ 0
 \]
 
-穷举法的思路是针对每一个可能的算式，计算并检查它是否得100。为此，我们需要定义一个函数，求出一个算式的值。根据算式的定义，我们需要递归地求出每个子算式（term）的值，然后将其累加起来；为了求每个子算式的值，需要递归地求出每个因子的值，然后再累乘起来；为了求每个因子的值，需要对每个因子使用$dec$函数。
+The exhaustive search need examine every possible expression evaluates to 100. We need define a function to evaluate a given expression. From the expression definition, we need define the process to recursively evaluate every sub-expression (term), and sum them up; further, we also need recursively evaluate every factor, and multiply them up; in the end, we call $dec$ function to evaluate each factor.
 
 \[
 eval = sum \circ map\ (product \circ (map\ dec))
 \]
 
-明显这一定义可以用上一节介绍的融合律进行优化，我们把具体的推导过程留作练习。最终的优化结果如下：
+Obviously, this definition can be optimized by the fusion law. We leave the detailed deduction process as the exercise, and directly give the result here:
 
 \[
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork(dec, id))\ 1\ t) + ts)\ 0
 \]
 
-从这一结果可以写出一个可读性与性能都更好的定义：
+Where $fork(f, g)\ x = (f\ x, g\ x)$. It applies two functions to a given variable separately, and forms a pair. From this result, we can write a definition with both good performance and readability:
 
 \[
 \begin{cases}
