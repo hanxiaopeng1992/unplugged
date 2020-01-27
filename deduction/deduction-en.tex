@@ -751,21 +751,23 @@ According to this definition, the result is 0 if the expression is empty; otherw
 filter\ (e \mapsto eval(e) == 100)\ es
 \]
 
-Where $es$ is the set contains all the possible expressions of 1 to 9. How to generate this set? Starting from empty set, every time, we pick a number from 1 to 9 to expand the expressions. First, from the empty set and a given number $d$, we can only build one expression, $[[[d]]]$. The inner most is the singleton factor consist of $d$, hence $fact = [d]$; then there is the sub-expression consist of this factor $term = [fact] = [[d]]$; this only sub-expression forms the final expression $[term] = [[fact]] = [[[d]]]$. We define this expression building process as:
+Where $es$ is the set contains all the possible expressions of 1 to 9. How to generate this set? Starting from empty set, every time, we pick a number from 1 to 9 to expand the expressions. From the empty set and a given number $d$, we can only build one expression $[[[d]]]$. The inner most is the singleton factor consist of the only digit $d$, hence $fact = [d]$; then there is the sub-expression consist of this factor $term = [fact] = [[d]]$; this only sub-expression forms the final expression $[term] = [[fact]] = [[[d]]]$. We define this edge expression building process as:
 
 \[
 expr(d) = [[[d]]]
 \]
 
-接下来，考虑一般情形。我们的策略是从右侧开始，不断取出数字9, 8, 7, ...来扩展算式。假设我们已经用数字构造了一个算式集合$[e_1, e_2, ..., e_n]$，此时如果取出下一个数字$d$，如何扩展出所有的合法算式呢？我们在本节的开头说过，每两个数字间一共由三种选择：1）什么都不插入；2）插入加号；3）插入乘号。我们来看看对于算式集合中的任意$e_i$这三种选择的含义分别是什么。将$e_i$展开表示成若干子算式的和$e_i = t_1 + t_2 + ...$，其中第一个子算式$t_1$表示为若干因子的积$t_1 = f_1 \times f_2 \times ...$。
+For the common cases, we start from right, repeatedly pick numbers 9, 8, 7, ... to expand the expression. On top of a set of expressions $[e_1, e_2, ..., e_n]$, how to expand all possible expressions from the next digit $d$? We've mentioned that there are 3 options between two digits: 1) insert nothing; 2) insert +; 3) insert $\times$. Let's see what does each option mean for every expression $e_i$ in the set. Write $e_i$ as the sum of sub-expressions $e_i = t_1 + t_2 + ...$, where the first sub-expression $t_1$ can be further written as product of factors $t_1 = f_1 \times f_2 \times ...$.
 
 \begin{enumerate}
-\item 什么都不插入意味着将数字$d$直接添加到$e_i$的第一个子算式中的第一个因子的前面。这样由$d:f_1$组成一个新的因子。例如$e_i$是算式$8 + 9$，数字$d$是7，将7写在$8+9$的前面而什么符号都不插入，这样就得到新算式$78 + 9$；
-\item 插入乘号意味着用数字$d$构成一个因子$[d]$，然后将它添加到$e_i$中第一个子算式的前面。这样由$[d]:t_1$组成一个新的子算式。具体到$8 + 9$这个例子，我们把7写在它的前面，然后在7和8之间插入一个乘号，这样就得到新算式$7 \times 8 + 9$；
-\item 插入加号意味着用数字$d$构成一个子算式$[[d]]$，然后将将它添加到$e_i$的最前面，组成新的算式$[[d]]:e_i$。具体到$8 + 9$这个例子，我们把7写在它的前面，然后在7和8之间插入一个加号，这样就得到新算式$7 + 8 + 9$；
+\item Insert nothing means prepend digit $d$ to the first factor in the first sub-expression in $e_i$. Hence $d:f_1$ form a new factor. For example, let $e_i$ be $8 + 9$, and $d$ be 7. Writing 7 before $8 + 9$ without insert any symbol, gives the a new expression $78 + 9$;
+
+\item Insert $\times$ means to use $d$ form a new factor $[d]$, then prepend it before the first sub-expression in $e_i$. Hence $[d]:t_1$ gives a new sub-expression. For the same example of $8 + 9$, we write 7 before it, and insert a $\times$ symbol between 7 and 8. It gives the new expression $7 \times 8 + 9$;
+
+\item Insert + means to use $d$ form a new sub-expression $[[d]]$, then prepend it to $e_i$ to form a new expression $[[d]]:e_i$. For the same example of $8 + 9$, we write 7 before it, and insert a + between 7 and 8. It gives the new expression $7 + 8 + 9$.
 \end{enumerate}
 
-把这三种情形转换为定义就得到了下面的函数：
+The below definition summarizes these three options:
 
 \lstset{frame = none}
 \begin{lstlisting}
