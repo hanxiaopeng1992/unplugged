@@ -776,7 +776,7 @@ add d ((ds:fs):ts) = [((d:ds):fs):ts,
                       [[d]]:(ds:fs):ts]
 \end{lstlisting}
 
-其中算式$e_i$被写成了$(ds:fs):ts$的形式，$e_i$中的第一个子算式是$ds:fs$，第一个子算式中的第一个因子是$ds$。这样，从每个已有的算式，我们都可以扩展出3个新算式。而对于算式列表$[e_1, e_2, ..., e_n]$，只要分别对每个算式扩展，然后将结果连接到一起就可以了。这恰恰就是上一节我们介绍过的$concatMap$：
+Where $e_i$ is written in the form of $(ds:fs):ts$. The first sub-expression in $e_i$ is $ds:fs$, and the first factor in the first sub-expression is $ds$. From every expression, we can expand 3 new expressions. Given the expression list $[e_1, e_2, ..., e_n]$, we can expand for every one, then concatenate the results together. It is exactly the $concatMap$ function we mentioned in the previous section.
 
 \[
 \begin{cases}
@@ -785,14 +785,14 @@ extend\ d\ es = concatMap\ (add\ d)\ es
 \end{cases}
 \]
 
-这样我们就得到了穷举法的完整定义：
+Therefore, we obtain the complete definition of the exhaustive search method.
 
 \be
 filter\ (e \mapsto eval(e) == 100)\ (foldr\ extend\ [1..9])
 \label{eq:puzzle100-basic}
 \ee
 
-\subsection{改进}
+\subsection{Improvement}
 
 我们能改进这个穷举法么？观察用1到9这些数字从右向左穷举算式的过程。首先我们写下数字9，在添加数字8时，可能产生3个算式，分别是：89，$8 \times 9 = 72$，和8 + 9 = 17。接下来添加7，算式789显然大于100，可以立即丢弃。并且我们确信任何在789左侧扩展出的新算式也都不可能等于100，因此也可以丢弃。这样就避免了无谓的计算。同样$7 \times 89$也大于100，可以丢弃并停止向左扩展。只有7+89是可能的候选算式。接下来我们扩展出$78 \times 9$，由于它大于100，因此被丢弃并停止扩展……
 
