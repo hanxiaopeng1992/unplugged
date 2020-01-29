@@ -18,8 +18,8 @@
 
 \title{Deduction}
 
-\author{刘新宇
-\thanks{{\bfseries 刘新宇} \newline
+\author{Liu Xinyu
+\thanks{{\bfseries Liu Xinyu} \newline
   Email: liuxinyu95@gmail.com \newline}
   }
 
@@ -45,7 +45,7 @@
 
 I still remember the mathematics class in high school. My teacher often wrote down a complex formula with many alphabetic symbols in the blackboard, then asked us to simplify it. Some student stood up, volunteered to do it in front of the class. Combining like terms, factorization, ... all means were attempted. It liked a magic process often led to unbelievable simple result. Of course sometimes the guy was stuck or trapped in loops, and finally saved by our teacher.
 
-Chalk and blackboard, Such experience was unforgettable, just like happened yesterday. I was so impressive to the mythical power of reasoning. I always wanted to know more formulas, that could help me to deduce the result.
+Chalk and blackboard, Such experience was unforgettable, just like happened yesterday. I was so impressed to the mythical power of reasoning. I always wanted to know more formulas, that could help me to deduce the result.
 
 The magic is that, we even needn't care about the concrete meanings when doing the deduction. It likes building bricks, from different parts, we finally build an interesting toy. These formulas and theorems can also be combined together, and finally build an interesting result. When meet $a^2 + 2ab + b^2$, then turn it into $(a+b)^2$, just like mating two bricks. We needn't force ourselves to remind the geometric meanings for this formula when deducing it.
 
@@ -85,7 +85,7 @@ We use two examples in this chapter to demonstrate how to do deduction in progra
 
 \section{foldr/build fusion}
 
-The first example is the foldr/build fusion law. In 2015, a main stream programming language Java adopted lambda expression and a set of functional tools in its 1.8 version. However, some programmer soon found the chained function calls brought elegance and expressiveness at the penalty of performance if using carelessly. One reason is the chained functions may generate excessive intermediate results. While these intermediate results are not necessary simple values, but the complete list, container, or collection of complex structures. They are thrown away after consumed by the next functions. However, the same level of new result will be generated step by step. Such produce, one time consume, thrown away, then produce again pattern happens along the function chain repeatedly, which causes computation overhead.
+The first example is the foldr/build fusion law. In 2015, a main stream programming language Java adopted lambda expression and a set of functional tools in its 1.8 version. However, some programmer soon found the chained function calls brought elegance and expressiveness at the penalty of performance if using carelessly. One reason is the chained functions may generate excessive intermediate results. While these intermediate results are not necessary simple values, but the complete list, container, or collection of complex structures. They are thrown away after consumed by the next functions. However, the same level of new result will be generated step by step. Such pattern that produce, one time consume, thrown away, then produce again, happens along the function chain repeatedly, which causes computation overhead.
 
 For example, we can define below function to examine if every element in a list satisfies a given prediction\cite{GLPJ-1993}.
 
@@ -95,7 +95,7 @@ all(p, xs) = and(map(p, xs))
 
 Such that $all(prime, [2, 3, 5, 7, 11, 13, 17, 19, ...])$ tells if all numbers in the list are primes. However, the performance of this realization is poor. Firstly, $map(prime, xs)$ generates a list of the same length as $xs$, every element is a Boolean value [True, True, ...], indicating the corresponding number is prime or not. Then the list of Boolean values is passed to $and$ function, examine if there exists False value. Finally, both $xs$ and the Boolean list are thrown away, only one Boolean value is returned as the result.
 
-Below is an alternative definition. It can avoid generate the intermediate Boolean list.
+Below is an alternative definition. It can avoid generating the intermediate Boolean list.
 
 \[
 \begin{array}{l}
@@ -107,10 +107,10 @@ all(p, xs) = h(xs) \\
 \end{array}
 \]
 
-Although this realization does not generate intermediate result, it is neither intuitive nor elegant compare to $and(map(p, xs)$. Are there any way that has the advantage of both methods? We found some transformations satisfy such requirements, for example:
+Although this realization does not generate intermediate result, it is neither intuitive nor elegant compare to $and(map(p, xs)$. Are there any way that has the advantage of both methods? We found some transformations satisfy such requirement, for example:
 
 \[
-map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs) xs
+map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs)\ xs
 \]
 
 First generate a list of absolute values, then evaluate square root for every number. It is equivalent to take absolute value first, then evaluate the square root for every number in that list. Hence we have the following rule:
@@ -119,7 +119,7 @@ First generate a list of absolute values, then evaluate square root for every nu
 map\ f\ (map\ g\ xs) = map\ (f \circ g)\ xs
 \ee
 
-However, there are too many rules, we can't list them all. It's not practical to apply them on a complex program. Gill, Launchbury, and Peyton Jones developed a method in 1993, starting from the basic build and folding operation, they found the pattern to optimize the chained function.
+However, there are too many rules. We can't list them all. It's not practical to apply them on a complex program. Gill, Launchbury, and Peyton Jones developed a method in 1993, starting from the basic build and folding operation, they found the pattern to optimize the chained function.
 
 \subsection{Folding from right for list}
 
@@ -181,17 +181,17 @@ map\ f\ xs & = & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs \\
 filter\ f\ xs = foldr\ (x\ ys \mapsto
   \begin{cases}
     f(x): & x:ys\ \\
-    \text{否则}: & ys
+    \text{otherwise}: & ys
   \end{cases})\ []\ xs \\
 \end{array}
 \]
 
 \item Concatenate two lists:
 
-\[
+\be
 xs \doubleplus ys = foldr\ (:)\ ys\ xs
 \label{eq:binary-concat}
-\]
+\ee
 
 This is because:
 
@@ -210,7 +210,7 @@ concat\ xss = foldr\ \doubleplus\ []\ xss
 Actually all list operations can be realized by folding (We proved it in the F-algebra section in previous chapter), if we can simplify folding, we then can simplify all list operations.
 
 \subsection{foldr/build fusion law}
-Let's consider, what if fold from right by the cons operation (``:'') starting from an empty list [] (Nil)?
+Let's consider, what if fold from right by the cons operation (:) starting from an empty list []?
 
 \be
 foldr\ (:)\ []\ [x_1, x_2, ..., x_n] = x_1 : (x_2 : (...(x_n : []))...)
@@ -238,7 +238,7 @@ Written in pointless format (without parentheses and named arguments) is:
 \ee
 
 \index{foldr/build fusion law}
-We named this formula {\em fuldr/build fusion law}.
+We named this formula {\em foldr/build fusion law}.
 
 Let us start from an example. Consider how to sum up all the integers from $a$ to $b$, which is $sum([a, a+1, ..., b-1, b])$. First, we need generate all the integers from $a$ to $b$. Below definition enumerates $a, a+1, a+2, ..., b-1, b$.
 
@@ -307,13 +307,13 @@ range'\ a\ b\ (+)\ 0 =
 To leverage fusion law conveniently, we can rewrite the common functions that generate list in the form of $build...foldr$. Such that when composite with folding, we can simplify $\pmb{foldr}...(\pmb{build}...foldr)$ with fusion law.
 
 \begin{enumerate}
-\item The simplest one is to generate an empty list.
+\item The simplest one generates an empty list.
 
 \[
 [] = build\ (f\ z \mapsto z)
 \]
 
-We can substitute it with the definition (\ref{eq:build-definition}) of $build$ to proof this result.
+We can substitute it with the definition (\ref{eq:build-definition}) of $build$ to prove this result.
 
 \begin{proof}
 \bre
@@ -349,10 +349,10 @@ xs \doubleplus ys = build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)
 \begin{proof}
 \blre
   & build\ (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys) xs) & \\
-= & (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)\ (:)\ [] & build \text{的定义} \\
-= & foldr\ (:)\ (foldr\ (:)\ []\ ys)\ xs & \beta-\text{规约} \\
-= & foldr\ (:)\ ys\ xs & \text{对内层用叠加的不动点} \\
-= & xs \doubleplus ys & \text{由(\ref{eq:binary-concat})，列表的连接} \\
+= & (f\ z \mapsto foldr\ f\ (foldr\ f\ z\ ys)\ xs)\ (:)\ [] & \text{Definition of } build\\
+= & foldr\ (:)\ (foldr\ (:)\ []\ ys)\ xs & \beta-\text{reduction} \\
+= & foldr\ (:)\ ys\ xs & \text{Fixed point for inner part} \\
+= & xs \doubleplus ys & \text{By (\ref{eq:binary-concat}), list concatenation} \\
 \elre
 \end{proof}
 

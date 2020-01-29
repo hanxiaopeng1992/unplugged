@@ -112,7 +112,7 @@ all(p, xs) = h(xs) \\
 虽然这个实现不产生中间结果，可是和前面的$and(map(p, xs)$比起来，既冗长又不直观。有没有什么办法，鱼和熊掌兼得，即不丧失直观性，又能避免低效的实现呢？我们发现有些变换满足这一要求。例如：
 
 \[
-map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs) xs
+map\ sqrt\  (map\ abs\ xs) = map\ (sqrt \circ abs)\ xs
 \]
 
 先把列表中每个元素取绝对值构成一列新数，然后再把这列数中的每个开方。这和把列表中每个数先取绝对值然后再立即开方后构成一列新数等价。由此我们可以得到一个转换规则：
@@ -190,10 +190,10 @@ filter\ f\ xs = foldr\ (x\ ys \mapsto
 
 \item 两个列表连接：
 
-\[
+\be
 xs \doubleplus ys = foldr\ (:)\ ys\ xs
 \label{eq:binary-concat}
-\]
+\ee
 
 这是因为:
 
