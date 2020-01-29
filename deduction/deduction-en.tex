@@ -842,13 +842,13 @@ When expand a new digit $d$ on the left, corresponding to the 3 options, the exp
 \item Insert +, use $d$ as the new first sub-expression. The expression value is $d + f \times v_{fs} + v_{ts}$. The 3 parts of the value update to: $f' = d, v_{fs'} = 1, v_{ts'} = f \times v_{fs} + v_{ts}$.
 \end{enumerate}
 
-为了方便第一条中$10^{n+1}$的计算，我们可以把指数也记录下来作为算式值的第四个部分。这样算式的值就可以表示为一个四元组$(e, f, v_{fs}, v_{ts})$。从四元组计算算式值的定义为：
+To calculate $10^{n+1}$ in the first option easily, we can record the exponent as the fourth part of the expression value. As such, the value is represented as a 4-tuple $(e, f, v_{fs}, v_{ts})$. The function to calculate the value is defined as:
 
 \be
 value(e, f, v_{fs}, v_{ts}) = f \times v_{fs} + v_{ts}
 \ee
 
-这样在扩展算式时，我们可以一边扩展，一边更新四元组，并将结果成对放在一起：
+When expand expression, we also update the 4-tuple at the same time:
 
 \be
 \begin{array}{rrl}
@@ -859,7 +859,7 @@ add & d\ (((ds:fs):ts), & (e, f, v_{fs}, v_{ts})) = \\
 \end{array}
 \ee
 
-对于每一对算式和四元组，我们利用$value$函数，将四元组的值求出，如果大于100就立即丢弃，停止对其继续扩展。然后将候选算式和四元组对连接成一个列表。根据这一思路，我们将之前定义的$extend$重新定义为：
+For every expression and 4-tuple, we call $value$ function to calculate the value, drop it if exceeds 100. Then concatenate the candidate expressions and the 4-tuples to a list. According to this idea, we re-define the previous $extend$ function as below:
 
 \be
 \begin{cases}
@@ -868,13 +868,13 @@ expand\ d\ evs = concatMap\ ((filter\ ((\leq 100) \circ value \circ snd)) \circ 
 \end{cases}
 \ee
 
-现在我们可以对$expand$进行叠加，从1到9扩展出所有小于等于100的候选算式和四元组。最后我们计算四元组的值，然后选出所有恰好等于100的算式。
+We are ready to fold on $expand$, generate all candidate expressions and 4-tuples that do not exceed 100. Finally, we calculate the result from the 4-tuples, and leave only those equal to 100.
 
 \be
 map\ fst \circ filter\ ((=100) \circ value \circ snd)\ (foldr\ expand\ []\ [1, 2, ..., 9])
 \ee
 
-在本章附录中，我们给出了根据这一定义编写的程序。下面列出了等于100的所有7个算式：
+The complete program based on this definition is given in the appendix of this chapter. There are total 7 expressions evaluate to 100.
 
 \[
 \begin{array}{rl}
@@ -889,25 +889,25 @@ map\ fst \circ filter\ ((=100) \circ value \circ snd)\ (foldr\ expand\ []\ [1, 2
 \]
 
 \begin{Exercise}
-\Question{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
-\Question{如何从左侧扩展出所有的算式？}
-\Question{下面定义可以将算式翻译为字符串：
+\Question{Use the fusion law to optimize the expression evaluation $eval = sum \circ map\ (product \circ (map\ dec))$}
+\Question{How to expand all expressions from left?}
+\Question{The following definition convert expression to string:
 \[
 str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ (map\ (show \circ dec))))
 \]
-其中$show$可以将数字转换为字符串。函数 $join(c, s)$ 将一组字符串$s$用$c$连接起来，例如 $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def'' 。利用融合律化简$str$的定义。
+Where $show$ convert number to string. Function $join(c, s)$ concatenates multiple strings $s$ with delimiter $c$. For example: $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def''. Use the fusion law to optimize $str$.
 }
 \end{Exercise}
 
-\section{小节和扩展阅读}
+\section{Further reading}
 
-程序推导是数学推导的一种特殊情况。通过这一手段，我们可以从直观的、未经化简或优化的定义出发，利用一套形式化的方法和定理，一步一步进行变换。从而最终得到简洁的、优化的结果。伯德在他的《函数式算法设计珠玑》\cite{Bird-2010}中给出了很多的例子。
+Programming deduction is a special mathematical deduction. With this tool, we can start from intuitive, raw, and unoptimized definition, through a formalized methods and theorems, step by step convert it to elegant and optimized result. Bird gives many such examples in his {\em Pearls of Functional Algorithm Design}\cite{Bird-2010}.
 
-程序推导的正确性根植于数学。为此需要一套完整的理论，能够将计算机程序形式化、数学化，而不是仅仅依赖于人的直觉。抽象代数和范畴理论正是帮助我们对计算机编程进行形式化的强大工具。叠加——构建融合律就是这样的一个典型的例子。在1993年的论文\cite{GLPJ-1993}中，人们发现了系统化简程序的一个工具。随着范畴理论的引入，一系列融合律被发展出来\cite{Hinze-Harper-James-2010}，并应用于计算机程序的推导和优化。
+The correctness of programming deduction is based on mathematics. Instead of relying on human intuition, we need a dedicated theory, that can formalize varies of programs into strict mathematical form. The foldr/build fusion law is such an example. In the paper\cite{GLPJ-1993} in 1993, people developed a tool to simplify program systematically. As the category theory was widely adopted in programming, a series of fusion laws were developed \cite{Hinze-Harper-James-2010}, and applied to program deduction and optimization.
 
-\section{附录代码}
+\section{Appendix - example source code}
 
-Haskell中的\texttt{build}和\texttt{concatMap}定义：
+The \texttt{build} and \texttt{concatMap} definition in Haskell.
 
 \lstset{frame=single}
 \begin{lstlisting}
@@ -917,7 +917,8 @@ build g = g (:) []
 concatMap f xs = build (\c n -> foldr (\x b -> foldr c b (f x)) n xs)
 \end{lstlisting}
 
-用穷举法巧算100的基本定义：
+Exhaustive search solution for `Making a Century' puzzle:
+
 \begin{lstlisting}
 type Expr = [Term]     -- | T1 + T2 + ... Tn
 type Term = [Factor]   -- | F1 * F2 * ... Fm
@@ -942,7 +943,8 @@ extend d es = concatMap (add d) es where
 sol = filter ((==100) . eval) . foldr extend []
 \end{lstlisting}
 
-用改进的穷举法解决巧算100问题：
+The improved exhaustive search solution:
+
 \begin{lstlisting}
 value (_, f, fs, ts) = f * fs + ts
 
