@@ -379,7 +379,7 @@ map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ 
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
     f(x): & x \oplus xs' \\
-    \text{否则}: & xs' \\
+    \text{otherwise}: & xs' \\
   \end{cases})\ z\ xs) \\
 \]
 
@@ -450,7 +450,7 @@ This definition is straightforward. It first uses map to append a space to every
 = & build\ (f\ z \mapsto \\
   & \quad foldr\ (w\ b \mapsto (x\ y \mapsto foldr\ f\ y\ x)\ (w \doubleplus ['\ '])\ b)\ z\ ws) \\
 
-  & \{\beta-\text{reduction}x, y\} \\
+  & \{\beta-\text{reduction } x, y\} \\
 = & build\ (f\ z \mapsto \\
   & \quad foldr\ (w\ b \mapsto foldr\ f\ b\ (w \doubleplus ['\ ']))\ z\ ws) \\
 
@@ -468,7 +468,7 @@ This definition is straightforward. It first uses map to append a space to every
   & \{\text{substitute $(:)$ and $[]$ in the definition of $build$}\} \\
 = & foldr\ (w\ b \mapsto foldr\ (:)\ \pmb{(foldr\ (:)\ b\ ['\ '])}\ w)\ []\ ws \\
 
-  & \{\text{evaluate to bold part}\} \\
+  & \{\text{evaluate the bold part}\} \\
 = & foldr\ (w\ b \mapsto foldr\ (:)\ ('\ ' : b)\ w)\ []\ ws \\
 \end{array} \]
 
@@ -518,7 +518,7 @@ On the other hand:
 = & f(0, z) & \text{expand foldr} \\
 \elre
 
-Obviously that $f(0, z)$ is not identical to $[0]$, even their types are not same\footnote{Unless the extreme case that $f = (:), z = []$.}. The reason that leads to this contradiction is because $(c\ n \mapsto [0])$ is not a function that builds result of $c$ and $n$. It tells us, the fusion law $foldr\ f\ z\ (build\ g) = g\ f\ z$, has type constraint for $g$. Its first argument can be $c$ or $f$, actually, it accepts a polymorphic binary operation $\forall A. \forall B.\ A \times B \to B$; The second argument is the start value of a polymorphic type $B$, the result type is also $B$. Write the binary operation in Curried form, we obtain the following type constraint for $g$.
+Obviously that $f(0, z)$ is not identical to $[0]$, even their types are not same\footnote{Unless the extreme case that $f = (:), z = []$.}. The reason that leads to this contradiction is because $(c\ n \mapsto [0])$ is not a function that builds result of $c$ and $n$. It tells us, the fusion law $foldr\ f\ z\ (build\ g) = g\ f\ z$, has type constraint for $g$. Its first argument can be $c$ or $f$. Actually, it accepts a polymorphic binary operation $\forall A. \forall B.\ A \times B \to B$; The second argument is the start value of a polymorphic type $B$, the result type is also $B$. Write the binary operation in Curried form, we obtain the following type constraint for $g$.
 
 \[
 g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
@@ -535,7 +535,7 @@ Because there are two polymorphic types $A$ and $B$, it is called rank-2 type po
 
 \subsection{Fusion law in category theory}
 \index{shortcut fusion}
-foldr/build fusion law can be deduced and extended from the category theory. Foldr/build fusion law is one of the varies of fusion laws in category theory. They are named as {\em shortcut fusion} nowadays, and play important roles in compiler, and program optimization. We can't cover all of them in a chapter. Readers can refer to \cite{Hinze-Harper-James-2010} to understand shortcut fusion theory and practice in depth.
+foldr/build fusion law can be deduced and extended from the category theory. Foldr/build fusion law is one of the varies of fusion laws in category theory. They are named as {\em shortcut fusion} nowadays, and play important roles in compiler, and program optimization. We can't cover all of them in a chapter. Readers can refer to \cite{Hinze-Harper-James-2010} to understand shortcut fusion theory and its practice in depth.
 
 We introduced F-algebra, initial algebra, and catamorphism in previous chapter. Because initial algebra is the initial object, it has unique arrow to every other algebra, as shown in below diagram.
 
@@ -553,7 +553,7 @@ We introduced F-algebra, initial algebra, and catamorphism in previous chapter. 
 \end{tikzpicture}
 \end{center}
 
-The arrow from the initial algebra $(I, i)$ to algebra $(A, a)$ can be defined with catamorphism $\lbb a \rbb$. If there exists another F-algebra $(B, b)$, and the is arrow from $A$ to $B$ as $A \arrowto{h} B$, then we can also draw $(B, b)$ at the bottom:
+The arrow from the initial algebra $(I, i)$ to algebra $(A, a)$ can be defined with catamorphism $\lbb a \rbb$. If there exists another F-algebra $(B, b)$, and there is arrow from $A$ to $B$ as $A \arrowto{h} B$, then we can also draw $(B, b)$ at the bottom:
 
 \begin{center}
 \begin{tikzpicture}
@@ -595,7 +595,7 @@ Since $(I, i)$ is the initial algebra, it must have the unique arrow to $(B, b)$
 \end{tikzpicture}
 \end{center}
 
-From this diagram we can find that, if and only if there is $h$, such that the square at the bottom commutes. Then the path from $I$ through $A$ to $B$ and the path directly from $I$ to $B$ also commutes. It is called the fusion law of initial algebra, denote as:
+From this diagram we can find that, if and only if there is $h$, such that the square at the bottom commutes, then the path from $I$ through $A$ to $B$ and the path directly from $I$ to $B$ also commutes. It is called the fusion law of initial algebra, denote as:
 
 \be
 \begin{array}{rcl}
@@ -605,13 +605,13 @@ h \circ a = b \circ \mathbf{F}(h) \\
 \end{array}
 \ee
 
-What does the fusion law for initial algebra mean? In previous chapter, we explained that catamorphism can turn the non-recursive computation to folding on recursive structures. For example, when the functor $\mathbf{F}$ is $\mathbf{ListF}A$, where $A$ is given object, the arrow $a = f + z$ (coproduct of $f$ and $z$), the initial arrow is $i = (:) + []$, and the catamorphism is $\lbb a \rbb = foldr(f, z)$. If denote $b = c + n$, then the fusion law can be written as:
+What does the fusion law for initial algebra mean? In previous chapter, we explained that catamorphism can turn the non-recursive computation to folding on recursive structures. For example, when the functor $\mathbf{F}$ is $\mathbf{ListF}A$, where $A$ is a given object, the arrow $a = f + z$ (coproduct of $f$ and $z$), the initial arrow is $i = (:) + []$, and the catamorphism is $\lbb a \rbb = foldr(f, z)$. If denote $b = c + n$, then the fusion law can be written as:
 
 \[
 h \circ foldr(f, z) = foldr(c, n)
 \]
 
-It means the transformation after folding can be simplified to only folding. Takano and Meijer in 1995 further abstracted the catamorphism $\lbb a \rbb$ to building some abstract algebra structure $g\ a$ from $a$, such that the fusion law can be extended to\cite{Takano-Meijer-1995}:
+It means the transformation after folding can be simplified to only folding. Takano and Meijer in 1995 further abstracted the catamorphism $\lbb a \rbb$ to build some abstract algebra structure $g\ a$ from $a$, such that the fusion law can be extended to\cite{Takano-Meijer-1995}:
 
 \be
 A \arrowto{h} B \quad \Rightarrow \quad h \circ g\ a = g\ b
@@ -645,7 +645,7 @@ foldr\ f\ z\ (g\ (:)\ []) = g\ f\ z & \text{substitute $a$ with $f, z$} \\
 Hence we proved foldr/build fusion law for list with category theory\cite{Hinze-Harper-James-2010}.
 
 \begin{Exercise}
-\Question{Verify that the folding from left can also be defined with $foldr$:
+\Question{Verify that folding from left can also be defined with $foldr$:
 \[
 foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \]}
@@ -683,30 +683,30 @@ For instance:
 12 + 34 + 5 \times 6 + 7 + 8 + 9 = 100
 \]
 
-It looks like a mathematics puzzle for primary school students. It is also a good programming exercise if requests to find all the possible solutions. The straightforward way is to brute-force exhaustive search by machine. For every position between two digits, there are 3 possible options: (1) insert nothing; (2) insert +; or (3) insert $\times$. Since there are 8 spaces among 9 digits, there are $3^8 = 6561$ possible options in total. It's a piece of cake for modern computer to calculate these 6561 results, and figure out which are 100.
+It looks like a mathematics puzzle for primary school students. It is also a good programming exercise if requests to find all the possible solutions. The straightforward way is to brute-force exhaustive search with machine. For every position between two digits, there are 3 possible options: (1) insert nothing; (2) insert +; or (3) insert $\times$. Since there are 8 spaces among 9 digits, there are $3^8 = 6561$ possible options in total. It's a piece of cake for modern computer to calculate these 6561 results, and figure out which are 100.
 
 \subsection{Exhaustive search}
 
-Let's first model the calculation consist of digits, +, and $\times$. Consider the example:
+Let's first model the expression consist of digits, +, and $\times$. Consider the example:
 
 \[
 12 + 34 + 5 \times 6 + 7 + 8 + 9
 \]
 
-As multiplication is prior to addition, we can treat it as a list of sub-calculations separated by +. Hence the above example is identical to:
+As multiplication is prior to addition, we can treat it as a list of sub-expressions separated by +. Hence the above example is identical to:
 
 \[
 sum [12, 34, 5 \times 6, 7, 8, 9]
 \]
 
-In summary, we define an expression as one or multiple sub-expressions separated by + in form of $t_1 + t_2 + ... + t_n$. Or in list form of $expr = [t_1, t_2, ..., t_n]$. The formal definition is:
+In summary, we define an expression as one or multiple sub-expressions separated by + in the form of $t_1 + t_2 + ... + t_n$, or in the list form of $expr = [t_1, t_2, ..., t_n]$. The formal definition is:
 
 \lstset{frame = none}
 \begin{lstlisting}
 type Expr = [Term]
 \end{lstlisting}
 
-For every sub-expression, we treat it as one or multiple factors separated by $\times$. For example, $5 \times 6 = product [5, 6]$. This definition is also applicable for a single number, like $34$. It can be treated as $34 = product [34]$. Hence we can define sub-expression as the product of factors $f_1 \times f_2 \times ... \times f_m$, or in list form: $term = [f_1, f_2, ..., f_m]$:
+For every sub-expression, we treat it as one or multiple factors separated by $\times$. For example, $5 \times 6 = product [5, 6]$. This definition is also applicable for a single number, like $34$. It can be treated as $34 = product [34]$. Hence we can define sub-expression as the product of factors $f_1 \times f_2 \times ... \times f_m$, or in the list form: $term = [f_1, f_2, ..., f_m]$:
 
 \begin{lstlisting}
 type Term = [Factor]
@@ -724,13 +724,13 @@ It's a folding process to evaluate the decimal value from a list of digits. For 
 dec = foldl\ (n\ d \mapsto n \times 10 + d)\ 0
 \]
 
-The exhaustive search need examine every possible expression evaluates to 100. We need define a function to evaluate a given expression. From the expression definition, we need define the process to recursively evaluate every sub-expression (term), and sum them up; further, we also need recursively evaluate every factor, and multiply them up; in the end, we call $dec$ function to evaluate each factor.
+The exhaustive search need examine every possible expression evaluates to 100 or not. We need define a function to evaluate a given expression. From the expression definition, we need define the process to recursively evaluate every sub-expression (term), and sum them up; further, we also need recursively evaluate every factor, and multiply them up; in the end, we call $dec$ function to evaluate each factor.
 
 \[
 eval = sum \circ map\ (product \circ (map\ dec))
 \]
 
-Obviously, this definition can be optimized by the fusion law. We leave the detailed deduction process as the exercise, and directly give the result here:
+Obviously, this definition can be optimized with the fusion law. We leave the detailed deduction as the exercise, and directly give the result here:
 
 \[
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork(dec, id))\ 1\ t) + ts)\ 0
@@ -757,17 +757,17 @@ Where $es$ is the set contains all the possible expressions of 1 to 9. How to ge
 expr(d) = [[[d]]]
 \]
 
-For the common cases, we start from right, repeatedly pick numbers 9, 8, 7, ... to expand the expression. On top of a set of expressions $[e_1, e_2, ..., e_n]$, how to expand all possible expressions from the next digit $d$? We've mentioned that there are 3 options between two digits: 1) insert nothing; 2) insert +; 3) insert $\times$. Let's see what does each option mean for every expression $e_i$ in the set. Write $e_i$ as the sum of sub-expressions $e_i = t_1 + t_2 + ...$, where the first sub-expression $t_1$ can be further written as product of factors $t_1 = f_1 \times f_2 \times ...$.
+For the common cases, we start from right, repeatedly pick numbers 9, 8, 7, ... to expand the expression. On top of a set of expressions $[e_1, e_2, ..., e_n]$, how to expand all possible expressions from the next digit $d$? We've mentioned that there are 3 options between two numbers: 1) insert nothing; 2) insert +; 3) insert $\times$. Let's see what does each option mean for every expression $e_i$ in the set. Write $e_i$ as the sum of sub-expressions $e_i = t_1 + t_2 + ...$, where the first sub-expression $t_1$ can be further written as product of factors $t_1 = f_1 \times f_2 \times ...$.
 
 \begin{enumerate}
-\item Insert nothing means prepend digit $d$ to the first factor in the first sub-expression in $e_i$. Hence $d:f_1$ form a new factor. For example, let $e_i$ be $8 + 9$, and $d$ be 7. Writing 7 before $8 + 9$ without insert any symbol, gives the a new expression $78 + 9$;
+\item Insert nothing means prepend digit $d$ to the first factor in the first sub-expression in $e_i$. Hence $d:f_1$ form a new factor. For example, let $e_i$ be $8 + 9$, and $d$ be 7. Writing 7 before $8 + 9$ without inserting any symbol, gives a new expression $78 + 9$;
 
 \item Insert $\times$ means to use $d$ form a new factor $[d]$, then prepend it before the first sub-expression in $e_i$. Hence $[d]:t_1$ gives a new sub-expression. For the same example of $8 + 9$, we write 7 before it, and insert a $\times$ symbol between 7 and 8. It gives the new expression $7 \times 8 + 9$;
 
 \item Insert + means to use $d$ form a new sub-expression $[[d]]$, then prepend it to $e_i$ to form a new expression $[[d]]:e_i$. For the same example of $8 + 9$, we write 7 before it, and insert a + between 7 and 8. It gives the new expression $7 + 8 + 9$.
 \end{enumerate}
 
-The below definition summarizes these three options:
+Below definition summarizes these three options:
 
 \lstset{frame = none}
 \begin{lstlisting}
@@ -776,7 +776,7 @@ add d ((ds:fs):ts) = [((d:ds):fs):ts,
                       [[d]]:(ds:fs):ts]
 \end{lstlisting}
 
-Where $e_i$ is written in the form of $(ds:fs):ts$. The first sub-expression in $e_i$ is $ds:fs$, and the first factor in the first sub-expression is $ds$. From every expression, we can expand 3 new expressions. Given the expression list $[e_1, e_2, ..., e_n]$, we can expand for every one, then concatenate the results together. It is exactly the $concatMap$ function we mentioned in the previous section.
+Where $e_i$ is written in the form of $(ds:fs):ts$. The first sub-expression in $e_i$ is $ds:fs$, and the first factor in the first sub-expression is $ds$. From every expression, we can expand 3 new ones. Given the expression list $[e_1, e_2, ..., e_n]$, we can expand for everyone, then concatenate the results together. It is exactly the $concatMap$ function we mentioned in the previous section.
 
 \[
 \begin{cases}
@@ -794,9 +794,9 @@ filter\ (e \mapsto eval(e) == 100)\ (foldr\ extend\ [1..9])
 
 \subsection{Improvement}
 
-How can we improve the exhaustive search? Observe the right to left search process. We write down 9 first, then expand 3 new expressions with 8. They are: 89, $8 \times 9 = 72$, and 8 + 9 = 17. In the next step when expand with 7, expression 789 exceeds 100 obviously. We can drop it immediately. Any new expressions expanded to the left of 789 won't be 100. We can safe to drop them all to avoid unnecessary computation. Similarly, $7 \times 89$ exceeds 100, hence can be dropped for further expansion on the left. Only 7 + 89 is the possible expression. Next we expand $78 \times 9$, it is bigger than 100, hence is dropped for further expansion...
+How can we improve the exhaustive search? Observe the right to left expand process. We write down 9 first, then expand 3 new expressions with 8. They are: 89, $8 \times 9 = 72$, and 8 + 9 = 17. In the next step when expand with 7, expression 789 exceeds 100 obviously. We can drop it immediately. Any new expressions expanded to the left of 789 won't be 100. We can safe to drop them all to avoid unnecessary computation. Similarly, $7 \times 89$ exceeds 100, hence can be dropped to avoid further expansion on the left. Only 7 + 89 is the possible expression. Next we expand $78 \times 9$, it is bigger than 100, hence is dropped for further expansion...
 
-In summary, we can evaluate the expression during the expanding process. Whenever it exceeds 100, we immediately drop it and avoid further expansion. The whole process looks like a tree growing. When the expression in a branch exceeds 100, we cut that branch off.
+In summary, we can evaluate the expression during the expanding process. Whenever exceeds 100, we immediately drop it to avoid further expansion. The whole process looks like a tree growing. When the expression in a branch exceeds 100, we cut that branch off.
 
 \begin{figure}[htbp]
 \centering
@@ -830,12 +830,12 @@ In summary, we can evaluate the expression during the expanding process. Wheneve
 \caption{The process to expand expressions looks like a tree growing.}
 \end{figure}
 
-In order to evaluate the expression during expansion easily, we separate the value of the expression into 3 parts: the value of the first factor in the first sub-expression $f$; the product of the rest factors in the first sub-expression $v_{fs}$; and the sum of the rest sub-expressions $v_{ts}$. The overall value of the expression can be calculated from them as $f \times v_{fs} + v_{ts}$.
+In order to evaluate the expression during expansion easily, we separate the value of the expression into 3 parts: the value of the first factor in the first sub-expression $f$; the product of the rest factors in the first sub-expression $v_{fs}$; and the sum of the rest sub-expressions $v_{ts}$. The overall value of the expression can be calculated out of them as $f \times v_{fs} + v_{ts}$.
 
 When expand a new digit $d$ on the left, corresponding to the 3 options, the expression and value are updated as the following:
 
 \begin{enumerate}
-\item Insert nothing, prepend $d$ before the first factor as its most significant digit. The expression value is $(d \times 10^{n+1} + f) \times v_{fs} + v_{ts}$, where $n$ is the number of digits of $f$. The 3 parts of the value update to: $f' = d \times 10^{n+1} + f$，$v_{fs}$, and $v_{ts}$ are unchanged;
+\item Insert nothing, prepend $d$ before the first factor as its most significant digit. The expression value is $(d \times 10^{n+1} + f) \times v_{fs} + v_{ts}$, where $n$ is the number of digits of $f$. The 3 parts of the value update to: $f' = d \times 10^{n+1} + f$, $v_{fs}$ and $v_{ts}$ are unchanged;
 
 \item Insert $\times$, put $d$ as the first factor in the first sub-expression. The expression value is $d \times f \times v_{fs} + v_{ts}$. The 3 parts of the value update to: $f' = d, v_{fs'} = f \times v_{fs}$, while $v_{ts}$ is unchanged;
 
@@ -889,7 +889,10 @@ The complete program based on this definition is given in the appendix of this c
 \]
 
 \begin{Exercise}
-\Question{Use the fusion law to optimize the expression evaluation $eval = sum \circ map\ (product \circ (map\ dec))$}
+\Question{Use the fusion law to optimize the expression evaluation function:
+\[
+eval = sum \circ map\ (product \circ (map\ dec))
+\]}
 \Question{How to expand all expressions from left?}
 \Question{The following definition convert expression to string:
 \[
@@ -901,9 +904,9 @@ Where $show$ convert number to string. Function $join(c, s)$ concatenates multip
 
 \section{Further reading}
 
-Programming deduction is a special mathematical deduction. With this tool, we can start from intuitive, raw, and unoptimized definition, through a formalized methods and theorems, step by step convert it to elegant and optimized result. Bird gives many such examples in his {\em Pearls of Functional Algorithm Design}\cite{Bird-2010}.
+Program deduction is a special mathematical deduction. With this tool, we can start from intuitive, raw, and unoptimized definition, through a formalized methods and theorems, step by step convert it to elegant and optimized result. Bird gives many such examples in his {\em Pearls of Functional Algorithm Design}\cite{Bird-2010}.
 
-The correctness of programming deduction is based on mathematics. Instead of relying on human intuition, we need a dedicated theory, that can formalize varies of programs into strict mathematical form. The foldr/build fusion law is such an example. In the paper\cite{GLPJ-1993} in 1993, people developed a tool to simplify program systematically. As the category theory was widely adopted in programming, a series of fusion laws were developed \cite{Hinze-Harper-James-2010}, and applied to program deduction and optimization.
+The correctness of program deduction is based on mathematics. Instead of relying on human intuition, we need a dedicated theory, that can formalize varies of programs into strict mathematical form. The foldr/build fusion law is such an example. In the 1993 paper\cite{GLPJ-1993}, people developed a tool to simplify program systematically. As the category theory being widely adopted in programming, a series of fusion laws have been developed\cite{Hinze-Harper-James-2010}, and applied to program deduction and optimization.
 
 \section{Appendix - example source code}
 
