@@ -254,13 +254,12 @@ More than 2300 years after his death, Aristotle remains one of the most influent
 
 Some other ancient Greek mathematician took the practical approach about infinity. They developed the method of exhaustion and made surprising achievement.
 
-The idea of method of exhaustion originated in the late 5th Century BC with Antiphon (About 480BC -- 410BC). To solve one of the three classic geometric problems, square the circle\footnote{The other two are trisecting the angle, and doubling the cube. Given a circle, ancient Greeks attempted to seek the solution to draw a square that has the same area with only straightedge and compass. Many mathematicians attempted to solve this problem, but all failed until Galois developed theory to prove they were all impossible in 19th Century.}. To approximate the area of a circle, Antiphon started from an inscribed square, then repeatedly double the number of the sides to obtain octagons, hexagons... As the area of the circle gradually ``exhausts'', the side length of inscribed polygons gets smaller and smaller. Antiphon thought the polygon would eventually coincide with the circle. This is the idea of exhaustion.
+The idea of method of exhaustion originated in the late 5th Century BC with Antiphon (About 480BC -- 410BC). To solve one of the three classic geometric problems, square the circle\footnote{The other two are trisecting the angle, and doubling the cube. Given a circle, ancient Greeks attempted to seek the solution to draw a square that has the same area with only straightedge and compass. Many mathematicians attempted to solve this problem, but all failed until Galois developed theory to prove they were all impossible in 19th Century.}. To approximate the area of a circle, Antiphon started from an inscribed square, then repeatedly double the number of the sides to obtain octagons, hexagons... As the area of the circle gradually ``exhausts'', the side length of inscribed polygons gets smaller and smaller. Antiphon thought the polygon would eventually coincide with the circle. This is the idea of exhaustion. The method was made rigorous a few decades later by Eudoxus of Cnidus, who used it to calculate areas and volumes. The correctness of this method relies on the famous Axiom of Eudoxus-Archimedes, also known as Axiom of Archimedes.
 
-后来古希腊伟大的数学家欧多克索斯对穷竭法进行了改进和严格化，使其成为解决面积、体积问题的一种有力的几何方法。为了理解这一方法，我们先要介绍著名的欧多克索斯——阿基米德公理，有时简称为阿基米德公理。
-
-\index{阿基米德公理}
+\index{Axiom of Archimedes}
 \begin{axiom}
-\textbf{阿基米德公理（Axiom of Achimedes）}对于任意两个量$a$与$b$来说，总有自然数$n$使得$a \leq nb$。
+\normalfont
+\textbf{Axiom of Archimedes} Given two magnitudes $a$ and $b$, there exists some natural number $n$, such that $a \leq nb$.
 \end{axiom}
 
 阿基米德公理非常基本。在第二章中，我们介绍了欧几里得最大公约数算法，但是我们没有探讨这一算法是否能够结束。利用阿基米德公里就可以给出欧几里得算法一定能够结束的证明。利用这一基本原理，欧多克索斯指出：“给定两个不相等的量，如果从较大的量减去比它大一半的量，再从所余的量减去比这个余量大一半的量，重复这一过程，必有某个余量小于给定的较小的量。”这就是穷竭法背后的逻辑。
