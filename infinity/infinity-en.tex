@@ -288,9 +288,9 @@ In 214BC, the Second Punic War Broke out. Legend has it that Archimedes created 
 % Sphere: 4/3 pi r^3, Cylinder: pi r^2 * 2r = 2 pi r^3
 % ==> S : C = 4/3 / 2 = 2/3
 
-我们现在来看一下，阿基米德是如何利用穷竭法计算圆周率的。
+As an example, let us see how Archimedes calculated $\pi$ with the method of exhaustion around 250BC. Symbol $\pi$ represents the ratio of a circle's circumference to its diameter, sometimes it's referred to as Archimedes' constant.
 
-如图\ref{fig:pi-exhaustion}所示，阿基米德在直径为1的圆内做一个内接多边形，同时在圆外做一个外切多边形。我们先看内接多边形的一条边和其上的圆弧，根据两点之间直线最短的几何公理，圆弧之长大于内接多边形的一条边长，故而圆的周长大于内接多边形的周长。同样可以得知，圆的周长小于外切多边形的周长。由于直径为1的圆，其周长恰好就是圆周率。这样我们就可以得到关系式：
+As shown in \ref{fig:pi-exhaustion}, Archimedes drew two regular polygons inside and outside a circle of diameter of 1. For a side of the inscribed polygon and the corresponding arc, the length of the arc is greater than the side because the straight line is the shortest between two points. Hence the circumference of the circle is greater than the inscribed polygon. Similarly, circumference of the circle is less than the circumscribed polygon. Since the diameter is 1, the circle's circumference equals $\pi$. Hence the below relation holds:
 
 \[
   C_i < \pi < C_o
@@ -301,12 +301,12 @@ In 214BC, the Second Punic War Broke out. Legend has it that Archimedes created 
  \centering
  \includegraphics[scale=0.5]{img/pi-exhaustion.eps}
  %\captionsetup{labelformat=empty}
- \caption{用穷竭法计算圆周率}
+ \caption{π can be estimated by computing the perimeters of circumscribed and inscribed polygons.}
  \label{fig:pi-exhaustion}
 %\end{wrapfigure}
 \end{figure}
 
-其中$C_i$、$C_o$分别为内接多边形和外切多边形的周长。不断加大边数，就可以越来越精确地获得$\pi$的范围。阿基米德将边数加到256，得出圆周率在3.1415和3.1416之间。这一记录直到南北朝时，才由我国的数学家祖冲之打破。
+Where $C_i$ and $C_o$ are the circumferences of the inscribed and circumscribed polygons respectively. Successively increasing the number of sides approximates the range of $\pi$. Archimedes calculated the 96-sided regular polygon, he proved that $\dfrac{223}{71} < \pi < \dfrac{22}{7}$ (that is $3.1408 < \pi < 3.1429$). This upper bound of $\dfrac{22}{7}$ is widely used in western. The Chinese mathematician Zu Chongzhi, around 480AD, calculated that $3.1415926 < \pi < 3.1415927$ and suggested the approximations $\pi \approx \dfrac{355}{113} = 3.14159292035...$ by applying to a 12,288-sided polygon. This value of remained the most accurate approximation of $\pi$ available for the next 800 years.
 
 穷竭法的缺点是，它仍然是基于古希腊几何的一种方法，使用起来非常复杂。这部分是由于古希腊人不接受无理数，于是把几何量和“数”的概念隔离开。另一方面，古希腊整体上试图避免使用无穷大和无穷小的概念。
 
