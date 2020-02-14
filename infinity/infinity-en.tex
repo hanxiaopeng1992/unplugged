@@ -331,9 +331,9 @@ Mathematicians came back to consider actual infinity when debating about how to 
 int a[10];
 \end{verbatim}
 
-There are two different concept of numbers, ordinal number and cardinal number.
+There are two different concepts of numbers, ordinal number and cardinal number. In short, ordinal number is used to describe a way to arrange a collection of objects in order, one after another; while cardinal numbers, are used to measure the size of collections. We'll provide the formal definition later. Both ordinals and cardinals are finite in traditional programming. They can't represent infinity directly. It was reasonable in the early days of computer science. The computer devices were very expensive, people never thought to deal with practice problems with infinity. As time goes, the cost of computation resources keep decreasing. We are not satisfy with the way to predict the size of the collection before using it in programming. New tools, like dynamic array, were developed in some programming environments. They were known as containers, the size can be easily adjusted on-demand. However, even for dynamic containers, the elements are still finite many. It can not exceed the upper limit of representation.
 
-这里涉及两个概念，一个是序数，一个是基数。简单来说，序数就是我们在数数时赋予对象的一个标签。而基数是一个集合中元素的个数。我们稍后会给出它们的一般定义。早期的编程中，基数和序数都是有限的。这显然无法直接表达无穷的概念。在计算机科学发展的初期，这是完全可以理解的。那时的设备非常昂贵。人们根本不会想到使用无穷来直接解决具体的问题。然而随着时代的发展，成本逐渐降低，人们不再满足在解决问题之前，先预测出所需集合的大小。于是在一些编程环境中，开始支持动态增长的数组。人们称之为容器或者向量，可以随时按照需要向其中增加元素。现实中，即使是动态容器，其中的元素个数仍然是有限的，不能超过表示的上限。为此人们又发展出了链表结构。如本书第一章中介绍的那样，每个元素用一个节点代表，一个接一个链接起来，最后一个元素指向一个特殊的空节点表示结尾。这样我们无须知道整条链表的基数，却能从表头开始，逐一前进到表中任何位置。只要存储空间允许，链表可以任意长。这样就创造了表达潜无穷的可能。
+然而随着时代的发展，成本逐渐降低，人们不再满足在解决问题之前，先预测出所需集合的大小。于是在一些编程环境中，开始支持动态增长的数组。人们称之为容器或者向量，可以随时按照需要向其中增加元素。现实中，即使是动态容器，其中的元素个数仍然是有限的，不能超过表示的上限。为此人们又发展出了链表结构。如本书第一章中介绍的那样，每个元素用一个节点代表，一个接一个链接起来，最后一个元素指向一个特殊的空节点表示结尾。这样我们无须知道整条链表的基数，却能从表头开始，逐一前进到表中任何位置。只要存储空间允许，链表可以任意长。这样就创造了表达潜无穷的可能。
 
 可是链表和潜无穷终究还差了一步。我们认为自然数是无限延伸着的潜无穷，如果用链表表示自然数，不管链表有多长，例如$n$，我们必须把0到$n$这些数都逐一填入其中。但这只表示了序列0, 1, ..., $n$，而不是自然数序列0, 1, ..., $n$, ...
 
