@@ -497,22 +497,22 @@ We use catamorphism to evaluate the initial algebra. Symmetrically, we use anamo
   \path[-stealth]
     (m-1-1) edge node [above] {$\mu$} (m-1-2)
     (m-2-1) edge node [left] {$\llb f \rlb$} (m-1-1)
-    (m-2-2) edge node [right] {$\mathbf{F} \llb f \rlb$}  (m-1-2)
+    (m-2-2) edge node [right] {$\mathbf{F}\ \llb f \rlb$}  (m-1-2)
     (m-2-1) edge node [below] {$f$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
 \[
-  \text{若} m = \llb f \rlb \text{，当且仅当} \mu \circ m = \mathbf{F}(m) \circ f
+  m = \llb f \rlb \text{，if and only if} \mu \circ m = \mathbf{F}(m) \circ f
 \]
 
-我们现在来看向上态射是如何构造无穷流的。向上态射接受一个余代数$A \arrowto{f} \mathbf{F} A$和一个携带对象$A$，它产生一个函子$\mathbf{F}$的不动点$\mathbf{Fix}\ \mathbf{F}$。其关键一点就是，这个不动点就是终止余代数，它具有无穷流的形式。
+Let us see how anamorphism builds infinite stream. Anamorphism takes a coalgebra $A \arrowto{f} \mathbf{F} A$ and a carrier object $A$, it generates the fixed point of functor $\mathbf{F}$, which is $\mathbf{Fix}\ \mathbf{F}$. This fixed point is the final coalgebra. It has the form of infinite stream.
 
 \[
-\llb f \rlb = \mathbf{Fix} \circ \mathbf{F} \llb f \rlb \circ f
+\llb f \rlb = \mathbf{Fix} \circ \mathbf{F}\ \llb f \rlb \circ f
 \]
 
-我们也可以将向上态射定义为返回函子不动点的函数：
+We can also define the anamorphism as the function that returns the fixed point:
 
 \[
 \begin{array}{l}
@@ -521,21 +521,21 @@ ana\ f = Fix \circ fmap\ (ana\ f) \circ f \\
 \end{array}
 \]
 
-举一个具体的例子，令函子$\mathbf{F}$的定义为：
+As a concrete example, functor $\mathbf{F}$ is defined as:
 
 \begin{lstlisting}
 data StreamF E A = StreamF E A
 \end{lstlisting}
 
-它的不动点为：
+Its fixed point is:
 
 \begin{lstlisting}
 data Stream E = Stream E (Stream E)
 \end{lstlisting}
 
-$\mathbf{StreamF}\ E$是一个普通的函子，只是我们故意把名字叫作“流”。这个函子上的余代数是这样一个函数，它把一个类型为$A$的“种子”$a$变换为一对值，包含$a$，和下一个种子。
+$\mathbf{StreamF}\ E$ is a normal functor, we intend to give it name of `stream'. The coalgebra of this functor is such a function, it transforms a `seed' $a$ of type $A$ to a pair, containing $a$, and the next seed.
 
-可以用余代数产生各种无穷流。我们给出两个例子，第一个例子是斐波那契数列。思路是从$(0, 1)$开始作为起始种子。为了产生下一个种子，我们把第二个数1作为新的第一个数，把$0+1$作为新的第二个数构成一对新种子$(1, 0 + 1)$。然后不断重复这一过程，对于种子$(m, n)$，我们产生下一个新种子$(n, m + n)$。写成余代数就是下面的定义：
+Coalgebra can generates varies of infinite streams. Here are two examples. The first example is Fibonacci numbers. We use $(0, 1)$ as the starting seed. To generate the next seed, we take the second value 1 in the pair as the first value in the new pair, and use $0 + 1$ as the second value in the new pair to form the new seed $(1, 0 + 1)$. Repeat this process, for seed $(m, n)$, we generate the next seed $(n, m + n)$. Written in coalgebra, we have the following definition:
 
 \[
 \begin{array}{l}
@@ -544,33 +544,35 @@ fib (m, n) = \mathbf{StreamF}\ m\ (n, m + n)
 \end{array}
 \]
 
-在这个定义中，携带对象$A$是一对整数。有了余代数，我们就可以利用向上态射构造斐波那契数列的无穷流了。对于$\mathbf{StreamF}\ E$函子，向上态射的类型为：
+In this definition, the carrier object $A$ is a pair of integers. With coalgebra, we can feed it into anamorphism to build the infinite stream of Fibonacci numbers. For functor $\mathbf{StreamF}\ E$, the type of the anamorphism is:
 
 \[
 (A \to \mathbf{StreamF}\ E\ A) \arrowto{ana} (A \to \mathbf{Stream}\ E)
 \]
 
-我们可以将其具体定义为：
+We can realize it as:
 
 \[
 \begin{array}{l}
 ana\ f = fix \circ f \\
-\text{其中：} fix\ (StreamF\ e\ a) = Stream\ e\ (ana\ f\ a)
+\text{where: } fix\ (StreamF\ e\ a) = Stream\ e\ (ana\ f\ a)
 \end{array}
 \]
 
-将向上态射作用于余代数$fib$和起始对象$(0, 1)$就可以产生斐波那契数列的无穷流：
+Apply the anamorphism to coalgebra $fib$ and the start pair $(0, 1)$ gives infinite stream that generates Fibonacci numbers:
 
 \[
 ana\ fib\ (0, 1)
 \]
 
-为了从无穷流中获取前$n$个元素，可以定义一个辅助函数：
+We can define a auxiliary function to take the first $n$ elements from the infinite stream:
 
 \begin{lstlisting}
 take 0 _ = []
 take n (Stream e s) = e : take (n - 1) s
 \end{lstlisting}
+
+The next example demonstrate how to generate infinite stream of prime numbers with the sieve of Eratosthenes method.
 
 接下来再展示一个用埃拉托斯特尼筛法产生全体素数无穷流的例子。我们使用去掉1的自然数无穷列表作为携带对象2, 3, 4, ...从这个种子开始，我们接下来把2的所有倍数去掉就获得了下一个种子，它是从3开始的列表3, 5, 7, ...接下来，我们再把3的倍数都去掉，并不断重复。把这一过程写成余代数就是下面的定义：
 

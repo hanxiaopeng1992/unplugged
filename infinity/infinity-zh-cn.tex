@@ -492,19 +492,19 @@ F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F
   \path[-stealth]
     (m-1-1) edge node [above] {$\mu$} (m-1-2)
     (m-2-1) edge node [left] {$\llb f \rlb$} (m-1-1)
-    (m-2-2) edge node [right] {$\mathbf{F} \llb f \rlb$}  (m-1-2)
+    (m-2-2) edge node [right] {$\mathbf{F}\ \llb f \rlb$}  (m-1-2)
     (m-2-1) edge node [below] {$f$} (m-2-2);
 \end{tikzpicture}
 \end{center}
 
 \[
-  \text{若} m = \llb f \rlb \text{，当且仅当} \mu \circ m = \mathbf{F}(m) \circ f
+  m = \llb f \rlb \text{，当且仅当} \mu \circ m = \mathbf{F}(m) \circ f
 \]
 
 我们现在来看向上态射是如何构造无穷流的。向上态射接受一个余代数$A \arrowto{f} \mathbf{F} A$和一个携带对象$A$，它产生一个函子$\mathbf{F}$的不动点$\mathbf{Fix}\ \mathbf{F}$。其关键一点就是，这个不动点就是终止余代数，它具有无穷流的形式。
 
 \[
-\llb f \rlb = \mathbf{Fix} \circ \mathbf{F} \llb f \rlb \circ f
+\llb f \rlb = \mathbf{Fix} \circ \mathbf{F}\ \llb f \rlb \circ f
 \]
 
 我们也可以将向上态射定义为返回函子不动点的函数：
@@ -554,7 +554,7 @@ ana\ f = fix \circ f \\
 \end{array}
 \]
 
-将向上态射作用于余代数$fib$和起始对象$(0, 1)$就可以产生斐波那契数列的无穷流：
+将向上态射作用于余代数$fib$和起始数对$(0, 1)$就可以产生斐波那契数列的无穷流：
 
 \[
 ana\ fib\ (0, 1)
