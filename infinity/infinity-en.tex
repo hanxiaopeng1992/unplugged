@@ -572,9 +572,7 @@ take 0 _ = []
 take n (Stream e s) = e : take (n - 1) s
 \end{lstlisting}
 
-The next example demonstrate how to generate infinite stream of prime numbers with the sieve of Eratosthenes method.
-
-接下来再展示一个用埃拉托斯特尼筛法产生全体素数无穷流的例子。我们使用去掉1的自然数无穷列表作为携带对象2, 3, 4, ...从这个种子开始，我们接下来把2的所有倍数去掉就获得了下一个种子，它是从3开始的列表3, 5, 7, ...接下来，我们再把3的倍数都去掉，并不断重复。把这一过程写成余代数就是下面的定义：
+The next example demonstrates how to generate infinite stream of prime numbers with the sieve of Eratosthenes method. The start seed is `all' the natural numbers with 1 being removed: 2, 3, 4, ... From this seed, we remove all the multiples of 2 to obtain the next seed, which is a infinite list start from 3 as 3, 5, 7, ... Next, we remove all the multiples of 3, and repeated this process. This method is defined as below coalgebra:
 
 \[
 \begin{array}{l}
@@ -583,20 +581,20 @@ era (p:ns) = \mathbf{StreamF}\ p\ \{ n\ |\ p \nmid n, n \in ns\} \\
 \end{array}
 \]
 
-然后使用向上态射我们就获得了全体素数的无穷流：
+Then feed it to anamorphism, we obtain the infinite stream that generate all prime numbers:
 
 \begin{lstlisting}
 primes = ana era [2...]
 \end{lstlisting}
 
-特别地，对于列表的向上态射被称为展开（反折叠unfold）。向上态射和向下态射是互逆的。我们可以用向下态射把无穷流重新转换为列表。
+For list particularly, anamorphism is called unfold. Anamorphism and catamorphism are mutually inverse. We can turn the infinite stream back to list through catamorphism.
 
 \begin{Exercise}
-\Question{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
-\Question{试定义反折叠$unfold$}
+\Question{Use the definition of the fixed point in chapter 4, prove $Stream$ is the fixed point of $StreamF$.}
+\Question{Define $unfold$.}
 \end{Exercise}
 
-\section{实无穷的思考}
+\section{Explore the actual infinity}
 亚里士多德的影响是深远的。在两千多年的时间里，数学家和哲学家们不断思考无穷的本质，大多数人能够接受潜无穷的观念。但是对于实无穷，却产生了严重的分歧。在很长一段时间，人们认为实无穷就是无所不能的上帝，或者只有上帝才能掌握实无穷。一些对实无穷的尝试带来的是令人困惑的矛盾结果。例如，假设全体自然数是一个实无穷。由于自然数从头开始，间隔着一个偶数一个奇数，人们自然认为全体偶数是全体自然数的一半。可是任何自然数乘以2，就得到了一个偶数，反之，任何偶数除以2，也对应这个一个自然数。这样看来全体自然数和全体偶数存在一一对应关系。于是这两个实无穷是同样多的。究竟是自然数多还是偶数多呢？
 
 \index{伽利略悖论}
