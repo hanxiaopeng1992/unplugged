@@ -424,29 +424,31 @@ For example, $take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$. There are examples in the 
 
 \subsection{Coalgebra and infinite stream$\bigstar$}
 
-本小节给出无穷流的数学解释，它需要使用第四章范畴论中介绍的余代数概念。一般的读者可以跳过两页直接阅读下一节\textbf{关于实无穷的思考}。首先我们回顾一下余代数和F-态射的概念。
+To model the stream of potential infinity, we need the coalgebra concept in category theory introduced in chapter 4. Readers are safe skip this section in the following 2 pages, and directly read from the next section \textbf{Explore the actual infinity}. Let us first revisit coalgebra and F-morphism.
 
-\index{余代数}
+\index{coalgebra}
 \begin{definition}
-如果$\pmb{C}$是一个范畴，$\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$是范畴$\pmb{C}$上的一个自函子。对于范畴中的对象$A$和态射$\alpha$：
+\normalfont
+Let $\pmb{C}$ be a category, $\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$ is an endo-functor of category $\pmb{C}$. For the object $A$ and morphism $\alpha$ in this category:
 
 \[
   A \arrowto{\alpha} \mathbf{F} A
 \]
 
-构成一对元组$(A, \alpha)$叫做F-余代数。其中$A$叫做携带对象。
+Form a pair $(A, \alpha)$. It is called F-coalgebra, where $A$ is the carrier object.
 \end{definition}
 
-我们可以把F-余代数$(A, \alpha)$本身看成对象。在上下文清楚的情况下，我们通常用二元组$(A, \alpha)$表示对象。两个对象间的箭头定义如下：
+We can treat F-coalgebra as object. When the context is clear, we denote the object as a pair $(A, \alpha)$. The arrows between such objects are defined as the following:
 
 \begin{definition}
-F-态射是F-余代数对象间的箭头：
+\normalfont
+F-morphism is the arrow between F-coalgebra objects:
 
 \[
   (A, \alpha) \longrightarrow (B, \beta)
 \]
 
-如果携带对象间的箭头$A \arrowto{f} B$，使得下面的范畴图可交换：
+If the arrow $A \arrowto{f} B$ between the carrier objects make the below diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -462,10 +464,10 @@ F-态射是F-余代数对象间的箭头：
 \end{tikzpicture}
 \end{center}
 
-即$\beta \circ f = \mathbf{F}(f) \circ \alpha$
+Which means $\beta \circ f = \mathbf{F}(f) \circ \alpha$
 \end{definition}
 
-F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F-代数中，我们关心的是初始代数。对称地，在F-余代数中，我们关心的是终止余代数。所谓终止余代数是F-余代数范畴中的终止对象，记为$(T, \mu)$。对于任何其它代数$(A, f)$，存在唯一的态射$m$使得下面的范畴图可交换：
+F-coalgebra and F-morphism form F-coalgebra category $\pmb{CoAlg}(\mathbf{F})$. For F-algebra, we care about the initial algebra; symmetrically, for F-coalgebra, we care about the {\em final coalgebra}. Where the final coalgebra is the final object in F-coalgebra category, denoted as $(T, \mu)$. For any other algebra $(A, f)$, there exists unique morphism $m$, such that the below diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -481,10 +483,10 @@ F-余代数和F-态射构成了F-余代数范畴$\pmb{CoAlg}(\mathbf{F})$。在F
 \end{tikzpicture}
 \end{center}
 
-使用兰贝克定理，终止余代数是函子的不动点，态射$T \arrowto{\mu} \mathbf{F} T$是一个同构映射，使得$\mathbf{F} T$和$T$同构。终止余代数在编程中可用来构建无穷的数据结构。
+From Lambek theorem, the final coalgebra is the fixed point for functor. The morphism $T \arrowto{\mu} \mathbf{F} T$ is an isomorphism, such that $\mathbf{F} T$ is isomorphic to $T$. The final coalgebra can be used to build infinite data structures.
 
-\index{向上态射（anamorphism）}
-我们使用向下态射对初始代数进行计算。对称地，我们用向上态射(anamorphism，词根ana-的意思是向上)对终止余代数进行余计算(coevaluate)。对于任何余代数$(A, f)$，它到终止余代数$(T, \mu)$的唯一箭头可以用向上态射表示为$\llb f \rlb$。这种括号的形状不再像香蕉，而像一对光学中的透镜符号，所以常被叫作“透镜括号”。用范畴图表示就是：
+\index{anamorphism}
+We use catamorphism to evaluate the initial algebra. Symmetrically, we use anamorphism (prefix ana- means upward) to coevaluate the final coalgebra. For any coalgebra $(A, f)$, the unique arrow to the final coalgebra $(T, \mu)$ can represented with the anamorphism as $\llb f \rlb$. The brackets do not look like bananas any more, but like a pair of lenses in optics. They are known as \textbf{lens brackets}. As shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
