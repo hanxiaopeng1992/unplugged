@@ -336,23 +336,23 @@ There are two different concepts of numbers, ordinal number and cardinal number.
 However, there is eventually a gap between linked-list and potential infinity. We consider natural numbers as potential infinity without terminating or `end point'. But when use linked-list to represent natural numbers, no matter how long the list is, for instance $n$, we have to store all numbers from 0 to $n$ in it. It only represents sequence of 0, 1, ..., $n$, but not the natural numbers, 0, 1, ..., $n$, ...
 
 \index{lazy evaluation}
-为此，人们提出了惰性求值的概念。所谓惰性求值，就是并不立即计算一个变量的值，而是把计算推迟到需要这个值的时候。具体到自然数的例子，根据第一章介绍的皮亚诺公理，任给一个自然数$n$，都存在它的后继$n+1$。而第一个自然数是0。这样自然数就可以表示为：
+To model the potential infinity, people introduced concept of lazy evaluation. Instead of evaluate the value of an expression or variable, this evaluation strategy delays it until the value is needed. For the natural number example, any number $n$ has a successor $n+1$ according to Peano's axiom introduced in chapter 1, and the first natural number is 0. Hence we can define natural numbers as below:
 
 \[
 N = iterate(n \mapsto n + 1, 0)
 \]
 
-其中$iterate$的定义为：
+Where $iterate$ is defined as:
 
 \[
 iterate(f, x) = x : iterate(f, f(x))
 \]
 
-我们来看一下自然数产生的头几步，简单起见，我们命名$succ(n) = n \mapsto n +1$
+Let us see the first several steps when generate natural numbers. To make it simple, denote $succ(n) = n \mapsto n +1$
 
 \[
 \begin{array}{rcll}
-iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
+iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & \text{definition of } iterate\\
                  & = & 0 : iterate(succ, 1) & succ(0) = 0 + 1 = 1 \\
                  & = & 0 : 1 : iterate(succ, succ(1)) & \\
                  & = & 0 : 1 : iterate(succ, 2) & \\
@@ -361,52 +361,52 @@ iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
 \end{array}
 \]
 
-如果没有惰性求值，上述过程就会一直计算下去，永不终止。这是无法用来解决实际问题的。为此我们必须把链表的链接操作实现为惰性的，其中一种方法就是利用第二章介绍的$\lambda$表达式：
+Without lazy evaluation, this process will repeat endlessly forever. It can not used to solve practical problems. We must change the link operation to lazy evaluation. One method is to leverage the $\lambda$ calculus introduced in chapter 2.
 
 \[
 x : xs = cons(x, () \mapsto xs)
 \]
 
-这种表达式$() \mapsto exp$通常叫作$delay(exp)$，它产生一个不带有参数函数，对这个函数求值得到结果$exp$。
+We often call the expression $() \mapsto exp$ as $delay(exp)$. It builds a function without argument, when evaluates (the function), gives the result $exp$.
 
 \begin{figure}[htbp]
 %\begin{wrapfigure}{R}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.5]{img/stream-cons.eps}
  %\captionsetup{labelformat=empty}
- \caption{链表指向的下一个节点是一个$\lambda$表达式，强制求值后产生一个新节点}
+ \caption{The next node pointed is a $\lambda$ expression. It will create a new node when forced evaluation.}
  \label{fig:stream-cons}
 %\end{wrapfigure}
 \end{figure}
 
-这样，当把$x$和$xs$链接到一起的时候，我们并不会求出$xs$的值，而是把它放入一个$\lambda$表达式中，推迟到将来再求值。这样改动后，产生自然数时就变成：
+Therefore, when link $x$ and $xs$ together, the value of $xs$ won't be evaluated, but $xs$ itself will be wrapped in a $\lambda$ expression. And evaluation is delayed to future time. With this modification, the generation of natural numbers changes to:
 
 \[
 \begin{array}{rcll}
-iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & iterate\text{的定义}\\
-                 & = & cons(0, () \mapsto iterate(succ, succ(0))) & \text{惰性链接} \\
+iterate(succ, 0) & = & 0 : iterate(succ, succ(0)) & \text{definition of } iterate\\
+                 & = & cons(0, () \mapsto iterate(succ, succ(0))) & \text{lazy link} \\
 \end{array}
 \]
 
-计算到此为止，而不会继续进行下去。结果是一个列表，表中第一个元素是0，下一个元素是一个$\lambda$表达式。如果想求出后继的元素，我们必须强制让列表求值。
+The computation stops here. It won't go on. The result is a list. The first element is 0, while the next element is a $\lambda$ expression. If we want to obtain the successive element, we have to force the list evaluation.
 
 \[
 next(cons(x, e)) = e()
 \]
 
-这样，将$next$应用到$cons(0, () \mapsto iterate(succ, succ(0)))$就得到：
+Whey apply $next$ to $cons(0, () \mapsto iterate(succ, succ(0)))$, we obtain:
 
 \[
 \begin{array}{cll}
   & next(cons(0, () \mapsto iterate(succ, succ(0)))) & \\
-= & iterate(succ, succ(0)) & next\text{的定义} \\
-= & iterate(succ, 1) & succ\text{的定义} \\
-= & 1 : iterate(succ, succ(1)) & iterate\text{的定义} \\
-= & cons(1, () \mapsto iterate(succ, succ(1))) & \text{惰性链接}
+= & iterate(succ, succ(0)) & \text{definition of } next\\
+= & iterate(succ, 1) & \text{definition of } succ\\
+= & 1 : iterate(succ, succ(1)) & \text{definition of } iterate\\
+= & cons(1, () \mapsto iterate(succ, succ(1))) & \text{lazy link}
 \end{array}
 \]
 
-计算到这里又停了下来。不断对$N$计算$next$，就源源不断的获得了一个一个的自然数。人们称这种模型为“流”（Stream），用它来表示潜无穷。我们甚至可以定义一个函数从潜无穷的流中取得前$m$个自然数。
+The computation stops again. By repeatedly applying $next$ to $N$, we generate natural numbers one by one. People call this kind of model {\em stream}, and use it to represent potential infinity. We can easily define a function to fetch the first $m$ natural numbers from this potential infinite stream.
 
 \[
 \begin{array}{l}
@@ -415,14 +415,14 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
 \end{array}
 \]
 
-例如$take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$。本章附录给出了几种语言中，用流的方法定义自然数潜无穷的一些例子。
+For example, $take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$. There are examples in the appendix of this chapter about how to define natural numbers with potential infinity in different programming languages.
 
 \begin{Exercise}
-\Question{第一章中，我们用叠加操作实现了斐波那契数列，如何用$iterate$定义斐波那契数列潜无穷？}
-\Question{用叠加操作定义$iterate$。}
+\Question{We realized Fibonacci numbers by folding in chapter 1. How to define Fibonacci numbers as potential infinity with $iterate$?}
+\Question{Define $iterate$ by folding}
 \end{Exercise}
 
-\subsection{余代数和无穷流$\bigstar$}
+\subsection{Coalgebra and infinite stream$\bigstar$}
 
 本小节给出无穷流的数学解释，它需要使用第四章范畴论中介绍的余代数概念。一般的读者可以跳过两页直接阅读下一节\textbf{关于实无穷的思考}。首先我们回顾一下余代数和F-态射的概念。
 
