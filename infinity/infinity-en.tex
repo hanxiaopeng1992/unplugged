@@ -676,7 +676,7 @@ The solution for the second day is shown in figure \ref{fig:Hilbert-hotel-2}. We
 
 It's natural to ask, although the symbols are same, does the infinity on the left hand equal to the infinity on the right hand? Can we compare between infinities for size? We'll see later, it was exactly this question, led Cantor to study infinity in depth. In Hilbert's Grand hotel story, we can establish 1-to-1 correspondence between all these infinities, hence they are all equinumerous. Such infinity that has 1-to-1 correspondence with natural numbers are called `countable infinity'.
 
-要想解决希尔伯特旅馆第三天的问题，我们需要思考能否在无穷个无穷旅游团和无穷个房间之间建立一一对应。有人说，可以先让第一个旅游团依次入住1, 2, ...号房间，然后让第二个旅游团的第一个客人住在$\infty + 1$号房间，第二个客人住$\infty + 2$号房间……以此类推。但是这样的思路是行不通的，我们事先并不知道究竟是房间多，还是客人多。考虑安排客人的过程，第二个旅游团的第一个客人永远不知道第一个旅游团何时入住完，从而确定自己应该搬入的房间。与之相反，在第一天的故事中，一旦1号房间的客人搬入2号房间，新客人就可以立即入住了。尽管每个客人都依次搬入下一个房间是一个无穷无尽的过程。第二天的故事中也是如此，原1号房间的客人搬到2号房间的同时，旅游团中的第1个客人就可以搬入空出来的1号房间了，接下来原2号房间的客人搬到4号房间，原3号房间的客人搬到6号房间，此时旅游团中的第2个客人就可以搬入3号房间了……
+To solve the problem on the third day of Hilbert's Grand hotel, we need think about how to establish the 1-to-1 correspondence between the infinite many tour groups of infinity many guests and the infinity many rooms. One may come to the idea to arrange the guests in the first tour group to room 1, 2, 3, ... then arrange the guests in the second group to room $\infty + 1$, $\infty + 2$, ... However, this method does not work. We don't know which one are more numerous, the rooms or the guests before the arrangement. Consider how this process executes. The first guest in the second group will never know when the first group finishes accommodating, this guest has no way to determine which room should move to. Compare with the first day story, the new guest could immediately move to room 1 when the original guest moved to room 2, although the whole infinity accommodating process is endless. Same situation happened on the second day. When the original guest in room 1 moved to room 2, the first guest in the tour group could move to the freed up room 1 immediately. Next the original guest in room 2 moved to room 4, and the guest in room 3 moved to room 6, at this time, the second guest in the tour group could move to room 3...
 
 \begin{figure}[htbp]
 \centering
@@ -697,7 +697,7 @@ It's natural to ask, although the symbols are same, does the infinity on the lef
     \draw[-latex, thick] (N\i) to (N\j);
   }
 \end{tikzpicture}
-\caption{对无穷个无穷的一种编号方案}
+\caption{One solution to number infinity of infinity}
 \label{fig:NNtoN}
 \end{figure}
 
