@@ -697,27 +697,27 @@ To solve the problem on the third day of Hilbert's Grand hotel, we need think ab
     \draw[-latex, thick] (N\i) to (N\j);
   }
 \end{tikzpicture}
-\caption{One solution to number infinity of infinity}
+\caption{One solution to number the infinity of infinity}
 \label{fig:NNtoN}
 \end{figure}
 
-图\ref{fig:NNtoN}给出了一种编号方案。为了方便，我们让每个旅游团的第一个客人编号为0，第二个客人编号为1，第三个客人编号为2……，我们把已经在旅馆中入住的客人编号为0号旅游团，新来的第一个旅游团编号为1号团，第二个旅游团编号为2号团……在这个图中，每个客人就对应无穷伸展的方格子中的一个点。同样我们让旅馆的房间号也从0开始。
+Figure \ref{fig:NNtoN} gives a numbering solution. For convenient purpose, we label the first guest 0, the second guest 1, the third guest 2, ... We label the guests already lived in the hotel as group 0, the first tour group 1, the second group 2, ... In this figure, every guest corresponds to a grid point. We also count the hotel rooms from 0.
 
-现在我们按照这个顺序安排入住：第0号团的第0号客人入住0号房间，第0号团的第1号客人入住1号房间，第1号团的第0号客人入住第2号房间，第2号团的第0号客人入住3号房间，第1号团的第1号客人入住4号房间……这样按照图中往返画“之”字形，就可以逐一、并且毫无遗漏地安排每个客人入住。我们在无穷个旅游团的每个客人和无穷个房间之间建立了一一映射。希尔伯特的旅馆神奇地容纳了“二维”的无穷。
+Now we arrange rooms in this order: assign the guest 0 in group 0 to room 0, the guest 1 in group 0 to room 1, the guest 0 in group 1 to room 2, the guest 0 in group 2 to room 3, the guest 1 in group 1 to room 4, ... Along the zig-zag path, we can assign room one by one, without missing any guests. Hence we establish a 1-to-1 correspondence between every guest in these infinite many groups and the infinity many rooms. Hilbert's Grand hotel surprisingly holds `two-dimensional' infinity\footnote{The traditional solution uses the Euclid's theorem, that there are infinite many prime numbers. Empty the odd numbered rooms by sending the guest in room $i$ to room $2^{i}$, then put the first group's guests in rooms $3^{n}$, the second group's guests in rooms $5^{n}$, ... put the $k$-th group's guests in rooms $p^n$, where $p$ is the $k$-th prime number. This solution leaves certain rooms empty, specifically, all odd numbers that are not prime powers, such as 15 or 847, will no longer be occupied.}.
 
 \begin{Exercise}
-\Question{我们用图\ref{fig:NNtoN}建立了房间和任意旅游团的客人间的一一映射。第$i$号旅游团的第$j$号客人应该入住几号房间？第$k$个房间里住了哪号旅游团的哪位客人？}
-\Question{希尔伯特旅馆第三天的故事的解法并不唯一，图\ref{fig:PWW-NNtoN}是《无需语言的证明》一书的封面。试根据此图给出另一种编号方案？
+\Question{We establish the 1-to-1 correspondence between the rooms and guests with the numbering scheme shown in \ref{fig:NNtoN}. For guest $i$ in group $j$, which room number should be assigned? Which guest in which group will live in room $k$?}
+\Question{For Hilbert's Grand hotel, there are multiple solutions for the problem on the third day. Figure \ref{fig:PWW-NNtoN} is the cover page of the book {\em Proof without word}. Can you give a numbering scheme based on this figure?
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.2]{img/PWW.eps}
- \caption{《无需语言的证明》封面局部}
+ \caption{From cover page of {\em Proof without word}}
  \label{fig:PWW-NNtoN}
 \end{figure}
 }
 \end{Exercise}
 
-\subsection{一一对应与无穷集合}
+\subsection{One-to-one correspondence and infinite set}
 
 从希尔伯特旅馆的故事中，我们看到一一对应的概念对于研究无穷的重要性。如果能建立两个集合间的一一对应关系，则它们具有相同的基数。进一步我们可以用一一对应对集合进行分类。我们曾经在第三章介绍过相应的概念。具体说就是在两个集合$A$和$B$之间建立一个映射$A \arrowto{f} B$，使得$A$中的每个元素$x$，都可以通过映射$x \mapsto y = f(x)$，与$B$中的元素$y$关联起来。对于集合，我们也称映射$f$为函数。$y$叫作$x$的像，而$x$叫作原像。如果原像是唯一的，我们称这样的映射为\textbf{单射}；如果$B$中的任何$y$都存在原像，我们称这样的映射为\textbf{满射}。既是单射又是满射的映射称为一一映射。图\ref{fig:bijection}描述了两个有限集合间的一个一一映射。
 
