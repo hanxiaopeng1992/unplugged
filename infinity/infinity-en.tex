@@ -744,9 +744,7 @@ $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarro
 
 Hence to expand natural numbers to integers. From another view point, we essentially correspond odd numbers to positive integers, and correspond even numbers to negative integers and zero. It tells that the integers and natural numbers are equinumerous.
 
-\item \textbf{Rationals}. A rational number can be expressed as the quotient or fraction $p/q$ of two integers, a numerator $p$ and a non-zero denominator $q$. On the third day of Hilbert's Grand hotel story, we established 1-to-1 correspondence between a pair $(p, q)$ and a natural number. We can adjust it a bit for rational number $p/q$. Put negative numbers aside for now, we skip whenever the second number $q$ is zero, or $p/q$ is irreducible fraction (no common divisor).
-
-。我们知道，有理数又叫作可比数，可以写成$p/q$的形式，其中$q \neq 0$。回想希尔伯特无穷旅馆第三天的的故事，用同样的方法，我们可以在任何数偶$(p, q)$和自然数之间建立一一映射。我们只要稍作修改就可以建立有理数$p/q$和自然数间的一一对应。先不考虑负数的情形，每当遇到第二个数$q$等于0就跳过，如果$p/q$不是既约分数（含有公因子）就跳过。然后我们复用扩展整数的方法，再把负有理数包含进来，这样就从自然数构造出了全体有理数。例如下表给出了前几个自然数到有理数的对应关系：
+\item \textbf{Rationals}. A rational number can be expressed as the quotient or fraction $p/q$ of two integers, a numerator $p$ and a non-zero denominator $q$. On the third day of Hilbert's Grand hotel story, we established 1-to-1 correspondence between a pair $(p, q)$ and a natural number. We can adjust it a bit for rational number $p/q$. Put negative numbers aside for now, we skip whenever the second number $q$ is zero, or $p/q$ is irreducible fraction (no common divisor). Then we re-use the method for integers, to cover the negative rational numbers as well. In this way, we construct rational numbers from natural numbers. Below table illustrates how the first several natural numbers correspond to rational numbers:
 
 \begin{tabular}{cccccccccc}
 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & ... \\
@@ -754,10 +752,12 @@ $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarro
 0 & 1 & $\dfrac{1}{2}$ & $-\dfrac{1}{2}$ & -1 & -2 & $-\dfrac{2}{3}$ & $-\dfrac{1}{3}$ & $\dfrac{1}{3}$ & ... \\
 \end{tabular}
 
-这说明自然数和有理数同样多。
+It tells us natural numbers and rational numbers are equinumerous.
 
-\index{代数数}
-\item \textbf{代数数}。所谓代数数，是指可以通过代数方程求解出的数。简单说，就是可以通过有限次加减乘除、乘方开方得到的数。因此$\sqrt{2}$和$1 \pm \sqrt{3}i$是代数数，而$\pi, e$都不是代数数。因此，任意给定一个整系数代数方程：
+\index{algebraic numbers}
+\item \textbf{Algebraic numbers}. An algebraic number is a root of a non-zero polynomial in one variable with rational coefficients. Equivalently, by clearing denominators, we can loose the coefficients to integers.
+
+。所谓代数数，是指可以通过代数方程求解出的数。简单说，就是可以通过有限次加减乘除、乘方开方得到的数。因此$\sqrt{2}$和$1 \pm \sqrt{3}i$是代数数，而$\pi, e$都不是代数数。因此，任意给定一个整系数代数方程：
 \[
 a_0 x^n + a_1 x^{n-1} + ... + a_n = 0
 \]
