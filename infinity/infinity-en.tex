@@ -769,28 +769,26 @@ Where $a_0, a_1, ... a_n$ are integers, and $a_0 \neq 0$. All its rots are algeb
 h = n + |a_0| + |a_1| + ... + |a_n|
 \]
 
-Which is the sum of the degree and coefficients of the equation. We name it as the height $h$ of the equation. For any algebraic equation, $h$ is a unique natural number. On the other hand, given a height $h$, there could be multiple equations. For example, the height of equations $x - 3 = 0$, $x^3 + 1 = 0$, $x^3 - 1 = 0$, $x^2 + x + 1 = 0$, $x^2 - x + 1 = 0$ are all 4.
+Which is the sum of the degree and coefficients of the equation. We name it as the height $h$ of the equation. For any algebraic equation, $h$ is a unique natural number. On the other hand, given a height $h$, there could be multiple equations. For example, the height of equations $x - 3 = 0$, $x^3 + 1 = 0$, $x^3 - 1 = 0$, $x^2 + x + 1 = 0$, $x^2 - x + 1 = 0$ are all 4. However, there are finite many equations for a every $h$. Therefore, we can enumerate all algebraic equations: first list all equations of height $h=1$, then list the equations of height $h=2$, ... and repeated this process. The equations of the same heights can be list in arbitrary order. According to the fundamental theorem of algebra proved by Gauss, the number of roots equals to the equation degree $n$. Taking the multiplicity into consideration, the number of different roots is not greater than $n$. Hence there are finite many roots for equation of height $h$. Now we can enumerate all algebraic numbers.
 
-但是对于固定的$h$，以它为高的代数方程只有有限多个。因此我们可以把所有的代数方程枚举出来，先枚举$h=1$的代数方程，在枚举$h=2$的代数方程……如此下去，就可以把所有的代数方程都枚举出来。当然，高同样的方程可以按任意顺序排列。根据高斯证明的代数基本定理，方程根的个数等于它的次数$n$。如果考虑重根，则不同的根不超过$n$。于是高为$h$的代数方程的根只有有限个。现在我们就可以枚举所有代数数了。
-
-首先把高$h=1$的代数方程（只有一个$x = 0$）的根枚举出，就是0，再把高为2的方程的所有根枚举出。注意，不同方程的某个根可能是相等的，如果我们遇到某个根，在此前已经枚举过了，我们就将它跳过。这样就把代数数同自然数一一对应起来了。因此，自然数和代数数同样多。换言之，我们可以通过自然数扩展出全部代数数。
+First, we enumerate all roots for equations of height $h=1$ (only one such equation $x = 0$), which is 0; then enumerate all roots for equations of height 2. Because different equations may have some same root, we need skip any root if it was enumerated before. In this way, we establish the 1-to-1 correspondence between algebraic numbers and natural numbers. Hence they are equinumerous. In other words, we can extend to all algebraic numbers from natural numbers.
 \end{enumerate}
 
-接下来我们遇到了难题，我们能否从自然数扩展到实数？不仅包括普通的无理数，还包括$\pi$，$e$这样的超越数？解决这个难题的是康托尔和戴徳金。再进一步介绍这些伟大的成果之前，让我们先了解一下这两位数学家。
+We'll meet a problem next. Can we extend natural numbers to real numbers? not only for normal irrationals, but also cover transcendental numbers like $\pi$ and $e$? Cantor and Dedekind made great breakthrough when study this problem.
 
-\subsubsection{康托尔与戴徳金}
+\subsubsection{Cantor and Dedekind}
 
 %\begin{figure}[htbp]
 \begin{wrapfigure}{R}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.5]{img/Cantor-1870.eps}
  \captionsetup{labelformat=empty}
- \caption{康托尔摄于1870年的照片}
+ \caption{Cantor, around 1870}
  \label{fig:Cantor-1870}
 \end{wrapfigure}
 %\end{figure}
 
-\index{康托尔}
+\index{Cantor}
 康托尔是德国数学家，集合论的创始人。1845年3月3日生于俄罗斯圣彼得堡，他一生的大部分时间是在德国度过的。康托尔的父亲是具有犹太血统的丹麦商人，母亲出身艺术世家。1856年举家迁居德国的法兰克福。尽管康托尔较早就显示出了数学才能，他的父亲却希望他成为一名工程师，因为这样更容易求职和谋生。直到17岁时，康托尔的父亲才逐渐意识到不应该把自己的意见强加给儿子。他得到父亲的允许，进入大学学习数学。康托尔给父亲回信道：“你自己也能体会到你的信使我多么高兴。这封信确定了我的未来……现在我很幸福，因为我看到如果我按照自己的感情选择，不会使你不高兴。我希望你能活到在我身上找到乐趣，亲爱的父亲；从此以后我的灵魂，我整个人，都为我的天职活着；一个人渴望做什么，凡是他的内心强制他去做的，他都会成功！”\cite{HanXueTao16}
 
 1862年，康托尔进入苏黎世大学，1863年转入柏林大学攻读数学和神学，受教于大数学家库默尔、魏尔斯特拉斯、和克罗内克。1866年曾去哥廷根学习一个学期。1867年他在库默尔的指导下以解决整系数不定方程的论文获得博士学位。当时的数学界正在魏尔斯特拉斯的领导下进行着重建微积分严密基础的运动，康托尔也很快转入这一研究方向。在工作中，他意识到必须研究作为微积分基础的实数点集，这成为了集合论研究的开端。
