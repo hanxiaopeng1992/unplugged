@@ -755,17 +755,23 @@ $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarrow$ & $\updownarro
 It tells us natural numbers and rational numbers are equinumerous.
 
 \index{algebraic numbers}
-\item \textbf{Algebraic numbers}. An algebraic number is a root of a non-zero polynomial in one variable with rational coefficients. Equivalently, by clearing denominators, we can loose the coefficients to integers.
+\item \textbf{Algebraic numbers}. An algebraic number is a root of a non-zero polynomial in one variable with rational coefficients. Equivalently, by clearing denominators, we can loose the coefficients to integers. For example, $\sqrt{2}$ and $1 \pm \sqrt{3}i$ are algebraic numbers, while $\pi$ and $e$ are not.
 
-。所谓代数数，是指可以通过代数方程求解出的数。简单说，就是可以通过有限次加减乘除、乘方开方得到的数。因此$\sqrt{2}$和$1 \pm \sqrt{3}i$是代数数，而$\pi, e$都不是代数数。因此，任意给定一个整系数代数方程：
+Given an algebraic equation
+
 \[
 a_0 x^n + a_1 x^{n-1} + ... + a_n = 0
 \]
-其中$a_0, a_1, ... a_n$都是整数，且$a_0 \neq 0$。它的所有根都是代数数。我们构造一个正整数：
+
+Where $a_0, a_1, ... a_n$ are integers, and $a_0 \neq 0$. All its rots are algebraic numbers. Define a positive integer:
+
 \[
 h = n + |a_0| + |a_1| + ... + |a_n|
 \]
-也就是次数和方程系数绝对值的和。我们称$h$为方程的高。因此，对于任意的代数方程，高$h$总是一个确定的自然数。反之，给定一个自然数$h$，对应的方程却不止一个。例如：$x - 3 = 0, x^3 + 1 = 0, x^3 - 1 = 0, x^2 + x + 1 = 0, x^2 - x + 1 = 0$的高都是4。但是对于固定的$h$，以它为高的代数方程只有有限多个。因此我们可以把所有的代数方程枚举出来，先枚举$h=1$的代数方程，在枚举$h=2$的代数方程……如此下去，就可以把所有的代数方程都枚举出来。当然，高同样的方程可以按任意顺序排列。根据高斯证明的代数基本定理，方程根的个数等于它的次数$n$。如果考虑重根，则不同的根不超过$n$。于是高为$h$的代数方程的根只有有限个。现在我们就可以枚举所有代数数了。
+
+Which is the sum of the degree and coefficients of the equation. We name it as the height $h$ of the equation. For any algebraic equation, $h$ is a unique natural number. On the other hand, given a height $h$, there could be multiple equations. For example, the height of equations $x - 3 = 0$, $x^3 + 1 = 0$, $x^3 - 1 = 0$, $x^2 + x + 1 = 0$, $x^2 - x + 1 = 0$ are all 4.
+
+但是对于固定的$h$，以它为高的代数方程只有有限多个。因此我们可以把所有的代数方程枚举出来，先枚举$h=1$的代数方程，在枚举$h=2$的代数方程……如此下去，就可以把所有的代数方程都枚举出来。当然，高同样的方程可以按任意顺序排列。根据高斯证明的代数基本定理，方程根的个数等于它的次数$n$。如果考虑重根，则不同的根不超过$n$。于是高为$h$的代数方程的根只有有限个。现在我们就可以枚举所有代数数了。
 
 首先把高$h=1$的代数方程（只有一个$x = 0$）的根枚举出，就是0，再把高为2的方程的所有根枚举出。注意，不同方程的某个根可能是相等的，如果我们遇到某个根，在此前已经枚举过了，我们就将它跳过。这样就把代数数同自然数一一对应起来了。因此，自然数和代数数同样多。换言之，我们可以通过自然数扩展出全部代数数。
 \end{enumerate}
