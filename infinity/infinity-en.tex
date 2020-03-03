@@ -829,15 +829,15 @@ Dedekind died on February 12, 1916. About his death, there was an interesting st
 
 Even today, there are still different views regarding to Cantor and Dedekind's work. Dieudonné still considered Dedekind's work caused unnecessary confusions in the 1980s. Not to mention the fierce divisions and debates at the beginning of the 20th Century. Most biographies and comments we see today are often too critical to Kronecker, Brouwer, and the mathematical philosophy of intuitionism they represented. They sympathize with Cantor, and enthusiastically praise the revolution of infinite sets and transcendental numbers. We recommend the rational readers have your own thoughts, but not completely influenced by one-sided view or the other. Kronecker had a strong belief in mathematical philosophy. He emphasized that mathematics should deal only with finite numbers and with a finite number of operations. He was the first to doubt the significance of non-constructive existence proofs. We should not think that Kronecker's views of mathematics were totally eccentric. Although it was true that most mathematicians of his day would not agree with those views, and indeed most mathematicians today would not agree with them, they were not put aside. Kronecker's ideas were further developed by Poincaré and Brouwer, who placed particular emphasis upon intuition. Intuitionism stresses that mathematics has priority over logic, the objects of mathematics are constructed and operated upon in the mind by the mathematician, and it is impossible to define the properties of mathematical objects simply by establishing a number of axioms. Poincaré in his famous book {\em  Science and Hypothesis} stated that convention plays an important role in physics. His view came to be known as ``conventionalism''. He also believed that the geometry of physical space is conventional. His idea inspired Einstein when developed his theory of relativity.
 
-\subsubsection{利用（可数）无穷定义斐波那契数列和哈明数列}
+\subsubsection{Fibonacci numbers and Hamming numbers}
 
-有些编程环境，所有的求值默认都是惰性的，在这样的环境中，我们甚至可以直接拿潜无穷流进行复杂的计算。例如下面是另一种自然数的定义方法：
+Some programming environments support lazy evaluation by default. With them, we can perform complex computation directly on potential infinite streams. Below is a definition of natural numbers.
 
 \[
 N = 0 : map(succ, N)
 \]
 
-它的含义是，$N$是一个潜无穷，代表自然数。第一个自然数是0，从第二个自然数开始，后面每个自然数，都等于前一个自然数的后继。如同下面的表格：
+In this definition, $N$ is a potential infinity for natural numbers. The first number is zero, from the second one, every number is the successor of the previous natural number, as described in the following table:
 
 \begin{tabular}{|r|r|l|l|l|l|}
 \hline
@@ -849,7 +849,7 @@ $0 : map(succ, N)$: & 0 & 1 & 2 & 3 & ... \\
 \hline
 \end{tabular}
 
-例如下面的代码先定义了自然数的潜无穷，然后取出其中的前10个自然数：
+Based on this idea, below example code firstly define the potential infinity of natural numbers, then take the first 10 numbers:
 
 \lstset{frame=single}
 \begin{lstlisting}
