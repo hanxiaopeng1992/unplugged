@@ -889,7 +889,7 @@ Here is another example, in mathematics, regular numbers are defined as those nu
 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 27, 30, 32, 36, 40, 45, 48, 50, 54, 60, ...
 \]
 
-写一个计算机程序来产生哈明数并不简单，然而利用无穷流，我们可以得到一个直观高效的解法。假设全体哈明数的潜无穷流为$H$。我们知道第一个哈明数是1，后面的哈明数可以这样构造，我们把$H$中的每个数都乘以2，仍然是哈明数，记作$H_2 = \{ 2x | x \in H \}$，类似地我们可以定义$H_3 = \{ 3x | x \in H \}$和$H_5 = \{ 5x | x \in H \}$，如果把这三个新序列中的数，从小到大合并起来，去掉重复的，并且在前面补充上1，就又得到了全体哈明数。
+It's not trivial to write a program to generate Hamming numbers. While there exits an intuitive and efficient method by using infinite stream. Let $H$ be the infinite set of Hamming numbers. The first Hamming number is 1. For every number $x$ in $H$, $2x$ is still a Hamming number. It means $H_2 = \{ 2x | x \in H \}$. It is also true for factor 3 and 5, hence we have $H_3 = \{ 3x | x \in H \}$ and $H_5 = \{ 5x | x \in H \}$ respectively. If we merge these three sets, $H_1, H_3$, and $H_5$ together, remove those duplicated numbers, and prepend 1, then we obtain the set of Hamming numbers again.
 
 \[
 \begin{array}{rcl}
@@ -898,7 +898,7 @@ H & = & \{ 1 \} \cup H_2 \cup H_3 \cup H_5 \\
 \end{array}
 \]
 
-其中$\cup$的含义就是从小到大，去掉重复、合并两个无穷序列$X = \{x_1, x_2, ...\}$和$Y = \{y_1, y_2, ...\}$：
+In programming, $\cup$ means merge two series $X = \{x_1, x_2, ...\}$ and $Y = \{y_1, y_2, ...\}$ in order, and drop the duplicated elements.
 
 \[
 X \cup Y =
@@ -909,7 +909,7 @@ x_1 > y_1 : & \{y_1, X \cup Y' \} \\
 \end{cases}
 \]
 
-写成代码就是：
+Here is an example code that summarizes above definition, and returns the 1,000,000th Hamming number.
 
 \begin{lstlisting}
 ham = 1 : map (*2) ham # map (*3) ham \# map (*5) ham
@@ -925,8 +925,8 @@ ham !! 1000000
 
 \lstset{frame=none}
 
-\subsection{可数无穷与不可数无穷}
-\index{可数集}
+\subsection{Countable and uncountable infinite}
+\index{countable set}
 迄今为止，我们用自然数构造了整数、有理数、和包含部分无理数的代数数。它们都和自然数之间存在一一映射，或者说和自然数一样多。我们把和自然数等势的无穷集合叫作可数无穷。是不是所有的无穷集合都是可数的呢？是否存在更大的无穷呢？1873年11月29日康托尔给戴徳金的一封信中提到了这个问题：“取所有的自然数集合，记为$N$，然后考虑所有实数的集合，记为$R$。简单来说，问题就是两者是否能够对应起来，使得一个集中的每一个体只对应另一集中一个唯一的个体？乍一看，我们可以说答案是否定的，这种对应不可能，因为前者由离散的部分组成，而后者则构成一个连续统。但从这种说法里我们什么也得不到。虽然我非常倾向认为这两者不能有这样的一个一一对应，但是我找不出理由，我对这事极为关注，也许这理由非常简单。”
 
 \index{对角线证明}
