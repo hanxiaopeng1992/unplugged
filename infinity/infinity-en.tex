@@ -933,10 +933,17 @@ From natural numbers, we've seen how to construct integers, rationals, and the a
 May I ask you a question, which has a certain theoretical interest for me. but which I can't answer; may be you can answer it and would be so kind as to write to me about it. It goes as follows: take the set of all natural numbers $n$ and denote it $N$. Further, consider, say, the set of all positive real numbers $x$ and denote it $R$. Then the question is simply this: can $N$ be paired with $R$ in such a way that to every individual of one set corresponds to one and only one individual of the other? At first glance, one says to oneself, ``No, this is impossible, for $N$ consists of discrete parts and $R$ is a continuum.'' But nothing is proved by this objection. And much as I too feel that $N$ and $R$ do not permit such a pairing, I still cannot find the reason. And it is this reason that bothers me; maybe it is very simple.
 \end{quotation}
 
-\index{对角线证明}
-一个星期后的12月7日，在写给戴徳金的信中，康托尔自己回答了这个问题，他发现实数集合不能和自然数集合构成一一对应。这一天可以看作是集合论的诞生日。康托尔曾经给出过两个证明，其中第二个证明最为脍炙人口，就是大名鼎鼎的“对角线证明”。
+\index{diagonal method}
 
-康托尔首先使用反证法，假设区间$(0, 1)$上的全部实数是可数的，可以和自然数一一对应。那么就可以把这个区间里的全部实数列出来，形成一个序列$a_0, a_1, a_2, ..., a_n, ...$。现在将这个序列中的每个实数都表示成小数形式。如果是无理数，它的小数形式是无限不循环的；如果是除不尽的分数，则其小数形式是无限循环的，例如$\dfrac{1}{3} = 0.333...$；如果能够除尽，我们就在后面补无穷多个零，例如$\dfrac{1}{2} = 0.5000...$。于是实数区间$(0, 1]$中的所有实数可以排成下面的序列：
+One week after on December 7, Cantor wrote again to Dedekind.
+
+\begin{quotation}
+Recently I had time to follow up a little more fully the conjecture which I mentioned to you; only today I believe I have finished the matter. Should I have been deceived, I would not find a more lenient judge than you. I thus take the liberty of submitting to your judgement what I have written, in all the incompleteness of a first draft.
+\end{quotation}
+
+Cantor proved it impossible to establish 1-to-1 correspondence between natural numbers and real numbers, hence real numbers are uncountable. December 7, 1973 was the day that set theory born. Cantor had given two proofs. The second one is the popular Cantor's {\em diagonal argument}.
+
+Cantor used the proof by contradiction method. Suppose the real numbers in open interval $(0, 1)$ are countable. There exits 1-to-1 correspondence to natural numbers. We can list all real numbers in this interval as a sequence $a_0, a_1, a_2, ..., a_n, ...$ in decimals. For any irrational number, its decimal format is endless non-repeating; For rational number, its decimal format can be infinitely repeating finite sequence of digits, for example $\dfrac{1}{3} = 0.333...$; for decimals with finite digits, we can append infinite many zeros, for example $\dfrac{1}{2} = 0.5000...$ All the real numbers in interval $(0, 1)$ can be list as below:
 
 \[
 \begin{array}{l}
@@ -950,7 +957,7 @@ a_n = 0.a_{n0}a_{n1}a_{n2}a_{n3}...\\
 \end{array}
 \]
 
-有一点我要提醒一下读者：$a_0, a_1, a_2, ...$并不一定是按照大小次序排列的。现在构造一个数$b = 0.b_0b_1b_2b_3...b_n...$，使它的第$n$位数字$b_n \neq a_{nn}$。为了做到这一点，我们可以规定一个很简单的规则，例如若$a_{nn} \neq 5$，就让$b_n = 5$，否则就让$b_n = 6$，即：
+Here is an important note: $a_0, a_1, a_2, ...$ are not necessarily ordered from small to big. Next we construct a number $b = 0.b_0b_1b_2b_3...b_n...$, where the $n$-th digit $b_n \neq a_{nn}$. To achieve this, we can simply make a rule, if $a_{nn} \neq 5$, then let $b_n = 5$, else let $b_n = 6$.
 
 \[
 b_n = \begin{cases}
@@ -959,7 +966,7 @@ b_n = \begin{cases}
 \end{cases}
 \]
 
-这样构造出来的数$b$一定不等于上述序列中的任何一个数。因为至少它们的第$n$位数字不相同。也就是对角线上的数字至少不同。我们把对角线上的数字写成黑体，这样就很明显了。
+The constructed number $b$ must not equal to any number we list above. This is because at least the $n$-th digit is different. That the diagonal digits are different. We highlight them in bold font in the table.
 
 \[
 \begin{array}{l}
@@ -973,7 +980,7 @@ a_n = 0.a_{n0}a_{n1}a_{n2}a_{n3}...\pmb{a_{nn}}...\\
 \end{array}
 \]
 
-我们此前假设$(0, 1)$间的所有实数都被逐一列出了，无一遗漏。$b$显然属于这一区间，但它却不等于任何一个$a_i$。这说明我们假设的一一映射遗漏了$b$，导致了矛盾，所以假设不成立，我们无法把这一区间的所有实数和自然数之间构造一一映射。由于利用了对角线上的数字都不相等的这一事实，这一证法称作康托尔对角线证明。
+Because we assume all numbers in interval $(0, 1)$ are enumerated without one missing. $b$ is obviously in this interval, but it does not equal to any $a_i$. The 1-to-1 correspondence missed $b$, hence lead to contradiction. As the result, we are not able to establish 1-to-1 correspondence between real numbers and natural numbers. This proof is called Cantor's diagonal argument.
 
 有人说，把$b$加进$a_0, a_1, a_2, ...$中去不就可以了么？假设$b$加进去后，处于第$m$个位置，我们仍然可以再次构造一个新数$c$，只要让它的第$m$位不等于$b_m$就又出现了一个没有包含的数。
 
