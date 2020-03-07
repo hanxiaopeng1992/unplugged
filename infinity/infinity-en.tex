@@ -999,9 +999,7 @@ Let us see how this 1-to-1 correspondence makes the world in a piece of sand. We
 E = \{ (x, y) | 0 < x < 1, 0 < y < 1\}
 \]
 
-The other is a unit ling segment $(0, 1)$.
-
-另一个是单位线段$(0, 1)$。取单位正方形内的任意一个点$(x, y)$，然后把$x$和$y$都表示成无穷小数（如果是有限小数，比如0.5，就写成0.4999...，请参考本节习题）。现在把$x, y$的小数部分分成一组一组的，每组都终止在第一个非0数字上。例如：
+The other is a unit ling segment $(0, 1)$. Take an arbitrary point $(x, y)$ in the unit square, represent both $x$ and $y$ in decimals (for finite decimal, like 0.5, write it in 0.4999... refer to the exercise of this section). Then group the fractional part after the decimal point, every group ends at the first none zero digits, for example:
 
 \[
 \begin{array}{lcccccc}
@@ -1010,18 +1008,18 @@ y = 0.01 & 7 & 06 & 8 & 04 & ... \\
 \end{array}
 \]
 
-然后我们构造一个数字$ z = 0.3\ 01\ 02\ 7\ 4\ 06\ 005\ 8\ 6\ 04\ ...$。这个构造过程交错地从$x$和$y$的各组中取数字，无一遗漏。也就是先写下0和小数点，然后取$x$的第一组，也就是3，然后取$y$第一组，也就是数字01，然后取$x$的第二组02，接下来取$y$的第二组7……，$z$显然在单位线段内。对于单位正方形内不同的点，其小数表示$x$或$y$上必有不同的数字。因此对应的$z$也是不同的。这说明$(x, y) \mapsto z$是单射。反过来，对于单位线段上任意点$z$，我们也可以把$z$的无穷小数形式像上面那样分组，然后把奇数组取出放在0和小数点后构成$x$，把偶数组取出构成$y$。则$(x, y)$是单位正方形内的点。这说明$(x, y) \mapsto z$是满射。因而这个映射是一一映射。于是我们证明了单位长度线段内的点和二维平面上的点具有相同的基数，它们同样多，都是不可数无穷。
+Next, we construct a number $z = 0.3\ 01\ 02\ 7\ 4\ 06\ 005\ 8\ 6\ 04\ ...$ by taking the group of digits from $x$ and $y$ in turns. For this example, first write down 0 and decimal point, then take the first group from $x$, which is 3, then take the first group from $y$, which is 01, next take the second group from $x$, which is 02, next take the second group from $y$, which is 7, ... number $z$ definitely belongs to the unit line segment. For every two different points in the square, their decimals of $x$ and $y$ must have different digits. Hence the corresponding $z$ are different. It means $(x, y) \mapsto z$ is an injection. On the other hand, for any point $z$ in the unit line segment, we can group the fractional part, then append all the odd groups after 0 and decimal point to form $x$, and use all the even groups to form $y$. Pair $(x, y)$ is a point in the unit square. It means $(x, y) \mapsto z$ is also a surjection, hence a bijection (1-to-1 correspondence). We prove that the points in the unit line and square have the same cardinality. Both are uncountable.
 
-仿照此方法，我们接下来可以证明不仅线段和平面上的点同样多，它和三维空间中的点也同样多。甚至一般的$n$维空间中的点也和线段上的点同样多。
+Similarly, we can next prove that, not only line and plan have equinumerous points, but also they are equinumerous as the points in the three-dimension space, and even equinumerous as the points in $n$-dimension space.
 
-在康托尔以前，尽管有争议，但是人们只能区分出有限和无穷。没有人想过无穷之中还有区别。康托尔第一个向我们揭示，无穷也是可以分类的。存在着可数无穷和不可数无穷。康托尔并没有止步，接下来的问题是：存在比不可数无穷更大的无穷么？我们在寻找无穷等级的道路上走到终点了么？在展示进一步的结论前，我们先了解一下戴徳金关于实数别出心裁的定义。
+Before Cantor, there were only finite sets and ``the infinite'', which was considered a topic for philosophical, rather than mathematical, discussion. It was Cantor, that first time told us, there exist infinite sets of different sizes. Cantor did not stopped after differentiating the countable and uncountable infinities. He went on considering if there exited more numerous infinity. Along the `infinity of infinity' path, could we reach to the end point? Before answering these question, let us first see how Dedekind define real numbers with his genius idea.
 
 \begin{Exercise}
-\Question{令$x = 0.9999....$, 则$10x = 9.9999...$，做减法得$10x - x = 9$，解方程得$x = 1$。因此得到结论$1 = 0.9999...$。这一证明正确么？}
+\Question{Let $x = 0.9999....$, then $10x = 9.9999...$, subtract them gives $10x - x = 9$. Solving this equation gives $x = 1$. Hence $1 = 0.9999...$. Is this proof correct?}
 \end{Exercise}
 
-\subsection{戴得金分割}
-\index{戴徳金分割}
+\subsection{Dedekind's cut}
+\index{Dedekind's cut}
 为了解决微积分基础的严密性问题，十九世纪的数学家们开始重新思考牛顿、莱布尼茨、雅可比、欧拉使用的一些令人困惑的概念。包括无穷小量和级数等等。经过柯西和魏尔斯特拉斯等人的工作，终于给出了严格的极限，收敛等概念。但有一个本质问题始终未得到圆满的解决。那就是实数的概念。微积分是建立在实数连续性上的。可人们仍然没有一个关于实数满意的定义。最早人们把有理数比作直线，结果发现有理数间充满了间隙，它是不完备、不连续的。而我们则把直线看作没有间隙的、完备的和连续的。直线的连续性究竟是什么意思？人们迫切需要连续性的一个精确定义。
 
 戴徳金经过多年的思考，终于在1872年想出了一个方法——即著名的戴徳金分割。戴徳金指出，有理数具有稠密性，即任意两个有理数间，不管多么靠近，总存在着另外的有理数。但是有理数却不连续。连续的直线究竟意味着什么呢？此时让我们想象一把最锋利的“思想之刀”，在天衣无缝的直线上切下去，将它分割成两截（\cite{HanXueTao16}，第196页）。
