@@ -1023,27 +1023,23 @@ Before Cantor, there were only finite sets and ``the infinite'', which was consi
 
 In order to make the foundation of calculus rigorous, mathematicians in the 19th Century went back to inspect the confusion concepts, like infinitesimal and infinite series, which were developed and used by Newton, Leibniz, Jacobi, and Euler. Through the work of Cauchy, Weierstrass and so on, the standard of rigour, including limit and convergence were setup. However, there was still a critical problem remaining, the concept of real numbers. The whole calculus is built on top of the continuity of real numbers, while it was lack of a satisfied definition of real number. People thought rationals could present line, but later found there were `gaps' between rational numbers. It was not completeness or continuous. While we demand line be completeness, continuous, without any gaps. What is the exactly meaning of continuity of line?
 
-When Dedekind was thinking how to teach differential and integral calculus, the idea of a Dedekind cut came to him on November 24, 1858. He kept developing this idea, and published his result in 1872. Dedekind found that, rationals are dense. For any two rational numbers, no matter how they close to each other, there are other rational numbers between them. But rationals are not continuous.
+When Dedekind was thinking how to teach differential and integral calculus, the idea of Dedekind cut came to him on November 24, 1858. He kept developing this idea, and published the result in 1872. Dedekind found although rationals were dense -- for any two rational numbers, no matter how they close to each other, there are other rational numbers in between -- they were not continuous. Consider a continuous number line, let us use an infinitely thin knife, the knife of thought, to cut the line into two parts(\cite{HanXueTao16} pp. 196).
 
-His idea was that every real number $r$ divides the rational numbers into two subsets, namely those greater than r and those less than r. Dedekind's brilliant idea was to represent the real numbers by such divisions of the rationals.
+Because the line is continuous without any gaps, no matter how thin the knife, it must cut at a point, but not pass through a gap. (for the line of rationals, but not real numbers, then the knife may cut at a point, or may cut through a gap between two rational numbers, for example, cutting at position $\sqrt{2}$.) Suppose cut at point $A$, then $A$ is either on the left, or on the right. It can not be on the both sides, or not be on neither side. This point can not be divided or disappeared. In other words, since line is continuous, wherever it is cut into two parts, one must have a end point, while the other do not.
 
-戴徳金经过多年的思考，终于在1872年想出了一个方法——即著名的戴徳金分割。戴徳金指出，有理数具有稠密性，即任意两个有理数间，不管多么靠近，总存在着另外的有理数。但是有理数却不连续。连续的直线究竟意味着什么呢？此时让我们想象一把最锋利的“思想之刀”，在天衣无缝的直线上切下去，将它分割成两截（\cite{HanXueTao16}，第196页）。
-
-由于直线是连续的，天衣无缝的，不管多么锋利，这一刀一定落在某一点上，而不是在两点的缝隙间。（如果是有理数而非实数，这一刀可能落在某个有理数代表的点上，也可能落在两个有理数之间，比如恰好落在$\sqrt{2}$代表的位置上。）假定从点$A$的位置上把直线切开，则$A$不在左边，就在右边。二者必居其一，不会两边都有，也不会两边都没有。这是因为点不可分割、也不会消失掉。换言之，直线的连续性意味着，不管从何处将直线切成两段，总是有一段是带有端点的，而另一段没有端点。
-
-由此，戴徳金定义了这样的一个分割$(A_1, A_2)$，$A_1$和$A_2$分别叫作下类和上类。其中下类$A_1$中的每个数都小于上类$A_2$中的任意一个数。也就是说$A_1$对应分割的左半段直线，而$A_2$对应着右半段直线。对于这样的分割，要么$A_1$中存在着一个最大数，要么$A_2$中存在着一个最小数。二者必居其一，且仅居其一。
+Dedekind defined a cut $(A_1, A_2)$, $A$ is called `closed downwards', and $B$ is `closed upwards'. Where all numbers in downwards $A_1$ is less than every number in upwards $A_2$. Such that $A_1$ represents the left half line of the cut, and $A_2$ represents the right half. For any such a cut, either $A_1$ has a greatest number, or $A_2$ has a smallest number. There must be one and only one case.
 
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Dedekind-cut.eps}
  %\captionsetup{labelformat=empty}
- \caption{用戴徳金分割构造的$\sqrt{2}$}
+ \caption{Define $\sqrt{2}$ with Dedekind cut}
  \label{fig:Dedekind-cut}
 \end{figure}
 
-用戴徳金分割来分析全体有理数，会发现有理数是不连续的。如果$A_1$包含了所有小于等于2的有理数，$A_2$包含了所有大于2的有理数，这一分割就定义了有理数2。但是考虑这样一个反例：下类$A_1$包含所有负有理数，以及非负的，但平方小于2的有理数；上类$A_2$包含剩余的有理数。不难发现在这一分割中，下类没有最大数，同时上类没有最小数。这说明有理数间存在着缝隙，从这里砍下去，这一刀就会落空。这个划分实际上确定了一个新数$\sqrt{2}$，但它不是有理数。如图\ref{fig:Dedekind-cut}所示。
+When apply Dedekind cut to all rational numbers, we can find that rationals are not continuous. For example, $A_1$ contains all rational numbers less than or equal to 2, and $A_2$ contains all rational numbers greater than 2, then this cut defines rational number 2. However for the negative example: the downwards $A_1$ contains all rational numbers that are negative, and the non-negative ones, but with their square less than or equal to 2; The upwards $A_2$ contains the rest rational numbers. We can find in this cut, there is no greatest number in the downwards, while there is no smallest number in the upwards too. It means there is a gap in rational numbers. When cut at this point, the knife will pass through. This cut actually defines a new number $\sqrt{2}$, and it is not a rational number, as shown in figure \ref{fig:Dedekind-cut}.
 
-于是戴徳金得到了他的结论：有理数的每一个分割就叫作一个实数。带缝隙的分割（$A_1$没有最大数，$A_2$没有最小数）叫作无理数；不带缝隙的分割（$A_1$存在最大数，或$A_2$存在最小数）叫作有理数。而实数正好包含有理数和无理数。由此戴徳金分割定义了实数，直线上的每个点可以表示一个实数。戴徳金的分割概念也给出了实数连续性的依据。
+Dedekind came to the idea that every real number $r$ divides the rational numbers into two subsets, namely those greater than $r$ and those less than $r$. Dedekind's brilliant idea was to represent the real numbers by such divisions of the rationals. Every cut of a rationals defines a real number. The cut through a gap (no greatest in $A_1$, and no smallest in $A_2$) is an irrational number; the cut at a point ($A_1$ has the greatest, or $A_2$ has the smallest) is a rational number. And real numbers contain both rationals and irrationals. Hence Dedekind cut defines real numbers. Every point in the number line is a real number. It also gives the foundation of the continuity of real numbers.
 
 从毕达哥拉斯学派的希帕索斯发现无理数到戴徳金最终给出实数的定义，时光经历了两千多年\footnote{同一年，魏尔斯特拉斯通过有界单调序列理论，康托尔通过有理数序列理论也都从有理数出发定义出无理数，从而构筑起了实数理论。可谓殊途同归。}。在戴徳金分割中，总是把数分成两个完成了的无穷整体，即无穷集合。这是对实无穷概念的运用和发展。
 
