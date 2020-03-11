@@ -627,7 +627,7 @@ Because of these paradoxes, people accepted Aristotle's approach to avoid using 
 
 About two hundred years after Galileo, German mathematician Cantor led people broke into the Kingdom of infinity. From these paradoxes, Cantor thought the key problem lay in our common sense assumption, that the whole must be larger than the part. Is it necessarily right? The development of modern science taught us our common view to things could be incomplete or wrong. The theory of relativity challenges our understanding to space and time -- the space we are living in is not necessarily the Euclidean space; Quantum mechanics challenges our common sense that the world is causal -- randomness rules the quantum world. When think out of the box, it will open up a new world we've never seen, resulting in fundamental development. This was exactly what Cantor did. If we accept the counter-intuitive result, that `the part can equal to the whole', then the door to the infinity is open. He established the importance of one-to-one correspondence between the members of two sets, and defined (actual) infinite sets.
 
-To compare two sets, Cantor defined if there is one to one correspondence between them, that every element in set $M$ has the unique corresponding element in set $N$, then the two sets are equinumerous. That is of the same size or having the same number of elements\footnote{Remind the `isomorphic' concept we introduced in chapter 3.}. For finite sets, it is true obviously, when extends to infinite sets, it means there are same infinite many even numbers as the natural numbers! there are same infinite many square numbers as natural numbers, the points in smaller circle and the bigger circle of the same center are equinumerous... Cantor's friend, Richard Dedekind even gave such a definition\footnote{known as Dedekind infinite set nowadays.} of infinite set in 1888: if some proper subset of a set is equinumerous to this set, then it is a infinite set.
+To compare two sets, Cantor defined if there is one to one correspondence between them, that every element in set $M$ has the unique corresponding element in set $N$, then the two sets are equinumerous. That is of the same size or having the same number of elements\footnote{Remind the `isomorphic' concept we introduced in chapter 3.}, denoting $M \cong N$. For finite sets, it is true obviously, when extends to infinite sets, it means there are same infinite many even numbers as the natural numbers! there are same infinite many square numbers as natural numbers, the points in smaller circle and the bigger circle of the same center are equinumerous... Cantor's friend, Richard Dedekind even gave such a definition\footnote{known as Dedekind infinite set nowadays.} of infinite set in 1888: if some proper subset of a set is equinumerous to this set, then it is a infinite set.
 
 % Cardinality vs. cardinal number
 
@@ -1129,24 +1129,24 @@ Except the first row is natural numbers, all the others are infinite ordinals, a
  \label{fig:infinite-ordinals}
 \end{figure}
 
-我们列出的这些序数中，如果挑选一个作为可数集合的基数，用哪一个最好呢？自然会想到最小的一个极限序数$\omega$。于是这引出了基数的一般定义：
+Among these infinite ordinals, which one is the best as the cardinal number for infinite countable set? It's natural to select the smallest limit ordinal $\omega$. Let's give the formal definition for cardinal number:
 
-\index{基数}
+\index{cardinal number}
 \begin{definition}
-设$a$是一个序数，如果对于任一序数$b$，当$b < a$时，有$b$的势小于$a$的势，则称序数$a$为基数。
+An ordinal $a$ is a cardinal if there is no ordinal $b < a$ with $ a \cong b$.
 \end{definition}
 
-有这个定义，我们立即得出结论：所有自然数$n$都是基数，并且$\omega$是基数。序数$\omega$当作基数使用时，记作$\aleph_0$。即$\aleph_0 = \omega$，前面我们已经用$\aleph_0$表示可数集合的基数。
+In other words, ordinal $a$ is a cardinal, if for any ordinal $b < a$, the cardinality of $b$ is less than the cardinality of $a$. This definition tell us every natural numbers $n$ is a cardinal, and $\omega$ is also a cardinal. When use the ordinal $\omega$ as cardinal, we write it as $\aleph_0$, hence $\aleph_0 = \omega$. We've shown to use $\aleph_0$ as the cardinal for all infinite countable sets.
 
-除了$\omega$外，序列(\ref{eq:countable-ordinal-nums})中其余的无穷序数都比$\omega$大，但其势却与$\omega$的势相等（都等于可数无穷）。所以根据定义，它们都不是基数。
+Except $\omega$, although all rest ordinals in series \ref{eq:countable-ordinal-nums} are greater than $\omega$, their cardinals are same as $\omega$ (all equal to countable infinity). Hence they are not cardinals.
 
-为了获取更大的基数，为此我们将此前序列(\ref{eq:countable-ordinal-nums})中的所有序数汇集在一起组成一个集合，记作$\omega_1$。
+In order to obtain greater cardinals, we form a new set contains all ordinals in series \ref{eq:countable-ordinal-nums}, denote it as $\omega_1$.
 
 \[
-\omega_1 = \{ a | a \text{是序数，且} |a| \leq \aleph_0\}
+\omega_1 = \{ a | a \text{is ordinal, and} |a| \leq \aleph_0\}
 \]
 
-其中$|a|$表示$a$的势\footnote{严格来说，$A$的势应使用符号$\overline{\overline{A}}$，或$\#A, card(A), n(A)$。}。可以证明$\omega_1$是序数，并且是第一个不可数序数。然后我们仿照前面的方法，从$\omega_1$之后扩展无穷序数列：
+Where $|a|$ is the cardinal of $a$\footnote{To be accurate, we should use other notation for the cardinal of $A$, like $\overline{\overline{A}}$, or $\#A, card(A), n(A)$}. We can prove that $\omega_1$ is a cardinal, and it is the first uncountable cardinal. Then, we repeat this method, to expand a new infinite ordinal series from $\omega_1$:
 
 \[
 \omega_1, \omega_1 + 1, ..., \omega_1 \cdot 2, ..., \omega_1^2, ..., \omega_1^\omega, ...
