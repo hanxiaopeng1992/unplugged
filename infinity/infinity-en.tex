@@ -1146,36 +1146,36 @@ In order to obtain greater cardinals, we form a new set contains all ordinals in
 \omega_1 = \{ a | a \text{is ordinal, and} |a| \leq \aleph_0\}
 \]
 
-Where $|a|$ is the cardinal of $a$\footnote{To be accurate, we should use other notation for the cardinal of $A$, like $\overline{\overline{A}}$, or $\#A, card(A), n(A)$}. We can prove that $\omega_1$ is a cardinal, and it is the first uncountable cardinal. Then, we repeat this method, to expand a new infinite ordinal series from $\omega_1$:
+Where $|a|$ is the cardinal of $a$\footnote{To be accurate, we should use other notation for the cardinal of $A$, like $\overline{\overline{A}}$, or $\#A, card(A), n(A)$ etc.}. We can prove that $\omega_1$ is a cardinal, and it is the first uncountable cardinal. Then, we repeat this method, to expand a new infinite ordinal series from $\omega_1$:
 
 \[
 \omega_1, \omega_1 + 1, ..., \omega_1 \cdot 2, ..., \omega_1^2, ..., \omega_1^\omega, ...
 \]
 
-这里枚举的无穷序列都是等势的，其中最小的一个是$\omega_1$，它还满足基数的条件，这样我们就得到了第二个无穷基数$\aleph_1 = \omega_1$。仿照$\omega_1$的构造过程，我们可以再构造一个集合：
+All elements in this series have the same cardinality. The smallest one is $\omega_1$, which also satisfies the cardinal definition. It is the second infinite cardinal $\aleph_1 = \omega_1$. Using the similar process to construct $\omega_1$, we can form another set:
 
 \[
-\omega_2 = \{ a | a \text{是序数，且} |a| \leq \aleph_1\}
+\omega_2 = \{ a | a \text{is ordinal, and } |a| \leq \aleph_1\}
 \]
 
-这样就获得了第三个无穷基数$\aleph_2 = \omega_2$。继续进行下去，我们可以得到一系列无穷基数。概括来说，对任一序数$a$，当定义了无穷基数$\aleph_a$之后，我们可以再次构造集合：
+It gives the third infinite cardinal $\aleph_2 = \omega_2$. Repeat this method, we can obtain a series of infinite cardinals. In summary, for any ordinal $a$, we can define the infinite cardinal $\aleph_a$, then form a set:
 
 \[
-\omega_{a+1} = \{ b | b \text{是序数，且} |b| \leq \aleph_a\}
+\omega_{a+1} = \{ b | b \text{is ordinal, and} |b| \leq \aleph_a\}
 \]
 
-由此得到比$\aleph_a$大的无穷基数$\aleph_{a+1} = \omega_{a+1}$。总之对于任一序数$a$，相应都有一个无穷基数$\aleph_a$，由此得到无穷基数组成的无穷序列：
+It gives a cardinal greater than $\aleph_a$ as $\aleph_{a+1} = \omega_{a+1}$. For any ordinal $a$, there is a infinite cardinal $\aleph_a$. All these cardinals also form a series:
 
 \be
 \aleph_0, \aleph_1, \aleph_2, ..., \aleph_n, ..., \aleph_{\omega}, ...
 \ee
 
-它们是从小到大排列的，并且相邻的两个阿列夫之间不再有其它的无穷基数。无穷序数和无穷基数也称为超限序数和超限基数，统称为超限数。这些越来越巨大的超限数最终归于何处呢？康托尔认为那将是上帝。
+From left to right, these cardinals become greater and greater, and there are not any other infinite cardinals between any two next $\aleph$s. The infinite ordinals and infinite cardinals are also called transfinite ordinals and transfinite cardinals, or transfinite numbers as a whole. Where will these more and more numerous transfinite numbers lead to? Cantor thought it must be god.
 
-超限数一经面试，立即引发了激烈的反应。有人赞叹这是康托尔惊人的创举，开辟了前所未见的新视野。也有人认为超限数是“雾上之雾”，康托尔正在创造病态的数学。尽管存在巨大的争议，超限数是十九世纪最惊人的思想成就之一。
+People were surprised at transfinite numbers. Some praised Cantor's amazing innovation opened up a new world we've never seen before; Others criticized transfinite numbers were ``fogs on fogs'', Cantor was building a disease of mathematics need to be cured. Although there were hotly debating, transfinite number is one of the most amazing achievement of thought in the 19th Century.
 
-\subsubsection{连续统假设}
-\index{连续统假设} \index{CH} \index{GCH}
+\subsubsection{Continuum hypothesis}
+\index{continuum hypothesis} \index{CH} \index{GCH}
 康托尔发现了两种无穷基数序列，一个是幂集，另一个是超限基数：
 
 \[
