@@ -1370,42 +1370,43 @@ takeStream 15 primes
 \section{Appendix - Proof of Cantor's theorem}
 
 \begin{theorem}
-\textbf{康托尔定理}：对于任意集合都有$|S| < |2^S|$，其中$|S|$表示集合$S$的势，$2^S$表示$S$的幂集，即$S$的所有子集组成的集合。
+\textbf{Cantor's theorem}: For every set, $|S| < |2^S|$ holds. Where $|S|$ is the cardinality of $S$; $2^S$ is the power set of $S$, which contains all subsets of $S$.
 \end{theorem}
 
 \begin{proof}
-我们分两步证明。首先证明$|S| \leq |2^S|$。对于任一$x$，令$f(x) = \{x\}$，也就是仅含有$x$唯一元素的集合。对于不同的元素$x_1 \neq x_2$，自然有$\{x_1\} \neq \{x_2\}$，即$f(x_1) \neq f(x_2)$。从而映射$S \arrowto{f} 2^S$是一单射。因此有
+Our proof has two steps. The first step is to prove $|S| \leq |2^S|$. For any $x$, let $f(x) = \{x\}$, which is the singleton set of $x$. It's obvious that for different elements $x_1 \neq x_2$, the singleton sets are not identical $\{x_1\} \neq \{x_2\}$, which means $f(x_1) \neq f(x_2)$. Hence map $S \arrowto{f} 2^S$ is injective, we have:
+
 \[
   |S| \leq |2^S|
 \]
 
-第二步，我们证明$|S| \neq |2^S|$。采用反证法，假设等号成立。则存在一一映射$S \arrowto{\phi} 2^S$，使得对任一$x \in S$，都有$\phi(x) \in 2^S$。即$\phi(x)$是$S$的某个子集，所以$\phi(x) \subseteq S$。现在要问：$x$是否属于$\phi(x)$？有两种可能：一种是$x \in \phi(x)$，也可能是$x \notin \phi(x)$。我们把所有$x$不属于$\phi(x)$的元素放在一起构造一个新集合$S_0$：
+The second step is to prove $|S| \neq |2^S|$. Using the reduction to absurdity, suppose they are equal. Then there exists a 1-to-1 correspondence $S \arrowto{\phi} 2^S$, such that for every $x \in S$, its image $\phi(x) \in 2^S$ holds. It means $\phi(x)$ is some subset of $S$, hence $\phi(x) \subseteq S$. Now we ask whether $x$ belongs to $\phi(x)$? Either $x \in \phi(x)$, or $x \notin \phi(x)$. We put all $x$ that not belonging to $\phi(x)$ to form a new set $S_0$:
 
 \be
-S_0 = \{ x | x \in S, \text{并且} x \notin \phi(x)\}
+S_0 = \{ x | x \in S, \text{and} x \notin \phi(x)\}
 \label{eq:def-s0}
 \ee
 
-显然$S_0$是$S$的子集，即$S_0 \subseteq S$，因此$S_0 \in 2^S$。由于$\phi$是一一映射，所以必然存在一个$x_0$，使得$\phi(x_0) = S_0$。根据逻辑中的排中律，要么$x_0 \in S_0$，要么$x_0 \notin S_0$，二者必居其一，且仅有一个成立。
+Obviously, $S_0$ is a subset of $S$, which means $S_0 \subseteq S$. Hence $S_0 \in 2^S$. Because $\phi$ is bijection, there must exist some $x_0$, such that $\phi(x_0) = S_0$. According to the logical law of excluded middle, either $x_0 \in S_0$, or $x_0 \notin S_0$. Both must be one and only one is true.
 
-接下来分情况讨论。如果$x_0 \in S_0$成立，根据式(\ref{eq:def-s0})中$S_0$的定义，应该有$x_0 \notin \phi(x_0)$，由于$\phi(x_0) = S_0$，所以$x_0 \notin S_0$。
+Let's see each case next. If $x_0 \in S_0$ holds, according to the definition of $S_0$ in (\ref{eq:def-s0}), we have $x_0 \notin \phi(x_0)$. But since $\phi(x_0) = S_0$, hence $x_0 \notin S_0$.
 
-如果$x_0 \notin S_0$，因为$S_0 = \phi(x_0)$，所以得到$x_0 \notin \phi(x_0)$。这样根据$S_0$的定义(\ref{eq:def-s0})，又应该有$x_0 \in S_0$。
+If $x_0 \notin S_0$, because $S_0 = \phi(x_0)$, we have $x_0 \notin \phi(x_0)$. But according to the definition of $S_0$ in (\ref{eq:def-s0}), $x_0 \in S_0$ should hold.
 
-这样不论$x_0$是否属于$S_0$，都导致矛盾。这说明我们最初的假设$S$到$2^S$间存在一一映射是错误的。所以不等式$|S| \neq |2^S|$成立。
+Hence no matter $x_0$ belongs to $S_0$ or not, both lead to contradiction. There cannot be 1-to-1 correspondence between $S$ and $2^S$ established. Therefore, $|S| \neq |2^S|$.
 
-由这两步的结果：$|S| \leq |2^S|$，并且$|S| \neq |2^S|$，我们得到了康托尔定理的结论：
+Summarize the result in above two steps: $|S| \leq |2^S|$, and $|S| \neq |2^S|$, we prove the Cantor's theorem:
 
 \[
   |S| < |2^S|
 \]
 \end{proof}
 
-证明的第二部分，不由让我们联想起了著名的罗素悖论：令$S$为所有不属于自己的集合构成的集合，问$S$是否属于自己？我们将在下一章讲述罗素悖论和哥德尔不完全性定理。
+It reminds us the popular Russel's paradox from the second part of the proof: Let $S$ be a set containing all sets that each not belong to itself, then does $S$ belong to itself? We'll introduce Russel's paradox and Gödel's incompleteness theorems in next chapter.
 
 % Mathematicians aren't satisfied because they know there are no solutions up to four million or four billion, they really want to know that there are no solutions up to infinity. -- Andrew Wiles
 
-\section{附录：巴赫《音乐的奉献》无限上升的卡农}
+\section{Appendix - Canon per tonos, The Music Offering by J.S. Bach}
 
 \includepdf[pages=-,
 nup=2x2
