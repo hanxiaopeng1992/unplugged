@@ -1300,9 +1300,9 @@ A woodcut published in Paris in 1888, reflected how people understood the bounde
 \Question{在两个镜子中间点燃一支蜡烛，你看到了什么？这是潜无穷还是实无穷？}
 \end{Exercise}
 
-\section{附录：例子代码}
+\section{Appendix - Example programs}
 
-使用流定义自然数潜无穷，并取出前15个自然数。Java语言1.8中的例子：
+Define natural numbers with stream, take the first 15 numbers. Example program in Java 1.8
 
 \lstset{frame=single, language=Java}
 \begin{lstlisting}
@@ -1312,7 +1312,7 @@ IntStream.iterate(1, i -> i + 1)
         .limit(15).forEach(System.out::println);
 \end{lstlisting}
 
-Python语言版本3中的例子：
+Example in Python 3
 
 \lstset{frame=single, language=Python}
 \begin{lstlisting}
@@ -1322,7 +1322,7 @@ def naturals():
         yield n + 1
 \end{lstlisting}
 
-Haskell语言中使用递归定义自然数潜无穷：
+Define the infinite set of natural numbers recursively in Haskell.
 
 \lstset{frame=single, language=Haskell}
 \begin{lstlisting}
@@ -1331,7 +1331,7 @@ nat = 1 : (map (+1) nat)
 take 15 nat
 \end{lstlisting}
 
-Haskell语言中使用递归定义斐波那契数列潜无穷，以及计算第1500个斐波那契数。
+Define the infinite set of Fibonacci numbers recursively in Haskell, then fetch the 1500th Fibonacci number.
 
 \lstset{frame=single, language=Haskell}
 \begin{lstlisting}
@@ -1348,7 +1348,7 @@ fib !! 1500
 187122583354898000
 \end{lstlisting}
 
-Haskell语言中使用余代数定义素数的潜无穷流
+Define the infinite stream of prime numbers with coalgebra in Haskell.
 
 \lstset{frame=single, language=Haskell}
 \begin{lstlisting}
@@ -1367,7 +1367,7 @@ takeStream 15 primes
 [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
 \end{lstlisting}
 
-\section{附录：康托尔定理的证明}
+\section{Appendix - Proof of Cantor's theorem}
 
 \begin{theorem}
 \textbf{康托尔定理}：对于任意集合都有$|S| < |2^S|$，其中$|S|$表示集合$S$的势，$2^S$表示$S$的幂集，即$S$的所有子集组成的集合。
