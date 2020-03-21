@@ -330,7 +330,7 @@ Mathematicians came back to consider actual infinity when debating about how to 
 int a[10];
 \end{verbatim}
 
-There are two different concepts of numbers, ordinal number and cardinal number. In short, ordinal number is used to describe a way to arrange a collection of objects in order, one after another; while cardinal numbers, are used to measure the size of collections. We'll provide the formal definition later. Both ordinals and cardinals are finite in traditional programming. They can't represent infinity directly. It was reasonable in the early days of computer science. The computer devices were very expensive, people never thought to deal with practice problems with infinity. As time goes, the cost of computation resources keep decreasing. We are not satisfy with the way to predict the size of the collection before using it in programming. New tools, like dynamic array, were developed in some programming environments. They were known as containers, the size can be easily adjusted on-demand. However, even for dynamic containers, the elements are still finite many. It can not exceed the number representation limit. People developed the linked-list, as explained in chapter 1, elements are stored in node, and chained together. The last element points to a special empty node indicating the end. Given such a linked-list, we can start from its head, move to any node in it without need of knowing its cardinal. As far as the storage allows, a linked-list can be arbitrary long. It brings the chance to represent potential infinity.
+There are two different concepts of numbers, ordinal number and cardinal number. In short, ordinal number is used to describe a way to arrange a collection of objects in order, one after another; while cardinal numbers, are used to measure the size of collections. We'll provide the formal definitions for them later. Both ordinals and cardinals are finite in traditional programming. They can't represent infinity directly. It was reasonable in the early days of computer science. The computer devices were very expensive, people never thought to deal with practice problems with infinity. As time goes on, the cost of computation resources keep decreasing. We are not satisfy with the way to predict the size of the collection before using it in programming. New tools, like dynamic array, were developed in some programming environments. They were known as containers, the size can be easily adjusted on-demand. However, even for dynamic containers, the elements are still finite many. It can not exceed the number representation limit. People developed the linked-list, as explained in chapter 1, elements are stored in node, and chained together. The last element points to a special empty node indicating the end. Given such a linked-list, we can start from its head, move to any node in it without need of knowing its cardinal. As far as the storage allows, a linked-list can be arbitrary long. It brings the chance to represent potential infinity.
 
 However, there is eventually a gap between linked-list and potential infinity. We consider natural numbers as potential infinity without terminating or `end point'. But when use linked-list to represent natural numbers, no matter how long the list is, for instance $n$, we have to store all numbers from 0 to $n$ in it. It only represents sequence of 0, 1, ..., $n$, but not the natural numbers, 0, 1, ..., $n$, ...
 
@@ -373,12 +373,12 @@ We often call the expression $() \mapsto exp$ as $delay(exp)$. It builds a funct
  \centering
  \includegraphics[scale=0.5]{img/stream-cons.eps}
  %\captionsetup{labelformat=empty}
- \caption{The next node pointed is a $\lambda$ expression. It will create a new node when forced evaluation.}
+ \caption{The next node pointed is a $\lambda$ expression. It will create a new node when force evaluation.}
  \label{fig:stream-cons}
 %\end{wrapfigure}
 \end{figure}
 
-Therefore, when link $x$ and $xs$ together, the value of $xs$ won't be evaluated, but $xs$ itself will be wrapped in a $\lambda$ expression. And evaluation is delayed to future time. With this modification, the generation of natural numbers changes to:
+Therefore, when link $x$ and $xs$ together, the value of $xs$ won't be evaluated, but $xs$ itself will be wrapped in a $\lambda$ expression, and the evaluation is delayed to future time. With this modification, generation of natural numbers changes to:
 
 \[
 \begin{array}{rcll}
@@ -393,7 +393,7 @@ The computation stops here. It won't go on. The result is a list. The first elem
 next(cons(x, e)) = e()
 \]
 
-Whey apply $next$ to $cons(0, () \mapsto iterate(succ, succ(0)))$, we obtain:
+When apply $next$ to $cons(0, () \mapsto iterate(succ, succ(0)))$, we obtain:
 
 \[
 \begin{array}{cll}
@@ -417,8 +417,8 @@ take\ n\ cons(x, e)\ = cons(x, take(n-1, e())) \\
 For example, $take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$. There are examples in the appendix of this chapter about how to define natural numbers with potential infinity in different programming languages.
 
 \begin{Exercise}
-\Question{We realized Fibonacci numbers by folding in chapter 1. How to define Fibonacci numbers as potential infinity with $iterate$?}
-\Question{Define $iterate$ by folding}
+\Question{In chapter 1, we realized Fibonacci numbers by folding. How to define Fibonacci numbers as potential infinity with $iterate$?}
+\Question{Define $iterate$ by folding.}
 \end{Exercise}
 
 \subsection{Coalgebra and infinite stream$\bigstar$}
