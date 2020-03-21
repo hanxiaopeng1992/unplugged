@@ -571,7 +571,7 @@ take 0 _ = []
 take n (Stream e s) = e : take (n - 1) s
 \end{lstlisting}
 
-The next example demonstrates how to generate infinite stream of prime numbers with the sieve of Eratosthenes method. The start seed is `all' the natural numbers with 1 being removed: 2, 3, 4, ... From this seed, we remove all the multiples of 2 to obtain the next seed, which is a infinite list start from 3 as 3, 5, 7, ... Next, we remove all the multiples of 3, and repeated this process. This method is defined as below coalgebra:
+The next example demonstrates how to generate infinite stream of prime numbers with the sieve of Eratosthenes method. The start seed is `all' the natural numbers with 1 being removed: 2, 3, 4, ... From this seed, we remove all the multiples of 2 to obtain the next seed, which is an infinite list start from 3 as 3, 5, 7, ... Next, we remove all the multiples of 3, and repeated this process. This method is defined as below coalgebra:
 
 \[
 \begin{array}{l}
@@ -580,7 +580,7 @@ era (p:ns) = \mathbf{StreamF}\ p\ \{ n\ |\ p \nmid n, n \in ns\} \\
 \end{array}
 \]
 
-Then feed it to anamorphism, we obtain the infinite stream that generate all prime numbers:
+Then feed it to anamorphism, we obtain the infinite stream that generates all prime numbers:
 
 \begin{lstlisting}
 primes = ana era [2...]
@@ -595,12 +595,12 @@ For list particularly, anamorphism is called unfold. Anamorphism and catamorphis
 
 \section{Explore the actual infinity}
 
-Aristotle's influence was profound. For more than two thousand years, mathematicians and philosophers had been thinking about concept of infinity. Most of them accepted the potential infinity. However, there were discordant views about actual infinity. For a long time, people believed the actual infinity was God, or only God mastered actual infinity. Many attempts to reasoning the actual infinity led to confusion and contradict result. For example, let all the natural numbers be actual infinity. Because from the beginning, natural numbers are separated by even numbers and odd numbers. They alternate in turns. It's natural to think that all even numbers are half of all natural numbers. However, doubling every natural number gives an even number; and dividing every even number by 2 gives a natural number vise versa. Then there is one to one correspondence between all the natural numbers and even numbers. Are these two actual infinities same? If not, which one has more? natural numbers or even numbers?
+Aristotle's influence was profound. For more than two thousand years, mathematicians and philosophers had been thinking about concept of infinity. Most of them accepted the potential infinity. However, there were discordant views about actual infinity. For a long time, people believed the actual infinity was God, or only God mastered actual infinity. Many attempts to reason the actual infinity led to confusion and contradict result. Let all the natural numbers be actual infinity for example. Because natural numbers are separated by even numbers and odd numbers. They alternate in turns. It's natural to think that all even numbers are half of all natural numbers. However, doubling every natural number gives an even number; and dividing every even number by 2 gives a natural number vise versa. There is one to one correspondence between all the natural numbers and even numbers. Are these two actual infinities same? If not, which one has more? natural numbers or even numbers?
 
 \index{Galileo's paradox}
-Father of the modern science, Galileo Galilei made a similar paradox in his final scientific work {\em Two New Sciences} in 1636. First, some numbers are squares, while others are not; therefore, all the numbers, including both squares and non-squares, must be more numerous than just the squares. And yet, for every number there is exactly one square. Forms the sequence 1, 4, 9, 16, 25, ... hence, there cannot be more of one than of the other. This paradox is known as Galileo's paradox.
+Father of the modern science, Galileo Galilei made a similar paradox in his final scientific work {\em Two New Sciences} in 1636. Some numbers are squares, while others are not; therefore, all the numbers, including both squares and non-squares, must be more numerous than just the squares. And yet, for every number there is exactly one square, which forms the sequence 1, 4, 9, 16, 25, ... hence, there cannot be more of one than of the other. This paradox is known as Galileo's paradox.
 
-Not only for numbers, people found similar paradox in Geometry. As shown in figure \ref{fig:circles-paradox}, For two circles with the same center, every radius connects two points in each circle respectively, hence, there is one to one correspondence between the points in the bigger circle and the smaller circle. It indicates there are same many points in each circle. However, our common sense tells there must be more points in the bigger one.
+Not only numbers, people found similar paradox in Geometry. As shown in figure \ref{fig:circles-paradox}, For two circles with the same centre, every radius connects two points in each circle respectively, hence, there is one to one correspondence between the points in the bigger circle and the smaller circle. It indicates there are same many points in each circle. However, our common sense tells there must be more points in the bigger one.
 
 \begin{figure}[htbp]
 %\begin{wrapfigure}{L}{0.4\textwidth}
@@ -626,7 +626,7 @@ Because of these paradoxes, people accepted Aristotle's approach to avoid using 
 
 About two hundred years after Galileo, German mathematician Cantor led people broke into the Kingdom of infinity. From these paradoxes, Cantor thought the key problem lay in our common sense assumption, that the whole must be larger than the part. Is it necessarily right? The development of modern science taught us our common view to things could be incomplete or wrong. The theory of relativity challenges our understanding to space and time -- the space we are living in is not necessarily the Euclidean space; Quantum mechanics challenges our common sense that the world is causal -- randomness rules the quantum world. When think out of the box, it will open up a new world we've never seen, resulting in fundamental development. This was exactly what Cantor did. If we accept the counter-intuitive result, that `the part can equal to the whole', then the door to the infinity is open. He established the importance of one-to-one correspondence between the members of two sets, and defined (actual) infinite sets.
 
-To compare two sets, Cantor defined if there is one to one correspondence between them, that every element in set $M$ has the unique corresponding element in set $N$, then the two sets are equinumerous. That is of the same size or having the same number of elements\footnote{Remind the `isomorphic' concept we introduced in chapter 3.}, denoting $M \cong N$. For finite sets, it is true obviously, when extends to infinite sets, it means there are same infinite many even numbers as the natural numbers! there are same infinite many square numbers as natural numbers, the points in smaller circle and the bigger circle of the same center are equinumerous... Cantor's friend, Richard Dedekind even gave such a definition\footnote{known as Dedekind infinite set nowadays.} of infinite set in 1888: if some proper subset of a set is equinumerous to this set, then it is a infinite set.
+To compare two sets, Cantor defined if there is one to one correspondence between them, that every element in set $M$ has the unique corresponding element in set $N$, then the two sets are equinumerous. That is of the same size or having the same number of elements\footnote{Remind the `isomorphic' concept we introduced in chapter 3.}, denoting $M \cong N$. For finite sets, it is true obviously, when extends to infinite sets, it means there are same infinite many even numbers as the natural numbers! there are same infinite many square numbers as natural numbers, the points in smaller circle and the bigger circle of the same centre are equinumerous... Cantor's friend, Richard Dedekind even gave such a definition\footnote{known as Dedekind infinite set nowadays.} of infinite set in 1888: if some proper subset of a set is equinumerous to this set, then it is a infinite set.
 
 % Cardinality vs. cardinal number
 
@@ -1238,7 +1238,7 @@ Among the countless art about sky, the {\em Starry Night} by Dutch post-impressi
 
 {\em Snow Storm: Steam-Boat off a Harbour's Mouth} is a painting by English Romanticism artist J.M.W Turner. The picture may recall a particularly bad storm in January, 1842. In order to feel the power of sea, Turner got the sailors to tie him to the mast to observe. ``I was lashed for four hours. and I did not expect to escape, but I felt bound to record it if I did.'' However, the critical response to the painting was largely negative at the time, with one critic calling it ``soapsuds and whitewash''. Turner said: ``I did not paint it to be understood, but I wished to show what such a scene was like.'' As time going, people finally realized, as John Ruskin, the leading English art critic of the Victorian era said: ``It is one of the very grandest statements of sea-motion, mist and light, that has ever been put on canvas.''
 
-The thought and study of infinity soon became a problem in philosophy and theology from the concrete things in nature. In Ptolemy's model, the universe is realized as a set of nested spheres, with planets moving along them. The out most boundary is a sphere of fixed stars. By the medieval, the church had largely accepted this model developed by Aristotle and Ptolemy. People believed the Earth, created by God, was the center of the universe, and the stellar sphere was bounded.
+The thought and study of infinity soon became a problem in philosophy and theology from the concrete things in nature. In Ptolemy's model, the universe is realized as a set of nested spheres, with planets moving along them. The out most boundary is a sphere of fixed stars. By the medieval, the church had largely accepted this model developed by Aristotle and Ptolemy. People believed the Earth, created by God, was the centre of the universe, and the stellar sphere was bounded.
 
 \begin{figure}[htbp]
  \centering
