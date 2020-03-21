@@ -1313,6 +1313,10 @@ Haskell语言中使用余代数定义素数的无穷流
 data StreamF e a = StreamF e a
 data Stream e = Stream e (Stream e)
 
+ana :: (a -> StreamF e a) -> (a -> Stream e)
+ana f = fix . f where
+  fix (StreamF e a) = Stream e (ana f a)
+
 takeStream 0 _ = []
 takeStream n (Stream e s) = e : takeStream (n - 1) s
 

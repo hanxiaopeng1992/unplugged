@@ -423,18 +423,18 @@ For example, $take\ 8\ N = [0, 1, 2, 3, 4, 5, 6, 7]$. There are examples in the 
 
 \subsection{Coalgebra and infinite stream$\bigstar$}
 
-To model the stream of potential infinity, we need the coalgebra concept in category theory introduced in chapter 4. Readers are safe skip this section in the following 2 pages, and directly read from the next section \textbf{Explore the actual infinity}. Let us first revisit coalgebra and F-morphism.
+To model the stream of potential infinity, we need the coalgebra concept in category theory introduced in chapter 4. Readers are safe to skip this section in the following 2 pages, and directly read from the next section \textbf{Explore the actual infinity}. Let us first revisit coalgebra and F-morphism.
 
 \index{coalgebra}
 \begin{definition}
 \normalfont
-Let $\pmb{C}$ be a category, $\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$ is an endo-functor of category $\pmb{C}$. For the object $A$ and morphism $\alpha$ in this category:
+Let $\pmb{C}$ be a category, $\pmb{C} \arrowto{\mathbf{F}} \pmb{C}$ is an endo-functor of category $\pmb{C}$. For the object $A$ and morphism $\alpha$ in this category, arrow:
 
 \[
   A \arrowto{\alpha} \mathbf{F} A
 \]
 
-Form a pair $(A, \alpha)$. It is called F-coalgebra, where $A$ is the carrier object.
+forms a pair $(A, \alpha)$. It is called F-coalgebra, where $A$ is the carrier object.
 \end{definition}
 
 We can treat F-coalgebra as object. When the context is clear, we denote the object as a pair $(A, \alpha)$. The arrows between such objects are defined as the following:
@@ -485,7 +485,7 @@ F-coalgebra and F-morphism form F-coalgebra category $\pmb{CoAlg}(\mathbf{F})$. 
 From Lambek theorem, the final coalgebra is the fixed point for functor. The morphism $T \arrowto{\mu} \mathbf{F} T$ is an isomorphism, such that $\mathbf{F} T$ is isomorphic to $T$. The final coalgebra can be used to build infinite data structures.
 
 \index{anamorphism}
-We use catamorphism to evaluate the initial algebra. Symmetrically, we use anamorphism (prefix ana- means upward) to coevaluate the final coalgebra. For any coalgebra $(A, f)$, the unique arrow to the final coalgebra $(T, \mu)$ can represented with the anamorphism as $\llb f \rlb$. The brackets do not look like bananas any more, but like a pair of lenses in optics. They are known as \textbf{lens brackets}. As shown in below diagram:
+We use catamorphism to evaluate the initial algebra. Symmetrically, we use anamorphism (prefix ana- means upward) to coevaluate the final coalgebra. For any coalgebra $(A, f)$, the unique arrow to the final coalgebra $(T, \mu)$ can be represented with the anamorphism as $\llb f \rlb$. The brackets do not look like bananas any more, but like a pair of lenses in optics. They are known as \textbf{lens brackets}. As shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1354,6 +1354,10 @@ Define the infinite stream of prime numbers with coalgebra in Haskell.
 \begin{lstlisting}
 data StreamF e a = StreamF e a
 data Stream e = Stream e (Stream e)
+
+ana :: (a -> StreamF e a) -> (a -> Stream e)
+ana f = fix . f where
+  fix (StreamF e a) = Stream e (ana f a)
 
 takeStream 0 _ = []
 takeStream n (Stream e s) = e : takeStream (n - 1) s
