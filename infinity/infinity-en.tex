@@ -915,11 +915,11 @@ x_1 > y_1 : & \{y_1, X \cup Y' \} \\
 Here is an example code that summarizes above definition, and returns the 1,000,000th Hamming number.
 
 \begin{lstlisting}
-ham = 1 : map (*2) ham # map (*3) ham # map (*5) ham
-  where xxs@(x:xs) # yys@(y:ys)
-    | x==y = x : xs # ys
-    | x<y  = x : xs # yys
-    | x>y  = y : xxs # ys
+ham = 1 : map (*2) ham <> map (*3) ham <> map (*5) ham
+  where xxs@(x:xs) <> yys@(y:ys)
+    | x==y = x : xs <> ys
+    | x<y  = x : xs <> yys
+    | x>y  = y : xxs <> ys
 
 ham !! 1000000
 519312780448388736089589843750000000000000000000000000
