@@ -12,6 +12,7 @@ Contents
 
 The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)). The first 6 chapters in English are available. I am working on the English translation for the last chapter.
 
+- Preface ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-en.pdf))
 - Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
 - Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-en.pdf))
 - Chapter 3, Group, Ring, and Field. Galois Theory; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180332/algebra-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180332/algebra-en.pdf))
