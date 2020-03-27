@@ -38,9 +38,7 @@
 \index{Deep Blue}
 In 1996, the 26th Summer Olympic game was hold in Atlanta, U.S. More than 10 thousand athletes from 197 nations challenges human limit of speed, strength, and team work in 26 sports. At the same time, there was another interesting match on-going. An IBM computer, called Deep Blue challenged the world chess champion Garry Kasparov in a six-game match. Deep Blue won the first game, but Kasparov won three and drew two, defeating Deep Blue by a score of 4:2. The next year, heavily upgraded Deep Blue challenged again to human world champion. On May 11, computer defected human: two wins for Deep Blue, one for the champion, and three draws. Deep Blue is a super computer of 1270 kilogram weight, with 32 processors. It can explorer 200 million possible moves in a second. The design team input 2 million grandmaster games in the past 100 years as the knowledge base for Deep Blue. The machine created by human intelligence, defected human at the first time in the field of intelligence. This result led to attention, fear, and hotly debating among mess media.
 
-Most people believed this was a significant progress in artificial intelligence at that time. Although computer could defected human for chess, but there was still a big gap in board game Go.
-
-在当时，人们普遍认为，这是人工智能的一大进步。尽管在国际象棋上取得了巨大进步，但是在围棋上，计算机和人类仍存在巨大差距。对于国际象棋来说，棋盘8行8列，32枚棋子。计算机要在$10^{123}$这样巨大的博弈树中进行搜索。即使深蓝美秒能算2亿步，遍历博弈树仍需要近$10^{107}$年。为此深蓝的设计小组通过计算机程序缩小了搜索空间，使得深蓝能够搜索当前棋局后面的12步棋。而一般好的人类棋手，大约只能估计到10步左右。但是围棋的棋盘有19行19列，在一共361个格点上可以放置黑色或者白色的棋子。博弈树的规模为$10^{360}$，远远超越国际象棋。所以在之后的一段时间里，人们仍然不相信计算机可以挑战我们。
+Most people believed this was a significant progress in artificial intelligence at that time. Although computer could defected human for chess, but there was still a big gap in board game Go. There are 8 rows and 8 columns in chess board, and 32 pieces. Computer need search among a big game tree containing about $10^{123}$ possible moves. Even Deep Blue could explore 2 million moves per second, it would take about $10^{107}$ year to exhaust the tree. The design team optimized the program to narrow down the search space, such that Deep Blue only need explore 12 moves ahead from current game. While the human grandmaster can only evaluate about 10 moves ahead. However for Go game, there are 19 rows and 19 columns, two players can put black and white pieces in 361 grids. The scale of the game tree is about $10^{360}$, which is far bigger than chess. For a long time after Deep Blue, people don't believe computer could defect human in Go.
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
@@ -52,19 +50,19 @@ Most people believed this was a significant progress in artificial intelligence 
 \end{figure}
 %\end{wrapfigure}
 
-\index{Alpha-Go}
-时光匆匆过去了20年，2016年，计算机程序Alpha-Go向人类的围棋大师展开了挑战。韩国的九段棋手李世石以1比4的总比分输掉了比赛。一年后，Alpha-Go再次以3局全胜的成绩战胜了中国棋手柯洁。被人们认为是人工智能游戏“圣杯”的围棋终于被攻破了。面对没有感情的计算机，柯洁心有不甘，潸然落泪。作为人类，我们的心情很复杂。即使是从事智力工作的程序员群体也感到了来自机器的压力——我们是否会被机器取代？
+\index{AlphaGo}
+20 years later in 2016, a computer program AlphaGo challenged top human go master. Korean professional 9-dan Go player, Lee Sedol, lost the game in a 1:4 series matches. One year after, the successor program AlphaGo master beat Chinese professional Ke Jie, the world number one ranked player, in a three-game match. Go had previously been regarded as a hard problem in artificial intelligence that was expected to be out of reach for the technology of the time. It was considered the end of an era. Facing the emotionless machine, Ke Jie was unwilling and burst into tears. As human beings, our feelings are mixed. Even the programmer community doing intellectual work is feeling the pressure from machine: will we be replaced by machine eventually?
 
 %University of Tubingen, Germany
 % Leon A. Gatys, Alexander S. Ecker Matthias Bethge
-传统上我们认为，艺术文学等领域，涉及人们的文化背景、内在感情和与生俱来的性格因素，是无法被机器所替代的。2015年，德国斯图加特以南40公里的小镇图宾根大学的盖提斯、埃克、贝特格三位研究人员利用机器学习人类艺术家的风格，把图宾根镇的一张风景照片变换成了不同风格的艺术画作\cite{Gatys-2015}。无论是后印象派大师梵高色彩强烈夸张的画风，还是透纳那浪漫主义水天浑浊的光影效果，都被机器模仿得惟妙惟肖。犹如大师本人所作（图\ref{fig:style-transfer}）。
+Traditionally, we thought the areas related to culture background, inner emotions, and human characters, like art, literature, and music could not be dominated by machine. In 2015, three researchers Gatys, Ecker, and Bethge from University of Tübingen, a small town 30 km south of Stuttgart, Germany applied machine learning to art style. By using deep convolutional neural network, they transformed a landscape photo of Tübingen into art painting of different styles\cite{Gatys-2015}. No matter the exaggerated emotion of the post-impressionist Van Gogh, or Turner's romantic turbid light and shadow effect, all vivid imitated by machine, as if the artists painted by themselves (figure \ref{fig:style-transfer}).
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.85]{img/style-transfer.eps}
  %\captionsetup{labelformat=empty}
- \caption{机器学习产生的不同艺术风格的画作：A，图宾根镇的风景照片；B，英国画家透纳1810年的原作《运输船遇难》和透纳风格的画作；C，荷兰后印象派画家梵高1889年的原作《星空》和梵高风格的画作；D，挪威表现主义画家爱德华$\cdot$蒙克1893年的原作《呐喊》和蒙克风格的画作；E，西班牙现代艺术家毕加索1910年的原作《坐着的裸女》和毕加索风格的画作；F，俄罗斯抽象艺术先驱画家康定斯基1913年的原作《构成第七号》和康定斯基风格的画作。}
+ \caption{Artworks in different styles generated by machine learning: \textbf{A}, Landscape photo of Tübingen; \textbf{B}, {\em The Shipwreck of the Minotaur} by J.M.W. Turner, 1805; \textbf{C}, {\em The Starry Night} by Vincent van Gogh, 1889; \textbf{D}, {\em Der Schrei} by Edvard Munch, 1893; \textbf{E}, {\em Femme nue assise} by Pablo Picasso, 1910; \textbf{F}, {\em Composition VII} by Wassily Kandinsky, 1913.}
  \label{fig:style-transfer}
 \end{figure}
 %\end{wrapfigure}
