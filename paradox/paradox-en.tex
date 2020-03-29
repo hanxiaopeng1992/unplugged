@@ -2,6 +2,14 @@
 
 \documentclass{article}
 
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
+
 \usepackage[en]{../prelude}
 
 \setcounter{page}{1}
@@ -125,26 +133,30 @@ There is a variance of liar paradox, appeared as two separated statements:
 
 \textbf{Tortoise}: Dear Achilles, you are honest, you always speaks truth.
 
-Is it true or false for what the tortois said
-乌龟的话到底是真是假呢？如果乌龟说了真话，也就是阿基里斯的陈述是真的。但阿基里斯说乌龟在撒谎，这就导致了矛盾。反之如果乌龟说的是假话，那么阿基里斯说的就是假的，于是乌龟说的这就话就应该为真。我们陷入了怪圈，无论乌龟的话是真是假，都会导致矛盾。
+Is it true or false for what the tortoise said? If the tortoise tells the truth, then what Achilles states is true. However, Achilles claims the tortoise is laying, it leads to contradiction. On the contrary, if the tortoise tells lie, then what Achilles says is wrong, hence the tortoise should be true. We end up with a wired-loop: whether the tortoise speaks truth or not, all leads to absurdity.
 
-这种两段体式的说谎者悖论有时还以恶作剧的形式出现。你收到一张纸条，上面写着“背面是假的”，等你翻到纸条背面，却看到上面赫然写着“背面是真的”。到底哪面是真的呢？仔细分析下来，就会发现陷入了逻辑怪圈。
+This two-segment liar paradox sometimes appears as a joke. You received a piece of note: ``The other side is nonsense.'' while when you flip to the other side, it writes: ``The other side is true.'' Which side is true? In a similar way, it reduces to contradiction.
 
-儿童故事中，也有不少这种悖论。有一则说狮子捉到了兔子，得意地说，如果你能猜中接下来我要干什么，我就放了你，要是猜错了，我就吃掉你。聪明的兔子说：“我猜你要吃掉我。”
+Such paradox also appears in children's story. A lion caught a rabbit. He is so happy, that he promise the rabbit: If you can guess what I am going to do, I'll let you go; otherwise I'll eat you. The clever rabbit then answers: I guess you are going to eat me.
 
-如果狮子吃掉兔子，那说明兔子猜中了。这样狮子应该兑现承诺，放掉兔子。可是如果放掉兔子，这说明兔子猜错了。按道理狮子又应该吃掉兔子。狮子陷入了两难处境。既不能吃掉兔子，也不能不吃兔子。估计它只能发疯而让聪明的兔子溜走了。
+If the lion eats the rabbit, then the rabbit guesses correct. Then the lion should keep his promise to let the rabbit go. However, if he let the rabbit go, it means the rabbit guesses wrong. Hence the lion should eat the rabbit. The lion falls into the dilemma, he should neither eat the rabbit, nor let the rabbit go. We can imagine the rabbit silently runs away when the lion keeps deep thinking.
 
-传说古希腊的军队战胜了波斯，国王决心“优待俘虏”，让他们选择死亡的方式。俘虏可以说一句话，如果是真话，就被砍头，如果是假话，就被绞死。一个聪明的俘虏说：“我猜你要绞死我。”如果国王绞死了俘虏，说明他说了真话，可是这样，按照规则应该被砍头。但如果砍掉他的头，就和这个人讲的内容不符了，所以他说了假话。这样就应该被绞死。结果不论砍头还是绞死，国王的命令都没有被正确的执行。国王万般无奈，不仅释放了这个俘虏，还释放了所有其他人。
+According to the legend, after ancient Greek army defected Persian, the king decided to do something kind to the captives -- let them chose the way to be killed. According to what the captive said, if it is true, then cut head off, otherwise hang. A clever captive said: ``I think you are going to hang me.'' If the king hangs him, then what the captive said is true. Hence he should be cut head according to the rule. But if cut his head off, then it does not follow what the captive said. Hence he spoke falsehood, and should be hanged. Whether cut head or hang, the king's rule will not be conducted correctly. Facing such struggled situation, the king did not only let this clever man go, but also released all captives.
 
 \begin{wrapfigure}{L}{0.5\textwidth}
  \centering
  \includegraphics[scale=0.17]{img/father-and-son.eps}
  \captionsetup{labelformat=empty}
- \caption{[德]埃$\cdot$奥$\cdot$卜劳恩《父与子》一则，1930年代}
+ \caption{E. O. Plauen {\em Father and Son}, 1930s}
  \label{fig:father-and-son}
 \end{wrapfigure}
 
-塞万提斯在他的伟大作品《堂$\cdot$吉诃德》中，也讲了一个有趣的悖论。有一位贵族的封地被一条大河分成了两半，河上有一座桥，桥的尽头有个绞架。这位贵族制定了一条法令：“过桥的人必须诚实声明他的目的，如果是真话就允许过桥，如果说谎，就判处绞刑，绞死在桥那边的绞架上。”结果有个人来这里发誓道，我过桥别无目的，就是想死在那个绞架上。怎样处置这个人呢？如果他说了真话，那么就应该放他过桥。可是这样这个人说的内容就不成立了，按照法令就应该绞死他。可是这样一来他说的话就成了真话，又应该放他过桥。
+In Cervantes' novel {\em Don Quixote}, there is an interesting paradox in Part II, Chapter 51:
+
+\begin{quotation}
+\itshape
+A deep river divides a certain lord’s estate into two parts... over this river is a bridge, and at one end a gallows and a sort of courthouse, in which four judges sit to administer the law imposed by the owner of the river, the bridge and the estate. It runs like this: ``Before anyone crosses this bridge, he must first state on oath where he is going and for what purpose. If he swears truly, he may be allowed to pass; but if he tells a lie, he shall suffer death by hanging on the gallows there displayed, without any hope of mercy.'' ... Now it happened that they once put a man on his oath, and he swore that he was going to die on the gallows there -- and that was all. After due deliberation the judges pronounced as follows: ``If we let this man pass freely he will have sworn a false oath and, according to the law, he must die; but he swore that he was going to die on the gallows, and if we hang him that will be the truth, so by the same law he should go free.''
+\end{quotation}
 
 % https://en.wikipedia.org/wiki/Barber_paradox
 \index{理发师悖论}
