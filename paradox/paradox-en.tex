@@ -76,41 +76,42 @@ All these reduce to one question: does there exist boundary of computation? if y
 Gu Sen described the hesitated feelings when facing a long-running program in his popular book {\em Fun of thinking}: Will this program finish? Shall I go on waiting or kill it? Is there a compiler could tell if your program will run endlessly (\cite{GuSen-2012} pp.228)?
 
 \begin{quotation}
+\itshape
 Why not possible? It seems more realistic than time machine. We may see such a scene in a scientific film: a programmer typed something in the dark screen, then hit enter. A highlighted, bold warning popped up immediately ``Warn: the program with the given input will run forever. Continue? (Y/N)'' If this became true one day, what fantastic cool things will you do? Do you believe that I can make big monkey with it? I'll firstly use it to prove the Goldbach's conjecture. I can write a program, enumerate all even numbers one by one, examine if it is the sum of two prime numbers. If yes, then check the next even number, otherwise output the negative example and quit. The next thing is compile my program. Can't the compiler determine my program terminates or not in advance? If the magic compiler warns me that my program will run endlessly, haven't I proved Goldbach's conjecture? Or if the compiler tells me the program will terminate, doesn't it mean Goldbach's conjecture is falsehood? Either case, I'll be the first one that solve the Goldbach's conjecture, and leave my name in mathematical history. What's the next? I will modify that program to explore the twin primes, then compile it to see if there are really infinite many twin primes. And next, are there infinite many Mersenne primes? This is also an open question in number theory for a long time. I can easily solve it in this way. The $3x + 1$ conjecture? It's a piece of cake to write a ``proof program'' in a few minutes, then win the 500 dollars prize offered by Paul Erdős. There are enough mathematical open questions, I'll never worry about nothing to do. Martin LaBar in 1984 asked if a $3 \times 3$ magic square can be constructed with nine distinct square numbers. The award has accumulated to 100 dollars, 100 euros, and a bottle of champagne. Search ``Unsolved problems in mathematics'', filter those about discrete things, and with award in, then write a few programs to solve them all...
 \end{quotation}
 
-\index{图灵停机问题}
-1936年，计算机科学和人工智能的先驱图灵证明了一个命题：不存在可以判断任何程序是否可以停机的通用算法。证明的核心部分包含了计算机程序的数学定义——图灵机模型。后人称这一问题为图灵停机问题。
+\index{Turning's halting problem}
+In 1936, the pioneer of computer science and artificial intelligence, Alan Turing proved a general algorithm to determine an arbitrary computer program will finish running, or continue to run forever, cannot exist. A key part of the proof was a mathematical definition of a computer and program, which became known as a Turing machine. This problem is called {\em halting problem} today.
 
-为了证明图灵停机问题，我们采用反证法，假设存在一个名叫$halts(p)$的算法，能够判断任意程序$p$是否停机。首先我们定义一个永不停机的程序：
+To prove the Turing's halting problem, we can use reduction to absurdity method. Suppose there exists a algorithm $halts(p)$, that can determine an arbitrary program $p$ terminates or not. First, we construct a never halting program:
 
 \[
 forever() = forever()
 \]
 
-这是一个无穷递归的调用。然后我们构造一个名为$G$的特殊程序\footnote{我们用字母$G$是有特殊用意的，$G$是哥德尔的首字母，它恰好和哥德尔不完全定理中不可判定命题的名字相同。}，它的定义如下：
+This is a infinitely recursive call. Then a define a special program $G$\footnote{We intended to use $G$ for special meaning. It's the first letter of Gödel, exactly the same name for nondeterministic proposition in Gödel's incompleteness theorem.} as below:
 
 \[
 G() = \begin{cases}
-halts(G) = \text{停机}: & forever() \\
-\text{否则}: & \text{停机} \\
+halts(G) = \text{halt}: & forever() \\
+\text{otherwise}: & \text{halt} \\
 \end{cases}
 \]
 
-在程序$G$中，我们通过$halts(G)$判断$G$本身是否停机。如果停机，我们就调用$forever()$永远运行下去。但这恰恰说明$G$不会停机，所以$halts(G)$应该为假，但是按照上面定义的第二行，此时我们停机。这恰恰说明$halts(G)$应该为真。所以不论$halts(G)$是真是假，我们都会得到矛盾的结论。因此我们最初的假设不成立，也就是说，不存在一个可以判断任意程序能否停机的通用算法。
+In program $G$, we utilize $halts(G)$ to examine whether $G$ itself will halt or not. If it halts, then we call $forever()$ to let it run forever. It exactly means $G$ will not halt in this case, hence $halts(G)$ should be false. However, according to the second clause, it will halt. Therefore $halts(G)$ should be true. whether $halts(G)$ is true or false, we obtain conflict result. Hence our assumption can't hold. There does not exit a general algorithm to solve the halting problem for all possible program input.
 
-也有一种分两步证明图灵停机问题的方法(\cite{SICP}，第268页)，前面都一样，但在构造$G$时，$G$接受一个参数$p$，它把$p$应用到自身上并传给$halts$：
+There is another method to prove halting problem in two steps(\cite{SICP} pp.268). Most are same except that $G$ accepts another argument $p$, it applies $p$ to itself, then passes to $halts$:
 
 \lstset{frame=single}
 \begin{lstlisting}
 G(p) = if halts(p(p)) then forever() else 'Halted'
 \end{lstlisting}
 
-接下来的一步中，我们把$G$传给自己$G(G)$看发生了什么？此时如果$halts(G(G))$返回真，则接下来运行$forever()$，所以$G(G)$永远运行不会停机。但这恰恰说明$halts(G(G))$应该返回假，所以接下来程序进入\texttt{else}分支，返回停机。但这又说明$halts(G(G))$应该返回真。所以不管停机与否，都陷入了矛盾之中。
+As the next step, let's see what will happen when pass $G$ to itself $G(G)$. If $halts(G(G))$ returns true, then it calls $forever()$, hence $G(G)$ never finishes. While it exactly means $halts(G(G))$ should returns false, hence the program enters the \texttt{else}, and halts. But it again means $halts(G(G))$ should return true. Whether halts or not, it leads to absurdity.
 
-伟大的图灵停机定理清晰地给出了一个不可计算问题。击碎了我们本节中给出的那些奇思妙想。看到这里，你是否想起了上一章附录中康托尔定理的证明？我们用极为类似的方法证明了任何集合，包括无穷集合的势都小于它的幂集的势。实际上，图灵停机问题让我们联想起了一大类有趣的逻辑悖论。
+The halting problem clearly provides a non-computable problem. Breaking the bubble of all the above magic ideas. It reminds us about the proof of Cantor's theorem in previous chapter. We used quite similar method proved that for all sets, including infinite sets, their cardinalities are strict less than their power sets. Actually, halting problem is closely related to many interesting logic paradoxes.
 
-\section{罗素悖论}
+\section{Russel's paradox}
 
 % Eubulides of Miletus
 悖论从古希腊时期就被人们发现了。上一章我们介绍了关于无穷和连续的芝诺悖论，而逻辑悖论是一类从严密逻辑导出矛盾结果的有趣问题。公元前四世纪，古希腊哲学家米利都的欧歩里德提出这样一个命题：“我现在说的是一句假话”，怎样判断这句话的真伪呢？
