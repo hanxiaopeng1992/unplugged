@@ -338,7 +338,7 @@ Different from the mathematical schools of logicism, intuitionism, and formalism
 The set-theoretic school can be traced back to Cantor and Dedekind's work. Although both were primarily concerned with infinite sets, they found by establishing the concept of natural numbers on basis of set, all of mathematics could then be derived. When Russell's paradox was found at the centre of Cantor's set theory, some mathematicians believed that the paradox was due to the informal introduction of sets. Cantor's set theory is often described today as `naive set theory'. Hence the set theoretic thought that a carefully selected axiomatic foundation would remove the paradoxes of set theory. Just as the axiomatization of geometry and of the number system had resolved logical problems in those areas. German mathematician Ernst Zermelo first took the axiomatization approach in set theory in 1908.
 
 \index{Zermelo}
-Zermelo also believed the paradoxes arose because Cantor had not restricted the concept of a set. He therefore stressed with clear and explicit axioms to clarify what is meant by a set, and what properties sets should have. In particular, he wanted to limit the size of possible sets. He had no philosophical basis but sought only to avoid the contradictions. His axiom system contained the undefined fundamental concepts of set and the relation of one set being included in another. These and the defined concepts were to satisfy the statements in the axioms. No properties of sets were to be used unless granted by the axioms. In his system, the existence of infinite sets, the operations as the union of sets, and the formation of subsets were provided as axioms. Zermelo also used the axiom of choice.
+Zermelo also believed the paradoxes arose because Cantor had not restricted the concept of a set. He therefore stressed with clear and explicit axioms to clarify what is meant by a set, and what properties sets should have. In particular, he wanted to limit the size of possible sets. He had no philosophical basis but sought only to avoid the contradictions. His axiom system contained the undefined fundamental concepts of set and the relation of one set being included in another. These and the defined concepts were to satisfy the statements in the axioms. No properties of sets were to be used unless granted by the axioms. In his system, the existence of infinite sets, the operations as the union of sets, and the formation of subsets were provided as axioms. Zermelo also used the axiom of choice\cite{M-Kline-2007}.
 
 \begin{figure}[htbp]
   \centering
@@ -350,22 +350,29 @@ Zermelo also believed the paradoxes arose because Cantor had not restricted the 
 \end{figure}
 
 \index{ZF system} \index{Fraenkel}
-Zermelo's system of axioms was improved by Abraham Fraenkel in 1922. Zermelo did not distinguished a set property and the set itself, they were used as synonymous. The distinction was made by Fraenkel. The system of axioms used mostly common by set theorists is known as Zermelo-Fraenkel system, abbreviated as ZF system. They both saw the possibility of refined and sharper mathematical logic available in their time, but did not specify the logical principles, which they thought were outside of mathematics, and could be confidently applied as before.
+Zermelo's system of axioms was improved by Abraham Fraenkel in 1922. Zermelo did not distinguished a set property and the set itself, they were used as synonymous. The distinction was made by Fraenkel. The system of axioms used mostly common by set theorists is known as Zermelo-Fraenkel system, abbreviated as ZF system. They both saw the possibility of refined and sharper mathematical logic available in their time, but did not specify the logical principles, which they thought were outside of mathematics, and could be confidently applied as before\cite{M-Kline-2007}.
 
-Zermelo provided 7 axioms in his 1908 paper. Then in 1930, Fraenkel, Von Neumann
-策梅罗在1908年的论文中给出了集合论的7条公理。1930年又加入了弗兰克尔、斯克朗、冯$\cdot$诺伊曼建议的两条公理。这些公理表示如下：
+Zermelo provided 7 axioms in his 1908 paper. Then in 1930, Fraenkel, Skolem, and Von Neumann suggested to add another two axioms. These axioms are as below:
 
-\index{选择公理}
+\index{axiom of choice}
 \begin{enumerate}
-\item \textbf{外延公理}：如果两个集合含有相同的元素，那么它们相等。形式化就是对于集合$A$和$B$，若$A \subseteq B$且$B \subseteq A$，则$A = B$。外延公理相当于逻辑上的同一律。
-\item \textbf{空集}：空集存在。
-\item \textbf{分离公理}：任何可用理论形式化的属性都可以用来定义一个集合。即对集合$S$，命题函数$p(x)$是确定的，则存在集合$T = \{ x | x \in S, p(x)\}$。分离公理也称作概括公理。
-\item \textbf{幂集公理}：对任一集合，都可以作出其幂集；即任一给定集合中的所有子集的全体也是一个集合（这个过程可以无限次重复）。
-\item \textbf{并集公理}：一组集合的并也是一个集合。
-\item \textbf{选择公理}：设$S$为一个由非空集合所组成的集合，可以从每一个在$S$中的集合中，都选择一个元素和其所在的集合配成有序对来组成一个新的集合。选择公理简称为AC。
-\item \textbf{无穷公理}：存在一集合$Z$，它含有空集，对任一对象，若$a \in Z$，则$\{a\} \in Z$。（这一公理保证了无限集是可构造的。）
-\item \textbf{替换公理}：这条公理是弗兰克尔1922年引入的。对于任意的函数$f(x)$和集合$T$，当$x \in T$时，$f(x)$都有定义的前提下，一定存在一集合$S$，对于所有的$x \in T$，在集合$S$中都有一元素$y$，使$y = f(x)$。也就是说，由$f(x)$定义的函数其定义域在$T$中的时候，它的值域可限定在$S$中。
-\item \textbf{正则公理}：这条公理是冯$\cdot$诺伊曼1925年引入的。$x$不属于$x$。
+\item \textbf{Axiom of extensionality}: Two sets are equal if they have the same elements. For set $A$ and $B$, if $A \subseteq B$ and $B \subseteq A$, then $A = B$.
+
+\item \textbf{Empty set}: The empty set exists.
+
+\item \textbf{Axiom schema of separation}: Also known as axiom schema of specification. Any property that can be formalized in the language of the theory can be used to define a set. For set $S$, if proposition $p(x)$ is defined, then there exists set $T = \{ x | x \in S, p(x)\}$.
+
+\item \textbf{Axiom of power set}: One can form the power set (the collection of all subsets of a given set) of any set. This process can be repeated infinitely.
+
+\item \textbf{Axiom of union}: The union over the elements of a set exists.
+
+\item \textbf{Axiom of choice}：abbreviated as AC.
+
+\item \textbf{Axiom of infinity}: There exists a set $Z$, containing empty set. For any $a \in Z$, then $\{a\} \in Z$. This axiom ensures infinite set exits.
+
+\item \textbf{Axiom schema of replacement}: This axiom is introduced by Fraenkel in 1922. For any function $f(x)$ and set $T$, if $x \in T$, and $f(x)$ is defined, there exits a set $S$, that for all $x \in T$, there is a $y \in S$, such that $y = f(x)$. It says that the image of a set under any definable function will also fall inside a set.
+
+\item \textbf{Axiom of regularity}: Also known as axiom of foundation. It was introduced by Von Neumann in 1925. $x$ does not belong to $x$.
 \end{enumerate}
 
 这样，集合论就被抽象成一个公理化的理论。集合成了未定义概念，它是满足上述公理的对象。通过这样的限制，避免了“所有对象”这样的说法，从而避免了悖论，弥补了朴素集合论的缺陷。但是就这些公理的选择和承认仍然存在争议。其中最大的争议来自选择公理。
