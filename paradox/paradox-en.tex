@@ -375,22 +375,22 @@ Zermelo provided 7 axioms in his 1908 paper. Then in 1930, Fraenkel, Skolem, and
 \item \textbf{Axiom of regularity}: Also known as axiom of foundation. It was introduced by Von Neumann in 1925. $x$ does not belong to $x$.
 \end{enumerate}
 
-这样，集合论就被抽象成一个公理化的理论。集合成了未定义概念，它是满足上述公理的对象。通过这样的限制，避免了“所有对象”这样的说法，从而避免了悖论，弥补了朴素集合论的缺陷。但是就这些公理的选择和承认仍然存在争议。其中最大的争议来自选择公理。
+As such, set theory was abstracted to a axiomatic system. Set turned to be an undefined concept that satisfies these axioms. They do not permit `all inclusive set', hence avoid the paradox, and fixed the defects in naive set theory. However, there were still debate about which axioms were acceptable, particularly the axiom of choice is arguable.
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Banach-Tarski-Paradox.eps}
  %\captionsetup{labelformat=empty}
- \caption{巴拿赫-塔斯基“悖论”：一个球可以分解和重新组合成两个大小和原来一样的球}
+ \caption{Banach-Tarski paradox: a solid ball can be decomposed and put back together into two copies of the original ball.}
  \label{fig:Banach-Tarski-Paradox}
 \end{figure}
 %\end{wrapfigure}
 
-\index{分球定理} \index{ZFC系统}
-1924年波兰数学家巴拿赫和塔斯基证明了分球定理\footnote{又称为豪斯多夫-巴拿赫-塔斯基定理，或者“分球怪论”}。这一定理指出在选择公理成立的情况下，可以将一个三维实心球分成有限（不可测的）部分，然后仅仅通过旋转和平移到其他地方重新组合，就可以组成两个半径和原来相同的完整的球。巴拿赫和塔斯基提出这一定理原意是想拒绝选择公理，但该证明很自然，因此数学家认为这仅意味着选择公理可以导致少数令人惊讶和反直觉的结果，有人提出不应该把它包含进来。不包含选择公理的集合论被称为ZF系统，包含选择公理的被称为ZFC系统。我么在上一章曾介绍过选择公理和连续统假设之间的有趣关系。
+\index{Banach-Tarski paradox} \index{ZFC system}
+In 1924, Polish mathematicians Stefan Banach and Alfred Tarski proved a theorem called Banach-Tarski paradox\footnote{Also known as Hausdorff-Banach-Tarski theorem, or `Doubling sphere paradox'.}. This theorem states that, if accept axiom of choice, then for a solid ball in 3 dimensional space, there exists a decomposition of the ball into a finite number of disjoint subsets, which can then be put back together in a different way to yield two identical copies of the original ball. Indeed, the reassembly process involves only moving the pieces around and rotating them without changing their shape. Banach and Tarski was going to reject axiom of choice through this theorem. However, their proof looked so natural, that mathematicians tend to consider it only reflects the counter intuitive fact about axiom of choice. Some set-theorists insist not to including axiom of choice, such axiomatic set theory is called ZF system, while the one included axiom of choice is called ZFC system. We introduced the interesting relation between axiom of choice and continuum hypothesis in previous chapter.
 
-\section{哥德尔不完全性定理}
+\section{Gödel's incompleteness theorems}
 
 这样，到1930年，四种彼此独立的、截然不同的并且或多或少有些冲突的关于数学基础的方法都已亮相。并且可以毫不夸张地说，他们彼此的追随者也都处于对峙状态。一个人再也不能说一条数学定理是被正确地证实了，因为到1930年，他必须加上一句，即依照谁的标准它被认为是正确的。除了直觉主义者认为人的直觉能保证相容性外，数学的相容性，这个激发了新方法的重要问题，根本就没有得到解决。希尔伯特还在乐观地规划着证明数学是完备的和一致的。改变这一切的是年轻的数学家、逻辑学家哥德尔。
 
@@ -398,11 +398,11 @@ Zermelo provided 7 axioms in his 1908 paper. Then in 1930, Fraenkel, Skolem, and
  \centering
  \includegraphics[scale=0.8]{img/Godel-young.eps}
  \captionsetup{labelformat=empty}
- \caption{库尔特$\cdot$哥德尔(1906-1978)}
+ \caption{Kurt Gödel, 1906-1978}
  \label{fig:Godel-young}
 \end{wrapfigure}
 
-\index{哥德尔}
+\index{Gödel}
 哥德尔于1906年生于奥匈帝国的布尔诺（今属捷克共和国）。8岁时突患急性风湿热，很可能是这次疾病的后果，哥德尔后来不断被妄想症困扰。童年时期他充满好奇心，被家里人叫作“为什么先生”。1924年哥德尔考入了维也纳大学学习物理。接触了数论的课程后，很快哥德尔意识到数学才是自己真正的追求。于是1926年转入数学系。哥德尔对于哲学也很有兴趣，经常参加哲学小组的讨论，旁听哲学教授的课程。对哲学的探索贯穿着哥德尔的一生。
 
 1929年夏天，23岁的哥德尔证明了“狭谓词演算的有效公式皆可证”，并于1930年以此获得了博士学位。随后，他进一步研究希尔伯特规划，试图寻找在有限步骤内证明自然数系统的相容性和一致性的办法。但是哥德尔得到了一个意外的结果。1930年在哥尼斯堡召开的数学讨论会上，他公布了这一结果——即伟大的哥德尔第一不完全性定理。不久他又证明了第二不完全定理。
