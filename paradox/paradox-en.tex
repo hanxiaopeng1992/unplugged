@@ -414,15 +414,14 @@ Gödel worked at University of Vienna from 1932. In 1933, Adolf Hitler came to p
 Gödel's married Adele Nimbursky, whom he had known for over 10 years on September 20th, 1938. Their relationship had been opposed by his parents on the grounds that she was a divorced dancer, six years older than he was. Later in his life, Gödel suffered periods of mental instability and illness. He had an obsessive fear of being poisoned; he would eat only food that Adele prepared for him. Late in 1977, she was hospitalized for six months and could subsequently no longer prepare her husband's food. In her absence, he refused to eat, eventually starving to death. He weighed 29 kilograms (65 lb) when he died. His death certificate reported that he died of ``malnutrition and inanition caused by personality disturbance'' in 1978. Because of the outstanding contributions in logic, he was regarded as the greatest logician since Aristotle.
 
 \index{Gödel's incompleteness theorems}
-in a paper titled {\em On Formally Undecidable Propositions of Principia Mathematica and Related Systems}
+In 1931, Gödel published his paper titled {\em On Formally Undecidable Propositions of Principia Mathematica and Related Systems}. Where `Principia Mathematica' is the work of Russell and Whitehead. In that article, he proved for any computable axiomatic system that is powerful enough to describe the arithmetic of the natural numbers that:
 
-1931年，哥德尔发表了论文“论《数学原理》及有关系统中的形式不可判定命题”，题目中的《数学原理》就是罗素和怀特海的巨著。哥德尔证明了在任何包含自然数算术的形式系统中，如果它是相容的，则必定存在一不可判定命题$G$，即不能证明$G$，也不能证明$G$的否定。这一定理被称为哥德尔第一不完全性定理。这一定理表明，无矛盾的形式化系统是不完全的。只要系统强大到足以包含自然数公理系统，都会有超越于它的问题。人们自然会想，既然$G$是不可判定的命题，如果把$G$或者$G$的否定作为公理加入到系统中，不就可以得到一个更为强大的系统了么？但是不久哥德尔进一步证明了第二不完全性定理。它表明，如果一个足以包含自然数算术的公理系统是无矛盾的，那么这种无矛盾性在该系统内是不可证明的。所以不论是把$G$或是$G$的否定当作公理加入系统，得到的新系统仍然是不完全的。总是存在更高一层的不可判定命题。
+\begin{enumerate}
+\item If a system is consistent, it cannot be complete.
+\item The consistency of axioms cannot be proved within their own system.
+\end{enumerate}
 
-Gödel published his incompleteness theorems in Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme (called in English "On Formally Undecidable Propositions of Principia Mathematica and Related Systems"). In that article, he proved for any computable axiomatic system that is powerful enough to describe the arithmetic of the natural numbers (e.g., the Peano axioms or Zermelo–Fraenkel set theory with the axiom of choice), that:
-
-If a (logical or axiomatic formal) system is consistent, it cannot be complete.
-The consistency of axioms cannot be proved within their own system.
-These theorems ended a half-century of attempts, beginning with the work of Frege and culminating in Principia Mathematica and Hilbert's formalism, to find a set of axioms sufficient for all mathematics.
+For any such consistency formal system, Gödel gave an unprovable statement $G$, that can neither be proved nor disproved. This theorem is called Gödel's first incompleteness theorem. It tells that consistent formalized system is incomplete. As far as the system is powerful enough to contain arithmetic of natural numbers, there will be problems exceed it. One may ask, since $G$ is unprovable, what if accept $G$ or $G$'s negation as an additional axiom, to obtain a more powerful system? However, Gödel soon proved the second incompleteness. It tells that if a formal system containing arithmetic of natural numbers, then the consistency cannot be proved within its own system. Whether accept or reject $G$, the new system is still incomplete. There always exists unprovable statement in a higher level.
 
 例如在欧几里得几何中，如果把第五公设抽出，仅仅使用前四条公理的形式化系统既不能证明第五公设，也不能证否第五公设。我们后来知道承认或者否定第五公设都会导致无矛盾的几何——分别是欧几里得几何和不同的非欧几何。再比如在公理集合论ZF系统中，既不能证明也不能证否选择公理，承认选择公理得到无矛盾的ZFC系统，而否定选择公理得到另一无矛盾的系统。即使加入选择公理，在ZFC中既不能证明也不能证否连续统假设。承认连续统假设得到一种无矛盾的系统，否认连续统假设得到另外的无矛盾系统。
 
@@ -435,6 +434,8 @@ These theorems ended a half-century of attempts, beginning with the work of Freg
  \label{fig:Angel-Devil-1941}
 \end{figure}
 %\end{wrapfigure}
+
+These theorems ended a half-century of attempts, beginning with the work of Frege and culminating in Principia Mathematica and Hilbert's formalism, to find a set of axioms sufficient for all mathematics.
 
 哥德尔第一不完全性定理和第二不完全性定理合称为“哥德尔不完全性定理”。这等于宣布了希尔伯特纲领是行不通的。即便基本算术系统是协调的，那么这种协调性也不可能在算术系统内证明。伟大的数学家安德烈$\cdot$韦伊评论说：“因为数学具有一致性，所以上帝与我们同在；因为我们不能证明这一点，所以魔鬼亦与我们同在。”\cite{HanXueTao16}
 
