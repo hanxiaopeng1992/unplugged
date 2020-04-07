@@ -421,25 +421,23 @@ In 1931, Gödel published his paper titled {\em On Formally Undecidable Proposit
 \item The consistency of axioms cannot be proved within their own system.
 \end{enumerate}
 
-For any such consistency formal system, Gödel gave an unprovable statement $G$, that can neither be proved nor disproved. This theorem is called Gödel's first incompleteness theorem. It tells that consistent formalized system is incomplete. As far as the system is powerful enough to contain arithmetic of natural numbers, there will be problems exceed it. One may ask, since $G$ is unprovable, what if accept $G$ or $G$'s negation as an additional axiom, to obtain a more powerful system? However, Gödel soon proved the second incompleteness. It tells that if a formal system containing arithmetic of natural numbers, then the consistency cannot be proved within its own system. Whether accept or reject $G$, the new system is still incomplete. There always exists unprovable statement in a higher level.
+For any such consistency formal system, Gödel gave an undecidable statement $G$, that can neither be proved nor disproved. This theorem is called Gödel's first incompleteness theorem. It tells that consistent formalized system is incomplete. As far as the system is powerful enough to contain arithmetic of natural numbers, there will be problems exceed it. One may ask, since $G$ is undecidable, what if accept $G$ or $G$'s negation as an additional axiom, to obtain a more powerful system? However, Gödel soon proved the second incompleteness. It tells that if a formal system containing elementary arithmetic, then the consistency cannot be proved within its own system. Whether accept or reject $G$, the new system is still incomplete. There always exists undecidable statement in the higher level.
 
-例如在欧几里得几何中，如果把第五公设抽出，仅仅使用前四条公理的形式化系统既不能证明第五公设，也不能证否第五公设。我们后来知道承认或者否定第五公设都会导致无矛盾的几何——分别是欧几里得几何和不同的非欧几何。再比如在公理集合论ZF系统中，既不能证明也不能证否选择公理，承认选择公理得到无矛盾的ZFC系统，而否定选择公理得到另一无矛盾的系统。即使加入选择公理，在ZFC中既不能证明也不能证否连续统假设。承认连续统假设得到一种无矛盾的系统，否认连续统假设得到另外的无矛盾系统。
+In Euclidean geometry for example, we can exclude the fifth postulate, to obtain the axiomatic system with the first four postulates. However, we cannot prove the fifth postulate true or false. We know that whether accept or reject the fifth postulate gives consistent geometry -- Euclidean geometry and varies of non-Euclidean geometries respectively. In axiomatic set theory ZF system, we cannot prove axiom of choice true or false. Accepting it gives the consistent ZFC system; while rejecting it gives another consistent system. After add the axiom of choice to establish ZFC system, we cannot prove the continuum hypothesis true or false in ZFC. Accepting continuum hypothesis gives a consistent system; while rejecting continuum hypothesis gives another consistent system.
 
 %\begin{wrapfigure}{R}{0.5\textwidth}
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=1]{img/Angel-Devil-1941.eps}
  %\captionsetup{labelformat=empty}
- \caption{埃舍尔《天使与魔鬼》1941}
+ \caption{Escher, Angles and Devils, 1941}
  \label{fig:Angel-Devil-1941}
 \end{figure}
 %\end{wrapfigure}
 
-These theorems ended a half-century of attempts, beginning with the work of Frege and culminating in Principia Mathematica and Hilbert's formalism, to find a set of axioms sufficient for all mathematics.
+Gödel's first and second incompleteness theorems ended a half-century of attempts, beginning with the work of Frege and culminating in Principia Mathematica and Hilbert's formalism, to find a set of axioms sufficient for all mathematics. Even the elementary arithmetic system is consistent, such consistency cannot be proved within itself. As the great mathematician André Weil said: ``God exists since mathematics is consistent, and the Devil exists since we cannot prove it.''\cite{HanXueTao16}
 
-哥德尔第一不完全性定理和第二不完全性定理合称为“哥德尔不完全性定理”。这等于宣布了希尔伯特纲领是行不通的。即便基本算术系统是协调的，那么这种协调性也不可能在算术系统内证明。伟大的数学家安德烈$\cdot$韦伊评论说：“因为数学具有一致性，所以上帝与我们同在；因为我们不能证明这一点，所以魔鬼亦与我们同在。”\cite{HanXueTao16}
-
-\section{不完全性定理的证明}
+\section{Proof sketch for the first incompleteness theorem}
 
 按照希尔伯特规划，首先是把整个数学理论组织成一个形式系统。然后在元数学中对这一形式系统进行研究。为此我们需要把古典数学的每一分支表述为这样的形式系统。其中只包含有限条公理，然后通过元数学证明这样的系统是完备的且无矛盾的。其中最基本的一个系统就是自然数算术，因为很多数学系统都同构于它。在上一章，我们看到了如何从自然数出发定义出整数，有理数，甚至实数。从实数对应到点，我们又可以利用解析几何把欧几里得几何算术化。
 
