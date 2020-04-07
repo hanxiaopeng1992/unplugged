@@ -439,10 +439,12 @@ Gödel's first and second incompleteness theorems ended a half-century of attemp
 
 \section{Proof sketch for the first incompleteness theorem}
 
-按照希尔伯特规划，首先是把整个数学理论组织成一个形式系统。然后在元数学中对这一形式系统进行研究。为此我们需要把古典数学的每一分支表述为这样的形式系统。其中只包含有限条公理，然后通过元数学证明这样的系统是完备的且无矛盾的。其中最基本的一个系统就是自然数算术，因为很多数学系统都同构于它。在上一章，我们看到了如何从自然数出发定义出整数，有理数，甚至实数。从实数对应到点，我们又可以利用解析几何把欧几里得几何算术化。
+According to Hilbert's project, the first step is to formalize all the mathematics into a system. Then study it with metamathematics. In order to do that, we need represent every mathematical branch as a formal system, which only contains finite many axioms, then prove it is complete and consistent. Among them, the most fundamental system is the arithmetic of natural numbers. Many mathematical branches are isomorphic to it. In previous chapter, we see how to extend natural numbers to define integers, rationals, and real numbers. By establishing the correspondence between points and real numbers, we can further treat the Euclidean geometry as arithmetic through coordinate geometry.
 
-\subsection{构建形式系统}
-\index{TNT系统} \index{印符数论}
+\subsection{Formalize the system}
+\index{TNT system} \index{Typographical Number Theory}
+Here we use the method and terms, that Douglas Hofstadter introduced in his popular book {\em Gödel, Escher, Bach: An Eternal Golden Braid} to introduce the proof sketch.
+
 这里我们采用侯世达在《哥德尔，埃舍尔，巴赫——集异璧之大成》中的方法和术语来简要介绍这一证明过程。哥德尔不完全性定理的证明也是从构建形式系统开始的。我们称这一系统为“印符数论”简称TNT\footnote{印符数论的英文Typographical Number Theory首字母的缩写。}。恰巧这也是黄色炸药三硝基甲苯的分子式，暗示其威力大到足以——摧毁自己这座大厦。所谓印符数论，就是把用我们熟悉的自然语言表示的数论形式化为一系列印刷字符。这看起来很复杂，但是在我们第一章中介绍的皮亚诺公理的基础上，其实并不难。首先我们要定义数字，按照皮亚诺公理，零是自然数，每个自然数都有其后继，我们很自然地可以这样定义数的印符：
 
 \begin{tabular}{|r|l|}
