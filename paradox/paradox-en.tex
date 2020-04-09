@@ -443,20 +443,18 @@ According to Hilbert's project, the first step is to formalize all the mathemati
 
 \subsection{Formalize the system}
 \index{TNT system} \index{Typographical Number Theory}
-Here we use the method and terms, that Douglas Hofstadter introduced in his popular book {\em Gödel, Escher, Bach: An Eternal Golden Braid} to introduce the proof sketch.
-
-这里我们采用侯世达在《哥德尔，埃舍尔，巴赫——集异璧之大成》中的方法和术语来简要介绍这一证明过程。哥德尔不完全性定理的证明也是从构建形式系统开始的。我们称这一系统为“印符数论”简称TNT\footnote{印符数论的英文Typographical Number Theory首字母的缩写。}。恰巧这也是黄色炸药三硝基甲苯的分子式，暗示其威力大到足以——摧毁自己这座大厦。所谓印符数论，就是把用我们熟悉的自然语言表示的数论形式化为一系列印刷字符。这看起来很复杂，但是在我们第一章中介绍的皮亚诺公理的基础上，其实并不难。首先我们要定义数字，按照皮亚诺公理，零是自然数，每个自然数都有其后继，我们很自然地可以这样定义数的印符：
+Here we use the method and terms, that Douglas Hofstadter wrote in his popular book {\em Gödel, Escher, Bach: An Eternal Golden Braid} to introduce the proof sketch. Gödel's proof also starts from modeling a formal system. We call this system ``Typographical Number Theory'', abbreviated as TNT. It happens to be the same abbreviation of Trinitrotoluene, a powerful explosive. Hofstadter intended to give this name to indicate it's powerful enough to destroy the building itself. TNT formalizes the number theory in natural language into a series of typographical strings. Although sounds complex, we can realize it step by step on top of the Peano Axioms we introduced in chapter 1. As the first thing, we need define numbers. According to Peano's axioms, zero is natural number, every natural number has its successor, we can define the typographical string for numbers as the following:
 
 \begin{tabular}{|r|l|}
-零 & 0 \\
+zero & 0 \\
 \hline
-一 & S0 \\
+one & S0 \\
 \hline
-二 & SS0 \\
+two & SS0 \\
 \hline
-三 & SSS0 \\
+three & SSS0 \\
 \hline
-…… & …… \\
+... & ... \\
 \end{tabular}
 
 其中符号S代表后继，两个S表示后继的后继。一百个S和一个0表示0的一百次后继，也就是自然数100。尽管很长，但是规则异常的简单。定义了自然数，我们还要定义变量，为了是系统尽量简单，我们可以仅使用5个印符字母$a, b, c, d, e$。当需要更多变量时我们就加撇号，$a', a'', a'''$。接下来我们需要加法符号“$+$”和乘法符号“$\cdot$”以及辅助运算顺序的左右括弧。为了形式化命题我们需要等号“$=$”，表示否定的$\lnot$，表示蕴含的箭头$\to$。这样我们就可以表示命题了，例如（先不论命题的真假）：
