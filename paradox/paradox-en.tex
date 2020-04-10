@@ -445,6 +445,7 @@ According to Hilbert's project, the first step is to formalize all the mathemati
 \index{TNT system} \index{Typographical Number Theory}
 Here we use the method and terms, that Douglas Hofstadter wrote in his popular book {\em Gödel, Escher, Bach: An Eternal Golden Braid} to introduce the proof sketch. Gödel's proof also starts from modeling a formal system. We call this system ``Typographical Number Theory'', abbreviated as TNT. It happens to be the same abbreviation of Trinitrotoluene, a powerful explosive. Hofstadter intended to give this name to indicate it's powerful enough to destroy the building itself. TNT formalizes the number theory in natural language into a series of typographical strings. Although sounds complex, we can realize it step by step on top of the Peano Axioms we introduced in chapter 1. As the first thing, we need define numbers. According to Peano's axioms, zero is natural number, every natural number has its successor, we can define the typographical string for numbers as the following:
 
+\vspace{5mm}
 \begin{tabular}{|r|l|}
 zero & 0 \\
 \hline
@@ -456,48 +457,49 @@ three & SSS0 \\
 \hline
 ... & ... \\
 \end{tabular}
+\vspace{5mm}
 
-其中符号S代表后继，两个S表示后继的后继。一百个S和一个0表示0的一百次后继，也就是自然数100。尽管很长，但是规则异常的简单。定义了自然数，我们还要定义变量，为了是系统尽量简单，我们可以仅使用5个印符字母$a, b, c, d, e$。当需要更多变量时我们就加撇号，$a', a'', a'''$。接下来我们需要加法符号“$+$”和乘法符号“$\cdot$”以及辅助运算顺序的左右括弧。为了形式化命题我们需要等号“$=$”，表示否定的$\lnot$，表示蕴含的箭头$\to$。这样我们就可以表示命题了，例如（先不论命题的真假）：
+Where `S' means successor, two letters, `SS' mean the successor of a successor. A hundred `S's and a `0' are the 100 times successor of zero, which is the natural number 100. Although it is very long, the rule itself is simple enough. With natural numbers being defined, we need next define variables. To make the system as simple as possible, we only use 5 typographical letters $a, b, c, d, e$. When need more variables, we can simply add primes like $a', a'', a'''$. Next we need `$+$' for addition, `$\cdot$' for multiplication, and the parenthesis to control the arithmetic orders. To formalize the proposition we need `$=$', `$\lnot$' for negation, and $\to$ for implication. Here are some examples of formal propositions (no matter their truth or falsehood):
 
 \begin{itemize}
-\item 一加二等于四：$(S0 + SS0) = SSSS0$
-\item 二加二不等于五：$\lnot (SS0 + SS0) = SSSSS0$
-\item 如果1等于0，那么0等于1：$(S0 = 0) \to (0 = S0)$
+\item one plus two equals four: $(S0 + SS0) = SSSS0$
+\item two plus two is not equal to five: $\lnot (SS0 + SS0) = SSSSS0$
+\item if one equals to zero, then zero equals one: $(S0 = 0) \to (0 = S0)$
 \end{itemize}
 
-一个命题中可以含有自由变元，例如：
+A proposition can have free variables, for example:
 
 \[
 (a + SS0) = SSS0
 \]
 
-表示$a$加上2等于3。显然$a$的取值决定这个命题的真假，为此我们还需要引入存在量词符号$\exists$和全称量词符号$\forall$，以及表示量词约束关系的的冒号“:”。这样命题：
+It means $a$ plus 2 equals 3. Obviously the value of $a$ determines if this proposition is true or false. Therefore, we need universal quantifier $\forall$, existential quantifier $\exists$, and colon `:' to indicate quantifier scope. The following proposition:
 
 \[
 \exists a : (a + SS0) = SSS0
 \]
 
-就表示：存在$a$使得$a$加上2等于3。再看另一个例子：
+means, there exists $a$, such that $a$ plus 2 equals 3. Here is another example:
 
 \[
 \forall a : \forall b : (a + b) = (b + a)
 \]
 
-这恰好就是自然数的加法交换律。如果去掉$a$的量词约束，就变成：
+It is exactly the commutative law of addition for natural numbers. When remove the quantifier for $a$, it changes to:
 
 \[
 \forall b : (a + b) = (b + a)
 \]
 
-这是一个开公式，其中$a$是自由变元。它表示未指定的$a$可以与$b$交换。当然这一命题的真假并没有确定。为了把命题复合起来，我们还需要析取符号$\land$，合取符号$\lor$。尽管TNT中的符号极少，可是它的表达能力却很强，我们举一些例子看：
+This is a open formula, since $a$ is free. It expresses a unspecified number $a$ commutes with all numbers $b$. It may or may not be true. In order to compose propositions, we need logical conjunction (and) $\land$, logical disjunction (or) $\lor$. Although there are few symbols, TNT is very expressive. Here are some examples:
 
-2不是任何数的平方：$\lnot \exists a : (a \cdot a) = SS0$
+2 is not the square of any natural numbers: $\lnot \exists a : (a \cdot a) = SS0$
 
-费马大定理在$n$为3时成立：$\lnot \exists a : \exists b : \exists c : ((a \cdot a) \cdot a) + ((b \cdot b) \cdot b) = ((c \cdot c) \cdot c)$
+Fermat's last theorem holds when $n$ equals 3: $\lnot \exists a : \exists b : \exists c : ((a \cdot a) \cdot a) + ((b \cdot b) \cdot b) = ((c \cdot c) \cdot c)$
 
-现在，我们只是有了可以表示命题的印符，为了构建TNT形式系统，我们还需要公理和推理规则。
+We defined typographical symbols to express propositions so far. To construct TNT system, we also need axioms and reasoning rules.
 
-\subsubsection{公理和推理规则}
+\subsubsection{Axioms and reasoning rules}
 
 仿照皮亚诺算术的公理，我们为TNT系统定义下述的公理：
 
