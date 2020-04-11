@@ -501,33 +501,33 @@ We defined typographical symbols to express propositions so far. To construct TN
 
 \subsubsection{Axioms and reasoning rules}
 
-仿照皮亚诺算术的公理，我们为TNT系统定义下述的公理：
+Following Peano's axioms, we define the following axioms for the TNT system:
 
 \begin{enumerate}
-\item $\forall a : \lnot Sa = 0$，这条公理说，没有任何自然数是零的后继；
-\item $\forall a: (a + 0) = 0$，这条公理表示任何数加零都等于它本身；
-\item $\forall a: \forall b: (a + Sb) = S(a + b)$，这条公理定义出了自然数的加法；
-\item $\forall a: (a \cdot 0) = 0$，这条公理表示任何自然数乘以零都为零；
-\item $\forall a: \forall b: (a \cdot Sb) = ((a \cdot b) + a)$，这条公理定义出自然数的乘法。
+\item $\forall a : \lnot Sa = 0$, this axiom states that, zero is not the successor of any number;
+\item $\forall a: (a + 0) = 0$, this axiom states that, any number plus 0 equals itself;
+\item $\forall a: \forall b: (a + Sb) = S(a + b)$, this axiom defines the addition for natural numbers;
+\item $\forall a: (a \cdot 0) = 0$, this axiom states that, any number multiplies zero equals zero;
+\item $\forall a: \forall b: (a \cdot Sb) = ((a \cdot b) + a)$, this axiom defines multiplication for natural numbers.
 \end{enumerate}
 
-接下来我们构建推理规则。比如我们希望从公理1，零不是任何自然数的后继这一普通情况，导出1不是零的后继这一特殊情况，为此我们需要引入特称规则：
+Next we establish reasoning rules. For example, from axiom 1, that 0 is not the successor of any number, we want to deduce a special case, that 1 is not the successor of 0. In order to do this, we introduce the rule of specification:
 
-\textbf{特称规则}：如果$u$是出现在印符串$x$中的变元。如果$\forall u: x$是一个定理，则$x$也是定理，并且对$x$中的$u$做任何替换得到的新印符串也是定理。
+\textbf{Rule of specification}: Suppose $u$ is a variable occurs in string $x$. If $\forall u: x$ is a theorem, then $x$ is also a theorem, and any replacement of $u$ in $x$ wherever it occurs, also gives a theorem.
 
-这里有一个限制，在替换$u$时，不能包含任何$x$中被量化的变元，并且替换要一致。与特称规则相反的是概括规则。这个规则允许我们把全称量词加到定理的前面。
+There is a restriction, the term that replaces $u$, must not contain any variables that is quantified in $x$. And the replacement should be consistent. The opposite rule to specification is the rule of generalization. It allows us to add the universal quantifier before a theorem.
 
-\textbf{概括规则}：如果$x$是一个定理，其中的变元$u$是自由出现的。则$\forall u: x$也是一个定理。
+\textbf{Rule of generalization}: Suppose $x$ is a theorem, $u$ is a free variable in it. Then $\forall u: x$ is a theorem.
 
-例如，$\lnot S(c + S0) = 0$，表示不存在一个数加一的后继等于零，我们可以概括为：$\forall c: \lnot S(c + S0) = 0$。
+For example, $\lnot S(c + S0) = 0$ means there is no such a number, that plus 1, then take the successor gives 0. We can generalize it as: $\forall c: \lnot S(c + S0) = 0$.
 
-接下来的规则可以让我们把全称量词和存在量词互换。
+The next rule tells us how to convert universal and existential quantifiers.
 
-\textbf{互换规则}：如果$u$是一个变元，那么印符串$\forall u: \lnot $与$\lnot \exists u:$可互换。
+\textbf{Rule of interchange}: Suppose $u$ is a variable, then the string $\forall u: \lnot $ and $\lnot \exists u:$ are interchangeable.
 
-例如公理1可以按照互换规则变成：$\lnot \exists a: Sa = 0$。接下来的一个规则允许我们在一个印符串的前面加上存在量词。
+When applying this rule to axiom 1 for example, it transforms to $\lnot \exists a: Sa = 0$. The next rule allows us to put a existential quantifier before a string.
 
-\textbf{存在规则}：假设一个项在定理中出现一次或多次，可以用一个变元来代替这个项，并且在前面加上存在量词。
+\textbf{Rule of existence}: Suppose a term appears once or multiply in a theorem, then it can be replaced with a variable, and add a corresponding existential quantifier in front.
 
 我们还用公理1来举例：$\forall a: \lnot Sa = 0$中，我们可以把0，用变元$b$来代替，并且在前面加上存在量词。这样就得到：$\exists b: \forall a: \lnot Sa = b$。意思是说，存在一个数，使得任何自然数都不是它的后继。
 
