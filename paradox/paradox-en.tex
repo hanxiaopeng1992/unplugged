@@ -576,29 +576,29 @@ From axiom 2, we can deduce the first theorem by replacing $a$ with 0; on top of
 
 Note it is different from axiom 2. Unfortunately, we can't reason this theorem with all the rules in TNT so far. We may want to add an additional rule: if all this series of strings are theorems, then the universally quantified string which summarizes them is also a theorem. However, only human that outside TNT has this insight. It's not a valid rule for the formal system.
 
-\index{$\omega$不完全}
-缺少这样的概括能力说明印符数论系统TNT是不完全的，确切地说，叫作$\omega$不完全的。这里的$\omega$恰恰就是上一章介绍的可数无穷基数。我们说一个系统是$\omega$不完全的，如果一系列无穷的串都是定理，而其全称概述却不是定理。并且更奇特地，这一印符串的否定形式：
+\index{$\omega$ incomplete}
+Lack of such summarize capability indicates TNT is incomplete. Accurately speaking, a system with this kind of `defect' is called $\omega$ incomplete. Where $\omega$ is the cardinal of countable infinite set introduced in previous chapter. We say a system is $\omega$ incomplete if all the strings is a series are theorems, but the universal quantified summarizing string is not a theorem. Incidentally, the negation of the summarizing string:
 
 \[
 \lnot \forall a: (0 + a) = a
 \]
 
-也不是TNT中的定理。这意味着这个串在TNT中是不可判定的。这只是说TNT的能力不足以判定这个串是否是定理。就如同利用欧几里得几何的前四条公设无法判定第五公设一样。我们或者加入第五公设构成欧几里得几何；或者加入第五公设的否定构成非欧几何。我们可以将这一印符串或者其否定加入到TNT中，构造出不同的形式系统。
+is not a theorem of TNT too. It means the string is undecidable within TNT system. The capability of TNT is not enough to determine this string is theorem or not. It just likes the same situation, that with only the first four postulates in Euclidean geometry, the fifth postulation is undecidable. We can either accept to add the fifth postulation to obtain Euclidean geometry, or reject to add its negation to obtain non-Euclidean geometry. Similarly, we can either add this string or its negation to TNT to construct different formal systems.
 
-如果我们选择了这一印符串的否定，这里看似奇怪的一点是，零加上任何数都不再等于这个数了。这和我们通常熟悉的自然数加法大相径庭。但这恰恰提醒我们，所谓形式系统是带有未定义项的。我们只是方便理解选择了加号和自然数的含义。
+It looks a bit counter intuitive if we chose the negation as theorem: zero plus any number does not equal to this number any more. It's quite different from the arithmetic of natural numbers that familiar to us. It exactly reminds us, the concept in a formal system is undefined. We give it the meaning of addition for natural numbers only for the purpose of easy understanding.
 
-印符系统TNT的$\omega$不完全性提示我们，我们的系统还缺少一条重要的规则——读者也许想到了——代表数学归纳法的皮亚诺第五公设。为此我们添上最后一块拼图。
+The $\omega$ incompleteness of TNT tells us, we are missing an important rule -- you may have already though of -- Peano's fifth axiom that corresponding to mathematical induction. Let's add this last piece of tile to the puzzle.
 
-\textbf{归纳规则}：如果$u$是印符串$X$中的一个变元，记为$X{u}$。如果把$u$替换为0时成立，且有$\forall u: X{u} \to X{Su}$。也就是若$u$时$X$成立，则将$u$替换为$Su$时$X$也成立。那么$\forall u: X{u}$是一个定理。
+\textbf{Rule of induction}: Suppose $u$ is a variable in string $X$, denoted as $X{u}$. If it is a theorem when substitute $u$ with 0, and $\forall u: X{u} \to X{Su}$. It means if $X$ is a theorem for $u$, so as it is when substitute $u$ to $Su$. Then $\forall u: X{u}$ is also a theorem.
 
-加上数学归纳法后，印符数论系统TNT终于和皮亚诺算术具有同样的能力了。
+With mathematical induction supported, TNT system now has the same capability as Peano's arithmetic.
 
 \begin{Exercise}
-\Question{利用新加入的归纳规则证明$\forall a: (0 + a) = a$}
+\Question{Prove that $\forall a: (0 + a) = a$ with the newly added rule of induction.}
 \end{Exercise}
 
-\subsection{哥德尔配数}
-\index{哥德尔配数}
+\subsection{Gödel numbering}
+\index{Gödel numbering}
 哥德尔证明的最关键一步是引入了哥德尔配数。TNT系统已经强大到可以反映其它形式化系统，有没有可能利用TNT系统谈论它自身呢？哥德尔想到的办法就是把推理规则进行“算术化”。为此他把所有符号分配了一个数。
 
 \begin{table}[htbp]
