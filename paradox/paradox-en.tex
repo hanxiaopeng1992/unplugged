@@ -529,34 +529,34 @@ When applying this rule to axiom 1 for example, it transforms to $\lnot \exists 
 
 \textbf{Rule of existence}: Suppose a term appears once or multiply in a theorem, then it can be replaced with a variable, and add a corresponding existential quantifier in front.
 
-我们还用公理1来举例：$\forall a: \lnot Sa = 0$中，我们可以把0，用变元$b$来代替，并且在前面加上存在量词。这样就得到：$\exists b: \forall a: \lnot Sa = b$。意思是说，存在一个数，使得任何自然数都不是它的后继。
+Use axiom 1 for example again: $\forall a: \lnot Sa = 0$, we can replace 0 with a variable $b$, and add the corresponding existential quantifier to give: ：$\exists b: \forall a: \lnot Sa = b$. It states that, there exists a number, such that any natural number is not its successor.
 
-接下来考虑相等的对称性和传递性，我们定义等号规则。令$r, s, t$都代表任意的项。
+We next consider the symmetry and transitivity for equality, and define rules. Let $r, s, t$ all stand for arbitrary terms.
 
-\textbf{等号规则}：
+\textbf{Rules of quality}:
 \begin{itemize}
-\item 对称：如果$r = s$是定理，则$s = r$也是定理；
-\item 传递：如果$r = s$和$s = t$都是定理，则$r = t$也是定理。
+\item Symmetry: if $r = s$ is a theorem, then $s = r$ is also theorem;
+\item Transitivity: if $r = s$ and $s = t$ are theorems, then $r = t$ is also theorem.
 \end{itemize}
 
-对于增、减后继符号$S$，我们也定义一个规则。
+To add or remove the successorship $S$, we define below rules.
 
-\textbf{后继规则}：
+\textbf{Rules of successorship}：
 \begin{itemize}
-\item 增加：如果$r = t$是定理，则$Sr = St$也是定理；
-\item 去除：如果$Sr = St$是定理，则$r = t$也是定理。
+\item Add: If $r = t$ is theorem, then $Sr = St$ is a theorem;
+\item Drop: If $Sr = St$ is theorem, then $r = t$ is a theorem.
 \end{itemize}
 
-现在的印符数论TNT已经很强大了，我们可以用它构造出各种比较复杂的定理。
+So far, the TNT system is very powerful, we can construct complex theorems with it.
 
 \begin{Exercise}
-\Question{尝试给出费马大定理的印符串。}
-\Question{尝试用印符推理规则证明加法结合律。}
+\Question{Translate Fermat's last theorem into a TNT string.}
+\Question{Prove the associate law of addition with TNT reasoning rules.}
 \end{Exercise}
 
-\subsubsection{印符系统的不完全性}
+\subsubsection{Incompleteness of TNT}
 
-使用TNT系统中的公理和推理规则不难证明下面的一系列定理：
+With the axioms and reasoning rules in TNT system, we can prove a series of theorems easily:
 
 \[
 \begin{array}{rcl}
@@ -568,15 +568,15 @@ When applying this rule to axiom 1 for example, it transforms to $\lnot \exists 
 \end{array}
 \]
 
-第一条可以从公理2中，把$a$代换成0导出；第二条可以用公理3和上一条定理导出，每条定理都可以从上一条定理轻松导出。作为旁观者的我们，立刻想到这能不能概括成一条定理：
+From axiom 2, we can deduce the first theorem by replacing $a$ with 0; on top of this theorem, and use axiom 3, we can obtain the second theorem; every theorem can be deduced from the previous one. Observe this pattern, we immediately ask, why can't we summarize them to a theorem?
 
 \[
 \forall a: (0 + a) = a
 \]
 
-请注意它和公理2的区别。遗憾的是，利用迄今为止所给出的TNT规则，我们无法导出这一定理。我们也许希望添加一条规则，如果一系列这样的串都是定理，那么概括它们的全称量词串也是定理。但是这条规则只有在系统外部的人才能洞见。它不是一条可以放入形式系统的规则。
+Note it is different from axiom 2. Unfortunately, we can't reason this theorem with all the rules in TNT so far. We may want to add an additional rule: if all this series of strings are theorems, then the universally quantified string which summarizes them is also a theorem. However, only human that outside TNT has this insight. It's not a valid rule for the formal system.
 
-\index{omega不完全}
+\index{$\omega$不完全}
 缺少这样的概括能力说明印符数论系统TNT是不完全的，确切地说，叫作$\omega$不完全的。这里的$\omega$恰恰就是上一章介绍的可数无穷基数。我们说一个系统是$\omega$不完全的，如果一系列无穷的串都是定理，而其全称概述却不是定理。并且更奇特地，这一印符串的否定形式：
 
 \[
