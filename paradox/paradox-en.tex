@@ -589,7 +589,7 @@ It looks a bit counter intuitive if we chose the negation as theorem: zero plus 
 
 The $\omega$ incompleteness of TNT tells us, we are missing an important rule -- you may have already though of -- Peano's fifth axiom that corresponding to mathematical induction. Let's add this last piece of tile to the puzzle.
 
-\textbf{Rule of induction}: Suppose $u$ is a variable in string $X$, denoted as $X{u}$. If it is a theorem when substitute $u$ with 0, and $\forall u: X{u} \to X{Su}$. It means if $X$ is a theorem for $u$, so as it is when substitute $u$ to $Su$. Then $\forall u: X{u}$ is also a theorem.
+\textbf{Rule of induction}: Suppose $u$ is a variable in string $X$, denoted as $X{u}$. If it is a theorem when replace $u$ with 0, and $\forall u: X{u} \to X{Su}$. It means if $X$ is a theorem for $u$, so as it is when replace $u$ to $Su$. Then $\forall u: X{u}$ is also a theorem.
 
 With mathematical induction supported, TNT system now has the same capability as Peano's arithmetic.
 
@@ -599,13 +599,13 @@ With mathematical induction supported, TNT system now has the same capability as
 
 \subsection{Gödel numbering}
 \index{Gödel numbering}
-哥德尔证明的最关键一步是引入了哥德尔配数。TNT系统已经强大到可以反映其它形式化系统，有没有可能利用TNT系统谈论它自身呢？哥德尔想到的办法就是把推理规则进行“算术化”。为此他把所有符号分配了一个数。
+One critical step Gödel took was to introduce Gödel numbering. TNT system is powerful enough to mirror other formal system, is it possible to mirror TNT by itself? What Gödel thought is to `arithmetize' the reasoning rules. To do this, he assigned all symbols with a number.
 
 \begin{table}[htbp]
 \centering
 \begin{tabular}{|l|r||l|r|}
 \hline
-\textbf{符号} & \textbf{数} & \textbf{符号} & \textbf{数} \\
+\textbf{symbol} & \textbf{number} & \textbf{symbol} & \textbf{number} \\
 \hline
 0 & 666 & S & 123 \\
 \hline
@@ -624,57 +624,57 @@ $\lnot$ & 223 & $\exists$ & 333 \\
 $\forall$ & 626 & : & 636 \\
 \hline
 \end{tabular}
-\caption{对TNT系统进行哥德尔配数的一种方法}
+\caption{A Gödel numbering to TNT}
 \end{table}
 
-这样公理1就可以做如下的翻译：
+Axiom 1 is translated to such numerals:
 
 \begin{tabular}{cccccccc}
 $\forall$ & $a$ & : & $\lnot$ & $S$ & $a$ & = & 0 \\
 626 & 262 & 636 & 223 & 123 & 262 & 111 & 666 \\
 \end{tabular}
 
-配数的方法并不唯一。经过这样的配数，TNT中的任何串都可以表示为一个数了（尽管非常大）。现在问题来了，任给一个数，我们有没有办法判断它是一个TNT定理所代表的数呢？我们知道最开始有5个数一定是TNT数。它们就是五条公理所代表的数。根据TNT的推理规则，从这5个数开始，可以构造出无穷无尽的TNT数。在此之上我们引入一个数论谓词：
+The numbering scheme is not unique. It does not matter if one assigns different numbers. With Gödel numbering, every TNT string can be represented as a number (although it can be a very big number). The problem is in the other direction: given any number, can we determine if it represents a TNT theorem? We know the first five TNT numbers, which represent the five axioms. With the TNT reasoning rules, we can construct infinite many TNT numbers from these five numbers. Atop of this, we introduce a number theory predication:
 
 \begin{center}
-$a$是个TNT数。
+$a$ is a TNT number.
 \end{center}
 
-例如626,262,636,223,123,262,111,666是个TNT数（这里的逗号只是为了方便读写，和英文中每三位一分隔是同样的）它表示公理1。其否定形式是：
+For example, 626,262,636,223,123,262,111,666 is a TNT number (We add commas to make it easy to read), it represents axiom 1. Its negation form is:
 
 \begin{center}
-$\lnot a$是个TNT数。
+$\lnot a$ is a TNT number.
 \end{center}
 
-例如我们说123,666,111,666不是个TNT数。这意味着我们可以把$a$替换成0后面跟着123666111666个S。而这个巨大的串的含义实际是：$S0 = 0$不是TNT的定理。这意味着，TNT的确可以谈论它自己。这不是一种巧合，而是源于任何形式系统都可以在数论$N$中得到反映。于是我们形成了一个圈：形式系统TNT中的一个串有一个数论$N$中的解释，而$N$中的一个陈述可以有第二层含义，就是作为元语言对TNT的陈述。
+For example, 123,666,111,666 is not a TNT number. It means we can replace $a$ by a string of 123666111666 Ss and a 0. This huge string actually means: $S0 = 0$ is not a TNT theorem. TNT system can really speak about itself. It is not an accidental feature, but because of the fact that all formal systems are isomorphic to number theory $N$. Hence we formed a circle: A TNT string has its interpretation in number theory $N$, while the statement in $N$ can have a second meaning, which is the metalanguage interpretation about TNT.
 
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.8]
 \draw (-5, 0) circle[x radius=1.5cm, y radius=1cm] node (TNT) {TNT}
-      (0, 0) circle[x radius=1.5cm, y radius=1cm] node (N) {数论$N$}
-      (5, 0) circle[x radius=1.5cm, y radius=1cm] node (Meta-TNT) {元TNT};
-\draw[->] (TNT) to node [above] {数论解释} (N);
-\draw[->] (N) to node [above] {元语言陈述} (Meta-TNT);
+      (0, 0) circle[x radius=1.5cm, y radius=1cm] node (N) {Number theory $N$}
+      (5, 0) circle[x radius=1.5cm, y radius=1cm] node (Meta-TNT) {Meta-TNT};
+\draw[->] (TNT) to node [above] {Number theory interpretation} (N);
+\draw[->] (N) to node [above] {Metalanguage statement} (Meta-TNT);
 \end{tikzpicture}
-\caption{TNT $\to$ 数论$N$ $\to$ 元TNT}
+\caption{TNT $\to$ number theory $N$ $\to$ Meta-TNT}
 \label{fig:TNT-N-TNT}
 \end{figure}
 
-\subsection{构造自我指涉}
+\subsection{Construct the self-reference}
 
-哥德尔做的最后一步是构造一个自我指涉。找到一个TNT串，称之为$G$，它是关于它自己的。其意义为：
+The last step in Gödel's proof is to construct a self-reference. It's such a TNT string, called $G$, which is about itself:
 
 \begin{center}
-$G$不是TNT的定理
+$G$ is not a theorem of TNT.
 \end{center}
 
-接下来我们可以引爆TNT了。那么究竟$G$是否是TNT中的定理呢？如果$G$是一个定理，那么它表示的就是真理，即：“G不是定理”。我们看到自指命题的威力了。由于充当了定理，$G$就不得不是个假理。根据我们的假定，TNT不会把假理当作定理，于是我们被迫得出结论说$G$不是个定理。但是知道了$G$不是个定理后，我们就得承认$G$表示了一个真理。这揭示出TNT没有达到我们的期望——我们发现了一个符号串，它表示了真理，然而却不是一个定理。但考虑$G$还有一个算术解释这一事实。它表示了关于自然数的某个算术性质的一个陈述。通过在TNT系统外面进行的推理，我们确定了这个陈述为真，还确定了这个串不是TNT的定理。我们问TNT这个串是否为真，TNT将既不能说“是”，也不能说“不”。
+Now we can detonate TNT. Whether $G$ is a theorem of TNT or not? If $G$ is a theorem, then it states the truth that ``$G$ is not a theorem''. Here we see the power of self-reference. As a theorem, $G$ can't be falsehood. Because we assume that TNT will not treat falsehood as theorem, we have to draw the conclusion that $G$ is not a theorem. While known that $G$ is not a theorem, we should admit that $G$ is truth. It reflects that TNT does not meet our expectation -- we found a string, it states the truth, but is not a theorem. Further, considering the fact that $G$ has its number theory interpretation, which is a statement of arithmetic property about natural numbers. From the reasoning outside TNT, we can confirm this statement is true, and the string is not a theorem of TNT. However, when we ask TNT whether this string is true, TNT could never say `Yes' or `Not'.
 
-$G$就是那个不可判定命题。这就是哥德尔不完全定理的证明思路。
+$G$ is that undecidable proposition. This is the sketch of the proof of Gödel's first incompleteness theorem.
 
-\section{万能的程序与对角线证明}
-\index{原始递归函数}
+\section{Universal program and diagonal argument}
+\index{primitive recursive function}
 哥德尔不完全性定理对于编程意味着什么呢？我们有一个在编程上完全同构的问题。为此，我们从设计一个形式化的计算机语言开始。这个语言支持原始递归函数。所谓原始递归函数是一类数论函数，它们可以从自然数映射到自然数，并遵循下面5条公理：
 
 \begin{enumerate}
