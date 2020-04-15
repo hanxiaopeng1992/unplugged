@@ -698,37 +698,35 @@ We say $h$ is computed from $g$ through primitive recursion. It can be extended 
 
 The programming language that supports basic arithmetic like addition, subtraction, if-then branches, equal, less than prediction, and bounded loop is called primitive recursive programming language. The bounded loop means the number of loops are determined beforehand. It can be loop without go-to statement, or for-loop that does not allow to alter the loop variable inside it. However, it cannot be while loop, or repeat-until loop. Because of these limitations, all primitive recursive programs must halt.
 
-An important property of primitive recursive function is that, all primitive recursive programs are recursively enumerable. Suppose we can list all primitive recursive functions that with one input and one output, save them in a infinite big storage. We can number each of them\footnote{One numbering method is to concatenate all ASCII codes of the program to form a number, then sort them from less to big. Since each program is unique, their ASCII codes are different}, from 0, 1, 2, 3, ...
+An important property of primitive recursive function is that, all primitive recursive programs are recursively enumerable. Suppose we can list all primitive recursive functions that with one input and one output, store them in a infinite big library. We can number each of them\footnote{One numbering method is to concatenate all ASCII codes of the program to form a number, then sort them from less to big. Since each program is unique, their ASCII codes are different}, from 0, 1, 2, 3, ... And denote these programs as $B[0], B[1], B[2], ...$. For the $i$-th program, when input $n$, it gives result $B[i](n)$.
 
-原始递归函数的一个重要性质是全部原始递归程序是递归可枚举的。假设我们可以从全部原始递归程序中筛选出那些只有一个输入一个输出程序，把它们列出，放入到一个无穷大的程序库里。我们给每个程序一个编号\footnote{其中一种编号方案是把程序文字的ASCII码连接起来形成一个数，然后把这些数从小到大排列。由于没有两个程序是相同的，所以其ASICII码形成的数也不同。}，从自然数0开始，1，2，3……一直枚举下去。我们可以把这些程序记为$B[0], B[1], B[2], ...$。对于第$i$个程序，输入参数数$n$时得到结果是$B[i](n)$。
-
-现在，我们构造这样一个特殊的函数$f(n)$，当输入$n$时，它的输出恰好是编号为$n$的那个程序，当输入等于$n$时的值加上1，即：
+Now, we construct a special function $f(n)$, when input $n$, its output is what the $n$-th program's output for $n$ plus 1. Like this:
 
 \[
 f(n) = B[n](n) + 1
 \]
 
-这样的$f$显然是可计算的。我们现在问，$f$是一个存储在函数库中的原始递归程序么？如果是，假设它在程序库中的编号是$m$，根据我们之前的定义，第$m$个程序输入$m$时的结果应该是$B[m](m)$。可是根据$f$的定义，它的输出结果又应该是$f(m) = B[m](m) + 1$。这两个结果显然不相等。这就证明了存在不是原始递归的可计算函数。
+Such $f$ is definitely computable. Now we ask whether $f$ is a primitive recursive program stored in our library? If yes, suppose its number in the library is $m$. According to our numbering method, when input $m$ to the $m$-th program, the result should be $B[m](m)$. However, from the definition of $f$, its output should be $f(m) = B[m](m) + 1$. These two results are not equal obviously. The contradiction proves there exists computable function that is not primitive recursive.
 
-这个证明方法和上一章介绍的康托尔对角线证明法如出一辙。因此我们被迫放弃有界循环的限制来扩展编程语言的能力。我们可以引入带有跳转的loop循环，可以在循环体中改变循环变量的for循环，while循环，repeat-until循环，以及可递归的函数。这样就从原始递归函数扩展到了全递归函数。这样的语言称为图灵完备的语言。人们创造的大多数计算机语言都是图灵完备的，可以同构到自然数算术这样的形式系统中。但图灵完备的语言仍然存在漏洞，因为我们可以构造出判断停机的原始递归程序，从而证明存着这不可计算问题。有没有可能进一步放宽限制，增强图灵完备语言，从而设计出万能的程序么？答案是否定的，图灵完备语言已经达到了最高级别，也就是形式系统的极限，没有其他限制可以去掉了。哥德尔不完全性定理告诉我们，形式系统一旦强大到足够的程度，可以包含自然数算术，那么它就必然存在不可判定命题。
+Our proof uses the same method as Cantor's diagonal argument in previous chapter. We have to relax the bounded loop limitation to make the programming language more powerful. To do that, we allow go-to statement in the loop to jump out; the loop variable can be altered inside; we introduced while loop, repeat-until loop; and general recursive functions. As such, we extend from primitive recursive function to {\em total recursive function}. This kind of programming language is called Turing-complete language. Most computer programming languages are Turing-complete, which are isomorphic to the formal systems like arithmetic of natural numbers. However, there is defect in Turning-complete language, as we can construct the primitive recursive function of Turing halting problem. It proves there exits incomputable problem. Is it possible to relax the limitation further, empower Turning-complete language, to design a universal program? The answer is no. Turning-complete is at the highest level, that reaches to the limitation of formal system. There is no other limitation can be relaxed any more. Gödel's incompleteness theorems tell us, once the formal system is powerful enough to include arithmetic of natural numbers, there must be undecidable problem in it.
 
-\section{尾声}
+\section{Epilogue}
 
 \begin{wrapfigure}{R}{0.6\textwidth}
 %\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.8]{img/Escher-Dragon.eps}
  %\captionsetup{labelformat=empty}
- \caption{埃舍尔《龙》}
+ \caption{Escher, {\em Dragon}, 1952}
  \label{fig:Escher-Dragon}
 %\end{figure}
 \end{wrapfigure}
 
-我们的理性思维是伟大的。它可以跨越千年，与古代的先哲对话；它可以跨越宇宙，思考我们足迹无法踏上的天体；它可以预见出肉眼看不见的基本粒子；它可以突破直觉，到达高维度的神奇世界。仰望天空，无论是天高云淡，还是月朗星稀，我们也会感叹自身的渺小，在浩瀚的时间长河中，我们不过是匆匆的过客，犹如沧海一粟。
+As human being, our rational thinking is great. It can lead us back to thousands of years, and talk to ancient sages; it can send us across the universe, and step onto the unreachable planet; it can foresee elementary parcels that are invisible to eyes; it can break through intuition and reach to high dimension magic world. Looking up the sky, through the clouds, dust, and stars, we feel the insignificant of ourselves. We are just passing passengers in the long river of time, just like a drop in the vast see.
 
-本章我们探讨的问题，究其实质是人类自身的问题。我们的理性思维是否存在边界？我们是否在沿着一个怪圈吞噬着自己？在人工智能突飞猛进发展时，这是每个人都会思考的问题。人类在试图用机器同构自己，用巨大的计算资源同构我们的大脑和理性思维。这就如同埃舍尔作品中的龙，它奋力想从二维世界中挣脱出来，它自己觉得已经把画纸的中部剪开一个缺口，并把尾巴伸了出来。这条龙一口咬住自己的尾巴，拼命想把自己拉到三维的世界中去。作为旁观者的我们，却明明白白知道所有的这一切，仍然在二维的纸张上。这条龙的努力是徒劳的。所有这一切，皆是虚妄、如雾亦如电、当作如是观。
+The problem we introduce in this chapter, is essentially about ourselves as human. Does there exist the boundary of our rational thinking? Are we swallowing ourselves along a strange circle? These are questions everybody will ask at the era of artificially intelligence. People are making machine isomorphic to people, making the huge machinery computing isomorphic to brain and rational thinking. Just as Escher illustrated in his {\em Dragon}, he tried best to break free from the two-dimension picture. He has found the two slits in the paper. His head and neck pokes through one slit, and the tail through the other, with the head biting the tail, he want to pull himself out to the three-dimension world. As the observer, we clearly know all still happen on the two-dimension paper, the dragon's hard work is in vain. All these are ``like a dream, an illusion, a bubble and a shadow, like dew and lightning.''
 
-一百年前的激烈讨论和哥德尔的天才证明，在今天依然有着现实意义。作为人类，我们心怀敬畏，敬畏自然，敬畏宇宙，敬畏我们祖先，也敬畏我们自身。
+Even it was about a hundred years ago, the hot debate about mathematical foundation, the genius proof given by Gödel still have their practical significance today. As human beings, we are humbly in awe of the nature, the universe, our ancestors, and ourselves.
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
@@ -737,20 +735,19 @@ f(n) = B[n](n) + 1
 Leon A. Gatys, Alexander S. Ecker, Matthias Bethge. ``A Neural Algorithm of Artistic Style.'' 2015. arXiv:1508.06576 [cs.CV] IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2017.
 
 \bibitem{GuSen-2012}
-顾森 《思考的乐趣——Matrix67数学笔记》 人民邮电出版社，2012年，ISBN: 9787115275868
+{\fontspec{\cnmainft}顾森 《思考的乐趣——Matrix67数学笔记》 人民邮电出版社.} 2012, ISBN: 9787115275868
 
 \bibitem{SICP}
 Harold Abelson, Gerald Jay Sussman, Julie Sussman 著 裘宗燕 译 ``计算机程序的构造和解释（原书第二版）''. 北京 机械工业出版社 2004年 ISBN: 7-111-13510-5
 
 \bibitem{HanXueTao16}
-韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社. 2016, ISBN: 9787115430434
+{\fontspec{\cnmainft}韩雪涛 ``数学悖论与三次数学危机''. 人民邮电出版社}. 2016, ISBN: 9787115430434
 
 \bibitem{M-Kline-2007}
-[美] M$\cdot$克莱因 著 李宏魁 译 ``数学：确定性的丧失'' 湖南科学技术出版社，2007年4月 ISBN: 978-7-5357-1857-0
-% Morris Kline ``Mathematics: The Loss of Certainty''. Oxford University Press, 1980.
+Morris Kline ``Mathematics: The Loss of Certainty''. Oxford University Press, 1980. 0-19-502754-X.
 
 \bibitem{Poincare2}
-[法]彭加勒 著，李醒民 译 ``科学的价值'' 商务印书馆. 2010 ISBN: 978-7-100-07045-4
+Henri Poincaré. ``The Value of Science''. Modern Library, 2001. ISBN: 978-0375758485
 
 \bibitem{Ried-1996}
 Constance Ried. ``Hilbert''. Springer, 1st Printing edition, 1996, ISBN: 978-0387946740
