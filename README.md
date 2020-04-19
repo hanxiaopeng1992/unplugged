@@ -1,7 +1,7 @@
 Mathematics of Programming
 ====
 
-2020/03
+2020/04
 
 This book introduces the mathematics behind computer programming.
 
@@ -10,7 +10,7 @@ This book introduces the mathematics behind computer programming.
 Contents
 --------
 
-The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)). The first 6 chapters in English are available. I am working on the English translation for the last chapter.
+The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)). Except appendix, the book is also available in English for all chapters.
 
 - Preface ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-en.pdf))
 - Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
@@ -19,7 +19,7 @@ The book can be previewed in ([CN](https://github.com/liuxinyu95/unplugged/relea
 - Chapter 4, Category theory and type system; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180333/category-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180333/category-en.pdf))
 - Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-en.pdf))
 - Chapter 6, Infinity. Set theory, Infinity and stream; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-en.pdf))
-- Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618032/paradox-zh-cn.pdf))
+- Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618032/paradox-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180337/paradox-en.pdf))
 
 Install
 --------
