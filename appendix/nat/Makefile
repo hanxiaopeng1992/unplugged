@@ -7,24 +7,15 @@ TEX = xelatex
 
 all: tex
 
-cpp:
-	$(MAKE) cpp -C src
+cn: $(OBJ_CN)
 
-haskell:
-	$(MAKE) haskell -C src
-
-image:
-	$(MAKE) -C img
+en: $(OBJ)
 
 tex: $(OBJ) $(OBJ_CN)
 
-%.pdf: %.tex image
+%.pdf: %.tex
 	$(TEX) $<
 	$(TEX) $<
-
-html:
-	htlatex $(OBJECT) "html, imgdir:img/"
-	mv *.png img/
 
 clean:
 	rm -f *.4ct *.4tc *.aux *.css *.dvi *.html
