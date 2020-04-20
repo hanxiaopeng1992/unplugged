@@ -11,24 +11,11 @@ cn: $(OBJ_CN)
 
 en: $(OBJ)
 
-cpp:
-	$(MAKE) cpp -C src
-
-haskell:
-	$(MAKE) haskell -C src
-
-image:
-	#$(MAKE) -C img
-
 tex: $(OBJ) $(OBJ_CN)
 
-%.pdf: %.tex image
+%.pdf: %.tex
 	$(TEX) $<
 	$(TEX) $<
-
-html:
-	htlatex $(OBJECT) "html, imgdir:img/"
-	mv *.png img/
 
 clean:
 	rm -f *.4ct *.4tc *.aux *.css *.dvi *.html

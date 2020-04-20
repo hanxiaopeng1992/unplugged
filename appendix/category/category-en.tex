@@ -2,32 +2,32 @@
 
 \documentclass[UTF8]{article}
 
-\usepackage[cn]{../../prelude}
+\usepackage[en]{../../prelude}
 
 \setcounter{page}{1}
 
 \begin{document}
 
-\title{范畴}
+\title{Category Theory}
 
-\author{刘新宇
-\thanks{{\bfseries 刘新宇} \newline
+\author{LIU Xinyu
+\thanks{{\bfseries LIU Xinyu} \newline
   Email: liuxinyu95@gmail.com \newline}
   }
 
 \maketitle
 \fi
 
-\markboth{范畴}{编程中的数学}
+\markboth{Category Theory}{Mathematics of Programming}
 
-\chapter*{积和余积的唯一性}
+\chapter*{Uniqueness of product and coproduct}
 \phantomsection  % so hyperref creates bookmarks
-\addcontentsline{toc}{chapter}{积和余积的唯一性}
+\addcontentsline{toc}{chapter}{Uniqueness of product and coproduct}
 
-积和余积是唯一的么？下面的定理回答了这个问题：
+Are product and coproduct unique? The following theorem answers this question.
 
 \begin{lemma}
-对于范畴$\pmb{C}$中的一对对象$A$和$B$，令下图中的对象和箭头
+For any pair of object $A$, $B$ of category $\pmb{C}$, let the objects and arrows in below diagram
 
 \begin{center}
 \begin{tikzpicture}
@@ -51,19 +51,19 @@
 \end{tikzpicture}
 \end{center}
 
-各自为一对
+be a pair of
 
 \begin{center}
-积 \quad \quad \quad 余积
+product \quad \quad \quad coproduct
 \end{center}
 
-的楔形。则
+wedges, then
 
 \[
 P, Q \quad \quad \quad I, J
 \]
 
-是同构的楔形，存在唯一的箭头：
+are isomorphic wedges. There are unique arrows:
 
 \begin{center}
 \begin{tikzpicture}
@@ -81,7 +81,7 @@ P, Q \quad \quad \quad I, J
 \end{tikzpicture}
 \end{center}
 
-使得：
+Such that:
 
 \[
 \begin{array}{lcl}
@@ -97,23 +97,23 @@ P, Q \quad \quad \quad I, J
 \end{array}
 \]
 
-并且，$f$和$g$是互逆的同构箭头对。
+Where $f$ and $g$ are inverse pair of isomorphisms.
 \end{lemma}
 
 \begin{proof}
-我们只证明左侧积的部分，右侧余积部分的证明与此类似。给定$A, B$，对象$Q$和两个箭头$q_A, q_B$构成的楔形是一个积。我们把对象$P$和一对箭头$p_A, p_B$看成是另一个楔形。根据积的定义，存在唯一的媒介箭头$f$满足：
+We only prove the left side part. The right side can be proven in a similar way. Given $A$, $B$, Object $Q$ and the pair $q_A, q_B$ form a product wedge. Object $P$ and the pair $p_A, p_B$ form another wedge. From the definition of product, there is a unique mediator $f$ satisfying:
 
 \[
 p_A = q_A \circ f \quad \text{和} \quad p_B = q_B \circ f
 \]
 
-交换$P$和$Q$（令$P$为积，$Q$为任意楔形），又可以得到：
+By reversing the role of $P$ and $Q$ (Let $P$ be product, and $Q$ be arbitrary wedge), we have:
 
 \[
 q_A = p_A \circ g \quad \text{和} \quad q_B = p_B \circ g
 \]
 
-这样就有：
+Hence we have:
 
 \[
 \begin{cases}
@@ -122,7 +122,7 @@ p_B \circ g \circ f = q_B \circ f = p_B
 \end{cases}
 \]
 
-以及：
+And:
 
 \[
 \begin{cases}
@@ -131,7 +131,7 @@ q_B \circ f \circ g = p_B \circ g = q_B \\
 \end{cases}
 \]
 
-因此：
+Therefore:
 
 \[
 g \circ f = id_P \quad \quad \quad f \circ g = id_Q
@@ -139,7 +139,7 @@ g \circ f = id_P \quad \quad \quad f \circ g = id_Q
 
 \end{proof}
 
-这一结论说明，如果两个对象存在积（或者余积）则它是唯一的。
+This proved if two objects have product (or coproduct), then it is unique.
 
 \chapter*{集合的笛卡尔积和不相交并集构成积和余积的证明}
 \phantomsection  % so hyperref creates bookmarks
