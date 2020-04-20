@@ -141,18 +141,18 @@ g \circ f = id_P \quad \quad \quad f \circ g = id_Q
 
 This proved if two objects have product (or coproduct), then it is unique.
 
-\chapter*{集合的笛卡尔积和不相交并集构成积和余积的证明}
+\chapter*{Cartesian product and disjoint union of sets form product and coproduct}
 \phantomsection  % so hyperref creates bookmarks
-\addcontentsline{toc}{chapter}{集合的笛卡尔积和不相交并集构成积和余积的证明}
+\addcontentsline{toc}{chapter}{Cartesian product and disjoint union of sets form product and coproduct}
 
 \begin{proof}
-我们可以用构造法证明。首先证明左侧积的部分。$A \times B$的笛卡尔积是来自两个集合的元素对的全部组合
+We prove this by construction. The Cartesian product $A \times B$ contains all combinations from the two sets.
 
 \[
 \{(a, b) | a \in A, b \in B\}
 \]
 
-我们定义两个特殊的箭头（函数）作为$p_A$和$p_B$
+We define two special arrows (functions) as $p_A$ and $p_B$:
 
 \[
 \begin{cases}
@@ -161,7 +161,7 @@ snd\ (a, b) = b
 \end{cases}
 \]
 
-考虑任意楔形
+Consider an arbitrary wedge
 
 \begin{center}
 \begin{tikzpicture}
@@ -176,7 +176,7 @@ snd\ (a, b) = b
 \end{tikzpicture}
 \end{center}
 
-其中$p\ x = a, q\ x = b, x \in X$。举个具体的例子，$X$为$Int$, $A$为$Int$，$B$为$Bool$，而两个函数$p, q$的定义为：
+Where $p\ x = a, q\ x = b, x \in X$. For example, let $X$ be $Int$, $A$ be $Int$, and $B$ be $Bool$, the two functions $p$ and $q$ are defined as:
 
 \[
 \begin{cases}
@@ -185,19 +185,19 @@ q(x) = even(x)
 \end{cases}
 \]
 
-也就是说，$p$对一个整数取相反数，$q$判断其是否是偶数。我们定义函数$X \arrowto{m} A \times B$如下：
+Such that $p$ negate an integer, and $q$ examines if it is even number. We define the function $X \arrowto{m} A \times B$ as below:
 
 \[
 m(x) = (a, b)
 \]
 
-具体到上面的例子，有：
+For this example, we have:
 
 \[
 m(x) = (-x, even(x))
 \]
 
-这样，下面图中的箭头就可交换了：
+Such that, the following diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -216,29 +216,29 @@ m(x) = (-x, even(x))
 \end{tikzpicture}
 \end{center}
 
-不难验证：
+Let us verify it:
 
 \[
 \begin{array}{rcll}
-(fst \circ m)(x) & = & fst\ m(x) & \text{函数组合} \\
-                 & = & fst\ (a, b) & \text{$m$的定义} \\
-                 & = & a & \text{$fst$的定义} \\
-                 & = & p(x) & \text{反向用$p$的定义}
+(fst \circ m)(x) & = & fst\ m(x) & \text{function composition} \\
+                 & = & fst\ (a, b) & \text{definition of $m$} \\
+                 & = & a & \text{definition of $fst$} \\
+                 & = & p(x) & \text{reverse of $p$}
 \end{array}
 \]
 
-并且：
+And:
 
 \[
 \begin{array}{rcll}
-(snd \circ m)(x) & = & snd\ m(x) & \text{函数组合} \\
-                 & = & snd\ (a, b) & \text{$m$的定义} \\
-                 & = & b & \text{$snd$的定义} \\
-                 & = & q(x) & \text{反向用$q$的定义}
+(snd \circ m)(x) & = & snd\ m(x) & \text{function composition} \\
+                 & = & snd\ (a, b) & \text{definition of $m$} \\
+                 & = & b & \text{definition of $snd$} \\
+                 & = & q(x) & \text{reverse of $q$}
 \end{array}
 \]
 
-具体到上面的例子，有：
+For the above example, we have:
 
 \[
 \begin{cases}
@@ -247,26 +247,26 @@ m(x) = (-x, even(x))
 \end{cases}
 \]
 
-我们还需要证明$m$是唯一的。假设存在另一个函数$x \arrowto{h} A \times B$，也使得范畴图中的箭头可交换。即：
+Next we need prove the uniqueness of $m$. Suppose there exists another function $x \arrowto{h} A \times B$, such that the diagram also commutes:
 
 \[
-fst \circ h = p \quad \text{且} \quad snd \circ h = q
+fst \circ h = p \quad \text{and} \quad snd \circ h = q
 \]
 
-我们有：
+We have:
 
 \[
 \begin{array}{rcll}
-(a, b) & = & (p(x),\ q(x)) & \text{$p, q$的定义} \\
-       & = & ((fst \circ h)(x),\ (snd \circ h)(x)) & \text{可交换} \\
-       & = & (fst\ h(x),\ snd\ h(x)) & \text{函数组合} \\
-       & = & (fst\ (a, b),\ snd\ (a, b)) & \text{反向用$fst, snd$的定义}
+(a, b) & = & (p(x),\ q(x)) & \text{definition of $p, q$} \\
+       & = & ((fst \circ h)(x),\ (snd \circ h)(x)) & \text{commute} \\
+       & = & (fst\ h(x),\ snd\ h(x)) & \text{function composition} \\
+       & = & (fst\ (a, b),\ snd\ (a, b)) & \text{reverse of $fst, snd$}
 \end{array}
 \]
 
-所以$h(x) = (a, b) = m(x)$。这样就证明了$m$的唯一性。
+Hence $h(x) = (a, b) = m(x)$, which proves the uniqueness of $m$.
 
-接下来，我们证明右侧的余积部分。不相交的并集$A+B$中的元素分为两类。一类是来自$A$中的元素$(a, 0)$，另一类是来自$B$中的元素$(b, 1)$。为此，我们定义两个特殊的箭头（函数）作为$i_A, i_B$：
+Next we prove the coproduct part. There elements in the disjoint union $A + B$ have two types. One comes from $A$ as $(a, 0)$, the other comes from $B$ as $(b, 1)$. We can define two special arrows (functions) as $i_A$ and $i_B$:
 
 \[
 \begin{cases}
@@ -275,7 +275,7 @@ right(b) = (b, 1)
 \end{cases}
 \]
 
-考虑任意集合$X$构成的楔形：
+Consider the wedge of an arbitrary set $X$:
 
 \begin{center}
 \begin{tikzpicture}
@@ -290,7 +290,7 @@ right(b) = (b, 1)
 \end{tikzpicture}
 \end{center}
 
-我们定义箭头$A + B \arrowto{m} X$如下：
+We define arrow $A + B \arrowto{m} X$ as below:
 
 \[
 \begin{cases}
@@ -299,7 +299,7 @@ m\ (b, 1) = q(b)
 \end{cases}
 \]
 
-这样，下图中的箭头就可交换了。
+Such that the following diagram commutes.
 
 \begin{center}
 \begin{tikzpicture}
@@ -317,13 +317,13 @@ m\ (b, 1) = q(b)
 \end{tikzpicture}
 \end{center}
 
-接下来要证明$m$的唯一性，也就是说$m$是唯一使上图可交换的箭头。假设存在另一个箭头$A + B \arrowto{h} X$也使得上图可交换。即满足：
+Next we need prove the uniqueness of $m$, that $m$ is the unique arrow makes the above diagram commutes. Suppose there exists another arrow $A + B \arrowto{h} X$, also makes the diagram commutes, that satisfying:
 
 \[
-h \circ left = p \quad \text{且} \quad h \circ right = q
+h \circ left = p \quad \text{and} \quad h \circ right = q
 \]
 
-我们任取$a \in A, b \in B$，有：
+Take any $a \in A, b \in B$, we have:
 
 \[
 \begin{cases}
@@ -332,7 +332,7 @@ h\ (b, 1) = h(right(a)) = (h \circ right)(b) = q(b) = m\ (b, 1)
 \end{cases}
 \]
 
-于是$h = m$，这就证明了$m$的唯一性。
+Hence $h = m$, which proves the uniqueness of $m$.
 \end{proof}
 
 \ifx\wholebook\relax \else
