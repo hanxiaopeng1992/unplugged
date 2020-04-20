@@ -24,14 +24,14 @@
 \phantomsection  % so hyperref creates bookmarks
 \addcontentsline{toc}{chapter}{Proof of commutative law of addition}
 
-To prove the commutative law of addition $a + b = b + a$, we will prove three things as preparation. The first states that, for any natural number $a$, we have:
+To prove the commutative law of addition $a + b = b + a$, we prepare three things. The first states that, for any natural number $a$, we have:
 
 \be
 0 + a = a
 \label{eq:left-zero}
 \ee
 
-It means the zero on the left side can be cancelled for addition. When $a = 0$, according to the first clause in the definition of addition, it holds:
+It means the zero on the left side can be cancelled for addition. When $a = 0$, according to the first rule of addition, it holds:
 
 \[
 0 + 0 = 0
@@ -85,14 +85,14 @@ For induction case, suppose $a + 1 = 1 + a$ holds, we are going to show $a' + 1 
 \begin{array}{rlr}
 a' + 1 & = a' + 0' & \text{1 is the successor of 0} \\
        & = (a' + 0)' & \text{first rule of addition} \\
-       & = ((a + 1) + 0)' & \text{second result we proved} \\
+       & = ((a + 1) + 0)' & \text{second result we proved. (\ref{eq:one-succ})} \\
        & = (a + 1)' & \text{second rule of addition} \\
        & = (1 + a)' & \text{induction assumption} \\
        & = 1 + a' & \text{second rule of addition}
 \end{array}
 \]
 
-On top of these three results, we can prove the commutative law of addition. We first show that when $b = 0$ it holds. According to the first rule of addition, we have $a + 0 ＝ a$; While from the first result we proved, $0 + a = a$ holds too. Hence proved $a + 0 = 0 + a$. The we prove the induction case. Suppose $a + b = b + a$ holds, we are going to show $a + b' = b' + a$.
+On top of these three results, we can prove the commutative law of addition. We first show that when $b = 0$ it holds. According to the first rule of addition, we have $a + 0 = a$; While from the first result we proved, $0 + a = a$ holds too. Hence $a + 0 = 0 + a$. Then we prove the induction case. Suppose $a + b = b + a$ holds, we are going to show $a + b' = b' + a$.
 
 \[
 \begin{array}{rlr}
@@ -106,7 +106,7 @@ a + b' & = (a + b)' & \text{second rule of addition} \\
 \end{array}
 \]
 
-There fore we proved commutative law of addition with Peano's axioms(\cite{StepanovRose15}, p147 - 148).
+Therefore we proved commutative law of addition with Peano's axioms(\cite{StepanovRose15}, p147 - 148).
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
