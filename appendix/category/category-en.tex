@@ -27,6 +27,7 @@
 Are product and coproduct unique? The following theorem answers this question.
 
 \begin{lemma}
+\normalfont
 For any pair of object $A$, $B$ of category $\pmb{C}$, let the objects and arrows in below diagram
 
 \begin{center}
@@ -101,7 +102,7 @@ Where $f$ and $g$ are inverse pair of isomorphisms.
 \end{lemma}
 
 \begin{proof}
-We only prove the left side part. The right side can be proven in a similar way. Given $A$, $B$, Object $Q$ and the pair $q_A, q_B$ form a product wedge. Object $P$ and the pair $p_A, p_B$ form another wedge. From the definition of product, there is a unique mediator $f$ satisfying:
+We only prove the left side part. The right side can be proved in a similar way. Given $A$, $B$, Object $Q$ and the pair $q_A, q_B$ form a product wedge. Object $P$ and the pair $p_A, p_B$ form another wedge. From the definition of product, there is a unique mediator $f$ satisfying:
 
 \[
 p_A = q_A \circ f \quad \text{和} \quad p_B = q_B \circ f
@@ -122,7 +123,7 @@ p_B \circ g \circ f = q_B \circ f = p_B
 \end{cases}
 \]
 
-And:
+and:
 
 \[
 \begin{cases}
@@ -185,7 +186,7 @@ q(x) = even(x)
 \end{cases}
 \]
 
-Such that $p$ negate an integer, and $q$ examines if it is even number. We define the function $X \arrowto{m} A \times B$ as below:
+Such that $p$ negates an integer, and $q$ examines if it is even. We define the function $X \arrowto{m} A \times B$ as below:
 
 \[
 m(x) = (a, b)
@@ -227,7 +228,7 @@ Let us verify it:
 \end{array}
 \]
 
-And:
+and:
 
 \[
 \begin{array}{rcll}
@@ -247,7 +248,7 @@ For the above example, we have:
 \end{cases}
 \]
 
-Next we need prove the uniqueness of $m$. Suppose there exists another function $x \arrowto{h} A \times B$, such that the diagram also commutes:
+We also need prove the uniqueness of $m$. Suppose there exists another function $x \arrowto{h} A \times B$, such that the diagram also commutes:
 
 \[
 fst \circ h = p \quad \text{and} \quad snd \circ h = q
@@ -266,7 +267,7 @@ We have:
 
 Hence $h(x) = (a, b) = m(x)$, which proves the uniqueness of $m$.
 
-Next we prove the coproduct part. There elements in the disjoint union $A + B$ have two types. One comes from $A$ as $(a, 0)$, the other comes from $B$ as $(b, 1)$. We can define two special arrows (functions) as $i_A$ and $i_B$:
+Next we prove the coproduct part. The elements in the disjoint union $A + B$ have two types. One comes from $A$ as $(a, 0)$, the other comes from $B$ as $(b, 1)$. We can define two special arrows (functions) as $i_A$ and $i_B$:
 
 \[
 \begin{cases}
@@ -299,7 +300,7 @@ m\ (b, 1) = q(b)
 \end{cases}
 \]
 
-Such that the following diagram commutes.
+Such that the following diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -317,13 +318,13 @@ Such that the following diagram commutes.
 \end{tikzpicture}
 \end{center}
 
-Next we need prove the uniqueness of $m$, that $m$ is the unique arrow makes the above diagram commutes. Suppose there exists another arrow $A + B \arrowto{h} X$, also makes the diagram commutes, that satisfying:
+Next we need prove the uniqueness of $m$. Suppose there exists another arrow $A + B \arrowto{h} X$, also makes the diagram commutes:
 
 \[
 h \circ left = p \quad \text{and} \quad h \circ right = q
 \]
 
-Take any $a \in A, b \in B$, we have:
+Taking any $a \in A, b \in B$, we have:
 
 \[
 \begin{cases}
