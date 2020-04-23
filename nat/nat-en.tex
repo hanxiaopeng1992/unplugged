@@ -352,6 +352,8 @@ This is the operation to take the power for a number $m$. When applying to natur
 
 Can we use the abstract tool $foldn$ to define the summation and fraction? Observe the below table.
 
+\vspace{5mm}
+
 \begin{tabular}{r|l|l|l|l|l|l}
 $n$ & 0 & 1 & 2 & 3 & ... & $n'$ \\
 \hline
@@ -359,6 +361,8 @@ $sum(n)$ & 0 & 1 + 0 = 1 & 2 + 1 = 3 & 3 + 3 = 6 & ... & $n' + sum(n)$ \\
 \hline
 $n!$ & 1 & 1 $\times$ 1 = 1 & 2 $\times$ 1 = 2 & 3 $\times$ 2 = 6 & ... & $n' \cdot (n!)$
 \end{tabular}
+
+\vspace{5mm}
 
 We know that $h$ need to be a binary operation as it manipulates $n'$ and $f(n)$. To solve it, we define $c$ as a pair $(a, b)$\footnote{Also known as {\em tuple} in computer programs}. Then define some kind of `succ' operation on the pair. We also need functions to extract $a$ and $b$ from the pair.
 
@@ -381,6 +385,8 @@ sum = 2nd \cdot foldn(c, h) \\
 
 Starting from $(0, 0)$, below table gives the steps for summation.
 
+\vspace{5mm}
+
 \begin{tabular}{r|l|l}
 $(a, b)$ & $(a', b') = h (a, b)$ & $b'$\\
 \hline
@@ -390,6 +396,8 @@ $(a, b)$ & $(a', b') = h (a, b)$ & $b'$\\
 ... & ... & ... \\
 $(m, sum(m))$ & $(m + 1, m + 1 + sum(m))$ & $sum(m + 1)$
 \end{tabular}
+
+\vspace{5mm}
 
 Similarly, we can define fraction with $foldn$.
 
