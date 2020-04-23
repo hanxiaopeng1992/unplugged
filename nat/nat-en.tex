@@ -209,7 +209,8 @@ a \cdot b' = a \cdot b + a
 \end{array}
 \ee
 
-\begin{wrapfigure}{R}{0.4\textwidth}
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.8]
 \filldraw[fill=gray, draw=black, pattern=north west lines] (0, 0) rectangle (2, 1)
@@ -220,7 +221,8 @@ a \cdot b' = a \cdot b + a
     (3, -1) rectangle (4.5, -2);
 \end{tikzpicture}
 \caption{Association of addition in geometry. The areas of the above and bottom are same.}
-\end{wrapfigure}
+%\end{wrapfigure}
+\end{figure}
 
 It turns out that the associative and commutative laws for addition and multiplication are neither axioms nor postulations. They all can be proved by Peano axioms and the definitions. Let's prove the associative law for addition as an example. This law states $(a + b) + c= a + (b + c)$. We firstly prove it holds when $c=0$. According to the first rule in the add definition:
 
@@ -297,8 +299,9 @@ f(n + 1) = h(f(n))
 \end{array}
 \ee
 
-This scheme is called as {\em structural} recursion over the natural numbers. Below examples show how it behaves over the first
- several numbers.
+This scheme is called as {\em structural} recursion over the natural numbers. Below examples show how it behaves over the first several numbers.
+
+\vspace{5mm}
 
 \begin{tabular}{l|l}
 $n$ & $f(n)$ \\
@@ -310,6 +313,8 @@ $n$ & $f(n)$ \\
 ... & ... \\
 $n$ & $f(n) = h^n(c)$
 \end{tabular}
+
+\vspace{5mm}
 
 Where $h^n(c)$ means applying operation $h$ over $c$ for $n$ times. It's an instance of a more general {\em primitive} recursion(\cite{Bird97}, p5). Further, we can find it is related to the $foldn$ defined in (\ref{eq:foldn}).
 
