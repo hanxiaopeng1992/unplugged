@@ -834,6 +834,7 @@ x \mapsto F\ x \quad \overset{\eta}{\longleftrightarrow} \quad F
 
 此外，我们称内置函数的化简，如加减乘除四则运算、逻辑上的与或非等为$\delta$-变换。在某些文献上，还会看到另外一种$\lambda$表达式变换的简记形式，我们这里简单介绍一下。对表达式$(\lambda x. E)\ M$，进行$\beta$-规约时，我们用$M$替换$E$中的$x$，将此结果记为$E[M/x]$。这样三大变换就可以简写成下面的形式：
 
+\vspace{5mm}
 \begin{tabular}{|l|rcl|rcl|}
 \hline
 变换 & \multicolumn{3}{|c|}{$\lambda$形式} & \multicolumn{3}{|c|}{箭头形式} \\
@@ -848,6 +849,7 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
          & $x \mapsto E\ x$ & $\overset{\eta}{\longleftrightarrow}$ & $E$ \\
 \hline
 \end{tabular}
+\vspace{5mm}
 
 由于这些转换规则都是双向的，在对一个$\lambda$表达式进行变换时，既可以从左向右进行规约，也可以反过来从右向左进行抽象。这样自然会产生两个问题。第一个问题是，化简过程最终会停止么？第二个问题是，不同的化简方式得到的结果是一致的么？对于第一个问题，答案是不确定的，化简过程不能保证一定会中止\footnote{注意答案并不是“否定”，而是不确定。这本质上和图灵停机问题是一致的。即不存在一个可判定过程，确定任意化简是否中止。我们在最后一章会详细讨论这个问题。}。下面就是一个“死循环”的例子：$(D\ D)$，其中$D$定义为$\lambda x. x\ x$，写成箭头形式为$x \mapsto x\ x$。如果我们试图化简，就会得到这样的结果：
 
