@@ -24,6 +24,12 @@
 \phantomsection  % so hyperref creates bookmarks
 \addcontentsline{toc}{chapter}{参考答案}
 
+\section{前言}
+
+\begin{enumerate}
+\item 编程实现一个井字棋游戏是传统人工智能中的经典问题，而计算机可以轻松算出三个数字的和并判断其是否等于15。请利用这个同构编写一个简化的井字棋程序，并做到不被人类玩家击败。
+\end{enumerate}
+
 \section{自然数}
 
 \begin{enumerate}
@@ -97,10 +103,16 @@ c(a + b') & = & c(a + b)' & \text{加法规则二} \\
 \item 使用$foldn$定义平方$()^2$。
 
 可以利用递推关系$(n+1)^2 = n^2 + 2n + 1$来定义平方：
-\begin{lstlisting}
-sqr = snd . foldn (0, 0) h where
-  h (i, s) = (i + 1, s + 2 * i + 1)
-\end{lstlisting}
+
+\[
+()^2 = 2nd \cdot foldn\ (0, 0)\ h
+\]
+
+其中$h$接受一对值$(i, s)$，分别代表自然数$i$和它的平方$s$。它将第一个值递增1，然后利用平方展开式求出下一个平方数。
+
+\[
+h\ (i, s) = (i + 1, s + 2i + 1)
+\]
 
 \item 使用$foldn$定义$()^m$，计算给定自然数的$m$次幂。
 
@@ -108,6 +120,10 @@ sqr = snd . foldn (0, 0) h where
 \item 地面上有一排洞，一只狐狸藏在某个洞中。每天狐狸会移动到相邻的下一个洞里。如果每天只能检查一个洞，请给出一个捉到狐狸的策略，并证明这个策略有效。如果狐狸每天移动的不止一个洞呢？
 
 \end{enumerate}
+
+\section{递归}
+
+\section{}
 
 \ifx\wholebook\relax \else
 
