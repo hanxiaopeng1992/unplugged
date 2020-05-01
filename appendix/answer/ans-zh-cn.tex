@@ -140,10 +140,10 @@ def play():
     o = []
     while not (win(x) or win(o) or finished(x, o)):
         board(x, o)
-        i = 0
         while True:
             i = int(input("[1..9]==>"))
-            if i in x or i in o or (i not in MAGIC_SQUARE):
+            if i not in MAGIC_SQUARE or MAGIC_SQUARE[i-1] in x or
+               MAGIC_SQUARE[i-1] in o:
                 print "invalid move"
             else:
                 x = [MAGIC_SQUARE[i-1]] + x
