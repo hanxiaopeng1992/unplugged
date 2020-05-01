@@ -78,7 +78,7 @@ def findbest(x, o, maximize):
 # helper function
 def board(x, o):
     for r in range(3):
-        print "---------"
+        print "-----------"
         for c in range(3):
             p = MAGIC_SQUARE[r*3 + c]
             if p in x:
@@ -88,7 +88,7 @@ def board(x, o):
             else:
                 print "| ",
         print "|"
-    print "---------"
+    print "-----------"
 
 # main program
 def play():
