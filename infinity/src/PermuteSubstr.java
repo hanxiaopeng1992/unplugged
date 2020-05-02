@@ -87,11 +87,8 @@ public class PermuteSubstr {
         return map;
     }
 
+    // The sliding window has the same width, only need check a against b
     private static <K> boolean same(Map<K, Integer> a, Map<K, Integer> b) {
-        return isSubset(a, b) && isSubset(b, a);
-    }
-
-    private static <K> boolean isSubset(Map<K, Integer> a, Map<K, Integer> b) {
         for (K k : a.keySet()) {
             if (a.getOrDefault(k, 0) != b.getOrDefault(k, 0)) {
                 return false;
