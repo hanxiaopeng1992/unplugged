@@ -1,6 +1,6 @@
 -- F-Coalgebra examples
 
-module FCoalgebra where
+module FCoalg where
 
 -- Stream is the fixed point of StreamF
 
@@ -24,11 +24,13 @@ ana f = fix . f where
 takeStream 0 _ = []
 takeStream n (Stream e s) = e : takeStream (n - 1) s
 
+toList (Stream e s) = e : toList s
+
 fibs = ana fib (0, 1)
 
 -- takeStream 10 fibs
 
--- Prime numbers by Eratosthenes seive
+-- Prime numbers by Eratosthenes sieve
 
 era :: [Int] -> StreamF Int [Int]
 era (p:ns) = StreamF p (filter (p `notdiv`) ns)
