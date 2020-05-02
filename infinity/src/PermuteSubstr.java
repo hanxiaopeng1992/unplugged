@@ -39,7 +39,7 @@ public class PermuteSubstr {
         for (long p : PRIMES) {
             System.out.format("%d, ", p);
         }
-        System.out.println("");
+        System.out.println();
         System.out.println(exist("ab", "excbaode"));
         System.out.println(exist("ba", "excbaode"));
         System.out.println(exist("xy", "excbaode"));
