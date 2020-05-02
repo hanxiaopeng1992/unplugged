@@ -1,12 +1,13 @@
 import java.math.BigInteger;
-import java.util.stream.LongStream;
-import java.util.function.LongPredicate;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.LongPredicate;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 /*
  * Given a string W and a text T, test if any permutation of W appears in T.
- *
  * Examples:
  *   W = "ab" T = "excbaode", ==> true, "ba" = permute("ab") in T;
  *   W = "ab"  T = "ezdboaxy", ==> false, neither "ab", nor "ba" in T.
@@ -19,7 +20,7 @@ public class PermuteSubstr {
      * We use Sieve of Eratosthenes to generate a stream of primes, assign each
      * unique character a prime. We can calculate the number theory finger-print
      * of W by m = product(prime[w]) for each w in W.
-     * Then we can scan T with a window of length |W|, calculate the finger-print
+     * Then we scan T with a window of length |W|, calculate the finger-print
      * m' with the same method, whenever m' = m, we found a result.
      */
 
@@ -71,12 +72,14 @@ public class PermuteSubstr {
         }
         int[] map = new int[ASCII];
         w.chars().forEach(c -> map[c]++);
+        Set<Integer> chars = w.chars().filter(c -> map[c] != 0)
+            .boxed().collect(Collectors.toSet());
         txt.substring(0, m).chars().forEach(c -> map[c]--);
-        for (int i = m; i < n && w.chars().anyMatch(c -> map[c] != 0); ++i) {
+        for (int i = m; i < n && chars.stream().anyMatch(c -> map[c] != 0); ++i) {
             map[txt.charAt(i - m)]++;
             map[txt.charAt(i)]--;
         }
-        return w.chars().allMatch(c -> map[c] == 0);
+        return chars.stream().allMatch(c -> map[c] == 0);
     }
 
     /*
@@ -110,12 +113,8 @@ public class PermuteSubstr {
 
     // The sliding window has the same width, only need check a against b
     private static <K> boolean same(Map<K, Integer> a, Map<K, Integer> b) {
-        for (K k : a.keySet()) {
-            if (a.getOrDefault(k, 0) != b.getOrDefault(k, 0)) {
-                return false;
-            }
-        }
-        return true;
+        return a.keySet().stream()
+            .allMatch(k -> a.getOrDefault(k, 0) == b.getOrDefault(k, 0));
     }
 
     private static final String TXT = "In number theory, the fundamental theorem "
@@ -131,10 +130,6 @@ public class PermuteSubstr {
         + "exactly four 2s, one 3, two 5s, and no other primes in the product.";
 
     public static void main(String[] args) {
-        for (long p : PRIMES) {
-            System.out.format("%d, ", p);
-        }
-        System.out.println();
         for (String w : WS.split("\\s+|,\\s*|\\.\\s*")) {
             boolean a = exists(w, TXT);
             boolean b = matches(w, TXT);
