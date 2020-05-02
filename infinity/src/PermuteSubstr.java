@@ -1,7 +1,28 @@
+import java.math.BigInteger;
 import java.util.stream.LongStream;
 import java.util.function.LongPredicate;
+import java.util.Map;
+import java.util.HashMap;
+
+/*
+ * Given a string W and a text T, test if any permutation of W appears in T.
+ *
+ * Examples:
+ *   W = "ab" T = "excbaode", ==> true, "ba" = permute("ab") in T;
+ *   W = "ab"  T = "ezdboaxy", ==> false, neither "ab", nor "ba" in T.
+ */
 
 public class PermuteSubstr {
+
+    /*
+     * Solution based on Fundamental theorem of arithmetic
+     * We use Sieve of Eratosthenes to generate a stream of primes, assign each
+     * unique character a prime. We can calculate the number theory finger-print
+     * of W by m = product(prime[w]) for each w in W.
+     * Then we can scan T with a window of length |W|, calculate the finger-print
+     * m' with the same method, whenever m' = m, we found a result.
+     */
+
     private static final int ASCII = 128;
     private static LongPredicate sieves = x -> true; // initialize sieve as id
     private final static long[] PRIMES = LongStream
@@ -11,11 +32,16 @@ public class PermuteSubstr {
         .limit(ASCII)                 // only support ASCII
         .toArray();
 
-    private static long product(String str) {
-        return str.chars().mapToLong(c -> PRIMES[c]).reduce(1, (a, b) -> a * b);
+    private static BigInteger product(String str) {
+        return str.chars().mapToObj(c -> primeOf(c))
+            .reduce(BigInteger.ONE, BigInteger::multiply);
     }
 
-    public static boolean exist(String w, String txt) {
+    private static BigInteger primeOf(int c) {
+        return BigInteger.valueOf(PRIMES[c - ' ']);
+    }
+
+    public static boolean exists(String w, String txt) {
         if (w.isEmpty()) {
             return true;
         }
@@ -23,21 +49,80 @@ public class PermuteSubstr {
         if (n < m) {
             return false;
         }
-        long target = product(w);
-        long fp = product(txt.substring(0, m));
-        for (int i = m; i < n && target != fp; ++i) {
-            fp = fp / PRIMES[txt.charAt(i - m)] * PRIMES[txt.charAt(i)];
+        BigInteger target = product(w);
+        BigInteger fp = product(txt.substring(0, m));
+        for (int i = m; i < n && !target.equals(fp); ++i) {
+            fp = fp.divide(primeOf(txt.charAt(i - m)))
+                   .multiply(primeOf(txt.charAt(i)));
         }
-        return target == fp;
+        return target.equals(fp);
     }
+
+    /*
+     * Solution with a Map from char to occurrence count
+     */
+
+    public static boolean contains(String w, String txt) {
+        if (w.isEmpty()) {
+            return true;
+        }
+        int m = w.length(), n = txt.length();
+        if (n < m) {
+            return false;
+        }
+        Map<Character, Integer> target = mapOf(w);
+        Map<Character, Integer> fp = mapOf(txt.substring(0, m));
+        for (int i = m; i < n && !same(target, fp); ++i) {
+            fp.compute(txt.charAt(i - m), (k, v) -> v - 1);
+            fp.compute(txt.charAt(i), (k, v) -> v == null ? 1 : v + 1);
+        }
+        return same(target, fp);
+    }
+
+    private static Map<Character, Integer> mapOf(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            map.compute(c, (k, v) -> v == null ? 1 : v + 1);
+        }
+        return map;
+    }
+
+    private static <K> boolean same(Map<K, Integer> a, Map<K, Integer> b) {
+        return isSubset(a, b) && isSubset(b, a);
+    }
+
+    private static <K> boolean isSubset(Map<K, Integer> a, Map<K, Integer> b) {
+        for (K k : a.keySet()) {
+            if (a.getOrDefault(k, 0) != b.getOrDefault(k, 0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static final String TXT = "In number theory, the fundamental theorem "
+        + "of arithmetic, also called the unique factorization theorem or the "
+        + "unique-prime-factorization theorem, states that every integer greater "
+        + "than 1[3] either is a prime number itself or can be represented as the "
+        + "product of prime numbers and that, moreover, this representation is "
+        + "unique, up to (except for) the order of the factors.";
+
+    private static final String WS = "The theorem says two things for this "
+        + "example: first, that 1200 can be represented as a product of primes, "
+        + "and second, that no matter how this is done, there will always be "
+        + "exactly four 2s, one 3, two 5s, and no other primes in the product.";
 
     public static void main(String[] args) {
         for (long p : PRIMES) {
             System.out.format("%d, ", p);
         }
         System.out.println();
-        System.out.println(exist("ab", "excbaode"));
-        System.out.println(exist("abc", "excbaode"));
-        System.out.println(exist("xy", "excbaode"));
+        for (String w : WS.split("\\s+|,\\s*|\\.\\s*")) {
+            boolean a = exists(w, TXT);
+            boolean b = contains(w, TXT);
+            if (a != b) {
+                System.out.format("long overflow err: w = [%s]: %s, %s\n", w, a, b);
+            }
+        }
     }
 }

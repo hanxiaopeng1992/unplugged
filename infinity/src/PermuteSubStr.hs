@@ -7,7 +7,7 @@
 -- Solution based on Fundamental theorem of arithmetic
 -- We use Sieve of Eratosthenes to generate a stream of primes, assign each
 -- unique character a prime. We can calculate the number theory finger-print
--- of W by m = product(prime[w[i]]) for each w[i] in W.
+-- of W by m = product(prime[w]) for each w in W.
 -- Then we can scan T with a window of length |W|, calculate the finger-print
 -- m' with the same method, whenever m' = m, we found a result.
 
