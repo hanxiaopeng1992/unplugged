@@ -32,3 +32,7 @@ primeOf c = maybe 1 id (pmap !? c) where
 
 -- example:
 -- exist "ab" "excbaode"
+
+-- Alternatively, sieve of Eratosthenes without F-Coalgebra
+primes' = sieve [2..]
+sieve (x:xs) = x : sieve [y | y <- xs, y `mod` x > 0]
