@@ -1,4 +1,3 @@
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.function.LongPredicate;
 
@@ -15,8 +14,8 @@ public class PermuteSubstr {
         return PRIMES[c - 'a'];
     }
 
-    private static long product(IntStream cs) {
-        return cs.mapToLong(c -> primeOf(c)).reduce(1, (a, b) -> a * b);
+    private static long product(String str) {
+        return str.chars().mapToLong(c -> primeOf(c)).reduce(1, (a, b) -> a * b);
     }
 
     public static boolean exist(String w, String txt) {
@@ -27,8 +26,8 @@ public class PermuteSubstr {
         if (n < m) {
             return false;
         }
-        long target = product(w.chars());
-        long fp = product(txt.substring(0, m).chars());
+        long target = product(w);
+        long fp = product(txt.substring(0, m));
         for (int i = m; i < n && target != fp; ++i) {
             fp = fp / primeOf(txt.charAt(i - m)) * primeOf(txt.charAt(i));
         }
