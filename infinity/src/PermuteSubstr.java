@@ -2,20 +2,17 @@ import java.util.stream.LongStream;
 import java.util.function.LongPredicate;
 
 public class PermuteSubstr {
+    private static final int ASCII = 128;
     private static LongPredicate sieves = x -> true; // initialize sieve as id
     private final static long[] PRIMES = LongStream
         .iterate(2, i -> i + 1)
         .filter(i -> sieves.test(i))  // Sieve of Eratosthenes
         .peek(i -> sieves = sieves.and(v -> v % i != 0)) // update, chain the sieve
-        .limit(52)                    // a..zA..Z
+        .limit(ASCII)                 // only support ASCII
         .toArray();
 
-    private static long primeOf(int c) {
-        return PRIMES[c - 'a'];
-    }
-
     private static long product(String str) {
-        return str.chars().mapToLong(c -> primeOf(c)).reduce(1, (a, b) -> a * b);
+        return str.chars().mapToLong(c -> PRIMES[c]).reduce(1, (a, b) -> a * b);
     }
 
     public static boolean exist(String w, String txt) {
@@ -29,7 +26,7 @@ public class PermuteSubstr {
         long target = product(w);
         long fp = product(txt.substring(0, m));
         for (int i = m; i < n && target != fp; ++i) {
-            fp = fp / primeOf(txt.charAt(i - m)) * primeOf(txt.charAt(i));
+            fp = fp / PRIMES[txt.charAt(i - m)] * PRIMES[txt.charAt(i)];
         }
         return target == fp;
     }
@@ -40,7 +37,7 @@ public class PermuteSubstr {
         }
         System.out.println();
         System.out.println(exist("ab", "excbaode"));
-        System.out.println(exist("ba", "excbaode"));
+        System.out.println(exist("abc", "excbaode"));
         System.out.println(exist("xy", "excbaode"));
     }
 }
