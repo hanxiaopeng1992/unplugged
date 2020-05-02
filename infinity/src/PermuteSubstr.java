@@ -59,7 +59,28 @@ public class PermuteSubstr {
     }
 
     /*
-     * Solution 2, with a Map from char to occurrence count
+     * Solution 2, char indexed array
+     */
+    public static boolean matches(String w, String txt) {
+        if (w.isEmpty()) {
+            return true;
+        }
+        int m = w.length(), n = txt.length();
+        if (n < m) {
+            return false;
+        }
+        int[] map = new int[ASCII];
+        w.chars().forEach(c -> map[c]++);
+        txt.substring(0, m).chars().forEach(c -> map[c]--);
+        for (int i = m; i < n && w.chars().anyMatch(c -> map[c] != 0); ++i) {
+            map[txt.charAt(i - m)]++;
+            map[txt.charAt(i)]--;
+        }
+        return w.chars().allMatch(c -> map[c] == 0);
+    }
+
+    /*
+     * Solution 3, with a Map from char to occurrence count
      */
 
     public static boolean contains(String w, String txt) {
@@ -97,27 +118,6 @@ public class PermuteSubstr {
         return true;
     }
 
-    /*
-     * Solution 3, char indexed array
-     */
-    public static boolean matches(String w, String txt) {
-        if (w.isEmpty()) {
-            return true;
-        }
-        int m = w.length(), n = txt.length();
-        if (n < m) {
-            return false;
-        }
-        int[] map = new int[ASCII];
-        w.chars().forEach(c -> map[c]++);
-        txt.substring(0, m).chars().forEach(c -> map[c]--);
-        for (int i = m; i < n && w.chars().anyMatch(c -> map[c] != 0); ++i) {
-            map[txt.charAt(i - m)]++;
-            map[txt.charAt(i)]--;
-        }
-        return w.chars().allMatch(c -> map[c] == 0);
-    }
-
     private static final String TXT = "In number theory, the fundamental theorem "
         + "of arithmetic, also called the unique factorization theorem or the "
         + "unique-prime-factorization theorem, states that every integer greater "
@@ -137,8 +137,8 @@ public class PermuteSubstr {
         System.out.println();
         for (String w : WS.split("\\s+|,\\s*|\\.\\s*")) {
             boolean a = exists(w, TXT);
-            boolean b = contains(w, TXT);
-            boolean c = matches(w, TXT);
+            boolean b = matches(w, TXT);
+            boolean c = contains(w, TXT);
             if (a != b || b != c) {
                 System.out.format("err: w = [%s]: %s, %s, %s\n", w, a, b, c);
             }
