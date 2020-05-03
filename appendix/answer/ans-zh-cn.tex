@@ -33,7 +33,9 @@
 
 有两种思路解决这个问题，第一种是列举洛书幻方中的所有行、列、对角线，共8个三元组：$\{ \{4, 9, 2\}, \{3, 5, 7\}, ..., \{2, 5, 8\} \}$。然后看是否某个三元组包含在玩家占领的格子集合中。第二种比较有趣，假设玩家占领了格子$ X = \{x_1, x_2, ..., x_n\}$。这些格子按照洛书幻方中的元素升序排列。我们可以先选出$x_1$，然后用左右两个指针$l, r$分别指向下一个元素和最后一个元素，然后把这3个数加起来$s = x_1 + x_l + x_r$，如果等于15，说明玩家连成一条直线已经获胜了。如果小于15，由于元素是升序排列的，我们可以把左侧指针$l$加一，然后再次尝试；如果大于15，我们把右侧指针$r$减一，然后再次尝试。如果左右指针相遇，说明固定$x_1$没有找到相加等于15的三元组，我们选出$x_2$再次进行这样的检查。这样最差情况总共进行$(n - 2)+ (n - 3) + ... + 1$次检查就得知玩家是否获胜了。
 
-\lstset{language=Python}
+\lstset{language=Python
+    %, frame=single
+}
 \begin{lstlisting}
 def win(s):
     n = len(s)
@@ -257,41 +259,31 @@ h\ (i, s) = (i + 1, s + 2i + 1)
 我们的思路是，将每一个不同字符对应到一个素数上去，a对应2，b对应3，c对应5……。这样任意给定一个字符串$W$，不管它是否包含重复的字符，我们都可以把它表示为素数的乘积：
 
 \[
-F = \prod p_{c_i} , c_i \in W
+F = \prod p_c , c \in W
 \]
 
-我们称其为字符串$W$的数论指纹$F$。如果$W$是空串，我们规定它的指纹等于1。根据整数乘法的交换律，我们知道无论$W$怎样排列，其数论指纹都不变，并且根据算术基本定理，这个数论指纹是唯一的。现在我们就得到了一个特别简洁的解法：我们首先计算出$W$的数论指纹$F$，然后用一个长度为$|W|$的窗口沿着$TXT$从左向右滑动。一开始我们需要计算$TXT$在这个窗口内的数论指纹，并和$F$比较，如果相等就说明$TXT$包含$W$的某种排列。如果不等我们将这个窗口向右滑动一个字符。此时我们可以非常容易地计算新窗口内的数论指纹：只要把滑出的字符对应的素数除掉，再把滑入的字符对应的素数乘上就可以了。任何时候如果新窗口内的数论指纹等于$F$，就说明找到了一个排列。当然为了获得每个不同字符对应的素数，我们还要利用埃拉托斯特尼筛法产生一串素数。下面是一个例子Java程序：
+我们称其为字符串$W$的数论指纹$F$。如果$W$是空串，我们规定它的指纹等于1。根据整数乘法的交换律，我们知道无论$W$怎样排列，其数论指纹都不变，并且根据算术基本定理，这个数论指纹是唯一的。现在我们就得到了一个特别简洁的解法：我们首先计算出$W$的数论指纹$F$，然后用一个长度为$|W|$的窗口沿着$T$从左向右滑动。一开始我们需要计算$T$在这个窗口内的数论指纹，并和$F$比较，如果相等就说明$T$包含$W$的某种排列。如果不等我们将这个窗口向右滑动一个字符。此时我们可以非常容易地计算新窗口内的数论指纹：只要把滑出的字符对应的素数除掉，再把滑入的字符对应的素数乘上就可以了。任何时候如果新窗口内的数论指纹等于$F$，就说明找到了一个排列。当然为了获得每个不同字符对应的素数，我们还要利用埃拉托斯特尼筛法产生一串素数。下面是一段示例算法：
 
-\lstset{language=Java}
-\begin{lstlisting}
-private static LongPredicate sieves = x -> true; // initialize sieve as id
-private final static long[] PRIMES = LongStream
-    .iterate(2, i -> i + 1)
-    .filter(i -> sieves.test(i))  // Sieve of Eratosthenes
-    .peek(i -> sieves = sieves.and(v -> v % i != 0)) // update, chain the sieve
-    .limit(128)                   // only support ASCII
-    .toArray();
-
-private static long product(String str) {
-    return str.chars().mapToLong(c -> PRIMES[c]).reduce(1, (a, b) -> a * b);
-}
-
-public static boolean exist(String w, String txt) {
-    if (w.isEmpty()) {
-        return true;
-    }
-    int m = w.length(), n = txt.length();
-    if (n < m) {
-        return false;
-    }
-    long target = product(w);
-    long fp = product(txt.substring(0, m));
-    for (int i = m; i < n && target != fp; ++i) {
-        fp = fp / PRIMES[txt.charAt(i - m)] * PRIMES[txt.charAt(i)];
-    }
-    return target == fp;
-}
-\end{lstlisting}
+\begin{algorithmic}
+\Function{contains?}{$W, T$}
+  \State $P \gets ana \ era \ [2, 3, ...]$ \Comment{素数序列}
+  \If{$W = \phi$}
+    \State \Return True
+  \EndIf
+  \If{$|T| < |W|$}
+    \State \Return False
+  \EndIf
+  \State $\displaystyle m \gets \prod P_c, c \in W$
+  \State $\displaystyle m' \gets \prod P_c, c \in T[1...|W|]$
+  \For{$i \gets |W| + 1$ to $|T|$}
+    \If{$m = m'$}
+      \State \Return True
+    \EndIf
+    \State $m' \gets m' \times P_{T_i} / P_{T_{i - |W|}} $
+  \EndFor
+  \State \Return $m = m'$
+\EndFunction
+\end{algorithmic}
 
 \end{enumerate}
 
