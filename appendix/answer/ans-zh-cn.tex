@@ -2,6 +2,14 @@
 
 \documentclass[UTF8]{article}
 
+\usepackage[nomarginpar
+  %, margin=.5in
+]{geometry}
+
+\addtolength{\oddsidemargin}{-0.05in}
+\addtolength{\evensidemargin}{-0.05in}
+\addtolength{\textwidth}{0.1in}
+
 \usepackage[cn]{../../prelude}
 
 \setcounter{page}{1}
@@ -227,6 +235,15 @@ c(a + b') & = & c(a + b)' & \text{加法规则二} \\
 显然用这个方法证明3 + 147 = 150的话太冗长了，我们可以用先前证明的加法交换律证明147 + 3 = 150会容易一些。另一个方法是通过数学归纳法证明$3 + a = a'''$。
 
 \item 试给出乘法分配律，乘法结合律，和乘法交换律的几何解释。
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/geometric-arithmetic.png}
+ \captionsetup{labelformat=empty}
+ \caption{乘法交换律、结合律、分配律的几何解释}
+ \label{fig:geometric-arithmetic}
+\end{figure}
+
 
 \item 使用$foldn$定义平方$()^2$。
 
