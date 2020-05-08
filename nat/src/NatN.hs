@@ -1,5 +1,7 @@
 module NatN where
 
+import Data.Char (digitToInt)
+
 foldn z _ 0 = z
 foldn z f n = f (foldn z f (n - 1))
 
@@ -57,4 +59,7 @@ dec' :: (Num a) => [a] -> a
 dec' = foldr (\c d -> d * 10 + c) 0
 
 dec :: String -> Int
-dec = fst . foldr (\c (d, e) -> ((fromEnum c - fromEnum '0') * e + d, 10 * e)) (0, 1)
+dec = fst . foldr (\c (d, e) -> ((digitToInt c) * e + d, 10 * e)) (0, 1)
+
+hex :: String -> Int
+hex = fst . foldr (\c (d, e) -> ((digitToInt c) * e + d, 16 * e)) (0, 1)
