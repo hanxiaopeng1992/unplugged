@@ -51,3 +51,10 @@ sumOdd = snd . foldn (1, 0) h where
 fox m = foldn (1, m) h n where
   h (c, f) = (c + 2, f + 1)
   n = m - 1 -- solve equation: 2n + 1 = m + n
+
+--naive dec
+dec' :: (Num a) => [a] -> a
+dec' = foldr (\c d -> d * 10 + c) 0
+
+dec :: String -> Int
+dec = fst . foldr (\c (d, e) -> ((fromEnum c - fromEnum '0') * e + d, 10 * e)) (0, 1)
