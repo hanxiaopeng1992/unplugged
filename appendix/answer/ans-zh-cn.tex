@@ -276,7 +276,7 @@ h\ (i, b) = (i + 1, (i + 1)^m)
 这看起来有些奇怪，所有中间计算都被直接丢掉了。另一种方法是利用牛顿二项式定理：
 
 \[
-(n + 1)^m = n^m + \binom{n}{1} n^{m-1} + ... + \binom{n}{n-1} n + 1
+(n + 1)^m = n^m + \binom{m}{1} n^{m-1} + ... + \binom{m}{m-1} n + 1
 \]
 
 这样就建立了递推关系：
@@ -291,23 +291,7 @@ h\ (i, b) = (i + 1, (i + 1)^m)
 h (i, x) = (i + 1, C \cdot X)
 \]
 
-这里$C \cdot X$是二项式系数和各次幂的点积$C \cdot X = \sum_{j} c_j x_j$。各次幂通过$X = take\ (m + 1)\ (iterate (y \mapsto y / i)\ x)$求出，二项式定理的系数可以由帕斯卡三角形逐行递推得到：
-
-\[
-\begin{array}{l}
-C = foldn\ [1]\ \Delta\ m \\
-\Delta = gen\ [1] \\
-\end{array}
-\]
-
-其中：
-\bre
-gen\ C\ [x_1, x_2, x_3, ...] & = & gen\ ((x_1 + x_2) : C)\ [x_2, x_3, ...] & \\
-gen\ C\ X & = & (1:C) & \text{$X$不足两个元素时} \\
-\ere
-
-
-下面是综合在一起的一段例子程序：
+这里$C \cdot X$是二项式系数和各次幂的点积$C \cdot X = \sum c_j x_j$。各次幂可以通过对$x$不断除以$i$求出，二项式定理的系数可以由帕斯卡三角形逐行递推得到。下面是综合在一起的例子程序：
 
 \lstset{language=Haskell
     , frame=single
