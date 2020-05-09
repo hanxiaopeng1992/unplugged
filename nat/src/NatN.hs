@@ -1,6 +1,8 @@
 module NatN where
 
 import Data.Char (digitToInt)
+import Data.List (inits, tails)
+import Test.QuickCheck
 
 foldn z _ 0 = z
 foldn z f n = f (foldn z f (n - 1))
@@ -67,3 +69,15 @@ hex = fst . foldr (\c (d, e) -> ((digitToInt c) * e + d, 16 * e)) (0, 1)
 decimal :: String -> Float
 decimal = fst . foldr (\c (d, e) -> if c == '.' then (d / e, 1) else
                           ((fromIntegral $ digitToInt c) * e + d, 10 * e)) (0, 1)
+
+maxSum :: (Ord a, Num a) => [a] -> a
+maxSum = fst . foldr f (0, 0) where
+  f x (m, mSofar) = (m', mSofar') where
+    mSofar' = max 0 (mSofar + x)
+    m' = max mSofar' m
+
+naiveMaxSum :: (Ord a, Num a) => [a] -> a
+naiveMaxSum = maximum . (map sum) . (concatMap tails) . inits
+
+prop_maxSum :: [Int] -> Bool
+prop_maxSum xs = maxSum xs == naiveMaxSum xs
