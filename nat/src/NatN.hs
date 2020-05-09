@@ -63,3 +63,7 @@ dec = fst . foldr (\c (d, e) -> ((digitToInt c) * e + d, 10 * e)) (0, 1)
 
 hex :: String -> Int
 hex = fst . foldr (\c (d, e) -> ((digitToInt c) * e + d, 16 * e)) (0, 1)
+
+decimal :: String -> Float
+decimal = fst . foldr (\c (d, e) -> if c == '.' then (d / e, 1) else
+                          ((fromIntegral $ digitToInt c) * e + d, 10 * e)) (0, 1)
