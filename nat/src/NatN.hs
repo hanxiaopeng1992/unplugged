@@ -56,7 +56,9 @@ fox m = foldn (1, m) h n where
   h (c, f) = (c + 2, f + 1)
   n = m - 1 -- solve equation: 2n + 1 = m + n
 
---naive dec
+-- convert a list of digits to number, hex, and decimal.
+
+-- naive dec
 dec' :: (Num a) => [a] -> a
 dec' = foldr (\c d -> d * 10 + c) 0
 
@@ -70,14 +72,32 @@ decimal :: String -> Float
 decimal = fst . foldr (\c (d, e) -> if c == '.' then (d / e, 1) else
                           ((fromIntegral $ digitToInt c) * e + d, 10 * e)) (0, 1)
 
+-- Find the maximum sum of sub list
+
+-- Only find the sum
 maxSum :: (Ord a, Num a) => [a] -> a
 maxSum = fst . foldr f (0, 0) where
   f x (m, mSofar) = (m', mSofar') where
     mSofar' = max 0 (mSofar + x)
     m' = max mSofar' m
 
+-- return the max sum together with the sub list
+maxSum' :: (Ord a, Num a) => [a] -> (a, [a])
+maxSum' = fst . foldr f ((0, []), (0, [])) where
+  f x (m, (s, xs)) = (m', mSofar) where
+    mSofar = max (0, []) (x + s, x:xs)
+    m' = max m mSofar
+
+-- brute force naive method for verification purpose
 naiveMaxSum :: (Ord a, Num a) => [a] -> a
 naiveMaxSum = maximum . (map sum) . (concatMap tails) . inits
 
+-- quickCheck prop_maxSum or verboseCheck prop_maxSum
 prop_maxSum :: [Int] -> Bool
-prop_maxSum xs = maxSum xs == naiveMaxSum xs
+prop_maxSum xs = a == b && a == c where
+  a = maxSum xs
+  b = naiveMaxSum xs
+  c = fst $ maxSum' xs
+
+-- Find the longest substr without any duplicated chars
+-- Data.Number.Prime
