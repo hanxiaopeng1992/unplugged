@@ -1,6 +1,8 @@
 # Find the longest sub-string without repeated chars
 
-def longestNub(str):
+# solution 1: map of char to its last occurrence position.
+
+def longestnub(str):
     pos = {}
     maxlen = 0
     start_max = 0
@@ -15,6 +17,11 @@ def longestNub(str):
         pos[str[i]] = i
     return str[start_max : start_max + maxlen]
 
-print("abcdefg ==> ", longestNub("abcdefg"))
-print("aaaaaaa ==> ", longestNub("aaaaaaa"))
-print("abcabcbb ==> ", longestNub("abcabcbb"))
+# solution 2: map char to prime
+
+def longestnub_nt(str):
+    pass
+
+print("abcdefg ==> ", longestnub("abcdefg"))
+print("aaaaaaa ==> ", longestnub("aaaaaaa"))
+print("abcabcbb ==> ", longestnub("abcabcbb"))
