@@ -2,7 +2,9 @@ module NatN where
 
 import Data.Char (digitToInt)
 import Data.List (inits, tails)
-import Test.QuickCheck
+import qualified Data.Map as Map
+import Data.Numbers.Primes (primes)  -- cabal install primes
+import Test.QuickCheck               -- cabal install QuickCheck
 
 foldn z _ 0 = z
 foldn z f n = f (foldn z f (n - 1))
@@ -100,4 +102,17 @@ prop_maxSum xs = a == b && a == c where
   c = fst $ maxSum' xs
 
 -- Find the longest substr without any duplicated chars
--- Data.Number.Prime
+
+-- Solution 1: Map char to its last occurrence position
+
+-- returns (maxlen, end position)
+longest :: String -> (Int, Int)
+longest xs = fst2 $ foldr f (0, n, n, Map.empty :: (Map.Map Char Int)) (zip [1..] xs) where
+  fst2 (len, end, _, _) = (len, end)
+  n = length xs
+  f (i, x) (maxlen, maxend, end, pos) = (maxlen', maxend', end', Map.insert x i pos) where
+    maxlen' = max maxlen (end' - i + 1)
+    end' = case Map.lookup x pos of
+      Nothing -> end
+      Just j -> min end (j - 1)
+    maxend' = if end' - i + 1 > maxlen then end' else maxend
