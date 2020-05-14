@@ -108,7 +108,7 @@ prop_maxSum xs = a == b && a == c where
 
 -- returns (maxlen, end position)
 longest :: String -> (Int, Int)
-longest xs = fst2 $ foldr f (0, n, n, Map.empty :: (Map.Map Char Int)) (zip [1..] xs) where
+longest xs = fst2 $ foldr f (0, n, n, Map.empty::(Map.Map Char Int)) (zip [1..] xs) where
   fst2 (len, end, _, _) = (len, end)
   n = length xs
   f (i, x) (maxlen, maxend, end, pos) = (maxlen', maxend', end', Map.insert x i pos) where
