@@ -417,6 +417,29 @@ e_{max}' = \begin{cases}
   \end{cases} \\
 \end{array} \]
 
+由于$foldr$是从右侧开始，所以我们使用截止位置。而传统的编程使用起始位置，例如：
+
+\begin{algorithmic}
+\Function{Longest}{$S$}
+  \State $Idx \gets \varnothing$
+  \State $n_{max} \gets 0, s_{max} \gets 0, s \gets 0$
+  \For{$i \in \{0, 1, ... |S|\}$}
+    \If{$S[i] \in Idx$}
+      \State $j \gets Idx[S[i]]$
+      \State $s = max(s, j + 1)$
+    \EndIf
+    \If{$i - s + 1 > n_{max}$}
+      \State $s_{max} \gets s$
+    \EndIf
+    \State $n_{max} \gets max(n_{max}, i - s + 1)$
+    \State $Idx[S[i]] = i$
+  \EndFor
+  \State \Return $S[s_{max} ... s_{max} + n_{max}]$
+\EndFunction
+\end{algorithmic}
+
+第二种方法是利用素数。
+
 \end{enumerate}
 
 \section{递归}
