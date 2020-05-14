@@ -1,8 +1,9 @@
 module NatN where
 
 import Data.Char (digitToInt)
-import Data.List (inits, tails)
+import Data.List (inits, tails, nub)
 import qualified Data.Map as Map
+import Data.Array
 import Data.Numbers.Primes (primes)  -- cabal install primes
 import Test.QuickCheck               -- cabal install QuickCheck
 
@@ -116,3 +117,29 @@ longest xs = fst2 $ foldr f (0, n, n, Map.empty :: (Map.Map Char Int)) (zip [1..
       Nothing -> end
       Just j -> min end (j - 1)
     maxend' = if end' - i + 1 > maxlen then end' else maxend
+
+-- Solution 2: Map char to a prime number
+primeArr = listArray (0, 127) primes
+primeOf c = primeArr ! (fromEnum c)
+
+longestNT :: String -> (Int, String)
+longestNT = hd . foldr f ((0, []), (0, []), 1) where
+  hd (a, _, _) = a
+  f x (m, (n, xs), prod) = if prod `mod` p > 0
+    then update m (n + 1, x:xs) (prod * p)
+    else update m (length xs', xs') (product $ map primeOf xs')
+    where
+      p = primeOf x
+      update a b prod = (max a b, b, prod)
+      xs' = x : takeWhile (x /=) xs
+
+-- brute force naive method for verification purpose
+naiveLongest :: (Eq a) => [a] -> Int
+naiveLongest = maximum . (map length) . (filter (\xs -> xs == nub xs)) . (concatMap tails) . inits
+
+prop_longest :: String -> Bool
+prop_longest xs = a == b && a == c where
+  a = fst $ longest ys
+  b = fst $ longestNT ys
+  c = naiveLongest ys
+  ys = map (\c -> (toEnum $ (fromEnum c) `mod` 128)::Char) xs
