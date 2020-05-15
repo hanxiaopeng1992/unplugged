@@ -143,3 +143,23 @@ prop_longest xs = a == b && a == c where
   b = fst $ longestNT ys
   c = naiveLongest ys
   ys = map (\c -> (toEnum $ (fromEnum c) `mod` 128)::Char) xs
+
+
+-- Fibonacci number with Matrix multiplication
+
+mul (a11, a12, a21, a22) (b11, b12, b21, b22) =
+  (a11 * b11 + a12 * b21, a11 * b12 + a12 * b22,
+   a21 * b11 + a22 * b21, a21 * b12 + a22 * b22)
+
+mulv (a11, a12, a21, a22) (b1, b2) =
+  (a11 * b1 + a12 * b2,
+   a21 * b1 + a22 * b2)
+
+powm m n = pow' m n (1, 0, 0, 1) where
+  pow' m n acc | n == 0 = acc
+               | even n = pow' (m `mul` m) (n `div` 2) acc
+               | otherwise = pow' (m `mul` m) (n `div` 2) (m `mul` acc)
+
+fibm n = fst $ powm (0, 1, 1, 1) n `mulv` (0, 1)
+
+-- map fibm [0..10]
