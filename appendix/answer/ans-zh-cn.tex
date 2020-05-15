@@ -466,6 +466,18 @@ update(a, b, P) = (max(a, b), b, P) \\
 C' = c : takeWhile\ (\neq c)\ C \\
 \end{array} \]
 
+\item 观察斐波那契的叠加定义，它的后继计算$(m', n') = (n, m + n)$相当于一个矩阵乘法：
+\[
+\begin{pmatrix} m' \\ n' \end{pmatrix} =
+\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}
+\begin{pmatrix} m \\ n \end{pmatrix}
+\]
+起始值是$(0, 1)^T$。这样斐波那契数列就在矩阵乘方下和自然数同构：
+\[
+\begin{pmatrix}F_n \\ F_{n+1} \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^n\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\]
+设计一个程序，快速计算2阶方阵的幂。求得斐波那契数列的第$n$个元素。
+
 \end{enumerate}
 
 \section{递归}
