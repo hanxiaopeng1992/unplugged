@@ -541,6 +541,76 @@ n\text{是偶数}: & pow(M \times M, \dfrac{n}{2}, A) \\
 \begin{enumerate}
 \item 我们给出的欧几里得算法是递归的，请消除递归，只使用循环实现欧几里得算法和扩展欧几里得算法。
 
+由于经典的欧几里得算法是尾递归的，所以可以很方便地转换成循环：
+
+\begin{algorithmic}
+\Function{GCM}{$a, b$}
+\While{$b \neq 0$}
+  \State $a, b \gets b, a \bmod b$
+\EndWhile
+\State \Return $a$
+\EndFunction
+\end{algorithmic}
+
+然而扩展欧几里得算法的转换就会比较困难。我们观察三个序列$r, s, t$：
+
+\[\begin{array}{l}
+r_0 = a, r_1 = b \\
+s_0 = 1, s_1 = 0 \\
+t_0 = 0, t_1 = 1 \\
+ ...  ... \\
+r_{i+1} = r_{i-1} - q_{i} r_{i}, \text{其中}: q_{i} = \lfloor r_{i} / r_{i-1} \rfloor \\
+s_{i+1} = s_{i-1} - q_{i} s_{i} \\
+t_{i+1} = t_{i-1} - q_{i} t_{i} \\
+... ...\\
+\end{array}\]
+
+显然，当$r_{k+1} = 0$时，序列终止。并且根据欧几里得算法，我们知道此时：
+\[
+gcm(a, b) = gcm(r_{k-1}, r_{k}) = gcm(r_k, 0) = r_{k}
+\]
+
+更重要的是这一结论，此时如下贝祖等式成立：
+
+\[
+gcm(a, b) = r_{k} = a s_{k} + b t_{k}
+\]
+
+\begin{proof}
+我们用数学归纳法来证明这一结论。首先是0和1的时候，我们有：
+
+\blre
+0: & r_0 = a & a s_0 + b t_0 = a \cdot 1 + b \cdot 0 = a \\
+1: & r_1 = b & a s_1 + b t_1 = a \cdot 0 + b \cdot 1 = b \\
+\elre
+
+接下来是递推假设，若$r_{i-1} = a s_{i-1} + b t_{i-1}$和$r_{i} = a s_{i} + b t_{i}$成立，我们看$i+1$时：
+
+\bre
+r_{i+1} & = & r_{i-1} - q_{i} r_{i} & \text{序列定义} \\
+       & = & (a s_{i-1} + b t_{i-1}) - q_{i} (a s_{i} + b t_{i}) & \text{递推假设} \\
+       & = & a (s_{i-1} - q_{i} s_{i}) + b (t_{i-1} - q_{i} t_{i}) & \text{整理} \\
+       & = & a s_{i+1} + b t_{i+1} & \text{序列定义} \\
+\ere
+因此任何时候，我们的序列都满足贝祖等式。
+\end{proof}
+
+这样，就可以得出扩展欧几里得算法的非递归实现了：
+
+\begin{algorithmic}
+\Function{Ext-GCM}{$a, b$}
+  \State $s', s \gets 0, 1$
+  \State $t', t \gets 1, 0$
+  \While{$b \neq 0$}
+    \State $q, r \gets \lfloor a / b \rfloor, a \bmod b$
+    \State $s', s \gets s - q s', s'$
+    \State $t', t \gets t - q t', t'$
+    \State $a, b \gets b, r$
+  \EndWhile
+  \State \Return $(a, s, t)$
+\EndFunction
+\end{algorithmic}
+
 \item 大多数编程环境中的取模运算，要求除数、被除数都是整数。但是线段的长度不一定是整数，请实现一个针对线段的取摸运算。它的效率如何？
 
 \item 我们在证明欧几里得算法正确性的过程中说：“每次都保证余数小于除数。即$b > r_0 > r_1 > r_2 > ... > 0$，但是余数不可能小于零。由于起始值是有限的，故最终算法一定中止。”为什么不会出现，$r_{n}$无限接近于零但不等于零的情况？算法一定会中止么？$a$和$b$是可公度的这一前提保证了什么？
