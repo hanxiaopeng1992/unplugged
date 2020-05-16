@@ -66,6 +66,18 @@ def fastmod(a, b):
             a = a - c
     return a
 
+def modfibonacci(a, b):
+    if a < b:
+        return a
+    c = b
+    while a >= c:
+        c, b = (b + c, c)   # increase c in Fibonacci manner
+    while b != c:
+        c, b = (b, c - b)   # decrease c back
+        if c <= a:
+            a = a - c
+    return a
+
 def testmod():
     for _ in range(100):
         a = randint(1, 100)
@@ -73,8 +85,9 @@ def testmod():
         a, b = (max(a, b), min(a, b))
         c = a % b
         d = fastmod(a, b)
-        if c != d:
-            print("err: a = {%d}, b={%d}, c = {%d}, d = {%d}" % (a, b, c, d))
+        e = modfibonacci(a, b)
+        if c != d or c != e:
+            print("err: a = {%d}, b={%d}, c = {%d}, d = {%d}, e={%d}" % (a, b, c, d, e))
     print("fast mod tested")
 
 if __name__ == "__main__":
