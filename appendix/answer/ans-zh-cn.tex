@@ -627,7 +627,7 @@ r_{i+1} & = & r_{i-1} - q_{i} r_{i} & \text{序列定义} \\
 显然这是一个线性效率的运算。为了优化，我们引入一个定理：
 
 \begin{lemma}[递归求余定理] % recursive remainder lemma
-如果$r = a \bmod b2$，那么：
+如果$r = a \bmod 2b$，那么：
 \[
 a \bmod b = \begin{cases}
 r \leq b: & r \\
@@ -636,7 +636,7 @@ r > b: & r - b \\
 \]
 \end{lemma}
 
-使用这个定理，我们可以把取模运算加倍到$log$级别：
+使用这个定理，我们可以把取模运算加快到$log$级别：
 
 \[
 a \bmod b \begin{cases}
@@ -648,6 +648,27 @@ a - b \leq b: & a - b \\
   \end{cases} \\
 \end{cases}
 \]
+
+利用斐波那契数列的增长方式，罗伯特$\cdot$弗洛伊德和高德纳将上面方法中的递归消除，用纯循环实现了快速取模运算：
+
+\begin{algorithmic}
+\Function{mod}{$a, b$}
+  \If{$a < b$}
+    \State \Return $a$
+  \EndIf
+  \State $c \gets b$
+  \While{$c \leq a$}
+    \State $c, b \gets (b + c, c)$ \Comment{用斐波那契的方式的增大$c$}
+  \EndWhile
+  \While{$b \neq c$}
+    \State $c, b \gets (b, c - b)$ \Comment{再将$c$减小回来}
+    \If{$c <= a$}
+      \State $a \gets a - c$
+    \EndIf
+  \EndWhile
+  \State \Return $a$
+\EndFunction
+\end{algorithmic}
 
 \item 我们在证明欧几里得算法正确性的过程中说：“每次都保证余数小于除数。即$b > r_0 > r_1 > r_2 > ... > 0$，但是余数不可能小于零。由于起始值是有限的，故最终算法一定中止。”为什么不会出现，$r_{n}$无限接近于零但不等于零的情况？算法一定会中止么？$a$和$b$是可公度的这一前提保证了什么？
 
