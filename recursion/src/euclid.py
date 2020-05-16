@@ -41,7 +41,7 @@ def gcmex(a, b):
         a, b = (b, r)
     return (a, olds, oldt)
 
-def test():
+def testgcm():
     for _ in range(100):
         a = randint(1, 100)
         b = randint(1, 100)
@@ -51,6 +51,32 @@ def test():
         if g != d or d != a * x + b * y:
             print("err: a = {%d}, b = {%d}, g = {%d}, d = {%d}, x = {%d}, y = {%d}" %
                   (a, b, g, d, x, y))
+    print("gcm tested")
+
+def fastmod(a, b):
+    if a < b:
+        return a
+    c = b
+    while a - c >= c:
+        c = c + c     # double c to the largest
+    a = a - c
+    while c != b:
+        c = c // 2    # how to implement this without div ?
+        if c <= a:
+            a = a - c
+    return a
+
+def testmod():
+    for _ in range(100):
+        a = randint(1, 100)
+        b = randint(1, 100)
+        a, b = (max(a, b), min(a, b))
+        c = a % b
+        d = fastmod(a, b)
+        if c != d:
+            print("err: a = {%d}, b={%d}, c = {%d}, d = {%d}" % (a, b, c, d))
+    print("fast mod tested")
 
 if __name__ == "__main__":
-    test()
+    testgcm()
+    testmod()
