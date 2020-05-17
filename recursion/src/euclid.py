@@ -70,7 +70,7 @@ def modfibonacci(a, b):
     if a < b:
         return a
     c = b
-    while a >= c:
+    while c <= a:
         c, b = (b + c, c)   # increase c in Fibonacci manner
     while b != c:
         c, b = (b, c - b)   # decrease c back
