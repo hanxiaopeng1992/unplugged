@@ -751,10 +751,30 @@ y = y_0 - k \dfrac{a}{g}
 
 \item 使用$\lambda$变换规则验证$tail\ (cons\ p\ q) = q$。
 
-\end{enumerate}
+函数$cons$和$tail$的$\lambda$表达式为：
+\[
+\begin{array}{rcl}
+cons & = & a \mapsto b \mapsto f \mapsto f\ a\ b \\
+tail & = & c \mapsto c\ (a \mapsto b \mapsto b)
+\end{array}
+\]
 
-\begin{Exercise}
-\Question{可以仅仅使用$\lambda$演算来定义自然数。下面是丘奇数的定义：
+我们据此来验证$tail\ (cons\ p\ q) = q$这一关系：
+
+\[
+\begin{array}{rcl}
+tail\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto b))\ (cons\ p\ q) \\
+                   & \xrightarrow{\beta} & (cons\ p\ q)\ (a \mapsto b \mapsto b) \\
+                   & = & ((a \mapsto b \mapsto f \mapsto f\ a\ b)\ p\ q)\ (a \mapsto b \mapsto b) \\
+                   & \xrightarrow{\beta} & ((b \mapsto f \mapsto f\ p\ b)\ q)\ (a \mapsto b \mapsto b) \\
+                   & \xrightarrow{\beta} & (f \mapsto f \mapsto f\ p\ q)\ (a \mapsto b \mapsto b) \\
+                   & \xrightarrow{\beta} & (a \mapsto b \mapsto b)\ p\ q \\
+                   & \xrightarrow{\beta} & (b \mapsto b)\ q \\
+                   & \xrightarrow{\beta} & q
+\end{array}
+\]
+
+\item 可以仅仅使用$\lambda$演算来定义自然数。下面是丘奇数的定义：
 \[
 \begin{array}{r@{\quad:\quad}l}
 0 & \lambda f . \lambda x . x \\
@@ -765,7 +785,10 @@ y = y_0 - k \dfrac{a}{g}
 \end{array}
 \]
 请利用第一章介绍的内容，定义丘奇数的加法和乘法。
-}
+
+\end{enumerate}
+
+\begin{Exercise}
 \Question{以下是丘奇布尔值的定义，以及逻辑运算的一种实现：
 \[
 \begin{array}{r@{\quad:\quad}l}
