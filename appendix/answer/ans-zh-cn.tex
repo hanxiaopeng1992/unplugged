@@ -786,6 +786,26 @@ tail\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto b))\ (cons\ p\ q) \\
 \]
 请利用第一章介绍的内容，定义丘奇数的加法和乘法。
 
+自然数$n$的丘奇数含义是将函数$f$向$x$应用$n$次。我们先定义后继函数：
+
+\[
+succ = \lambda n . \lambda f . \lambda x . f\ (n\ f\ x)
+\]
+
+其含义是；$f^{n+1}(x)) = f(f^n(x))$。然后定义自然数加法为：
+
+\[
+plus = \lambda m . \lambda n . \lambda f . \lambda x . m\ f\ (n\ f\ x)
+\]
+
+其含义是：$f^{m + n}(x) = f^m(f^n(x))$。乘法定义为：
+
+\[
+mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
+\]
+
+其含义为：$f^{m n} = (f^n)^m(x)$。
+
 \end{enumerate}
 
 \begin{Exercise}
