@@ -827,11 +827,17 @@ and\ true\ false & = & (\lambda p . \lambda q . p\ q\ p)\ true\ false \\
 
 if ... then ... else ...语句的定义：$\lambda p . \lambda a . \lambda b . p\ a\ b$
 
+\item 不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；
+
+\[ \begin{cases}
+mapt(f, nil) & = nil \\
+mapt(f, node(l, x, r)) & = node(mapt(f, l), f(x), mapt(f, r)) \\
+\end{cases}\]
+
 \end{enumerate}
 
 
 \begin{Exercise}
-\Question{不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
 \Question{定义一个函数$depth$，计算一棵二叉树的最大深度；}
 \Question{有人认为，二叉树的抽象叠加操作$foldt$应该这样定义：
 \[
