@@ -818,6 +818,15 @@ mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
 \]
 其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
 
+\blre
+and\ true\ false & = & (\lambda p . \lambda q . p\ q\ p)\ true\ false \\
+ & \xrightarrow{\beta} & true\ false\ true \\
+ & = & (\lambda x . \lambda y . x)\ false\ true \\
+ & \xrightarrow{\beta} & false \\
+\elre
+
+if ... then ... else ...语句的定义：$\lambda p . \lambda a . \lambda b . p\ a\ b$
+
 \end{enumerate}
 
 
