@@ -806,10 +806,7 @@ mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
 
 其含义为：$f^{m n} = (f^n)^m(x)$。
 
-\end{enumerate}
-
-\begin{Exercise}
-\Question{以下是丘奇布尔值的定义，以及逻辑运算的一种实现：
+\item 以下是丘奇布尔值的定义，以及逻辑运算的一种实现：
 \[
 \begin{array}{r@{\quad:\quad}l}
 \textbf{true} & \lambda x . \lambda y . x \\
@@ -820,8 +817,9 @@ mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
 \end{array}
 \]
 其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
-}
-\end{Exercise}
+
+\end{enumerate}
+
 
 \begin{Exercise}
 \Question{不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；}
