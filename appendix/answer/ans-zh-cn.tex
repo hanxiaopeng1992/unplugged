@@ -865,6 +865,21 @@ insert(x, node(l, k, r)) = \begin{cases}
 
 \item 为多叉树定义逐一映射。能否利用多叉树的叠加操作来定义？如果不能，应当怎样修改叠加操作？
 
+和上题类似，我们需要修改多叉树的叠加操作，来保持树的结构：
+
+\[
+\begin{cases}
+foldm(f, g, c, nil) & = c \\
+foldm(f, g, c, node(x, ts)) & = g(f(x), map(foldm(f, g, c), ts)) \\
+\end{cases}
+\]
+
+其中$map$是列表的逐一映射函数。然后就可以利用这一叠加操作定义逐一映射：
+
+\[
+mapm(f) = foldm(f, node, nil)
+\]
+
 \end{enumerate}
 
 \section{群、环、域}
