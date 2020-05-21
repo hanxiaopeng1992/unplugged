@@ -983,6 +983,22 @@ x^m x^{n+1} & = & x^m (x x^n) & \text{幂的递归定义} \\
 
 \item 奇偶判断函数在整数加群$(Z，+)$和布尔逻辑与群$(Bool, \land)$下是否构成同态？去除0元素的整数乘法群呢？
 
+为了判断是否构成同态，我们需要检查两点：1、是否是满射；2、是否满足$f(a) f (b) = f(a \cdot b)$。奇偶判断函数虽然是满射，但我们有下面的反例：
+
+$a, b$都是奇数：$odd(a) = odd(b) = True$，它们的和是偶数，故而：$odd(a + b) = False$。而逻辑与的结果：$odd(a) \land odd(b) = True \neq odd(a + b) = False$。
+
+因而不构成同态。
+
+而去除0后的整数乘法群在奇偶判断函数下与逻辑与群构成同态。我们可以验证全部的三种情况：
+
+  \begin{itemize}
+  \item $a, b$都是奇数：$odd(a) = odd(b) = True$, 积$ab$仍然是奇数：$odd(ab) = True$。所以$odd(a) \land odd(b) = odd(ab)$；
+  \item $a, b$都是偶数：$odd(a) = odd(b) = False$, 积$ab$仍然是偶数：$odd(ab) = False$。所以$odd(a) \land odd(b) = odd(ab)$；
+  \item $a, b$一奇一偶：不妨令$odd(a) = True, odd(b) = False$, 积$ab$是偶数：$odd(ab) = False$。所以$odd(a) \land odd(b) = odd(ab)$。
+  \end{itemize}
+
+故而是构成同态。
+
 \end{enumerate}
 
 \begin{Exercise}
