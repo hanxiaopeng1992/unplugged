@@ -931,6 +931,37 @@ True
 
 \item 证明群、幺半群、半群的幂满足交换律：$x^mx^n = x^nx^m$
 
+使用数学归纳法。对于群和幺半群，先验证$n = 0$时的情况：
+
+\bre
+x^m x ^ 0 & = & x^m e & \text{0次幂的定义} \\
+  & = & x^m & \text{单位元的定义} \\
+  & = & e x^m & \text{反向用单位元的定义} \\
+  & = & x^0 x^m & \text{反向用0次幂的定义} \\
+\ere
+
+对于半群，由于没有单位元，我们验证$n = 1$时的情况：
+
+\bre
+x^m x ^ 1 & = & x^m x & \text{1次幂的定义} \\
+  & = & x^{m+1} & \text{幂的定义} \\
+  & = & x x^m & \text{幂的递归定义} \\
+  & = & x^1 x^m & \text{反向用1次幂的定义} \\
+\ere
+
+假设$n$时，幂的交换律成立：$x^mx^n = x^nx^m$，则$n+1$时：
+
+\bre
+x^m x^{n+1} & = & x^m (x x^n) & \text{幂的递归定义} \\
+  & = & (x^m x) x^n & \text{乘法结合律} \\
+  & = & x^{m+1} x ^n & \text{幂的定义} \\
+  & = & x x^m x^n & \text{幂的递归定义} \\
+  & = & x (x^m x^n) & \text{乘法结合律} \\
+  & = & x (x^n x^m) & \text{递推假设} \\
+  & = & (x x^n) x^m & \text{乘法结合律} \\
+  & = & x^{n+1} x^m & \text{幂的递归定义} \\
+\ere
+
 \end{enumerate}
 
 \begin{Exercise}
