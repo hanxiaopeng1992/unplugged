@@ -999,22 +999,36 @@ $a, b$都是奇数：$odd(a) = odd(b) = True$，它们的和是偶数，故而�
 
 故而是构成同态。
 
+\item 假定两个群$G$和$G'$在映射下同态，群$G$中的元$a \to a'$，那么$a$和$a'$的阶是否相同？
+
+它们的阶相同。我们可以证明这一点。令单位元$e$的像是$e'$，同态映射为$f$。记$a$的阶为$n$，我们有$a^n = e$。
+
+一方面我们有：
+\[
+f(a^n) = f(e) = e'
+\]
+
+另一方面，根据同态的定义，我们有：
+
+\bre
+f(a^n) & = & f(a) f(a) ... f(a) & \text{共$n$个} \\
+  & = & a' a' ... a' & \text{共$n$个} \\
+  & = & (a')^n
+\ere
+
+综合上述两个结果，我们有$(a')^n = e'$。所以$a$和$a'$的阶相同。
+
+\item 证明一个变换群的单位元一定是恒等变换。
+
+\item 列出$S_4$的全体元素。
+
+\item 将$S_3$的所有元写成不相连的循环置换的乘积。
+
+\item 编程将$k$-循环的乘积转换回置换。
+
+\item 证明循环群一定是阿贝尔群。
+
 \end{enumerate}
-
-\begin{Exercise}
-\Question{假定两个群$G$和$G'$在映射下同态，群$G$中的元$a \to a'$，那么$a$和$a'$的阶是否相同？}
-\Question{证明一个变换群的单位元一定是恒等变换。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{列出$S_4$的全体元素。}
-\Question{将$S_3$的所有元写成不相连的循环置换的乘积。}
-\Question{编程将$k$-循环的乘积转换回置换。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{证明循环群一定是阿贝尔群。}
-\end{Exercise}
 
 \begin{Exercise}
 \Question{证明子群的判定定理\ref{theorem:subgroup}。}
