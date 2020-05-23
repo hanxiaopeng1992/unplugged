@@ -1126,11 +1126,24 @@ a^p a^q = a^{p + q} = a^{q + p} = a^q a^p
 
 所以是星期二。
 
+\item 任给两个串（字符串或者列表），如何通过编程判断它们可以连成相同的项链？
+
+任给两个长度相同的串$S_1, S_2$，我们可以把$S_1$复制一份接在自己后面，然后检查$S_2$是否是$S_1S_1$的子串。如果是，那么它们可以连成相同的项链。
+
+\[
+eqiv(S_1, S_2) = S_2 \subset (S_1 \doubleplus S_1)
+\]
+
+\lstset{language=Python, frame=single}
+\begin{lstlisting}
+def eqiv(s1, s2):
+    return (s2 + s2).find(s1) != -1
+\end{lstlisting}
+
 \end{enumerate}
 
 
 \begin{Exercise}
-\Question{任给两个串（字符串或者列表），如何通过编程判断它们可以连成相同的项链？}
 \Question{编程实现埃拉托斯特尼筛法。}
 \Question{利用埃拉托斯特尼筛法的思想，编程产生2到100内正整数的欧拉$\upphi$函数表。}
 \Question{编程实现模乘的幂运算，并实现费马素数检测。}
