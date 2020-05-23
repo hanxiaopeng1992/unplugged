@@ -1033,9 +1033,43 @@ f(a^n) & = & f(a) f(a) ... f(a) & \text{共$n$个} \\
 
 \item 列出$S_4$的全体元素。
 
+(1);
+
+(12), (34), (13), (24), (14), (23);
+
+(123), (132), (134), (143), (124), (142), (234), (243);
+
+(1234), (1243), (1324), (1342), (1423), (1432);
+
+(12)(34), (13)(24), (14)(23)。
+
+共$4!=24$个元素。
+
 \item 将$S_3$的所有元写成不相连的循环置换的乘积。
 
+\btab{c|c|c|c|c|c|c}
+排列 & 123 & 213  & 132  & 321  & 231   &  312\\
+\hline
+置换 & (1) & (12) & (23) & (13) & (123) & (132)\\
+\etab
+
 \item 编程将$k$-循环的乘积转换回置换。
+
+\begin{algorithmic}
+\Function{Permute}{$C, n$}
+  \State $\pi \gets [1, 2, ..., n]$
+  \For{$c \in C$}
+    \State $j \gets c[1]$
+    \State $m \gets |c|$
+    \For{$i \gets 2 to m$}
+      \State $\pi[j] \gets c[i]$
+      \State $j \gets c[i]$
+    \EndFor
+    \State $\pi[c[m]] \gets c[1]$
+  \EndFor
+  \State \Return $\pi$
+\EndFunction
+\end{algorithmic}
 
 \item 证明循环群一定是阿贝尔群。
 
