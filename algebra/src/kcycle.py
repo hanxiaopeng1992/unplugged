@@ -22,11 +22,11 @@ def kcycles(a):
 def permute(ps, n):
     a = list(range(1, n + 1))
     for p in ps:
-        fst = j = p[0]
+        j = p[0]
         for i in p[1:]:
             a[j - 1] = i
             j = i
-        a[p[-1] - 1] = fst
+        a[p[-1] - 1] = p[0]
     return a
 
 def test():
