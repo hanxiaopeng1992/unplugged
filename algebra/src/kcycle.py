@@ -1,4 +1,5 @@
 from random import *
+from itertools import permutations
 
 # Given any permutation, turn it into disjoint k-cycles
 # input a is a n length permutation e.g. [2, 4, 1, 3, 5, 7, 6]
@@ -42,5 +43,12 @@ def test():
             exit()
     print("100 tests pass")
 
+# Enumerate all elements for a given Symmetry group Sn
+def senum(n):
+    return [kcycles(list(p)) for p in permutations(range(1, n + 1))]
+
 if __name__ == "__main__":
     test()
+    print("examples of S3, S4")
+    print("S3:", senum(3))
+    print("S4:", senum(4))
