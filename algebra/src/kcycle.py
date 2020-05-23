@@ -20,7 +20,7 @@ def kcycles(a):
 # input the k-cycle list and the length of the permutation.
 # output the permutation list.
 def permute(ps, n):
-    a = range(1, n + 1)
+    a = list(range(1, n + 1))
     for p in ps:
         fst = j = p[0]
         for i in p[1:]:
@@ -31,16 +31,16 @@ def permute(ps, n):
 
 def test():
     for _ in range(100):
-        a = range(1, randint(2, 100))
+        a = list(range(1, randint(2, 100)))
         shuffle(a)
         ps = kcycles(a[:])
         b = permute(ps, len(a))
         if a != b:
-            print "permutation:", a
-            print "k-cycles:", ps
-            print "restore:", b
+            print("permutation:", a)
+            print("k-cycles:", ps)
+            print("restore:", b)
             exit()
-    print "100 tests pass"
+    print("100 tests pass")
 
 if __name__ == "__main__":
     test()
