@@ -1193,6 +1193,32 @@ public class Prime {
 \end{lstlisting}
 
 \item 利用埃拉托斯特尼筛法的思想，编程产生2到100内正整数的欧拉$\upphi$函数表。
+
+我们一边用埃拉托斯特尼筛法产生$n$以内的素数，一边用每个新找到的素数更新一个欧拉$\upphi$函数表。这个函数表被全部初始化为1。对于每个素数$p$，其对应的$\upphi(p) = p(1 - \dfrac{1}{p}) = p - 1$，我们需要把所有$p$的倍数都乘以这个值。但仅仅这样还不够，这是因为$\upphi(p^2) = p^2(1 - \dfrac{1}{p}) = p \upphi(p)$。所以我们接下来要把所有$p^2$倍数的欧拉函数值都乘以$p$，重复这一步骤，再把所有$p^3$倍数的欧拉函数值乘以$p$。继续持续这一过程，直到我们发现$p^m$超过$n$。下面是利用这一思想的解法：
+
+\begin{algorithmic}
+\Function{Euler-Totient}{$n$}
+  \State $\upphi \gets \{1, 1, ..., 1\}$ \Comment{1到$n$}
+  \State $P \gets \{2, 3, ..., n\}$ \Comment{素数筛法序列}
+  \While{$P \neq \varnothing$}
+    \State $p \gets P[0]$
+    \State $P \gets \{x | x \in P, x \bmod p \neq 0\}$
+    \State $p' \gets p$
+    \Repeat
+      \For{$i \gets$ from $p'$ to $n$ step $p'$}
+        \If{$p' = p$}
+          \State $\upphi[i] \gets \upphi[i] \times (p - 1)$
+        \Else
+          \State $\upphi[i] \gets \upphi[i] \times p$
+        \EndIf
+      \EndFor
+      \State $p' \gets p' \times p$
+    \Until{$p' > n$}
+  \EndWhile
+  \State \Return $\upphi$
+\EndFunction
+\end{algorithmic}
+
 \item 编程实现模乘的幂运算，并实现费马素数检测。
 
 \end{enumerate}

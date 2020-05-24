@@ -5,7 +5,7 @@ def eulert(n):
     sieve = list(range(2, n + 1))
     while sieve:
         p = sieve[0]
-        sieve = list(filter(lambda x : x % p != 0, sieve))
+        sieve = list(filter(lambda x : x % p != 0, sieve[1:]))
         power = p
         while power <= n:
             for i in range(power, n + 1, power):
