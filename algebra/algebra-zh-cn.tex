@@ -1375,7 +1375,7 @@ a^{p-1} \equiv 1 \mod p
 其中$\upphi(n)$是欧拉函数\footnote{也称为欧拉总计函数（Euler totient function）或者欧拉$\upphi$函数}，它的定义是所有小于$n$且与$n$互素的正整数个数。即：
 
 \[
-\upphi(n) = |\{i | 0 < i < n\ \text{且} gcd(i, n) = 1 \}|
+\upphi(n) = |\{i | 0 < i < n\ \text{且}\ gcd(i, n) = 1 \}|
 \]
 
 欧拉使用初等数论的方法证明了这一定理。我们展示如何利用群论和拉格朗日定理给出一个简洁的证明。
@@ -1439,7 +1439,7 @@ a^{\upphi(n)} = e
 \upphi(p^uq^v) &=  (n - 1) - (\dfrac{n}{p} - 1) - (\dfrac{n}{q} - 1) + (\dfrac{n}{pq} - 1) \\
           &=  n(1 - \dfrac{1}{p})(1 - \dfrac{1}{q}) \\[5pt]
           &=  p^u(1 - \dfrac{1}{p})q^v(1 - \dfrac{1}{q}) \\[5pt]
-          &=  \upphi(p^u)\upphi(p^v)
+          &=  \upphi(p^u)\upphi(q^v)
 \end{align*}
 
 特别地，当指数$u$, $v$都是1的时候，我们有$\upphi(pq) = \upphi(p)\upphi(q)$。并且我们可以把这个结果推广到多个素数幂的情况，如果$n = p_1^{k_1}, p_2^{k_2}...p_m^{k_m}$，则其欧拉函数的值为：
