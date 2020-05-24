@@ -1221,6 +1221,44 @@ public class Prime {
 
 \item 编程实现模乘的幂运算，并实现费马素数检测。
 
+我们的思路是参考快速幂的思路，实现模乘的幂运算。
+\[
+x^y =
+\begin{cases}
+y \text{是偶数}: & x^{\lfloor y / 2 \rfloor} \\
+y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
+\end{cases}
+\]
+
+只要在此基础上，将乘法改为模乘即可：
+
+\begin{algorithmic}
+\Function{Mod-Exp}{$x, y, n$}
+  \If{$y = 0$}
+    \State \Return 1
+  \EndIf
+  \State $z \gets$ \Call{Mod-Exp}{$x, \lfloor y /2 \rfloor, n$}
+  \If{$y$是偶数}
+    \State \Return $z^2 \bmod n$
+  \Else
+    \State \Return $x \cdot z^2 \bmod n$
+  \EndIf
+\EndFunction
+\end{algorithmic}
+
+然后我们利用费马小定理，选取若干“证人”，进行素数检测：
+
+\begin{algorithmic}
+\Function{primality}{$n$}
+  \State 随机选择$k$个正整数$a_1, a_2, ..., a_k < n$
+  \If{$a_i^{n-1} \equiv 1 \mod n$，对于全部$i = 1, 2, ..., k$}
+    \State \Return 素数
+  \Else
+    \State \Return 合数
+  \EndIf
+\EndFunction
+\end{algorithmic}
+
 \end{enumerate}
 
 \begin{Exercise}
