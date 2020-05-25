@@ -1259,12 +1259,42 @@ y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 \EndFunction
 \end{algorithmic}
 
-\end{enumerate}
+\item {证明本节的定理，一个没有零因子的环里，两个消去律成立。}
 
-\begin{Exercise}
-\Question{证明本节的定理，一个没有零因子的环里，两个消去律成立。}
-\Question{证明所有形如$a + b \sqrt{2}$，其中$a, b$是整数的实数对于普通加法和乘法构成一个整环。}
-\end{Exercise}
+假定环$R$没有零因子。因为：
+\[
+  ab = ac \Rightarrow a(b - c) = 0
+\]
+
+在此假定之下，
+
+\[
+  a \neq 0, ab = ac \Rightarrow b - c = 0 \Rightarrow b = c
+\]
+
+同样可证，
+
+\[
+  a \neq 0, ba = ca \Rightarrow b = c
+\]
+
+这样$R$里两个消去律都成立。反过来，假定环$R$里第一个消去律成立。因为
+
+\[
+  ab = 0 \Rightarrow ab = a0
+\]
+
+在此假定之下，
+
+\[
+  a \neq 0, ab = 0 \Rightarrow b = 0
+\]
+
+这就是说，$R$没有零因子。第二个消去律成立的事后，同样可证。
+
+\item {证明所有形如$a + b \sqrt{2}$，其中$a, b$是整数的实数对于普通加法和乘法构成一个整环。}
+
+\end{enumerate}
 
 \begin{Exercise}
 \Question{证明$Q[a, b] = Q[a][b]$，其中$Q[a, b]$是所有由$a, b$组成的表达式如$2ab, a + a^2b$等。}
