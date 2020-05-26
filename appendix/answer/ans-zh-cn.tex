@@ -1261,6 +1261,7 @@ y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 
 \item {证明本节的定理，一个没有零因子的环里，两个消去律成立。}
 
+\begin{proof}
 假定环$R$没有零因子。因为：
 \[
   ab = ac \Rightarrow a(b - c) = 0
@@ -1291,25 +1292,43 @@ y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 \]
 
 这就是说，$R$没有零因子。第二个消去律成立的事后，同样可证。
+\end{proof}
 
 \item {证明所有形如$a + b \sqrt{2}$，其中$a, b$是整数的实数对于普通加法和乘法构成一个整环。}
 
+\begin{proof}
+我们依次验证三点：
+
+  \begin{enumerate}[i]
+  \item 乘法交换律成立
+    \bre
+      (a + b \sqrt{2})(c + d \sqrt{2}) & = & ac + 2bd + (ad + bc)\sqrt{2} \\
+        & = & (c + d \sqrt{2})(a + b \sqrt{2})
+    \ere
+  \item 有乘法单位元1
+    \[
+      1 (a + b \sqrt{2}) = (a + b \sqrt{2}) 1 = a + b \sqrt{2}
+    \]
+  \item 没有零因子
+    \[
+    (a + b \sqrt{2})(c + d \sqrt{2}) = 0 \Rightarrow a = b = 0 \text{或} c = d = 0
+    \]
+  \end{enumerate}
+\end{proof}
+
+\item {证明$Q[a, b] = Q[a][b]$，其中$Q[a, b]$是所有由$a, b$组成的表达式如$2ab, a + a^2b$等。}
+
+\item {试证明：对于有理数系数的任何多项式$p(x)$，若$E/Q$是扩域，$f$是$E$上的$Q$-自同构，则有$f(p(x)) = p(f(x))$。}
+
+\item {考虑复数，多项式$p(x) = x^4-1$的分裂域是什么？它的$Q$-自同构中有哪些变换？}
+
+\item {尝试写出二次方程$x^2 - bx + c = 0$的伽罗瓦群。}
+
+\item {证明，如果$p$是素数，则方程$x^p - 1$的伽罗瓦群是$q-1$阶的循环群$C_{q-1}$。}
+
+\item {考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群和对应的子群链是什么？}
+
 \end{enumerate}
-
-\begin{Exercise}
-\Question{证明$Q[a, b] = Q[a][b]$，其中$Q[a, b]$是所有由$a, b$组成的表达式如$2ab, a + a^2b$等。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{试证明：对于有理数系数的任何多项式$p(x)$，若$E/Q$是扩域，$f$是$E$上的$Q$-自同构，则有$f(p(x)) = p(f(x))$。}
-\Question{考虑复数，多项式$p(x) = x^4-1$的分裂域是什么？它的$Q$-自同构中有哪些变换？}
-\Question{尝试写出二次方程$x^2 - bx + c = 0$的伽罗瓦群。}
-\Question{证明，如果$p$是素数，则方程$x^p - 1$的伽罗瓦群是$q-1$阶的循环群$C_{q-1}$。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群和对应的子群链是什么？}
-\end{Exercise}
 
 \section{范畴}
 
