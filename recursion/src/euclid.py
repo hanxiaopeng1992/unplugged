@@ -53,6 +53,11 @@ def testgcm():
                   (a, b, g, d, x, y))
     print("gcm tested")
 
+def gmod(a, b):
+    while b < a:
+        a = a - b
+    return a
+
 def fastmod(a, b):
     if a < b:
         return a
@@ -60,7 +65,7 @@ def fastmod(a, b):
     while a - c >= c:
         c = c + c     # double c to the largest
     a = a - c
-    while c != b:
+    while c != b and abs(c - b) > 1e-5:
         c = c // 2    # how to implement this without div ?
         if c <= a:
             a = a - c
@@ -72,9 +77,9 @@ def modfibonacci(a, b):
     c = b
     while c <= a:
         c, b = (b + c, c)   # increase c in Fibonacci manner
-    while b != c:
+    while b != c and abs(c - b) > 1e-5:
         c, b = (b, c - b)   # decrease c back
-        if c <= a:
+        if c <= a :
             a = a - c
     return a
 
