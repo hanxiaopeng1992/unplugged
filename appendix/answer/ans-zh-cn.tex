@@ -1405,7 +1405,7 @@ x_1, x_2 = \dfrac{b \pm \sqrt{b^2 - 4c}}{2}
 
 \item {证明，如果$p$是素数，则方程$x^p - 1$的伽罗瓦群是$p-1$阶的循环群$C_{p-1}$。}
 
-方程$x^p -1$的$p$个根就是在复平面单位圆上的$p$个点$1, \omega, \omega^2, ..., \omega^{p-1}$，其中$\omega = e^{2 \pi i / p}$。其分裂域是$Q[\omega]$。
+方程$x^p -1$的$p$个根就是在复平面单位圆上的$p$个点$1, \omega, \omega^2, ..., \omega^{p-1}$，它们可以表示为$e^{2 \pi k i / p}$。其分裂域是$Q[\omega]$。
 
 我们考虑伽罗瓦群$Gal(Q[\omega]/Q)$中的任意一个元素，自同构$f$。根据自同构的性质，有：
 
@@ -1413,7 +1413,7 @@ x_1, x_2 = \dfrac{b \pm \sqrt{b^2 - 4c}}{2}
 f(\omega)^k = f(\omega^k) = 1 \iff \omega^k = 1
 \]
 
-所以，$f(\omega)$也是某个$p$次单位根（方程$x^p - 1 = 0$的某个根）。我们记：
+所以，$f(\omega)$也是某个$p$次单位根（方程$x^p - 1 = 0$的某个根\footnote{如果$p$不是素数，而是任意大于1的整数$n$，某个$n$次单位根的$k$次方可以表示为$\zeta_m = e^{2 \pi m k i / n}$，因此可能存在某个$k < n$，使得$\zeta_m^k = 1$，只要$mk$是$n$的倍数即可。但如果$n$是素数$p$，则$k$一定是$p$的整数倍}）。我们记：
 
 \[
 f(\omega) = h_i(\omega) = \omega^{i}
@@ -1437,6 +1437,8 @@ Gal(Q[\omega]/Q) \arrowto{\sigma} C_{p-1} :  \sigma(h_i) = i
 \[
 \sigma(h_i \cdot h_j) = ij = \sigma(h_i) \cdot \sigma(h_j)
 \]
+
+并且$h_1(\omega)$是这个循环的伽罗瓦群的生成元。
 
 \item {考虑5次方程$x^5 - 1 = 0$，它是根式可解的。它的伽罗瓦群和对应的子群链是什么？}
 
