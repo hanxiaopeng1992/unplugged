@@ -1564,6 +1564,35 @@ A \arrowto{\phi} B
 
 试验证$\pmb{Pno}$的确是一个范畴。}
 
+皮亚诺范畴中的对象是$(A, f, z)$这样的三元组。箭头为保持三元组结构的映射$\phi$。箭头的组合，就是函数的组合：
+
+\[ \begin{array}{l}
+A \arrowto{\phi} B \arrowto{\psi} C \\
+A \arrowto{\psi \circ \phi} C
+\end{array}\]
+
+由于函数的组合是可结合的，故箭头也是可结合的。接下来我们验证恒等箭头：
+
+\[
+A \arrowto{id_A} A
+\]
+
+它满足$id_A(z) = z$，并且$id_A \circ f = f \circ id_A$。
+
+显然三元组$(\pmb{N}, succ, 0)$是皮亚诺范畴中的对象。并且有趣的是，对于任何皮亚诺范畴的对象$(A, f, z)$都存在唯一的箭头：
+
+\[
+(\pmb{N}, succ, 0) \arrowto{\sigma} (A, f, z)
+\]
+
+其中：
+
+\[
+\sigma(n) = f^n(z)
+\]
+
+它把任何自然数$n$映射到把$f$重复应用到$z$上$n$次。
+
 \end{enumerate}
 
 \begin{Exercise}
