@@ -1620,23 +1620,16 @@ fmap\ f = foldr\ f\ Nil
  & = & ((\mathbf{Maybe} \circ \mathbf{List})\ f) \circ ((\mathbf{Maybe} \circ \mathbf{List})\ g) & \text{函子的组合} \\
 \ere
 
+\item {证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
+
+\item {思考一个预序集范畴上的函子的例子。}
+\item {回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
+
+\item {考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
+%\item {考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
+\item {证明余积的吸收率，并验证余积函子的组合性质。}
+
 \end{enumerate}
-
-\begin{Exercise}
-\end{Exercise}
-
-\begin{Exercise}
-
-\Question{证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
-\Question{思考一个预序集范畴上的函子的例子。}
-\Question{回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
-%\Question{考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
-\Question{证明余积的吸收率，并验证余积函子的组合性质。}
-\end{Exercise}
 
 \begin{Exercise}
 \Question{证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
