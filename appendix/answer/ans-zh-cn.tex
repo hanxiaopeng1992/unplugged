@@ -1593,14 +1593,40 @@ A \arrowto{id_A} A
 
 它把任何自然数$n$映射到把$f$重复应用到$z$上$n$次。
 
+\item {请使用叠加操作$foldr$来定义列表函子的箭头映射。}
+
+本质上就是用$foldr$定义列表的逐一映射：
+
+\[
+fmap\ f = foldr\ f\ Nil
+\]
+
+\item {证明可能函子和列表函子的组合$\mathbf{Maybe} \circ \mathbf{List}$与$\mathbf{List} \circ \mathbf{Maybe}$仍然是函子。}
+
+我们只证明$\mathbf{Maybe} \circ \mathbf{List}$仍然是函子。另一证明与此类似。任何对象$A$被映射为$\mathbf{Maybe} (\mathbf{List}\ A)$。对于箭头，我们先看恒等箭头的情况：
+
+\bre
+(\mathbf{Maybe} \circ \mathbf{List})\ id & = & \mathbf{Maybe} (\mathbf{List}\ id) & \text{函子的组合} \\
+ & = & \mathbf{Maybe}\ id & \text{列表函子的恒等箭头} \\
+ & = & id & \text{可能函子的恒等箭头} \\
+\ere
+
+然后是箭头组合：
+
+\bre
+(\mathbf{Maybe} \circ \mathbf{List})\ (f \circ g) & = & \mathbf{Maybe} (\mathbf{List}\ (f \circ g)) & \text{函子的组合} \\
+ & = & \mathbf{Maybe} ((\mathbf{List}\ f) \circ (\mathbf{List}\ g)) & \text{列表函子的箭头组合性质} \\
+ & = & (\mathbf{Maybe}\ (\mathbf{List}\ f)) \circ (\mathbf{Maybe}\ (\mathbf{List}\ g)) & \text{可能函子的箭头组合性质} \\
+ & = & ((\mathbf{Maybe} \circ \mathbf{List})\ f) \circ ((\mathbf{Maybe} \circ \mathbf{List})\ g) & \text{函子的组合} \\
+\ere
+
 \end{enumerate}
 
 \begin{Exercise}
 \end{Exercise}
 
 \begin{Exercise}
-\Question{请使用叠加操作$foldr$来定义列表函子的箭头映射。}
-\Question{证明可能函子和列表函子的组合$\mathbf{Maybe} \circ \mathbf{List}$与$\mathbf{List} \circ \mathbf{Maybe}$仍然是函子。}
+
 \Question{证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
 \Question{思考一个预序集范畴上的函子的例子。}
 \Question{回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
