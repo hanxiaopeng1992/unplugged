@@ -1640,7 +1640,30 @@ fmap\ f = foldr\ f\ Nil
 \ere
 
 \item {思考一个预序集范畴上的函子的例子。}
+
+预序集范畴上的函子是一个单调映射。
+
 \item {回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
+
+考虑集合全函数范畴上的对象$A$，二叉树函子将其映射为：
+
+\lstset{language=Haskell, frame=none}
+\begin{lstlisting}
+data Tree A = Empty | Branch (Tree A) A (Tree A)
+\end{lstlisting}
+
+对于箭头$A \arrowto{f} B$，二叉树函子将其映射为：
+
+\bre
+fmap\ f\ Empty & = & Empty \\
+fmap\ f\ (Branch\ l\ x\ r) & = & Branch\ (fmap\ f\ l)\ (f\ x)\ (fmap\ f\ r) \\
+\ere
+
+或者利用第二章定义的$mapt$：
+
+\[
+fmap = mapt
+\]
 
 \item {考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
 %\item {考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
