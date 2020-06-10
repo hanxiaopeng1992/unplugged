@@ -1622,6 +1622,23 @@ fmap\ f = foldr\ f\ Nil
 
 \item {证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
 
+仿照前一题，我们分别函子的组合满足恒等箭头，和箭头组合的性质即可。首先是恒等箭头性质：
+
+\bre
+(\mathbf{G} \circ \mathbf{F})\ id & = & \mathbf{G} (\mathbf{F}\ id) & \text{函子的组合} \\
+ & = & \mathbf{Maybe}\ id & \text{函子$\mathbf{F}$的恒等箭头} \\
+ & = & id & \text{函子$\mathbf{G}$的恒等箭头} \\
+\ere
+
+然后是箭头组合：
+
+\bre
+(\mathbf{G} \circ \mathbf{F})\ (\phi \circ \psi) & = & \mathbf{G} (\mathbf{F}\ (\phi \circ \psi)) & \text{函子的组合} \\
+ & = & \mathbf{G} ((\mathbf{F}\ \phi) \circ (\mathbf{F}\ \psi)) & \text{函子$\mathbf{F}$的箭头组合性质} \\
+ & = & (\mathbf{G}\ (\mathbf{F}\ \phi)) \circ (\mathbf{G}\ (\mathbf{F}\ \psi)) & \text{函子$\mathbf{G}$的箭头组合性质} \\
+ & = & ((\mathbf{G} \circ \mathbf{F})\ \phi) \circ ((\mathbf{G} \circ \mathbf{F})\ \psi) & \text{函子的组合} \\
+\ere
+
 \item {思考一个预序集范畴上的函子的例子。}
 \item {回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
 
