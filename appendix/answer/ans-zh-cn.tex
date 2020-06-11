@@ -1667,10 +1667,10 @@ fmap = mapt
 
 \item {考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
 
-第三章中，我们说到一个偏序集本身就是一个范畴，每个元素都是一个对象，任何两个对象间最多有一个箭头（如果有序关系，则存在箭头）。对于偏序集中的两个元素（对象）$a$和$b$，如果它们都有指向上游的箭头，则
+第三章中，我们说到一个偏序集本身就是一个范畴，每个元素都是一个对象，任何两个对象间最多有一个箭头（如果有序关系，则存在箭头）。对于偏序集中的两个元素（对象）$a$和$b$，如果它们都有指向上下游的箭头，则
 
 \[
-\text{meet}\ a \land b \quad \quad \quad \text{join}\ a \lor b
+\text{交运算meet}\ a \land b \quad \quad \quad \text{并运算join}\ a \lor b
 \]
 
 是这一对对象的
@@ -1678,6 +1678,11 @@ fmap = mapt
 \[
 \text{积} \quad \quad \quad \text{余积}
 \]
+
+其中交运算是两个对象的最小上界，而并运算是两个对象的最大下界。由于最小上界和最大下界并不一定存在，所以偏序集中任何两个对象的积和余积也并不一定存在。
+
+% https://en.wikipedia.org/wiki/Join_and_meet
+%In mathematics, specifically order theory, the join and meet of a subset S of a partially ordered set P are respectively the supremum (least upper bound) of S, denoted ⋁S, and infimum (greatest lower bound) of S, denoted ⋀S. In general, the join and meet of a subset of a partially ordered set need not exist. Join and meet are dual to one another with respect to order inversion.
 
 %\item {考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
 \item {证明余积的吸收率，并验证余积函子的组合性质。}
