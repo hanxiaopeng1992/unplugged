@@ -1687,6 +1687,24 @@ fmap = mapt
 %\item {考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
 \item {证明余积的吸收率，并验证余积函子的组合性质。}
 
+余积的吸收率是：
+
+\[
+[p, q] \circ (f + g) = [p \circ f, q \circ g]
+\]
+
+\begin{proof}
+\blre
+  & [p, q] \circ (f + g)  \\
+= & [p, q] \circ [left \circ f, right \circ g] & \text{$+$的定义} \\
+= & [[p, q] \circ (left \circ f), [p, q] \circ (right \circ g)] & \text{余积的融合律} \\
+= & [[p, q] \circ left \circ f, [p, q] \circ right \circ g] & \text{结合性} \\
+= & [p \circ f, q \circ g] & \text{余积的消去律} \\
+\elre
+\end{proof}
+
+余积函子的组合性质。
+
 \end{enumerate}
 
 \begin{Exercise}
