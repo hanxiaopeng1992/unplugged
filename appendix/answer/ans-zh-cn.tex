@@ -1703,7 +1703,25 @@ fmap = mapt
 \elre
 \end{proof}
 
-余积函子的组合性质。
+余积函子的组合性质：
+
+\[
+ (f + g) \circ (f' + g') = f \circ f' + g \circ g'
+\]
+
+\begin{proof}
+令$p = left \circ f$，$q = right \circ g$
+
+\blre
+  & (f + g) \circ (f' + g') \\
+= & [left \circ f, right \circ g] \circ (f' + g') & \text{$+$的定义} \\
+= & [p, q] \circ (f' + g') & \text{用$p, q$代换} \\
+= & [p \circ f', q \circ g'] & \text{余积的吸收律} \\
+= & [left \circ f \circ f', right \circ g \circ g'] & \text{把$p, q$代回} \\
+= & [left \circ (f \circ f'), right \circ (g \circ g')] & \text{结合律} \\
+= & f \circ f' + g \circ g' & \text{反向用$+$的定义} \\
+\elre
+\end{proof}
 
 \end{enumerate}
 
