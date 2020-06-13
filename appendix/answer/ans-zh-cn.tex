@@ -1723,10 +1723,41 @@ fmap = mapt
 \elre
 \end{proof}
 
+\item {证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
+
+对于$A \arrowto{f} C$和$B \arrowto{g} D$，我们要证明下面的范畴图可交换。
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+     (A, B) & (B, A) \\
+     (C, D) & (D, C) \\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$swap_{A, B}$} (m-1-2)
+    (m-2-1) edge node [below] {$swap_{C, D}$} (m-2-2)
+    (m-1-1) edge node [left] {$f \times g$} (m-2-1)
+    (m-1-2) edge node [right] {$g \times f = swap\ f \times g$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+
+\begin{proof}
+\blre
+  & ((g \times f) \circ swap)\ (A, B) \\
+= & (g \times f)\ (swap\ (A, B)) & \text{组合的定义} \\
+= & (g \times f) \circ (B, A) & \text{$swap$的定义} \\
+= & (g\ B, f\ A) & \text{箭头的积} \\
+= & (D, C) & \text{箭头$g, f$的定义} \\
+= & swap\ (C, D) & \text{反向用$swap$的定义} \\
+= & swap\ (f\ A, g\ B) & \text{反向用$f, g$的定义} \\
+= & swap\ ((f \times g)\ (A, B)) & \text{箭头的积} \\
+= & (swap \circ (f \times g))\ (A, B) & \text{反向用组合的定义} \\
+\elre
+\end{proof}
+
 \end{enumerate}
 
 \begin{Exercise}
-\Question{证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
 \Question{证明多态函数$length$是一个自然变换，其定义如下：
 \[
 \begin{array}{l}
