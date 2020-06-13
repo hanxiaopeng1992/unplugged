@@ -1863,37 +1863,36 @@ id \circ length_{A} = length_{B} \circ \mathbf{List}(f)
 \mathbf{H}(f) \circ (\psi_A \circ \phi_A) = (\psi_B \circ \phi_B) \circ \mathbf{F} (f)
 \]
 
-\end{enumerate}
+\item{在本节的例子中，我们说在一个偏序集中，如果存在最小值（或最大值），则最小值（或最大值）就是起始对象（或终止对象）。考虑全体偏序集构成的范畴$\pmb{Poset}$，如果存在起始对象，它是什么？如果存在终止对象，它是什么？}
 
-\begin{Exercise}
-\Question{在本节的例子中，我们说在一个偏序集中，如果存在最小值（或最大值），则最小值（或最大值）就是起始对象（或终止对象）。考虑全体偏序集构成的范畴$\pmb{Poset}$，如果存在起始对象，它是什么？如果存在终止对象，它是什么？}
-\Question{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
-\end{Exercise}
+\item{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
 
-\begin{Exercise}
-\Question{验证$\pmb{Exp}$的确是一个范畴，指出$id$箭头和箭头的组合。}
-\Question{反射律$curray\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
-\Question{我们称下面的等式
+起始对象是$(\pmb{N}, succ, 0)$，它到任何其它对象唯一箭头是：
+
+\[
+(\pmb{N}, succ, 0) \arrowto{\sigma} (A, f, z): \sigma(n) = f^n(z)
+\]
+
+\item{验证$\pmb{Exp}$的确是一个范畴，指出$id$箭头和箭头的组合。}
+\item{反射律$curray\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
+\item{我们称下面的等式
 \[
 (curry\ f) \circ g = curry(f \circ (g \times id))
 \]
 为克里化的融合律。请画出它的范畴图并证明它。}
-\end{Exercise}
 
-\begin{Exercise}
-\Question{画出群的可逆性公理的范畴图。}
-\Question{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
-\Question{参考上一章环的定义，定义环的F-代数。}
-\Question{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
-\end{Exercise}
+\item{画出群的可逆性公理的范畴图。}
+\item{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
+\item{参考上一章环的定义，定义环的F-代数。}
+\item{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
 
-\begin{Exercise}
-\Question{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
+\item{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF (NatF A)
 \end{lstlisting}
 }
-\Question{我们可以为$\mathbf{NatF} Int \to Int$定义一个$\alpha$箭头，名叫$eval$：
+
+\item{我们可以为$\mathbf{NatF} Int \to Int$定义一个$\alpha$箭头，名叫$eval$：
 \[
 \begin{array}{l}
 eval : \mathbf{NatF} Int \to Int \\
@@ -1908,11 +1907,10 @@ eval : \mathbf{NatF}^n Int \to Int \\
 \end{array}
 \]
 }
-\end{Exercise}
 
-\begin{Exercise}
-\Question{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
-\end{Exercise}
+\item{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
+
+\end{enumerate}
 
 \section{推导}
 \begin{Exercise}
