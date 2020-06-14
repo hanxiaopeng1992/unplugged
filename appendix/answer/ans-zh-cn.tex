@@ -1937,7 +1937,20 @@ $h \arrowto{i} k$和$k \arrowto{j} m$的组合是$j \circ i$使得下面的范�
 
 因此对于箭头$h \arrowto{j} k$有：$id_k \circ j = j = j \circ id_h$。并且对于三个箭头有结合律。
 
-\item{反射律$curray\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
+\item{反射律$curry\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
+
+$id$的下标是二元箭头的类型$A \times B \to C$。
+
+\begin{proof}
+\blre
+  & curry \circ apply\ f\ a\ b \\
+= & \lambda_{apply}\ f\ a\ b & \text{$curry$的定义} \\
+= & apply\ f(a, \bullet)\ b \\
+= & f(a, b) \\
+= & id_{A \times B \to C}\ f(a, b)
+\elre
+\end{proof}
+
 \item{我们称下面的等式
 \[
 (curry\ f) \circ g = curry(f \circ (g \times id))
