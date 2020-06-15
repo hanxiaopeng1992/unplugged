@@ -1944,9 +1944,9 @@ $id$的下标是二元箭头的类型$A \times B \to C$。
 \begin{proof}
 \blre
   & curry \circ apply\ f\ a\ b \\
-= & \lambda_{apply}\ f\ a\ b & \text{$curry$的定义} \\
-= & apply\ f(a, \bullet)\ b \\
-= & f(a, b) \\
+= & curry (apply\ f)\ a\ b & \text{组合的定义} \\
+= & (apply\ f)\ (a, b) & \text{$curry$的定义}\\
+= & f(a, b) & \text{$apply$的定义} \\
 = & id_{A \times B \to C}\ f(a, b)
 \elre
 \end{proof}
