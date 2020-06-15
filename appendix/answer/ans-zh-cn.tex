@@ -1944,7 +1944,7 @@ $id$的下标是二元箭头的类型$A \times B \to C$。
 \begin{proof}
 \blre
   & curry \circ apply\ f\ a\ b \\
-= & curry (apply\ f)\ a\ b & \text{组合的定义} \\
+= & curry\ (apply\ f)\ a\ b & \text{组合的定义} \\
 = & (apply\ f)\ (a, b) & \text{$curry$的定义}\\
 = & f(a, b) & \text{$apply$的定义} \\
 = & id_{A \times B \to C}\ f(a, b)
@@ -1956,6 +1956,38 @@ $id$的下标是二元箭头的类型$A \times B \to C$。
 (curry\ f) \circ g = curry(f \circ (g \times id))
 \]
 为克里化的融合律。请画出它的范畴图并证明它。}
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,
+               row sep=3em, column sep=5em, minimum width=2em]{
+     D & D \times B & \\
+     A & A \times B & \\
+     C^B & C^B \times B & C \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$g$} (m-2-1)
+    (m-2-1) edge node [left] {$curry\ f$} (m-3-1)
+    (m-1-2) edge node [left] {$g \times id$} (m-2-2)
+    (m-1-2) edge [bend right] node {} (m-3-2)
+    (m-1-2) edge node [above] {$f \circ (g \times id)$} (m-3-3)
+    (m-2-2) edge node [above] {$f$} (m-3-3)
+    (m-3-2) edge node [below] {$apply$} (m-3-3);
+\end{tikzpicture}
+\end{center}
+
+观察图中$D \times B$，$A \times B$，和$C$这个三角形。我们知道$D \times B \to A$这个组合箭头为$f \circ (g \times id)$。
+
+根据幂对象和转换箭头的定义有：
+
+\[
+apply \circ (curry f) \circ g = f \circ (g \times id)
+\]
+
+由$curry$和$apply$的泛性性质有：
+
+\[
+(curry f) \circ g = curry (f \circ (g \times id)
+\]
 
 \item{画出群的可逆性公理的范畴图。}
 \item{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
