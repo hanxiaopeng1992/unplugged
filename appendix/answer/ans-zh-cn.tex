@@ -2011,6 +2011,20 @@ apply \circ (curry f) \circ g = f \circ (g \times id)
 \end{center}
 
 \item{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
+
+根据群的$\alpha$箭头定义：
+
+\[
+\mathbf{F} A \arrowto{\alpha = e + m +i} A
+\]
+定义整数模$p$乘法群如下：
+
+\bre
+e\ () & = & 1 & \text{单位元是1} \\
+m(a, b) & = & ab \bmod p & \text{二元运算是模$p$乘法} \\
+i(a) & = & a^{p-2} \bmod p & \text{根据费马小定理$a^{p-1} \equiv 1 \mod p$} \\
+\ere
+
 \item{参考上一章环的定义，定义环的F-代数。}
 \item{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
 
