@@ -2124,12 +2124,34 @@ data Tree A = Nil | Br A (Tree A) (Tree A)
 \end{enumerate}
 
 \section{推导}
-\begin{Exercise}
-\Question{验证从左侧叠加也可以表示为$foldr$:
+
+\begin{enumerate}
+\item {验证从左侧叠加也可以表示为$foldr$:
 \[
 foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \]}
-\Question{证明以下列表的构建——叠加形式：
+
+为了方便理解，我们将其改写为：
+
+\[\begin{array}{l}
+foldl\ f\ z\ xs = foldr\ step\ id\ xs\ z \\
+\text{其中：} step\ x\ g\ a = g\ (f\ a\ x)
+\end{array}\]
+
+\blre
+  & foldl\ f\ z\ [x_1, x_2, ..., x_n] \\
+= & (foldr\ step\ id\ [x_1, x_2, ..., x_n])\ z \\
+= & (step\ x_1 (step\ x_2 ( ... (step\ x_n\ id))) ...)\ z \\
+= & (step\ x_1 (step\ x_2 ( ... (a_n \mapsto id\ (f\ a_n\ x_n)))) ...)\ z \\
+= & (step\ x_1 (step\ x_2 ( ...(a_{n-1} \mapsto (a_n \mapsto id\ (f\ a_n\ x_n))\ (f\ a_{n-1}\ x_{n-1}))))...)\ z \\
+= & (a_1 \mapsto (a_2 \mapsto ( ... (a_n \mapsto id\ (f\ a_n\ x_n))\ (f\ a_{n-1}\ x_{n-1})) ... (f\ a_2\ x_2)) (f\ a_1\ x_1))\ z \\
+= & (a_1 \mapsto (a_2 \mapsto ( ... (a_n \mapsto f\ a_n\ x_n)\ (f\ a_{n-1}\ x_{n-1})) ... )\ (f\ a_1\ x_1))\ z \\
+= & (a_1 \mapsto (a_2 \mapsto (... (a_{n-1} \mapsto f\ (f\ a_{n-1}\ x_{n-1})\ x_n)\ ...))\ (f\ a_1\ x_1))\ z \\
+= & (a_1 \mapsto f\ (f\ (...(f\ a_1\ x_1)\ x_2)\ ...)\ x_n)\ z \\
+= & f\ (f\ (...(f\ z\ x_1)\ x_2)\ ...)\ x_n
+\elre
+
+\item {证明以下列表的构建——叠加形式：
 \[
 \begin{array}{l}
 concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss) \\
@@ -2143,6 +2165,10 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \end{array}
 \]
 }
+
+\end{enumerate}
+
+\begin{Exercise}
 \Question{利用融合律化简快速排序算法：
 \[
 \begin{cases}
