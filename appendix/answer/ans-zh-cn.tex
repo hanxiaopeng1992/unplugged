@@ -2194,6 +2194,40 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \elre
 \end{proof}
 
+接着是过滤操作$filter$
+
+\begin{proof}
+\blre
+  & build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
+  \begin{cases}
+     f(x): & x \oplus xs' \\
+    \text{否则}: & xs' \\
+  \end{cases})\ z\ xs) \\
+= & (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
+  \begin{cases}
+     f(x): & x \oplus xs' \\
+    \text{否则}: & xs' \\
+  \end{cases})\ z\ xs)\ (:)\ [] & \text{$build$的定义} \\
+= & foldr\ (x\ xs' \mapsto
+  \begin{cases}
+     f(x): & x : xs' \\
+    \text{否则}: & xs' \\
+  \end{cases})\ []\ xs & \text{$\beta$-规约} \\
+= & filter\ f\ xs & \text{过滤操作的定义} \\
+\elre
+\end{proof}
+
+最后是重复操作$repeat$
+
+\begin{proof}
+\blre
+  & build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
+= & (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)\ (:)\ [] & \text{$build$的定义} \\
+= & (let\ r = x : r\ in\ r) & \text{$\beta$-规约} \\
+= & repeat\ x & \text{重复操作的定义} \\
+\elre
+\end{proof}
+
 \end{enumerate}
 
 \begin{Exercise}
