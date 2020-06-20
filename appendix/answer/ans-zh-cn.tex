@@ -2228,18 +2228,42 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \elre
 \end{proof}
 
-\end{enumerate}
-
-\begin{Exercise}
-\Question{利用融合律化简快速排序算法：
+\item{化简快速排序算法：
 \[
 \begin{cases}
 qsort\ [] = [] \\
 qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsort\ [a | a \in xs, x < a] \\
 \end{cases}\]
-提示：将ZF表达式\footnote{全称为“策梅罗——弗兰克尔表达式”。指集合论中$\{f(x) | x \in X, p(x), q(x), ...\}$这样的集合构建表达式。我们在下一章介绍无穷和集合论时会再次遇到它。}转换为$filter$。}
-\Question{利用范畴论验证融合律的类型限制。提示：考虑向下态射的类型。}
-\end{Exercise}
+}
+
+可以把ZF表达式变换成$filter$。显然这里处理了两遍列表，它们可以合成一次：
+
+\[
+\begin{cases}
+qsort\ [] & = [] \\
+qsort\ (x:xs) & = qsort\ as \doubleplus [x] \doubleplus qsort\ bs \\
+\end{cases}
+\]
+
+其中：
+\[\begin{array}{l}
+(as, bs) = foldr\ h\ ([], [])\ xs \\
+h\ y\ (as', bs') = \begin{cases}
+               y \leq x : & (y:as', bs') \\
+               \text{否则}: & (as', y:bs') \\
+\end{cases} \\
+\end{array}\]
+
+接下来我们可以把两个列表的连接操作化简：
+
+\blre
+  & qsort\ as \doubleplus [x] \doubleplus qsort\ bs \\
+= & qsort\ as \doubleplus (x : qsort\ bs) \\
+= & foldr (:)\ (x : qsort\ bs) (qsort\ as)
+\elre
+
+\item{利用范畴论验证融合律的类型限制。提示：考虑向下态射的类型。}
+\end{enumerate}
 
 \begin{Exercise}
 \Question{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
