@@ -2286,7 +2286,7 @@ h\ y\ (as', bs') = \begin{cases}
 g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 \]
 
-而$build$通过$g$构造初始代数中的对象，也就是列表$[A]$。因而：
+构造的定义是$build(g) = g\ (:)\ []$，它把$g$应用到初始代数的$\alpha$箭头上从而构造出初始代数中的对象，也就是列表$[A]$。因而：
 
 \[
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
