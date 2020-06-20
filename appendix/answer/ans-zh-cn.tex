@@ -2183,6 +2183,17 @@ repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \elre
 \end{proof}
 
+接着是逐一映射$map$
+\begin{proof}
+\blre
+  & build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
+= & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)\ (:)\ [] & \text{$build$的定义} \\
+= & foldr\ (y\ ys \mapsto f(y) : ys)\ []\ xs & \text{$\beta$-规约} \\
+= & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs & \text{$\alpha$变换，改名字} \\
+= & map\ f\ xs & \text{逐一映射的定义} \\
+\elre
+\end{proof}
+
 \end{enumerate}
 
 \begin{Exercise}
