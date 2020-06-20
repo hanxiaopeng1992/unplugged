@@ -652,7 +652,7 @@ foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \Question{Prove the below build...foldr forms hold:
 \[
 \begin{array}{l}
-concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x xs)\ xss) \\
+concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ z\ xss) \\
 map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
