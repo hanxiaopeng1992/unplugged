@@ -2292,10 +2292,26 @@ g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 \]
 
+\item{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
+
+\blre
+  & eval es \\
+= & sum (map\ (product \circ (map\ dec))\ es) & \text{函数组合} \\
+  & \{ \text{$sum$展开为叠加形式，$map$展开为构建形式} \} \\
+= & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{令$f = product \circ (map\ dec)$} \\
+= & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{融合律} \\
+= & foldr\ (t\ ts \mapsto (f t) + ts)\ 0\ es & \text{$\beta$规约} \\
+\elre
+
+写成无参数形式就是：
+
+\[
+eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
+\]
+
 \end{enumerate}
 
 \begin{Exercise}
-\Question{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
 \Question{如何从左侧扩展出所有的算式？}
 \Question{下面定义可以将算式翻译为字符串：
 \[
