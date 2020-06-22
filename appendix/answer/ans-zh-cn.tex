@@ -2309,6 +2309,24 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 \]
 
+接下来我们再化简$product \circ (map\ dec)$部分
+
+\blre
+  & (product \circ (map\ dec))\ t \\
+= & product\ (map\ dec\ t) & \text{函数组合} \\
+  & \{ \text{$product$展开为叠加形式，$map$展开为构建形式} \} \\
+= & \pmb{foldr}\ (\times)\ 1\ (\pmb{build}\ (\oplus\ z \mapsto foldr\ (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)) \\
+= & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{融合律} \\
+= & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$规约} \\
+= & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{定义$fork(f, g)\ x = (f\ x, g\ x)$} \\
+\elre
+
+接着把这个结果代入之前的$f$，得到最终化简的结果：
+
+\[
+eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t) + ts)\ 0
+\]
+
 \end{enumerate}
 
 \begin{Exercise}
