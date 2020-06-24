@@ -2405,17 +2405,21 @@ str & = & foldr\ (x\ xs \mapsto foldr\ (:)\ (`+':xs) ( \\
 
 \section{无穷}
 
-\begin{Exercise}
-\Question{第一章中，我们用叠加操作实现了斐波那契数列，如何用$iterate$定义斐波那契数列潜无穷？}
-\Question{用叠加操作定义$iterate$。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
-\Question{试定义反折叠$unfold$}
-\end{Exercise}
-
 \begin{enumerate}
+
+\item{第一章中，我们用叠加操作实现了斐波那契数列，如何用$iterate$定义斐波那契数列潜无穷？}
+
+\[
+F = (fst \circ unzip)\ (iterate\ ((m, n) \mapsto (n, m + n))\ (1, 1))
+\]
+
+例如$take\ 100\ F$
+
+\item{用叠加操作定义$iterate$。}
+
+\item{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
+\item{试定义反折叠$unfold$}
+
 \item 数论中的算术基本定理说：任何一个大于1的整数都可以唯一地表示成若干素数的乘积。有一道编程趣题，要求判断一段文字$T$中，是否包含一个字符串$W$的某种排列。试利用算术基本定理，和素数流解决这道题目。
 
 我们的思路是，将每一个不同字符对应到一个素数上去，a对应2，b对应3，c对应5……。这样任意给定一个字符串$W$，不管它是否包含重复的字符，我们都可以把它表示为素数的乘积：
@@ -2447,11 +2451,9 @@ F = \prod p_c , c \in W
 \EndFunction
 \end{algorithmic}
 
-\end{enumerate}
+\item{我们用图\ref{fig:NNtoN}建立了房间和任意旅游团的客人间的一一映射。第$i$号旅游团的第$j$号客人应该入住几号房间？第$k$个房间里住了哪号旅游团的哪位客人？}
 
-\begin{Exercise}
-\Question{我们用图\ref{fig:NNtoN}建立了房间和任意旅游团的客人间的一一映射。第$i$号旅游团的第$j$号客人应该入住几号房间？第$k$个房间里住了哪号旅游团的哪位客人？}
-\Question{希尔伯特旅馆第三天的故事的解法并不唯一，图\ref{fig:PWW-NNtoN}是《无需语言的证明》一书的封面。试根据此图给出另一种编号方案？
+\item{希尔伯特旅馆第三天的故事的解法并不唯一，图\ref{fig:PWW-NNtoN}是《无需语言的证明》一书的封面。试根据此图给出另一种编号方案？
 %% \begin{figure}[htbp]
 %%  \centering
 %%  \includegraphics[scale=0.2]{img/PWW.eps}
@@ -2459,9 +2461,7 @@ F = \prod p_c , c \in W
 %%  \label{fig:PWW-NNtoN}
 %% \end{figure}
 }
-\end{Exercise}
 
-\begin{enumerate}
 \item 令$x = 0.9999....$, 则$10x = 9.9999...$，做减法得$10x - x = 9$，解方程得$x = 1$。因此得到结论$1 = 0.9999...$。这一证明正确么？
 
 正确
@@ -2487,16 +2487,13 @@ F = \prod p_c , c \in W
 
 是罗素悖论。
 
+\item{尝试给出费马大定理的印符串。}
+
+\item{尝试用印符推理规则证明加法结合律。}
+
+\item{利用新加入的归纳规则证明$\forall a: (0 + a) = a$}
+
 \end{enumerate}
-
-\begin{Exercise}
-\Question{尝试给出费马大定理的印符串。}
-\Question{尝试用印符推理规则证明加法结合律。}
-\end{Exercise}
-
-\begin{Exercise}
-\Question{利用新加入的归纳规则证明$\forall a: (0 + a) = a$}
-\end{Exercise}
 
 \ifx\wholebook\relax \else
 \begin{thebibliography}{99}
