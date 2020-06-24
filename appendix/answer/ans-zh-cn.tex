@@ -2369,6 +2369,38 @@ str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ
 其中$show$可以将数字转换为字符串。函数 $join(c, s)$ 将一组字符串$s$用$c$连接起来，例如 $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def'' 。利用融合律化简$str$的定义。
 }
 
+第五章中，我们给出了$join(ws)$的结果，它实际上是用空格分割一组字符串。将空格作为参数，就得到了$join(c, s)$的定义：
+
+\[
+join\ c = foldr\ (w\ b \mapsto foldr\ (:)\ (c:b)\ w)\ []
+\]
+
+观察$str$的定义，它实际上是两重的$(join\ c) \circ (map\ f)$的形式，即：
+
+\[\begin{array}{l}
+str = (join\ c) \circ (map\ f) \\
+\text{其中}: f = (join\ d) \circ (map\ g) \\
+\end{array}\]
+
+这里$c = `+', d = ` \times '$，而$g = show \circ dec$。为此我们只要找出$(join\ c) \circ (map\ f)$的简化形式就可以了。
+
+\blre
+  & (join\ c) \circ (map\ f)\ es \\
+  & \{ \text{$join$展开为叠加，$map$展开为构建形式} \} \\
+= & \pmb{foldr}\ (w\ b \mapsto foldr\ (:) (c:b)\ w)\ [] (\pmb{build}\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es)) \\
+  & \{ \text{融合律} \} \\
+= & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es))\ (w\ b \mapsto foldr\ (:)\ (c:b)\ w)\ [] \\
+  & \{ \text{$\beta$规约} \} \\
+= & foldr\ (y\ ys \mapsto foldr\ (:)\ (c:ys)\ (f\ y))\ []\ es \\
+\elre
+
+将之前的加号、乘号，以及$show \circ dec$代入，我们得到结果：
+
+\blre
+str & = & foldr\ (x\ xs \mapsto foldr\ (:)\ (`+':xs) ( \\
+    &   & \quad foldr (y\ ys \mapsto foldr\ (:)\ (`\times':ys)\ (show \circ dec\ y))\ [])\ [] \\
+\elre
+
 \end{enumerate}
 
 \section{无穷}
