@@ -2327,18 +2327,49 @@ eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t) + ts)\ 0
 \]
 
+\item{如何从左侧扩展出所有的算式？}
+
+从左向右扩展时，针对每个数字$d$，有三种选择：
+
+\begin{enumerate}
+\item 什么都不插入意味着将数字$d$直接添加到$e_i$的最后一个子算式中的最后一个因子的后面。这样由$f_n ++ [d]$组成一个新的因子。例如$e_i$是算式$1 + 2$，数字$d$是3，将3写在$1 + 2$的后面而什么符号都不插入，这样就得到新算式$1 + 23$；
+\item 插入乘号意味着用数字$d$构成一个因子$[d]$，然后将它添加到$e_i$中最后一个子算式的后面。这样由$t_m ++ [[d]]$组成一个新的子算式。具体到$1 + 2$这个例子，我们把3写在它的后面，然后在2和3之间插入一个乘号，这样就得到新算式$1 + 2 \times 3$；
+\item 插入加号意味着用数字$d$构成一个子算式$[[d]]$，然后将将它添加到$e_i$的最后面，组成新的算式$e_i ++ [[[d]]]$。具体到$1 + 2$这个例子，我们把3写在它的后面，然后在2和3之间插入一个加号，这样就得到新算式$1 + 2 + 3$。
 \end{enumerate}
 
-\begin{Exercise}
-\Question{如何从左侧扩展出所有的算式？}
-\Question{下面定义可以将算式翻译为字符串：
+为了将一个元素加到序列的末尾，我们可以定义一个函数：
+
+\[
+append\ x = foldr\ (:)\ [x]
+\]
+
+然后我们定义一个函数$onLast(f)$，它把$f$应用到一个序列的最后一个元素上：
+
+\[\begin{array}{l}
+onLast\ f = foldr\ h\ [] \\
+\text{其中}: \begin{cases}
+  h\ x\ [] & = [(f\ x)] \\
+  h\ x\ xs & = x : xs \\
+\end{cases} \\
+\end{array}\]
+
+然后，我们就可以实现这3种情况的扩展：
+
+\lstset{frame = none}
+\begin{lstlisting}
+add d exp = [((append d) `onLast`) `onLast` exp,
+             (append [d]) `onLast` exp,
+             (append [[d]]) exp]
+\end{lstlisting}
+
+\item{下面定义可以将算式翻译为字符串：
 \[
 str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ (map\ (show \circ dec))))
 \]
 其中$show$可以将数字转换为字符串。函数 $join(c, s)$ 将一组字符串$s$用$c$连接起来，例如 $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def'' 。利用融合律化简$str$的定义。
 }
-\end{Exercise}
 
+\end{enumerate}
 
 \section{无穷}
 
