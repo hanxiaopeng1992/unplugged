@@ -2432,6 +2432,18 @@ take 10 $ iter (+1) 0
 
 \item{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
 
+令$A' = \mathbf{StreamF}\ E\ A$，然后不断递归地应用到自己，把此结果称为$\mathbf{Fix}\ (\mathbf{StreamF}\ E)$
+
+\bre
+\mathbf{Fix}\ (\mathbf{StreamF}\ E) & = &
+    \mathbf{StreamF}\ E\ (\mathbf{Fix}\ (\mathbf{StreamF}\ E)) & \text{不动点的定义} \\
+ & = & \mathbf{StreamF}\ E\ (\mathbf{StreamF}\ E\ (...)) & \text{递归展开} \\
+ & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E) & \text{替换名称} \\
+ & = & \mathbf{Stream}\ E & \text{反向用$Stream$的定义} \\
+\ere
+
+故$Stream$是$StreamF$的不动点。
+
 \item{试定义反折叠$unfold$}
 
 \item 数论中的算术基本定理说：任何一个大于1的整数都可以唯一地表示成若干素数的乘积。有一道编程趣题，要求判断一段文字$T$中，是否包含一个字符串$W$的某种排列。试利用算术基本定理，和素数流解决这道题目。
