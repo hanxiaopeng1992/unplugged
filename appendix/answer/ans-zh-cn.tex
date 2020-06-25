@@ -2417,7 +2417,21 @@ F = (fst \circ unzip)\ (iterate\ ((m, n) \mapsto (n, m + n))\ (1, 1))
 
 \item{用叠加操作定义$iterate$。}
 
+我们考虑潜无穷流$iterate\ f\ x$，如果将$f$再次应用到每个元素上，并且在最前面添加一个$x$，得到的仍然是这个无穷流。基于这点我们可以定义：
+
+\[
+iterate\ f\ x = x : foldr (y\ ys \mapsto (f\ y):ys)\ []\ (iterate\ f\ x)
+\]
+
+例如：
+
+\begin{lstlisting}
+take 10 $ iter (+1) 0
+[0,1,2,3,4,5,6,7,8,9]
+\end{lstlisting} %$
+
 \item{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
+
 \item{试定义反折叠$unfold$}
 
 \item 数论中的算术基本定理说：任何一个大于1的整数都可以唯一地表示成若干素数的乘积。有一道编程趣题，要求判断一段文字$T$中，是否包含一个字符串$W$的某种排列。试利用算术基本定理，和素数流解决这道题目。
