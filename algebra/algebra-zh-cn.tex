@@ -105,13 +105,15 @@ build = foldr(nil, insert)
 
 \section{群}
 
-\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.3]{img/Cardano.eps}
  \captionsetup{labelformat=empty}
  \caption{卡尔丹（Gerolamo Cardano, 1501-1576）}
  \label{fig:Cardano}
-\end{wrapfigure}
+%\end{wrapfigure}
+\end{figure}
 
 \index{卡尔丹（Gerolamo Cardano）}
 \index{高斯}
@@ -130,15 +132,15 @@ build = foldr(nil, insert)
 
 然而接下来在寻找五次及以上方程的根式解时，人们遇到了前所未有的困难。经历了近300年的苦苦寻找，终于在19世纪迎来了出乎意料的结果。法国的天才少年伽罗瓦用他独创的想法，彻底解决了这个问题\footnote{1770年，法国数学家拉格朗日在研究前人解方程的方法时，引入了根的置换的新思想。遗憾的是，拉格朗日没有考虑这些置换间的组合。1799年，意大利数学家鲁菲尼使用了置换群的方法，而不是单一置换来试图解决一般五次方程的问题。但他的方法存在一处漏洞。1824年，挪威的青年数学家阿贝尔终于独立给出了完整的证明。这一结论现在称为“阿贝尔-鲁菲尼定理”。然而，这一理论只是说一般的五次方程没有根式解，我们知道$x^5-1=0$是有根式解的。什么情况下一个多项式方程有根式解的完整答案是伽罗瓦完美地解决的\cite{Wiki-Galois-theory}。}。
 
-%\begin{figure}[htbp]
-\begin{wrapfigure}{L}{0.4\textwidth}
+\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.4]{img/galois.eps}
  \captionsetup{labelformat=empty}
  \caption{伽罗瓦（1811 - 1832）}
  \label{fig:Galois}
-\end{wrapfigure}
-%\end{figure}
+%\end{wrapfigure}
+\end{figure}
 
 \index{伽罗瓦（Galois）}
 伽罗瓦短短的20年人生上演了一幕悲剧，然而他身后却开辟了抽象代数这一数学分支。1811年10月25日，伽罗瓦生于巴黎。他的母亲精通拉丁文和古典文学。在12岁前他一直由母亲进行启蒙教育。1823年，伽罗瓦进入巴黎的一所久负盛名的中学读书。到了14岁，他开始如饥似渴地学习起数学来。他找来一本勒让德改编的《几何原本》，像读小说一样迅速地掌握了。15岁时，他已经四处寻找拉格朗日的原著来读了。他的水平迅速超出了老师的能力范围。16岁时，他开始尝试解五次方程，经历了失败后他开始反思五次方程是否有根式解。但是这位天才少年除了数学对其他学科都不感兴趣。这让他的老师头疼不已。
@@ -211,6 +213,14 @@ build = foldr(nil, insert)
  \label{fig:Rubik-cube-notation}
 %\end{wrapfigure}
 \end{figure}
+
+魔方群给了我们一次思考“对称”概念的机会。魔方的初始状态是6个面中的每个都只有一种均一的颜色。我们可以让一个小孩子通过一系列的随意转动打乱魔方。所谓还原魔方，是要求玩魔方的人，开动脑筋，通过一系列的转动恢复成6个面均一颜色的状态。如果我们把打乱过程的转动记录下来：$\{t_0, t_1, ..., t_m\}$，把还原的过程也记录下来：$\{r_0, r_1, ..., r_n\}$。打乱再还原的过程相当于：
+
+\[
+  (r_n \cdot r_{n-1} ... \cdot r_0) \cdot (t_m \cdot t_{m-1} ... \cdot t_0) = e
+\]
+
+显然，一种还原方法是把打乱过程中的每一步都反向转动，即：$r_i = t_{m-i}^{-1}$，也就是$r_i \cdot t_{m-i} = e$。这样上式一定成立。但实际中，魔方高手往往通过一定的方法，也就是所谓魔方公式，进行还原。这样尽管上式成立，但是并不是每个$r_i$都是某个$t_{m-i}$的逆元，甚至打乱和还原的步数也通常不相同。
 
 \item 平面绕某点的所有旋转构成一个群。群元素是所有的旋转角度，二元运算是先旋转某一角度，然后再旋转另一角度。
 \end{enumerate}
