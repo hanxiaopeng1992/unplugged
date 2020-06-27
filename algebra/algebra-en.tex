@@ -16,7 +16,7 @@
 
 \begin{document}
 
-\title{Abstract Algebra}
+\title{Symmetry}
 
 \author{Liu Xinyu
 \thanks{{\bfseries Liu Xinyu} \newline
@@ -25,10 +25,10 @@
 \maketitle
 \fi
 
-\markboth{Abstract Algebra}{Mathematics of Programming}
+\markboth{Symmetry}{Mathematics of Programming}
 
 \ifx\wholebook\relax
-\chapter{Abstract Algebra}
+\chapter{Symmetry}
 \numberwithin{Exercise}{chapter}
 \fi
 
@@ -36,13 +36,21 @@
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
- \includegraphics[scale=0.35]{img/Escher-Liberation-1955.eps}
+ \includegraphics[scale=0.35]{img/vitruvian-man.png}
+ %\includegraphics[scale=0.35]{img/Escher-Liberation-1955.eps}
  \captionsetup{labelformat=empty}
- \caption{Escher, Liberation, 1955}
- \label{fig:Escher-liberation}
+ %\caption{Escher, Liberation, 1955}
+ \caption{Leonardo da Vinci, Vitruvian Man, 1490}
+ %\label{fig:Escher-liberation}
 \end{wrapfigure}
 
-Humans gradually developed the habit to sort things. We classify similar things together. The methods and properties those apply to the entire class are also valid for every thing in it. In this way, we needn't repeately solve the concrete individual problems one by one, but solve the abstract problem as a whole. It greatly improved our ability to understand the world.
+Symmetry appears everywhere in our world. It is often related to a sense of harmonious, order, pattern, beautiful proportion and balance. We, as human is symmetric, left and right, the sagittal plane divides our body into bilateral halves. {\em Vitruvian Man} by Leonardo da Vinci is often used as a representation of symmetry in the human body and by extension, the natural universe. The beautiful butterfly, the fish, and birds all represent the symmetry in biology. In our civilization, people created symmetric artifacts, arts, and buildings. The ancient clay jars are rotational symmetric; the Arabic carpets and rags are rectangular symmetric; the fine Chinese style window pane is radial symmetric. The great buildings like Taj Mahal, the forbidden city are reflectional symmetric. We are surprised about the symmetry in snowflakes, every one is unique, but all follow the same hexagon symmetric pattern. When step in the garden in spring, we see all kinds of the beautiful flowers with radial symmetry; while in the woods in autumn, the matured fruits and spikes, the colorful leaves demonstrate us an amazing canvas in the language of symmetry.
+
+In the great world of astronomy, the galaxy rotates its symmetric arms; in the small world of particle, the symmetric crystal lattice reflects light to tell us the mystical nature. A meaningful palindrome poem leads to deep thinking, a rando variation music moves our feeling. Our minds contain symmetric things, like connotation and denotation concepts, like abstraction versus material. Mathematics is full of symmetric things in geometry, in algebra, in equations, in curves. Programming is also about symmetry, push in and pop out of a stack, computation scheduling, allocation and release. What is symmetry? How to accurately define, or even measure symmetry?
+
+Mathematician developed group to define, explain, and measure symmetry. And surprisingly, some hard problems, like the solvability of equation is ultimately solved by revealing the symmetry of roots. Other famous problems, like the three classic geometric problems in ancient Greece are also solved by this. To uncover the secrete of symmetry, we are going to follow the path in this chapter to the abstract algebra world of groups, rings, and fields.
+
+Humans gradually developed the habit to sort things. We classify similar things together. The methods and properties those apply to the entire class are also valid for every thing in it. In this way, we needn't repeatedly solve the concrete individual problems one by one, but solve the abstract problem as a whole. It greatly improved our ability to understand the world.
 
 In previous chapters, we generalized the abstract `folding' operation from sum and factorial for numbers. We observed their similar structures, abstracted zero in sum, and one in factorial to unit element; then abstracted add and multiplication to binary operation. As the result, we developed the fold operation for numbers in a higher level. With this powerful tool, we then further solved a large sort of problems that are isomorphic to natural number, such as the Fibonacci numbers.
 
@@ -70,7 +78,7 @@ Figure \ref{fig:bst-example} shows the binary search tree generated when compute
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[scale=0.5]{img/bst-example.ps}
+  \includegraphics[scale=0.4]{img/bst-example.ps}
   \caption{The binary search tree generated from folding.}
   \label{fig:bst-example}
 \end{figure}
@@ -89,48 +97,6 @@ We should always ask an important question when developing abstract tools or gen
 \]
 
 Let $x = 1$, Grandi found the sum of the infinite series $1 - 1 + 1 - 1 + 1 - 1 + ...$ could be 1/3, 1/4, ... Even the great mathematician Leibniz thought the result could be 0 or 1 with the same probability, therefore the `true' value should be the average 1/2. Grandi offered a new explanation in 1710: Two brothers inherited a priceless gem from their father, who forbade them to sell it, so they agreed that it would reside in each other's museums on alternating years. If this agreement last for all eternity between the brother's descendants, then the two families would each have half possession of the gem, even though it changed hands infinitely often\cite{HanXueTao16}. People kept suffering from these strange puzzles until the French mathematician Cauchy introduced the convergence concept for infinite series.
-
-There are similar things in programming. When I implemented the natural merge sort algorithm \footnote{Natural merge sort is a sorting algorithm that permutes a list of elements in order. It firstly divides the elements into multiple groups, that every group contains the elements sorted. Then repeatedly merge these groups till all elements are ordered(\cite{LiuXinyu2017}, pp368).}, I need split the list into ordered groups, for example, split the list \texttt{[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} into groups of \texttt{[[15, 9, 0], [12, 11, 7], [10, 5], [6], [13, 1], [4], [8, 3], [14, 2]]}. The elements in the grouped sub-list are in descending order such as $15 > 9 > 0$. Then we can merge every two groups to get
-
-\begin{verbatim}
-[[15, 12, 11, 9, 7, 0], [10, 6, 5], [13, 4, 1], [14, 8, 3, 2]]
-\end{verbatim}
-
-Applying merge to every two groups again gives the next result:
-
-\begin{verbatim}
-[[15, 12, 11, 10, 9, 7, 6, 5, 0], [14, 13, 8, 4, 3, 2, 1]]
-\end{verbatim}
-
-Finally, merge the two groups to get the sorted list:
-
-\begin{verbatim}
-[15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 10]
-\end{verbatim}
-
-I found there was a pre-defined abstract grouping function \texttt{groupBy} in the library. It groups list with a given condition. For example \texttt{groupBy (==) "Mississippi"} gives result \texttt{["M", "i", "ss", "i", "ss", "i", "pp", "i"]}. Hence the same elements are grouped together. However, when I passed the `greater or equal' as the group condition, it generated the unexpected result. \texttt{groupBy (>=) [15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]} gives \texttt{[[15, 9, 0, 12, 11, 7, 10, 5, 6, 13, 1, 4, 8, 3, 14, 2]]}. This is because \texttt{groupBy} is realized with \texttt{span} like below:
-
-\lstset{language=Haskell, frame=single}
-\begin{lstlisting}
-groupBy _  []      = []
-groupBy eq (x:xs)  = (x:ys) : groupBy eq zs
-    where (ys, zs) = span (eq x) xs
-
-span _ []        = ([], [])
-span p xs@(x:xs')
-     | p x       = let (ys, zs) = span p xs' in (x:ys, zs)
-     | otherwise = ([], xs)
-\end{lstlisting}
-
-For my example, \texttt{span} keeps checking if 15 is greater than the next element. As 15 is the biggest one in the list, therefore all the elements are grouped together. In fact, \texttt{groupBy} assumes the passed in group condition is the abstract `equality' condition, it must satisfy three properties: reflexivity, symmetry, and transitivity:
-
-\begin{itemize}
-\item reflexivity. $x = x$, any element equals to itself;
-\item symmetry. if $x = y$, then $y = x$.
-\item transitivity. if $x = y$, and $y = z$, then $x = z$. If two elements are identical, and one element equals to another, then the three elements are equal.
-\end{itemize}
-
-When use equality as condition to group the character list ``Mississippi'', all the three properties are satisfied. It generates the correct result. However, when pass the greater or equal ($\geq$) as the abstract `equality' condition, it violates reflexivity and symmetry. That's the reason why it led to incorrect result.
 
 This chapter introduces the basic abstract algebra structures. They are not only abstraction to numbers, but also the abstraction to concepts, properties, and relationships. They are the most valuable things from many great thoughts and minds. Some contents challenge our limit of abstract thinking. It's quite common that you can't grasp them during the first time reading. I intended to add many stories about those great mathematicians, how they made breakthrough with unbelievable difficulties. I hope these interesting stories could encourage you keep going forward.
 
@@ -164,15 +130,15 @@ The group theory is originate from the history of equations. Equation is a power
 
 People encountered surprisingly difficulty when seek for radical solutions for generic quintic and higher order equations in the next 300 years. The breakthrough happened in the 19th Century with unexpected result. The French young Genius Évariste Galois developed an innovative idea, he was able to determine a necessary and sufficient condition for a polynomial to be savable by radicals while still in his teens\footnote{Around 1770, Joseph Louis Lagrange began the groundwork that unified the method to solve equations, he introduced the new idea to permute roots in the form of Lagrange resolvents. But he didn't consider the combination among the permutations. In 1799 The Italian mathematician Paolo Ruffini marked a major improvement, developing Lagrange's work on permutation theory. However, in general, Ruffini's proof was not considered convincing, and was discovered later incomplete. In 1824, the young Norwegian mathematician Niels Henrik Abel first completed proof demonstrating the impossibility of solving the general quintic equation in radicals. It is called `Abel–Ruffini theorem' nowadays. We know that there are radical solutions to the special quintic equation $x^5-1=0$. In what condition a polynomial is solvable in radicals? This problem was completely solved by Galois\cite{Wiki-Galois-theory}.}.
 
-%\begin{figure}[htbp]
-\begin{wrapfigure}{L}{0.4\textwidth}
+\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.4\textwidth}
  \centering
  \includegraphics[scale=0.4]{img/galois.eps}
  \captionsetup{labelformat=empty}
  \caption{Galois, 1811 - 1832}
  \label{fig:Galois}
-\end{wrapfigure}
-%\end{figure}
+%\end{wrapfigure}
+\end{figure}
 
 \index{Galois}
 It was a tragedy in Galois' short 20 years life, but his work laid the foundations of abstract algebra. Galois was born on October 25th, 1811 in Paris. His mother, the daughter of a jurist, was a fluent reader of Latin and classical literature and was responsible for her son's education for his first twelve years. In 1823, he entered a prestigious school in Paris. At the age of 14, he began to take a serious interest in mathematics. He found a copy of {\em Elements} adapted by Legendre which, it is said, he read "like a novel" and mastered at the first reading. At 15, he was reading the original papers of Joseph-Louis Lagrange, which likely motivated his later work on equation theory, yet his classwork remained uninspired, and his teachers accused him of affecting ambition and originality in a negative way.
