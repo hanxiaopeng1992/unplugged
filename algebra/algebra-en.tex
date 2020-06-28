@@ -840,20 +840,21 @@ Why the group of all permutations of a set is called symmetric group? Because it
  \label{fig:S3-examples}
 \end{figure}
 
-记正三角形的三个顶点为1、2、3，我们取$S_3$中的三个元素(1 2), (1 2 3)和(1 3 2)对正三角形进行变换看看产生什么结果。
+Denote the 3 vertex as 1, 2, 3. We choose from $S_3$ three elements, (1 2), (1 2 3), and (1 3 2), and apply them to the triangle vertexes.
 
 \begin{enumerate}
-\item 图中右侧图形是(1 2)变换的结果，三角形的三个顶点从123变为213，它恰恰是以过点3的对称轴进行翻转变换的结果。由于变换前后的图形重合，这说明正三角形是轴对称的。除了(1 2)外，它还有另外两个轴对称，分别对应群元素(1 3)、(2 3)。相应的对称轴是过点2和点1的高。
+\item The shape on the right side is the transformed result after applying (1 2). The three vertexes change from 123 to 213. It is exactly the mirrored result to flip the triangle against the axis at vertex 3. Because the shapes are same before and after transform, it means the regular triangle is reflection symmetric. Besides (1 2), there are another two reflection symmetric transforms, which are (1 3) and (2 3) respectively. Their corresponding axes are the heights at vertex 2 and 1.
 
-\item 图中右下是(1 2 3)变换的结果。三角形的三个顶点从123变为231。它等价于绕中心顺时针旋转120度。由于变换前后图形重合，这说明正三角形具有120度旋转对称性。
+\item The bottom right is the transformed result after applying (1 2 3). The three vertexes change from 123 to 231. It means the triangle rotate 120 degrees clockwise against its centre. Because the shapes are same before and after, it tells us that the regular triangle has rotational symmetry of 120 degrees.
 
-\item 图中下方是(1 3 2)变换的结果。三角形的三个顶点从123变为312。它等价于绕中心逆时针旋转120度，或者顺时针旋转240度。由于变换后图形重合，这说明正三角形具有240度旋转对称性。
+\item The bottom shape is the transformed result after applying (1 3 2). The tree vertexes change from 123 to 312. It is equivalent that the triangle rotates 120 degrees counter clockwise, or rotates 240 degrees clockwise. Because the shapes are same before and after, it tells us that the regular triangle has rotational symmetry of 240 degrees.
+
 \end{enumerate}
 
-这样正三角形的每种对称性（3个轴对称、加上2个旋转对称性，以及单位变换）恰好被对称群$S_3$的每个元素唯一精确描述了。这就是群与对称间的美妙关系。
+Every symmetry of the regular triangle (3 reflection symmetries, 2 rotational symmetries, and the identity) is exactly defined by an element in the symmetric group $S_3$. This is the beautiful relation between groups and symmetry.
 
 \begin{Exercise}
-对称群$S_4$描述了什么几何形状的哪些对称性？
+What symmetries for what shape are defined by the symmetric group $S_4$?
 \end{Exercise}
 
 \subsection{Cyclic group}
@@ -979,7 +980,6 @@ Therefore, from the abstract perspective, there is only one group that the order
  \caption{美国摄影家威尔逊$\cdot$本特利于1902年前后拍摄的雪花晶体}
  \label{fig:snowflakes}
 \end{figure}
-
 
 现在我们终于可以揭示雪花的对称性了。正六角形的雪花的对称性可以精确地被循环群$C_6$描述。它们表示雪花旋转60度、120度、180度、240度、300度、360度的整数倍和自己重合，每种旋转恰好是6阶循环群中的一个元素。概括地说，$n$阶循环群描述了正$n$边形的对称。正$n$面体的截面上的对称性也可以用循环群来描述。美国摄影家威尔逊$\cdot$本特利一生拍摄了超过5000张雪花晶体照片。他把这些艺术与科学的结晶捐赠给了博物馆。从这些照片中，他得出了孩子们熟知的结论：“每一片雪花都是不同的。”
 
