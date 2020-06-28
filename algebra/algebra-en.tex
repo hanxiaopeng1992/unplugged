@@ -223,13 +223,13 @@ To help understanding the definition of group, let us see some examples.
 %\end{wrapfigure}
 \end{figure}
 
-魔方群给了我们一次思考“对称”概念的机会。魔方的初始状态是6个面中的每个都只有一种均一的颜色。我们可以让一个小孩子通过一系列的随意转动打乱魔方。所谓还原魔方，是要求玩魔方的人，开动脑筋，通过一系列的转动恢复成6个面均一颜色的状态。如果我们把打乱过程的转动记录下来：$\{t_0, t_1, ..., t_m\}$，把还原的过程也记录下来：$\{r_0, r_1, ..., r_n\}$。打乱再还原的过程相当于：
+It's helpful to think about symmetry through the Rubik cube group. In original state, all 6 sides have the same color for each. Let a kid play it with a series of random rotations. The player need to figure out a way, restore the Rubik cube to its original state, the all sides are back to the unified color. If we record the kid's rotations with a camera as $\{t_0, t_1, ..., t_m\}$, and the restore process as $\{r_0, r_1, ..., r_n\}$. Then the whole process to solve the Rubik cube puzzle means:
 
 \[
   (r_n \cdot r_{n-1} ... \cdot r_0) \cdot (t_m \cdot t_{m-1} ... \cdot t_0) = e
 \]
 
-显然，一种还原方法是把打乱过程中的每一步都反向转动，即：$r_i = t_{m-i}^{-1}$，也就是$r_i \cdot t_{m-i} = e$。这样上式一定成立。但实际中，魔方高手往往通过一定的方法，也就是所谓魔方公式，进行还原。这样尽管上式成立，但是并不是每个$r_i$都是某个$t_{m-i}$的逆元，甚至打乱和还原的步数也通常不相同。
+Obviously, one solution is to reverse every rotation made by the kid, that is $r_i = t_{m-i}^{-1}$, or $r_i \cdot t_{m-i} = e$. Hence the above equation must hold. However, in practice, a seasoned player restore the Rubik cube through a set of `formulas'. Although the above equation holds, not every $r_i$ is the reversed rotation of some $t_{m-i}$. Even the number of steps to restore may not equal to the number of steps to disrupt the Rubik cube.
 
 \item For a plane, all the rotations around a fixed point form a group. The group elements are all the degrees for rotation. The group binary operation is the composition, corresponding to the result of rotating a degree after another degree. 单位元是零度。
 
