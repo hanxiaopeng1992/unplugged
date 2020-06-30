@@ -3,7 +3,7 @@
 WIN = 10
 INF = 1000
 
-# Luo Shu magic square
+# Lo Shu magic square
 MAGIC_SQUARE = [4, 9, 2,
                 3, 5, 7,
                 8, 1, 6]

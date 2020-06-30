@@ -37,9 +37,9 @@
 \begin{enumerate}
 \item{Implementing a tick-tack-toe game is a classic programming exercise. It's trivial to test if the sum of three numbers is 15. Please use this point to implement a simplified tick-tack-toe program that never lose game to human.}
 
-We use Luo Shu square to model tick-tack-toe game as they are isomorphic. We setup two set $X, O$ to represents the cells each player occupied. For the game in the preface, it starts with $X = \phi$, $O = \phi$, and ends with $X = \{ 2, 5, 7, 1 \}$，$O = \{ 4, 3, 8, 6 \}$. To determine if either player wins, we write a program to check if there are 3 elements add up to 15.
+We use Lo Shu square to model tick-tack-toe game as they are isomorphic. We setup two set $X, O$ to represents the cells each player occupied. For the game in the preface, it starts with $X = \phi$, $O = \phi$, and ends with $X = \{ 2, 5, 7, 1 \}$，$O = \{ 4, 3, 8, 6 \}$. To determine if either player wins, we write a program to check if there are 3 elements add up to 15.
 
-There are two methods to do this checking. One is to list all the rows, columns, and diagonals, totally 8 tuples as: $\{ \{4, 9, 2\}, \{3, 5, 7\}, ..., \{2, 5, 8\} \}$. Then check if anyone is the subset of cells occupied by the player. The other method is interesting. Suppose a player covers cells $ X = \{x_1, x_2, ..., x_n\}$, sorted in ascending order as they appear in the Luo Shu square. We can first pick $x_1$, then use two pointers $l, r$ point to the next element and the last element. If the sum of three numbers $s = x_1 + x_l + x_r$ equals to 15, it means the player lines up and win. If it is less than 15, because the elements are in ascending order, we can increase the left pointer $l$ by 1 and examine again. otherwise, if it is greater than 15, then we decrease the right pointer $r$ by 1. When the left and right pointers meet, then no tuple add up to 15 when fixing $x_1$. We next pick $x_2$ and do the similar things. In worst case, after $(n - 2)+ (n - 3) + ... + 1$ we know whether a player wins or not.
+There are two methods to do this checking. One is to list all the rows, columns, and diagonals, totally 8 tuples as: $\{ \{4, 9, 2\}, \{3, 5, 7\}, ..., \{2, 5, 8\} \}$. Then check if anyone is the subset of cells occupied by the player. The other method is interesting. Suppose a player covers cells $ X = \{x_1, x_2, ..., x_n\}$, sorted in ascending order as they appear in the Lo Shu square. We can first pick $x_1$, then use two pointers $l, r$ point to the next element and the last element. If the sum of three numbers $s = x_1 + x_l + x_r$ equals to 15, it means the player lines up and win. If it is less than 15, because the elements are in ascending order, we can increase the left pointer $l$ by 1 and examine again. otherwise, if it is greater than 15, then we decrease the right pointer $r$ by 1. When the left and right pointers meet, then no tuple add up to 15 when fixing $x_1$. We next pick $x_2$ and do the similar things. In worst case, after $(n - 2)+ (n - 3) + ... + 1$ we know whether a player wins or not.
 
 \lstset{language=Python
     , frame=single
@@ -64,13 +64,13 @@ def win(s):
     return False
 \end{lstlisting}
 
-这样给定$X$和$O$，就能判断局面。如果$X$和$O$占满全部9个格子，还未分出胜负，则表示平局。接下来我们用传统人工智能中的$min-max$方法来实现井字棋，我们给每个局面一个评分，一方试图让评分最大化，称为正方；另一方试图让评分最小化，称为反方，从而实现对抗。平局的话评分为0，如果某个局面让正方获胜，我们设置评分为10，反方获胜评分为-10。这个分数值完全是随意设置的，不影响结果。
+Given $X$ and $O$, we can test if the game is in end state either a player wins or draw with all 9 cells being occupied. Next we use the classic $min-max$ method in AI to realize the game. For each state, we evaluate its score. One player tries to maximize the score, while the opponent tries to minimize it. For a draw state, we evaluate the score as zero, if player $X$ wins, we give it score 10, and player $O$ wins, we give it -10. These numbers are arbitrary. They can be any other values without impact the correctness.
 
 \begin{lstlisting}
 WIN = 10
 INF = 1000
 
-# Luo Shu magic square
+# Lo Shu magic square
 MAGIC_SQUARE = [4, 9, 2,
                 3, 5, 7,
                 8, 1, 6]
@@ -86,7 +86,7 @@ def finished(x, o):
     return len(x) + len(o) == 9
 \end{lstlisting}
 
-对于任何一个对局，我们都让计算机不断向前探索，直到找到输赢或者平局的确定局面才停下来。探索的方法是穷尽当前所有能占领的格子，然后转换身份，考虑自己是对方时怎样对抗。对于所有候选方案，如果是正方，就选择评分高的方案，如果是反方，就选择评分低的方案。
+For any game state, we let the program explore ahead till an end state (one side win, or draw). The explore method, is to exhaustive cover all unoccupied cells, then turn to the opponent player, consider what is the best move to beat the other. For all candidate moves, select the highest score for player $X$, or select the lowest score for player $O$.
 
 \begin{lstlisting}
 def findbest(x, o, maximize):
@@ -107,7 +107,7 @@ def findbest(x, o, maximize):
     return move
 \end{lstlisting}
 
-$min-max$是一个递归搜索的过程，为了尽快获胜，我们在评分上加上对向前探索步数的考虑。如果是正方，就从评分中减去递归深度，而对于反方，则加上递归深度。
+The $min-max$ search is recursive. In order to win fast, we take the number of steps into account on top of the state score. For payer $X$, we deduce the score from the recursion depth; while for player $O$, we add the depth to the score.
 
 \begin{lstlisting}
 def minmax(x, o, depth, maximize):
@@ -128,7 +128,7 @@ def minmax(x, o, depth, maximize):
     return best
 \end{lstlisting}
 
-现在我们就做出一个无法被人类击败的程序了，我们的程序在背后用洛书幻方对抗人类玩家：
+We obtain a program that will never lose to human player. It uses the Lo Shu square on the back end essentially.
 
 \begin{lstlisting}
 def board(x, o):
@@ -164,7 +164,7 @@ def play():
 
 \end{enumerate}
 
-\section{数字}
+\section{Natural Numbers}
 
 \begin{enumerate}
 \item 定义0的后继为1，证明对于任何自然数都有$a \cdot 1 = a$
