@@ -39,9 +39,7 @@
 
 We use Luo Shu square to model tick-tack-toe game as they are isomorphic. We setup two set $X, O$ to represents the cells each player occupied. For the game in the preface, it starts with $X = \phi$, $O = \phi$, and ends with $X = \{ 2, 5, 7, 1 \}$，$O = \{ 4, 3, 8, 6 \}$. To determine if either player wins, we write a program to check if there are 3 elements add up to 15.
 
-There are two methods to do this checking. One is to list all the rows, columns, and diagonals, totally 8 tuples as: $\{ \{4, 9, 2\}, \{3, 5, 7\}, ..., \{2, 5, 8\} \}$. Then check if anyone is the subset of cells occupied by the player. The other method is interesting. Suppose a player covers cells $ X = \{x_1, x_2, ..., x_n\}$, sorted in ascending order as they appear in the Luo Shu square.
-
-我们可以先选出$x_1$，然后用左右两个指针$l, r$分别指向下一个元素和最后一个元素，然后把这3个数加起来$s = x_1 + x_l + x_r$，如果等于15，说明玩家连成一条直线已经获胜了。如果小于15，由于元素是升序排列的，我们可以把左侧指针$l$加一，然后再次尝试；如果大于15，我们把右侧指针$r$减一，然后再次尝试。如果左右指针相遇，说明固定$x_1$没有找到相加等于15的三元组，我们选出$x_2$再次进行这样的检查。这样最差情况总共进行$(n - 2)+ (n - 3) + ... + 1$次检查就得知玩家是否获胜了。
+There are two methods to do this checking. One is to list all the rows, columns, and diagonals, totally 8 tuples as: $\{ \{4, 9, 2\}, \{3, 5, 7\}, ..., \{2, 5, 8\} \}$. Then check if anyone is the subset of cells occupied by the player. The other method is interesting. Suppose a player covers cells $ X = \{x_1, x_2, ..., x_n\}$, sorted in ascending order as they appear in the Luo Shu square. We can first pick $x_1$, then use two pointers $l, r$ point to the next element and the last element. If the sum of three numbers $s = x_1 + x_l + x_r$ equals to 15, it means the player lines up and win. If it is less than 15, because the elements are in ascending order, we can increase the left pointer $l$ by 1 and examine again. otherwise, if it is greater than 15, then we decrease the right pointer $r$ by 1. When the left and right pointers meet, then no tuple add up to 15 when fixing $x_1$. We next pick $x_2$ and do the similar things. In worst case, after $(n - 2)+ (n - 3) + ... + 1$ we know whether a player wins or not.
 
 \lstset{language=Python
     , frame=single
