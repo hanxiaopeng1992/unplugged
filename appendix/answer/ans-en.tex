@@ -182,44 +182,46 @@ a' \cdot 1 & = a' \cdot 0' & \text{1 as the successor of 0} \\
 
 \item Prove the distributive law for multiplication;
 
-可以用数学归纳法证明左侧的分配律$c(a + b) = ca + cb$。首先是$b = 0$的情况：
+We can prove the left side distribution law $c(a + b) = ca + cb$ by mathematical induction. First for $b = 0$ case:
 
 \bre
-c(a + 0) & = & ca & \text{加法规则一} \\
-         & = & ca + 0 & \text{反向用加法规则一} \\
-         & = & ca + c0 & \text{反向用乘法规则一} \\
+c(a + 0) & = & ca & \text{1st rule of addition} \\
+         & = & ca + 0 & \text{reverse of 1st rule of addition} \\
+         & = & ca + c0 & \text{reverse of 1st rule of multiplication} \\
 \ere
 
-递推假设$c(a + b) = ca + cb$，接下来证明$c(a + b') = ca + cb'$
+Next suppose $c(a + b) = ca + cb$ holds, we need prove $c(a + b') = ca + cb'$
 
 \bre
-c(a + b') & = & c(a + b)' & \text{加法规则二} \\
-          & = & c(a + b) + c & \text{乘法规则二} \\
-          & = & ca + cb + c & \text{递推假设} \\
-          & = & ca + (cb + c) & \text{加法结合律} \\
-          & = & ca + cb' & \text{反向用乘法规则二} \\
+c(a + b') & = & c(a + b)' & \text{2nd rule of addition} \\
+          & = & c(a + b) + c & \text{2nd rule of addition} \\
+          & = & ca + cb + c & \text{induction assumption} \\
+          & = & ca + (cb + c) & \text{associative law for addition} \\
+          & = & ca + cb' & \text{reverse of 2nd rule of multiplication} \\
 \ere
 
-\item 证明乘法结合律和交换律
+\item Prove the associative and commutative laws for multiplication.
 
-我们只证明乘法结合律$(ab)c = a(bc)$，乘法交换律的证明则给出一个提纲。利用数学归纳法，首先是$c = 0$的情况：
+We only prove the associative law for multiplication $(ab)c = a(bc)$. For the commutative law, we provide a proof outline.
+
+Using mathematical induction, for the case that $c = 0$:
 
 \bre
-(ab)0 & = & 0 & \text{乘法规则一} \\
-      & = & a0 & \text{反向用乘法规则一} \\
-      & = & a(b0) & \text{反向用乘法规则一} \\
+(ab)0 & = & 0 & \text{1st rule of multiplication} \\
+      & = & a0 & \text{reverse of 1st rule of multiplication} \\
+      & = & a(b0) & \text{reverse of 1st rule of multiplication} \\
 \ere
 
-递推假设$(ab)c = a(bc)$，接下来要证明$(ab)c' = a(bc')$
+Next suppose $(ab)c = a(bc)$, we need prove $(ab)c' = a(bc')$
 
 \bre
-(ab)c' & = & (ab)c + ab & \text{乘法规则二} \\
-       & = & a(bc) + ab & \text{递推假设} \\
-       & = & a(bc + b) & \text{上题证明的分配律} \\
-       & = & a(bc') & \text{反向用乘法规则二} \\
+(ab)c' & = & (ab)c + ab & \text{2nd rule of multiplication} \\
+       & = & a(bc) + ab & \text{induction assumption} \\
+       & = & a(bc + b) & \text{distribution law proven above} \\
+       & = & a(bc') & \text{reverse of 2nd rule of multiplication} \\
 \ere
 
-证明乘法交换律可以分为三步，都使用数学归纳法。首先证明$1a = a$，然后再证明右侧的分配律$(a + b)c = ac + bc$，最后再证明交换律。
+To prove the commutative law of multiplication, we take three steps, all with mathematical induction. First we prove $1a = a$, then prove the right side distribution law $(a + b)c = ac + bc$, finally, prove the commutative law.
 
 \item 如何利用皮亚诺公里验证3 + 147 = 150
 
