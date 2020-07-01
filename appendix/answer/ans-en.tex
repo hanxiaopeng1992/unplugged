@@ -223,19 +223,19 @@ Next suppose $(ab)c = a(bc)$, we need prove $(ab)c' = a(bc')$
 
 To prove the commutative law of multiplication, we take three steps, all with mathematical induction. First we prove $1a = a$, then prove the right side distribution law $(a + b)c = ac + bc$, finally, prove the commutative law.
 
-\item 如何利用皮亚诺公里验证3 + 147 = 150
+\item How to verify 3 + 147 = 150 with Peano Axioms?
 
-我们先看看经典的2 + 2 = 4是怎么证明的：
+Let us first see the classic proof of 2 + 2 = 4
 
 \bre
-2 + 2 & = & 0'' + 0'' & \text{2是0的两次后继} \\
-      & = & (0'' + 0')' & \text{加法定义规则二} \\
-      & = & ((0'' + 0)')' & \text{加法定义规则二} \\
-      & = & ((0'')')' & \text{加法定义规则一} \\
-      & = & 0'''' = 4 & \text{0的4次后继} \\
+2 + 2 & = & 0'' + 0'' & \text{2 is the successor of successor of 0} \\
+      & = & (0'' + 0')' & \text{2nd rule of addition} \\
+      & = & ((0'' + 0)')' & \text{2nd rule of addition} \\
+      & = & ((0'')')' & \text{1st rule of addition} \\
+      & = & 0'''' = 4 & \text{4 times successor of 0} \\
 \ere
 
-显然用这个方法证明3 + 147 = 150的话太冗长了，我们可以用先前证明的加法交换律证明147 + 3 = 150会容易一些。另一个方法是通过数学归纳法证明$3 + a = a'''$。
+It will be too long when prove 3 + 147 = 150 in this way. One method is to apply the commutative law of addition, then prove 147 + 3 = 150; another method is to use the mathematical induction to prove $3 + a = a'''$
 
 \item 试给出乘法分配律，乘法结合律，和乘法交换律的几何解释。
 
