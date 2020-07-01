@@ -64,7 +64,7 @@ def win(s):
     return False
 \end{lstlisting}
 
-Given $X$ and $O$, we can test if the game is in end state either a player wins or draw with all 9 cells being occupied. Next we use the classic $min-max$ method in AI to realize the game. For each state, we evaluate its score. One player tries to maximize the score, while the opponent tries to minimize it. For a draw state, we evaluate the score as zero, if player $X$ wins, we give it score 10, and player $O$ wins, we give it -10. These numbers are arbitrary. They can be any other values without impact the correctness.
+Given $X$ and $O$, we can test if the game is in end state either a player wins or draw with all 9 cells being occupied. Next we use the classic $min-max$ method in AI to realize the game. For each state, we evaluate its score. One player tries to maximize the score, while the opponent tries to minimize it. For a draw state, we evaluate the score as zero, if player $X$ wins, we give it score 10, and player $O$ wins, we give it a negative score -10. These numbers are arbitrary. They can be any other values without impact the correctness.
 
 \begin{lstlisting}
 WIN = 10
@@ -167,19 +167,20 @@ def play():
 \section{Natural Numbers}
 
 \begin{enumerate}
-\item 定义0的后继为1，证明对于任何自然数都有$a \cdot 1 = a$
+\item Define 1 as the successor of 0, prove $a \cdot 1 = a$ hold for all natural numbers;
 
-首先用数学归纳法证明$0 + a = a$这个结论，见附录I。然后：
+We first use mathematical induction to prove $0 + a = a$ (refer the Appendix - Proof of commutative law of addition). Next:
+
 \[
 \begin{array}{rlr}
-a' \cdot 1 & = a' \cdot 0' & \text{定义0的后继为1} \\
-           & = a' \cdot 0 + a' & \text{乘法定义规则二} \\
-           & = 0 + a' & \text{乘法定义规则一} \\
-           & = a' & \text{此前证明的结论}
+a' \cdot 1 & = a' \cdot 0' & \text{1 as the successor of 0} \\
+           & = a' \cdot 0 + a' & \text{2nd rule of multiplication} \\
+           & = 0 + a' & \text{1st rule of multiplication} \\
+           & = a' & \text{proved above}
 \end{array}
 \]
 
-\item 证明乘法分配律
+\item Prove the distributive law for multiplication;
 
 可以用数学归纳法证明左侧的分配律$c(a + b) = ca + cb$。首先是$b = 0$的情况：
 
