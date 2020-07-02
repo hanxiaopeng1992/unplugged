@@ -305,7 +305,7 @@ exp m n = snd $ foldn (1, 1) h (n - 1) where
 pascal = gen [1] where
   gen cs (x:y:xs) = gen ((x + y) : cs) (y:xs)
   gen cs _ = 1 : cs
-\end{lstlisting}
+\end{lstlisting} %$
 
 \item 使用$foldn$定义奇数的和。它会产生怎样的序列？
 

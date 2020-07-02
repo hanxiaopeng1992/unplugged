@@ -237,64 +237,65 @@ Let us first see the classic proof of 2 + 2 = 4
 
 It will be too long when prove 3 + 147 = 150 in this way. One method is to apply the commutative law of addition, then prove 147 + 3 = 150; another method is to use the mathematical induction to prove $3 + a = a'''$
 
-\item 试给出乘法分配律，乘法结合律，和乘法交换律的几何解释。
+\item Give the geometric explanation for distributive, associative, and commutative laws of multiplication.
+
+See figure \ref{fig:geometric-arithmetic}
 
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/geometric-arithmetic.png}
- \captionsetup{labelformat=empty}
- \caption{乘法交换律、结合律、分配律的几何解释}
+  % \captionsetup{labelformat=empty}
+ \caption{Geometric explanation for arithmetic laws}
  \label{fig:geometric-arithmetic}
 \end{figure}
 
+\item Define square for natural number $()^2$ with $foldn$;
 
-\item 使用$foldn$定义平方$()^2$。
-
-可以利用递推关系$(n+1)^2 = n^2 + 2n + 1$来定义平方：
+We can define square from the iterative relation $(n+1)^2 = n^2 + 2n + 1$
 
 \[
 ()^2 = 2nd \cdot foldn\ (0, 0)\ h
 \]
 
-其中$h$接受一对值$(i, s)$，分别代表自然数$i$和它的平方$s$。它将第一个值递增1，然后利用平方展开式求出下一个平方数。
+Where $h$ accepts a pair $(i, s)$, which means the number $i$ and its square $s$. It increase $i$ by 1, then use the iterative relation to calculate the next square.
 
 \[
 h\ (i, s) = (i + 1, s + 2i + 1)
 \]
 
-\item 使用$foldn$定义$()^m$，计算给定自然数的$m$次幂。
+\item Define $()^m$ with $foldn$, which gives the $m$-power of a natural number;
 
-一种简单的方法是借助第一章中定义的$m^{()} = foldn(1, (\cdot m))$来定义$()^m$：
+One simple method is to re-use the definition of $m^{()} = foldn(1, (\cdot m))$ in chapter 1 for $()^m$
 
 \[
 ()^m = 2nd \cdot foldn\ (0, 0)\ h
 \]
 
-其中
+Where
 
 \[
 h\ (i, b) = (i + 1, (i + 1)^m)
 \]
 
-这看起来有些奇怪，所有中间计算都被直接丢掉了。另一种方法是利用牛顿二项式定理：
+It looks a bit strange, as all the intermediate results are dropped. Another method is to leverage the Newton's binomial theorem:
 
 \[
 (n + 1)^m = n^m + \binom{m}{1} n^{m-1} + ... + \binom{m}{m-1} n + 1
 \]
 
-这样就建立了递推关系：
+Hence we can establish the iterative relation:
 
 \[
 (n)^m = 2nd(foldn\ (1, 1)\ h\ (n - 1))
 \]
 
-其中
+Where
 
 \[
 h (i, x) = (i + 1, C \cdot X)
 \]
 
-这里$C \cdot X$是二项式系数和各次幂的点积$C \cdot X = \sum c_j x_j$。各次幂可以通过对$x$不断除以$i$求出，二项式定理的系数可以由帕斯卡三角形逐行递推得到。下面是综合在一起的例子程序：
+The $C \cdot X$ is the dot product between binomial coefficients and the powers: $C \cdot X = \sum c_j x_j$. The powers can be calculated by repeatedly dividing $x$ by $i$, and the binomial coefficients can be iterated from the Pascal triangle. Below is an example program that put them together:
 
 \lstset{language=Haskell
     , frame=single
@@ -308,7 +309,7 @@ exp m n = snd $ foldn (1, 1) h (n - 1) where
 pascal = gen [1] where
   gen cs (x:y:xs) = gen ((x + y) : cs) (y:xs)
   gen cs _ = 1 : cs
-\end{lstlisting}
+\end{lstlisting} %$
 
 \item 使用$foldn$定义奇数的和。它会产生怎样的序列？
 
