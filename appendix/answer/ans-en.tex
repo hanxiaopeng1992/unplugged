@@ -311,19 +311,20 @@ pascal = gen [1] where
   gen cs _ = 1 : cs
 \end{lstlisting} %$
 
-\item 使用$foldn$定义奇数的和。它会产生怎样的序列？
+\item Define sum of odd numbers with $foldn$, what sequence does it produce?
 
-用$foldn$定义1 + 3 + 5 + ...为$2nd \cdot foldn\ (1, 0)\ h$，其中：
+
+1 + 3 + 5 + ... can be defined with $foldn$ as $2nd \cdot foldn\ (1, 0)\ h$, where:
 
 \[
 h\ (i, s) = (i + 2, s + i)
 \]
 
-如第一章中习题下的插图所示，奇数和总是平方数。
+As shown in the figure below this exercise in chapter 1, the sum of odd numbers is always square number.
 
-\item 地面上有一排洞，一只狐狸藏在某个洞中。每天狐狸会移动到相邻的下一个洞里。如果每天只能检查一个洞，请给出一个捉到狐狸的策略，并证明这个策略有效。如果狐狸每天移动的不止一个洞呢？
+\item There is a line of holes in the forest. A fox hides in one hole. It moves to the next hole every day. If we can check only one hole a day, is there a way to catch the fox? Prove this method works. What if the fox moves more than one hole a day?
 
-不管狐狸在哪个洞中，我们只检查奇数洞1, 3, 5, ...必然会捉到狐狸。观察下面的表格
+No matter which hole the fox hides in, we only examine the odd numbered ones 1, 3, 5, ... It can ensure us always catch the fox. Observe the below table:
 
 \btab{c|c|c|c|c}
 1 & 3 & 5 & ... & 2m - 1 \\
@@ -331,47 +332,47 @@ h\ (i, s) = (i + 2, s + i)
 m & m + 1 & m + 2 & ... & 2m - 1 \\
 \etab
 
-狐狸第一天在第$m$个洞中，解方程$m + k = 2k + 1$，得出当$k = m -1$天之后，我们恰好检查第$2m-1$洞，而狐狸恰好也在这个洞中。下面使用$foldn$展示了这一过程：
+Suppose the fox hides in the hole number $m$, solving equation $m + k = 2k + 1$ gives that, after $k = m -1$ days, we will examine the hole number $2m - 1$, while the fox moves exactly to it. Below $foldn$ program demonstrates this process:
 
 \[
 \begin{array}{l}
 fox\ m = foldn\ (1, m)\ h\ (m - 1) \\
-\text{其中}: h\ (c, f) = (c + 2, f + 1) \\
+\text{where}: h\ (c, f) = (c + 2, f + 1) \\
 \end{array}
 \]
 
-如果狐狸第一天在第$p$个洞中，每天移动$q$个洞，我们可以把这样的组合列为$(p, q)$的数偶。然后参考第6章无穷中的方法将其映射到自然数上进行枚举。
+If the fox hides at hole number $p$, and moves $q$ holes everyday, we can denote such pair as $(p, q)$, then map them to the natural numbers with the method we introduced in chapter 6 about infinity. With this method, we can enumerate all $(p, q)$ combinations and catch the fox.
 
-\item 表达式$foldr(nil, cons)$定义了什么？
+\item What does the expression $foldr(nil, cons)$ define?
 
-定义了列表本身。
+It defines the list itself.
 
-\item 读入一串数字（数字字符串），用$foldr$将其转换成十进制数。如果是16进制怎么处理？如果含有小数点怎么处理？
+\item Read in a sequence of digits (string of digit numbers), convert it to decimal with $foldr$. How to handle hexadecimal digit and number? How to handle the decimal point?
 
-如果个位在左，高位在右，传入数字列表，则可以这样转换：
+If the lowest digit is on the left, and the highest digit on the right in the input list, we can convert it as below:
 
 \[
 foldr\ (c\ d \mapsto 10d + c)\ 0
 \]
 
-但如果个位在右，并且列表元素是数字字符，则需要调整为：
+However, if the lowest digit is on the right, and the elements in the list are characters but not digit, then we need adjust it to:
 
 \[
 1st \cdot foldr\ (c, (d, e) \mapsto ((toInt\ c)e + d, 10e))\ (0, 1)
 \]
 
-只要将其中的10换成16，就可以处理16进制。如果传入的字符串含有小数点，只要在遇到小数点时将当前结果$d$除以$e$就可以得到小数部分的值。
+We can make it process the hexadecimal numbers by replacing 10 to 16 in this definition. When meets the decimal point, we can divided $d$, the result so far, by $e$ to calculate the fractional part value.
 
 \[
 1st \cdot foldr\ h\ (0, 1)
 \]
 
-其中
+where
 
 \[
 h\ (c, (d, e)) = \begin{cases}
 c = '.' & (d / e, 1) \\
-\text{否则} & ((toFloat\ c)e + d, 10e) \\
+\text{otherwise} & ((toFloat\ c)e + d, 10e) \\
 \end{cases}
 \]
 
