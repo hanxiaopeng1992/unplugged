@@ -618,9 +618,9 @@ With this fact, we can obtain the non-recursive realization for extended Euclide
 \EndFunction
 \end{algorithmic}
 
-\item 大多数编程环境中的取模运算，要求除数、被除数都是整数。但是线段的长度不一定是整数，请实现一个针对线段的取摸运算。它的效率如何？
+\item {Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integer. Implement a modular operation that manipulates segments. What's the efficiency of it?}
 
-想象一下尺规作图，只要能够用圆规截取线段，就可以求模了
+Consider the compass and straightedge construction, we can use compass to intercept segment to obtain the modular result.
 
 \begin{algorithmic}
 \Function{mod}{$a, b$}
@@ -631,10 +631,10 @@ With this fact, we can obtain the non-recursive realization for extended Euclide
 \EndFunction
 \end{algorithmic}
 
-显然这是一个线性效率的运算。为了优化，我们引入一个定理：
+It's efficiency is linear obviously. To optimize it, we introduce a lemma:
 
-\begin{lemma}[递归求余定理] % recursive remainder lemma
-如果$r = a \bmod 2b$，那么：
+\begin{lemma}[Recursive remainder lemma] % recursive remainder lemma
+If $r = a \bmod 2b$, then:
 \[
 a \bmod b = \begin{cases}
 r \leq b: & r \\
@@ -643,20 +643,20 @@ r > b: & r - b \\
 \]
 \end{lemma}
 
-使用这个定理，我们可以把取模运算加快到$log$级别：
+With this lemma, we can speed up the modular operation to logarithmic:
 
 \[
 a \bmod b \begin{cases}
 a \leq b: & a \\
 a - b \leq b: & a - b \\
-\text{否则}: & \begin{cases}
-  a' \leq b: & a', \text{其中} a' = a \bmod (b + b) \\
+\text{otherwise}: & \begin{cases}
+  a' \leq b: & a', \text{where} a' = a \bmod (b + b) \\
   a' > b: & a' - b \\
   \end{cases} \\
 \end{cases}
 \]
 
-利用斐波那契数列的增长方式，罗伯特$\cdot$弗洛伊德和高德纳将上面方法中的递归消除，用纯循环实现了快速取模运算：
+Inspired by Fibonacci numbers, Robot Floyd, and Donald Knuth managed to eliminate the recursion in this algorithm, hence obtained a pure iterative modular operation:
 
 \begin{algorithmic}
 \Function{mod}{$a, b$}
@@ -665,10 +665,10 @@ a - b \leq b: & a - b \\
   \EndIf
   \State $c \gets b$
   \While{$c \leq a$}
-    \State $c, b \gets (b + c, c)$ \Comment{用斐波那契的方式的增大$c$}
+    \State $c, b \gets (b + c, c)$ \Comment{Increase $c$ like Fibonacci numbers}
   \EndWhile
   \While{$b \neq c$}
-    \State $c, b \gets (b, c - b)$ \Comment{再将$c$减小回来}
+    \State $c, b \gets (b, c - b)$ \Comment{Decrease $c$ back}
     \If{$c <= a$}
       \State $a \gets a - c$
     \EndIf
