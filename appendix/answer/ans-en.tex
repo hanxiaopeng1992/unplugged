@@ -271,7 +271,7 @@ One simple method is to re-use the definition of $m^{()} = foldn(1, (\cdot m))$ 
 ()^m = 2nd \cdot foldn\ (0, 0)\ h
 \]
 
-Where
+where
 
 \[
 h\ (i, b) = (i + 1, (i + 1)^m)
@@ -289,7 +289,7 @@ Hence we can establish the iterative relation:
 (n)^m = 2nd(foldn\ (1, 1)\ h\ (n - 1))
 \]
 
-Where
+where
 
 \[
 h (i, x) = (i + 1, C \cdot X)
@@ -394,21 +394,21 @@ max_s & = & 1st \cdot foldr\ f\ ((0, []), (0, [])) \\
 & & \text{where in $f$}:  P' = max((0, []), (x + S, x:L)), P_m' = max(P_m, P') \\
 \elre
 
-\item 最长无重复字符子串问题。任给一个字符串，求出其中不包含重复字符的最长子串。例如``abcabcbb''的最长无重复字符子串为``abc''。请使用$foldr$求解。
+\item The longest sub-string without repeated characters. Given a string, find the longest sub-string that there are no repeated characters in it. For example, the answer for string ``abcabcbb'' is ``abc''. Solve it with $foldr$.
 
-我们给出两种解法。传统的解法是在fold过程中维护一个已发现的最长无重复字符的子串，不断记录并检查遇到的字符$c$上次出现的位置。如果$c$未出现过，或者出现在当前正在检查的子串之前，则延长当前的子串，并和已发现的最长子串比较。否则，说明当前正在检查的子串含有重复字符，需要从上次重复字符出现的位置后开始接下来的检查。
+We give two methods. One solution is to maintain the longest sub-string without repeated characters found during folding, record and check if the character $c$ has met before and its last appeared position. If $c$ never occurred, or it appears before the current sub-string we are examining, then we append it to the current sub-string, and compare it with the longest one we've found so far. Otherwise, it means the current sub-string contains a repeated character, we need go back to the its last occurred position, move ahead one, then reset the search.
 
 \[
 longest(S) = fst2 \cdot foldr\ f\ (0, |S|, |S|, \varnothing)\ zip(\{1, 2, ...\}, S)
 \]
 
-其中fold的起始值是一个4元组，含义分别是已经找到的最长子串的长度，最长子串的右侧截止位置，当前正在检查的子串的右侧截止位置，和记录各个不同字符上次出现位置的映射表格。$fst2$能够取出4元组中的前两个作为结果。为了方便在fold过程中得知当前字符的位置，我们将字符串$S$和代表位置的自然数序列$zip$在一起。最关键的函数$f$定义如下：
+Where folding starts from a 4 elements tuple, which contains the length of the longest sub-string we found so far, the right boundary of the longest sub-string, the right boundary of the current sub-string, and a map recorded the last occurred position for different characters. Function $fst2$ extract the first two elements from the tuple as result. To obtain the position of each character easily during folding, we $zip$ the string $S$ and natural number sequence together. The most critical function $f$ is defined as below:
 
 \[
 f\ (i, c)\ (n_{max}, e_{max}, e, Idx) = (n_{max}', e_{max}', e', Idx[c] = i)
 \]
 
-其中：
+where:
 
 \[ \begin{array}{l}
 n_{max}' = max(n_{max}, e' - i + 1) \\
@@ -418,11 +418,11 @@ e' = \begin{cases}
   \end{cases} \\
 e_{max}' = \begin{cases}
   e' - i + 1 > n_{max}: & e' \\
-  \text{否则}: & e_{max} \\
+  \text{otherwise}: & e_{max} \\
   \end{cases} \\
 \end{array} \]
 
-由于$foldr$是从右侧开始，所以我们使用截止位置。而传统的编程使用起始位置，例如：
+We record ending position because $foldr$ starts from right. While the traditional way starts from the left, for example:
 
 \begin{algorithmic}
 \Function{Longest}{$S$}
@@ -443,28 +443,28 @@ e_{max}' = \begin{cases}
 \EndFunction
 \end{algorithmic}
 
-第二种方法是利用素数。我们将每个不同的字符$c$映射到一个素数$p_c$上，对于任何一个字符串$S$，我们可以计算出一个素数的乘积：
+The second method is a number theory solution by leveraging prime numbers. We map each unique character $c$ to a prime number $p_c$. For any string $S$, we can calculate a product of prime numbers mapped from its characters:
 
 \[
 P = \displaystyle \prod_{c \in S} p_c
 \]
 
-这样，对于任何一个新字符$c'$，我们可以通过其对应的素数$p'$是否整除$P$来判断$c'$是否在$S$中出现过。根据这一点，我们可以设计出一个解法，在fold过程中，不断维护更新子串的的素数积。如果发现一个字符对应的素数可以整除这个积，就说明发现了重复字符。此时，我们截断这个子串中含有重复字符的部分。在这一过程中，我们还要不断更新已发现的最长子串。
+Therefore, for any new character $c'$, we can check whether the corresponding prime number $p'$ divides $P$ or not to know if $c'$ appears in $S$. Based on this fact, we can design an algorithm, it maintain the product of primes during folding. When there is a character, its corresponding prime number divides the product, we then find a repeated character. We need drop off the part containing the repeated character and go on folding. During this process, we also need update the longest sub-string.
 
 \[
 longest = fst \cdot foldr\ f\ ((0, []), (0, []), 1)
 \]
 
-其中fold的起始值是一个三元组，三元组中的前两个元素是数偶，分别表示已找到的最长子串的长度和内容，当前检查的子串的长度和内容。三元组中最后一个值是素数积，其起始值是1。函数$f$定义为：
+Where the folding starts from a three element tuple. The first two are pairs, represent the longest sub-string (its length and content), and the current sub-string. The last one in the tuple is the product of primes, starts from 1. Function $f$ is defined as the following:
 
 \[
 f\ c\ (m, (n, C), P) = \begin{cases}
   p_c | P : & update(m, (n + 1, c : C), p_c \times P) \\
-  \text{否则}: & update(m, (|C'|, C'), \displaystyle \prod_{x \in C'} p_x) \\
+  \text{otherwise}: & update(m, (|C'|, C'), \displaystyle \prod_{x \in C'} p_x) \\
 \end{cases}
 \]
 
-其中：
+where:
 
 \[ \begin{array}{l}
 update(a, b, P) = (max(a, b), b, P) \\
