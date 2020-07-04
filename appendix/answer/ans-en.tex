@@ -471,19 +471,19 @@ update(a, b, P) = (max(a, b), b, P) \\
 C' = c : takeWhile\ (\neq c)\ C \\
 \end{array} \]
 
-\item 观察斐波那契的叠加定义，它的后继计算$(m', n') = (n, m + n)$相当于一个矩阵乘法：
+\item {In the fold definition of Fibonacci numbers, the successor is computed as $(m', n') = (n, m + n)$. It is essentially matrix multiplication:
 \[
 \begin{pmatrix} m' \\ n' \end{pmatrix} =
 \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}
 \begin{pmatrix} m \\ n \end{pmatrix}
 \]
-起始值是$(0, 1)^T$。这样斐波那契数列就在矩阵乘方下和自然数同构：
+Where it starts from $(0, 1)^T$. Then the Fibonacci numbers is isomorphic to natural numbers under the matrix multiplication:
 \[
 \begin{pmatrix}F_n \\ F_{n+1} \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^n\begin{pmatrix} 0 \\ 1 \end{pmatrix}
 \]
-设计一个程序，快速计算2阶方阵的幂。求得斐波那契数列的第$n$个元素。
+Write a program to compute the power of 2-order square matrix, and use it to give the $n$-th Fibonacci number.}
 
-首先要定义2阶方阵的乘法，以及2阶方阵和向量的乘法：
+First we need define multiplication for square matrix of order 2, and the multiplication between the square matrix and vector:
 
 \[
 \begin{pmatrix}
@@ -502,7 +502,7 @@ a_{21} b_{11} + a_{22} b_{21} & a_{21} b_{12} + a_{22} b_{22} \\
 \end{pmatrix}
 \]
 
-以及
+and
 
 \[
 \begin{pmatrix}
@@ -521,27 +521,27 @@ a_{21} b_{1} + a_{22} b_{2} \\
 \end{pmatrix}
 \]
 
-当求矩阵的$n$次方$M^n$时，我们不用真的算$n$次乘法。如果$n=4$那么我们可以第一次算出$M^2$，然后再一次算出$(M^2)^2$，只要两次乘法；如果$n = 5$我们可以利用$M^4 \times M$，这样只要算3次乘法。这样我们可以利用$n$的奇偶性，递归地快速计算。
+When calculate the $n$-th power of $M^n$, we need not repeat multiplication $n$ times. If $n = 4$, we can first calculate $M^2$, then multiply the result to itself to obtain $(M^2)^2$. There are total two times of multiplication; If $n = 5$, we only need compute $M^4 \times M$, hence there are three times of multiplication. We can recursively fast compute the exponential based on $n$'s parity.
 
 \[
 M^n = pow(M, n, I)
 \]
 
-其中$I$是2阶方阵$\displaystyle \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$。函数$pow$定义为：
+Where $I$ is the identical square matrix of order 2: $\displaystyle \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$, and the function $pow$ is defined as below:
 
 \[
 pow(M, n, A) = \begin{cases}
 n = 0: & A \\
-n\text{是偶数}: & pow(M \times M, \dfrac{n}{2}, A) \\
-\text{否则}: & power(M \times M, \lfloor \dfrac{n}{2} \rfloor, M \times A)\\
+n\text{is even}: & pow(M \times M, \dfrac{n}{2}, A) \\
+\text{otherwise}: & power(M \times M, \lfloor \dfrac{n}{2} \rfloor, M \times A)\\
 \end{cases}
 \]
 
-事实上，我们可以把$n$表示为二进制数，然后对0、1序列进行fold快速计算出$M^n$。
+In fact, we can represent $n$ in binary format, then perform folding on these 0, 1 bits to fast compute $M^n$.
 
 \end{enumerate}
 
-\section{递归}
+\section{Recursion}
 
 \begin{enumerate}
 \item 我们给出的欧几里得算法是递归的，请消除递归，只使用循环实现欧几里得算法和扩展欧几里得算法。
