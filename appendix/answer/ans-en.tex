@@ -677,11 +677,11 @@ Inspired by Fibonacci numbers, Robot Floyd, and Donald Knuth managed to eliminat
 \EndFunction
 \end{algorithmic}
 
-\item 我们在证明欧几里得算法正确性的过程中说：“每次都保证余数小于除数。即$b > r_0 > r_1 > r_2 > ... > 0$，但是余数不可能小于零。由于起始值是有限的，故最终算法一定中止。”为什么不会出现，$r_{n}$无限接近于零但不等于零的情况？算法一定会中止么？$a$和$b$是可公度的这一前提保证了什么？
+\item {In the proof of Euclidean algorithm, we mentioned ``Remainders are always less than the divisor. We have $b > r_0 > r_1 > r_2 > ... > 0$. As the remainder can not less than zero, and the initial magnitude is finite, the algorithm must terminate.'' Can $r_{n}$ infinitely approximate zero, but not be zero? Does the algorithm always terminate? What does the precondition that $a$ and $b$ are commensurable ensure?}
 
-可以利用最小数原理（Well-ordering principle）说明可公度量的欧几里得算法一定终止。最小数原理是自然数所具有的一种基本性质，即任何非空的自然数集中都有最小的自然数。该原理可以推广到整数集、有理数集或实数集的有限非空子集。从可公度的定义出发，我们知道余数序列一定构成有限集。
+For the commensurable magnitudes, we can use the {\em Well-ordering principle} to show that the Euclidean algorithm must terminate. According to the well-ordering principle, every none empty set of natural numbers has the minimum number. This property can be extended to set of integers, rationals, or even to the finite, none empty sub-set of real numbers. From the definition of commensurable, we know the remainders form a finite set.
 
-\item 对于二元线性不定方程$ax + by = c$，若$x_1$、$y_1$和$x_2$、$y_2$为两对整数解。试证明$|x_1 - x_2|$的最小值为$b/gcm(a, b)$，且$|y_1 - y_2|$的最小值为$a/gcm(a, b)$。
+\item {For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ are two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$}
 
 令$a, b$的最大公约数$g = gcm(a, b)$。如果$x_0, y_0$是不定方程$ax + by = c$的一组解，则下面给出的也是一组解：
 
