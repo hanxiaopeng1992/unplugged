@@ -719,7 +719,7 @@ Divide both sides with the greatest common divisor of $a$ and $b$. It gives:
 Note that the left side can be divided by $\dfrac{b}{g}$, hence it must divide the right side too. But since $(\dfrac{a}{g}, \dfrac{b}{g}) = 1$, they are co-prime, hence $\dfrac{b}{g}$ must divide $(x - x_0)$. Let
 
 \[
-x - x_0 = k \dfrac{b}{g}, \text{for some} k \in \pmb{Z}
+x - x_0 = k \dfrac{b}{g}, \text{for some}\ k \in \pmb{Z}
 \]
 
 Therefore
@@ -738,25 +738,25 @@ Hence proved every pair of solution is in this form. Obviously, for any two such
 
 \item {For right pentagon with side of 1, how long is the diagonal? Proof that in the pentagram shown in this chapter, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
 
-保罗$\cdot$洛克哈特在《度量》一书中\cite{Lockhart2012}展示了一个漂亮的方法。如图所示，如果把正五边形切成如下的三个小三角形，很容易发现$A$和$B$的全等的，而$C$和它们相似（你能证明这一点么？）这样，如果正五边形的边长为1，对角线长为$d$，则小三角形的底边为1，而两斜边为$d - 1$。这样根据三角形相似，我们有：
+Paul Lockhart gives a beautiful method in his {\em Measurement}\cite{Lockhart2012}. As shown in figure \ref{fig:pentagram-unit}, we can divide the regular pentagram into three triangles. It's easy to show that triangle $A$ and $B$ are congruent, and they are similar to triangle $C$ (can you prove it?). If the length of the pentagram side is 1, let the diagonal length be $d$, then the base of triangle $C$ is 1, and its two hypotenuses both are $d - 1$. From the similar triangles, we have:
 
 \[
   1 / d = (d - 1) / a
 \]
 
-解此一元二次方程得$d = \dfrac{\sqrt{5} + 1}{2}$。对于另一个解$d = \dfrac{\sqrt{5} - 1}{2}$，它比边长短，我们舍去了（这个实际上是小三角形的斜边长）。
+Solving this quadratic equation gives $d = \dfrac{\sqrt{5} + 1}{2}$. We drop the other solution $d = \dfrac{\sqrt{5} - 1}{2}$ as it is shorter than the side (in fact, it is the length of the hypotenuse of the smaller triangle $C$).
 
-本章插图中的AC和AG两条线段，根据上述切分的三个三角形，实际上就是正五边形的对角线和边长。假设它们是可公度的，那么则小三角形的底和斜边就是可公度的。那么在递归的五角星图中，内部的小五边形的边和对角线必然也是可公度的。我们可以无限重复这个过程，不会终止。这样就说明我们的假设不成立，正五边形的边长和对角线是不可公度的。用实数表示这个值约等于0.6180339887498949...
+For the segment AC and AG in the figure of this chapter, according to the 3 triangles we divided, they are actually the side and the diagonal of the pentagram. Suppose they are commensurable, then the base and hypotenuse of the smaller triangle are commensurable. Hence in the recursive inner pentagram star, the side and diagonal are also commensurable. We can repeat this process infinitely without end. Therefore, our assumption cannot hold. The side and diagonal are incommensurable. Written in decimals, it is about 0.6180339887498949...
 
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.4]{img/pentagram-unit.png}
  \captionsetup{labelformat=empty}
- \caption{边长为1的正五边形}
+ \caption{The unit regular pentagram}
  \label{fig:pentagram-unit}
 \end{figure}
 
-\item 使用$\lambda$变换规则验证$tail\ (cons\ p\ q) = q$。
+\item {Use $\lambda$ conversion rules to verify $tail\ (cons\ p\ q) = q$。}
 
 函数$cons$和$tail$的$\lambda$表达式为：
 \[
@@ -2651,7 +2651,7 @@ a + b + SS0 & = & SS(a + b + 0) \\
 \begin{thebibliography}{99}
 
 \bibitem{Lockhart2012}
-[美] 保罗$\cdot$洛克哈特 著, 王凌云 译. ``度量——一首献给数学的情歌''. 人民邮电出版社. 2015, ISBN: 9787115393180
+Paul Lockhart. ``Measurement''. Belknap Press: An Imprint of Harvard University Press; Reprint edition 2014, ISBN: 978-0674284388
 
 \end{thebibliography}
 
