@@ -758,7 +758,8 @@ For the segment AC and AG in the figure of this chapter, according to the 3 tria
 
 \item {Use $\lambda$ conversion rules to verify $tail\ (cons\ p\ q) = q$。}
 
-函数$cons$和$tail$的$\lambda$表达式为：
+The $\lambda$ expressions for $cons$ and $tail$ are:
+
 \[
 \begin{array}{rcl}
 cons & = & a \mapsto b \mapsto f \mapsto f\ a\ b \\
@@ -766,7 +767,7 @@ tail & = & c \mapsto c\ (a \mapsto b \mapsto b)
 \end{array}
 \]
 
-我们据此来验证$tail\ (cons\ p\ q) = q$这一关系：
+From the two definitions, we can verify $tail\ (cons\ p\ q) = q$ holds.
 
 \[
 \begin{array}{rcl}
@@ -781,7 +782,8 @@ tail\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto b))\ (cons\ p\ q) \\
 \end{array}
 \]
 
-\item 可以仅仅使用$\lambda$演算来定义自然数。下面是丘奇数的定义：
+\item {We can define numbers with $\lambda$ calculus. The following definition is called Church numbers:
+
 \[
 \begin{array}{r@{\quad:\quad}l}
 0 & \lambda f . \lambda x . x \\
@@ -791,29 +793,31 @@ tail\ (cons\ p\ q) & = & (c \mapsto c\ (a \mapsto b \mapsto b))\ (cons\ p\ q) \\
   & ...
 \end{array}
 \]
-请利用第一章介绍的内容，定义丘奇数的加法和乘法。
+Define the addition and multiplication operators for the Church numbers with what we introduced in chapter 1.
+}
 
-自然数$n$的丘奇数含义是将函数$f$向$x$应用$n$次。我们先定义后继函数：
+For natural number $n$, the meaning as a Church number is to apply function $f$ to $x$ by $n$ times. Let's define successor function first:
 
 \[
 succ = \lambda n . \lambda f . \lambda x . f\ (n\ f\ x)
 \]
 
-其含义是；$f^{n+1}(x)) = f(f^n(x))$。然后定义自然数加法为：
+It means $f^{n+1}(x)) = f(f^n(x))$. Then we can define addition as:
 
 \[
 plus = \lambda m . \lambda n . \lambda f . \lambda x . m\ f\ (n\ f\ x)
 \]
 
-其含义是：$f^{m + n}(x) = f^m(f^n(x))$。乘法定义为：
+Which means $f^{m + n}(x) = f^m(f^n(x))$. While the multiplication is defined as:
 
 \[
 mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
 \]
 
-其含义为：$f^{m n} = (f^n)^m(x)$。
+It means $f^{m n} = (f^n)^m(x)$.
 
-\item 以下是丘奇布尔值的定义，以及逻辑运算的一种实现：
+\item {The following defines the Church Boolean values, and the relative logic operators:
+
 \[
 \begin{array}{r@{\quad:\quad}l}
 \textbf{true} & \lambda x . \lambda y . x \\
@@ -823,7 +827,9 @@ mul = \lambda m . \lambda n . \lambda f . \lambda x . m\ (n\ f)\ x
 \textbf{not} & \lambda p . p\ \textbf{false}\ \textbf{true}
 \end{array}
 \]
-其中\textbf{false}的定义和丘奇数0的定义本质上是相同的。试用$\lambda$变换证明：\textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}；你能给出if...then...else...语句的$\lambda$定义么？
+
+where \textbf{false} is defined as same as the Church number 0. Use the $\lambda$ conversion rules to prove that: \textbf{and}\ \textbf{true}\ \textbf{false} = \textbf{false}. Please give the definition of if ... then ... else ... expression with the $\lambda$ calculus.
+}
 
 \blre
 and\ true\ false & = & (\lambda p . \lambda q . p\ q\ p)\ true\ false \\
@@ -832,7 +838,7 @@ and\ true\ false & = & (\lambda p . \lambda q . p\ q\ p)\ true\ false \\
  & \xrightarrow{\beta} & false \\
 \elre
 
-if ... then ... else ...语句的定义：$\lambda p . \lambda a . \lambda b . p\ a\ b$
+if ... then ... else ... expression can be defined as: $\lambda p . \lambda a . \lambda b . p\ a\ b$
 
 \item 不用抽象的叠加操作$foldt$，通过递归定义二叉树的逐一映射$mapt$；
 
