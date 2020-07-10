@@ -996,23 +996,23 @@ x^m x^{n+1} & = & x^m (x x^n) & \text{recursive definition of power} \\
 
 \item {Is the odd even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic-and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
 
-为了判断是否构成同态，我们需要检查两点：1、是否是满射；2、是否满足$f(a) f (b) = f(a \cdot b)$。奇偶判断函数虽然是满射，但我们有下面的反例：
+To test homomorphic, we need verify two things: 1, whether it is surjective; 2, whether $f(a) f (b) = f(a \cdot b)$ holds. Although the odd-even test is surjective, there is a negative case:
 
-$a, b$都是奇数：$odd(a) = odd(b) = True$，它们的和是偶数，故而：$odd(a + b) = False$。而逻辑与的结果：$odd(a) \land odd(b) = True \neq odd(a + b) = False$。
+$a, b$ are all odd, i.e. $odd(a) = odd(b) = True$. Their sum is even, $odd(a + b) = False$. However, the logic and result is $odd(a) \land odd(b) = True \neq odd(a + b) = False$.
 
-因而不构成同态。
+Hence they are not homomorphic.
 
-而去除0后的整数乘法群在奇偶判断函数下与逻辑与群构成同态。我们可以验证全部的三种情况：
+While the multiplicative group of integers without zero is homomorphic with the logic and group. We can verify all the three cases:
 
   \begin{itemize}
-  \item $a, b$都是奇数：$odd(a) = odd(b) = True$, 积$ab$仍然是奇数：$odd(ab) = True$。所以$odd(a) \land odd(b) = odd(ab)$；
-  \item $a, b$都是偶数：$odd(a) = odd(b) = False$, 积$ab$仍然是偶数：$odd(ab) = False$。所以$odd(a) \land odd(b) = odd(ab)$；
-  \item $a, b$一奇一偶：不妨令$odd(a) = True, odd(b) = False$, 积$ab$是偶数：$odd(ab) = False$。所以$odd(a) \land odd(b) = odd(ab)$。
+  \item $a, b$ are all odd, i.e. $odd(a) = odd(b) = True$. Their product $ab$ is still odd: $odd(ab) = True$. Hence, $odd(a) \land odd(b) = odd(ab)$;
+  \item $a, b$ are all even, i.e. $odd(a) = odd(b) = False$. Their product $ab$ is still even: $odd(ab) = False$. Hence, $odd(a) \land odd(b) = odd(ab)$;
+  \item $a, b$ are old and even respectively. Let $odd(a) = True, odd(b) = False$. Their product $ab$ is even: $odd(ab) = False$. Hence, $odd(a) \land odd(b) = odd(ab)$.
   \end{itemize}
 
-故而是构成同态。
+Therefor, they are homomorphic.
 
-\item 假定两个群$G$和$G'$在映射下同态，群$G$中的元$a \to a'$，那么$a$和$a'$的阶是否相同？
+\item {Suppose two groups $G$ and $G'$ are homomorphic. In $G$, the element $a \to a'$. Is the order of $a$ same as the order of $a'$?}
 
 它们的阶相同。我们可以证明这一点。令单位元$e$的像是$e'$，同态映射为$f$。记$a$的阶为$n$，我们有$a^n = e$。
 
