@@ -1010,7 +1010,7 @@ While the multiplicative group of integers without zero is homomorphic with the 
   \item $a, b$ are old and even respectively. Let $odd(a) = True, odd(b) = False$. Their product $ab$ is even: $odd(ab) = False$. Hence, $odd(a) \land odd(b) = odd(ab)$.
   \end{itemize}
 
-Therefor, they are homomorphic.
+Therefore, they are homomorphic.
 
 \item {Suppose two groups $G$ and $G'$ are homomorphic. In $G$, the element $a \to a'$. Is the order of $a$ same as the order of $a'$?}
 
@@ -1031,9 +1031,9 @@ f(a^n) & = & f(a) f(a) ... f(a) & \text{total $n$} \\
 
 Summarize the above two results, we have $(a')^n = e'$. Hence the order of $a$ and $a'$ are same.
 
-\item 证明一个变换群的单位元一定是恒等变换。
+\item {Prove that the identity element for transformation group must be identity transformation.}
 
-假设某一变换$\epsilon': a \to a^{\epsilon'} = \epsilon'(a)$是变换群的单位元。根据单位元的性质，我们有$\epsilon' \tau = \tau$。即：
+Suppose the unit transformation is $\epsilon': a \to a^{\epsilon'} = \epsilon'(a)$. According to the definition of unit, for any transformation $\tau$, $\epsilon' \tau = \tau$ holds, i.e.
 
 \[
 \begin{array}{l}
@@ -1042,9 +1042,9 @@ Summarize the above two results, we have $(a')^n = e'$. Hence the order of $a$ a
 \end{array}
 \]
 
-故而：$a^{\epsilon'} = a = \epsilon'(a)$ 也就是$\epsilon'$为恒等变换。
+Therefore, $a^{\epsilon'} = a = \epsilon'(a)$, $\epsilon'$ is identity transformation.
 
-\item 列出$S_4$的全体元素。
+\item{List all the elements in $S_4$.}
 
 (1);
 
@@ -1056,17 +1056,17 @@ Summarize the above two results, we have $(a')^n = e'$. Hence the order of $a$ a
 
 (12)(34), (13)(24), (14)(23)。
 
-共$4!=24$个元素。
+There are total $4! = 24$ elements.
 
-\item 将$S_3$的所有元写成不相连的循环置换的乘积。
+\item {Express all the elements in $S_3$ as the product of cyclic forms.}
 
 \btab{c|c|c|c|c|c|c}
-排列 & 123 & 213  & 132  & 321  & 231   &  312\\
+permutation & 123 & 213  & 132  & 321  & 231   &  312\\
 \hline
-置换 & (1) & (12) & (23) & (13) & (123) & (132)\\
+cyclic notation & (1) & (12) & (23) & (13) & (123) & (132)\\
 \etab
 
-\item 编程将$k$-循环的乘积转换回置换。
+\item{Write a program to convert the product of $k$-cycles back to permutation.}
 
 \begin{algorithmic}
 \Function{Permute}{$C, n$}
@@ -1084,15 +1084,15 @@ Summarize the above two results, we have $(a')^n = e'$. Hence the order of $a$ a
 \EndFunction
 \end{algorithmic}
 
-\item 对称群$S_4$描述了什么几何形状的哪些对称性？
+\item{What symmetries for what shape are defined by the symmetric group $S_4$?}
 
-它描述了正四面体（像一个三角粽子）的对称性。正四面体每个顶点有一条对称轴，每个轴上有120度和240度两个旋转对称。穿过相对的两条边有3条对称轴每个轴上有一个翻转对称。再加上恒等变换，一共有$2 \times 4 + 3 + 1 = 12$种对称性。恰好对应对称群$S_4$种的每个元素。
+It defines the symmetry of a tetrahedron. A tetrahedron has four vertex corners, each has an axis. Rotation around such axis by 120 and 240 degree is symmetric. Connect the middle point of every two opposite edges also gives an axis. There are total 3 such axes, each one is reflective symmetric. Include the identity transformation, there are total $2 \times 4 + 3 + 1 = 12$ symmetries. They are corresponding to the elements in $S_4$.
 
 \begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.5]{img/tetrahedron.png}
  %\captionsetup{labelformat=empty}
- \caption{正四面体的两种对称轴}
+ \caption{The rotation and reflection axes}
  \label{fig:tetrahedron}
 \end{figure}
 
