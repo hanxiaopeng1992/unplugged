@@ -1390,16 +1390,19 @@ This field is formed with all the expressions of $a, b$.
 \item {Prove that, for any polynomial $p(x)$, with rational coefficients, $E/Q$ is the field extension, $f$ is the $Q$-automorphism of $E$, then equation $f(p(x)) = p(f(x))$ holds.}
 
 \begin{proof}
-由$f$是自同构的定义，我们有：
+Because $f$ is automorphism, we have:
+
 \[
 f(x + y) = f(x) + f(y), f(ax) = f(a) f(x), f(1/x) = 1 / f(x)
 \]
-并且由于$f$是$Q-$自同构，我们有：
+
+Further, since $f$ is $Q$-automorphism, we have:
+
 \[
  f(x) = x, \forall x \in Q
 \]
 
-令$p(x) = a_0 + a_1 x + ... + a_n x^n$，其中$a_i \in Q$。我们有：
+Let $p(x) = a_0 + a_1 x + ... + a_n x^n$, where $a_i \in Q$, then:
 
 \bre
 f(p(x)) & = & f(a_0 + a_1 x + ... + a_n x^n) \\
@@ -1410,31 +1413,31 @@ f(p(x)) & = & f(a_0 + a_1 x + ... + a_n x^n) \\
 \ere
 \end{proof}
 
-\item {考虑复数，多项式$p(x) = x^4-1$的分裂域是什么？它的$Q$-自同构中有哪些变换？}
+\item{Taking the complex number into account, what is the splitting field for polynomial $p(x) = x^4-1$? What are the functions in its $Q$-automorphism?}
 
-注意到$x^4 -1$有四个根$\pm 1, \pm i$，也就是$p(x) = (x + 1)(x - 1)(x + i)( x - i)$。但是$p(x)$的分裂域不是复数域$C$，它太大了。事实上它的分裂域是$Q[i]$。
+There are four roots for polynomial $x^4 -1$. They are $\pm 1, \pm i$. We can factor the polynomial to $p(x) = (x + 1)(x - 1)(x + i)( x - i)$. Actually, the splitting field of $p(x)$ is not complex number field $C$. It is too big. The splitting field is $Q[i]$.
 
-这个$Q$-自同构中有两个变换，分别是$f(a + bi) = a - bi$和恒等变换$g(x) = x$。
+There are two transformations in this $Q$-automorphism. One is $f(a + bi) = a - bi$, the other is the identity transformation $g(x) = x$.
 
-\item {尝试写出二次方程$x^2 - bx + c = 0$的伽罗瓦群。}
+\item{What's the Galois group for quadratic equation $x^2 - bx + c = 0$?}
 
-我们知道二次方程的两个根是
+We know the two roots for quadratic equation are:
 
 \[
 x_1, x_2 = \dfrac{b \pm \sqrt{b^2 - 4c}}{2}
 \]
 
-这里有三种情况：一种是存在某个有理数，使得$b^2 - 4c = r^2$。此时方程有两个有理根（包括重根的情况）；第二种是不存在这样的有理数，方程在有理数域上不可解，但存在实数解；第三种是判别式小于零，方程在实数域上不可解，但存在复数解。我们分别分析一下这三种情况下的伽罗瓦群。
+There are three cases: (1) there exists a rational number, such that $b^2 - 4c = r^2$. There are two rational roots (including duplicated ones) in this case; (2) No such rational number. Equation is not solvable in rational field, but there are real roots; (3) the discriminant is negative, hence the equation is not solvable in real field. But there are complex roots. Let's see the corresponding Galois groups for these three cases:
 
-第一种情况，方程有两个有理根$\dfrac{b \pm r}{2}$，其伽罗瓦群只有一个元素，就是恒等变换自同构$f(x) = x$。
+Case 1: there are two rational roots $\dfrac{b \pm r}{2}$. There is only one element in its Galois group, which is the identity automorphism $f(x) = x$.
 
-第二种情况，方程有两个无理根$\dfrac{b \pm \sqrt{d}}{2}$，其伽罗瓦群有两个元素，一个是自同构$f(p + q \sqrt{d}) = p - q \sqrt{d}$，其中$p, q$是有理数；另一个是恒等变换。
+Case 2: there are two irrational roots $\dfrac{b \pm \sqrt{d}}{2}$. There are two elements in its Galois group. One is the automorphism $f(p + q \sqrt{d}) = p - q \sqrt{d}$, where $p, q$ are rationals; the other is the identity transformation.
 
-第三种情况，方程有两个复根$\dfrac{b \pm i \sqrt{d}}{2}$，其伽罗瓦群也有两个元素，一个是自同构$f(p + q i) = p - q i$，其中$p, q$是实数；另一个是恒等变换。
+Case 3: There are two complex roots $\dfrac{b \pm i \sqrt{d}}{2}$. There are two elements in its Galois group. One is the automorphism $f(p + q i) = p - q i$, where $p, q$ are real numbers; the other is the identity transformation.
 
-事实上，第二、三种情况的伽罗瓦群在其分裂域上是同构的。我们注意到$f(f(x)) = x$所以它同构于只有两个元素${0, 1}$的模2加群，也同构于循环群$C_2$或$\pmb{Z}/2\pmb{Z}$。其中$\pmb{Z}/2\pmb{Z}$这个符号表示整数加群$\pmb{Z}$和其偶数子群$2\pmb{Z}$的商群。
+Actually, in case 2 and 3, their Galois groups are isomorphic in the splitting field. Note that $f(f(x)) = x$. It is isomorphic to the group of two elements ${0, 1}$ under the addition modulo 2. It is also isomorphic to the cyclic group $C_2$ or $\pmb{Z}/2\pmb{Z}$. Where the notation $\pmb{Z}/2\pmb{Z}$ means the quotation group of integers under addition $\pmb{Z}$ and its sub-group of even numbers $2\pmb{Z}$.
 
-\item {证明，如果$p$是素数，则方程$x^p - 1$的伽罗瓦群是$p-1$阶的循环群$C_{p-1}$。}
+\item{Prove that, if $p$ is prime number, then Galois group for equation $x^p - 1$ is the ($p-1$)-cycle cyclic group $C_{p-1}$.}
 
 方程$x^p -1$的$p$个根就是在复平面单位圆上的$p$个点$1, \omega, \omega^2, ..., \omega^{p-1}$，它们可以表示为$e^{2 \pi k i / p}$。其分裂域是$Q[\omega]$。
 
