@@ -1290,39 +1290,39 @@ With Fermat's little theorem, we can realize the primality test with some select
 \EndFunction
 \end{algorithmic}
 
-\item {证明本节的定理，一个没有零因子的环里，两个消去律成立。}
+\item {Prove the theorem that the two cancellation rules hold in a nonzero ring (ring without zero divisor).}
 
 \begin{proof}
-假定环$R$没有零因子。因为：
+Suppose there is no zero divisor in $R$. Because
 \[
   ab = ac \Rightarrow a(b - c) = 0
 \]
 
-在此假定之下，
+as no zero divisor, hence:
 
 \[
   a \neq 0, ab = ac \Rightarrow b - c = 0 \Rightarrow b = c
 \]
 
-同样可证，
+Similarly,
 
 \[
   a \neq 0, ba = ca \Rightarrow b = c
 \]
 
-这样$R$里两个消去律都成立。反过来，假定环$R$里第一个消去律成立。因为
+Therefore, both cancellation rules hold in $R$. Reversely, suppose the first cancellation rule hold in $R$. Because:
 
 \[
   ab = 0 \Rightarrow ab = a0
 \]
 
-在此假定之下，
+Based on the assumption,
 
 \[
   a \neq 0, ab = 0 \Rightarrow b = 0
 \]
 
-这就是说，$R$没有零因子。第二个消去律成立的事后，同样可证。
+Hence $R$ does not have zero divisor. We can make the similar prove when the second cancellation rule holds.
 \end{proof}
 
 \item {证明所有形如$a + b \sqrt{2}$，其中$a, b$是整数的实数对于普通加法和乘法构成一个整环。}
