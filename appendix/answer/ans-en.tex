@@ -1224,12 +1224,12 @@ public class Prime {
 
 \item{Extend the idea of Eratosthenes sieve algorithm, write a program to generate Euler $\upphi$ function values for all numbers from 2 to 100.}
 
-我们一边用埃拉托斯特尼筛法产生$n$以内的素数，一边用每个新找到的素数更新一个欧拉$\upphi$函数表。这个函数表被全部初始化为1。对于每个素数$p$，其对应的$\upphi(p) = p(1 - \dfrac{1}{p}) = p - 1$，我们需要把所有$p$的倍数都乘以这个值。但仅仅这样还不够，这是因为$\upphi(p^2) = p^2(1 - \dfrac{1}{p}) = p \upphi(p)$。所以我们接下来要把所有$p^2$倍数的欧拉函数值都乘以$p$，重复这一步骤，再把所有$p^3$倍数的欧拉函数值乘以$p$。继续持续这一过程，直到我们发现$p^m$超过$n$。下面是利用这一思想的解法：
+When generate prime numbers within $n$ with the sieve of Eratosthenes, we can update the Euler $\upphi$ function list by every prime numbers found so far. The function list is initialized with all element start from 1. For every prime number $p$, the corresponding $\upphi(p) = p(1 - \dfrac{1}{p}) = p - 1$. All the multiplicands of $p$ need multiply with this value. However, it is not enough as $\upphi(p^2) = p^2(1 - \dfrac{1}{p}) = p \upphi(p)$. Next we need multiply all the Euler function value for multiplicands of $p^2$ by $p$, and repeat for multiplicands of $p^3$ and so on until $p^m$ exceeds $n$. Below is the algorithm of this idea.
 
 \begin{algorithmic}
 \Function{Euler-Totient}{$n$}
-  \State $\upphi \gets \{1, 1, ..., 1\}$ \Comment{1到$n$}
-  \State $P \gets \{2, 3, ..., n\}$ \Comment{素数筛法序列}
+  \State $\upphi \gets \{1, 1, ..., 1\}$ \Comment{1 to $n$}
+  \State $P \gets \{2, 3, ..., n\}$ \Comment{sieve input}
   \While{$P \neq \varnothing$}
     \State $p \gets P[0]$
     \State $P \gets \{x | x \in P, x \bmod p \neq 0\}$
@@ -1249,7 +1249,7 @@ public class Prime {
 \EndFunction
 \end{algorithmic}
 
-\item 编程实现模乘的幂运算，并实现费马素数检测。
+\item {Write a program to realize fast modular multiplication, and Fermat's primality test.}
 
 我们的思路是参考快速幂的思路，实现模乘的幂运算。
 \[
