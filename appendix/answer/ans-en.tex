@@ -1251,16 +1251,17 @@ When generate prime numbers within $n$ with the sieve of Eratosthenes, we can up
 
 \item {Write a program to realize fast modular multiplication, and Fermat's primality test.}
 
-我们的思路是参考快速幂的思路，实现模乘的幂运算。
+Our idea is to realize the fast modular multiplication with the similar approach when calculate power.
+
 \[
 x^y =
 \begin{cases}
-y \text{是偶数}: & x^{\lfloor y / 2 \rfloor} \\
-y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
+y \text{is even}: & x^{\lfloor y / 2 \rfloor} \\
+y \text{is odd}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 \end{cases}
 \]
 
-只要在此基础上，将乘法改为模乘即可：
+Based on this, we can change it to modular multiplication as below:
 
 \begin{algorithmic}
 \Function{Mod-Exp}{$x, y, n$}
@@ -1276,15 +1277,15 @@ y \text{是奇数}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 \EndFunction
 \end{algorithmic}
 
-然后我们利用费马小定理，选取若干“证人”，进行素数检测：
+With Fermat's little theorem, we can realize the primality test with some selected 'witnesses':
 
 \begin{algorithmic}
 \Function{primality}{$n$}
-  \State 随机选择$k$个正整数$a_1, a_2, ..., a_k < n$
-  \If{$a_i^{n-1} \equiv 1 \mod n$，对于全部$i = 1, 2, ..., k$}
-    \State \Return 素数
+  \State random select $k$ positive numbers $a_1, a_2, ..., a_k < n$
+  \If{$a_i^{n-1} \equiv 1 \mod n$, for all $i = 1, 2, ..., k$}
+    \State \Return prime
   \Else
-    \State \Return 合数
+    \State \Return composite
   \EndIf
 \EndFunction
 \end{algorithmic}
