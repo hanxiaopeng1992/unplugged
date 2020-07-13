@@ -1439,47 +1439,48 @@ Actually, in case 2 and 3, their Galois groups are isomorphic in the splitting f
 
 \item{Prove that, if $p$ is prime number, then Galois group for equation $x^p - 1$ is the ($p-1$)-cycle cyclic group $C_{p-1}$.}
 
-方程$x^p -1$的$p$个根就是在复平面单位圆上的$p$个点$1, \omega, \omega^2, ..., \omega^{p-1}$，它们可以表示为$e^{2 \pi k i / p}$。其分裂域是$Q[\omega]$。
+The $p$ roots of $x^p - 1$ are the points along the unit circle in complex plane, i.e. $1, \omega, \omega^2, ..., \omega^{p-1}$. They can be expressed in form of $e^{2 \pi k i / p}$. The splitting field is $Q[\omega]$.
 
-我们考虑伽罗瓦群$Gal(Q[\omega]/Q)$中的任意一个元素，自同构$f$。根据自同构的性质，有：
+Consider automorphism $f$ as an element in Galois group $Gal(Q[\omega]/Q)$. According to the definition of automorphism, we have:
 
 \[
 f(\omega)^k = f(\omega^k) = 1 \iff \omega^k = 1
 \]
 
-所以，$f(\omega)$也是某个$p$次单位根（方程$x^p - 1 = 0$的某个根\footnote{如果$p$不是素数，而是任意大于1的整数$n$，第$m$个$n$次单位根的$k$次幂可以表示为$\zeta_m^k = e^{2 \pi m k i / n}$。可能存在某个$k < n$，使得$\zeta_m^k = 1$，只要$mk$是$n$的倍数即可。但如果$n$是素数$p$，则$k$，不可能小于$p$，而一定是$p$的整数倍}）。我们记：
+It means $f(\omega)$ is also a $p$-th root of unity (a root of equation $x^p - 1 = 0$\footnote{If $p$ is not a prime number, but an integer $n$ greater than 1, then the $k$-th power of the $m$-th root can is $\zeta_m^k = e^{2 \pi m k i / n}$. There may exist some $k < n$, such that $\zeta_m^k = 1$. Actually, it holds as far as $n$ divides $mk$. However, if $n$ is a prime number $p$, then $k$ can't be less than $p$, but must be multiplicand of $p$.}). Denote:
 
 \[
 f(\omega) = h_i(\omega) = \omega^{i}
 \]
 
-如果$f(\omega)$是第$i$个单位根，我们就将其命名为$h_i$，其中$1 \leq i \leq p-1$。（为什么$i$不能等于0？）这样，我们可以构造一个从伽罗瓦群到循环群$C_{p-1}$的一一映射：
+If $f(\omega)$ is the $i$-th root of unity, we name it as $h_i$, where $1 \leq i \leq p-1$ (why $i$ can't be 0?). In this way, we establish a one-to-one mapping from Galois group to cyclic group $C_{p-1}$:
 
 \[
 Gal(Q[\omega]/Q) \arrowto{\sigma} C_{p-1} :  \sigma(h_i) = i
 \]
 
-其中伽罗瓦群中有$p-1$个自同构$\{h_1, h_2, ..., h_{p-1}\}$，和循环群$C_{p-1}$的阶相同。
-接下来我们证明这是一个群同构。
+Where the Galois group contains $p-1$ automorphisms $\{h_1, h_2, ..., h_{p-1}\}$, hence it has the same order as the cyclic group $C_{p-1}$.
+
+Next we prove this is a group isomorphism.
 
 \[
 (h_i \cdot h_j)(\omega) = h_i(h_j(\omega)) = h_i(\omega^j) = \omega^{ji} = \omega^{ij}
 \]
 
-这样
+hence
 
 \[
 \sigma(h_i \cdot h_j) = ij = \sigma(h_i) \cdot \sigma(h_j)
 \]
 
-并且$h_1(\omega)$是这个循环的伽罗瓦群的生成元。
+And $h_1(\omega)$ is the generator of this cyclic Galois group.
 
 \begin{mdframed}
-这里有两个容易混淆的群。第一个是整数模$n$加法群。它是一个循环群，包括元素\{ 0, 1, 2, ..., $n - 1$\}这些模$n$剩余类，共$n$个元素，它是一个循环群。通常记作$\pmb{Z}/n\pmb{Z}$。这个群和方程$x^n - 1 = 0$的$n$个根组成的群同构，群元素是$n$次单位根$\{1 = \zeta_n^0, \zeta_n^1, \zeta_n^2, ..., \zeta_n^{n-1}\}$，群运算是乘法。
+Here are two different groups that often cause confusion. The first one is the group of integers under addition modulo $n$. It's a cyclic group, containing the residue class modulo $n$ of \{ 0, 1, 2, ..., $n - 1$\}, total $n$ elements. This group is often denoted as $\pmb{Z}/n\pmb{Z}$. It is isomorphic to the group formed with the $n$ roots of equation $x^n - 1 = 0$. The elements are the $n$-th root of unity $\{1 = \zeta_n^0, \zeta_n^1, \zeta_n^2, ..., \zeta_n^{n-1}\}$. The binary operation is multiplication.
 
 \vspace{5mm}
 
-另一个是整数模$n$乘法群，它的元素不是0到$n-1$的所有剩余类，而是其中所有和$n$互素的元素，群运算是模乘。记为$(\pmb{Z}/n\pmb{Z})^{\times}$。这个群中的元素个数是欧拉总计函数$\upphi(n)$，当$n$是素数$p$的时候，恰好是$\{1, 2, ..., p-1\}$这$p-1$个元素。但是模$n$乘法群并不总是循环群。幸运的是$n$是素数的时候它是循环的。一个有趣事实是$(\pmb{Z}/p\pmb{Z})^{\times}$和加群$\pmb{Z}/(p-1)\pmb{Z}$同构。
+The second group is integers under multiplication modulo $n$. The group elements are not all the residues from 0 to $n-1$, but all the ones coprime to $n$. The group operation is modulo multiplication. Denoted as $(\pmb{Z}/n\pmb{Z})^{\times}$. There are total $\upphi(n)$ elements, where $\upphi$ is Euler's totient function. When $n$ is prime $p$, there are $\{1, 2, ..., p-1\}$, total $p-1$ group elements. However, the multiplicative group modulo $n$ is not necessary cyclic. Luckily it is cyclic when $n$ is prime. An interesting fact is that $(\pmb{Z}/p\pmb{Z})^{\times}$ is isomorphic to the additive group $\pmb{Z}/(p-1)\pmb{Z}$.
 
 \vspace{5mm}
 
