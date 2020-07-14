@@ -1583,46 +1583,48 @@ The arrow composition is addition. Since addition is associative, hence arrow co
 \end{figure}
 
 
-\item {第一章中我们介绍了自然数的皮亚诺公理，并且介绍了和皮亚诺算术同构的其它结构，例如链表等。这些完全可以用范畴来解释。这一结论是德国数学家戴德金发现的，尽管当时还没有范畴论。我们今天将这一范畴命名为皮亚诺范畴$\pmb{Pno}$。范畴中的对象为$(A, f, z)$，其中$A$为元素的集合，对于自然数来说这个集合是全体自然数$N$；$f: A \to A$是后继函数，对于自然数来说，就是$succ$；$z \in A$是起始元素，对于自然数来说是0。任给两个皮亚诺对象$(A, f, z)$和$(B, g, c)$，现在定义从$A$到$B$的态射
+\item {In chapter 1, we introduced Peano's axioms for natural numbers as well as the isomorphic structures to Peano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Peano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Peano objects $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
+
 \[
 A \arrowto{\phi} B
 \]
-它满足
+
+It satisfies:
 
 \[
-\phi \circ f = g \circ \phi \quad \text{且} \quad \phi(z) = c
+\phi \circ f = g \circ \phi \quad \text{and} \quad \phi(z) = c
 \]
 
-试验证$\pmb{Pno}$的确是一个范畴。}
+Verify that $\pmb{Pno}$ is a category.}
 
-皮亚诺范畴中的对象是$(A, f, z)$这样的三元组。箭头为保持三元组结构的映射$\phi$。箭头的组合，就是函数的组合：
+An object in Peano category is a tuple of $(A, f, z)$. An arrow is a map $\phi$ that preserve the tuple structure. Arrow composition is function composition:
 
 \[ \begin{array}{l}
 A \arrowto{\phi} B \arrowto{\psi} C \\
 A \arrowto{\psi \circ \phi} C
 \end{array}\]
 
-由于函数的组合是可结合的，故箭头也是可结合的。接下来我们验证恒等箭头：
+Because function composition is associative, hence arrow composition is associative. For identity arrow:
 
 \[
 A \arrowto{id_A} A
 \]
 
-它满足$id_A(z) = z$，并且$id_A \circ f = f \circ id_A$。
+It satisfies $id_A(z) = z$, and $id_A \circ f = f \circ id_A$.
 
-显然三元组$(\pmb{N}, succ, 0)$是皮亚诺范畴中的对象。并且有趣的是，对于任何皮亚诺范畴的对象$(A, f, z)$都存在唯一的箭头：
+Obviously, the tuple $(\pmb{N}, succ, 0)$ is an object in Peano category. It's interesting that, for every object $(A, f, z)$ in Peano category, there is a unique arrow:
 
 \[
 (\pmb{N}, succ, 0) \arrowto{\sigma} (A, f, z)
 \]
 
-其中：
+where:
 
 \[
 \sigma(n) = f^n(z)
 \]
 
-它把任何自然数$n$映射到把$f$重复应用到$z$上$n$次。
+which maps any natural number $n$ to the result of applying $f$ to $z$ for $n$ times.
 
 \item {请使用叠加操作$foldr$来定义列表函子的箭头映射。}
 
