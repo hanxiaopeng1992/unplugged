@@ -1507,27 +1507,25 @@ Obviously, $\{1\}$ is the normal subgroup of $C_4$. The quotient group $C_4/\{1\
 \section{categories}
 
 \begin{enumerate}
-\item {证明恒等箭头是唯一的（提示：可以参考上一章中群单位元唯一性的证明）。}
+\item {Prove that the identity arrow is unique (hint: refer to the uniqueness of identity element for groups in the previous chapter).}
 
-假设存在另一恒等箭头$id_A'$，从$A$指向自己：$A \arrowto{id_A'} A$。
+Suppose there exists another identity arrow $id_A'$, pointed $A$ from itself: $A \arrowto{id_A'} A$.
 
-考虑从$A$到$B$的任意箭头：$A \arrowto{f} B$，根据恒等箭头的性质有：
-$f \circ id_A = f$。现在我们用$A$替换$B$，用$id_A'$替换$f$，有：
+Consider every arrow from $A$ to $B$: $A \arrowto{f} B$, from the definition of identity arrow, $f \circ id_A = f$ holds. When replace $B$ with $A$, and replace $f$ with $id_A'$, then:
 
 \[
 id_A' \circ id_A = id_A'
 \]
 
-同理，对于任何从$B$到$A$的箭头，$B \arrowto{g} A$，根据恒等箭头的性质有：
-$id_A' \circ g = g$。现在用$A$替换$B$，用$id_A$替换$g$，有：
+Similar, from every arrow from $B$ to $A$: $B \arrowto{g} A$, from the definition of identity arrow, $id_A' \circ g = g$ holds. When replace $B$ with $A$, replace $g$ with $id_A$, then:
 
 \[
 id_A' \circ id_A = id_A
 \]
 
-综合这两个结果我们有$id_A = id_A'$。所以恒等箭头是唯一的。
+Summarize these two result, we obtain $id_A = id_A'$, hence the identity arrow is unique.
 
-\item {验证幺半群$(S, \cup, \varnothing)$（群元素是集合，二元运算是集合的并，单位元是空集）和$(N, +, 0)$（群元素是自然数，二元运算是加法，单位元是零）都是只含有一个对象的范畴。}
+\item {Verify the monoid $(S, \cup, \varnothing)$ (the elements are sets, the binary operation is set union, the identity element is empty set) and $(N, +, 0)$ (elements are natural numbers, the binary operation is add, the identity element is zero) are all categories that contain only one object.}
 
 这里的核心思想是：任何幺半群都可以看作是只有一个对象的范畴。而理解上的难点是：范畴中的对象到底是什么？事实上，这个对象是什么无所谓，它不必是幺半群本身、不必是任何给定的集合、甚至不必包含任何元素。为此我们将这个对象的具体意义去掉，而符号化为$\bigstar$。
 
