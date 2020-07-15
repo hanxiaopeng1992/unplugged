@@ -1758,9 +1758,9 @@ Let $p = left \circ f$，$q = right \circ g$
 \elre
 \end{proof}
 
-\item {证明$swap$满足自然变换的条件$(g \times f) \circ swap = swap \circ (f \times g)$}
+\item{Prove that $swap$ satisfies the natural transformation condition $(g \times f) \circ swap = swap \circ (f \times g)$}
 
-对于$A \arrowto{f} C$和$B \arrowto{g} D$，我们要证明下面的范畴图可交换。
+For $A \arrowto{f} C$ and $B \arrowto{g} D$, we need prove the below diagram commutes.
 
 \begin{center}
 \begin{tikzpicture}
@@ -1779,18 +1779,18 @@ Let $p = left \circ f$，$q = right \circ g$
 \begin{proof}
 \blre
   & ((g \times f) \circ swap)\ (A, B) \\
-= & (g \times f)\ (swap\ (A, B)) & \text{组合的定义} \\
-= & (g \times f) \circ (B, A) & \text{$swap$的定义} \\
-= & (g\ B, f\ A) & \text{箭头的积} \\
-= & (D, C) & \text{箭头$g, f$的定义} \\
-= & swap\ (C, D) & \text{反向用$swap$的定义} \\
-= & swap\ (f\ A, g\ B) & \text{反向用$f, g$的定义} \\
-= & swap\ ((f \times g)\ (A, B)) & \text{箭头的积} \\
-= & (swap \circ (f \times g))\ (A, B) & \text{反向用组合的定义} \\
+= & (g \times f)\ (swap\ (A, B)) & \text{definition of composition} \\
+= & (g \times f) \circ (B, A) & \text{definition of $swap$} \\
+= & (g\ B, f\ A) & \text{product of arrows} \\
+= & (D, C) & \text{definition of $g, f$} \\
+= & swap\ (C, D) & \text{reverse of $swap$ definition} \\
+= & swap\ (f\ A, g\ B) & \text{reverse of $f, g$ definition} \\
+= & swap\ ((f \times g)\ (A, B)) & \text{product of arrow} \\
+= & (swap \circ (f \times g))\ (A, B) & \text{reverse of composition} \\
 \elre
 \end{proof}
 
-\item {证明多态函数$length$是一个自然变换，其定义如下：
+\item {Prove that the polymorphic function $length$ is a natural transformation. It is defined as the following:
 \[
 \begin{array}{l}
 length : [A] \to Int \\
