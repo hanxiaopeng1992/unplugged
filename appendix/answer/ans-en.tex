@@ -2162,16 +2162,16 @@ Hence $\mathbf{Tree}\ A = \mathbf{Fix}\ (\mathbf{TreeF}\ A)$. The initial algebr
 \section{Fusion}
 
 \begin{enumerate}
-\item {验证从左侧叠加也可以表示为$foldr$:
+\item{Verify that folding from left can also be defined with $foldr$:
 \[
 foldl\ f\ z\ xs = foldr\ (b\ g\ a \mapsto g\ (f\ a\ b))\ id\ xs\ z
 \]}
 
-为了方便理解，我们将其改写为：
+To make it easy, we rewrite it to:
 
 \[\begin{array}{l}
 foldl\ f\ z\ xs = foldr\ step\ id\ xs\ z \\
-\text{其中：} step\ x\ g\ a = g\ (f\ a\ x)
+\text{where}: step\ x\ g\ a = g\ (f\ a\ x)
 \end{array}\]
 
 \blre
@@ -2187,84 +2187,86 @@ foldl\ f\ z\ xs = foldr\ step\ id\ xs\ z \\
 = & f\ (f\ (...(f\ z\ x_1)\ x_2)\ ...)\ x_n
 \elre
 
-如果把$f$改写成$\oplus$，并写成中缀形式，就能看出$foldl$和$foldr$的区别：
+We can further write $f$ as an infix of $\oplus$ to highlight the difference between $foldl$ and $foldr$:
 
 \[
 foldl\ \oplus\ f\ z = ((...(z \oplus x_1)\ \oplus x_2)...)\ \oplus x_n
 \]
 
-\item {证明以下列表的构建——叠加形式：
+\item{Prove the below build...foldr forms hold:
 \[
 \begin{array}{l}
-concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ xss) \\
+concat\ xss = build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ z\ xss) \\
 map\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
 filter\ f\ xs = build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
      f(x): & x \oplus xs' \\
-    \text{否则}: & xs' \\
+    \text{otherwise}: & xs' \\
   \end{cases})\ z\ xs) \\
 repeat\ x = build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
 \end{array}
 \]
 }
 
-首先是多个列表的连接$concat$
+First for the list concatenate $concat$:
+
 \begin{proof}
 \blre
   & build\ (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ z\ xss) \\
-= & (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ z\ xss)\ (:)\ [] & \text{$build$的定义} \\
-= & foldr\ (xs\ x \mapsto foldr\ (:)\ x\ xs)\ []\ xss & \text{$\beta$-规约} \\
-= & foldr\ \doubleplus []\ xss & \text{两个列表连接的定义} \\
-= & concat\ xss & \text{多列表连接的定义} \\
+= & (f\ z \mapsto foldr\ (xs\ x \mapsto foldr\ f\ x\ xs)\ z\ xss)\ (:)\ [] & \text{definition of $build$} \\
+= & foldr\ (xs\ x \mapsto foldr\ (:)\ x\ xs)\ []\ xss & \text{$\beta$-reduction} \\
+= & foldr\ \doubleplus []\ xss & \text{concatenate two lists} \\
+= & concat\ xss & \text{concatenate multiple lists} \\
 \elre
 \end{proof}
 
-接着是逐一映射$map$
+Next for list mapping $map$
+
 \begin{proof}
 \blre
   & build\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs) \\
-= & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)\ (:)\ [] & \text{$build$的定义} \\
-= & foldr\ (y\ ys \mapsto f(y) : ys)\ []\ xs & \text{$\beta$-规约} \\
-= & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs & \text{$\alpha$变换，改名字} \\
-= & map\ f\ xs & \text{逐一映射的定义} \\
+= & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ xs)\ (:)\ [] & \text{definition of $build$} \\
+= & foldr\ (y\ ys \mapsto f(y) : ys)\ []\ xs & \text{$\beta$-reduction} \\
+= & foldr\ (x\ ys \mapsto f(x) : ys)\ []\ xs & \text{$\alpha$ transformation, change name} \\
+= & map\ f\ xs & \text{definition of list map} \\
 \elre
 \end{proof}
 
-接着是过滤操作$filter$
+Next for filtering $filter$
 
 \begin{proof}
 \blre
   & build\ (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
      f(x): & x \oplus xs' \\
-    \text{否则}: & xs' \\
+    \text{otherwise}: & xs' \\
   \end{cases})\ z\ xs) \\
 = & (\oplus\ z \mapsto foldr\ (x\ xs' \mapsto
   \begin{cases}
      f(x): & x \oplus xs' \\
-    \text{否则}: & xs' \\
-  \end{cases})\ z\ xs)\ (:)\ [] & \text{$build$的定义} \\
+    \text{otherwise}: & xs' \\
+  \end{cases})\ z\ xs)\ (:)\ [] & \text{definition of $build$} \\
 = & foldr\ (x\ xs' \mapsto
   \begin{cases}
      f(x): & x : xs' \\
-    \text{否则}: & xs' \\
-  \end{cases})\ []\ xs & \text{$\beta$-规约} \\
-= & filter\ f\ xs & \text{过滤操作的定义} \\
+    \text{otherwise}: & xs' \\
+  \end{cases})\ []\ xs & \text{$\beta$-reduction} \\
+= & filter\ f\ xs & \text{definition of filter} \\
 \elre
 \end{proof}
 
-最后是重复操作$repeat$
+Last for $repeat$
 
 \begin{proof}
 \blre
   & build\ (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r) \\
-= & (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)\ (:)\ [] & \text{$build$的定义} \\
-= & (let\ r = x : r\ in\ r) & \text{$\beta$-规约} \\
-= & repeat\ x & \text{重复操作的定义} \\
+= & (\oplus\ z \mapsto let\ r = x \oplus r\ in\ r)\ (:)\ [] & \text{definition of $build$} \\
+= & (let\ r = x : r\ in\ r) & \text{$\beta$-reduction} \\
+= & repeat\ x & \text{definition of repeat} \\
 \elre
 \end{proof}
 
-\item{化简快速排序算法：
+\item{Simplify the quick sort algorithm.
 \[
 \begin{cases}
 qsort\ [] = [] \\
