@@ -2079,9 +2079,9 @@ m(a, b) = ab \\
 n(a) = -a \\
 \end{array}\]
 
-\item{F-代数范畴上的$id$箭头是什么？箭头组合是什么？}
+\item{What is the $id$ arrow for F-algebra category? What is the arrow composition?}
 
-从$F$-代数$(A, \alpha)$到其自身的同态映射是$id$箭头。箭头组合是$F$-态射的组合。携带对象间的箭头：$A \arrowto{f} B \arrowto{g} C$使得下面的范畴图可交换：
+The $id$ arrow is the homomorphism from $F$-algebra $(A, \alpha)$ to itself. The arrow composition is the composition of $F$-morphisms. The arrow between carrier object $A \arrowto{f} B \arrowto{g} C$ makes the following diagram commute:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2104,15 +2104,15 @@ n(a) = -a \\
   g \circ f \circ \alpha = \gamma \circ \mathbf{F}(g) \circ \mathbf{F}(f) = \gamma \circ \mathbf{F}(g \circ f)
 \]
 
-\item{可否把类自然数函子写成如下递归的形式？谈谈你的看法。
+\item{Someone write the natural number like functor as the below recursive form. What do you think about it?
 \begin{lstlisting}
 data NatF A = ZeroF | SuccF (NatF A)
 \end{lstlisting}
 }
 
-不可以。考虑携带对象$A$，上述函子$\mathbf{NatF}$是迭代的，它并不将$A$映射为确定的某个对象。事实上，我们希望把它映射为皮亚诺范畴上的对象$(A, z, f)$。
+No, such definition does not work. Consider carrier object $A$, Functor $\mathbf{NatF}$ is recursive, it does not send $A$ to a determined object. In fact, we expect it is mapped to a object in Peano category $(A, z, f)$.
 
-\item{我们可以为$\mathbf{NatF} Int \to Int$定义一个$\alpha$箭头，名叫$eval$：
+\item{We can define an $\alpha$ arrow for $\mathbf{NatF} Int \to Int$, named $eval$:
 \[
 \begin{array}{l}
 eval : \mathbf{NatF} Int \to Int \\
@@ -2120,7 +2120,7 @@ eval\ ZeroF = 0 \\
 eval\ (SuccF\ n) = n + 1 \\
 \end{array}
 \]
-如果迭代地将$A' = \mathbf{NatF} A$代入$\mathbf{NatF}$函子$n$次。我们把这样得到的函子记为$\mathbf{NatF}^n A$。试思考能否定义下面的$\alpha$箭头：
+We can recursively substitute $A' = \mathbf{NatF} A$ to functor $\mathbf{NatF}$ by $n$ times. We denote the functor obtained as $\mathbf{NatF}^n A$. Can we define the following $\alpha$ arrow?
 \[
 \begin{array}{l}
 eval : \mathbf{NatF}^n Int \to Int \\
@@ -2130,36 +2130,36 @@ eval : \mathbf{NatF}^n Int \to Int \\
 
 \bre
 eval & : &\mathbf{NatF}^n Int \to Int \\
-eval\ ZeroF & = & 0 & \text{$ZeroF$是$\mathbf{NatF}^n Int$的对象}\\
-eval\ (SuccF\ ZeroF) & = & 1 & \text{$ZeroF$是$\mathbf{NatF}^{n-1} Int$的对象}\\
-eval\ (SuccF\ (SuccF\ ZeroF)) & = & 2 & \text{$ZeroF$是$\mathbf{NatF}^{n-2} Int$的对象}\\
+eval\ ZeroF & = & 0 & \text{$ZeroF$ is an object of $\mathbf{NatF}^n Int$}\\
+eval\ (SuccF\ ZeroF) & = & 1 & \text{$ZeroF$ is an object of $\mathbf{NatF}^{n-1} Int$}\\
+eval\ (SuccF\ (SuccF\ ZeroF)) & = & 2 & \text{$ZeroF$ is an object of $\mathbf{NatF}^{n-2} Int$}\\
 ... \\
-eval\ (SuccF^{n-1}\ ZeroF) & = & n - 1 & \text{$ZeroF$是$\mathbf{NatF} Int$的对象}\\
+eval\ (SuccF^{n-1}\ ZeroF) & = & n - 1 & \text{$ZeroF$ is an object of $\mathbf{NatF} Int$}\\
 eval\ (SuccF^n\ m) & = & m + n \\
 \ere
 
-\item{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
+\item{For the binary tree functor $\mathbf{TreeF}\ A\ B$, fix $A$, use the fixed point to prove that $(\mathbf{Tree}\ A, [nil, branch])$ is the initial algebra}
 
-令$B' = \mathbf{TreeF}\ A\ B$，然后不断递归地应用到自己，把此结果称为$\mathbf{Fix}\ (\mathbf{TreeF}\ A)$。
+Let $B' = \mathbf{TreeF}\ A\ B$. We recursively apply to itself, and call this result as $\mathbf{Fix}\ (\mathbf{TreeF}\ A)$.
 
 \bre
-\mathbf{Fix}\ (\mathbf{TreeF}\ A) & = & \mathbf{TreeF}\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{不动点的定义} \\
- & = & \mathbf{TreeF}\ A\ (\mathbf{TreeF}\ A (...)) & \text{递归展开} \\
- & = & NilF | BrF\ A\ (\mathbf{TreeF}\ A\ (...))\ (\mathbf{TreeF}\ A\ (...)) & \text{二叉树函子的定义} \\
- & = & NilF | BrF\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A))\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{反向用不动点} \\
+\mathbf{Fix}\ (\mathbf{TreeF}\ A) & = & \mathbf{TreeF}\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{definition of fixed point} \\
+ & = & \mathbf{TreeF}\ A\ (\mathbf{TreeF}\ A (...)) & \text{expand} \\
+ & = & NilF | BrF\ A\ (\mathbf{TreeF}\ A\ (...))\ (\mathbf{TreeF}\ A\ (...)) & \text{definition of binary tree functor} \\
+ & = & NilF | BrF\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A))\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{reverse of fixed point} \\
 \ere
 
-比较$Tree A$的定义：
+Compare with the definition of $Tree A$:
 
 \begin{lstlisting}
 data Tree A = Nil | Br A (Tree A) (Tree A)
 \end{lstlisting}
 
-故而：$\mathbf{Tree}\ A = \mathbf{Fix}\ (\mathbf{TreeF}\ A)$。初始代数为$(\mathbf{Tree}\ A, [nil, branch])$。
+Hence $\mathbf{Tree}\ A = \mathbf{Fix}\ (\mathbf{TreeF}\ A)$. The initial algebra is $(\mathbf{Tree}\ A, [nil, branch])$.
 
 \end{enumerate}
 
-\section{融合}
+\section{Fusion}
 
 \begin{enumerate}
 \item {验证从左侧叠加也可以表示为$foldr$:
