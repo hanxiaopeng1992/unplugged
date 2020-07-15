@@ -1898,17 +1898,17 @@ The commutative condition is:
 \mathbf{H}(f) \circ (\psi_A \circ \phi_A) = (\psi_B \circ \phi_B) \circ \mathbf{F} (f)
 \]
 
-\item{在本节的例子中，我们说在一个偏序集中，如果存在最小值（或最大值），则最小值（或最大值）就是起始对象（或终止对象）。考虑全体偏序集构成的范畴$\pmb{Poset}$，如果存在起始对象，它是什么？如果存在终止对象，它是什么？}
+\item{In the poset example, we say if there exists the minimum (or the maximum) element, then the minimum (or the maximum) is the initial object (or the final object). Consider the category of all posets $\pmb{Poset}$, if there exists the initial object, what is it? If there exists the final object, what is it?}
 
-对于$\pmb{Poset}$范畴，对象是偏序集，箭头是单调映射。对于两个偏序集$P, Q$，箭头$P \arrowto{h} Q$使得偏序集$P$中任何两个有序元素$a \leq b$，有$h(a) \leq h(b)$。
+For the $\pmb{Poset}$ category, the objects are posets, the arrows are monotone functions. For two posets $P, Q$, arrow $P \arrowto{h} Q$ means for any two ordered elements $a \leq b$ in $P$, $h(a) \leq h(b)$ holds.
 
-这一范畴中的起始对象是空偏序集$0 = \varnothing$。它到任何其它偏序集有唯一的箭头：
+The initial object in this category is the empty poset $0 = \varnothing$. There is unique arrow from it to any poset $P$:
 
 \[
 \varnothing \longrightarrow P
 \]
 
-终止对象是之后一个元素的偏序集$1 = \{\bigstar\}$，偏序关系为$R = \{(\bigstar, \bigstar)\}$，即$\bigstar \leq \bigstar$。任何偏序集$P$到1有唯一的箭头：
+The final object is the singleton poset $1 = \{\bigstar\}$, the order relationship is $R = \{(\bigstar, \bigstar)\}$, i.e. $\bigstar \leq \bigstar$. From any poset $P$, there is unique arrow to 1:
 
 \bre
 P & \longrightarrow & \{\bigstar\} \\
