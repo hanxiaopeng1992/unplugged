@@ -1915,23 +1915,23 @@ P & \longrightarrow & \{\bigstar\} \\
 p & \mapsto & \bigstar
 \ere
 
-\item{皮亚诺范畴$\pmb{Pno}$（参见本章第一节的习题2）中，什么样的对象$(A, f, z)$是起始对象？终止对象是什么？}
+\item{In the Peano category $\pmb{Pno}$ (see the question 2 in exercise of section 1), what object in the form of $(A, f, z)$ is the initial object? What is the final object?}
 
-起始对象是$(\pmb{N}, succ, 0)$，它到任何其它对象唯一箭头是：
+The initial object is $(\pmb{N}, succ, 0)$. From it there is unique arrow to any object:
 
 \[
 (\pmb{N}, succ, 0) \arrowto{\sigma} (A, f, z): \sigma(n) = f^n(z)
 \]
 
-终止对象是只有一个元素的对象$1 = (\{\bigstar\}, \bigstar, id)$。任何皮亚诺范畴的对象$(A, f, z)$到终止对象的唯一箭头是：
+The final object is a singleton $1 = (\{\bigstar\}, \bigstar, id)$. There is unique arrow from any object $(A, f, z)$ to the final object:
 
 \[
 (A, f, z) \arrowto{\sigma} 1 : \sigma(a) = \bigstar
 \]
 
-\item{验证$\pmb{Exp}$的确是一个范畴，指出$id$箭头和箭头的组合。}
+\item{Verify that $\pmb{Exp}$ is a category. What is the $id$ arrow and arrow composition in it?}
 
-我们先看$id$箭头的定义$h \arrowto{id} h$，它使得下面的范畴图可交换：
+Let us first verify the $id$ arrow $h \arrowto{id} h$, such that the following diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1947,9 +1947,9 @@ p & \mapsto & \bigstar
 \end{tikzpicture}
 \end{center}
 
-然后是箭头组合：
+Next is the arrow composition:
 
-$h \arrowto{i} k$和$k \arrowto{j} m$的组合是$j \circ i$使得下面的范畴图交换：
+The composition of $h \arrowto{i} k$ and $k \arrowto{j} m$ is $j \circ i$ such that below diagram commutes:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1969,27 +1969,27 @@ $h \arrowto{i} k$和$k \arrowto{j} m$的组合是$j \circ i$使得下面的范�
 \end{tikzpicture}
 \end{center}
 
-因此对于箭头$h \arrowto{j} k$有：$id_k \circ j = j = j \circ id_h$。并且对于三个箭头有结合律。
+For arrow $h \arrowto{j} k$, it means $id_k \circ j = j = j \circ id_h$ holds. And the associative law hold for any three arrows.
 
-\item{反射律$curry\ apply = id$中，$id$的下标是什么？请用另一种方法证明它。}
+\item{In the reflection law $curry\ apply = id$, what is the subscript of the $id$ arrow? Please prove it with another method.}
 
-$id$的下标是二元箭头的类型$A \times B \to C$。
+The subscript of the $id$ arrow is the type of the binary arrow: $A \times B \to C$.
 
 \begin{proof}
 \blre
   & curry \circ apply\ f\ a\ b \\
-= & curry\ (apply\ f)\ a\ b & \text{组合的定义} \\
-= & (apply\ f)\ (a, b) & \text{$curry$的定义}\\
-= & f(a, b) & \text{$apply$的定义} \\
+= & curry\ (apply\ f)\ a\ b & \text{definition of composition} \\
+= & (apply\ f)\ (a, b) & \text{definition of $curry$}\\
+= & f(a, b) & \text{definition of $apply$} \\
 = & id_{A \times B \to C}\ f(a, b)
 \elre
 \end{proof}
 
-\item{我们称下面的等式
+\item{We define the equation
 \[
 (curry\ f) \circ g = curry(f \circ (g \times id))
 \]
-为克里化的融合律。请画出它的范畴图并证明它。}
+as the fusion law for Currying. Draw the diagram and prove it.}
 
 \begin{center}
 \begin{tikzpicture}
@@ -2009,23 +2009,23 @@ $id$的下标是二元箭头的类型$A \times B \to C$。
 \end{tikzpicture}
 \end{center}
 
-观察图中$D \times B$，$A \times B$，和$C$这个三角形。我们知道$D \times B \to A$这个组合箭头为$f \circ (g \times id)$。
+Observe the triangle of $D \times B$, $A \times B$, and $C$. We know the arrow of $D \times B \to A$ is $f \circ (g \times id)$.
 
-根据幂对象和转换箭头的定义有：
+According to the definition of exponentials and transpose arrow, we have:
 
 \[
 apply \circ (curry f) \circ g = f \circ (g \times id)
 \]
 
-由$curry$和$apply$的泛性性质有：
+According to the universal property of $curry$ and $apply$:
 
 \[
 (curry f) \circ g = curry (f \circ (g \times id)
 \]
 
-\item{画出群的可逆性公理的范畴图。}
+\item{Draw the diagram to illustrate the reverse element axiom for group.}
 
-可逆性公里表示为：$m \circ (id, i) = m \circ (i, id) = e$
+The reverse element axiom can be formalized as: $m \circ (id, i) = m \circ (i, id) = e$
 
 \begin{center}
 \begin{tikzpicture}
@@ -2044,30 +2044,32 @@ apply \circ (curry f) \circ g = f \circ (g \times id)
 \end{tikzpicture}
 \end{center}
 
-\item{$p$是一个素数，使用群的F-代数，为整数模$p$乘法群（可以参考上一章）定义一个$\alpha$箭头。}
+\item{Let $p$ be a prime. Use the F-algebra to define the $\alpha$ arrow for the multiplicative group for integers modulo $p$ (refer to the previous chapter for the definition of this group).}
 
-根据群的$\alpha$箭头定义：
+According to the $\alpha$ arrow defined for group:
 
 \[
 \mathbf{F} A \arrowto{\alpha = e + m +i} A
 \]
-定义整数模$p$乘法群如下：
+
+The multiplicative group for integers modulo $p$ is defined as:
 
 \bre
-e\ () & = & 1 & \text{单位元是1} \\
-m(a, b) & = & ab \bmod p & \text{二元运算是模$p$乘法} \\
-i(a) & = & a^{p-2} \bmod p & \text{根据费马小定理$a^{p-1} \equiv 1 \mod p$} \\
+e\ () & = & 1 & \text{1 is the unit} \\
+m(a, b) & = & ab \bmod p & \text{multiplication modulo $p$} \\
+i(a) & = & a^{p-2} \bmod p & \text{Fermat's little theorem $a^{p-1} \equiv 1 \mod p$} \\
 \ere
 
-\item{参考上一章环的定义，定义环的F-代数。}
+\item{Define F-algebra for ring (refer to the previous chapter for definition of ring).}
 
-环上的代数结构由三部分组成：
+The algebraic structure of ring contains three parts:
 \begin{enumerate}[i]
-\item 携带对象$R$，用于携带环上代数结构的集合。
-\item 多项式函子$\mathbf{F}A = 1 + 1 + A \times A + A \times A + A$。
-\item 箭头$\mathbf{F}A \arrowto{\alpha = z + e + p + m + n} A$，它们分别是加法单位元$z$，乘法单位元$e$，加法$p$，乘法$m$，和求反$n$。
+\item Carrier object $R$, the set that carries the algebraic structure of ring;
+\item Polynomial functor $\mathbf{F}A = 1 + 1 + A \times A + A \times A + A$;
+\item Arrow $\mathbf{F}A \arrowto{\alpha = z + e + p + m + n} A$, consists of the unit of addition $z$, the unit of multiplication $e$, addition $p$, multiplication $m$, and negation $n$.
 \end{enumerate}
-这样就定义了一个环上的$F$-代数$(R, \alpha)$。例如当携带对象是整数时，算术运算下的环定义为：
+
+These define the $F$-algebra $(R, \alpha)$ for ring. When the carrier object is integers for example, the ring is defined as below under standard arithmetic:
 
 \[\begin{array}{l}
 z\ () = 0 \\
