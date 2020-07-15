@@ -1672,56 +1672,57 @@ Then for arrow composition:
  & = & ((\mathbf{G} \circ \mathbf{F})\ \phi) \circ ((\mathbf{G} \circ \mathbf{F})\ \psi) & \text{functor composition} \\
 \ere
 
-\item {思考一个预序集范畴上的函子的例子。}
+\item {Give an example functor for preset.}
 
-预序集范畴上的函子是一个单调映射。
-% monotone function(map)
+The functor for preset category is a monotone function.
 
-\item {回顾第二章中介绍的二叉树，请定义一个二叉树函子。}
+\item {For the binary tree defined in chapter 2, define the functor for it.}
 
-考虑集合全函数范畴上的对象$A$，二叉树函子将其映射为：
+Consider an object $A$ in the set total function category, the binary tree functor sends it to:
 
 \lstset{language=Haskell, frame=none}
 \begin{lstlisting}
 data Tree A = Empty | Branch (Tree A) A (Tree A)
 \end{lstlisting}
 
-对于箭头$A \arrowto{f} B$，二叉树函子将其映射为：
+For arrow $A \arrowto{f} B$, the binary tree functor maps it to:
 
 \bre
 fmap\ f\ Empty & = & Empty \\
 fmap\ f\ (Branch\ l\ x\ r) & = & Branch\ (fmap\ f\ l)\ (f\ x)\ (fmap\ f\ r) \\
 \ere
 
-或者利用第二章定义的$mapt$：
+Or we can use the $mapt$ defined in chapter 2:
 
 \[
 fmap = mapt
 \]
 
-\item {考虑偏序集（poset）中的两个对象，它们的积是什么？余积是什么？}
+\item{For any two objects in a poset, what is their product? what is their coproduct?}
 
-第三章中，我们说到一个偏序集本身就是一个范畴，每个元素都是一个对象，任何两个对象间最多有一个箭头（如果有序关系，则存在箭头）。对于偏序集中的两个元素（对象）$a$和$b$，如果它们都有指向上下游的箭头，则
-
-\[
-\text{交运算meet}\ a \land b \quad \quad \quad \text{并运算join}\ a \lor b
-\]
-
-是这一对对象的
+In chapter 3, we mentioned any poset is a category, every element is an object, there is at most one arrow between two objects (the arrow exits if they have ordering relation). For two elements (objects) $a$ and $b$, if they have arrows both to the up and down stream, then:
 
 \[
-\text{积} \quad \quad \quad \text{余积}
+\text{meet}\ a \land b \quad \quad \quad \text{join}\ a \lor b
 \]
 
-其中交运算是两个对象的最小上界，而并运算是两个对象的最大下界。由于最小上界和最大下界并不一定存在，所以偏序集中任何两个对象的积和余积也并不一定存在。
+is the
+
+\[
+\text{product} \quad \quad \quad \text{coproduct}
+\]
+
+for this pair of objects.
+
+Where meet is the least upper bound (also called supremum) of the two objects, and join is the greatest lower bound (infimum) of them. In general, the join and meet of a subset of a partially ordered set need not exist, hence the product and coproduct of a poset need not exist too.
 
 % https://en.wikipedia.org/wiki/Join_and_meet
 %In mathematics, specifically order theory, the join and meet of a subset S of a partially ordered set P are respectively the supremum (least upper bound) of S, denoted ⋁S, and infimum (greatest lower bound) of S, denoted ⋀S. In general, the join and meet of a subset of a partially ordered set need not exist. Join and meet are dual to one another with respect to order inversion.
 
 %\item {考虑集合范畴$\pmb{Set}$，积中的两个箭头$fst, snd$是右消去（epic）的么？余积中的两个箭头$left, right$是左消去（monic）的么？}
-\item {证明余积的吸收率，并验证余积函子的组合性质。}
+\item {Prove the absorption law for coproduct, and verify the coproduct functor satisfies composition condition.}
 
-余积的吸收率是：
+The absorption law for coproduct states:
 
 \[
 [p, q] \circ (f + g) = [p \circ f, q \circ g]
@@ -1730,30 +1731,30 @@ fmap = mapt
 \begin{proof}
 \blre
   & [p, q] \circ (f + g)  \\
-= & [p, q] \circ [left \circ f, right \circ g] & \text{$+$的定义} \\
-= & [[p, q] \circ (left \circ f), [p, q] \circ (right \circ g)] & \text{余积的融合律} \\
-= & [[p, q] \circ left \circ f, [p, q] \circ right \circ g] & \text{结合性} \\
-= & [p \circ f, q \circ g] & \text{余积的消去律} \\
+= & [p, q] \circ [left \circ f, right \circ g] & \text{definition of $+$} \\
+= & [[p, q] \circ (left \circ f), [p, q] \circ (right \circ g)] & \text{fusion law} \\
+= & [[p, q] \circ left \circ f, [p, q] \circ right \circ g] & \text{associative} \\
+= & [p \circ f, q \circ g] & \text{cancellation law} \\
 \elre
 \end{proof}
 
-余积函子的组合性质：
+The composition condition for coproduct states:
 
 \[
  (f + g) \circ (f' + g') = f \circ f' + g \circ g'
 \]
 
 \begin{proof}
-令$p = left \circ f$，$q = right \circ g$
+Let $p = left \circ f$，$q = right \circ g$
 
 \blre
   & (f + g) \circ (f' + g') \\
-= & [left \circ f, right \circ g] \circ (f' + g') & \text{$+$的定义} \\
-= & [p, q] \circ (f' + g') & \text{用$p, q$代换} \\
-= & [p \circ f', q \circ g'] & \text{余积的吸收律} \\
-= & [left \circ f \circ f', right \circ g \circ g'] & \text{把$p, q$代回} \\
-= & [left \circ (f \circ f'), right \circ (g \circ g')] & \text{结合律} \\
-= & f \circ f' + g \circ g' & \text{反向用$+$的定义} \\
+= & [left \circ f, right \circ g] \circ (f' + g') & \text{definition of $+$} \\
+= & [p, q] \circ (f' + g') & \text{substitute with $p, q$} \\
+= & [p \circ f', q \circ g'] & \text{absorption law} \\
+= & [left \circ f \circ f', right \circ g \circ g'] & \text{substitute $p, q$ back} \\
+= & [left \circ (f \circ f'), right \circ (g \circ g')] & \text{associative law} \\
+= & f \circ f' + g \circ g' & \text{reverse of $+$} \\
 \elre
 \end{proof}
 
