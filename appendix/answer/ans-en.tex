@@ -1800,13 +1800,13 @@ length\ (x:xs) = 1 + length\ xs
 \]
 }
 
-对于任何对象$A$，它的索引箭头$length$为：
+For any object $A$, the arrow $length$ indexed by $A$ is:
 
 \[
 [A] \arrowto{length_A} \mathbf{K}_{Int}\ A
 \]
 
-其中$\mathbf{K}_{Int}$是常函子，它将任何对象映射到$Int$，所有箭头映射为恒等箭头$id_{int}$。对于箭头$A \arrowto{f} B$，我们要证明下面的范畴图可交换。
+where $\mathbf{K}_{Int}$ is constant functor. It sends every object to $Int$, and sends every arrow to identity arrow $id_{int}$. For arrow $A \arrowto{f} B$, we need prove below diagram commutes.
 
 \begin{center}
 \begin{tikzpicture}
@@ -1824,7 +1824,7 @@ length\ (x:xs) = 1 + length\ xs
 \end{tikzpicture}
 \end{center}
 
-利用常函子的定义，这个范畴图等价于：
+From the definition of constant functor, this diagram is equivalent to:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1842,38 +1842,38 @@ length\ (x:xs) = 1 + length\ xs
 \end{tikzpicture}
 \end{center}
 
-也就是要证明：
+We are about to prove:
 
 \[
 id \circ length_{A} = length_{B} \circ \mathbf{List}(f)
 \]
 
-即：$length_{A} = length_{B} \circ \mathbf{List}(f)$
+Which means: $length_{A} = length_{B} \circ \mathbf{List}(f)$
 
 
 \begin{proof}
-我们用数学归纳法证明。首先是空列表：
+Use mathematical induction, we first consider the empty list case:
 
 \blre
   & length_B \circ \mathbf{List}(f) [] \\
-= & length_B [] & \text{列表函子的定义} \\
-= & 0 & \text{$length$的定义} \\
-= & length_A\ [] & \text{反向用$length$的定义}
+= & length_B [] & \text{definition of list functor} \\
+= & 0 & \text{definition of $length$} \\
+= & length_A\ [] & \text{reverse of $length$ definition}
 \elre
 
-然后是归纳假设，设$length_B \circ \mathbf{List}(f)\ as = length_A\ as$成立，我们有：
+Next suppose $length_B \circ \mathbf{List}(f)\ as = length_A\ as$ holds, we have:
 
 \blre
   & length_B \circ \mathbf{List}(f) (a:as) \\
-= & length_B\ (f(a) : \mathbf{List}(f)\ as) & \text{列表函子的定义} \\
-= & 1 + length_B\ (\mathbf{List}(f)\ as) & \text{$length$的定义} \\
-= & 1 + length_B\ \circ \mathbf{List}(f)\ as & \text{箭头组合} \\
-= & 1 + length_A\ as & \text{归纳假设} \\
-= & length_A\ (a:as) & \text{反向用$length$的定义}
+= & length_B\ (f(a) : \mathbf{List}(f)\ as) & \text{definition of list functor} \\
+= & 1 + length_B\ (\mathbf{List}(f)\ as) & \text{definition of $length$} \\
+= & 1 + length_B\ \circ \mathbf{List}(f)\ as & \text{arrow composition} \\
+= & 1 + length_A\ as & \text{induction assumption} \\
+= & length_A\ (a:as) & \text{reverse of $length$ definition}
 \elre
 \end{proof}
 
-\item {自然变换也可以进行组合，考虑两个自然变换$\mathbf{F} \arrowto{\phi} \mathbf{G}$和$\mathbf{G} \arrowto{\psi} \mathbf{H}$，对于任意箭头$A \arrowto{f} B$，试画出自然变换组合$\phi \circ \psi$的范畴图，并列出可交换性的条件。}
+\item {Natural transformation is composable. Consider two natural transformations $\mathbf{F} \arrowto{\phi} \mathbf{G}$ and $\mathbf{G} \arrowto{\psi} \mathbf{H}$. For any arrow $A \arrowto{f} B$, draw the diagram for their composition, and list the commutative condition.}
 
 \begin{center}
 \begin{tikzpicture}
@@ -1892,7 +1892,7 @@ id \circ length_{A} = length_{B} \circ \mathbf{List}(f)
 \end{tikzpicture}
 \end{center}
 
-可交换的条件为：
+The commutative condition is:
 
 \[
 \mathbf{H}(f) \circ (\psi_A \circ \phi_A) = (\psi_B \circ \phi_B) \circ \mathbf{F} (f)
