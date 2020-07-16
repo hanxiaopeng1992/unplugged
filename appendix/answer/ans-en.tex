@@ -2274,7 +2274,7 @@ qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsor
 \end{cases}\]
 }
 
-可以把ZF表达式变换成$filter$。显然这里处理了两遍列表，它们可以合成一次：
+First, we can transform the ZF-expression to $filter$, and combine the two round of list filter to one pass:
 
 \[
 \begin{cases}
@@ -2283,16 +2283,16 @@ qsort\ (x:xs) & = qsort\ as \doubleplus [x] \doubleplus qsort\ bs \\
 \end{cases}
 \]
 
-其中：
+where:
 \[\begin{array}{l}
 (as, bs) = foldr\ h\ ([], [])\ xs \\
 h\ y\ (as', bs') = \begin{cases}
                y \leq x : & (y:as', bs') \\
-               \text{否则}: & (as', y:bs') \\
+               \text{otherwise}: & (as', y:bs') \\
 \end{cases} \\
 \end{array}\]
 
-接下来我们可以把两个列表的连接操作化简：
+Next we can simplify the list concatenation:
 
 \blre
   & qsort\ as \doubleplus [x] \doubleplus qsort\ bs \\
