@@ -2300,9 +2300,9 @@ Next we can simplify the list concatenation:
 = & foldr (:)\ (x : qsort\ bs) (qsort\ as)
 \elre
 
-\item{利用范畴论验证融合律的类型限制。提示：考虑向下态射的类型。}
+\item{Verify the type constraint with category theory. Hint: consider the type of the catamorphism.}
 
-观察范畴图：
+As shown in below diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -2318,80 +2318,85 @@ Next we can simplify the list concatenation:
 \end{tikzpicture}
 \end{center}
 
-向下态射$\lbb \alpha \rbb$被抽象成从$\alpha$构造某种代数结构$g\ \alpha$。$g$接受一个$F$-代数的$\alpha$箭头，产生结果$B$。$\alpha$箭头是$f : A \to B \to B$和$z : 1 \to B$的余积。故其类型为：
+The catamorphism $\lbb \alpha \rbb$ is abstracted to build some algebraic structure from $\alpha$, i.e. $g\ \alpha$. Where $g$ accepts the $\alpha$ arrow of an $F$-algebra, generates result of $B$. The $\alpha$ arrow is the coproduct of $f : A \to B \to B$ and $z : 1 \to B$, that the type is:
 
 \[
 g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 \]
 
-构造的定义是$build(g) = g\ (:)\ []$，它把$g$应用到初始代数的$\alpha$箭头上从而构造出初始代数中的对象，也就是列表$[A]$。因而：
+The definition of build is $build(g) = g\ (:)\ []$. It applies $g$ to the $\alpha$ arrow of the initial algebra, and builds the object of the initial algebra, which is a list of $[A]$.
 
 \[
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 \]
 
-\item{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
+\item{Use the fusion law to optimize the expression evaluation function:
+\[
+eval = sum \circ map\ (product \circ (map\ dec))
+\]}
 
 \blre
   & eval es \\
-= & sum (map\ (product \circ (map\ dec))\ es) & \text{函数组合} \\
-  & \{ \text{$sum$展开为叠加形式，$map$展开为构建形式} \} \\
-= & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{令$f = product \circ (map\ dec)$} \\
-= & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{融合律} \\
-= & foldr\ (t\ ts \mapsto (f t) + ts)\ 0\ es & \text{$\beta$规约} \\
+= & sum (map\ (product \circ (map\ dec))\ es) & \text{function composition} \\
+  & \{ \text{$sum$ in fold, $map$ in build} \} \\
+= & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{let $f = product \circ (map\ dec)$} \\
+= & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{fusion law} \\
+= & foldr\ (t\ ts \mapsto (f t) + ts)\ 0\ es & \text{$\beta$-reduction} \\
 \elre
 
-写成无参数形式就是：
+Written in point-free form as:
 
 \[
 eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 \]
 
-接下来我们再化简$product \circ (map\ dec)$部分
+Next we simplify the $product \circ (map\ dec)$ part
 
 \blre
   & (product \circ (map\ dec))\ t \\
-= & product\ (map\ dec\ t) & \text{函数组合} \\
-  & \{ \text{$product$展开为叠加形式，$map$展开为构建形式} \} \\
+= & product\ (map\ dec\ t) & \text{function composition} \\
+  & \{ \text{$product$ in fold, $map$ in build} \} \\
 = & \pmb{foldr}\ (\times)\ 1\ (\pmb{build}\ (\oplus\ z \mapsto foldr\ (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)) \\
-= & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{融合律} \\
-= & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$规约} \\
-= & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{定义$fork(f, g)\ x = (f\ x, g\ x)$} \\
+= & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{fusion law} \\
+= & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$-reduction} \\
+= & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{let $fork(f, g)\ x = (f\ x, g\ x)$} \\
 \elre
 
-接着把这个结果代入之前的$f$，得到最终化简的结果：
+Substitute this to $f$, we obtain the final simplified result:
 
 \[
 eval = foldr\ (t\ ts \mapsto (foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t) + ts)\ 0
 \]
 
-\item{如何从左侧扩展出所有的算式？}
+\item{How to expand all expressions from left?}
 
-从左向右扩展时，针对每个数字$d$，有三种选择：
+When expand from left to right, there are three options for every digit $d$:
 
 \begin{enumerate}
-\item 什么都不插入意味着将数字$d$直接添加到$e_i$的最后一个子算式中的最后一个因子的后面。这样由$f_n ++ [d]$组成一个新的因子。例如$e_i$是算式$1 + 2$，数字$d$是3，将3写在$1 + 2$的后面而什么符号都不插入，这样就得到新算式$1 + 23$；
-\item 插入乘号意味着用数字$d$构成一个因子$[d]$，然后将它添加到$e_i$中最后一个子算式的后面。这样由$t_m ++ [[d]]$组成一个新的子算式。具体到$1 + 2$这个例子，我们把3写在它的后面，然后在2和3之间插入一个乘号，这样就得到新算式$1 + 2 \times 3$；
-\item 插入加号意味着用数字$d$构成一个子算式$[[d]]$，然后将将它添加到$e_i$的最后面，组成新的算式$e_i ++ [[[d]]]$。具体到$1 + 2$这个例子，我们把3写在它的后面，然后在2和3之间插入一个加号，这样就得到新算式$1 + 2 + 3$。
+\item Insert nothing. It means append $d$ to the last factor of the last sub-expression of $e_i$. Combine $f_n ++ [d]$ as a new factor. For example when $e_i$ is $1 + 2$, $d$ is 3, write 3 after $1 + 2$ without inserting any symbols, we obtain a new expression $1 + 23$;
+
+\item Insert $\times$. It means we create a new factor $[d]$, then append it to the last sub-expression of $e_i$. Combine $t_m ++ [[d]]$ as a new sub-expression. For the same $1 + 2$ example, we write 3 after it, put a $\times$ between 2 and 3, hence obtain a new sub-expression $1 + 2 \times 3$;
+
+\item Insert +. It means we create a new sub-expression $[[d]]$, then append it to $e_i$ to obtain a new expression $e_i ++ [[[d]]]$. For the same $1 + 2$ example, we write 3 after it, put a + between 2 and 3, hence obtain a new expression $1 + 2 + 3$.
 \end{enumerate}
 
-为了将一个元素加到序列的末尾，我们可以定义一个函数：
+We need define the append function to add an element after a list:
 
 \[
 append\ x = foldr\ (:)\ [x]
 \]
 
-然后我们定义一个函数$onLast(f)$，它把$f$应用到一个序列的最后一个元素上：
+Then we define a function $onLast(f)$, which applies $f$ to the last element of a list:
 
 \[\begin{array}{l}
 onLast\ f = foldr\ h\ [] \\
-\text{其中}: \begin{cases}
+\text{where}: \begin{cases}
   h\ x\ [] & = [(f\ x)] \\
   h\ x\ xs & = x : xs \\
 \end{cases} \\
 \end{array}\]
 
-然后，我们就可以实现这3种情况的扩展：
+Then we implement the above three expansion options:
 
 \lstset{frame = none}
 \begin{lstlisting}

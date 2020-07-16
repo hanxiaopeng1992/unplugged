@@ -2312,7 +2312,7 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
   & \{ \text{$sum$展开为叠加形式，$map$展开为构建形式} \} \\
 = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{令$f = product \circ (map\ dec)$} \\
 = & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{融合律} \\
-= & foldr\ (t\ ts \mapsto (f t) + ts)\ 0\ es & \text{$\beta$规约} \\
+= & foldr\ (t\ ts \mapsto (f t) + ts)\ 0\ es & \text{$\beta$-规约} \\
 \elre
 
 写成无参数形式就是：
@@ -2329,7 +2329,7 @@ eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
   & \{ \text{$product$展开为叠加形式，$map$展开为构建形式} \} \\
 = & \pmb{foldr}\ (\times)\ 1\ (\pmb{build}\ (\oplus\ z \mapsto foldr\ (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)) \\
 = & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{融合律} \\
-= & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$规约} \\
+= & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$-规约} \\
 = & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{定义$fork(f, g)\ x = (f\ x, g\ x)$} \\
 \elre
 
