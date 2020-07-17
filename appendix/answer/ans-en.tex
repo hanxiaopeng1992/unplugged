@@ -2405,39 +2405,39 @@ add d exp = [((append d) `onLast`) `onLast` exp,
              (append [[d]]) exp]
 \end{lstlisting}
 
-\item{下面定义可以将算式翻译为字符串：
+\item{The following definition convert expression to string:
 \[
 str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ (map\ (show \circ dec))))
 \]
-其中$show$可以将数字转换为字符串。函数 $join(c, s)$ 将一组字符串$s$用$c$连接起来，例如 $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def'' 。利用融合律化简$str$的定义。
+Where $show$ convert number to string. Function $join(c, s)$ concatenates multiple strings $s$ with delimiter $c$. For example: $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def''. Use the fusion law to optimize $str$.
 }
 
-第五章中，我们给出了$join(ws)$的结果，它实际上是用空格分割一组字符串。将空格作为参数，就得到了$join(c, s)$的定义：
+We defined $join(ws)$ in chapter 5. It insert space between every two strings. We can extract the space as a parameter to define $join(c, s)$:
 
 \[
 join\ c = foldr\ (w\ b \mapsto foldr\ (:)\ (c:b)\ w)\ []
 \]
 
-观察$str$的定义，它实际上是两重的$(join\ c) \circ (map\ f)$的形式，即：
+Observe the definition of $str$. It contains embedded $(join\ c) \circ (map\ f)$ as:
 
 \[\begin{array}{l}
 str = (join\ c) \circ (map\ f) \\
-\text{其中}: f = (join\ d) \circ (map\ g) \\
+\text{where}: f = (join\ d) \circ (map\ g) \\
 \end{array}\]
 
-这里$c = `+', d = ` \times '$，而$g = show \circ dec$。为此我们只要找出$(join\ c) \circ (map\ f)$的简化形式就可以了。
+where $c = `+', d = ` \times '$, and $g = show \circ dec$. What we need to do is to simplify $(join\ c) \circ (map\ f)$.
 
 \blre
   & (join\ c) \circ (map\ f)\ es \\
-  & \{ \text{$join$展开为叠加，$map$展开为构建形式} \} \\
+  & \{ \text{$join$ in fold, $map$ in build} \} \\
 = & \pmb{foldr}\ (w\ b \mapsto foldr\ (:) (c:b)\ w)\ [] (\pmb{build}\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es)) \\
-  & \{ \text{融合律} \} \\
+  & \{ \text{fusion law} \} \\
 = & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es))\ (w\ b \mapsto foldr\ (:)\ (c:b)\ w)\ [] \\
-  & \{ \text{$\beta$规约} \} \\
+  & \{ \text{$\beta$-reduction} \} \\
 = & foldr\ (y\ ys \mapsto foldr\ (:)\ (c:ys)\ (f\ y))\ []\ es \\
 \elre
 
-将之前的加号、乘号，以及$show \circ dec$代入，我们得到结果：
+Substitute the +, $\times$, and $show \circ dec$ in, we obtain the final result:
 
 \blre
 str & = & foldr\ (x\ xs \mapsto foldr\ (:)\ (`+':xs) ( \\
@@ -2446,7 +2446,7 @@ str & = & foldr\ (x\ xs \mapsto foldr\ (:)\ (`+':xs) ( \\
 
 \end{enumerate}
 
-\section{无穷}
+\section{Infinity}
 
 \begin{enumerate}
 

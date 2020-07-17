@@ -2402,7 +2402,7 @@ str = (join\ c) \circ (map\ f) \\
 = & \pmb{foldr}\ (w\ b \mapsto foldr\ (:) (c:b)\ w)\ [] (\pmb{build}\ (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es)) \\
   & \{ \text{融合律} \} \\
 = & (\oplus\ z \mapsto foldr\ (y\ ys \mapsto (f\ y) \oplus ys)\ z\ es))\ (w\ b \mapsto foldr\ (:)\ (c:b)\ w)\ [] \\
-  & \{ \text{$\beta$规约} \} \\
+  & \{ \text{$\beta$-规约} \} \\
 = & foldr\ (y\ ys \mapsto foldr\ (:)\ (c:ys)\ (f\ y))\ []\ es \\
 \elre
 
