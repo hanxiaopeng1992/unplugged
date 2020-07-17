@@ -2460,36 +2460,37 @@ For example $take\ 100\ F$ gives the first 100 Fibonacci numbers
 
 \item{Define $iterate$ by folding.}
 
-我们考虑潜无穷流$iterate\ f\ x$，如果将$f$再次应用到每个元素上，并且在最前面添加一个$x$，得到的仍然是这个无穷流。基于这点我们可以定义：
+Consider the infinite stream $iterate\ f\ x$. After applying $f$ to each element, and prepend $x$ as the first one, we obtain this infinite stream again. Based on this fact, we can define it as:
 
 \[
 iterate\ f\ x = x : foldr (y\ ys \mapsto (f\ y):ys)\ []\ (iterate\ f\ x)
 \]
 
-例如：
+For example:
 
 \begin{lstlisting}
 take 10 $ iter (+1) 0
 [0,1,2,3,4,5,6,7,8,9]
 \end{lstlisting} %$
 
-\item{利用第四章中介绍的不动点定义，证明$Stream$是$StreamF$的不动点。}
+\item{Use the definition of the fixed point in chapter 4, prove $Stream$ is the fixed point of $StreamF$.}
 
-令$A' = \mathbf{StreamF}\ E\ A$，然后不断递归地应用到自己，把此结果称为$\mathbf{Fix}\ (\mathbf{StreamF}\ E)$
+Let $A' = \mathbf{StreamF}\ E\ A$, then apply it to itself repeatedly. We call this result $\mathbf{Fix}\ (\mathbf{StreamF}\ E)$
 
 \bre
 \mathbf{Fix}\ (\mathbf{StreamF}\ E) & = &
-    \mathbf{StreamF}\ E\ (\mathbf{Fix}\ (\mathbf{StreamF}\ E)) & \text{不动点的定义} \\
- & = & \mathbf{StreamF}\ E\ (\mathbf{StreamF}\ E\ (...)) & \text{递归展开} \\
- & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E) & \text{替换名称} \\
- & = & \mathbf{Stream}\ E & \text{反向用$Stream$的定义} \\
+    \mathbf{StreamF}\ E\ (\mathbf{Fix}\ (\mathbf{StreamF}\ E)) & \text{definition of fixed point} \\
+ & = & \mathbf{StreamF}\ E\ (\mathbf{StreamF}\ E\ (...)) & \text{expand recursively} \\
+ & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E) & \text{change name} \\
+ & = & \mathbf{Stream}\ E & \text{reverse of $Stream$} \\
 \ere
 
-故$Stream$是$StreamF$的不动点。
+Therefore, $Stream$ is the fixed point of $StreamF$.
 
-\item{试定义反折叠$unfold$}
+\item{Define $unfold$.}
 
-在实现时，通常使用$Maybe$来定义出一个结束条件：
+We often use $Maybe$ to define the terminate condition:
+
 \begin{lstlisting}
 unfold :: (b -> Maybe (a, b)) -> (b -> [a])
 unfold f b = case f b of
@@ -2497,19 +2498,19 @@ unfold f b = case f b of
                 Nothing -> []
 \end{lstlisting}
 
-\item 数论中的算术基本定理说：任何一个大于1的整数都可以唯一地表示成若干素数的乘积。有一道编程趣题，要求判断一段文字$T$中，是否包含一个字符串$W$的某种排列。试利用算术基本定理，和素数流解决这道题目。
+\item{The fundamental theorem of arithmetic states that, any integer greater than 1 can be unique represented as the product of prime numbers. Given a text $T$, and a string $W$, does any permutation of $W$ exist in $T$? Solve this programming puzzle with the fundamental theorem and the stream of prime numbers.}
 
-我们的思路是，将每一个不同字符对应到一个素数上去，a对应2，b对应3，c对应5……。这样任意给定一个字符串$W$，不管它是否包含重复的字符，我们都可以把它表示为素数的乘积：
+Our idea is to map every unique character to a prime number, for example, a $\to$ 2, b $to$ 3, c $\to$ 5, ... Given any string $W$, no matter it contains repeated characters or not, we can convert it to a product of prime numbers:
 
 \[
 F = \prod p_c , c \in W
 \]
 
-我们称其为字符串$W$的数论指纹$F$。如果$W$是空串，我们规定它的指纹等于1。根据整数乘法的交换律，我们知道无论$W$怎样排列，其数论指纹都不变，并且根据算术基本定理，这个数论指纹是唯一的。现在我们就得到了一个特别简洁的解法：我们首先计算出$W$的数论指纹$F$，然后用一个长度为$|W|$的窗口沿着$T$从左向右滑动。一开始我们需要计算$T$在这个窗口内的数论指纹，并和$F$比较，如果相等就说明$T$包含$W$的某种排列。如果不等我们将这个窗口向右滑动一个字符。此时我们可以非常容易地计算新窗口内的数论指纹：只要把滑出的字符对应的素数除掉，再把滑入的字符对应的素数乘上就可以了。任何时候如果新窗口内的数论指纹等于$F$，就说明找到了一个排列。当然为了获得每个不同字符对应的素数，我们还要利用埃拉托斯特尼筛法产生一串素数。下面是一段示例算法：
+We call it the number theory finger print $F$ of string $W$. We $W$ is empty, we define its finger print as 1. Because multiplication of integers is commutative, the number theory finger print is same for all permutations of $W$, and according to the fundamental theorem of arithmetic, the number theory finger print is unique. We can develop an elegant solution based on this: First, we calculate the number theory finger print $F$ of string $W$, then slide a window of length $|W|$ along $T$ from left to right. When start, we also need to compute the number theory finger print within this window of $T$, and compare it with $F$. If they are equal, it means $T$ contains some permutation of $W$. Otherwise, we slide the window to the right by a character. We can easily compute the updated number theory finger print value for this new window position: divide the product by the corresponding prime number for the character slide out, and multiply the prime number for the character slide in. Whenever the number theory finger print equals to $F$, we find a permutation. In order to map different characters to prime numbers, we can use sieve of Eratosthenes to generate a series of prime numbers. Below is the example algorithm accordingly.
 
 \begin{algorithmic}
 \Function{contains?}{$W, T$}
-  \State $P \gets ana \ era \ [2, 3, ...]$ \Comment{素数序列}
+  \State $P \gets ana \ era \ [2, 3, ...]$ \Comment{prime numbers}
   \If{$W = \phi$}
     \State \Return True
   \EndIf
