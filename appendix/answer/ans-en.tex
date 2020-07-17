@@ -2450,15 +2450,15 @@ str & = & foldr\ (x\ xs \mapsto foldr\ (:)\ (`+':xs) ( \\
 
 \begin{enumerate}
 
-\item{第一章中，我们用叠加操作实现了斐波那契数列，如何用$iterate$定义斐波那契数列潜无穷？}
+\item{In chapter 1, we realized Fibonacci numbers by folding. How to define Fibonacci numbers as potential infinity with $iterate$?}
 
 \[
 F = (fst \circ unzip)\ (iterate\ ((m, n) \mapsto (n, m + n))\ (1, 1))
 \]
 
-例如$take\ 100\ F$
+For example $take\ 100\ F$ gives the first 100 Fibonacci numbers
 
-\item{用叠加操作定义$iterate$。}
+\item{Define $iterate$ by folding.}
 
 我们考虑潜无穷流$iterate\ f\ x$，如果将$f$再次应用到每个元素上，并且在最前面添加一个$x$，得到的仍然是这个无穷流。基于这点我们可以定义：
 
