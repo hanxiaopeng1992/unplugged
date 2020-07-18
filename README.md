@@ -5,7 +5,7 @@ Mathematics of Programming
 
 This book introduces the mathematics behind computer programming.
 
-<img src="https://user-images.githubusercontent.com/332938/57565325-90303580-73ee-11e9-8d74-b78b079dbb64.png" width="210">
+<img src="https://user-images.githubusercontent.com/332938/87840667-73856c80-c8d3-11ea-8d8b-0c5b366cde0f.png" width="400">
 
 Contents
 --------
