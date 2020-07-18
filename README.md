@@ -10,17 +10,17 @@ This book introduces the mathematics behind computer programming.
 Contents
 --------
 
-The book can be previewed in both English ([EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180338/unplugged-en.pdf)) and Chinese ([中文](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180330/unplugged-zh-cn.pdf)).
+The book can be previewed in both English ([EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803391/unplugged-en.pdf)) and Chinese ([中文](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803391/unplugged-zh-cn.pdf)).
 
-- Preface ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180336/preface-en.pdf))
-- Chapter 1, Natural numbers. Peano Axiom, list and folding; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180/nat-en.pdf))
-- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180331/recursion-en.pdf))
-- Chapter 3, Symmetry. Group, Ring, and Field. Galois Theory; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180332/algebra-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180332/algebra-en.pdf))
-- Chapter 4, Category theory and type system; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180333/category-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180333/category-en.pdf))
-- Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-en.pdf))
-- Chapter 6, Infinity. Set theory, Infinity and stream; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-en.pdf))
-- Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618032/paradox-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180337/paradox-en.pdf))
-- Answers to the exercise. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180339/ans-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803390/ans-en.pdf))
+- Preface
+- Chapter 1, Natural numbers. Peano Axiom, list and folding;
+- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator;
+- Chapter 3, Symmetry. Group, Ring, and Field. Galois Theory;
+- Chapter 4, Category theory and type system;
+- Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction;
+- Chapter 6, Infinity. Set theory, Infinity and stream;
+- Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem.
+- Answers to the exercise.
 
 Install
 --------
