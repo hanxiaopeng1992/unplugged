@@ -1,7 +1,7 @@
 Mathematics of Programming
 ====
 
-2020/05
+2020/07
 
 This book introduces the mathematics behind computer programming.
 
@@ -20,7 +20,7 @@ The book can be previewed in both English ([EN](https://github.com/liuxinyu95/un
 - Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180334/deduction-en.pdf))
 - Chapter 6, Infinity. Set theory, Infinity and stream; ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180335/infinity-en.pdf))
 - Chapter 7, Logic paradox, Gödel's incompleteness theorems, and Turing halting problem. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.618032/paradox-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180337/paradox-en.pdf))
-- Answers to the exercise. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180339/ans-zh-cn.pdf))
+- Answers to the exercise. ([CN](https://github.com/liuxinyu95/unplugged/releases/download/v0.6180339/ans-zh-cn.pdf), [EN](https://github.com/liuxinyu95/unplugged/releases/download/v0.61803390/ans-en.pdf))
 
 Install
 --------
