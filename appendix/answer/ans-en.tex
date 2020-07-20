@@ -378,9 +378,9 @@ c = '.' & (d / e, 1) \\
 \end{cases}
 \]
 
-\item Jon Bentley gave the maximum sum of sub-vector puzzle in {\em Programming Pearls}. Given an integer list $\{x_1, x_2, ..., x_n\}$, find the sub-section $i, j$, that maximize the sum of $x_i + x_{i+1} + ... + x_j$. Solve it with $foldr$.
+\item Jon Bentley gives the maximum sum of sub-vector puzzle in {\em Programming Pearls}. For integer list $\{x_1, x_2, ..., x_n\}$, find the range $i, j$, that maximizes the sum of $x_i + x_{i+1} + ... + x_j$. Solve it with $foldr$.
 
-If all numbers are positive, then the maximum sum must be sum of the whole list. This is because the adding is monotone increasing upon positive numbers. If all numbers are negative, then the maximum sum should be zero, which is the sum of empty list. For any sub-list, the sum increases when add a positive number, while it decreases when add a negative number. We can maintain two things during folding: one is the maximum sum of sub-list found so far $S_m$, the other is the sum of the sub-list till the current number being examined $S$. By adding the next element, if $S$ exceeds $S_m$, it means we found a larger sub-list sum. Hence we replace $S_m$ with $S$; If $S$ becomes negative, it means we complete the previous sub-list, and should start a new sub-list.
+If all numbers are positive, then the maximum sum is the sum of the whole list. This is because addition is monotone increasing upon positive numbers. If all numbers are negative, then the maximum sum should be zero, which is the sum of empty list. For any sub-list, the sum increases when add a positive number, while it decreases when add a negative number. We can maintain two things during folding: one is the maximum sum found so far $S_m$, the other is the sum of the sub-list till the current number being examined $S$. By adding the next element, if $S$ exceeds $S_m$, it means we found a larger sub-list sum. Hence we replace $S_m$ with $S$; If $S$ becomes negative, it means we complete the previous sub-list, and should start a new one.
 
 \blre
 max_s & = & 1st \cdot foldr\ f\ (0, 0) \\
