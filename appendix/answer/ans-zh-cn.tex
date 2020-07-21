@@ -383,6 +383,17 @@ max_s & = & 1st \cdot foldr\ f\ (0, 0) \\
 & & \text{在$f$中}:  S' = max(0, x + S), S_m' = max(S_m, S') \\
 \elre
 
+下面的例子程序实现了这一解法：
+
+\lstset{frame=single}
+\begin{lstlisting}
+maxSum :: (Ord a, Num a) => [a] -> a
+maxSum = fst . foldr f (0, 0) where
+  f x (m, mSofar) = (m', mSofar') where
+    mSofar' = max 0 (mSofar + x)
+    m' = max mSofar' m
+\end{lstlisting}
+
 如果除了最大子序列和，还希望返回子序列，我们可以在fold过程中使用两对值$P_m$和$P$，每对值都包括子序列的和与子序列本身$(S, L)$。
 
 \blre
@@ -390,6 +401,17 @@ max_s & = & 1st \cdot foldr\ f\ ((0, []), (0, [])) \\
 \text{其中}: & & f\ x\ (P_m, (S, L)) = (P_m', P') \\
 & & \text{在$f$中}:  P' = max((0, []), (x + S, x:L)), P_m' = max(P_m, P') \\
 \elre
+
+相应的例子程序为：
+
+\lstset{frame=single}
+\begin{lstlisting}
+maxSum' :: (Ord a, Num a) => [a] -> (a, [a])
+maxSum' = fst . foldr f ((0, []), (0, [])) where
+  f x (m, (s, xs)) = (m', mSofar) where
+    mSofar = max (0, []) (x + s, x:xs)
+    m' = max m mSofar
+\end{lstlisting}
 
 \item 最长无重复字符子串问题。任给一个字符串，求出其中不包含重复字符的最长子串。例如``abcabcbb''的最长无重复字符子串为``abc''。请使用$foldr$求解。
 
@@ -419,6 +441,24 @@ e_{max}' = \begin{cases}
   \end{cases} \\
 \end{array} \]
 
+下面的例子程序实现了这一解法。它返回最大长度和子串的右侧边界
+
+\lstset{frame=single}
+\begin{lstlisting}
+longest :: String -> (Int, Int)
+longest xs = fst2 $ foldr f (0, n, n, Map.empty::(Map Char Int))
+                      (zip [1..] xs) where
+  fst2 (len, end, _, _) = (len, end)
+  n = length xs
+  f (i, x) (maxlen, maxend, end, pos) =
+      (maxlen', maxend', end', Map.insert x i pos) where
+    maxlen' = max maxlen (end' - i + 1)
+    end' = case Map.lookup x pos of
+      Nothing -> end
+      Just j -> min end (j - 1)
+    maxend' = if end' - i + 1 > maxlen then end' else maxend
+\end{lstlisting}
+
 由于$foldr$是从右侧开始，所以我们使用截止位置。而传统的编程使用起始位置，例如：
 
 \begin{algorithmic}
@@ -439,6 +479,26 @@ e_{max}' = \begin{cases}
   \State \Return $S[s_{max} ... s_{max} + n_{max}]$
 \EndFunction
 \end{algorithmic}
+
+相应的例子程序为：
+
+\lstset{language=Python, frame=single}
+\begin{lstlisting}
+def longestnub(str):
+    pos = {}
+    maxlen = 0
+    start_max = 0
+    start_cur = 0
+    for i in range(len(str)):
+        if str[i] in pos:
+            j = pos[str[i]]
+            start_cur = max(start_cur, j + 1)
+        if i - start_cur + 1 > maxlen:
+            start_max = start_cur
+        maxlen = max(maxlen, i - start_cur + 1)
+        pos[str[i]] = i
+    return str[start_max : start_max + maxlen]
+\end{lstlisting}
 
 第二种方法是利用素数。我们将每个不同的字符$c$映射到一个素数$p_c$上，对于任何一个字符串$S$，我们可以计算出一个素数的乘积：
 
