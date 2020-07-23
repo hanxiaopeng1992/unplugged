@@ -625,7 +625,7 @@ Next suppose $r_{i-1} = a s_{i-1} + b t_{i-1}$ and $r_{i} = a s_{i} + b t_{i}$ h
 
 \bre
 r_{i+1} & = & r_{i-1} - q_{i} r_{i} & \text{sequence definition} \\
-       & = & (a s_{i-1} + b t_{i-1}) - q_{i} (a s_{i} + b t_{i}) & \text{induction assumption} \\
+       & = & (a s_{i-1} + b t_{i-1}) - q_{i} (a s_{i} + b t_{i}) & \text{induction hypothesis} \\
        & = & a (s_{i-1} - q_{i} s_{i}) + b (t_{i-1} - q_{i} t_{i}) & \text{rearrange} \\
        & = & a s_{i+1} + b t_{i+1} & \text{sequence definition} \\
 \ere
@@ -633,7 +633,7 @@ r_{i+1} & = & r_{i-1} - q_{i} r_{i} & \text{sequence definition} \\
 Hence the sequences satisfy Bézout's identity at any time.
 \end{proof}
 
-With this fact, we can obtain the non-recursive realization for extended Euclidean algorithm:
+With this fact, we can obtain the non-recursive extended Euclidean algorithm:
 
 \begin{algorithmic}
 \Function{Ext-GCM}{$a, b$}
