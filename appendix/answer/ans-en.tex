@@ -649,7 +649,7 @@ With this fact, we can obtain the non-recursive extended Euclidean algorithm:
 \EndFunction
 \end{algorithmic}
 
-\item {Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integer. Implement a modular operation that manipulates segments. What's the efficiency of it?}
+\item {Most programming environments require integers for modular operation. However, the length of segment isn't necessarily integer. Implement a modular operation that manipulates segments. What's about its efficiency?}
 
 Consider the compass and straightedge construction, we can use compass to intercept segment to obtain the modular result.
 
@@ -687,7 +687,7 @@ a - b \leq b: & a - b \\
 \end{cases}
 \]
 
-Inspired by Fibonacci numbers, Robot Floyd, and Donald Knuth managed to eliminate the recursion in this algorithm, hence obtained a pure iterative modular operation:
+Inspired by Fibonacci numbers, Robot Floyd, and Donald Knuth managed to eliminate the recursion in this algorithm, hence obtained a purely iterative modular operation:
 
 \begin{algorithmic}
 \Function{mod}{$a, b$}
@@ -712,9 +712,9 @@ Inspired by Fibonacci numbers, Robot Floyd, and Donald Knuth managed to eliminat
 
 For the commensurable magnitudes, we can use the {\em Well-ordering principle} to show that the Euclidean algorithm must terminate. According to the well-ordering principle, every none empty set of natural numbers has the minimum number. This property can be extended to set of integers, rationals, or even to the finite, none empty sub-set of real numbers. From the definition of commensurable, we know the remainders form a finite set.
 
-\item {For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ are two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$}
+\item {For the binary linear Diophantine equation $ax + by = c$, let $x_1, y_1$ and $x_2, y_2$ be two pairs of solution. Proof that the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$}
 
-Let the greatest common divisor of $a$ and $b$ be $g = gcm(a, b)$. If $x_0, y_0$ is a pair of solution to the Diophantine equation $ax + by = c$, then the following $x, y$ is also a pair of solution:
+Let the greatest common divisor of $a$ and $b$ be $g = gcm(a, b)$. If $x_0, y_0$ is a pair of solution to the Diophantine equation $ax + by = c$, then the following $x, y$ also form a pair of solution:
 
 \[
 \begin{dcases}
@@ -767,9 +767,9 @@ y = y_0 - k \dfrac{a}{g}
 
 Hence proved every pair of solution is in this form. Obviously, for any two such pairs, the minimized difference is obtained when $k = 1$. It means the minimum of $|x_1 - x_2|$ is $b/gcm(a, b)$, and the minimum of $|y_1 - y_2|$ is $a/gcm(a, b)$.
 
-\item {For right pentagon with side of 1, how long is the diagonal? Proof that in the pentagram shown in this chapter, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
+\item {For the regular pentagon with side of 1, how long is the diagonal? Proof that in the pentagram shown in this chapter, the segment $AC$ and $AG$ are incommensurable. What's their ratio in real number?}
 
-Paul Lockhart gives a beautiful method in his {\em Measurement}\cite{Lockhart2012}. As shown in figure \ref{fig:pentagram-unit}, we can divide the regular pentagram into three triangles. It's easy to show that triangle $A$ and $B$ are congruent, and they are similar to triangle $C$ (can you prove it?). If the length of the pentagram side is 1, let the diagonal length be $d$, then the base of triangle $C$ is 1, and its two hypotenuses both are $d - 1$. From the similar triangles, we have:
+Paul Lockhart gives a beautiful method in his {\em Measurement}\cite{Lockhart2012}. As shown in figure \ref{fig:pentagram-unit}, we can divide the regular pentagon into three triangles. It's easy to show that triangle $A$ and $B$ are congruent, and they are similar to triangle $C$ (can you prove it?). If the length of the pentagon side is 1, let the diagonal length be $d$, then the base of triangle $C$ is 1, and its two hypotenuses both are $d - 1$. From the similar triangles, we have:
 
 \[
   1 / d = (d - 1) / a
@@ -777,7 +777,7 @@ Paul Lockhart gives a beautiful method in his {\em Measurement}\cite{Lockhart201
 
 Solving this quadratic equation gives $d = \dfrac{\sqrt{5} + 1}{2}$. We drop the other solution $d = \dfrac{\sqrt{5} - 1}{2}$ as it is shorter than the side (in fact, it is the length of the hypotenuse of the smaller triangle $C$).
 
-For the segment AC and AG in the figure of this chapter, according to the 3 triangles we divided, they are actually the side and the diagonal of the pentagram. Suppose they are commensurable, then the base and hypotenuse of the smaller triangle are commensurable. Hence in the recursive inner pentagram star, the side and diagonal are also commensurable. We can repeat this process infinitely without end. Therefore, our assumption cannot hold. The side and diagonal are incommensurable. Written in decimals, it is about 0.6180339887498949...
+For the segment AC and AG in the figure, according to the 3 triangles we divided, they are actually the side and the diagonal of the pentagon. Suppose they are commensurable, then the base and hypotenuse of the smaller triangle are commensurable. Hence in the recursive inner pentagram star, the side and diagonal are also commensurable. We can repeat this process infinitely without end. Therefore, our assumption cannot hold. The side and diagonal are incommensurable. Written in decimals, it is about 0.6180339887498949...
 
 \begin{figure}[htbp]
  \centering
