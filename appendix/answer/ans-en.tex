@@ -480,13 +480,13 @@ The second method is a number theory solution by leveraging prime numbers. We ma
 P = \displaystyle \prod_{c \in S} p_c
 \]
 
-Therefore, for any new character $c'$, we can check whether the corresponding prime number $p'$ divides $P$ or not to know if $c'$ appears in $S$. Based on this fact, we can design an algorithm, it maintains the product of primes during folding. When there is a character, that its corresponding prime number divides the product, we then find a repeated character. We need drop off the part containing the repeated character and go on folding. During this process, we also need update the longest sub-string.
+Therefore, for any new character $c'$, we can check whether the corresponding prime number $p'$ divides $P$ or not to know if $c'$ appears in $S$. Based on this fact, we can design an algorithm. It maintains the product of primes during folding. When there is a character, that its corresponding prime number divides the product, we then find a repeated character. We need drop off the part containing the repeated character and go on folding. During this process, we also need update the longest sub-string.
 
 \[
 longest = fst \cdot foldr\ f\ ((0, []), (0, []), 1)
 \]
 
-Where the folding starts from a tuple of three elements. The first two are pairs, represent the longest sub-string (its length and content), and the current sub-string. The last one in the tuple is the product of primes, starts from 1. Function $f$ is defined as the following:
+Where the folding starts from a tuple of three elements. The first two are pairs, represent the longest sub-string (length and content), and the current sub-string. The last one in the tuple is the product of primes, starts from 1. Function $f$ is defined as the following:
 
 \[
 f\ c\ (m, (n, C), P) = \begin{cases}
@@ -514,7 +514,7 @@ Where it starts from $(0, 1)^T$. Then the Fibonacci numbers is isomorphic to nat
 \]
 Write a program to compute the power of 2-order square matrix, and use it to give the $n$-th Fibonacci number.}
 
-First we need define multiplication for square matrix of order 2, and the multiplication between the square matrix and vector:
+First we need define multiplication for square matrix of order 2, and the multiplication between square matrix and vector:
 
 \[
 \begin{pmatrix}
@@ -552,7 +552,7 @@ a_{21} b_{1} + a_{22} b_{2} \\
 \end{pmatrix}
 \]
 
-When calculate the $n$-th power of $M^n$, we need not repeat multiplication $n$ times. If $n = 4$, we can first calculate $M^2$, then multiply the result to itself to obtain $(M^2)^2$. There are total two times of multiplication; If $n = 5$, we only need compute $M^4 \times M$, hence there are three times of multiplication. We can recursively fast compute the exponential based on $n$'s parity.
+When calculate the $n$-th power of $M^n$, we need not repeat multiplication $n$ times. If $n = 4$, we can first calculate $M^2$, then multiply the result to itself to obtain $(M^2)^2$. There are total two times of multiplication; If $n = 5$, we only need compute $M^4 \times M$, hence there are three times of multiplication. We can recursively compute the exponential fast based on $n$'s parity.
 
 \[
 M^n = pow(M, n, I)
@@ -568,7 +568,7 @@ n\ \text{is even}: & pow(M \times M, \dfrac{n}{2}, A) \\
 \end{cases}
 \]
 
-In fact, we can represent $n$ in binary format, then perform folding on these 0, 1 bits to fast compute $M^n$.
+In fact, we can represent $n$ in binary format, then perform folding on these 0, 1 bits to compute $M^n$ fast.
 
 \end{enumerate}
 
