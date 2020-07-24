@@ -1249,7 +1249,7 @@ public class Prime {
 
 \item{Extend the idea of Eratosthenes sieve algorithm, write a program to generate Euler $\upphi$ function values for all numbers from 2 to 100.}
 
-When generate prime numbers within $n$ with the sieve of Eratosthenes, we can update the Euler $\upphi$ function list by every prime numbers found so far. The function list is initialized with all element start from 1. For every prime number $p$, the corresponding $\upphi(p) = p(1 - \dfrac{1}{p}) = p - 1$. All the multiplicands of $p$ need multiply with this value. However, it is not enough as $\upphi(p^2) = p^2(1 - \dfrac{1}{p}) = p \upphi(p)$. Next we need multiply all the Euler function value for multiplicands of $p^2$ by $p$, and repeat for multiplicands of $p^3$ and so on until $p^m$ exceeds $n$. Below is the algorithm of this idea.
+When generate prime numbers within $n$ with the sieve of Eratosthenes, we can update the Euler $\upphi$ function list by every prime numbers found so far. The list is initialized with all elements start from 1. For every prime number $p$, the corresponding $\upphi(p) = p(1 - \dfrac{1}{p}) = p - 1$. All the multiplicands of $p$ need multiply with this value. However, it is not enough as $\upphi(p^2) = p^2(1 - \dfrac{1}{p}) = p \upphi(p)$. Next we need multiply all the Euler function value for multiplicands of $p^2$ by $p$, and repeat for multiplicands of $p^3$ and so on until $p^m$ exceeds $n$. Below is the algorithm of this idea.
 
 \begin{algorithmic}
 \Function{Euler-Totient}{$n$}
@@ -1257,7 +1257,7 @@ When generate prime numbers within $n$ with the sieve of Eratosthenes, we can up
   \State $P \gets \{2, 3, ..., n\}$ \Comment{sieve input}
   \While{$P \neq \varnothing$}
     \State $p \gets P[0]$
-    \State $P \gets \{x | x \in P, x \bmod p \neq 0\}$
+    \State $P \gets \{x | x \in P[1...], x \bmod p \neq 0\}$
     \State $p' \gets p$
     \Repeat
       \For{$i \gets$ from $p'$ to $n$ step $p'$}
@@ -1281,8 +1281,8 @@ Our idea is to realize the fast modular multiplication with the similar approach
 \[
 x^y =
 \begin{cases}
-y \text{is even}: & x^{\lfloor y / 2 \rfloor} \\
-y \text{is odd}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
+y \text{ is even}: & x^{\lfloor y / 2 \rfloor} \\
+y \text{ is odd}: & x \cdot x^{\lfloor y / 2 \rfloor} \\
 \end{cases}
 \]
 
@@ -1294,7 +1294,7 @@ Based on this, we can change it to modular multiplication as below:
     \State \Return 1
   \EndIf
   \State $z \gets$ \Call{Mod-Exp}{$x, \lfloor y /2 \rfloor, n$}
-  \If{$y$是偶数}
+  \If{$y$ is even}
     \State \Return $z^2 \bmod n$
   \Else
     \State \Return $x \cdot z^2 \bmod n$
@@ -1377,25 +1377,26 @@ We need verify three things:
 Let us see an example first:
 
 \[
- Q[\sqrt{2}, \sqrt{3}] = \{a + b \sqrt{2} + c \sqrt{3} + d \sqrt{6}, \text{where} a, b, c, d \in Q\}
+ Q[\sqrt{2}, \sqrt{3}] = \{a + b \sqrt{2} + c \sqrt{3} + d \sqrt{6}, \text{where } a, b, c, d \in Q\}
 \]
 
 \bre
-Q[\sqrt{2}][\sqrt{3}] & = & \{a + b \sqrt{3}, \text{where} a, b \in Q[\sqrt{2}]\} \\
-  & = & \{a' + b' \sqrt{2} + (c + d \sqrt{2}) \sqrt{3}, \text{where} a', b', c, d \in Q\} \\
-  & = & \{a' + (b' + d) \sqrt{2} + c \sqrt{3} + d \sqrt{6}, \text{where} a', b', c, d \in Q\}
+Q[\sqrt{2}][\sqrt{3}] & = & \{a + b \sqrt{3}, \text{where } a, b \in Q[\sqrt{2}]\} \\
+  & = & \{a' + b' \sqrt{2} + (c + d \sqrt{2}) \sqrt{3}, \text{where } a', b', c, d \in Q\} \\
+  & = & \{a' + (b' + d) \sqrt{2} + c \sqrt{3} + d \sqrt{6}, \text{where } a', b', c, d \in Q\}
 \ere
 
 \begin{proof}
 \[
-Q[a][b] = \{x_0 + x_1 b + x_2 b^2 + ... + x_n b^n, \text{其中} x_i \in Q[a]\}
+Q[a][b] = \{x_0 + x_1 b + x_2 b^2 + ... + x_n b^n, \text{where } x_i \in Q[a]\}
 \]
 $n$ is the minimum integer that polynomial $p(b) = 0$ exists. Substitute $x_i$ with the expressions in field $Q[a]$.
 
 \bre
-Q[a][b] & = & \{ y_{0,0} + y_{0,1} a + y_{0,2} a^2 + ... + y_{0,m} a^m + \\
-        &   &   (y_{1,0} + y_{1,1} a + y_{1,2} a^2 + ... + y_{1,m} a^m) b + \\
-        &   &   (y_{n,0} + y_{n,1} a + y_{n,2} a^2 + ... + y_{n,m} a^m) b^n \}
+Q[a][b] & = & \{ y_{0,0} + y_{0,1} a + y_{0,2} a^2 + ... + y_{0,m} a^m\ + \\
+        &   &   (y_{1,0} + y_{1,1} a + y_{1,2} a^2 + ... + y_{1,m} a^m) b\ + \\
+        &   &   ... \\
+        &   &   + (y_{n,0} + y_{n,1} a + y_{n,2} a^2 + ... + y_{n,m} a^m) b^n \}
 \ere
 
 Where $y_{i,j} \in Q$, $m$ is the minimum integer that polynomial $p(a) = 0$ exists.
@@ -1405,14 +1406,14 @@ Without loss of generality, we assume $m < n$ (otherwise, we let $m' = min(m, n)
 \bre
 Q[a][b] & = & \{ y_{0,0} + y_{0,1} a + y_{1,0} b + y_{0,2} a^2 + y_{1,1} ab + y_{2,0} b^2 + ... \\
         &   &    + y_{0,m} a^m + y_{1,m-1} a^{m-1} b + ... + y_{m, 0} b^m + \\
-        &   &    + y_{1,m} a^m b + y_{2, m-1} a^{m-1} b^2 + ... + y_{m, 1} b^{m+1} + ... \\
+        &   &    y_{1,m} a^m b + y_{2, m-1} a^{m-1} b^2 + ... + y_{m, 1} b^{m+1} + ... \\
         &   &    + y_{n, m} a^m b^n \}
 \ere
 
 This field is formed with all the expressions of $a, b$.
 \end{proof}
 
-\item {Prove that, for any polynomial $p(x)$, with rational coefficients, $E/Q$ is the field extension, $f$ is the $Q$-automorphism of $E$, then equation $f(p(x)) = p(f(x))$ holds.}
+\item {Prove that, for any polynomial $p(x)$ with rational coefficients, $E/Q$ is the field extension, $f$ is the $Q$-automorphism of $E$, then equation $f(p(x)) = p(f(x))$ holds.}
 
 \begin{proof}
 Because $f$ is automorphism, we have:
@@ -1472,7 +1473,7 @@ Consider automorphism $f$ as an element in Galois group $Gal(Q[\omega]/Q)$. Acco
 f(\omega)^k = f(\omega^k) = 1 \iff \omega^k = 1
 \]
 
-It means $f(\omega)$ is also a $p$-th root of unity (a root of equation $x^p - 1 = 0$\footnote{If $p$ is not a prime number, but an integer $n$ greater than 1, then the $k$-th power of the $m$-th root can is $\zeta_m^k = e^{2 \pi m k i / n}$. There may exist some $k < n$, such that $\zeta_m^k = 1$. Actually, it holds as far as $n$ divides $mk$. However, if $n$ is a prime number $p$, then $k$ can't be less than $p$, but must be multiplicand of $p$.}). Denote:
+It means $f(\omega)$ is also a $p$-th root of unity (a root of equation $x^p - 1 = 0$\footnote{If $p$ is not a prime number, but an integer $n$ greater than 1, then the $k$-th power of the $m$-th root is $\zeta_m^k = e^{2 \pi m k i / n}$. There may exist some $k < n$, such that $\zeta_m^k = 1$. Actually, it holds as far as $n$ divides $mk$. However, if $n$ is a prime number $p$, then $k$ can't be less than $p$, but must be multiplicand of $p$.}). Denote:
 
 \[
 f(\omega) = h_i(\omega) = \omega^{i}
@@ -1523,7 +1524,7 @@ This exercise tells us: For the Galois group in rational field extension, if it 
 
 \item {The 5th degree equation $x^5 - 1 = 0$ is radical solvable. What's its Galois subgroup chain?}
 
-From previous exercise, we know the 5 roots are points along the unit circle in the complex plane: \{1, $\zeta$, $\zeta^2$, $\zeta^3$, $\zeta^4$ \}, where $\zeta = e^{2 \pi i / 5} = \dfrac{\sqrt{5} - 1 + \sqrt{10 + 2 \sqrt{5}}}{4}$. The Galois group in rational field is a cyclic group of order 4: $G(Q[\zeta]/Q) = C_4$. It is isomorphic to the multiplicative group modulo 5: $(\pmb{Z}/5\pmb{Z})^{\times} = \{1, 2, 3, 4 \}_5$. There is no intermediate field extension. The splitting field is $Q[\zeta]$. The Galois group in splitting field is $\{1\}$.
+From previous exercise, we know the 5 roots are points along the unit circle in the complex plane: \{1, $\zeta$, $\zeta^2$, $\zeta^3$, $\zeta^4$ \}, where $\zeta = e^{2 \pi i / 5} = \dfrac{\sqrt{5} - 1 + i\sqrt{10 + 2 \sqrt{5}}}{4}$. The Galois group in rational field is a cyclic group of order 4: $G(Q[\zeta]/Q) = C_4$. It is isomorphic to the multiplicative group modulo 5: $(\pmb{Z}/5\pmb{Z})^{\times} = \{1, 2, 3, 4 \}_5$. There is no intermediate field extension. The splitting field is $Q[\zeta]$. The Galois group in splitting field is $\{1\}$.
 
 Obviously, $\{1\}$ is the normal subgroup of $C_4$. The quotient group $C_4/\{1\}$ is cyclic too. In previous exercise, we proved that cyclic group is abelian, hence the equation is radical solvable.
 
