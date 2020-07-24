@@ -1533,7 +1533,7 @@ Obviously, $\{1\}$ is the normal subgroup of $C_4$. The quotient group $C_4/\{1\
 \section{categories}
 
 \begin{enumerate}
-\item {Prove that the identity arrow is unique (hint: refer to the uniqueness of identity element for groups in the previous chapter).}
+\item {Prove that the identity arrow is unique (hint: refer to the uniqueness of identity element for groups in previous chapter).}
 
 Suppose there exists another identity arrow $id_A'$, pointed $A$ from itself: $A \arrowto{id_A'} A$.
 
@@ -1543,7 +1543,7 @@ Consider every arrow from $A$ to $B$: $A \arrowto{f} B$, from the definition of 
 id_A' \circ id_A = id_A'
 \]
 
-Similar, from every arrow from $B$ to $A$: $B \arrowto{g} A$, from the definition of identity arrow, $id_A' \circ g = g$ holds. When replace $B$ with $A$, replace $g$ with $id_A$, then:
+Similar, for every arrow from $B$ to $A$: $B \arrowto{g} A$, according to the definition of identity arrow, $id_A' \circ g = g$ holds. When replace $B$ with $A$, replace $g$ with $id_A$, then:
 
 \[
 id_A' \circ id_A = id_A
@@ -1576,7 +1576,7 @@ Note there is no any inner structure (of the monoid) involved. The arrow composi
 \end{tikzpicture}
 \end{center}
 
-Because set union is associative, the arrows is also associative. The empty set is the unit of this monoid, it defines the identity arrow. As the empty set union any set equals to that set itself, it serves as the identity arrow. Such that the set monoid under union do form a category contains only one object.
+Because set union is associative, the arrows is also associative. The empty set is the unit of this monoid, it defines the identity arrow. As the empty set unions any set equals to that set itself. It serves as the identity arrow. The set monoid under union does form a category contains only one object.
 
 \begin{figure}[htbp]
 \centering
@@ -1595,7 +1595,7 @@ Next let us see the additive monoid for natural numbers. Every number $n$ can de
 \bigstar \arrowto{n} \bigstar
 \]
 
-The arrow composition is addition. Since addition is associative, hence arrow composition is also associative. Zero, 0 defines the identity arrow. This is because 0 add to any number equals to this number itself. Therefore, the additive monoid for natural numbers do form a category.
+The arrow composition is addition. Since addition is associative, hence arrow composition is also associative. Zero, 0 defines the identity arrow. This is because 0 adds to any number equals to this number itself. Therefore, the additive monoid for natural numbers does form a category.
 
 \begin{figure}[htbp]
 \centering
@@ -1609,7 +1609,7 @@ The arrow composition is addition. Since addition is associative, hence arrow co
 \end{figure}
 
 
-\item {In chapter 1, we introduced Peano's axioms for natural numbers as well as the isomorphic structures to Peano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Peano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Peano objects $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
+\item {In chapter 1, we introduced Peano's axioms for natural numbers and isomorphic structures to Peano arithmetic, like the linked-list etc. They can be described in categories. This was found by German mathematician Richard Dedekind although the category theory was not established by his time. We named this category as Peano category, denoted as $\pmb{Pno}$. The objects in this category is $(A, f, z)$, where $A$ is a set, for example natural numbers $N$; $f: A \to A$ is a successor function. It is $succ$ for natural numbers; $z \in A$ is the starting element, it is zero for natural numbers. Given any two Peano objects $(A, f, z)$ and $(B, g, c)$, define the morphism from $A$ to $B$ as:
 
 \[
 A \arrowto{\phi} B
@@ -1662,7 +1662,7 @@ fmap\ f = foldr\ f\ Nil
 
 \item {Verify that the composition of maybe functor and list functor $\mathbf{Maybe} \circ \mathbf{List}$ and $\mathbf{List} \circ \mathbf{Maybe}$ are all functors.}
 
-We only prove $\mathbf{Maybe} \circ \mathbf{List}$ is a functor. The other proof is similar. Any object $A$ is sent to $\mathbf{Maybe} (\mathbf{List}\ A)$. For arrows, let us first see the identity arrow case:
+We only prove $\mathbf{Maybe} \circ \mathbf{List}$ is a functor. The other proof is similar. Any object $A$ is sent to $\mathbf{Maybe} (\mathbf{List}\ A)$. For arrows, let us first see the case of identity arrow:
 
 \bre
 (\mathbf{Maybe} \circ \mathbf{List})\ id & = & \mathbf{Maybe} (\mathbf{List}\ id) & \text{functor composition} \\
@@ -1670,7 +1670,7 @@ We only prove $\mathbf{Maybe} \circ \mathbf{List}$ is a functor. The other proof
  & = & id & \text{identity arrow for maybe functor} \\
 \ere
 
-Then next is about arrow composition:
+Next is about arrow composition:
 
 \bre
 (\mathbf{Maybe} \circ \mathbf{List})\ (f \circ g) & = & \mathbf{Maybe} (\mathbf{List}\ (f \circ g)) & \text{functor composition} \\
@@ -1681,11 +1681,11 @@ Then next is about arrow composition:
 
 \item {Proof that the composition for any functors $\mathbf{G} \circ \mathbf{F}$ is still a functor.}
 
-Similar to previous exercise, we need prove functor composition satisfy identity arrow and arrow composition. First for identity arrow:
+Similar to previous exercise, we need prove functor composition satisfies identity arrow and arrow composition. First for identity arrow:
 
 \bre
 (\mathbf{G} \circ \mathbf{F})\ id & = & \mathbf{G} (\mathbf{F}\ id) & \text{functor composition} \\
- & = & \mathbf{Maybe}\ id & \text{identity arrow for functor $\mathbf{F}$} \\
+ & = & \mathbf{G}\ id & \text{identity arrow for functor $\mathbf{F}$} \\
  & = & id & \text{identity arrow for functor $\mathbf{G}$} \\
 \ere
 
@@ -1704,7 +1704,7 @@ The functor for preset category is a monotone function.
 
 \item {For the binary tree defined in chapter 2, define the functor for it.}
 
-Consider an object $A$ in the set total function category, the binary tree functor sends it to:
+Consider an object $A$ in set total function category, the binary tree functor sends it to:
 
 \lstset{language=Haskell, frame=none}
 \begin{lstlisting}
@@ -1726,7 +1726,7 @@ fmap = mapt
 
 \item{For any two objects in a poset, what is their product? what is their coproduct?}
 
-In chapter 3, we mentioned any poset is a category, every element is an object, there is at most one arrow between two objects (the arrow exits if they have ordering relation). For two elements (objects) $a$ and $b$, if they have arrows both to the up and down stream, then:
+In chapter 3, we mentioned any poset is a category, every element is the poset is an object, there is at most one arrow between two objects (the arrow exits if they have ordering relation). For two elements (objects) $a$ and $b$, if they have arrows both to the up and down stream, then:
 
 \[
 \text{meet}\ a \land b \quad \quad \quad \text{join}\ a \lor b
@@ -1771,7 +1771,7 @@ The composition condition for coproduct states:
 \]
 
 \begin{proof}
-Let $p = left \circ f$，$q = right \circ g$
+Let $p = left \circ f$, and $q = right \circ g$
 
 \blre
   & (f + g) \circ (f' + g') \\
@@ -1941,9 +1941,9 @@ P & \longrightarrow & \{\bigstar\} \\
 p & \mapsto & \bigstar
 \ere
 
-\item{In the Peano category $\pmb{Pno}$ (see the question 2 in exercise of section 1), what object in the form of $(A, f, z)$ is the initial object? What is the final object?}
+\item{In the Peano category $\pmb{Pno}$ (see exercise 2 in section 1), what is the initial object in form $(A, f, z)$? What is the final object?}
 
-The initial object is $(\pmb{N}, succ, 0)$. From it there is unique arrow to any object:
+The initial object is $(\pmb{N}, succ, 0)$. There is unique arrow from it to any object:
 
 \[
 (\pmb{N}, succ, 0) \arrowto{\sigma} (A, f, z): \sigma(n) = f^n(z)
@@ -2035,18 +2035,18 @@ as the fusion law for Currying. Draw the diagram and prove it.}
 \end{tikzpicture}
 \end{center}
 
-Observe the triangle of $D \times B$, $A \times B$, and $C$. We know the arrow of $D \times B \to A$ is $f \circ (g \times id)$.
+Observe the triangle of $D \times B$, $A \times B$, and $C$. We know the arrow of $D \times B \to C$ is $f \circ (g \times id)$.
 
 According to the definition of exponentials and transpose arrow, we have:
 
 \[
-apply \circ (curry f) \circ g = f \circ (g \times id)
+apply \circ (curry\ f) \circ g = f \circ (g \times id)
 \]
 
 According to the universal property of $curry$ and $apply$:
 
 \[
-(curry f) \circ g = curry (f \circ (g \times id)
+(curry\ f) \circ g = curry (f \circ (g \times id))
 \]
 
 \item{Draw the diagram to illustrate the reverse element axiom for group.}
@@ -2136,7 +2136,7 @@ data NatF A = ZeroF | SuccF (NatF A)
 \end{lstlisting}
 }
 
-No, such definition does not work. Consider carrier object $A$, Functor $\mathbf{NatF}$ is recursive, it does not send $A$ to a determined object. In fact, we expect it is mapped to a object in Peano category $(A, z, f)$.
+No, such definition does not work. Consider carrier object $A$, Functor $\mathbf{NatF}$ is recursive, it does not send $A$ to a determined object. In fact, we expect it is mapped to a object in Peano category $(A, f, z)$.
 
 \item{We can define an $\alpha$ arrow for $\mathbf{NatF} Int \to Int$, named $eval$:
 \[
