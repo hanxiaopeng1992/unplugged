@@ -947,11 +947,11 @@ No, integers cannot form a group under subtraction. This is because subtraction 
 
 \item {Find an example of group with only two elements.}
 
-As shown in previous exercise, set ${-1, 1}$ forms a group under addition. Another example is Boolean values $\{T, F\}$, they form a group under logic exclusive or (xor). The logic exclusive or is closed and associative. The unit is $F$, because every element exclusive or $F$ gives itself. And every element is the reverse of itself.
+As shown in previous exercise, set $\{-1, 1\}$ forms a group under addition. Another example is Boolean values $\{T, F\}$, they form a group under logic exclusive or (xor). The logic exclusive or is closed and associative. The unit is $F$, because every element exclusive or $F$ gives itself. And every element is the reverse of itself.
 
 \item {What is the identity element for Rubik cube group? What is the inverse element for $F$?}
 
-The unit for the Rubik cube group is the identity transform, which keep any state unchanged. The reverse of $F$ is $F'$, which rotate the face side 90 degree counterclockwise.
+The unit for the Rubik cube group is the identity transform, which keeps any state unchanged. The reverse of $F$ is $F'$, which rotate the face side 90 degree counterclockwise.
 
 \item {The set of Boolean values \{True, False\} forms a monoid under the logic or operator $\lor$. It is called `Any' logic monoid. What is the identity element for this monoid?}
 
@@ -1013,7 +1013,7 @@ x^m x ^ 1 & = & x^m x & \text{definition of 1-st power} \\
   & = & x^1 x^m & \text{definition of 1-st power} \\
 \ere
 
-Suppose the commutativity law $x^mx^n = x^nx^m$ holds for $n$, then for $n + 1$ case:
+Suppose the commutativity law $x^mx^n = x^nx^m$ holds for $n$, then for $n + 1$:
 
 \bre
 x^m x^{n+1} & = & x^m (x x^n) & \text{recursive definition of power} \\
@@ -1025,7 +1025,7 @@ x^m x^{n+1} & = & x^m (x x^n) & \text{recursive definition of power} \\
   & = & x^{n+1} x^m & \text{recursive definition of power} \\
 \ere
 
-\item {Is the odd even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic-and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
+\item {Is the odd-even test function homomorphic between the integer addition group $(Z，+)$ and the Boolean logic-and group $(Bool, \land)$? What about the group of integers without zero under multiplication?}
 
 To test homomorphic, we need verify two things: 1, whether it is surjective; 2, whether $f(a) f (b) = f(a \cdot b)$ holds. Although the odd-even test is surjective, there is a negative case:
 
@@ -1193,17 +1193,11 @@ Given two strings $S_1, S_2$ with the same length, we can duplicate $S_1$ and ap
 eqiv(S_1, S_2) = S_2 \subset (S_1 \doubleplus S_1)
 \]
 
-\lstset{language=Python, frame=single}
-\begin{lstlisting}
-def eqiv(s1, s2):
-    return (s1 + s1).find(s2) != -1
-\end{lstlisting}
-
 \item {Write a program to realize Eratosthenes sieve algorithm.}
 
 For all natural numbers from 2, pick the next as a prime, then remove all its multiplicands. Then do this repeatedly. Here is an example Haskell program:
 
-\lstset{language=Haskell}
+\lstset{language=Haskell, frame=single}
 \begin{lstlisting}
 primes = sieve [2..] where
     sieve (x:xs) = x : sieve [y | y <- xs, y `mod` x > 0]
