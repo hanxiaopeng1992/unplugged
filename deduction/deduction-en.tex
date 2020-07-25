@@ -670,7 +670,7 @@ qsort\ [] = [] \\
 qsort\ (x:xs) = qsort\ [a | a \in xs, a \leq x] \doubleplus [x] \doubleplus qsort\ [a | a \in xs, x < a] \\
 \end{cases}\]
 Hint: turn the ZF-expression\footnote{Known as Zermelo-Fraenkel expression in set theory. In the form $\{f(x) | x \in X, p(x), q(x), ...\}$ to build set. We'll meet it again in the next chapter about infinity and set theory.} into $filter$.}
-\Question{Verify the type constraint with category theory. Hint: consider the type of the catamorphism.}
+\Question{Verify the type constraint of fusion law with category theory. Hint: consider the type of the catamorphism.}
 \end{Exercise}
 
 \section{Make a Century}
@@ -894,11 +894,11 @@ The complete program based on this definition is given in the appendix of this c
 eval = sum \circ map\ (product \circ (map\ dec))
 \]}
 \Question{How to expand all expressions from left?}
-\Question{The following definition convert expression to string:
+\Question{The following definition converts expression to string:
 \[
 str = (join\ \text{``+''}) \circ (map\ ((join\ \text{``} \times \text{''}) \circ (map\ (show \circ dec))))
 \]
-Where $show$ convert number to string. Function $join(c, s)$ concatenates multiple strings $s$ with delimiter $c$. For example: $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def''. Use the fusion law to optimize $str$.
+Where $show$ converts number to string. Function $join(c, s)$ concatenates multiple strings $s$ with delimiter $c$. For example: $join($``\#''$, [$``abc'', ``def''$]) = $``abc\#def''. Use the fusion law to optimize $str$.
 }
 \end{Exercise}
 
