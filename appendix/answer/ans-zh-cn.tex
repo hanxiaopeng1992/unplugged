@@ -2476,7 +2476,7 @@ take 10 $ iter (+1) 0
 \mathbf{Fix}\ (\mathbf{StreamF}\ E) & = &
     \mathbf{StreamF}\ E\ (\mathbf{Fix}\ (\mathbf{StreamF}\ E)) & \text{不动点的定义} \\
  & = & \mathbf{StreamF}\ E\ (\mathbf{StreamF}\ E\ (...)) & \text{递归展开} \\
- & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E) & \text{替换名称} \\
+ & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E\ (...)) & \text{替换名称} \\
  & = & \mathbf{Stream}\ E & \text{反向用$Stream$的定义} \\
 \ere
 

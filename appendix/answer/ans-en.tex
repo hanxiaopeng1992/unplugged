@@ -2507,7 +2507,7 @@ Let $A' = \mathbf{StreamF}\ E\ A$, then apply it to itself repeatedly. We call t
 \mathbf{Fix}\ (\mathbf{StreamF}\ E) & = &
     \mathbf{StreamF}\ E\ (\mathbf{Fix}\ (\mathbf{StreamF}\ E)) & \text{definition of fixed point} \\
  & = & \mathbf{StreamF}\ E\ (\mathbf{StreamF}\ E\ (...)) & \text{expand recursively} \\
- & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E) & \text{change name} \\
+ & = & \mathbf{Stream}\ E\ (\mathbf{Stream}\ E\ (...)) & \text{change name} \\
  & = & \mathbf{Stream}\ E & \text{reverse of $Stream$} \\
 \ere
 
@@ -2526,13 +2526,13 @@ unfold f b = case f b of
 
 \item{The fundamental theorem of arithmetic states that, any integer greater than 1 can be unique represented as the product of prime numbers. Given a text $T$, and a string $W$, does any permutation of $W$ exist in $T$? Solve this programming puzzle with the fundamental theorem and the stream of prime numbers.}
 
-Our idea is to map every unique character to a prime number, for example, a $\to$ 2, b $to$ 3, c $\to$ 5, ... Given any string $W$, no matter it contains repeated characters or not, we can convert it to a product of prime numbers:
+Our idea is to map every unique character to a prime number, for example, a $\to$ 2, b $\to$ 3, c $\to$ 5, ... Given any string $W$, no matter it contains repeated characters or not, we can convert it to a product of prime numbers:
 
 \[
 F = \prod p_c , c \in W
 \]
 
-We call it the number theory finger print $F$ of string $W$. We $W$ is empty, we define its finger print as 1. Because multiplication of integers is commutative, the number theory finger print is same for all permutations of $W$, and according to the fundamental theorem of arithmetic, the number theory finger print is unique. We can develop an elegant solution based on this: First, we calculate the number theory finger print $F$ of string $W$, then slide a window of length $|W|$ along $T$ from left to right. When start, we also need to compute the number theory finger print within this window of $T$, and compare it with $F$. If they are equal, it means $T$ contains some permutation of $W$. Otherwise, we slide the window to the right by a character. We can easily compute the updated number theory finger print value for this new window position: divide the product by the corresponding prime number for the character slide out, and multiply the prime number for the character slide in. Whenever the number theory finger print equals to $F$, we find a permutation. In order to map different characters to prime numbers, we can use sieve of Eratosthenes to generate a series of prime numbers. Below is the example algorithm accordingly.
+We call it the number theory finger print $F$ of string $W$. When $W$ is empty, we define its finger print as 1. Because multiplication of integers is commutative, the finger print is same for all permutations of $W$, and according to the fundamental theorem of arithmetic, the finger print is unique. We can develop an elegant solution based on this: First, we calculate $F$ of string $W$, then slide a window of length $|W|$ along $T$ from left to right. When start, we also need to compute the finger print within this window of $T$, and compare it with $F$. If they are equal, it means $T$ contains some permutation of $W$. Otherwise, we slide the window to the right by a character. We can easily compute the updated finger print value for this new window position: divide the product by the prime number of the character slides out, and multiply the prime number of the character slides in. Whenever the finger print equals to $F$, we find a permutation. In order to map different characters to prime numbers, we can use sieve of Eratosthenes to generate a series of prime numbers. Below is the example algorithm accordingly.
 
 \begin{algorithmic}
 \Function{contains?}{$W, T$}
@@ -2573,7 +2573,7 @@ For the diagonal where this point belongs to, if $m$ is odd, then the room numbe
 
 \[
 k = \dfrac{m(m + 1)}{2} + \begin{cases} m - j: \text{$m$ is odd} \\
-j: \text{$m$is even} \\
+j: \text{$m$ is even} \\
 \end{cases}
 \]
 
@@ -2627,11 +2627,11 @@ The candle image reflects between the two mirrors endlessly, generates infinite 
 
 This is an instance of Russell's paradox. Whether it is a member, all lead to contradiction.
 
-\item{``The only constant is change'' said by Heraclitus. Is this a Russell's paradox?}
+\item{``The only constant is change'' said by Heraclitus. Is this Russell's paradox?}
 
 Yes, this is an instance of Russell's paradox.
 
-\item{Is the quote saying by Socrates (the beginning of chapter 7) a Russell's paradox?}
+\item{Is the quote saying by Socrates (the beginning of chapter 7) Russell's paradox?}
 
 Yes, it is an instance of Russell's paradox.
 
@@ -2650,7 +2650,7 @@ We can then define Fermat's last theorem atop it.
 \forall d: \lnot \exists a: \exists b: \exists c: \lnot (d = 0 \lor d = S0 \lor d = SS0) \to e(a, d) + e(b, d) = e(c, d)
 \]
 
-\item{Prove the associate law of addition with TNT reasoning rules.}
+\item{Prove the associative law of addition with TNT reasoning rules.}
 
 Surprisingly, we can prove every theorem below:
 
@@ -2692,7 +2692,7 @@ Next suppose $(0 + a) = a$ holds, we have:
 
 \bre
 (0 + Sa) & = & S(0 + a) & \text{axiom 3} \\
-  & = & Sa & \text{induction assumption} \\
+  & = & Sa & \text{induction hypothesis} \\
 \ere
 
 From the rule of induction, we obtain: $\forall a: (0 + a) = a$
