@@ -1,7 +1,4 @@
-IMG_OBJECTS = pentagram \
-irrational Turing Church Church-Rosser Marrakech \
-ldv_flower cage Drawing-Hands-1948 KochFlake Sierpinski-triangle \
-Julia_set Broccoli
+IMG_OBJECTS = pentagram
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
