@@ -1,5 +1,5 @@
-IMG_OBJECTS = Pythagoras Pythagoras-proof Euclid Bezout Meziriac \
-Hippasus pentagram irrational Turing Church Church-Rosser Marrakech \
+IMG_OBJECTS = pentagram \
+irrational Turing Church Church-Rosser Marrakech \
 ldv_flower cage Drawing-Hands-1948 KochFlake Sierpinski-triangle \
 Julia_set Broccoli
 DOT_OBJECTS =
