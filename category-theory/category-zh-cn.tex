@@ -38,7 +38,7 @@
 
 \begin{wrapfigure}{R}{0.4\textwidth}
  \centering
- \includegraphics[scale=0.5]{img/dewdrop.eps}
+ \includegraphics[scale=0.5]{img/dewdrop.jpg}
  \captionsetup{labelformat=empty}
  \caption{艾舍尔《露珠》1948}
  \label{fig:Escher-Dewdrop-1948}
@@ -59,7 +59,7 @@
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
- \includegraphics[scale=0.25]{img/Eilenberg.eps}
+ \includegraphics[scale=0.25]{img/Eilenberg.png}
  \captionsetup{labelformat=empty}
  \caption{艾伦伯格（Samuel Eilenberg, 1913 - 1998）}
  \label{fig:Eilenberg}
@@ -72,7 +72,7 @@
 
 \begin{wrapfigure}{L}{0.3\textwidth}
  \centering
- \includegraphics[scale=1]{img/Mac-Lane.eps}
+ \includegraphics[scale=1]{img/Mac-Lane.jpg}
  \captionsetup{labelformat=empty}
  \caption{麦克兰恩（Saunders Mac Lane, 1909 - 2005）}
  \label{fig:Mac-Lane}
@@ -97,10 +97,10 @@
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.4]{img/food-chain.eps}
+ \includegraphics[scale=0.4]{img/food-chain.png}
  %\captionsetup{labelformat=empty}
  \caption{动植物对象与食物关系箭头组成了一个有结构的系统}
- \label{fig:powerset}
+ \label{fig:food-chain}
 \end{figure}
 
 这样的系统要想成为范畴，还必须满足两点。第一点是每个对象都有指向自己的箭头。这种特殊的箭头称为恒等箭头。对于草原上的动植物，从羚羊到狮子箭头说明羚羊在狮子食物链的下游。我们可以认为每种动植物都处于自己物种食物链的下游（别误会，并不是指吃同类，而是指不吃同类）。这样每个物种就都有自指的箭头了。第二点是箭头之间是可组合的。什么叫做组合呢？草有一个指向羚羊的箭头$f$，羚羊有一个指向狮子的箭头$g$。我们即可以把这两个箭头组合起来成为$g \circ f$，表示草处于狮子食物链的下游。进一步，把两个箭头组合起来后，还可以和第三个箭头再次组合。例如狮子死后会被秃鹫吃掉，这样我们可以从狮子画一个指向秃鹫的箭头$h$。组合在一起就是$h \circ (g \circ f)$。这个箭头的含义表示草处于秃鹫食物链的下游，它等价与$(h \circ g) \circ f$。也就是说，食物链的上下游关系是满足结合性的。
@@ -303,7 +303,7 @@ preset \quad \quad \quad poset
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.4]{img/powerset.eps}
+ \includegraphics[scale=0.4]{img/powerset.png}
  %\captionsetup{labelformat=empty}
  \caption{一个集合的子集在包含关系下构成一个偏序集}
  \label{fig:powerset}
@@ -417,7 +417,7 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 
 \begin{wrapfigure}{R}{0.3\textwidth}
  \centering
- \includegraphics[scale=0.3]{img/blackhole.eps}
+ \includegraphics[scale=0.3]{img/blackhole.jpg}
  \captionsetup{labelformat=empty}
  \caption{常数函子的行为像一个黑洞}
  \label{fig:blackhole}
@@ -436,7 +436,7 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 %\begin{wrapfigure}{L}{0.25\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=1]{img/Hoare.eps}
+ \includegraphics[scale=1]{img/Hoare.jpg}
  \captionsetup{labelformat=empty}
  \caption{计算机科学家霍尔}
  \label{fig:Hoare}
@@ -807,7 +807,7 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
 %\begin{wrapfigure}{L}{0.25\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.2]{img/Descartes.eps}
+ \includegraphics[scale=0.2]{img/Descartes.jpg}
  \captionsetup{labelformat=empty}
  \caption{勒内$\cdot$笛卡尔（1596-1650）。哈尔斯的画布油画，现藏于卢浮宫}
  \label{fig:Decartes}
@@ -875,7 +875,7 @@ A + B = zip\ A\ \{0, ...\} \doubleplus zip\ B\ \{1, ...\}
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.06]{img/hands.eps}
+ \includegraphics[scale=0.06]{img/hands.png}
  \captionsetup{labelformat=empty}
  \caption{}
  \label{fig:hands}
@@ -1891,7 +1891,7 @@ G \longrightarrow \{e\}
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.3]{img/01-obj.eps}
+ \includegraphics[scale=0.3]{img/01-obj.png}
  %\captionsetup{labelformat=empty}
  \caption{零对象}
  \label{fig:zero-obj}
@@ -2921,7 +2921,7 @@ F-代数范畴$\pmb{Alg}(F)$中，如果存在初始对象，则这一初始对�
 %\begin{wrapfigure}{R}{0.35\textwidth}
 \begin{figure}[htbp]
  \centering
- \includegraphics[scale=0.4]{img/Lambek.eps}
+ \includegraphics[scale=0.4]{img/Lambek.jpg}
  \captionsetup{labelformat=empty}
  \caption{兰贝克（Joachim Lambek） 1922 - 2014}
  \label{fig:Lambek}

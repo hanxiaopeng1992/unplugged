@@ -1,5 +1,4 @@
-IMG_OBJECTS = Eilenberg Mac-Lane powerset blackhole Hoare dewdrop \
-01-obj Lambek food-chain hands Descartes
+IMG_OBJECTS =
 DOT_OBJECTS =
 DOT_SOURCES = $(foreach file, $(DOT_OBJECTS), $(file).dot)
 
