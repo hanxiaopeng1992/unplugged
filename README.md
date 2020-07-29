@@ -29,7 +29,6 @@ To build the book in PDF format from the sources, you need
 the following software pre-installed.
 
 - TeXLive, The book is built with XeLaTeX, a Unicode friendly version of TeX;
-- ImageMagick, which converts the images to eps format;
 
 ### Install TeXLive
 
@@ -43,15 +42,6 @@ $ sudo ./install-tl -gui text -repository http://mirror.ctan.org/systems/texlive
 ```
 
 In Windows, TeXLive provide a [gui based installer](https://tug.org/texlive/), in Mac OS X, there's a [MacTeX](https://www.tug.org/mactex/).
-
-
-### Install ImageMagick
-
-```bash
-$ sudo apt-get install imagemagick
-```
-
-For Windows and Mac OS X installer, it can be download through http://www.imagemagick.org
 
 ### Cusotmize font (Optional)
 
