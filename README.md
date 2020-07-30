@@ -1,4 +1,4 @@
-Mathematics of Programming
+Isomorphism -- Mathematics of Programming
 ====
 
 2020/07
