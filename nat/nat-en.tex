@@ -121,7 +121,7 @@ This the complete statement of the five Peano axioms. They can build the first-o
 
 Giuseppe Peano was an Italian mathematician, logician, and linguist. Peano was born and raised on a farm at Spinetta, a hamlet now belonging to Cuneo, Italy. He enrolled at the University of Turin in 1876, graduating in 1880 with high honors, after which the University employed him to teach calculus course. In 1887, Peano married Carola Crosio. In 1886, he began teaching concurrently at the Royal Military Academy. From 1880s, Peano started to study mathematical logic. In 1889, he published the Peano axioms, a formal foundation for the natural numbers. In 1891 Peano started the Formulario Project. It was to be an ``Encyclopedia of Mathematics'', containing all known formulae and theorems of mathematical science. In 1900, the Second International Congress of Mathematicians was held in Paris. At the conference Peano met Bertrand Russell and gave him a copy of Formulario. Russell was so struck by Peano's innovative logical symbols that he left the conference and returned home to study Peano's text\cite{M-Kline-2007}.
 
-When Russell and Whitehead wrote Principia Mathematica, they were deeply influenced by Peano. Peano played a key role in the axiomatization of mathematics and was a leading pioneer in the development of mathematical logic and set theory. As part of this effort, he made key contributions to the modern rigorous and systematic treatment of the method of mathematical induction. He spent most of his career teaching mathematics at the University of Turin. He also wrote an international auxiliary language, Latino sine flexione ("Latin without inflections", later called Interlingua), which is a simplified version of Classical Latin. Most of his books and papers are in Latino sine flexione. Although Peano put a lot of effort to rewrite his works in the new language, few people read it. On the other hand, his early works in French influnced many mathematicians, especially to the Bourbaki group, which came out many top mathematicians like André Weil, Jean Dieudonné, Henri Cartan, Schwartz, Serre, Grothendieck and so on.
+When Russell and Whitehead wrote {\em Principia Mathematica}, they were deeply influenced by Peano. Peano played a key role in the axiomatization of mathematics and was a leading pioneer in the development of mathematical logic and set theory. As part of this effort, he made key contributions to the modern rigorous and systematic treatment of the method of mathematical induction. He spent most of his career teaching mathematics at the University of Turin. He also wrote an international auxiliary language, Latino sine flexione ("Latin without inflections", later called Interlingua), which is a simplified version of Classical Latin. Most of his books and papers are in Latino sine flexione. Although Peano put a lot of effort to rewrite his works in the new language, few people read it. On the other hand, his early works in French influnced many mathematicians, especially to the Bourbaki group, which came out many top mathematicians like André Weil, Jean Dieudonné, Henri Cartan, Schwartz, Serre, Grothendieck and so on.
 
 Giuseppe Peano died on April, 20th, 1932 when he suffered a fatal heart attack.
 
@@ -242,7 +242,7 @@ Then for induction, assume $(a + b) + c = a + (b + c)$ hold, we want to prove $(
 \end{array}
 \]
 
-This complete the proof of associative law for addition. However, it is a bit complex to prove the commutative law. We give it in the Appendix of this book.
+Hence proves the associative law for addition. However, it is a bit complex to prove the commutative law. We give it in the Appendix of the book.
 
 %\begin{wrapfigure}{R}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -287,9 +287,9 @@ fact(n + 1) = (n + 1) \cdot fact(n)
 \end{array}
 \ee
 
-They are similar to each other. Although artificial intelligence achieves incredible result today, the machine can't jump out of the system, as intelligent life, to abstract in a higher level. This is one of the most complex, powerful, and mysterious part in human mind\cite{GEB}.
+They are similar to each other. Although artificial intelligence achieves incredible result today, the machine can't jump out of the system, as intelligent mind, to abstract in a higher level. This is one of the most complex, powerful, and mysterious part in human brain\cite{GEB}.
 
-Corresponding to zero in natural number, both summation and fraction have a start value. Summation starts from zero, fraction starts from one. For recursion, they both apply some operation to a number and its successor. For summation, it's $n' + sum(n)$, for fraction, it's $n' \cdot fact(n)$. If we abstract the start value as $c$, the recursive operation as $h$, then we can use the same form for both of them.
+Corresponding to zero in natural number, both summation and fraction have a start value. Summation starts from zero, fraction starts from one. For recursion, they both apply some operation to a number and its successor. For summation, it's $n' + sum(n)$, for fraction, it's $n' \cdot fact(n)$. If we abstract the start value as $c$, the recursive operation as $h$, then we can use the same form for both.
 
 \be
 \begin{array}{l}
@@ -315,13 +315,13 @@ $n$ & $f(n) = h^n(c)$
 
 \vspace{5mm}
 
-Where $h^n(c)$ means applying operation $h$ over $c$ for $n$ times. It's an instance of a more general {\em primitive} recursion(\cite{Bird97}, p5). Further, we can find it is related to the $foldn$ defined in (\ref{eq:foldn}).
+Where $h^n(c)$ means applying operation $h$ over $c$ for $n$ times. It's an instance of the more general {\em primitive} recursion(\cite{Bird97}, p5). Further, we can find it is related to the $foldn$ defined in (\ref{eq:foldn}).
 
 \be
 f = foldn(c, h)
 \ee
 
-There are three variables in the original $foldn$ definition, why are there only two here? We can actually write it as $f(n) = foldn(c, h, n)$. When we bind the first two variables to $foldn$, it turns to be a new function accepts one argument. We can consider it as $foldn(c, h)(n)$.
+There are three variables in the original $foldn$ definition, why are there only two appeared? We can actually write it as $f(n) = foldn(c, h, n)$. When we bind the first two variables to $foldn$, it turns to be a new function accepts one argument. We can consider it as $foldn(c, h)(n)$.
 
 We call $foldn$ the {\em fold} operation on natural numbers. When $c$ is $zero$ and $h$ is $succ$, we get a sequence of natural numbers:
 
@@ -411,9 +411,9 @@ fact = 2nd \cdot foldn(c, h) \\
 Here we use the symbol `$\cdot$' to `connect' the $2nd$ function and the $foldn(c, h)$ function. We call it {\em function composition}. $f\cdot g$ means firstly apply $g$ to the variable, then apply $f$ on top of the result. That is $(f\cdot g)(x) = f(g(x))$.
 
 Let's see another example powered by this abstract tool, Fibonacci sequence. It's named after the medieval mathematician Leonardo Pisano. Fibonacci originates from `filius Bonacci' in Latin. It means the son of (the) Bonacci. Fibonacci's father was a wealthy Italian merchant
- often did trading around North Africa and the Mediterranean coast. Fibonacci traveled with him as a young boy. It was in Bugia (now Béjaïa, Algeria) that he learned about the Hindu–Arabic numeral system. Fibonacci realized the many advantage of this numeral system. He introduced it to Europe through his book, the Liber Abaci (Book of Abacus or Book of Calculation, 1202). European people were using Roman numeral system before that. We can still see Roman numbers in clock plat today. The Roman number for year 2018 is MMXVIII. Where an M for 1000, so two M letters mean 2000; X represents for 10, V for 5, the three I mean 3. Sum them up, we get 2018. The Hindu-Arabic numeral system introduced by Fibonacci is a positional decimal numeral system. We are using it almost everywhere today. It uses the zero invented by Indian mathematicians. Numbers at different position means different value. This advanced numeral system were widely used in business, for example converting different currencies, calculating profit and interest, which were important to the growing banking industry. It influenced the mathematics in Europe greatly.
+ often did trading around North Africa and the Mediterranean coast. Fibonacci traveled with him as a young boy. It was in Bugia (now Béjaïa, Algeria) that he learned about the Hindu–Arabic numeral system. Fibonacci realized many advantage of this numeral system. He introduced it to Europe through his book, the {\em Liber Abaci} (Book of Abacus or Book of Calculation, 1202). European people were using Roman numeral system before that. We can still see Roman numbers in clock plat today. The Roman number for year 2018 is MMXVIII. Where M stands for 1000, so two M letters mean 2000; X represents 10, V stands for 5, the three I mean 3. Sum them up, we get 2018. The Hindu-Arabic numeral system introduced by Fibonacci is a positional decimal numeral system. We are using it almost everywhere today. It uses the zero invented by Indian mathematicians. Numbers at different position mean different value. This advanced numeral system were widely used in business, for example converting different currencies, calculating profit and interest, which were important to the growing banking industry. It influenced the mathematics in Europe greatly.
 
-Fibonacci numbers is well known as a problem described in the Liber Abaci, although it can be traced back to 200 BC in India. Assuming a newly born pair of rabbits, one male, one female, are put in a field; rabbits are able to mate at the age of one month so that at the end of its second month a female can produce another pair of rabbits; rabbits never die and a mating pair always produces one new pair (one male, one female) every month from the second month on. Then how many pairs will there be in one year?
+Fibonacci numbers is well known as a problem described in the {\em Liber Abaci}, although it can be traced back to 200 BC in India. Assuming a newly born pair of rabbits, one male, one female, are put in a field; rabbits are able to mate at the age of one month so that at the end of its second month a female can produce another pair of rabbits; rabbits never die and a mating pair always produces one new pair (one male, one female) every month from the second month on. Then how many pairs will there be in one year?
 
 When start, there is a pair in the first month. In the second month, there is a new born pair. In total there are two pairs. In the third month, the matured pair produces another pair, while the new born in the previous month are still young. In total, there are 2 + 1 = 3 pairs. In the fourth month, the two pairs of matured rabbits produce another two pairs of baby. Plus the three pairs in the third month, there are total 3 + 2 = 5 pairs. Repeating it gives a sequence of numbers.
 
@@ -444,7 +444,7 @@ F_{n+2} = F_n + F_{n+1}
 \end{array}
 \ee
 
-The starting numbers are defined as 0 and 1 by convention\footnote{If start from 1 and 3, it produces the Lucas sequence 1, 3, 4, 7, 11, 18, ...}. As Fibonacci numbers start from a {\em pair} of natural numbers, and the recursive relation also uses a pair of elements, we can use our abstract tool $foldn$ to define Fibonacci sequence\footnote{We'll give another different definition of Fibonacci numbers in the chapter about Cantor and infinity.}.
+The starting numbers are defined as 0 and 1 by convention\footnote{If start from 1 and 3, it produces the Lucas sequence 1, 3, 4, 7, 11, 18, ...}. As Fibonacci numbers start from a {\em pair} of natural numbers, and the recursive relation also uses a pair of elements, we can use our abstract tool $foldn$ to define Fibonacci sequence\footnote{We'll give another different definition of Fibonacci numbers in the chapter about infinity.}.
 
 \be
 \begin{array}{l}
@@ -518,7 +518,7 @@ We can also understand the list as isomorphism of natural numbers. According to 
 
 It's not convenient to represent long list with nested \texttt{cons}. We simplify \texttt{cons(1, cons(2, cons(3, nil)))} to [1, 2, 3], and use symbol `:' for \texttt{cons}. This list can also be written as 1:[2, 3] or 1:(2:(3:nil)). When type A is character, we use string in quote to represent this special type of list. For example, ``hello'' is the simplified form for ['h', 'e', 'l', 'l', 'o'].
 
-Similar to the adding defined for natural numbers, we can define the concatenation for lists as the following.
+Similar to add defined for natural numbers, we can define the concatenation for lists as the following.
 
 \be
 \begin{array}{l}
@@ -527,14 +527,14 @@ cons(a, x) \doubleplus y = cons(a, x \doubleplus y)
 \end{array}
 \ee
 
-There are two rules for list concatenation. First, empty list concatenates any list produces the same list; second, when concatenate the `successor' of a list to another one, it equals to firstly concatenate the two lists, then take the successor. Compare to the add for natural numbers, the definition of list concatenation is mirror symmetry.
+There are two rules for list concatenation. First, empty list concatenates any list produces the same list; second, when concatenate the `successor' of a list to another one, it equals to firstly concatenate the two lists, then take the successor. Compare to the add for natural numbers, the definition of list concatenation is mirrored symmetric.
 
 \begin{figure}[htbp]
 \begin{tabular}{r|l}
 $nil \doubleplus y = y$ & $a + 0 = a$ \\
 $cons(a, x) \doubleplus y = cons(a, x \doubleplus y)$ & $a + succ(b) = succ(a + b)$
 \end{tabular}
-\caption{The list concatenation and natural number adding are mirror symmetry.}
+\caption{The list concatenation and natural number adding are mirrored symmetric.}
 \end{figure}
 
 With the hint of symmetry, we can prove the associative law for list concatenation through the induction axiom. To prove $(x \doubleplus y) \doubleplus z = x \doubleplus (y \doubleplus z)$, we first prove it holds for $x = nil$.
@@ -568,7 +568,7 @@ f(cons(a,x)) = h(a, f(x))
 \end{array}
 \ee
 
-As the next step, let $f = foldr(c, h)$, then we can abstract the list folding. We name it as $foldr$ to call out the folding starts from right to the left.
+As the next step, let $f = foldr(c, h)$, then we can abstract the list folding. We name it as $foldr$ to call out the folding starts from right to left.
 
 \be
 \begin{array}{l}
@@ -621,7 +621,7 @@ It is corresponding to the $(+m)$ operation for natural number. Further, similar
 concat = foldr(nil, \doubleplus)
 \ee
 
-When apply $concat([[1, 1], [2, 3, 5], [8]])$, the result is $[1, 1, 2, 3, 5, 8]$. At the end of this section, we'll define two important list operations with $foldr$, filtering and mapping\footnote{Different from one to one mapping, the map defined here is one direction only. For example, the map from a string to its length is one direction. The reverse map does not exist.}. Filter is to compose a new list from the elements that satisfy a given predication. In order to realize filtering, we need introduce the conditional expression\footnote{Also known as McCarthy conditional form, or McCarthy formalism. It was introduced by the computer scientist, the inventor of Lisp John McCarthy in 1960.}. It's written as $(p \mapsto f, g)$. When give variable $x$, if the predication $p(x)$ holds, then the result is $f(x)$, else it's $g(x)$. We also use if $p(x)$ then $f(x)$ else $g(x)$ for conditional expression.
+When apply $concat([[1, 1], [2, 3, 5], [8]])$, the result is $[1, 1, 2, 3, 5, 8]$. At the end of this section, we'll define two important list operations with $foldr$, filtering and mapping\footnote{Different from one to one mapping, the map defined here is one direction only. For example, the map from a string to its length is one direction. The reverse map does not exist.}. Filter is to compose a new list from the elements that satisfy a given predication. In order to realize filtering, we need introduce the conditional expression\footnote{Also known as McCarthy conditional form, or McCarthy formalism. It was introduced by the computer scientist, the inventor of Lisp, John McCarthy in 1960.}. It's written as $(p \mapsto f, g)$. When give variable $x$, if the predication $p(x)$ holds, then the result is $f(x)$, else it's $g(x)$. We also use if $p(x)$ then $f(x)$ else $g(x)$ for conditional expression.
 
 \be
 filter(p) = foldr(nil, (p \cdot 1st \mapsto cons, 2nd))
