@@ -334,7 +334,7 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 
 \subsection{Extended Euclidean algorithm}
 
-The extended Euclidean algorithm is an extension to the Euclidean algorithm. For the given magnitude $a$ and $b$, in addition to compute the greatest common measure $g$, it can also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Below is one of the methods to prove it. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
+The extended Euclidean algorithm is an extension to the Euclidean algorithm. For given magnitude $a$ and $b$, in addition to compute their greatest common measure $g$, it can also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Here is a proof. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.
 
 \[
 S = \{ ax + by | x, y \in \mathbb{Z}\ \text{and} \ ax + by > 0\}
@@ -405,7 +405,7 @@ This gives the recursive case:
 \right.
 \]
 
-The edge case happens when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, we get the extended Euclidean algorithm.
+The edge case happens when $b = 0$, we have $gcm(a, 0) = 1a + 0b$. Combine it with the recursive case, we obtain the extended Euclidean algorithm.
 
 \be
 gcm_{ex}(a, b) = \left \{
@@ -436,7 +436,7 @@ There are total six operations between two jars. Denote the big one as $A$ with 
 \item Pour the warer from jar $B$ to jar $A$.
 \end{itemize}
 
-The last two operations stop when either jar is empty or full. Below example shows a list of operations (suppose $b < a  2b$ hold).
+The last two operations stop when either jar is empty or full. Below example shows a list of operations (suppose $b < a < 2b$ hold).
 
 \begin{table}[htbp]
 \centering
@@ -463,7 +463,7 @@ For example, we can't get 5 gallons of water with two jars of 4 gallons and 6 ga
 
 Although we can tell that the puzzle is solvable when $g$ measures $c$, we still don't know the detailed steps to pour water. Actually, the steps can be decuded as far as we can find two integers $x$ and $y$, satisfying $ax + by = c$. If $x > 0, y < 0$, it means we need fill jar $A$ $x$ times, and empty jar $B$ $y$ times; Else if $x < 0, y > 0$, we need empty jar $A$ $x$ times, and fill jar $B$ $y$ times.
 
-For instance, let the capacity of the big jar $a = 5$ gallons, the small jar $b = 3$ gallons. We want to get $c=4$ gallons of water. As $4 = 3 \times 3 - 5$, so $x = -1, y = 3$. We can arrange the steps as below.
+For instance, let the capacity of the big jar $a = 5$ gallons, the small jar $b = 3$ gallons. We want to get $c=4$ gallons of water. As $4 = 3 \times 3 - 5$, so $x = -1, y = 3$. We can arrange the steps as below table.
 
 \begin{table}[htbp]
 \centering
@@ -535,7 +535,7 @@ After figure out $x$ and $y$, we can populate the steps as in Appendix of this c
 
 \subsection{Influence of Euclidean algorithm}
 
-Euclidean algorithm was developed to find the the greatest common divisor for two integers in spirit of all things are made of numbers. However, Eculid applied it to the abstract geometric measurements. We see the separation of geometry from numbers\footnote{This is the reason why we name Euclide algorithm gcm, but not gcd.}. Geometry was not built on top of numbers, but developed independently to solve the generic problems not limit to numbers. The ancient Greek formed such a tradition, that even for any conclusion about number, one need to give proof in terms of geometry. It kept influencing people till the 16th Century. For example, the Italian mathematician Gerolamo Cardano still used geometric cubic filling method in his book `Ars Magna' when solving the cubic and four-order equations in 1545\cite{HanXueTao2009}.
+Euclidean algorithm was developed to find the the greatest common divisor for two integers in spirit of all things are made of numbers. However, Euclid applied it to the abstract geometric magnitudes. We see the separation of geometry from numbers\footnote{This is the reason why we name Euclide algorithm gcm, but not gcd.}. Geometry was not built on top of numbers, but developed independently to solve the generic problems not limit to numbers. The ancient Greek formed such a tradition, that even for any conclusion about number, one need to give proof in terms of geometry. It kept influencing people till the 16th Century. For example, the Italian mathematician Gerolamo Cardano still used geometric cubic filling method in his book {\em Ars Magna} when solving the cubic and four-order equations in 1545\cite{HanXueTao2009}.
 
 The Euclidean algorithm is the most famous recursive algorithm. German mathematician, Dirichlet, the founder of analytic number theory, commented in his {\em Lectures on Number Theory}\footnote{Lejeune Dirichlet, J.P.G.; Richard Dedekind (1863). {\em Vorlesungen über Zahlentheorie}. F. Vieweg und sohn.}, The structure of the whole number theory is based on the same foundation, which is the greatest common divisor algorithm. The modern RSA cryptosystem\footnote{RSA is the world first public-key asymmetric crypto algorithm developed by Ron Rivest, Adi Schamir, and Leonard Adelman in MIT, 1977. The acronym RSA is made of the initial letters of their surnames.} utilizes the extended Euclidean algorithm directly. We demonstrated how to figure out the integer solutions for binary linear Diophantine equation $ax + by = c$. Find the greatest common measure $g$. There's no integer solution if $g$ does not divide $c$. Otherwise, for the $x_0, y_0$ satisfying Bézout identity, duplicate them $c/g$ times to get a special solution $x_1, y_1$, then define the common solution of $x = x_1 - k b / g$, and $y = y_1 + k a / g$.
 
@@ -549,7 +549,7 @@ The Euclidean algorithm is the most famous recursive algorithm. German mathemati
 %\end{figure}
 \end{wrapfigure}
 
-The Euclid algorithm is a double edge sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believed any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the side and diagonal of a square. However, no matter how small magnitude being used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles of music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, there is another story said that Hippasus also found segment AC and AG couldn't be commensurable.
+The Euclid algorithm is a double-edges sword. The powerful recursive method can be applied to attack the corner stone of the concept that all things are made of numbers. The Pythagoreans believed any two numbers must have common measurement, because all things and phenomenon are essentially ratio of integer to integer. About 470AC, Hippasus, a student in Pythagorean school attempted to find the common measure for the side and diagonal of a square. However, no matter how small magnitude being used, he could not measure them. It surprised the people, and led to a crisis for the foundation of Pythagoreans. There is also saying that, Hippasus was inspired by the mysterious pentagram logo of Pythagorean school. The Pythagoreans use pentagram as the school's badge and liaison symbol. There was a story about a school member met difficulty in a foreign land, poor and sick. The landlord helped to take care of him. He drew a pentagram on the door before dead. A few years later, someone in Pythagorean school saw the sign. He asked about the past, paid the landlord a lot of money then left\cite{HanXueTao16}. In the Walt Disney's film {\em Donald in Mathmagic Land} in 1959, Duck Donald met Pythagoras and his friends, they discovered the principles of music scale together. After shaking hands with Pythagoras, who then vanishes, Donald found on his hand a pentagram, the symbol of the secret Pythagorean society. As shown in figure \ref{fig:pentagram}, there is another story said that Hippasus also found segment AC and AG couldn't be commensurable.
 
 %\begin{wrapfigure}{L}{0.4\textwidth}
 \begin{figure}[htbp]
@@ -610,7 +610,7 @@ It's interesting that the incommensurable is defined by checking whether the Euc
 
 \section{The $\lambda$ calculus}
 
-If it's intelligent beings like human to perform computation, recursion will not be a problem. We are able to enter the next level of computation when meet recursion, and return back to the upper level after that. However, it matters when instruct machine to compute. Several computation models were developed in 1930s independently. The most famous ones include Turing machine (1935 by Turing), $\lambda$-calculus (1932 - 1941 by Church, and 1935 by Stephen Kleene. The Greek letter $\lambda$ is pronounced as lambda), and recursive function (1934 by Jacques Herbrand and Kurt Gödel).
+Recursion would not be a problem if performed by human. As the intelligent beings, we are able to enter the next level of computation when meet recursion, and return back to the upper level after that. However, it matters when instruct machine to compute. Several computation models were developed in 1930s independently. The most famous ones are Turing machine (1935 by Turing), $\lambda$-calculus (1932 - 1941 by Church, and 1935 by Stephen Kleene. The Greek letter $\lambda$ is pronounced as lambda), and recursive function (1934 by Jacques Herbrand and Kurt Gödel).
 
 %\begin{wrapfigure}{L}{0.35\textwidth}
 \begin{figure}[htbp]
@@ -631,7 +631,7 @@ After the war, Turing worked on the Automatic Computing Engine (ACE), which was 
 
 The formalization of computation itself is called {\em Metamathematics}. This attempt led to a great work, the $\lambda$-calculus. There's a interesting story about the name. When considering the computation itself, people realized we should distinguish function and its evaluation result. For example, if we say `if $x$ is odd, then $x \times x$ is also odd', we mean the evaluated value of the function; while if we say `$x \times x$ is monotonic increasing', we mean the function itself. To differentiate these two concepts, we write function as $x \mapsto x \times x$, but not only $x \times x$.
 
-The `$\mapsto$' symbol was introduced by Nicolas Bourbaki\footnote{Nicolas Bourbaki is the collective pseudonym of a group of (mainly French) mathematicians. Their aim is to reformulate mathematics on an extremely abstract and formal but self-contained basis with the goal of grounding all of mathematics on set theory. Many famous mathematician participants the Bourbaki group, like Henri Cartan, Claude Chevalley, Jean Dieudonné, André Weil, Laurent Schwartz, Jean-Pierre Serre, Alexander Grothendieck, and Serge Lang.} around 1930. Russel and Whitehead used the notation $\hat{x}(x \times x)$ in their famous book ``Principia Mathematica'' in 1910s. Church wanted to use a similar notation in 1930s, however, the publisher he worked with didn't know how to print the `hat' symbol on top of $x$. Alternatively, they printed the uppercase Greek letter $\Lambda$ before $x$, and later changed to lowercase letter $\lambda$. That is the reason why we see it's in the form of $\lambda x . x \times x$ today\cite{Dowek2011}. Although the $x \mapsto x \times x$ presentation is widely accepted, people tend to use Church's notation particularly in logic and computer science, and named it as the `$\lambda$-calculus'.
+The `$\mapsto$' symbol was introduced by Nicolas Bourbaki\footnote{Nicolas Bourbaki is the collective pseudonym of a group of (mainly French) mathematicians. Their aim is to reformulate mathematics on an extremely abstract and formal but self-contained basis with the goal of grounding all of mathematics on set theory. Many famous mathematician participants the Bourbaki group, like Henri Cartan, Claude Chevalley, Jean Dieudonné, André Weil, Laurent Schwartz, Jean-Pierre Serre, Alexander Grothendieck, and Serge Lang.} around 1930. Russel and Whitehead used the notation $\hat{x}(x \times x)$ in their famous book {\em Principia Mathematica} in 1910s. Church wanted to use a similar notation in 1930s, however, the publisher he worked with didn't know how to print the `hat' symbol on top of $x$. Alternatively, they printed the uppercase Greek letter $\Lambda$ before $x$, and later changed to lowercase letter $\lambda$. That is the reason why we see it's in the form of $\lambda x . x \times x$ today\cite{Dowek2011}. Although the $x \mapsto x \times x$ presentation is widely accepted, people tend to use Church's notation particularly in logic and computer science, and named it as the `$\lambda$-calculus'.
 
 \subsection{Expression reduction}
 
@@ -670,7 +670,7 @@ tail\ (cons\ a\ b) \mapsto b
 
 \subsection{$\lambda$ abstraction}
 
-We introduced how $\lambda$ symbol was introduced. $\lambda$ abstraction is a method to construct function. Let's use an example to understand every component in $\lambda$ abstraction.
+We told the story about how $\lambda$ symbol was introduced. $\lambda$ abstraction is a method to construct function. Let's use an example to understand every component in $\lambda$ abstraction.
 
 \[
 (\lambda x . +\ x\ 1)
@@ -686,7 +686,7 @@ That function of & $x$ & which & add $x$ to 1 \\
 \end{tabular}
 \vspace{5mm}
 
-We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that $\lambda$ abstraction is not equivalent to $\lambda$ expression, $\lambda$ abstraction is only one type of $\lambda$ expression. $\lambda$ expression also has two other types:
+We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that $\lambda$ abstraction is not equivalent to $\lambda$ expression, $\lambda$ abstraction is only one type of $\lambda$ expressions. $\lambda$ expression also has two other types:
 
 \begin{tabular}{rcll}
 <exp> & = & <constant> & built-in constants, numbers, Boolean etc. \\
@@ -697,7 +697,7 @@ We'll also use the equivalent $x \mapsto x + 1$ form for convenience. Note that 
 
 \subsection{$\lambda$ conversion rules}
 
-When evaluate the below $lambda$ expression, we need to know the value for the global variable $y$. On the other hand, we needn't know the value of variable $x$, because it appears as the formal parameter.
+When evaluate the below $\lambda$ expression, we need to know the value for the global variable $y$. On the other hand, we needn't know the value of variable $x$, because it appears as the formal parameter.
 
 \[
 (\lambda x . +\ x\ y)\ 2
@@ -774,7 +774,7 @@ This is a typical example of constant projection. The next is a multiple steps r
 \begin{array}{rcll}
 (x \mapsto (y \mapsto y - x))\ 2\ 4\ & \overset{\beta}{\longrightarrow} & (y \mapsto y - 2)\ 4 & \text{Currying} \\
                                      & \overset{\beta}{\longrightarrow} & 4 - 2 & \text{Inner reduction} \\
-                                     & \longrightarrow & 1 & \text{Built-in arithmetic}
+                                     & \longrightarrow & 2 & \text{Built-in arithmetic}
 \end{array}
 \]
 
@@ -847,7 +847,7 @@ $\eta$   & $(\lambda x . E\ x)$ & $\overset{\eta}{\longleftrightarrow}$ & $E$
 \end{tabular}
 \vspace{5mm}
 
-All these conversions can be applied in both direction, left to right or reversed. It raises two questions by nature. First, will the reduction terminates? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell if a given reduction process terminates. We'll introduce the details in the last chapter.}. Here is an example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
+All these conversions can be applied in both directions, left to right or reversed. It raises two questions by nature. First, will the reduction terminate? Second, do the different reduction steps lead to the same result? For the first question, the answer is not deterministic. The reduction process is not ensure to terminate\footnote{Note the answer is not 'no', but none deterministic. It's essentially as same as the Turing halting problem. There is no determined process can tell if a given reduction process terminates. We'll introduce the details in the last chapter.}. Here is an example of endless loop: $(D\ D)$, where $D$ is defined as $\lambda x. x\ x$. Or written in the arrow form: $x \mapsto x\ x$. If we attempt to simplify it, we'll get the following result:
 
 \[
 \begin{array}{rcll}
@@ -876,7 +876,7 @@ A more interesting example is $(\lambda x . 1)\ (D\ D)$, if firstly reduce the $
 If $E_1 \leftrightarrow E_2$, then there exists $E$ that $E_1 \to E$ and $E_2 \to E$.
 \end{theorem}
 
-It means, if the reduction process terminates, then the results confluence. Varies reduction steps give the same result, as shown in \ref{fig:Church-Rosser-confluence}. Church and Rosser proved the second theorem on top of the first one. We need the concept of the {\em normal form} to understand it. The normal form, also known as $\beta$ normal form, is an expression that we can't do any further $\beta$-reduction. It means all the functions have already been applied. A more strict normal form is the $\beta-\eta$ normal form, which neither $\beta$-reduction, nor $\eta$-reduction can be performed. For example, $(x \mapsto x + 1)\ y$ is not normal form, because we can apply $\beta$-reduction to change it to $y + 1$. The following defines the normal form recursively.
+It means, if the reduction process terminates, then the results confluence. Varies reduction steps give the same result, as shown in figure \ref{fig:Church-Rosser-confluence}. Church and Rosser proved the second theorem on top of the first one. We need the concept of the {\em normal form} to understand it. The normal form, also known as $\beta$ normal form, is an expression that we can't do any further $\beta$-reduction. It means all the functions have already been applied. A more strict normal form is the $\beta-\eta$ normal form, which neither $\beta$-reduction, nor $\eta$-reduction can be performed. For example, $(x \mapsto x + 1)\ y$ is not normal form, because we can apply $\beta$-reduction to change it to $y + 1$. The following defines the normal form recursively.
 
 \[
 \begin{array}{rcll}
