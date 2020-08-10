@@ -188,7 +188,7 @@ In 1870, French mathematician Camille Jordan wrote the book {\em Traité des sub
 \subsection{Group}
 \index{Group}
 
-Let us start the journey from groups to understand what Galois landed for abstract algebra.
+Let us start the journey from group to understand what Galois landed for abstract algebra.
 
 \begin{definition} A group is a set $G$ equipped with a binary operation ``$\cdot$'', which satisfied four axioms:
 
@@ -200,11 +200,11 @@ Let us start the journey from groups to understand what Galois landed for abstra
 \end{enumerate}
 \end{definition}
 
-The binary operation is often called ``multiplication'', and the ``product'' $a \cdot b$ is usually written as $ab$. $e$ is the identity element. The elements in a group can be finite or infinite many, thus the group is called finite group or infinite group. the \textbf{order} of a finite group is the number of the elements in the group. A group contains infinite many elements is said to have infinite order.
+The binary operation is often called ``multiplication'', and the ``product'' $a \cdot b$ is usually written as $ab$. $e$ is the identity element. The elements in a group can be finite or infinite many, thus the group is called finite group or infinite group. the \textbf{order} of a finite group is the number of the elements in that group. A group contains infinite many elements is said to have infinite order.
 
 The ``multiplication'' operation of the group may not be commutative like the normal multiplication for numbers. For example, all the invertible matrix with real entities, together with the matrix multiplication form a group. However, the matrix multiplication order matters, it is not commutative. Groups for which the community equation $ab = ba$ always holds are called \textbf{abelian} groups (in honor of Abel).
 
-To help understanding the definition of group, let us see some examples.
+let us see some examples to understand the definition of groups.
 
 \begin{enumerate}
 \item Integers with addition. Elements are all integers, the binary operation is addition. This is one of the most familiar groups;
@@ -229,11 +229,11 @@ It's helpful to think about symmetry through the Rubik cube group. In original s
   (r_n \cdot r_{n-1} ... \cdot r_0) \cdot (t_m \cdot t_{m-1} ... \cdot t_0) = e
 \]
 
-Obviously, one solution is to reverse every rotation made by the kid, that is $r_i = t_{m-i}^{-1}$, or $r_i \cdot t_{m-i} = e$. Hence the above equation must hold. However, in practice, a seasoned player restore the Rubik cube through a set of `formulas'. Although the above equation holds, not every $r_i$ is the reversed rotation of some $t_{m-i}$. Even the number of steps to restore may not equal to the number of steps to disrupt the Rubik cube.
+Obviously, one solution is to reverse every rotation made by the kid, that is $r_i = t_{m-i}^{-1}$, or $r_i \cdot t_{m-i} = e$. Hence the above equation must hold. However, in practice, a seasoned player restores the Rubik cube through a set of `formulas'. Although the above equation holds, not every $r_i$ is the reversed rotation of some $t_{m-i}$. Even the number of steps to restore may not equal to the number of steps to disrupt the Rubik cube.
 
 \item For a plane, all the rotations around a fixed point form a group. The group elements are all the degrees for rotation. The group binary operation is the composition, corresponding to the result of rotating a degree after another degree. The unit rotation is zero degree.
 
-We say a shape has rotational symmetry if it can be rotated about a fixed point, and still looks same. A snowflake for example, keeps same by rotating 60, 120, 180, 240, and 360 degrees. However, the rotational group in this example can not define the symmetry of snowflake. It actually tells such a fact. If two rotations satisfy $r_{\alpha} \cdot r_{\beta} = e$, then the two degrees either negate to each other $\alpha = -\beta$, or their sum are multiples of 360 degrees. The only symmetric shapes under this rotational group are circles at the same centre. We'll give the group that defines the snowflake symmetry in later sections.
+We say a shape has rotational symmetry if it can be rotated about a fixed point, and still looks same. A snowflake for example, keeps same by rotating 60\degree, 120\degree, 180\degree, 240\degree, and 360\degree. However, the rotational group in this example can not define the symmetry of snowflakes. It actually tells such a fact. If two rotations satisfy $r_{\alpha} \cdot r_{\beta} = e$, then the two degrees either negate to each other $\alpha = -\beta$, or their sum are multiples of 360\degree. The only symmetric shapes under this rotational group are circles at the same centre. We'll give the group that defines the snowflake symmetry in later sections.
 
 \end{enumerate}
 
