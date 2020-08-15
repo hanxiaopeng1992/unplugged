@@ -51,7 +51,7 @@ What is category? Why does it matter? Any relationship between category and prog
 \texttt{foldr f z (x:xs) = f x (foldr f z xs)} \\
 is written in the language of categories as: \texttt{foldr f z t = appEndo (foldMap (Endo . f) t) z} We'll explain it later in this chapter.}.
 
-The most important thing is abstraction. Hermann Weyl said ``Our mathematics of the last few decades has wallowed in generalities and formalizations." The samething happens in programming. The problems in modern computer science are challenging us with the complexicty we never seen before. Big-data, distributed, high concurrency, as well as the requirement to consistency, security, and integrity. We can't catch them up in the traditional way, like brute-force exhaustive search, pragmatic engineering practice, a smart idea plus some luck. It forces us to learn the new methods and tools from other sciences and mathematics.
+The most important thing is abstraction. Hermann Weyl said ``Our mathematics of the last few decades has wallowed in generalities and formalizations." The samething happens in programming. The problems in modern computer science are challenging us with the complexicty we never seen before. Big-data, distributed computation, high concurrency, as well as the requirement to consistency, security, and integrity. We can't catch them up in the traditional way, like brute-force exhaustive search, pragmatic engineering practice, a smart idea plus some luck. It forces us to learn the new methods and tools from other science and mathematics.
 
 As Dieudonne said: ``This abstraction which has accrued in no way sprang from a perverse desire among mathematicans to isolate themselves from the scientific community by the use of a hermetic language. Their task was to find solutions for problems {\em handed down by the `classical' age}, or arising directly from new discoveries in physics. They found that this was possible, but only through the {\em creation} of new objets and new methods, whose abstract character was {\em indispensable} to their success.'' \cite{Dieudonne1987}(page 2)
 
@@ -66,9 +66,11 @@ Category theory was developed by mathematician Samuel Eilenberg and Sauders Mac 
 \end{wrapfigure}
 
 \index{Samuel Eilenberg}
-Samuel Eilenberg born in Warsaw, Kingdom of Poland to a Jewish family. His father is a brewer. Eilenberg studied at the University of Warsaw. A remarkable collection of mathematicians were on the staff there. He earned his Ph.D. from University of Warsaw in 1936. The second mathematical centre in Poland at that time was Lvov. It was there that Eilenberg met Banach, who led the Lvov mathematicians. He joined the community of mathematicians working and drinking in the Scottish Café and he contributed problems to the Scottish Book, the famous book in which the mathematicians working in the Café entered unsolved problems. In 1939 Eilenberg's father convinced him that the right course of action was to emigrate to the United States. Once there he went to Princeton. This was not too long in coming and, in 1940, he was appointed as an instructor at the University of Michigan. In 1949 André Weil was working at the University of Chicago and he contacted Eilenberg to ask him to collaborate on writing about homotopy groups and fibre spaces as part of the Bourbaki project. Eilenberg became a member of the Bourbaki team. He wrote the 1956 book {\em Homological Algebra} with Henri Cartan. Eilenberg mainly studied algebriac topology. He worked on the axiomatic treatment of homology theory with Norman Steenrod, and on homological algebra with Saunders Mac Lane. In the process, Eilenberg and Mac Lane created category theory. Eilenberg spent much of his career as a professor at Columbia University. Later in life he worked mainly in pure category theory, being one of the founders of the field. He was awarded Wolf prize in 1987 for his fundamental work in algebraic topology and homological algebra. Eilenberg died in New York City during January 1998.
+Samuel Eilenberg born in Warsaw, Kingdom of Poland to a Jewish family. His father is a brewer. Eilenberg studied at the University of Warsaw. A remarkable collection of mathematicians were on the staff there. He earned his Ph.D. from University of Warsaw in 1936. The second mathematical centre in Poland at that time was Lvov. It was there that Eilenberg met Banach, who led the Lvov mathematicians. He joined the community of mathematicians working and drinking in the Scottish Café and he contributed problems to the Scottish Book, the famous book in which the mathematicians working in the Café entered unsolved problems. In 1939 Eilenberg's father convinced him that the right course of action was to emigrate to the United States. Once there he went to Princeton. This was not too long in coming and, in 1940, he was appointed as an instructor at the University of Michigan. In 1949 André Weil was working at the University of Chicago and he contacted Eilenberg to ask him to collaborate on writing about homotopy groups and fibre spaces as part of the Bourbaki project. Eilenberg became a member of the Bourbaki team. He wrote the 1956 book {\em Homological Algebra} with Henri Cartan. Eilenberg mainly studied algebriac topology. He worked on the axiomatic treatment of homology theory with Norman Steenrod, and on homological algebra with Saunders Mac Lane. In the process, Eilenberg and Mac Lane created category theory. Eilenberg spent much of his career as a professor at Columbia University. Later in life he worked mainly in pure category theory, being one of the founders of the field. He was awarded Wolf prize in 1987 for his fundamental work in algebraic topology and homological algebra. Eilenberg died in New York City in January 1998.
 
 Eilenberg was also a prominent collector of Asian art. His collection mainly consisted of small sculptures and other artifacts from India, Indonesia, Nepal, Thailand, Cambodia, Sri Lanka and Central Asia. He donated more than 400 items to the Metropolitan Museum of Art in 1992\cite{Wiki-Eilenberg}.
+
+\vspace{5mm}
 
 \begin{wrapfigure}{L}{0.3\textwidth}
  \centering
@@ -133,7 +135,7 @@ There are two paths from grass to lion. One is the composite arrow $g \circ f$, 
 \end{tikzpicture}
 \end{center}
 
-These two arrows may or may note be the same, when they are, we say they are commutative:
+These two arrows may or may not be the same, when they are, we say they are commutative:
 
 \[
 h = g \circ f
@@ -825,7 +827,7 @@ Cartesian product, also known as direct product, is named after René Descartes,
 
 Descartes was born in La Haye, near Tours, France in 1596. His father was a member of the Parlement of Brittany at Rennes. His mother died a year after giving birth to him, and so he was not expected to survive. His father then remarried in 1600. Descartes lived with his grandmother at La Haye. His health was poor when he was a child. Throughout his childhood, up to his twenties, he was pale and had a persistent cough which was probably due to tuberculosis. It seems likely that he inherited these health problems from his mother.
 
-In 1607, he entered the Jesuit college of La Flèche, where he was introduced to mathematics and physics, including Galileo's work. While in the school his health was poor and, instead of rising at 5 a.m. like the other boys, he was granted permission to remain in bed until 11 o'clock in the morning, a custom he maintained until the year of his death.
+In 1607, he entered the Jesuit college of La Flèche, where he was introduced to mathematics and physics, including Galileo's work. While in the school his health was poor and, instead of rising at 5 AM. like the other boys, he was granted permission to remain in bed until 11 o'clock in the morning, a custom he maintained until the year of his death.
 
 After graduation in 1614, he studied for two years at the University of Poitiers. He received a law degree in 1616 to comply with his father's wishes but he quickly decided that this was not the path he wanted to follow. He returned to Paris, then became a volunteer in the army of Maurice of Nassau. In the army, Descartes started studying mathematics and mechanics under the Dutch scientist Isaac Beeckman, and began to seek a unified science of nature.
 
@@ -835,7 +837,7 @@ From 1620 to 1628 Descartes travelled through Europe, spending time in Bohemia, 
 
 In {\em Geometry}, Descartes exploited the discoveries he made with Pierre de Fermat. This later became known as Cartesian Geometry. Descartes continued to publish works concerning both mathematics and philosophy for the rest of his life. In 1641 he published a metaphysics treatise, {\em Meditations on First Philosophy}. It was followed in 1644 by {\em Principles of Philosophy}. He became the most influential philosophers in Europe.
 
-In 1649 Queen Christina of Sweden persuaded Descartes to go to Stockholm. However the Queen wanted to draw tangents at 5 a.m. and Descartes broke the habit of his lifetime of getting up at 11 o'clock. After only a few months in the cold northern climate, walking to the palace for 5 o'clock every morning, he died of pneumonia February 1650 at the age of 54.
+In 1649 Queen Christina of Sweden persuaded Descartes to go to Stockholm. However the Queen wanted to draw tangents at 5 AM. and Descartes broke the habit of his lifetime of getting up at 11 o'clock. After only a few months in the cold northern climate, walking to the palace for 5 o'clock every morning, he died of pneumonia February 1650 at the age of 54.
 
 Descartes left the best known philosophical statement ``I think, therefore I am'' (French: Je pense, donc je suis; Latin: cogito, ergo sum). Descartes laid the foundation for 17th-century continental rationalism. He was well-versed in mathematics as well as philosophy, and contributed greatly to science as well. He is credited as the father of analytical geometry, the bridge between algebra and geometry—used in the discovery of infinitesimal calculus and analysis. Descartes was also one of the key figures in the Scientific Revolution.
 
@@ -1041,7 +1043,7 @@ Hence $m$ must be identity arrow. The diagram then simplifies to:
 \end{tikzpicture}
 \end{center}
 
-Among the many wedges, the product and product are special, they are universal solutions. In other words, they are the `closest' or the `best' wedge. We can prove that product and coproduct are unique (see the appendix of this book). However, product and coproduct may not exist at the same time, it's also possible that neither does exist. Let's see what product and coproduct mean to set.
+Among the many wedges, the product and coproduct are special, they are universal solutions. In other words, they are the `closest' or the `best' wedge. We can prove that product and coproduct are unique (see the appendix of this book). However, product and coproduct may not exist at the same time, it's also possible that neither does exist. Let's see what product and coproduct mean to set.
 
 \begin{lemma}
 \normalfont
