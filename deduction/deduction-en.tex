@@ -524,7 +524,7 @@ Obviously that $f(0, z)$ is not identical to $[0]$, even their types are not sam
 g : \forall A. (\forall B. (A \to B \to B) \to B \to B)
 \]
 
-In the above example that causes contradict results, the type is $\forall A. (\forall B. (A \to B \to B) \to B \to [Int])$. It does not satisfy the constraint. The corresponding result constraint for $build$ is:
+In the above example that causes contradict results, the type is $\forall A. (\forall B. (A \to B \to B) \to B \to [Int])$. It does not satisfy the constraint. The corresponding type constraint for $build$ is:
 
 \[
 build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
@@ -535,7 +535,7 @@ Because there are two polymorphic types $A$ and $B$, it is called rank-2 type po
 
 \subsection{Fusion law in category theory}
 \index{shortcut fusion}
-foldr/build fusion law can be deduced and extended from the category theory. Foldr/build fusion law is one of the varies of fusion laws in category theory. They are named as {\em shortcut fusion} nowadays, and play important roles in compiler, and program optimization. We can't cover all of them in a chapter. Readers can refer to \cite{Hinze-Harper-James-2010} to understand shortcut fusion theory and its practice in depth.
+foldr/build fusion law can be deduced and extended from the category theory. Foldr/build is one of the fusion laws in category theory. They are named as {\em shortcut fusion} nowadays, which play important roles in compiler and program optimization. We can't cover all of them in a chapter. Readers can refer to \cite{Hinze-Harper-James-2010} to understand shortcut fusion theory and its practice in depth.
 
 We introduced F-algebra, initial algebra, and catamorphism in previous chapter. Because initial algebra is the initial object, it has unique arrow to every other algebra, as shown in below diagram.
 
