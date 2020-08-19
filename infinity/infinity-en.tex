@@ -887,7 +887,7 @@ fib = 0 : 1 : zipWith (+) fib (tail fib)
 \end{lstlisting}
 
 \index{regular numbers} \index{Hamming numbers}
-Here is another example. In mathematics, regular numbers are defined as those numbers whose only prime divisors are 2, 3, and 5. In computer science, regular numbers are often called Hamming numbers, after Richard Hamming (American mathematician, ACM Turning award receiver, 1915-1998), who proposed the problem of finding computer algorithms for generating these numbers in ascending order. Here are the first several Hamming numbers.
+For another example, in mathematics, regular numbers are defined as those numbers whose only prime divisors are 2, 3, or 5. In computer science, regular numbers are often called Hamming numbers, after Richard Hamming (American mathematician, ACM Turning award receiver, 1915-1998), who proposed the problem of finding computer algorithms for generating these numbers in ascending order. Here are the first several Hamming numbers.
 
 \[
 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 27, 30, 32, 36, 40, 45, 48, 50, 54, 60, ...
@@ -949,7 +949,7 @@ Recently I had time to follow up a little more fully the conjecture which I ment
 
 Cantor proved it impossible to establish 1-to-1 correspondence between natural numbers and real numbers, hence real numbers are uncountable. December 7, 1873 was the day that set theory born. Cantor had given two proofs. The second one is the popular Cantor's {\em diagonal argument}.
 
-Cantor used the proof by contradiction method. Suppose the real numbers in open interval $(0, 1)$ are countable. There exits 1-to-1 correspondence to natural numbers. Then we can list all real numbers in this interval as a sequence $a_0, a_1, a_2, ..., a_n, ...$ in decimals. For any irrational number, its decimal format is endless non-repeating; For rational number, its decimal format can be infinitely repeating finite sequence of digits, for example $\dfrac{1}{3} = 0.333...$; for decimals with finite digits, we can append infinite many zeros, for example $\dfrac{1}{2} = 0.5000...$ All the real numbers in interval $(0, 1)$ can be list as below:
+Cantor used reduction to absurdity method in his proof. Suppose the real numbers in open interval $(0, 1)$ are countable. There exits 1-to-1 correspondence to natural numbers. Then we can list all real numbers in this interval as a sequence $a_0, a_1, a_2, ..., a_n, ...$ in decimals. For any irrational number, its decimal format is endless non-repeating; For rational number, its decimal format can be infinitely repeating finite sequence of digits, for example $\dfrac{1}{3} = 0.333...$; for decimals with finite digits, we can append infinite many zeros, for example $\dfrac{1}{2} = 0.5000...$ All the real numbers in interval $(0, 1)$ can be list as below:
 
 \[
 \begin{array}{l}
@@ -1051,7 +1051,7 @@ From Hippasus found the irrational number, till Dedekind finally defined real nu
 
 \subsection{Transfinite numbers and continuum hypothesis}
 \index{power set}
-On the way to find more numerous infinity, Cantor firstly considered power set. For a given set $A$, power set is the set of all possible subset of $A$. For example $A = \{a, b\}$, then its power set contains $\{\phi, \{a\}, \{b\}, \{a, b\}\}$, total four elements. For a set of 3 elements, its power set contains 8 subsets. Generally, for a set of $n$ elements, because every element can be select or skip when building a subset, the size of its power set is $2^n$. It's obvious that power set has a greater cardinality than the original finite set.
+On the way to find more numerous infinity, Cantor firstly considered power set. For a given set $A$, power set is the set of all possible subsets of $A$. For example $A = \{a, b\}$, then its power set contains $\{\phi, \{a\}, \{b\}, \{a, b\}\}$, total four elements. For a set of 3 elements, its power set contains 8 subsets. Generally, for a set of $n$ elements, because every element can be select or skip when building a subset, the size of its power set is $2^n$. It's obvious that power set has a greater cardinality than the original finite set.
 
 \index{Cantor's theorem}
 Cantor proved in 1891, that even for any infinite set, the power set has a strict greater cardinality than the original set. This result is called {\em Cantor's theorem} nowadays. The proof is not hard, we put it in the appendix of this chapter. This theorem is the key to open the door to infinite of infinite world. Cantor introduced notation $\aleph_0$ for the cardinality of countable infinite set, like natural numbers. $\aleph$ is the first Hebrew letter. The cardinality of the power set for countable infinite set is $2^{\aleph_0}$. According to Cantor's theorem, $\aleph_0 < 2^{\aleph_0}$, on top of that, we can repeatedly use power set to generate greater and greater infinities.
@@ -1202,9 +1202,7 @@ Continuum Hypothesis can be further extended. For any ordinal $a$, whether $2^{\
 
 Cantor raised continuum hypothesis in a paper in 1878. He believed it to be true and tried for many years to prove it. Sometimes he thought he had proved it false, then the next day found his mistake. Again he thought he had proved it true only again to quickly find his error. His inability to prove the continuum hypothesis caused him considerable anxiety till his death in 1918.
 
-The problem, whether we can prove continuum hypothesis true or false became the first on David Hilbert's list of 23 important open questions that was presented at the International Congress of Mathematicians in the year 1900 in Paris.
-
-The continuum hypothesis came from the practical problems from geometry, mechanics, and physics. Hilbert expressed this view at the 2nd International Congress of Mathematics in 1900:
+The problem, whether we can prove continuum hypothesis true or false became the first on David Hilbert's list of 23 important open questions that was presented at the International Congress of Mathematicians in 1900 in Paris. The continuum hypothesis came from the practical problems from geometry, mechanics, and physics. Hilbert expressed this view:
 
 \begin{quotation}
 \itshape
