@@ -35,16 +35,6 @@
 
 \epigraph{\textbf{造物神}代表\textbf{造}物神-\textbf{物}色的-\textbf{神}怪}{——[美]侯世达《哥德尔、埃舍尔、巴赫——集异壁之大成》}
 
-\begin{wrapfigure}{R}{0.3\textwidth}
-%\begin{figure}[htbp]
- \centering
- \includegraphics[scale=0.4]{img/Pythagoras.jpg}
- \captionsetup{labelformat=empty}
- \caption{毕达哥拉斯（约前570——前490）}
- \label{fig:Pythagoras}
-%\end{figure}
-\end{wrapfigure}
-
 人们通过深入了解数进而了解自然。在上一章中，我们介绍了自然数的皮亚诺公理。并且展示了一些和自然数“同构”的事物，例如“列表”这种数据结构。自然数是我们进一步前进的基石。但是我们的大厦还不稳固。在第一章中，我们不加证明地使用了递归的概念。例如阶乘的定义：
 
 \[
@@ -58,6 +48,16 @@ fact(n + 1) = (n + 1) fact(n)
 
 \section{万物皆数}
 \index{毕达哥拉斯}
+
+%\begin{wrapfigure}{R}{0.28\textwidth}
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[scale=0.4]{img/Pythagoras.jpg}
+ \captionsetup{labelformat=empty}
+ \caption{毕达哥拉斯（约前570——前490）}
+ \label{fig:Pythagoras}
+\end{figure}
+%\end{wrapfigure}
 
 从数出发研究世间万物的第一人要算是古希腊的数学家和哲学家毕达哥拉斯。他的名字通过著名的勾股定理（在西方叫毕达哥拉斯定理）而家喻户晓。毕达哥拉斯出生于希腊的萨摩斯（Samos）岛，年轻时他曾去米利都（Miletus）向古希腊哲学的奠基人泰勒斯（Thales）学习。在泰勒斯的建议下，毕达哥拉斯前往东方学习数学。他在埃及学习了13年（一说为22年）。后来波斯帝国征服了埃及，他又随军向东到达了巴比伦，向巴比伦人学习数学和天文知识。或许后来他还到达了更远的印度。不论到了哪里，毕达哥拉斯都不断向有学问的人请教，丰富自己的见解。重要的是，他不仅刻苦学习，而且更善于思考。在经过兼收并蓄、汲取各家之长后，毕达哥拉斯形成并完善了自己的思想\cite{HanXueTao16}。
 
@@ -550,15 +550,15 @@ jars a b c = (x, y) where
 
 欧几里得算法是最著名的一个递归算法。德国数学家，解析数论创始人狄利克雷（Dirichlet）在他的著作《数论讲义》中评价到：“整个数论的结构都建立在同一个基础之上，这个基础就是最大公约数算法。”现代密码学的RSA加密算法\footnote{RSA算法是最早的一种公开密钥加密的非对称加密算法，RSA是1977年由罗纳德·李维斯特（Ron Rivest）、阿迪·萨莫尔（Adi Shamir）和伦纳德·阿德曼（Leonard Adleman）一起提出的。当时他们三人都在麻省理工学院工作。RSA就是他们三人姓氏开头字母拼在一起组成的。}直接使用了扩展欧几里得算法。我们在上一节通过一道趣题展示了如何使用扩展欧几里得算法给出二元线性不定方程$ax + by = c$的整数解。具体来说，就是先求出最大公度$g$，并判断$g$是否整除$c$，若不能，则无整数解。否则，将满足贝祖等式的$x_0$，$y_0$，扩大$c/g$倍得到一组特解$x_1$、$y_1$。然后得到一般二元线性不定的通解$x = x_1 - k b / g$和$y = y_1 + k a / g$。
 
-\begin{wrapfigure}{R}{0.4\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{R}{0.4\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.25]{img/Hippasus.jpg}
  \captionsetup{labelformat=empty}
  \caption{希帕索思（Hippasus of Metapontum）约公元前五世纪。}
  \label{fig:Hippasus}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 \index{希帕索思（Hippasus of Metapontum）}
 欧几里得算法是一把锋利的宝剑，但是它强大的递归原理被反过来指向了“万物皆数”的基石——万物可公度。一切事物和现象都可以归结为整数与整数的比。从而引发了毕达哥拉斯学派哲学思想的危机。约公元前470年左右，毕达哥拉斯学派的学生希帕索思试图寻找正方形的对角线和边的公度。经过仔细思考他发现不管度量单位取得多么小，这两条线段都无法公度。还有的说法是希帕索思从毕达哥拉斯学派的神秘五角星标志上得到了启发。毕达哥拉斯学派成员用五角星作为学派的徽章和联络标志。有一则故事说，学派的一个成员流落异乡，贫病交迫，无力酬谢房主的款待，临终前要房主在门上画一个五角星。若干年后，有同派的人看到这个标志，询问事情的经过，厚报房主而去\cite{HanXueTao16}。美国迪士尼在1959年的动画片《唐老鸭漫游数学奇境》中，描绘了唐老鸭遇到了毕达哥拉斯和他的朋友们，在了解音乐、艺术与数的关系后，唐老鸭的手掌上也画上了神秘的五角星。如图\ref{fig:pentagram}所示，传说希帕索思发现线段AC和AG也是无法公度的。
@@ -569,7 +569,7 @@ jars a b c = (x, y) where
 \begin{figure}[htbp]
  \centering
  \subcaptionbox{递归的五角星}[0.45\linewidth]{\includegraphics[scale=0.5]{img/pentagram.png}}
- \subcaptionbox{正方形的边长和对角线}[0.45\linewidth]{\includegraphics[scale=2]{img/irrational.jpg}}
+ \subcaptionbox{正方形的边长和对角线}[0.45\linewidth]{\includegraphics[scale=1.5]{img/irrational.jpg}}
  %\captionsetup{labelformat=empty}
  \caption{}
  \label{fig:pentagram}
@@ -1162,19 +1162,19 @@ foldt(f, g, c, node(l, x, r)) = foldt(f, g, g(foldt(f, g, c, l), f(x)), r)
  \includegraphics[scale=0.8]{img/Haydn-OP-76.png}
  %\captionsetup{labelformat=empty}
  \caption{海顿D小调弦乐四重奏小步舞曲，作品76第2}
- \label{fig:Drawing-Hands}
+ \label{fig:Haydn-OP-76}
 \end{figure}
 %\end{wrapfigure}
 
-\begin{wrapfigure}{L}{0.45\textwidth}
-%\begin{figure}[htbp]
+%\begin{wrapfigure}{L}{0.45\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.6]{img/Drawing-Hands-1948.jpg}
  %\captionsetup{labelformat=empty}
  \caption{艾舍尔的作品《画手》，1948年}
  \label{fig:Drawing-Hands}
-%\end{figure}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 赋格通常建立在一个主题上，以不同的声部、不同的调子、偶尔也用不同的速度或上下颠倒或从后往前地进行演奏。然而，赋格的概念远不如卡农那么严格，因而允许有更多的情感或艺术的表现。赋格的识别标志的是它的开始方式：单独的一个声部唱出它的主题，唱完后，第二个声部或移高五度或降低四度进入。与此同时，第一个声部继续唱“对应主题”，也叫第二主题，用来在节奏、和声、及旋律方面与主题形成对比。每个声部依次唱出主题，常常是另一个声部伴唱对应主题，其它的声部所起的作用随作曲家的想象而定。当所有的声部都“到齐”了，就不再有什么规则了。当然，还是有一些标准的手法，但它没有严格到只能够按照某个公式去创作赋格。 《音乐的奉献》 中的两首赋格曲就是杰出例子，它们绝不可能“照公式创造出来”。这两首曲子都具有远比赋格的性质更为深刻的东西\cite{GEB}。
 
