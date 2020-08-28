@@ -59,20 +59,22 @@
 
 范畴论是数学家艾伦伯格和麦克兰恩在1940年代创立的。
 
-\begin{wrapfigure}{R}{0.3\textwidth}
+%\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.25]{img/Eilenberg.png}
  \captionsetup{labelformat=empty}
  \caption{艾伦伯格（Samuel Eilenberg, 1913 - 1998）}
  \label{fig:Eilenberg}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 \index{艾伦伯格}
 塞缪尔·艾伦伯格于1913年生于波兰华沙的一个犹太人家庭。父亲是一个酿酒师。他在华沙大学接受了高等教育。当时的华沙大学云集了一批波兰的大数学家，并在点集拓扑学上取得了世界瞩目的成就。他于1936年在华沙大学获得博士学位。在波兰的第二大数学学术中心利沃夫，艾伦伯格结识了著名数学家巴拿赫，并加入了当时著名的数学家团体“苏格兰咖啡”。艾伦伯格和这些数学家们经常聚集在利沃夫市的一家苏格兰咖啡馆，边品尝咖啡边讨论那些没有解决的数学问题。这些未解决的问题后来被整理成了一本书，名叫《苏格兰问题集》（Scottish Book）。1939年，欧洲的局势已经极其紧张。艾伦伯格的父亲劝他移民到美国。他先去了普林斯顿，并于1940年在密歇根大学获得了一个教职。艾伦伯格主要研究代数拓扑。他与诺曼·斯廷罗德（Norman Steenrod）一起对同调理论进行了公理化。艾伦伯格也是著名的布尔巴基小组成员。1949年安德烈·韦伊在芝加哥大学工作的时候邀请艾伦伯格合作编写布尔巴基项目中关于同调群的内容。他与昂利·嘉当合作，在1956年完成了经典著作《同调代数》。艾伦伯格在与麦克兰恩合作研究同调代数的过程中一起创立了范畴论。艾伦伯格后来在纽约哥伦比亚大学做教授，他的主要工作是发展纯粹的范畴论。他是该领域的奠基者之一。1986年他获得沃尔夫奖。1998年艾伦伯格逝世于美国纽约市。
 
 艾伦伯格还是著名的亚洲艺术品收藏家。他收集了来自印度、印度尼西亚、尼泊尔、泰国、柬埔寨、斯里兰卡和中亚的雕塑和艺术品。1992年，他把自己收藏的400多件艺术品捐赠给了纽约大都会博物馆\cite{Wiki-Eilenberg}。
 
-\begin{wrapfigure}{L}{0.3\textwidth}
+\begin{wrapfigure}{L}{0.35\textwidth}
  \centering
  \includegraphics[scale=1]{img/Mac-Lane.jpg}
  \captionsetup{labelformat=empty}
@@ -416,13 +418,15 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \subsection{函子的例子}
 \label{sec:functor:examples}
 
-\begin{wrapfigure}{R}{0.3\textwidth}
+%\begin{wrapfigure}{R}{0.3\textwidth}
+\begin{figure}[htbp]
  \centering
  \includegraphics[scale=0.3]{img/blackhole.jpg}
  \captionsetup{labelformat=empty}
  \caption{常数函子的行为像一个黑洞}
  \label{fig:blackhole}
-\end{wrapfigure}
+\end{figure}
+%\end{wrapfigure}
 
 \index{函子!恒等函子} \index{函子!id函子}
 让我们用具体的例子来更好地理解函子的概念。如果一个函子从一个范畴映射到这个范畴本身上，这样的函子被称为\textbf{自函子}（endo-functor）\footnote{这和代数中的自同构概念很类似。如果记不清了，请回顾一下上一章。}。最简单的函子称为“恒等函子”，它是一个自函子，记为$id: \pmb{C} \to \pmb{C}$。它可以作用到任何范畴上，将对象$A$映射为对象$A$，将箭头$f$映射为箭头$f$。
@@ -434,6 +438,10 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
 \index{函子!可能函子} \index{函子!Maybe函子}
 我们接下来举的例子叫做“可能函子”（maybe functor）。计算机科学家，快速排序算法的提出者，1980年图灵奖得主霍尔\footnote{英文是Hoare，不是美国物理学家霍尔（Hall）。}曾说过一段有趣的话\footnote{2009年在伦敦举行的QCon会议上}。
 
+“我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
+
+% I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+
 %\begin{wrapfigure}{L}{0.25\textwidth}
 \begin{figure}[htbp]
  \centering
@@ -443,10 +451,6 @@ A \arrowto{id} A \quad \longmapsto \quad \mathbf{F}A \arrowto{id} \mathbf{F}A
  \label{fig:Hoare}
 \end{figure}
 %\end{wrapfigure}
-
-“我在1965年发明了空引用（null reference）。这是一个导致数十亿美元损失的发明。当时，我在为一种面向对象语言（ALGOL W）设计最早的类型系统。我希望能够保证所有的引用，经过编译器的自动检查，都是绝对安全的。但是我无法抗拒空引用的想法，它太容易实现了。此后，空引用导致了无数的错误、漏洞和系统崩溃。在过去的40年，由此导致的痛苦损失估计高达数十亿美元。”\cite{Wiki-Hoare}
-
-% I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language (ALGOL W). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
 
 2015年后主流的编程环境都纷纷将Maybe概念引入以取代null来获取更安全的方法\footnote{例如Java和C++中的\texttt{Optional<T>}。}。
 
