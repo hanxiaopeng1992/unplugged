@@ -757,6 +757,7 @@ fmap\ (f \circ g)\ Nil & = & Nil & \text{$fmap$的定义} \\
 针对$(x:xs)$的递归情况，令递归假设为$fmap\ (f \circ g)\ xs = (fmap\ f \circ fmap\ g)\ xs$，我们有：
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text{$fmap$的定义} \\
   & = & ((f \circ g)\ x):((fmap\ f \circ fmap\ g)\ xs) & \text{递归假设} \\
@@ -765,6 +766,7 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
   & = & fmap\ f\ (fmap\ g\ (x:xs)) & \text{再次反向使用$fmap$的定义} \\
   & = & (fmap\ f\ \circ fmap\ g)\ (x:xs) & \text{反向用函数组合的定义}
 \end{array}
+}}
 \]
 
 这就验证了$\mathbf{List}$的确是一个函子。

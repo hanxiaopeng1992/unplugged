@@ -1651,12 +1651,16 @@ fmap\ f = foldr\ f\ Nil
 
 然后是箭头组合：
 
-\bre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{rcll}
 (\mathbf{Maybe} \circ \mathbf{List})\ (f \circ g) & = & \mathbf{Maybe} (\mathbf{List}\ (f \circ g)) & \text{函子的组合} \\
  & = & \mathbf{Maybe} ((\mathbf{List}\ f) \circ (\mathbf{List}\ g)) & \text{列表函子的箭头组合性质} \\
  & = & (\mathbf{Maybe}\ (\mathbf{List}\ f)) \circ (\mathbf{Maybe}\ (\mathbf{List}\ g)) & \text{可能函子的箭头组合性质} \\
  & = & ((\mathbf{Maybe} \circ \mathbf{List})\ f) \circ ((\mathbf{Maybe} \circ \mathbf{List})\ g) & \text{函子的组合} \\
-\ere
+\end{array}
+}}
+\]
 
 \item {证明任意函子的组合$\mathbf{G} \circ \mathbf{F}$仍然是函子。}
 
