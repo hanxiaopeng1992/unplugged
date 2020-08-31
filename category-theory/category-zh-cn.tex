@@ -608,17 +608,20 @@ fmap\ id\ (Just\ x) & = & Just\ (id\ x) & \text{$fmap$的定义} \\
 接下来验证第二条性质：
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ Nothing & = & Nothing & \text{$fmap$的定义} \\
            & = & fmap\ f\ Nothing & \text{反向使用$fmap$的定义} \\
            & = & fmap\ f\ (fmap\ g\ Nothing) & \text{反向使用$fmap$的定义} \\
            & = & (fmap\ f\ \circ fmap\ g)\ Nothing & \text{反向用函数组合的定义}
 \end{array}
+}}
 \]
 
 并且
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定义} \\
            & = & Just\ (f\ (g\ x)) & \text{函数组合的定义} \\
@@ -626,6 +629,7 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{$fmap$的定�
            & = & fmap\ f\ (fmap\ g\ (Just\ x)) & \text{反向使用$fmap$的定义} \\
            & = & (fmap\ f\ \circ fmap\ g)\ (Just\ x) & \text{反向用函数组合的定义}
 \end{array}
+}}
 \]
 
 因此Maybe的确是一个函子。
