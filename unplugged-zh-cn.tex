@@ -1,6 +1,6 @@
-%\documentclass{article}
-\documentclass[UTF8, 8pt, b5paper,twoside]{extbook}
-\usepackage[nomarginpar
+\documentclass[zihao=5, b5paper, twoside]{ctexbook}
+\usepackage[
+  nomarginpar
   %, margin=.5in
   , top=1.5cm, bottom=1.5cm, left=2cm, right=2cm
 ]{geometry}
@@ -67,6 +67,7 @@
 
 \maketitle
 
+%\part{前言}
 \subimport{appendix/preface/}{preface-zh-cn.tex}
 
 % ================================================================
@@ -77,7 +78,6 @@
 \tableofcontents
 \newpage
 
-%\part{前言}
 \subimport{nat/}{nat-zh-cn.tex}
 
 \subimport{recursion/}{recursion-zh-cn.tex}
