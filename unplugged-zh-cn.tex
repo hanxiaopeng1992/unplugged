@@ -68,6 +68,7 @@
 \maketitle
 
 %\part{前言}
+\frontmatter
 \subimport{appendix/preface/}{preface-zh-cn.tex}
 
 % ================================================================
@@ -78,7 +79,7 @@
 \tableofcontents
 \newpage
 
-\pagenumbering{arabic}
+\mainmatter
 
 \subimport{nat/}{nat-zh-cn.tex}
 
@@ -94,12 +95,13 @@
 
 \subimport{paradox/}{paradox-zh-cn.tex}
 
-\part{附录}
+\part*{附录}
 \appendix
 %\appendixpage
 \noappendicestocpagenum
 \addappheadtotoc
 
+\backmatter
 \subimport{appendix/answer/}{ans-zh-cn.tex}
 
 \subimport{appendix/nat/}{nat-zh-cn.tex}

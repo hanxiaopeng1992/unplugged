@@ -270,7 +270,7 @@
 \makeatother
 
 \setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+%\setcounter{secnumdepth}{4}
 
 %\verbatimfont{\footnotesize}
 
@@ -292,38 +292,22 @@
 
   % 中文书籍设置
   % ====================================
-  \renewcommand\contentsname{目\ 录}
+  %\renewcommand\contentsname{目\ 录}
   %\renewcommand\listfigurename{插图目录}
   %\renewcommand\listtablename{表格目录}
-  \renewcommand\figurename{图}
-  \renewcommand\tablename{表}
-  \renewcommand\proofname{证明}
+  %\renewcommand\figurename{图}
+  %\renewcommand\tablename{表}
+  %\renewcommand\proofname{证明}
   \renewcommand\ExerciseName{练习}
   %\renewcommand{\algorithmcfname}{算法}
 
-  \ifx\wholebook\relax
-  \renewcommand\bibname{参\ 考\ 文\ 献}                    %book类型
+  %\ifx\wholebook\relax
+  %\renewcommand\bibname{参\ 考\ 文\ 献}                    %book类型
   %\newtheorem{Definition}[Theorem]{定义}
 
-  \else
-  \renewcommand\refname{参\ 考\ 文\ 献}
-  \fi
-
-  %\setcounter{secnumdepth}{4}
-  \titleformat{\chapter}
-    {\normalfont\bfseries\Large}
-    {第\arabic{chapter}章}
-    {12pt}{\Large}
-  %% \titleformat{\subsection}
-  %%   {\normalfont\bfseries\large}
-  %%   {\CJKnumber{\arabic{subsection}}、}
-  %%   {12pt}{\large}
-  %% \titleformat{\subsubsection}
-  %%   {\normalfont\bfseries\normalsize}
-  %%   {\arabic{subsubsection}.}
-  %%   {12pt}{\normalsize}
-
-  %\renewcommand{\baselinestretch}{1.5}                        %文章行间距为1.5倍。
+  %\else
+  %\renewcommand\refname{参\ 考\ 文\ 献}
+  %\fi
 }
 
 \DeclareOption{en}{
