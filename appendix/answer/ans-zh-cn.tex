@@ -2134,7 +2134,9 @@ eval : \mathbf{NatF}^n Int \to Int \\
 \]
 }
 
-\bre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{rcll}
 eval & : &\mathbf{NatF}^n Int \to Int \\
 eval\ ZeroF & = & 0 & \text{$ZeroF$是$\mathbf{NatF}^n Int$的对象}\\
 eval\ (SuccF\ ZeroF) & = & 1 & \text{$ZeroF$是$\mathbf{NatF}^{n-1} Int$的对象}\\
@@ -2142,18 +2144,24 @@ eval\ (SuccF\ (SuccF\ ZeroF)) & = & 2 & \text{$ZeroF$是$\mathbf{NatF}^{n-2} Int
 ... \\
 eval\ (SuccF^{n-1}\ ZeroF) & = & n - 1 & \text{$ZeroF$是$\mathbf{NatF} Int$的对象}\\
 eval\ (SuccF^n\ m) & = & m + n \\
-\ere
+\end{array}
+}}
+\]
 
 \item{对二叉树函子$\mathbf{TreeF}\ A\ B$，固定$A$，利用不动点验证$(\mathbf{Tree}\ A, [nil, branch])$是初始代数。}
 
 令$B' = \mathbf{TreeF}\ A\ B$，然后不断递归地应用到自己，把此结果称为$\mathbf{Fix}\ (\mathbf{TreeF}\ A)$。
 
-\bre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{rcll}
 \mathbf{Fix}\ (\mathbf{TreeF}\ A) & = & \mathbf{TreeF}\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{不动点的定义} \\
  & = & \mathbf{TreeF}\ A\ (\mathbf{TreeF}\ A (...)) & \text{递归展开} \\
  & = & NilF | BrF\ A\ (\mathbf{TreeF}\ A\ (...))\ (\mathbf{TreeF}\ A\ (...)) & \text{二叉树函子的定义} \\
  & = & NilF | BrF\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A))\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{反向用不动点} \\
-\ere
+\end{array}
+}}
+\]
 
 比较$Tree A$的定义：
 
@@ -2336,14 +2344,18 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 
 \item{利用融合律化简算式求值的定义$eval = sum \circ map\ (product \circ (map\ dec))$。}
 
-\blre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{cll}
   & eval\ es \\
 = & sum (map\ (product \circ (map\ dec))\ es) & \text{函数组合} \\
   & \{ \text{$sum$展开为叠加形式，$map$展开为构建形式} \} \\
 = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{令$f = product \circ (map\ dec)$} \\
 = & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{融合律} \\
 = & foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0\ es & \text{$\beta$-规约} \\
-\elre
+\end{array}
+}}
+\]
 
 写成无参数形式就是：
 
@@ -2353,7 +2365,9 @@ eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 
 接下来我们再化简$product \circ (map\ dec)$部分
 
-\blre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{cll}
   & (product \circ (map\ dec))\ t \\
 = & product\ (map\ dec\ t) & \text{函数组合} \\
   & \{ \text{$product$展开为叠加形式，$map$展开为构建形式} \} \\
@@ -2361,7 +2375,9 @@ eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 = & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{融合律} \\
 = & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$-规约} \\
 = & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{定义$fork(f, g)\ x = (f\ x, g\ x)$} \\
-\elre
+\end{array}
+}}
+\]
 
 接着把这个结果代入之前的$f$，得到最终化简的结果：
 
