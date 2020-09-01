@@ -1,12 +1,8 @@
-%\documentclass{article}
-\documentclass[UTF8, a4paper,twoside]{book} %this has problems
+\documentclass[b5paper,twoside]{book}
 \usepackage[nomarginpar
   %, margin=.5in
+  , top=1.5cm, bottom=1.5cm, left=2cm, right=2cm
 ]{geometry}
-
-\addtolength{\oddsidemargin}{-0.05in}
-\addtolength{\evensidemargin}{-0.05in}
-\addtolength{\textwidth}{0.1in}
 
 % ==================== Book flag==========================
 
@@ -57,7 +53,7 @@
   \vspace{5mm}
   {\bf -- Mathematics of Programming \newline \newline \newline}
   \centering
-  \scalebox{0.36}{\includegraphics{nat/img/the-school-of-athens.jpg}}
+  \scalebox{0.3}{\includegraphics{nat/img/the-school-of-athens.jpg}}
 }
 
 \author{LIU Xinyu
@@ -66,6 +62,7 @@
 
 \maketitle
 
+\frontmatter
 \subimport{appendix/preface/}{preface-en.tex}
 
 % ================================================================
@@ -76,7 +73,8 @@
 \tableofcontents
 \newpage
 
-%\part{Preface}
+\mainmatter
+
 \subimport{nat/}{nat-en.tex}
 
 \subimport{recursion/}{recursion-en.tex}
@@ -91,12 +89,13 @@
 
 \subimport{paradox/}{paradox-en.tex}
 
-\part{Appendix}
+\part*{Appendix}
 \appendix
 %\appendixpage
 \noappendicestocpagenum
 \addappheadtotoc
 
+\backmatter
 \subimport{appendix/answer/}{ans-en.tex}
 
 \subimport{appendix/nat/}{nat-en.tex}
