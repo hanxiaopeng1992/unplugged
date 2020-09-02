@@ -2168,12 +2168,16 @@ eval\ (SuccF^n\ m) & = & m + n \\
 
 Let $B' = \mathbf{TreeF}\ A\ B$. We recursively apply to itself, and call this result as $\mathbf{Fix}\ (\mathbf{TreeF}\ A)$.
 
-\bre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{rcll}
 \mathbf{Fix}\ (\mathbf{TreeF}\ A) & = & \mathbf{TreeF}\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{definition of fixed point} \\
  & = & \mathbf{TreeF}\ A\ (\mathbf{TreeF}\ A (...)) & \text{expand} \\
  & = & NilF | BrF\ A\ (\mathbf{TreeF}\ A\ (...))\ (\mathbf{TreeF}\ A\ (...)) & \text{definition of binary tree functor} \\
  & = & NilF | BrF\ A\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A))\ (\mathbf{Fix}\ (\mathbf{TreeF}\ A)) & \text{reverse of fixed point} \\
-\ere
+\end{array}
+}}
+\]
 
 Compare with the definition of $Tree A$:
 
@@ -2361,14 +2365,18 @@ build : \forall A. (\forall B. (A \to B \to B) \to B \to B) \to \mathbf{List}\ A
 eval = sum \circ map\ (product \circ (map\ dec))
 \]}
 
-\blre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{cll}
   & eval\ es \\
 = & sum (map\ (product \circ (map\ dec))\ es) & \text{function composition} \\
   & \{ \text{$sum$ in fold, $map$ in build} \} \\
 = & \pmb{foldr}\ (+)\ 0\ (\pmb{build}\ (\oplus\ z\ \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)) & \text{let $f = product \circ (map\ dec)$} \\
 = & (\oplus\ z \mapsto foldr\ (t\ ts \mapsto (f\ t) \oplus ts)\ z\ es)\ (+)\ 0 & \text{fusion law} \\
 = & foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0\ es & \text{$\beta$-reduction} \\
-\elre
+\end{array}
+}}
+\]
 
 Written in point-free form as:
 
@@ -2378,7 +2386,9 @@ eval = foldr\ (t\ ts \mapsto (f\ t) + ts)\ 0
 
 Next we simplify the $product \circ (map\ dec)$ part
 
-\blre
+\[
+\resizebox{\textwidth}{!}{\ensuremath{
+\begin{array}{cll}
   & (product \circ (map\ dec))\ t \\
 = & product\ (map\ dec\ t) & \text{function composition} \\
   & \{ \text{$product$ in fold, $map$ in build} \} \\
@@ -2386,7 +2396,9 @@ Next we simplify the $product \circ (map\ dec)$ part
 = & (\oplus\ z \mapsto foldr (d\ ds \mapsto (dec\ d) \oplus ds)\ z\ t)\ (\times)\ 1 & \text{fusion law} \\
 = & foldr\ (d\ ds \mapsto (dec\ d) \times ds)\ 1\ t & \text{$\beta$-reduction} \\
 = & foldr\ ((\times) \circ fork\ (dec, id))\ 1\ t & \text{let $fork(f, g)\ x = (f\ x, g\ x)$} \\
-\elre
+\end{array}
+}}
+\]
 
 Substitute this to $f$, we obtain the final simplified result:
 
@@ -2559,6 +2571,7 @@ We call it the number theory finger print $F$ of string $W$. When $W$ is empty, 
 
 Use the convention to count from zero, and use pair $(i, j)$ to denote the $j$-th guest in the $i$-th group. Let us list the first several guests and their rooms:
 
+\begin{adjustbox}{max width=\textwidth}
 \btab{c|c|c|c|c|c|c|c|c|c|c|c}
 $(i, j)$ & (0, 0) & (0, 1) & (1, 0) & (2, 0) & (1, 1) & (0, 2) & (0, 3) & (1, 2) & (2, 1) & (3, 0) & ... \\
 \hline
@@ -2566,6 +2579,7 @@ $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & ... \\
 \hline
 $i + j$ & 0 & 1 & 1 & 2 & 2 & 2 & 3 & 3 & 3 & 3 & ... \\
 \etab
+\end{adjustbox}
 
 Writing down the values $i+j$, we can find the pattern. There are 1 instance of number 0, 2 instances of number 1, 3 instances of number 2, 4 instances of number 3, ... They are exactly the triangle numbers found by Pythagoreans. Let $m = i + j$, there are total $\dfrac{m(m + 1)}{2}$ grid points along the diagonals on the left-bottom side of a given grid.
 

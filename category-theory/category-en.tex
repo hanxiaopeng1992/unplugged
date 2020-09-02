@@ -72,7 +72,7 @@ Eilenberg was also a prominent collector of Asian art. His collection mainly con
 
 \vspace{5mm}
 
-\begin{wrapfigure}{L}{0.3\textwidth}
+\begin{wrapfigure}{L}{0.35\textwidth}
  \centering
  \includegraphics[scale=1]{img/Mac-Lane.jpg}
  \captionsetup{labelformat=empty}
@@ -610,17 +610,20 @@ fmap\ id\ (Just\ x) & = & Just\ (id\ x) & \text{definition of $fmap$} \\
 For the second condition:
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ Nothing & = & Nothing & \text{definition of $fmap$} \\
            & = & fmap\ f\ Nothing & \text{reverse of $fmap$} \\
            & = & fmap\ f\ (fmap\ g\ Nothing) & \text{reverse of $fmap$} \\
            & = & (fmap\ f\ \circ fmap\ g)\ Nothing & \text{reverse of function composition}
 \end{array}
+}}
 \]
 
 And
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{definition of $fmap$} \\
            & = & Just\ (f\ (g\ x)) & \text{function composition} \\
@@ -628,6 +631,7 @@ fmap\ (f \circ g)\ (Just\ x) & = & Just\ ((f \circ g)\ x) & \text{definition of 
            & = & fmap\ f\ (fmap\ g\ (Just\ x)) & \text{reverse of $fmap$} \\
            & = & (fmap\ f\ \circ fmap\ g)\ (Just\ x) & \text{reverse of function composition}
 \end{array}
+}}
 \]
 
 Therefore, Maybe is really a functor.
@@ -756,6 +760,7 @@ fmap\ (f \circ g)\ Nil & = & Nil & \text{definition of $fmap$} \\
 For the recursive case of $(x:xs)$, assume $fmap\ (f \circ g)\ xs = (fmap\ f \circ fmap\ g)\ xs$ holds, we have:
 
 \[
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{array}{rcll}
 fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text{definition of $fmap$} \\
   & = & ((f \circ g)\ x):((fmap\ f \circ fmap\ g)\ xs) & \text{induction assumption} \\
@@ -764,6 +769,7 @@ fmap\ (f \circ g)\ (x:xs) & = & ((f \circ g)\ x):(fmap\ (f \circ g)\ xs) & \text
   & = & fmap\ f\ (fmap\ g\ (x:xs)) & \text{reverse of $fmap$ again} \\
   & = & (fmap\ f\ \circ fmap\ g)\ (x:xs) & \text{reverse of function composition}
 \end{array}
+}}
 \]
 
 Thus we verified $\mathbf{List}$ is really a functor.

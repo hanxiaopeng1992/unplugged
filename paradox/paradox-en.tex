@@ -654,6 +654,7 @@ For example, 123,666,111,666 is not a TNT number. It means we can replace $a$ by
 
 \begin{figure}[htbp]
 \centering
+\resizebox{\textwidth}{!}{\ensuremath{
 \begin{tikzpicture}[scale=0.8]
 \draw (-8, 0) circle[x radius=1.5cm, y radius=1cm] node (TNT) {TNT}
       (0, 0) circle[x radius=2.0cm, y radius=1cm] node (N) {Number theory $N$}
@@ -661,6 +662,7 @@ For example, 123,666,111,666 is not a TNT number. It means we can replace $a$ by
 \draw[->] (TNT) to node [above] {Number theory interpretation} (N);
 \draw[->] (N) to node [above] {Metalanguage statement} (Meta-TNT);
 \end{tikzpicture}
+}}
 \caption{TNT $\to$ number theory $N$ $\to$ Meta-TNT}
 \label{fig:TNT-N-TNT}
 \end{figure}

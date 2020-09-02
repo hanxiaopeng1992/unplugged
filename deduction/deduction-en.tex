@@ -952,7 +952,8 @@ The improved exhaustive search solution:
 value (_, f, fs, ts) = f * fs + ts
 
 expand d [] = [(expr d, (10, d, 1, 0))]
-expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs where
+expand d evs = concatMap ((filter ((<= 100) . value . snd)) . (add d)) evs
+where
   add d (((ds:fs):ts), (e, f, vfs, vts)) =
     [(((d:ds):fs):ts, (10 * e, d * e + f, vfs, vts)),
      (([d]:ds:fs):ts, (10, d, f * vfs, vts)),
