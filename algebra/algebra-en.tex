@@ -1746,10 +1746,16 @@ We call $e$ the \textbf{unity} (multiplicative identity element) of the ring. A 
 From the distributive axiom, we have:
 
 \[
-(a - a)a = aa - aa = 0
+(a - a)a = a(a - a) = aa - aa = 0
 \]
 
-It means, if either $a$ or $b$ is 0, then $ab = 0$. But the inverse proposition does not hold. We can not deduce from $ab =0$ to either $a$ or $b$ is 0. Let's see a negative example. Consider the residue class modulo $n$, where the addition operation is modulo addition: $[a] + [b] = [a + b]$, which takes modulo $n$ on top of the sum. It forms an abelian addition group. The multiplication modulo $n$ is defined as: $[a][b] = [ab]$, which takes modulo $n$ on top of the product. It's easy to verify that this is a ring, named as residue ring modulo $n$.
+in short:
+
+\[
+0 a = a 0 = 0
+\]
+
+It means for two elements $a$, $b$ in the ring, if either one is 0, then $ab = 0$. But the inverse proposition does not hold. We can not deduce from $ab =0$ to either $a$ or $b$ is 0. Let's see a negative example. Consider the residue class modulo $n$, where the addition operation is modulo addition: $[a] + [b] = [a + b]$, which takes modulo $n$ on top of the sum. It forms an abelian addition group. The multiplication modulo $n$ is defined as: $[a][b] = [ab]$, which takes modulo $n$ on top of the product. It's easy to verify that this is a ring, named as residue ring modulo $n$.
 
 If $n$ is not prime, for example 10, we can multiply two none zero elements $[5][2] = [5 \times 2] = [0]$. In fact, for any two factors of $n$, their modulo product must be zero.
 
