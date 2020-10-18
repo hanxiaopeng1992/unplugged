@@ -332,6 +332,21 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 \label{eq:recursive-gcm}
 \ee
 
+\begin{figure}[htbp]
+ \centering
+ \subcaptionbox{Recursively cut off squares}{\includegraphics[scale=0.45]{img/GCM.png}}
+ \subcaptionbox{Tile the small squares}{
+   \begin{adjustbox}{max width=\textwidth}
+   \begin{tikzpicture}
+     \draw[step=1, thin] (0, 0) grid (30, 13);
+   \end{tikzpicture}
+   \end{adjustbox}
+ }
+ \captionsetup{labelformat=empty}
+ \caption{A geometric description of Euclidean algorithm}
+ \label{fig:geometric-GCM}
+\end{figure}
+
 \subsection{Extended Euclidean algorithm}
 
 The extended Euclidean algorithm is an extension to the Euclidean algorithm. For given magnitude $a$ and $b$, in addition to compute their greatest common measure $g$, it can also find two integers $x$ and $y$, that satisfy Bézout's identity $ax + by = g$. Why does Bézout's identity\footnote{Bézout's identity, or Bézout's theorem was first found and proven by French mathematician Méziriac (Claude Gaspard Bachet de Méziriac，1581–1638) for integers. Bézout proved it hold for polynomials. Bézout identity can be extended to any Euclidean domain and Principle Idean Domain (PID).} always hold? Here is a proof. We can construct a set, consists of all the positive linear combinations of $a$ and $b$.

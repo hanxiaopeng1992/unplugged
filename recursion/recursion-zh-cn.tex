@@ -341,6 +341,21 @@ g = gcm(a, b) = gcm(b, r_0) = ... = gcm(r_{n-2}, r_{n-1}) = r_{n-1}
 \label{eq:recursive-gcm}
 \ee
 
+\begin{figure}[htbp]
+ \centering
+ \subcaptionbox{反复剪掉正方形}{\includegraphics[scale=0.45]{img/GCM.png}}
+ \subcaptionbox{用最终的小正方形铺满原图}{
+   \begin{adjustbox}{max width=\textwidth}
+   \begin{tikzpicture}
+     \draw[step=1, thin] (0, 0) grid (30, 13);
+   \end{tikzpicture}
+   \end{adjustbox}
+ }
+ \captionsetup{labelformat=empty}
+ \caption{欧几里得算法的几何解释}
+ \label{fig:geometric-GCM}
+\end{figure}
+
 \subsection{扩展欧几里得算法}
 
 \index{扩展欧几里得算法} \index{贝祖等式}
