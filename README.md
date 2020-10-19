@@ -14,7 +14,7 @@ The book can be downloaded in both English ([EN](https://github.com/liuxinyu95/u
 
 - Preface
 - Chapter 1, Natural numbers. Peano Axiom, list and folding;
-- Chapter 2, Recurrsion. Euclidean algorithm, Lambda calculus, and Y-combinator;
+- Chapter 2, Recursion. Euclidean algorithm, Lambda calculus, and Y-combinator;
 - Chapter 3, Symmetry. Group, Ring, and Field. Galois Theory;
 - Chapter 4, Category theory and type system;
 - Chapter 5, Deforest. Build-fold fusion law, optimization, and algorithm deduction;
