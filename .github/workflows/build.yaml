@@ -40,7 +40,6 @@ jobs:
           latexmk_use_xelatex: true
           root_file: ${{ matrix.sources.input }}
           latexmk_shell_escape: true
-          args: -f -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Upload build assets (${{ matrix.sources.output }})
         uses: actions/upload-artifact@v2
