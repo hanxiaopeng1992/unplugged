@@ -37,7 +37,6 @@ jobs:
       - name: Build documents using LaTeX (${{ matrix.sources.input }})
         uses: xu-cheng/latex-action@v2
         with:
-          working_directory: src
           latexmk_use_xelatex: true
           root_file: ${{ matrix.sources.input }}
           latexmk_shell_escape: true
