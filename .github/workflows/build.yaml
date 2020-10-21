@@ -34,10 +34,6 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v1
 
-      - name: Create necessary build file (version.tex)
-        run: |
-          echo -n -e "\\\newcommand{\OPTversion}{$(git rev-parse --short HEAD)}" > src/version.tex
-
       - name: Build documents using LaTeX (${{ matrix.sources.input }})
         uses: xu-cheng/latex-action@v2
         with:
