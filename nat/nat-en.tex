@@ -278,7 +278,7 @@ sum(n + 1) = (n + 1) + sum(n)
 \end{array}
 \ee
 
-Another example is the faction $n!$
+Another example is the factorial $n!$
 
 \be
 \begin{array}{l}
@@ -289,7 +289,7 @@ Another example is the faction $n!$
 
 They are similar to each other. Although artificial intelligence achieves incredible result today, the machine can't jump out of the system, as intelligent mind, to abstract in a higher level. This is one of the most complex, powerful, and mysterious part in human brain\cite{GEB}.
 
-Corresponding to zero in natural number, both summation and fraction have a start value. Summation starts from zero, fraction starts from one. For recursion, they both apply some operation to a number and its successor. For summation, it's $n' + sum(n)$, for fraction, it's $n' \cdot \textit{fact}(n)$. If we abstract the start value as $c$, the recursive operation as $h$, then we can use the same form for both.
+Corresponding to zero in natural number, both summation and factorial have a start value. Summation starts from zero, factorial starts from one. For recursion, they both apply some operation to a number and its successor. For summation, it's $n' + sum(n)$, for factorial, it's $n' \cdot \textit{fact}(n)$. If we abstract the start value as $c$, the recursive operation as $h$, then we can use the same form for both.
 
 \be
 \begin{array}{l}
@@ -349,7 +349,7 @@ m^{()} = foldn(1, (\cdot m))
 
 This is the operation to take the power for a number $m$. When applying to natural numbers, it generates an isomorphic sequence of $1, m, m^2, m^3, ..., m^n, ...$
 
-Can we use the abstract tool $foldn$ to define the summation and fraction? Observe the below table.
+Can we use the abstract tool $foldn$ to define the summation and factorial? Observe the below table.
 
 \vspace{5mm}
 
@@ -398,12 +398,12 @@ $(m, sum(m))$ & $(m + 1, m + 1 + sum(m))$ & $sum(m + 1)$
 
 \vspace{5mm}
 
-Similarly, we can define fraction with $foldn$.
+Similarly, we can define factorial with $foldn$.
 
 \[
 \begin{array}{lr}
-c = (0, 1) & \text{Starting pair for fraction} \\
-h (m, n) = (m', m'n) & \text{Iteration for fraction} \\
+c = (0, 1) & \text{Starting pair for factorial} \\
+h (m, n) = (m', m'n) & \text{Iteration for factorial} \\
 fact = 2nd \cdot foldn(c, h) \\
 \end{array}
 \]
